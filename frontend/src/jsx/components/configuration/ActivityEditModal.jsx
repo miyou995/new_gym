@@ -12,10 +12,12 @@ const ActivityEditModal = ({show, onShowShange, activityData}) => {
   
   const sallesActivite = activityData['salles']
   const selectedSalle  = activityData['salleId']
+  // const activityColor  = activityData['color']
 
   const [name, setName] = useState('')
   const [salle, setSalle] = useState('')
   const [allSalles, setAllSalles] = useState('')
+  const [color, setColor] = useState("");
 
 
 const [newSalle, setNewSalle] = useState(selectedSalle)
@@ -24,21 +26,28 @@ useEffect(() => {
 
   if (activityData['activityId']) {
     setName(activityData['activityName'])
+    setColor(activityData['color'])
     setAllSalles(activityData['salles'])
     setSalle(sallesActivite[activityData['salleId']])
     setNewSalle(sallesActivite[selectedSalle].id)
+    console.log('la couleuuuuur', activityData['color']);
   }
 }, [ activityData['activityId']]);
-    const handleSubmit = async e => {
-        e.preventDefault();
-        const activityFormData = {
-            name  : name,
-            salle : Number(newSalle),
-        }
-        await axios.patch(activityEditEND, activityFormData)
-        handleShow()
-      }
+
+
+const handleSubmit = async e => {
+  e.preventDefault();
+  const activityFormData = {
+      name  : name,
+      salle : Number(newSalle),
+      color: color
+  }
+  await axios.patch(activityEditEND, activityFormData)
+  handleShow()
+}
+
 return ( 
+  <div>
     <Modal  className="fade bd-example-modal-lg" size="xl"onHide={handleShow} show={show}>
     <Modal.Header>
       <Modal.Title className='text-black'>modifier l'activité  </Modal.Title>
@@ -73,6 +82,12 @@ return (
                 />
               </div>
           </div>
+          <div className="form-group row">
+                <label className="col-sm-3 col-form-label">Couleur</label>
+                <div  className="col-sm-9">
+                    <input type="color" className="as_colorpicker form-control" value={color} onChange={(e, value) => setColor(e.target.value)} />
+                </div>
+            </div>
           <div className="form-group row d-flex justify-content-between">
               <div className="m-3">
                   <button type="submit" className="btn btn-primary">
@@ -90,5 +105,7 @@ return (
       </form>
      </Modal.Body>
     </Modal>
+  </div>
+
 )}
 export default ActivityEditModal;

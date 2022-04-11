@@ -92,6 +92,7 @@ return (
                     label={systemeCochage ? 'Prépayé ': 'Normal'}
                     labelPlacement={systemeCochage ? 'end': 'start'}
                     />
+                    {/* need to be a radio button to specify which type of the subscription is*/}
               </div>
           </div>
           <div className="form-group row">

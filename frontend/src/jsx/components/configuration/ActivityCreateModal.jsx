@@ -20,12 +20,14 @@ const ActivityCreateModal = ({show, onShowShange, activityData}) => {
 
 const [name, setName] = useState('')
 const [salle, setSalle] = useState('')
+const [color, setColor] = useState("");
 
     const handleSubmit = e => {
         e.preventDefault();
         const activityFormData = {
             name  : name,
             salle : Number(salle),
+            color: color
         }
         axios.post(activityCreateEND, activityFormData).then(res => {
           notifySuccess('Activité creer avec succés')
@@ -92,6 +94,12 @@ return (
                 />
               </div>
           </div>
+          <div className="form-group row">
+                <label className="col-sm-3 col-form-label">Couleur</label>
+                <div  className="col-sm-9">
+                    <input type="color" className="as_colorpicker form-control" value={color} onChange={(e, value) => setColor(e.target.value)} />
+                </div>
+            </div>
           <div className="form-group row">
               <div className="col-sm-10">
                   <button type="submit" className="btn btn-primary">

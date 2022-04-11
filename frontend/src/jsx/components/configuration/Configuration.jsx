@@ -67,7 +67,8 @@ const Configuration = (props) => {
     
     const [salllesActivities, setSalllesActivities] = useState([]);
     const [dureeInd, setDureeInd] = useState("");
-
+    const [activityColor, setActivityColor] = useState("");
+    
     
     const [activities, setActivities] = useState([])
     const DureeAb = [
@@ -279,6 +280,7 @@ const Configuration = (props) => {
                                                 setActivityEditModal(true)
                                                 setActivityId(activity.id)
                                                 setActivityName(activity.name)
+                                                setColor(activity.color)
                                                 setSalleId(getFkIndex(salllesActivities, activity.salle))
                                             }}>
                                                 <td className="text-left">{activity.name}</td>
@@ -398,8 +400,18 @@ const Configuration = (props) => {
                 
         </div>
         <AbonnementCreateModal show={abonnementCreateModal} onShowShange={setAbonnementCreateModal} abonnementData={{abonnementId: abonnementId}} />
-        <ActivityCreateModal show={activityCreateModal} onShowShange={setActivityCreateModal} activityData={{activityId: activityId, salllesActivities : salllesActivities }} />
-        <ActivityEditModal show={activityEditModal} onShowShange={setActivityEditModal} activityData={{activityId: activityId, salllesActivities : salllesActivities, color:color, salle: salle, activityName: activityName, salles: salllesActivities, salleId:salleId}} />
+        <ActivityCreateModal show={activityCreateModal} onShowShange={setActivityCreateModal} activityData={{
+            activityId: activityId, 
+            salllesActivities : salllesActivities
+            }} />
+        <ActivityEditModal show={activityEditModal} onShowShange={setActivityEditModal} activityData={{
+            activityId: activityId, 
+            salllesActivities : salllesActivities, 
+            color:color, 
+            salle: salle, 
+            activityName: activityName, 
+            salles: salllesActivities, 
+            salleId:salleId}} />
         <SalleActiviteCreateModal  show={salleActiviteCreateModal} onShowShange={setSalleActiviteCreateModal}  />
         <PlanningCreateModal  show={planningCreateModal} onShowShange={setPlanningCreateModal}  />
         <MaladieCreateModal  show={maladieCreateModal} onShowShange={setMaladieCreateModal}  />

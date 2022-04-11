@@ -29,7 +29,7 @@ const [is_default, setDefault] = useState(false)
         e.preventDefault();
         const ebonnementFormData = {
             name : name,
-            is_default : is_default
+            is_default : is_default,
         }
         await axios.post(salleActiviteCreateEnd, ebonnementFormData).then( res => {
             notifySuccess('Salle creer avec succés')
@@ -52,18 +52,18 @@ return (
     </Modal.Header>
     <Modal.Body>
       <form onSubmit={HandleSubmit}>
-          <div className="form-group row">
-              <label className="col-sm-3 col-form-label">Nom </label>
-              <div className="col-sm-9">
-                  <input type="text" value={name} className="form-control" placeholder="..." onChange={e => setName(e.target.value)}/>
-              </div>
-          </div>
-          <div className="form-group row">
-              <label className="col-sm-3 col-form-label">Planning par défaut </label>
-              <div className="col-sm-9">
-                  <input type="checkbox" value={is_default} className="form-control"  onChange={e => setDefault(e.target.value)}/>
-              </div>
-          </div>
+            <div className="form-group row">
+                <label className="col-sm-3 col-form-label">Nom </label>
+                <div className="col-sm-9">
+                    <input type="text" value={name} className="form-control" placeholder="..." onChange={e => setName(e.target.value)}/>
+                </div>
+            </div>
+            <div className="form-group row">
+            <label className="col-sm-3 col-form-label">Planning par défaut </label>
+                <div className="col-sm-9">
+                    <input type="checkbox" value={is_default} className="form-control"  onChange={e => setDefault(e.target.value)}/>
+                </div>
+            </div>
 
           <div className="form-group row">
               <div className="col-sm-10">
@@ -72,6 +72,7 @@ return (
                   </button>
               </div>
           </div>
+   
       </form>
      </Modal.Body>
 

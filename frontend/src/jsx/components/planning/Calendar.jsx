@@ -54,7 +54,8 @@ const Calendar = () => {
   const [creneauCoach, setCreneauCoach] = useState("")
   const [creneauPlanning, setCreneauPlanning] = useState("")
   const [creneauDay, setCreneauDay] = useState("")
-
+  const [creneau, setCreneau] = useState("")
+  
 
   const [startHour, setStartHour] = useState("")
   const [endHour, setEndHour] = useState("")
@@ -137,6 +138,7 @@ useEffect(() => {
 
 const handleSelectedCreneau = (day) => {
   setSelectedCreneau(day.id)
+  setCreneau(day.id)
   setCreneauActi(getActivity(activities, day.activity))
   setCreneauCoach(getActivity(coachs, day.coach))
   setCreneauPlanning(getActivity(plannings, day.planning))
@@ -150,6 +152,7 @@ const handleSelectedCreneau = (day) => {
   setModal(true) 
   setCreneauName(day.name)
   setCreneauColor(day.color)
+  console.log('creneau ', day);
 }
 
  const getActivity = (acti,creneauActi) => {
@@ -233,7 +236,7 @@ const getDay = (days,creneauDay) => {
                         <div className="fc-event-calendar mt-0 ml-0 mb-2 btn btn-block rounded" style={{backgroundColor: day.creneau_color}}>
                           <h5> {day.hour_start}<span> - </span> {day.hour_finish}</h5> 
                           <ul className='text-left'>
-                            <li> {day.coach_name}  </li>
+                            <li>  {day.name ? day.name :day.coach_name }  </li>
                             <li> {day.clients_count} Abonné</li>
                             <li> {day.activity_name}</li>
                           </ul> 
@@ -275,7 +278,7 @@ const getDay = (days,creneauDay) => {
                         <div className="fc-event-calendar mt-0 ml-0 mb-2 btn btn-block rounded" style={{backgroundColor: day.creneau_color}}>
                             <h5> {day.hour_start}<span> - </span> {day.hour_finish}</h5> 
                             <ul className='text-left'>
-                            <li>  {day.coach_name}</li>
+                            <li>  {day.name ? day.name :day.coach_name }</li>
                             <li> {day.clients_count} Abonné</li>
                             <li>{day.activity_name}</li>
                             </ul> 
@@ -409,8 +412,11 @@ const getDay = (days,creneauDay) => {
                 activityName : activityName,
                 jour : jour,
                 creneauName: creneauName,
-                creneauColor: creneauColor
-                }} />
+                creneauColor: creneauColor,
+                creneau: creneau
+                }
+                
+                } />
               </div>
           </Card>
         </Col>

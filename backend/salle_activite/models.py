@@ -26,7 +26,7 @@ class Salle(models.Model):
 class Activity(models.Model):
     name    = models.CharField( max_length=150, verbose_name="nom d'activité")
     salle   = models.ForeignKey(Salle, on_delete=models.CASCADE, related_name='actvities')
-    color   = models.CharField( max_length=50, default='#233774', blank=True, null=True) 
+    color   = models.CharField( max_length=50, default="#233774",blank=True, null=True) 
     
     def __str__(self):
         return self.name

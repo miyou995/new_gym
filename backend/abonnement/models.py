@@ -25,7 +25,11 @@ from django.db.models.signals import post_save, pre_save
 #     def get_queryset():
 #         return Abonnement.objects.filter(actif= True)
         # return True
-
+TYPE_ABONNEMENT = (
+    ('VH', 'Volume Horaire'),
+    ('OU', 'Ouvert'),
+    ('SL', 'Seance limité'),
+)
 class Abonnement(models.Model):
     name              = models.CharField(max_length=70, verbose_name="Nom")
     price             = models.DecimalField(max_digits=15, decimal_places=0, verbose_name="prix")
@@ -65,7 +69,8 @@ class AbonnementClient(models.Model):
 
     def __str__(self):
         return  str(self.id)
-    
+    def get_type(self):
+        return self.type_abonnement.type
 
 
 # def dette_signal(sender, instance, **kwargs):

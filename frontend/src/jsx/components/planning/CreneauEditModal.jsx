@@ -8,7 +8,9 @@ import axios from 'axios';
 import { Dropdown, Tab, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import {notifySuccess, notifyError} from '../Alert'
- 
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+
 
 
 const CreneauCreateModal = ({show, onShowShange, creneauData}) => {
@@ -33,7 +35,7 @@ const CreneauCreateModal = ({show, onShowShange, creneauData}) => {
     const creneauColor = creneauData['creneauColor']
     const activityName = creneauData['activityName']
     const jour = creneauData['jour']
-    
+    const creneau = creneauData['creneau']
     // const [newActivity, setNewActivity] = useState(activities[creneauActivite].id)
     // const [newCoach, setNewCoach] = useState(coachs[creneauCoach].id)
     // const [newStartHour, setNewStartHour] = useState(startHour)
@@ -54,6 +56,7 @@ const CreneauCreateModal = ({show, onShowShange, creneauData}) => {
     const [newCoachError, setNewCoachError ] = useState(false)
     const [newDayError, setNewDayError ] = useState(false)
     const [newPlanningError, setNewPlanningError ] = useState(false)
+    const [removeColor, setRemoveColor ] = useState(false)
 
     
     useEffect(() => {
@@ -74,9 +77,14 @@ const CreneauCreateModal = ({show, onShowShange, creneauData}) => {
         setNewPlanning(plannings[creneauPlanning].id)
         setName(creneauName)
         setColor(creneauColor)
+        if (creneauColor) {
+           setRemoveColor(removeColor)
+        } else {
+           setRemoveColor(!removeColor)
+        }
+        console.log('la couleur du creneau getted creneauName=>',creneauName);
+        console.log('la couleur du creneau getted setName=>',name);
       }
-      console.log('la couleur du creneau setColor=>', color);
-      console.log('la couleur du creneau getted color=>',creneauColor);
     }, [creneauData['creneauId']])
 
 
@@ -126,11 +134,17 @@ const CreneauCreateModal = ({show, onShowShange, creneauData}) => {
             coach :newCoach,
             planning :newPlanning,
             name :name,
-            // color :color,
             activity :newActivity,
          }
-   //  console.log(" =================> new Creneau ", newCreneau);
-    axios.put(creneauUpdateEND, newCreneau).then( res => {
+         // color :color,
+      if( removeColor) {
+         newCreneau.color = " "
+      }else {
+         newCreneau.color = color
+      }
+       console.log(" =================> new Creneau ", newCreneau);
+      axios.put(creneauUpdateEND, newCreneau).then( res => {
+         
       notifySuccess('Créneau modifier avec succés')
           handleShow()
       }).catch(err => {
@@ -197,16 +211,16 @@ return (
                            <tbody> */}
                      <form onSubmit={handleSubmit}>
                         <div className="form-row">
-                        <div className="form-group col-md-6">
-                           <TextField
-                              type="text"
-                              defaultValue={name}
-                              label="Nom du créneau"
-                              variant="outlined"
-                              onChange={e=> setName(e.currentTarget.value)}
-                              // onChange={(event, value) => setNewStartHour(value)}
-                              fullWidth
-                           />
+                           <div className="form-group col-md-6">
+                              <TextField
+                                 type="text"
+                                 defaultValue={name}
+                                 label="Nom du créneau"
+                                 variant="outlined"
+                                 onChange={e=> setName(e.currentTarget.value)}
+                                 // onChange={(event, value) => setNewStartHour(value)}
+                                 fullWidth
+                              />
                            </div>
                            <div className="form-group col-md-6">
                               <Autocomplete
@@ -241,13 +255,12 @@ return (
                            <Autocomplete
                               onChange={(event, value) =>{
                               try {
-                              setNewCoach(value.id)
-                              setNewCoachError(false)
-                              } catch (error) {
-                              setNewCoach('')
-                              setNewCoachError(true)
-                              }}
-                           
+                                 setNewCoach(value.id)
+                                 setNewCoachError(false)
+                                 } catch (error) {
+                                 setNewCoach('')
+                                 setNewCoachError(true)
+                                 }}
                               }
                               options={coachs}
                               defaultValue={coachs[creneauCoach]}
@@ -321,20 +334,47 @@ return (
                            </div>
                            <div className="form-group col-md-6">
                               <TextField
-                              type="color"
-                              defaultValue={creneauColor}
-                              padding="none"
-                              label="couleur du créneau"
-                              variant="outlined"
-                             onChange={e=> setColor(e.currentTarget.value)}
-                              // onChange={(event, value) => setNewStartHour(value)}
-                              fullWidth
-                           />
+                                 type="color"
+                                 defaultValue={creneauColor}
+                                 padding="none"
+                                 label="couleur du créneau"
+                                 variant="outlined"
+                                 onChange={e=> {
+                                    setColor(e.currentTarget.value)
+                                 }}
+                                 // onChange={(event, value) => setNewStartHour(value)}
+                                 fullWidth
+                              />
+                              <FormControlLabel
+                                 control={
+                                    <Checkbox
+                                       checked={removeColor}
+                                       onChange={e=> {
+                                          setRemoveColor(!removeColor)
+                                          console.log('target value', e.target.value);
+                                       }}
+
+                                       name="checkedB"
+                                       color="primary"
+                                    />
+                                 }
+                                 label="Désactivé la couleur du créneau"
+                              />
+                                                   
                            </div>
+                        </div>
+                           <div className="form-group row d-flex justify-content-between">
+                              <div className="m-3">
+                                 <Button variant="primary" type="submit">Sauvgarder</Button>
+                              </div>
+                              <div className="m-3">
+                                 <Button variant="primary" type="button" className="btn btn-danger ml-auto" onClick={ async () => {
+                                    await axios.delete(`${process.env.REACT_APP_API_URL}/rest-api/creneau/delete/${creneauData['creneauId']}/`)
+                                    handleShow()
+                                 }}>Supprimer</Button>
+                              </div>
                            </div>
-                        <Button onClick={handleShow} variant="danger light" className='m-2' > Fermer </Button>
-                           <Button variant="primary" type="submit">Sauvgarder</Button>
-                           </form>
+                     </form>
                            {/* </tbody>
 
                            </table> */}

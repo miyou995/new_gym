@@ -140,7 +140,7 @@ class Creneau(models.Model):
     hour_start = models.TimeField()
     hour_finish= models.TimeField()
     day  = models.CharField(choices=DAYS_CHOICES , max_length=2, default='DI', verbose_name='Jour')
-    day  = models.CharField(verbose_name="nom du creneau", max_length=2,blank=True, null=True)
+    name  = models.CharField(verbose_name="nom du creneau", max_length=100,blank=True, null=True)
     planning = models.ForeignKey(Planning, on_delete=models.CASCADE)
     color           = models.CharField( max_length=50, blank=True, null=True) 
     activity  = models.ForeignKey(Activity, verbose_name="activities", related_name="creneaux", on_delete=models.CASCADE)
@@ -159,13 +159,14 @@ class Creneau(models.Model):
         return reverse("Creneau_detail", kwargs={"pk": self.pk})
 
     def get_color(self):
-        print('self color ==>< in', self.coach.color)
         if self.color:
             print('je suis la =>', self.color)
             return self.color
-        elif self.coach.color:
+        elif self.coach:
             print('je suis self.coach.color =>', self.coach.color)
             return self.coach.color
-        # else:
-        #     return str("#333") 
+        elif self.activity.color:
+            return self.activity.color
+        else:
+            return str("#000") 
 

@@ -5,7 +5,8 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import axios from 'axios';
 import {notifySuccess, notifyError} from '../Alert'
-
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 // import { Dropdown, Tab, Nav } from "react-bootstrap";
 // import { Link } from "react-router-dom";
 import useForm from 'react-hook-form';
@@ -21,9 +22,12 @@ const PaiementCreateModal = ({show, onShowShange, creneauData}) => {
     const [newPlanning, setNewPlanning] = useState("")
 
     const [newActivityError, setNewActivityError ] = useState(false)
-    const [newCoachError, setNewCoachError ] = useState(false)
+    // const [newCoachError, setNewCoachError ] = useState(false)
     const [newDayError, setNewDayError ] = useState(false)
     const [newPlanningError, setNewPlanningError ] = useState(false)
+    const [removeColor, setRemoveColor ] = useState(true)
+    const [color, setColor] = useState("")
+    const [name,setName] = useState("")
 
 
     const days = creneauData['days']
@@ -42,11 +46,7 @@ const PaiementCreateModal = ({show, onShowShange, creneauData}) => {
           setNewActivityError(true)
         }
 
-      // if(!newCoach){
-      //     formIsValid = false;
-      //     setNewCoachError(true)
-      //   }
-    
+
      
       if(!newDay){
           formIsValid = false;
@@ -72,7 +72,11 @@ const handleSubmit = e => {
       planning :newPlanning,
       activity :newActivity,
     }
-  
+    if(removeColor) {
+      newCreneau.color = " "
+    }else {
+        newCreneau.color = color
+    }
     console.log(" =================> new Creneau ", newCreneau);
     axios.post(creneauCreateEND, newCreneau).then( res => {
       notifySuccess('Créneau creer avec succés')
@@ -83,7 +87,7 @@ const handleSubmit = e => {
   }}
     
 return ( 
-    <Modal className="fade bd-example-modal-lg" size="lg"onHide={handleShow} show={show}>
+    <Modal className="fade bd-example-modal-lg" size="lg" onHide={handleShow} show={show}>
     <Modal.Header>
       <Modal.Title className="text-black">Créneau</Modal.Title>
       <Button variant="" className="close" onClick={handleShow} > <span>&times;</span> </Button>
@@ -91,6 +95,17 @@ return (
     <Modal.Body>
     <form onSubmit={handleSubmit}>
         <div className="form-row">
+        <div className="form-group col-md-6">
+                              <TextField
+                                 type="text"
+                                 defaultValue={name}
+                                 label="Nom du créneau"
+                                 variant="outlined"
+                                 onChange={e=> setName(e.currentTarget.value)}
+                                 // onChange={(event, value) => setNewStartHour(value)}
+                                 fullWidth
+                              />
+                           </div>
           <div className="form-group col-md-6">
             <Autocomplete
               // id={(option) =>  option['id']}
@@ -118,7 +133,7 @@ return (
               {
                 try {
                 setNewCoach(value.id)
-                setNewCoachError(false)
+                // setNewCoachError(false)
               } catch (error) {
                 setNewCoach('')
                 // setNewCoachError(true)
@@ -206,6 +221,36 @@ return (
               }
           />
           </div>
+          <div className="form-group col-md-6">
+                              <TextField
+                                 type="color"
+                                //  defaultValue={creneauColor}
+                                 padding="none"
+                                 label="couleur du créneau"
+                                 variant="outlined"
+                                 onChange={e=> {
+                                    setColor(e.currentTarget.value)
+                                 }}
+                                 // onChange={(event, value) => setNewStartHour(value)}
+                                 fullWidth
+                              />
+                              <FormControlLabel
+                                 control={
+                                    <Checkbox
+                                       checked={removeColor}
+                                       onChange={e=> {
+                                          setRemoveColor(!removeColor)
+                                          console.log('target value', e.target.value);
+                                       }}
+
+                                       name="checkedB"
+                                       color="primary"
+                                    />
+                                 }
+                                 label="Désactivé la couleur du créneau"
+                              />
+                                                   
+                           </div>
         </div>
         <Button onClick={handleShow}variant="danger light"className='m-2'>
             Fermer
