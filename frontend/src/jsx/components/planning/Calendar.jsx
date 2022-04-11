@@ -47,7 +47,8 @@ const Calendar = () => {
   const [mercredi, setMercredi] = useState([]);
   const [jeudi, setJeudi] = useState([]);
   const [vendredi, setVendredi] = useState([]);
-
+  const [creneauName, setCreneauName] = useState("")
+  const [creneauColor, setCreneauColor] = useState("")
   const [selectedCreneau, setSelectedCreneau] = useState("")
   const [creneauActi, setCreneauActi] = useState("")
   const [creneauCoach, setCreneauCoach] = useState("")
@@ -147,6 +148,8 @@ const handleSelectedCreneau = (day) => {
   setActivityName(day.activity_name)
   setJour(day.day)
   setModal(true) 
+  setCreneauName(day.name)
+  setCreneauColor(day.color)
 }
 
  const getActivity = (acti,creneauActi) => {
@@ -248,7 +251,7 @@ const getDay = (days,creneauDay) => {
                   <td  className ="d-flex" style={{ padding: '3px'}}>
                   { lundi.map(day=>   ( 
                     <div className ="ml-1" style={{border: "none"}} id={day.id} key={day.id} onClick={() => handleSelectedCreneau(day)}>
-                        <div className="fc-event-calendar mt-0 ml-0 mb-2 btn btn-block rounded" style={{backgroundColor: day.color}}>
+                        <div className="fc-event-calendar mt-0 ml-0 mb-2 btn btn-block rounded" style={{backgroundColor: day.creneau_color}}>
                             <h5> {day.hour_start}<span> - </span> {day.hour_finish}</h5> 
                             <ul className='text-left'>
                             <li> {day.coach_name}</li>
@@ -269,7 +272,7 @@ const getDay = (days,creneauDay) => {
                   <td className ="d-flex">
                   { mardi.map(day=>   ( 
                       <div className ="ml-1"  style={{border: "none"}} id={day.id}  key={day.id} onClick={() => handleSelectedCreneau(day)}>
-                        <div className="fc-event-calendar mt-0 ml-0 mb-2 btn btn-block rounded" style={{backgroundColor: day.color}}>
+                        <div className="fc-event-calendar mt-0 ml-0 mb-2 btn btn-block rounded" style={{backgroundColor: day.creneau_color}}>
                             <h5> {day.hour_start}<span> - </span> {day.hour_finish}</h5> 
                             <ul className='text-left'>
                             <li>  {day.coach_name}</li>
@@ -291,7 +294,7 @@ const getDay = (days,creneauDay) => {
                   <td className ="d-flex">
                   { mercredi.map(day=>   ( 
                       <div className ="ml-1" style={{border: "none"}}  id={day.id}  key={day.id} onClick={() => handleSelectedCreneau(day)}>
-                        <div className="fc-event-calendar mt-0 ml-0 mb-2 btn btn-block rounded" style={{backgroundColor: day.color}}>
+                        <div className="fc-event-calendar mt-0 ml-0 mb-2 btn btn-block rounded" style={{backgroundColor: day.creneau_color}}>
                             <h5> {day.hour_start}<span> - </span> {day.hour_finish}</h5> 
                             <ul className='text-left'>
                             <li>  {day.coach_name}</li>
@@ -312,7 +315,7 @@ const getDay = (days,creneauDay) => {
                   <td className ="d-flex">
                   { jeudi.map(day=>   ( 
                       <div className ="ml-1"  style={{border: "none"}}  id={day.id}   key={day.id} onClick={() => handleSelectedCreneau(day)}>
-                        <div className="fc-event-calendar mt-0 ml-0 mb-2 btn btn-block rounded" style={{backgroundColor: day.color}}>
+                        <div className="fc-event-calendar mt-0 ml-0 mb-2 btn btn-block rounded" style={{backgroundColor: day.creneau_color}}>
                             <h5> {day.hour_start}<span> - </span> {day.hour_finish}</h5> 
                             <ul className='text-left'>
                             <li>  {day.coach_name}</li>
@@ -335,7 +338,7 @@ const getDay = (days,creneauDay) => {
                   { vendredi.map(day=>   ( 
                       
                       <div className ="ml-1" style={{border: "none"}}  id={day.id} key={day.id}  onClick={() => handleSelectedCreneau(day)}>
-                        <div className="fc-event-calendar mt-0 ml-0 mb-2 btn btn-block rounded" style={{backgroundColor: day.color}}>
+                        <div className="fc-event-calendar mt-0 ml-0 mb-2 btn btn-block rounded" style={{backgroundColor: day.creneau_color}}>
                             <h5> {day.hour_start}<span> - </span> {day.hour_finish}</h5> 
                             <ul className='text-left'>
                             <li>  {day.coach_name}</li>
@@ -351,18 +354,17 @@ const getDay = (days,creneauDay) => {
               { samedi.length > 0 &&
                 <tr>
                   <th style={{verticalAlign: "middle"}}>
-                        <h4 className="pl-2 text-black">Samedi</h4>
+                      <h4 className="pl-2 text-black">Samedi</h4>
                   </th>
                   <td className ="d-flex">
-                  { samedi.map(day=>   ( 
-                      
+                  { samedi.map(day=> ( 
                       <div className ="ml-1" style={{border: "none"}}  id={day.id}  key={day.id} onClick={() => handleSelectedCreneau(day)}>
-                        <div className="fc-event-calendar mt-0 ml-0 mb-2 btn btn-block rounded" style={{backgroundColor: day.color}}>
+                        <div className="fc-event-calendar mt-0 ml-0 mb-2 btn btn-block rounded" style={{backgroundColor: day.creneau_color}}>
                             <h5> {day.hour_start}<span> - </span> {day.hour_finish}</h5> 
                             <ul className='text-left'>
-                            <li>  {day.coach_name}</li>
-                            <li> {day.clients_count} Abonné</li>
-                            <li>{day.activity_name}</li>
+                              <li> {day.coach_name}</li>
+                              <li> {day.clients_count} Abonné</li>
+                              <li> {day.activity_name}</li>
                             </ul> 
                           </div>
                       </div> 
@@ -406,6 +408,8 @@ const getDay = (days,creneauDay) => {
                 coachName : coachName,
                 activityName : activityName,
                 jour : jour,
+                creneauName: creneauName,
+                creneauColor: creneauColor
                 }} />
               </div>
           </Card>

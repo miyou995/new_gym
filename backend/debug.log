@@ -4781,3 +4781,128 @@ RuntimeError: You called this URL via POST, but the URL doesn't end in a slash a
 2022-04-10 22:00:18,693 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\creneau\serializers.py changed, reloading.
 2022-04-10 22:00:20,449 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2022-04-10 22:07:57,374 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-11 09:15:38,684 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-11 12:53:35,572 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-11 12:53:43,835 django.request WARNING  Not Found: /
+2022-04-11 12:53:44,453 django.request WARNING  Not Found: /favicon.ico
+2022-04-11 12:54:54,763 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\creneau\serializers.py changed, reloading.
+2022-04-11 12:54:56,208 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-11 12:57:00,435 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\creneau\serializers.py changed, reloading.
+2022-04-11 12:57:02,911 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-11 12:57:05,176 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\creneau\serializers.py changed, reloading.
+2022-04-11 12:57:07,733 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-11 12:57:15,535 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\creneau\serializers.py changed, reloading.
+2022-04-11 12:57:17,892 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-11 12:57:23,631 django.request ERROR    Internal Server Error: /rest-api/creneau/by-salle-planning
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 46, in list
+    return Response(serializer.data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 768, in data
+    ret = super().data
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 686, in to_representation
+    return [
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 507, in to_representation
+    for field in fields:
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 368, in _readable_fields
+    for field in self.fields.values():
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\utils\functional.py", line 48, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 356, in fields
+    for key, value in self.get_fields().items():
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 1052, in get_fields
+    field_names = self.get_field_names(declared_fields, info)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 1148, in get_field_names
+    assert field_name in fields, (
+AssertionError: The field 'creneau_color' was declared on serializer CreneauSerialiser, but has not been included in the 'fields' option.
+2022-04-11 12:57:45,030 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\creneau\serializers.py changed, reloading.
+2022-04-11 12:57:47,793 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-11 12:57:53,289 django.request ERROR    Internal Server Error: /rest-api/creneau/by-salle-planning
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 46, in list
+    return Response(serializer.data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 768, in data
+    ret = super().data
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 686, in to_representation
+    return [
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 1886, in to_representation
+    return method(value)
+  File "C:\Users\amd\Desktop\Octogym\backend\creneau\serializers.py", line 74, in get_color
+    return obj.get_color()
+  File "C:\Users\amd\Desktop\Octogym\backend\creneau\models.py", line 163, in get_color
+    return color
+NameError: name 'color' is not defined
+2022-04-11 12:58:22,862 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\creneau\serializers.py changed, reloading.
+2022-04-11 12:58:24,743 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-11 12:58:35,926 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\creneau\models.py changed, reloading.
+2022-04-11 12:58:37,520 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-11 13:22:24,602 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\creneau\serializers.py changed, reloading.
+2022-04-11 13:22:26,269 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-11 13:53:52,852 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\creneau\models.py changed, reloading.
+2022-04-11 13:53:55,190 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-11 13:54:25,740 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\creneau\models.py changed, reloading.
+2022-04-11 13:54:27,582 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-11 13:55:06,544 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\creneau\models.py changed, reloading.
+2022-04-11 13:55:08,410 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-11 13:55:17,184 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\creneau\models.py changed, reloading.
+2022-04-11 13:55:18,993 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-11 13:55:24,492 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\creneau\models.py changed, reloading.
+2022-04-11 13:55:26,200 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-11 13:55:30,460 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\creneau\models.py changed, reloading.
+2022-04-11 13:55:32,122 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-11 13:55:59,418 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\creneau\models.py changed, reloading.
+2022-04-11 13:56:01,161 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-11 13:56:32,491 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\creneau\models.py changed, reloading.
+2022-04-11 13:56:33,723 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-11 13:56:49,828 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\creneau\models.py changed, reloading.
+2022-04-11 13:56:51,644 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-11 13:58:02,139 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-11 14:48:59,243 django.request WARNING  Not Found: /rest-api/creneau/
+2022-04-11 14:51:32,784 django.request WARNING  Not Found: /rest-api/creneau/
+2022-04-11 16:07:50,281 django.request WARNING  Not Found: /
+2022-04-11 16:07:50,869 django.request WARNING  Not Found: /favicon.ico

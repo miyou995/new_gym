@@ -29,9 +29,11 @@ const CreneauCreateModal = ({show, onShowShange, creneauData}) => {
     const startHour = creneauData['startHour']
     const endHour = creneauData['endHour']
     const coachName = creneauData['coachName']
+    const creneauName = creneauData['creneauName']
+    const creneauColor = creneauData['creneauColor']
     const activityName = creneauData['activityName']
     const jour = creneauData['jour']
-
+    
     // const [newActivity, setNewActivity] = useState(activities[creneauActivite].id)
     // const [newCoach, setNewCoach] = useState(coachs[creneauCoach].id)
     // const [newStartHour, setNewStartHour] = useState(startHour)
@@ -41,11 +43,13 @@ const CreneauCreateModal = ({show, onShowShange, creneauData}) => {
 
     const [newActivity, setNewActivity] = useState(creneauActivite)
     const [newCoach, setNewCoach] = useState("")
+    const [name,setName] = useState("")
     const [newStartHour, setNewStartHour] = useState("")
     const [newEndHour, setNewEndHour] = useState("")
     const [newDay, setNewDay] = useState("")
     const [newPlanning, setNewPlanning] = useState("")
-
+    const [color, setColor] = useState("")
+    
     const [newActivityError, setNewActivityError ] = useState(false)
     const [newCoachError, setNewCoachError ] = useState(false)
     const [newDayError, setNewDayError ] = useState(false)
@@ -64,11 +68,20 @@ const CreneauCreateModal = ({show, onShowShange, creneauData}) => {
            setNewCoach(coachs[creneauCoach])
         }
         setNewStartHour(startHour)
+        setNewStartHour(startHour)
         setNewEndHour(endHour)
         setNewDay(days[day].day)
         setNewPlanning(plannings[creneauPlanning].id)
+        setName(creneauName)
+        setColor(creneauColor)
       }
+      console.log('la couleur du creneau setColor=>', color);
+      console.log('la couleur du creneau getted color=>',creneauColor);
     }, [creneauData['creneauId']])
+
+
+
+
 
 
 
@@ -112,6 +125,8 @@ const CreneauCreateModal = ({show, onShowShange, creneauData}) => {
             day :newDay,
             coach :newCoach,
             planning :newPlanning,
+            name :name,
+            // color :color,
             activity :newActivity,
          }
    //  console.log(" =================> new Creneau ", newCreneau);
@@ -128,8 +143,8 @@ return (
     <Modal.Header>
       <Modal.Title className="text-black">
          <div className="row d-flex justify-content-end">
-            <div className='row col-md-10'>
-               <div className='col-2'>
+            <div className='row d-flex col-md-11'>
+               <div className='col-3'>
                   <span className="text-primary">Coach: </span> {coachName}  
                </div>
                <div className='col-2'>
@@ -141,14 +156,14 @@ return (
                <div className='col-2'>
                   <span className="text-primary">HF: </span> {endHour} 
                </div>
-               <div className='col-2'>
-                  <span className="text-primary">Activité: </span> {activityName} 
+               <div className='col-3'>
+               <span className="text-primary">Activité: </span> {activityName} 
                </div>
             </div>
          </div>
       </Modal.Title>
       <Modal.Title>
-      <div className='col-2'> 
+      <div className='col-1'> 
                <Button variant="" className="close" onClick={handleShow} > <span>&times;</span> </Button>
             </div>
       </Modal.Title>
@@ -156,248 +171,241 @@ return (
     <Modal.Body>
       <div>
       <div className="col-xl-12 col-lg-6">
-                  <div className="card" style={{backgroundColor: '#ffffff'}}>
-                     <Tab.Container defaultActiveKey="monthly">
-                        <div className="card-header border-0 d-xl-flex d-lg-block d-md-flex d-sm-flex d-block">
-                           <div className="mr-2">
-                              <h4 className="fs-20 text-black">
-                                 Fiche Créneau
-                              </h4>
-                           </div>
-                           <div className="card-action card-tabs mt-3 mt-sm-0">
-                              <Nav className="nav nav-tabs" role="tablist">
-                                 <Nav.Item>
-                                    <Nav.Link
-                                       className="nav-link"
-                                       data-toggle="tab"
-                                       eventKey="monthly"
-                                       role="tab"
-                                       aria-selected="true"
-                                    >
-                                       Detail
-                                    </Nav.Link>
-                                 </Nav.Item>
-                                 <Nav.Item>
-                                    <Nav.Link
-                                       className="nav-link"
-                                       data-toggle="tab"
-                                       eventKey="Weekly"
-                                       role="tab"
-                                       aria-selected="false"
-                                    >
-                                       Abonnées
-                                    </Nav.Link>
-                                 </Nav.Item>
-                               
-                              </Nav>
-                           </div>
-                        </div>
-                        <div className="card-body p-0 tab-content card-table">
-                           <Tab.Content>
-                                 {/* CRENEAUX DETAIL TAB */}
-                              <Tab.Pane eventKey="monthly">
-                                 {/* <div className="table-responsive m-2"> */}
-                                  {/* <table className="table">
-                                  <tbody> */}
-
-                                 <form onSubmit={handleSubmit}>
-
-                                 <div className="form-row">
-                                    <div className="form-group col-md-6">
-                                      <Autocomplete
-                                        // id={(option) =>  option['id']}
-                                          
-                                        //  {try {
-                                           //    setNewActivity(value.id)
-                                           //    setNewActivityError(false)
-                                           //  } catch (error) {
-                                              //    setNewActivity('')
-                                              //    setNewActivityError(true)
-                                              //  }}
-                                              // onChange={handleSubmit}
-                                        options={activities}
-                                        defaultValue={activities[creneauActivite]}
-                                        onChange={(event, value) =>  
-                                           {try {
-                                             setNewActivity(value.id)
-                                             setNewActivityError(false)
-                                           } catch (error) {
-                                                setNewActivity('')
-                                                setNewActivityError(true)
-                                              }}
-                                             }
-                                        getOptionSelected={(option) =>  option['id']}
-                                        getOptionLabel={(option) =>  option['name']}
-                                        renderInput={(params) => <TextField {...params}  label="Activité" variant="outlined" fullWidth />}
-                                      />
-                                                 {newActivityError &&  <span  style={{color:'#EF5350', fontSize : '14px'}}> Veuillez choisir une activité </span> }
-                                    </div>
-                                    <div className="form-group col-md-6">
-                                    <Autocomplete
-                                      onChange={(event, value) =>{
-                                       try {
-                                       setNewCoach(value.id)
-                                       setNewCoachError(false)
-                                     } catch (error) {
-                                       setNewCoach('')
-                                       setNewCoachError(true)
-                                     }}
-                                    
-                                     }
-                                      options={coachs}
-                                      defaultValue={coachs[creneauCoach]}
-                                      getOptionLabel={(option) =>  option['first_name']}
-                                      renderInput={(params) => <TextField {...params} label="Coach" variant="outlined" />}
-                                    />
-                                       {newCoachError &&  <span  style={{color:'#EF5350', fontSize : '14px'}}> Veuillez choisir un coach </span> }
-                                    </div>
-                                    <div className="form-group col-md-6">
-                                      <Autocomplete
-                                        onChange={(event, value) =>   {
-                                          try {
-                                          setNewPlanning(value.id)
-                                          setNewPlanningError(false)
-                                        } catch (error) {
-                                          setNewPlanning('')
-                                          setNewPlanningError(true)
-                                        }}
-                                        }
-                                        options={plannings}
-                                        defaultValue={plannings[creneauPlanning]}
-                                        getOptionLabel={(option) =>  option['name']}
-                                        renderInput={(params) => <TextField {...params} label="Planning" variant="outlined" />}
-                                      />
-                                       {newPlanningError &&  <span  style={{color:'#EF5350', fontSize : '14px'}}> Veuillez choisir un planning</span>}
-                                    </div>
-                                    <div className="form-group col-md-6">
-                                    <Autocomplete
-                                      onChange={(event, value) => {
-                                       try {
-                                         setNewDay(value.day)
-                                       setNewDayError(false)
-                                     } catch (error) {
-                                       setNewDay('')
-                                       setNewDayError(true)
-                                     }}
-                                    
-                                     }
-                                      options={days}
-                                      defaultValue={days[day]}
-                                      getOptionLabel={(option) =>  option['label']}
-                                      renderInput={(params) => <TextField {...params} label="Jour" variant="outlined" />}
-                                    />
-                                                {newDayError &&  <span  style={{color:'#EF5350', fontSize : '14px'}}> Veuillez choisir un jour </span> }
-                                    </div>
-                                    <div className="form-group col-md-6">
-                                    <TextField
-                                      type="time"
-                                      defaultValue={startHour}
-                                      label="Heure de Début"
-                                      variant="outlined"
-                                      onChange={e=> setNewStartHour(e.currentTarget.value)}
-                                      // onChange={(event, value) => setNewStartHour(value)}
-                                      fullWidth
-                                    />
-                                    </div>
-                                    <div className="form-group col-md-6">
-                                    <TextField
-                                      type="time"
-                                      defaultValue={endHour}
-                                      // value={creneauDetail.hour_finish}
-                                      // className={classes.textField}
-                                      variant="outlined"
-                                      label="Heure de Fin"
-
-                                      fullWidth
-                                      // defaultValue={coachs[coach]}
-                                      onChange={e => setNewEndHour(e.currentTarget.value)}
-                                    />
-                                    </div>
-                                  </div>
-                                 <Button onClick={handleShow} variant="danger light" className='m-2' > Fermer </Button>
-                                  <Button variant="primary" type="submit">Sauvgarder</Button>
-                                  </form>
-                                  {/* </tbody>
-
-                                  </table> */}
-
-                                 {/* </div> */}
-                              </Tab.Pane>
-                                      {/* END CRENEAUX DETAIL TAB */}
-                                      {/* CRENEAUX CLIENTS TAB */}
-                              <Tab.Pane eventKey="Weekly">
-                                 <div className="table-responsive">
-                                    <table className="table">
-                                    <thead>
-                                       <tr>
-                                          <th className="customer_shop"> ID </th>
-                                          <th>Nom - Prénom </th>
-                                          <th> Téléphone </th>
-                                          <th> Abonnement </th>
-                                          <th> éxpiration </th>
-                                          <th> Dettes </th>
-                                          <th className='text-right'>FA </th>
-                                       </tr>
-                                    </thead>
-                                    <tbody>
-                                       {abc.map( ab => (
-                                       <tr key={ab.id}>
-                                          <td>
-                                             <div className="media">
-                                                <div className="media-body ">
-                                                   <h5 className="font-w600 text-black">
-                                                      {ab.client_data.id}
-                                                   </h5>
-                                                </div>
-                                             </div>
-                                          </td>
-                                          <td className="font-w600 ">
-                                          <Link className="btn-link text-primary float-left" target="_blank" to={`/client/${ab.client_data.id}`} >
-                                             {ab.client_data.last_name} {ab.client_data.first_name} 
-                                          </Link>
-                                          </td>
-                                          <td className="font-w600 text-left">
-                                             {ab.client_data.phone ? ab.client_data.phone : '-'}
-                                          </td>
-                                          <td className="font-w600 text-left">
-                                             {ab.abonnement}
-                                          </td>
-                                          <td className="font-w600 text-left">
-                                             {ab.end_date}
-                                          </td>
-                                          <td className="font-w600 text-danger">
-                                             {ab.reste}
-                                          </td>
-                                          <td className={` ${ab.client_data.fin_assurance ? 'text-right' : 'text-right text-danger'}`}>
-                                             {ab.client_data.fin_assurance ? ab.client_data.fin_assurance : 'Non Payés'}
-                                          </td>
-                                       </tr>
-                                       
-                                       ))}
-                                       
-                                    </tbody>
-                                    </table>
-                                 </div>
-                              </Tab.Pane>
-                                      {/* END CRENEAUX CLIENTS TAB */}
-                              
-                           </Tab.Content>
-                        </div>
-                     </Tab.Container>
+         <div className="card" style={{backgroundColor: '#ffffff'}}>
+            <Tab.Container defaultActiveKey="monthly">
+               <div className="card-header border-0 d-xl-flex d-lg-block d-md-flex d-sm-flex d-block">
+                  <div className="mr-2">
+                     <h4 className="fs-20 text-black">Fiche Créneau</h4>
+                  </div>
+                  <div className="card-action card-tabs mt-3 mt-sm-0">
+                     <Nav className="nav nav-tabs" role="tablist">
+                        <Nav.Item>
+                           <Nav.Link className="nav-link" data-toggle="tab" eventKey="monthly" role="tab" aria-selected="true" > Detail </Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                           <Nav.Link className="nav-link" data-toggle="tab" eventKey="Weekly" role="tab" aria-selected="false" > Abonnées </Nav.Link>
+                        </Nav.Item>
+                     </Nav>
                   </div>
                </div>
-            
+               <div className="card-body p-0 tab-content card-table">
+                  <Tab.Content>
+                        {/* CRENEAUX DETAIL TAB */}
+                     <Tab.Pane eventKey="monthly">
+                        {/* <div className="table-responsive m-2"> */}
+                           {/* <table className="table">
+                           <tbody> */}
+                     <form onSubmit={handleSubmit}>
+                        <div className="form-row">
+                        <div className="form-group col-md-6">
+                           <TextField
+                              type="text"
+                              defaultValue={name}
+                              label="Nom du créneau"
+                              variant="outlined"
+                              onChange={e=> setName(e.currentTarget.value)}
+                              // onChange={(event, value) => setNewStartHour(value)}
+                              fullWidth
+                           />
+                           </div>
+                           <div className="form-group col-md-6">
+                              <Autocomplete
+                                 // id={(option) =>  option['id']}
+                                 
+                                 //  {try {
+                                    //    setNewActivity(value.id)
+                                    //    setNewActivityError(false)
+                                    //  } catch (error) {
+                                       //    setNewActivity('')
+                                       //    setNewActivityError(true)
+                                       //  }}
+                                       // onChange={handleSubmit}
+                                 options={activities}
+                                 defaultValue={activities[creneauActivite]}
+                                 onChange={(event, value) =>  
+                                    {try {
+                                    setNewActivity(value.id)
+                                    setNewActivityError(false)
+                                    } catch (error) {
+                                       setNewActivity('')
+                                       setNewActivityError(true)
+                                       }}
+                                    }
+                                 getOptionSelected={(option) =>  option['id']}
+                                 getOptionLabel={(option) =>  option['name']}
+                                 renderInput={(params) => <TextField {...params}  label="Activité" variant="outlined" fullWidth />}
+                              />
+                                 {newActivityError &&  <span  style={{color:'#EF5350', fontSize : '14px'}}> Veuillez choisir une activité </span> }
+                           </div>
+                           <div className="form-group col-md-6">
+                           <Autocomplete
+                              onChange={(event, value) =>{
+                              try {
+                              setNewCoach(value.id)
+                              setNewCoachError(false)
+                              } catch (error) {
+                              setNewCoach('')
+                              setNewCoachError(true)
+                              }}
+                           
+                              }
+                              options={coachs}
+                              defaultValue={coachs[creneauCoach]}
+                              getOptionLabel={(option) =>  option['first_name']}
+                              renderInput={(params) => <TextField {...params} label="Coach" variant="outlined" />}
+                           />
+                              {newCoachError &&  <span  style={{color:'#EF5350', fontSize : '14px'}}> Veuillez choisir un coach </span> }
+                           </div>
+                           <div className="form-group col-md-6">
+                              <Autocomplete
+                                 onChange={(event, value) =>   {
+                                 try {
+                                 setNewPlanning(value.id)
+                                 setNewPlanningError(false)
+                                 } catch (error) {
+                                 setNewPlanning('')
+                                 setNewPlanningError(true)
+                                 }}
+                                 }
+                                 options={plannings}
+                                 defaultValue={plannings[creneauPlanning]}
+                                 getOptionLabel={(option) =>  option['name']}
+                                 renderInput={(params) => <TextField {...params} label="Planning" variant="outlined" />}
+                              />
+                              {newPlanningError &&  <span  style={{color:'#EF5350', fontSize : '14px'}}> Veuillez choisir un planning</span>}
+                           </div>
+                           <div className="form-group col-md-6">
+                           <Autocomplete
+                              onChange={(event, value) => {
+                              try {
+                                 setNewDay(value.day)
+                              setNewDayError(false)
+                              } catch (error) {
+                              setNewDay('')
+                              setNewDayError(true)
+                              }}
+                           
+                              }
+                              options={days}
+                              defaultValue={days[day]}
+                              getOptionLabel={(option) =>  option['label']}
+                              renderInput={(params) => <TextField {...params} label="Jour" variant="outlined" />}
+                           />
+                                       {newDayError &&  <span  style={{color:'#EF5350', fontSize : '14px'}}> Veuillez choisir un jour </span> }
+                           </div>
+                           <div className="form-group col-md-6">
+                           <TextField
+                              type="time"
+                              defaultValue={startHour}
+                              label="Heure de Début"
+                              variant="outlined"
+                              onChange={e=> setNewStartHour(e.currentTarget.value)}
+                              // onChange={(event, value) => setNewStartHour(value)}
+                              fullWidth
+                           />
+                           </div>
+                           
+                           <div className="form-group col-md-6">
+                           <TextField
+                              type="time"
+                              defaultValue={endHour}
+                              // value={creneauDetail.hour_finish}
+                              // className={classes.textField}
+                              variant="outlined"
+                              label="Heure de Fin"
+
+                              fullWidth
+                              // defaultValue={coachs[coach]}
+                              onChange={e => setNewEndHour(e.currentTarget.value)}
+                           />
+                           </div>
+                           <div className="form-group col-md-6">
+                              <TextField
+                              type="color"
+                              defaultValue={creneauColor}
+                              padding="none"
+                              label="couleur du créneau"
+                              variant="outlined"
+                             onChange={e=> setColor(e.currentTarget.value)}
+                              // onChange={(event, value) => setNewStartHour(value)}
+                              fullWidth
+                           />
+                           </div>
+                           </div>
+                        <Button onClick={handleShow} variant="danger light" className='m-2' > Fermer </Button>
+                           <Button variant="primary" type="submit">Sauvgarder</Button>
+                           </form>
+                           {/* </tbody>
+
+                           </table> */}
+
+                        {/* </div> */}
+                     </Tab.Pane>
+                              {/* END CRENEAUX DETAIL TAB */}
+                              {/* CRENEAUX CLIENTS TAB */}
+                     <Tab.Pane eventKey="Weekly">
+                        <div className="table-responsive">
+                           <table className="table">
+                           <thead>
+                              <tr>
+                                 <th className="customer_shop"> ID </th>
+                                 <th>Nom - Prénom </th>
+                                 <th> Téléphone </th>
+                                 <th> Abonnement </th>
+                                 <th> éxpiration </th>
+                                 <th> Dettes </th>
+                                 <th className='text-right'>FA </th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              {abc.map( ab => (
+                              <tr key={ab.id}>
+                                 <td>
+                                    <div className="media">
+                                       <div className="media-body ">
+                                          <h5 className="font-w600 text-black">
+                                             {ab.client_data.id}
+                                          </h5>
+                                       </div>
+                                    </div>
+                                 </td>
+                                 <td className="font-w600 ">
+                                 <Link className="btn-link text-primary float-left" target="_blank" to={`/client/${ab.client_data.id}`} >
+                                    {ab.client_data.last_name} {ab.client_data.first_name} 
+                                 </Link>
+                                 </td>
+                                 <td className="font-w600 text-left">
+                                    {ab.client_data.phone ? ab.client_data.phone : '-'}
+                                 </td>
+                                 <td className="font-w600 text-left">
+                                    {ab.abonnement}
+                                 </td>
+                                 <td className="font-w600 text-left">
+                                    {ab.end_date}
+                                 </td>
+                                 <td className="font-w600 text-danger">
+                                    {ab.reste}
+                                 </td>
+                                 <td className={` ${ab.client_data.fin_assurance ? 'text-right' : 'text-right text-danger'}`}>
+                                    {ab.client_data.fin_assurance ? ab.client_data.fin_assurance : 'Non Payés'}
+                                 </td>
+                              </tr>
+                              
+                              ))}
+                              
+                           </tbody>
+                           </table>
+                        </div>
+                     </Tab.Pane>
+                              {/* END CRENEAUX CLIENTS TAB */}
+                     
+                  </Tab.Content>
+               </div>
+            </Tab.Container>
+         </div>
       </div>
-     
-    
+   </div>
      </Modal.Body>
-
-
-
-
-     
-
-
     </Modal>
 )
 

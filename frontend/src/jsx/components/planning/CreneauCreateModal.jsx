@@ -56,47 +56,40 @@ const PaiementCreateModal = ({show, onShowShange, creneauData}) => {
           formIsValid = false;
           setNewPlanningError(true)
         }
-
     //  setErrors({errors: errors});
      console.log('IS THE FORM VALID ======?', formIsValid);
      return formIsValid;
  }
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    if (handleValidation()) {
-      const newCreneau = {
-        hour_start :newStartHour,
-        hour_finish :newEndHour,
-        day :newDay,
-        coach :newCoach,
-        planning :newPlanning,
-        activity :newActivity,
-      }
-      console.log(" =================> new Creneau ", newCreneau);
-      axios.post(creneauCreateEND, newCreneau).then( res => {
-        notifySuccess('Créneau creer avec succés')
-            handleShow()
-        }).catch(err => {
-            notifyError("Erreur lors de la création du créneau")
-        })
-    }}
+const handleSubmit = e => {
+  e.preventDefault();
+  if (handleValidation()) {
+    const newCreneau = {
+      hour_start :newStartHour,
+      hour_finish :newEndHour,
+      day :newDay,
+      coach :newCoach,
+      planning :newPlanning,
+      activity :newActivity,
+    }
+  
+    console.log(" =================> new Creneau ", newCreneau);
+    axios.post(creneauCreateEND, newCreneau).then( res => {
+      notifySuccess('Créneau creer avec succés')
+          handleShow()
+      }).catch(err => {
+          notifyError("Erreur lors de la création du créneau")
+      })
+  }}
     
 return ( 
     <Modal className="fade bd-example-modal-lg" size="lg"onHide={handleShow} show={show}>
     <Modal.Header>
       <Modal.Title className="text-black">Créneau</Modal.Title>
-      <Button
-          variant=""
-          className="close"
-          onClick={handleShow}
-          >
-          <span>&times;</span>
-      </Button>
+      <Button variant="" className="close" onClick={handleShow} > <span>&times;</span> </Button>
     </Modal.Header>
     <Modal.Body>
     <form onSubmit={handleSubmit}>
-
         <div className="form-row">
           <div className="form-group col-md-6">
             <Autocomplete
@@ -130,7 +123,6 @@ return (
                 setNewCoach('')
                 // setNewCoachError(true)
               }}
-             
               }
             options={coachs}
             getOptionLabel={(option) =>  option['last_name']}
@@ -143,15 +135,13 @@ return (
               onChange={(event, value) => 
                 {
                   try {
-                  setNewPlanning(value.id)
-                  setNewPlanningError(false)
+                    setNewPlanning(value.id)
+                    setNewPlanningError(false)
                 } catch (error) {
-                  setNewPlanning('')
-                  setNewPlanningError(true)
+                    setNewPlanning('')
+                    setNewPlanningError(true)
                 }}
-               
-                }
-                
+              }
               options={plannings}
               getOptionLabel={(option) =>  option['name']}
               renderInput={(params) => <TextField {...params} label="Planning" variant="outlined" />}
@@ -160,9 +150,8 @@ return (
           </div>
           <div className="form-group col-md-6">
           <Autocomplete
-            onChange={(event, value) => 
-              {
-                try {
+            onChange={(event, value) => {
+              try {
                 setNewDay(value.day)
                 setNewDayError(false)
               } catch (error) {
