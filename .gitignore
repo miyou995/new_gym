@@ -1,0 +1,5 @@
+venv/
+node_modules/
+backend.rar
+frontend/frontend.rar
+frontend/node_modules.rar
