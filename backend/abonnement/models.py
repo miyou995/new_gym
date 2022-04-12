@@ -6,7 +6,17 @@ from creneau.models import Creneau
 # Signals imports
 from django.db.models.signals import post_save, pre_save
 
-
+class SubscriptionManager(models.Manager):
+    def time_volume(self):
+        return self.filter(type_abonnement__type_of=="VH")
+    def free_access(self):
+        return self.filter(type_abonnement__type_of=="AL")
+    def fixed_sessions(self):
+        return self.filter(type_abonnement__type_of=="SF")
+    def free_sessions(self):
+        return self.filter(type_abonnement__type_of=="SL")
+    def free_access_subscription(self):
+        return self.exclude(type_abonnement__type_of= "SF")
 # class ManagerValidity(models.Manager):
 
 #     def is_valid(self, abc_id):
@@ -66,7 +76,16 @@ class AbonnementClient(models.Model):
     updated_date_time   = models.DateTimeField(auto_now=True)
     objects             = models.Manager()
     # validity            = ManagerValidity()
+    subscription_type   =SubscriptionManager()
 
+    def is_time_volume(self):
+        return True if self.type_abonnement.type_of == "VH" else False
+    def is_free_access(self):
+        return True if self.type_abonnement.type_of == "AL" else False
+    def is_fixed_sessions(self):
+        return True if self.type_abonnement.type_of == "SF" else False
+    def is_free_sessions(self):
+        return True if self.type_abonnement.type_of == "SL" else False
     def is_valid(self):
         today = date.today()
         if today < self.end_date:
@@ -79,10 +98,36 @@ class AbonnementClient(models.Model):
     def get_type(self):
         return self.type_abonnement.type_of
 
-
+    def get_planning(self):
+        try:
+            print('creneaaaau', self.creneaux.first().planning)
+            return self.creneaux.first().planning
+        except:
+            return None
+    def get_activites(self):
+        activities = Activity.objects.filter(salle__abonnements__type_abonnement_client=self)
+        # activites = self.type_abonnement.salles.activities
+        print('les activité de cet abc ', activities)
+        return activities
 
     def update_remains(self):
         pass
+
+def creneau_created_signal(sender, instance, created,**kwargs):
+    if created:
+        # get abc that have free access VH, AL, SL - 
+        abonnements = AbonnementClient.subscription_type.free_access_subscription()
+        # get abc that has same activities as creneaux abonnements 
+        activity = instance.activity
+        for abonnement in abonnements:
+            if abonnement.get_planning() == instance.planning:
+                if activity in abonnement.get_activites():
+                    abonnement.creneaux.add(instance)
+                    abonnement.save()
+        instance.save()
+post_save.connect(creneau_created_signal, sender=Creneau)
+
+
 # def dette_signal(sender, instance, **kwargs):
 #     id_client = instance.client.id
 #     client = Client.objects.get(id=id_client)

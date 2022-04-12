@@ -121,10 +121,9 @@ class RangeManager(models.Manager):
         creneaux = tous_creneaux.filter(day=creneau_day)
         return creneaux
 
-    def creneau_by_day(self, acti_id):
-        cren = Creneau.objects.filter(activity=acti_id, hour_start__range=['08:00', '11:00'])
-        print('i m here......................................')
-        return cren
+    # def creneau_by_day(self, acti_id):
+    #     cren = Creneau.objects.filter(activity=acti_id, hour_start__range=['08:00', '11:00'])
+    #     return cren
 
 
     # def get_clients(self, creneau_id):
@@ -168,4 +167,6 @@ class Creneau(models.Model):
             return self.activity.color
         else:
             return str("#000") 
+
+
 

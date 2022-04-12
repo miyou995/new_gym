@@ -36,11 +36,9 @@ class PresencePostSerialiser(serializers.ModelSerializer):
         # client_id = client.id
         # abonnement = AbonnementClient.objects.get(id=abc)
         # print('l \'abonnement du client est le :>>>>>>>>>>', abonnement)
-
         current_time = now.strftime("%H:%M:%S")
         he = current_time
         hour_in = validated_data['hour_entree']
-
         # prenseces = abon.presence_quantity 
         try:
             hour_out = validated_data['hour_sortie']
@@ -87,13 +85,8 @@ class PresenceAutoSerialiser(serializers.ModelSerializer):
     def create(self, validated_data):
         FTM = '%H:%M:%S'
         current_time = datetime.now().strftime("%H:%M:%S")
-        # creneaux_actuel = Creneau.range.get_creneau()
-        # print('Le  creneau Actuel ==========>', creneaux_actuel)
-        print('id validated_data : =>',validated_data)
         cd_client = validated_data['abc']['client']
         client = Client.objects.get(id=cd_client)
-        client_id = client.id
-        print('id client =>',client)
         creneaux = Creneau.range.get_creneaux_of_day().filter(abonnements__client=client)
         # print('Les creneaux of client=====>',Creneau.objects.filter(abonnements__client=client))
         print('Les creneaux du Today client=====>', creneaux)
@@ -108,21 +101,14 @@ class PresenceAutoSerialiser(serializers.ModelSerializer):
                 start = str(cr.hour_start)
                 print('heure de début', start)
                 temps = abs(datetime.strptime(start, FTM) - datetime.strptime(current_time, FTM))
-                # print('difference de temps', temps )
                 duree_seconde = timedelta.total_seconds(temps) 
-                # print('difference duree_seconde', duree_seconde )
                 if dur_ref > duree_seconde:
                     dur_ref = duree_seconde
                     cren_ref = cr
-                    # print('ININT TIIIIIIIIIIME', dur_ref)
-                    # print('the creneau =>', cren_ref)
-
-            abon_list = AbonnementClient.objects.filter(client = client_id,creneaux = cren_ref, archiver = False )
-            print('hello helloo', abon_list)
+            abon_list = AbonnementClient.objects.filter(client = client,creneaux = cren_ref, archiver = False )
             for ab in abon_list: # si il y'a plusieurs abonnement on previlegie les abonnement normal vu qu'il ne sont pas recuperable
-                print("abonnement dans la bouvcle", type(ab))
-                print("abonnement dans la bouvcle", ab.type_abonnement.systeme_cochage)
-                if not ab.type_abonnement.systeme_cochage:
+                # print("abonnement dans la bouvcle", ab.type_abonnement.free_sessions)
+                if not ab.type_abonnement.free_sessions:
                     # if AbonnementClient.validity.is_valid(ab.id):
                     abonnement = ab
                 else:
@@ -134,7 +120,8 @@ class PresenceAutoSerialiser(serializers.ModelSerializer):
             if abonnement.presence_quantity > -2:
             # AbonnementClient.validity.is_valid(obj.id)
                 presence = Presence.objects.create(abc= abonnement, creneau= cren_ref, is_in_list=True, hour_entree=current_time, is_in_salle=True)
-                abonnement.presence_quantity -= 1
+                if abonnement.is_fixed_sessions() or abonnement.is_free_sessions():
+                    abonnement.presence_quantity -= 1
                 abonnement.save()
                 return presence
         else:
@@ -150,9 +137,21 @@ class PresenceEditSerialiser(serializers.ModelSerializer):
         
     def update(self, instance, validate_data):
         current_time = datetime.now().strftime("%H:%M:%S")
-        # print('lheure current_time ', current_time )
-        instance.hour_sortie = datetime.now().strftime("%H:%M:%S")
-        # print('lheure de sortie', instance.hour_sortie)
+        instance.hour_sortie = current_time
+        print('lheure current_time ', current_time )
+        entree = datetime.strptime(str(instance.hour_entree),"%H:%M:%S")
+        sortie = datetime.strptime(str(current_time),"%H:%M:%S")
+        # sortie = datetime.now().strftime("%H:%M:%S")
+        print('lheure de hour_entree', entree)
+        print('lheure de sortie', sortie)
+        difference_secondes = (sortie - entree ).total_seconds()
+        difference_hour =  difference_secondes / 3600
+        # print('lheure de difference', difference.total_seconds() / 3600)
+        abonnement = instance.abc
+        if abonnement.is_time_volume():
+            abonnement.presence_quantity -= difference_hour
+            abonnement.save()
+
         instance.is_in_salle = False
         instance.save()
         return instance

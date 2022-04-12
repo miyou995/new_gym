@@ -59,11 +59,11 @@ class AbonnementClientSerialiser(serializers.ModelSerializer):
     # creneaux = serializers.PrimaryKeyRelatedField(many=True, queryset= Creneau.objects.all())
     # creneaux = CreneauSerialiser(many=True)
     type_abonnement_name = serializers.SerializerMethodField('get_abon_name', read_only=True)
-    
     class Meta:
         model = AbonnementClient
         read_only_fields = ('presence_quantity',)
         fields= ('id','start_date', 'client', 'type_abonnement', 'presence_quantity', 'creneaux', 'type_abonnement_name')
+
 
 
     def get_abon_name(self, obj):
