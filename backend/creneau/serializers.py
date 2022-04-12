@@ -99,14 +99,14 @@ class CreneauSerialiser(serializers.ModelSerializer):
         return Response({'id': s_id, 'name': salle_name}).data
 
     def get_clients(self, obj):
-        # abc = obj.pizzas.all()
+        # abc = obj.abonnements.all()
         cr_id = obj.id
         clients = Client.objects.filter(abonnement_client__creneaux=obj)
         # print(clients)
         return ClientCreneauxSerializer(clients, many=True).data
         
     def get_clients_count(self, obj):
-        # abc = obj.pizzas.all()
+        # abc = obj.abonnements.all()
         cr_id = obj.id
         clients = Client.objects.filter(abonnement_client__creneaux=obj).count()
         # print(clients)

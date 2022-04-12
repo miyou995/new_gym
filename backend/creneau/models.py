@@ -86,8 +86,7 @@ class RangeManager(models.Manager):
         creneaux = self.get_creneau()
 
         for cr in creneaux:
-            # print('les cr =========================================>', cr.pizzas.all())
-            abonnements = cr.pizzas.all()
+            abonnements = cr.abonnements.all()
             for i in abonnements:
                 # print('les IDS des abonnements liers a ce creneau', i.id)
                 if i.id == abc_id:
@@ -131,7 +130,7 @@ class RangeManager(models.Manager):
     # def get_clients(self, creneau_id):
     #     # actual_creneau = Creneau.objects.get(id= creneau_id)
     #     # abonnement = A
-    #     clients = Client.objects.filter(abonnement_client__pizzas = actual_creneau)
+    #     clients = Client.objects.filter(abonnement_client__abonnements = actual_creneau)
     #     print('YYYYYYYYYYYYYYYYYYY', clients)
 
 

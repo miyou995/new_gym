@@ -12,7 +12,6 @@ import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 
-
 const CreneauCreateModal = ({show, onShowShange, creneauData}) => {
     const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
 

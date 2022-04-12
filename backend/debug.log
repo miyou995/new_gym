@@ -5071,3 +5071,819 @@ AttributeError: 'NoneType' object has no attribute 'color'
 2022-04-11 23:54:36,132 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2022-04-11 23:54:51,684 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
 2022-04-11 23:54:53,744 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 09:19:43,659 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 09:25:42,288 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\creneau\models.py changed, reloading.
+2022-04-12 09:25:44,198 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 09:27:20,003 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-12 09:27:21,738 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 09:27:30,488 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-12 09:27:32,162 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 09:27:36,413 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-12 09:27:38,214 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 09:28:23,601 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-12 09:28:24,693 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 09:31:34,248 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 09:33:03,852 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-12 09:33:05,397 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 09:35:27,490 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-12 09:35:28,917 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 09:55:55,180 django.request WARNING  Bad Request: /rest-api/abonnement/create
+2022-04-12 09:58:15,277 django.request ERROR    Internal Server Error: /rest-api/creneau/by-ab-plan
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\fields\__init__.py", line 1823, in get_prep_value
+    return int(value)
+ValueError: invalid literal for int() with base 10: ''
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 38, in list
+    queryset = self.filter_queryset(self.get_queryset())
+  File "C:\Users\amd\Desktop\Octogym\backend\creneau\views.py", line 62, in get_queryset
+    return Creneau.objects.filter(activity__salle__abonnements__id = type_ab, planning=planning)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 941, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 961, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 968, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\query.py", line 1393, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\query.py", line 1412, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\query.py", line 1347, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\query.py", line 1193, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\lookups.py", line 25, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\fields\related_lookups.py", line 117, in get_prep_lookup
+    self.rhs = target_field.get_prep_value(self.rhs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\fields\__init__.py", line 1825, in get_prep_value
+    raise e.__class__(
+ValueError: Field 'id' expected a number but got ''.
+2022-04-12 09:59:52,792 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-12 09:59:54,493 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 10:00:01,050 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-12 10:00:02,559 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 10:02:50,060 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-12 10:02:51,964 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 10:02:58,396 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-12 10:03:00,128 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 10:03:02,178 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-12 10:03:03,852 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 10:03:09,246 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-12 10:03:11,040 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 10:03:36,465 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-12 10:03:38,155 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 10:05:27,454 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-12 10:05:29,048 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 10:07:30,184 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-12 10:07:31,785 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 10:07:41,663 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-12 10:07:43,359 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 10:10:34,632 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-12 10:10:36,342 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 10:10:45,051 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-12 10:10:46,772 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 10:10:52,099 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-12 10:10:53,729 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 10:13:53,587 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-12 10:14:13,652 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 10:14:34,797 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-12 10:14:36,683 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 10:14:39,857 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-12 10:14:41,727 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 10:14:46,077 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-12 10:14:47,988 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 10:14:52,242 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-12 10:14:53,883 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 10:14:59,285 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-12 10:15:01,179 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 10:15:12,240 django.request ERROR    Internal Server Error: /rest-api/abonnement/
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 46, in list
+    return Response(serializer.data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 768, in data
+    ret = super().data
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 686, in to_representation
+    return [
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 507, in to_representation
+    for field in fields:
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 368, in _readable_fields
+    for field in self.fields.values():
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\utils\functional.py", line 48, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 356, in fields
+    for key, value in self.get_fields().items():
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 1076, in get_fields
+    field_class, field_kwargs = self.build_field(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 1222, in build_field
+    return self.build_unknown_field(field_name, model_class)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 1340, in build_unknown_field
+    raise ImproperlyConfigured(
+django.core.exceptions.ImproperlyConfigured: Field name `systeme_cochage` is not valid for model `Abonnement`.
+2022-04-12 10:16:56,004 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-12 10:16:57,935 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 10:17:25,782 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-12 10:17:27,515 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 10:19:32,421 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-12 10:19:34,163 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 10:19:43,110 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\creneau\models.py changed, reloading.
+2022-04-12 10:19:45,426 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 10:19:50,961 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\creneau\models.py changed, reloading.
+2022-04-12 10:19:52,902 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 10:19:58,363 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\creneau\serializers.py changed, reloading.
+2022-04-12 10:20:00,200 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 10:20:17,304 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\creneau\views.py changed, reloading.
+2022-04-12 10:20:19,230 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 10:20:23,553 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\creneau\views.py changed, reloading.
+2022-04-12 10:20:25,326 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 10:20:30,827 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\presence\serializers.py changed, reloading.
+2022-04-12 10:20:32,629 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 10:20:38,013 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\presence\serializers.py changed, reloading.
+2022-04-12 10:20:39,781 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 10:23:30,979 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\creneau\views.py changed, reloading.
+2022-04-12 10:23:32,812 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 10:23:36,593 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\creneau\models.py changed, reloading.
+2022-04-12 10:23:38,593 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 10:51:33,514 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 11:40:45,376 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-12 11:40:47,379 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 11:58:33,841 django.request WARNING  Bad Request: /rest-api/abonnement/create
+2022-04-12 12:20:08,458 django.request WARNING  Not Found: /favicon.ico
+2022-04-12 12:23:53,316 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 12:24:10,119 django.request WARNING  Bad Request: /rest-api/abonnement/9/
+2022-04-12 13:46:28,840 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 13:48:09,708 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 14:00:48,550 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\urls.py changed, reloading.
+2022-04-12 14:00:50,469 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 14:01:09,387 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-12 14:01:11,059 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 14:04:53,680 django.request ERROR    Internal Server Error: /rest-api/creneau/by-client
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 38, in list
+    queryset = self.filter_queryset(self.get_queryset())
+  File "C:\Users\amd\Desktop\Octogym\backend\creneau\views.py", line 102, in get_queryset
+    abc = AbonnementClient.objects.filter(client= client, type_abonnement__systeme_cochage=False)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 941, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 961, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 968, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\query.py", line 1393, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\query.py", line 1412, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\query.py", line 1347, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\query.py", line 1184, in build_lookup
+    raise FieldError('Related Field got invalid lookup: {}'.format(lookup_name))
+django.core.exceptions.FieldError: Related Field got invalid lookup: systeme_cochage
+2022-04-12 14:06:45,324 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-12 14:06:47,500 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 14:07:40,975 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-12 14:07:42,559 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 14:10:03,586 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-12 14:10:05,711 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 14:12:24,386 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\transaction\models.py changed, reloading.
+2022-04-12 14:12:25,819 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 14:16:09,494 django.request ERROR    Internal Server Error: /rest-api/creneau/by-client
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 38, in list
+    queryset = self.filter_queryset(self.get_queryset())
+  File "C:\Users\amd\Desktop\Octogym\backend\creneau\views.py", line 102, in get_queryset
+    abc = AbonnementClient.objects.filter(client= client, type_abonnement__systeme_cochage=False)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 941, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 961, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 968, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\query.py", line 1393, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\query.py", line 1412, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\query.py", line 1347, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\query.py", line 1184, in build_lookup
+    raise FieldError('Related Field got invalid lookup: {}'.format(lookup_name))
+django.core.exceptions.FieldError: Related Field got invalid lookup: systeme_cochage
+2022-04-12 14:16:29,161 django.request ERROR    Internal Server Error: /rest-api/creneau/by-client
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 38, in list
+    queryset = self.filter_queryset(self.get_queryset())
+  File "C:\Users\amd\Desktop\Octogym\backend\creneau\views.py", line 102, in get_queryset
+    abc = AbonnementClient.objects.filter(client= client, type_abonnement__systeme_cochage=False)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 941, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 961, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 968, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\query.py", line 1393, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\query.py", line 1412, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\query.py", line 1347, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\query.py", line 1184, in build_lookup
+    raise FieldError('Related Field got invalid lookup: {}'.format(lookup_name))
+django.core.exceptions.FieldError: Related Field got invalid lookup: systeme_cochage
+2022-04-12 14:16:30,617 django.request ERROR    Internal Server Error: /rest-api/creneau/by-client
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 38, in list
+    queryset = self.filter_queryset(self.get_queryset())
+  File "C:\Users\amd\Desktop\Octogym\backend\creneau\views.py", line 102, in get_queryset
+    abc = AbonnementClient.objects.filter(client= client, type_abonnement__systeme_cochage=False)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 941, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 961, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 968, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\query.py", line 1393, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\query.py", line 1412, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\query.py", line 1347, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\query.py", line 1184, in build_lookup
+    raise FieldError('Related Field got invalid lookup: {}'.format(lookup_name))
+django.core.exceptions.FieldError: Related Field got invalid lookup: systeme_cochage
+2022-04-12 14:16:35,136 django.request ERROR    Internal Server Error: /rest-api/creneau/by-client
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 38, in list
+    queryset = self.filter_queryset(self.get_queryset())
+  File "C:\Users\amd\Desktop\Octogym\backend\creneau\views.py", line 102, in get_queryset
+    abc = AbonnementClient.objects.filter(client= client, type_abonnement__systeme_cochage=False)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 941, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 961, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 968, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\query.py", line 1393, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\query.py", line 1412, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\query.py", line 1347, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\query.py", line 1184, in build_lookup
+    raise FieldError('Related Field got invalid lookup: {}'.format(lookup_name))
+django.core.exceptions.FieldError: Related Field got invalid lookup: systeme_cochage
+2022-04-12 14:20:17,699 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\creneau\views.py changed, reloading.
+2022-04-12 14:20:19,668 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 14:25:52,470 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-12 14:25:54,183 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 14:26:32,397 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-12 14:26:34,270 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 14:29:41,909 django.request ERROR    Internal Server Error: /rest-api/creneau/by-client
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 38, in list
+    queryset = self.filter_queryset(self.get_queryset())
+  File "C:\Users\amd\Desktop\Octogym\backend\creneau\views.py", line 101, in get_queryset
+    abc = AbonnementClient.objects.filter(client= client, type_abonnement__systeme_cochage=False)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 941, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 961, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 968, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\query.py", line 1393, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\query.py", line 1412, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\query.py", line 1347, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\query.py", line 1184, in build_lookup
+    raise FieldError('Related Field got invalid lookup: {}'.format(lookup_name))
+django.core.exceptions.FieldError: Related Field got invalid lookup: systeme_cochage
+2022-04-12 14:29:48,737 django.request ERROR    Internal Server Error: /rest-api/abonnement-client/create
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py", line 116, in create
+    if type_ab.systeme_cochage:
+AttributeError: 'Abonnement' object has no attribute 'systeme_cochage'
+2022-04-12 14:30:00,589 django.request ERROR    Internal Server Error: /rest-api/creneau/by-client
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 38, in list
+    queryset = self.filter_queryset(self.get_queryset())
+  File "C:\Users\amd\Desktop\Octogym\backend\creneau\views.py", line 101, in get_queryset
+    abc = AbonnementClient.objects.filter(client= client, type_abonnement__systeme_cochage=False)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 941, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 961, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 968, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\query.py", line 1393, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\query.py", line 1412, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\query.py", line 1347, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\query.py", line 1184, in build_lookup
+    raise FieldError('Related Field got invalid lookup: {}'.format(lookup_name))
+django.core.exceptions.FieldError: Related Field got invalid lookup: systeme_cochage
+2022-04-12 14:35:01,856 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-12 14:35:03,828 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 14:35:10,517 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-12 14:35:12,391 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 14:35:38,596 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-12 14:35:40,325 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 14:35:45,799 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-12 14:35:47,679 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 14:35:54,252 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-12 14:35:56,015 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 14:36:38,026 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-12 14:36:40,088 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 14:38:46,359 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-12 14:38:48,033 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 14:38:55,754 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-12 14:38:57,387 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 14:44:27,817 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-12 14:44:29,556 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 14:45:31,843 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-12 14:45:33,603 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 14:45:50,318 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-12 14:45:51,915 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 15:12:17,453 django.request ERROR    Internal Server Error: /rest-api/creneau/by-client
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 38, in list
+    queryset = self.filter_queryset(self.get_queryset())
+  File "C:\Users\amd\Desktop\Octogym\backend\creneau\views.py", line 101, in get_queryset
+    abc = AbonnementClient.objects.filter(client= client, type_abonnement__systeme_cochage=False)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 941, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 961, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 968, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\query.py", line 1393, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\query.py", line 1412, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\query.py", line 1347, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\query.py", line 1184, in build_lookup
+    raise FieldError('Related Field got invalid lookup: {}'.format(lookup_name))
+django.core.exceptions.FieldError: Related Field got invalid lookup: systeme_cochage
+2022-04-12 15:12:25,695 django.request ERROR    Internal Server Error: /rest-api/abonnement-client/create
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py", line 117, in create
+    if type_ab.systeme_cochage:
+AttributeError: 'Abonnement' object has no attribute 'systeme_cochage'
+2022-04-12 15:14:00,540 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-12 15:14:01,866 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 15:14:32,679 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-12 15:14:34,001 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 15:14:36,640 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-12 15:14:37,953 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 15:14:41,514 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-12 15:14:42,586 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 15:14:44,046 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-12 15:14:46,174 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 15:14:48,285 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-12 15:14:50,339 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 15:15:09,706 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-12 15:15:11,295 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 15:15:28,246 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-12 15:15:30,092 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 15:15:48,291 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-12 15:15:50,138 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 15:16:04,783 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-12 15:16:06,837 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 15:17:36,546 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-12 15:17:38,467 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 15:17:52,160 django.request ERROR    Internal Server Error: /rest-api/creneau/by-client
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 38, in list
+    queryset = self.filter_queryset(self.get_queryset())
+  File "C:\Users\amd\Desktop\Octogym\backend\creneau\views.py", line 101, in get_queryset
+    abc = AbonnementClient.objects.filter(client= client, type_abonnement__systeme_cochage=False)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 941, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 961, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 968, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\query.py", line 1393, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\query.py", line 1412, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\query.py", line 1347, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\query.py", line 1184, in build_lookup
+    raise FieldError('Related Field got invalid lookup: {}'.format(lookup_name))
+django.core.exceptions.FieldError: Related Field got invalid lookup: systeme_cochage
+2022-04-12 15:18:43,963 django.request ERROR    Internal Server Error: /rest-api/creneau/by-client
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 38, in list
+    queryset = self.filter_queryset(self.get_queryset())
+  File "C:\Users\amd\Desktop\Octogym\backend\creneau\views.py", line 101, in get_queryset
+    abc = AbonnementClient.objects.filter(client= client, type_abonnement__systeme_cochage=False)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 941, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 961, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 968, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\query.py", line 1393, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\query.py", line 1412, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\query.py", line 1347, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\query.py", line 1184, in build_lookup
+    raise FieldError('Related Field got invalid lookup: {}'.format(lookup_name))
+django.core.exceptions.FieldError: Related Field got invalid lookup: systeme_cochage
+2022-04-12 15:18:48,021 django.request ERROR    Internal Server Error: /rest-api/creneau/by-client
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 38, in list
+    queryset = self.filter_queryset(self.get_queryset())
+  File "C:\Users\amd\Desktop\Octogym\backend\creneau\views.py", line 101, in get_queryset
+    abc = AbonnementClient.objects.filter(client= client, type_abonnement__systeme_cochage=False)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 941, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 961, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 968, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\query.py", line 1393, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\query.py", line 1412, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\query.py", line 1347, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\query.py", line 1184, in build_lookup
+    raise FieldError('Related Field got invalid lookup: {}'.format(lookup_name))
+django.core.exceptions.FieldError: Related Field got invalid lookup: systeme_cochage
+2022-04-12 15:19:07,485 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-12 15:19:09,246 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 15:20:46,635 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\creneau\views.py changed, reloading.
+2022-04-12 15:20:48,432 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 15:20:50,428 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\creneau\views.py changed, reloading.
+2022-04-12 15:20:52,033 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 15:20:58,477 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\creneau\views.py changed, reloading.
+2022-04-12 15:21:00,631 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 15:21:11,846 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\creneau\views.py changed, reloading.
+2022-04-12 15:21:13,440 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 15:22:43,404 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-12 15:22:45,143 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 15:22:48,399 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-12 15:22:50,160 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 15:23:43,500 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-12 15:23:45,250 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 15:29:12,599 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-12 15:29:14,260 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 15:32:30,344 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-12 15:32:31,953 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 15:50:05,583 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-12 15:50:07,281 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 15:50:22,868 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-12 15:50:24,411 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 15:51:04,709 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-12 15:51:06,492 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 15:51:17,573 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-12 15:51:19,267 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 15:51:30,256 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-12 15:51:32,099 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 15:52:59,958 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-12 15:53:01,789 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 15:53:07,149 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-12 15:53:08,738 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 15:53:21,981 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-12 15:53:23,782 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 15:53:28,021 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-12 15:53:29,827 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 15:54:05,846 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-12 15:54:07,563 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 15:55:20,345 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-12 15:55:22,151 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 16:02:41,535 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-12 16:02:43,073 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 16:03:49,319 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-12 16:03:51,017 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 16:03:54,066 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-12 16:03:55,839 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 16:04:56,104 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-12 16:04:58,124 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 16:06:31,844 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-12 16:06:33,615 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 16:06:57,244 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-12 16:06:59,054 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 16:07:40,382 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-12 16:07:42,217 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-12 16:08:09,138 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-12 16:08:10,711 django.utils.autoreload INFO     Watching for file changes with StatReloader

@@ -13,7 +13,6 @@ urlpatterns = [
     path('abonnement/delete/<int:pk>/', AbonnementDestroyAPIView.as_view(), name="abonnement-delete"),
     path('abonnement/deativate/<int:pk>/', deactivate_api_view, name="abonnement-delete"),
     path('abonnement-client/deativate/<int:pk>/', deactivate_abc_api_view, name="abonnement-delete"),
-
     path('abonnement-client/', AbonnementClientListAPIView.as_view(),  name="type"),
     path('abonnement-client-dettes/', total_dettes_abonnee,  name="abonnement-client-dettes"),
     path('totales-restes/', total_restes_abonnees,  name="totales-restes"),

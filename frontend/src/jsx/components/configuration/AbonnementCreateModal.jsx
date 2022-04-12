@@ -10,8 +10,11 @@ import {notifySuccess, notifyError} from '../Alert'
 // import { Link } from "react-router-dom";
 import useForm from 'react-hook-form';
 import createPalette from "@material-ui/core/styles/createPalette";
+import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
+import Radio from '@material-ui/core/Radio';
 
 function refreshPage() {
   window.location.reload(false);
@@ -29,9 +32,13 @@ const AbonnementCreateModal = ({show, onShowShange}) => {
     const [activity, setActivity] = useState([])
     const [selectedActivities, setSelectedActivities] = useState([])
     const [duree, setDuree] = useState('')
-    const [systemeCochage, setSystemeCochage] = useState(false)
+    const [displayLength, setDisplayLength] = useState(true)
+    const [length, setLength] = useState("Nombre d'heures")
+    const [typeOfValue, setTypeOfValue] = useState("VO")
     // const [numOfWeek, setNumOfWeek] = useState(false)
+    
     const [alertSuccess, setAlertSuccess] = useState(false)
+    const [helpText, setHelpText] = useState("Abonnement limité par un nombre d'heures")
     const [alertError, setAlertError] = useState(false)
     const activities = useGetAPI(activitiesEND)
     
@@ -54,6 +61,10 @@ const AbonnementCreateModal = ({show, onShowShange}) => {
           selectedActivities.push(activity[i]['id'])
       }
     }
+    const handleTypeOfValueChange = (event) => {
+        setTypeOfValue(event.target.value)
+    }
+
     const handleSubmit = async e => {
         e.preventDefault();
         for (let i = 0; i < activity.length; i++) {
@@ -64,15 +75,17 @@ const AbonnementCreateModal = ({show, onShowShange}) => {
             price             : price,
             seances_quantity  : Number(seancesQuantity),
             salles          : selectedActivities,
-            systeme_cochage   : systemeCochage,
-            number_of_days    : duree
+            length    : duree,
+            type_of : typeOfValue
+
         }
-          await axios.post(abonnementCreateEND, abonnementFormData).then( res => {
+        await axios.post(abonnementCreateEND, abonnementFormData)
+        .then( res => {
             notifySuccess('Abonnement creer avec succés')
-                  handleShow()
-            }).catch(err => {
-              notifyError("Erreur lors de la creation de l'abonnement")
-            })
+            handleShow()
+        }).catch(err => {
+            notifyError("Erreur lors de la creation de l'abonnement")
+        })
       }
 
 return ( 
@@ -84,16 +97,60 @@ return (
     </Modal.Header>
     <Modal.Body>
       <form onSubmit={handleSubmit}>
-      <div className="form-group row">
-              <label className="col-sm-3 col-form-label">Systeme d'abonnement : </label>
+            <div className="form-group row">
+            <label className="col-sm-3 col-form-label">Type d'abonnement </label>
               <div className="col-sm-9">
+              <small className="m-0 text-success" htmlFor="">{helpText}</small>
+
+              <RadioGroup row aria-label="position" name="position" value={typeOfValue} onChange={handleTypeOfValueChange}>
                 <FormControlLabel
-                    control={<Switch checked={systemeCochage}  onChange={e => setSystemeCochage(!systemeCochage)} color="primary" />}
-                    label={systemeCochage ? 'Prépayé ': 'Normal'}
-                    labelPlacement={systemeCochage ? 'end': 'start'}
-                    />
-                    {/* need to be a radio button to specify which type of the subscription is*/}
+                    value="VO"
+                    control={<Radio color="primary" />}
+                    label="Volume Horaire"
+                    labelPlacement="start"
+                    selected={true}
+                    onClick={e => {
+                        setLength("Nombre d'heures")
+                        // setTypeOfValue(e => )
+                        setDisplayLength(true)
+                        setHelpText("Abonnement limité par un nombre d'heures")
+                    }}
+                />
+                <FormControlLabel
+                    value="SF"
+                    control={<Radio color="primary" />}
+                    label="Seances Fix"
+                    labelPlacement="start"
+                    onClick={e => {
+                        setLength("Nombre de séances")
+                        setDisplayLength(true)
+                        setHelpText("Abonnement limité par un nombre de seance et des horaires fix")
+                    }}
+                />
+                <FormControlLabel
+                    value="SL"
+                    control={<Radio color="primary" />}
+                    label="Seances Libre"
+                    labelPlacement="start"
+                    onClick={e => {
+                        setLength("Nombre de séances")
+                        setDisplayLength(true)
+                        setHelpText("Abonnement limité par un nombre de seance avec des horaires fléxible")
+                    }}
+                />
+                  <FormControlLabel
+                    value="AL"
+                    control={<Radio color="primary" />}
+                    label="Accés Libre"
+                    labelPlacement="start"
+                    onClick={e => {
+                        setDisplayLength(false)
+                        setHelpText("Abonnement limité uniquement par sa date")
+                    }}
+                />
+              </RadioGroup>
               </div>
+
           </div>
           <div className="form-group row">
               <label className="col-sm-3 col-form-label">Nom </label>
@@ -126,12 +183,15 @@ return (
                         />
                 </div>
             </div>
-          <div className="form-group row">
-              <label className="col-sm-3 col-form-label">Nombre de Séances </label>
-              <div className="col-sm-9">
-                  <input type="number"value={seancesQuantity} className="form-control" placeholder="..." onChange={e => setSeancesQuantity(e.target.value)}/>
-              </div>
-          </div>
+            {
+                displayLength &&
+                <div className="form-group row">
+                    <label className="col-sm-3 col-form-label">{length} </label>
+                    <div className="col-sm-9">
+                        <input type="number"value={seancesQuantity} className="form-control" placeholder="..." onChange={e => setSeancesQuantity(e.target.value)}/>
+                    </div>
+                </div>
+            }
           <div className="form-group row">
               <label className="col-sm-3 col-form-label">Salles </label>
               <div className="col-sm-9">

@@ -16,17 +16,13 @@ function refreshPage() {
 }
 const ABCCreateModal = ({show, onShowShange, clientData}) => {
   const [showCreneau, setShowCreneau] = useState(false)
-
     const handleShow = useCallback( () => {
       onShowShange(false)
       setShowCreneau(false)
-    
     }, [onShowShange])
-
     
     
     const clientId = clientData['clientId']
-
     const today = new Date().toISOString().slice(0, 10)
     const [startDate, setStartDate] = useState(today);
     const [samedi, setSamedi] = useState([]);

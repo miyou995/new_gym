@@ -27,36 +27,43 @@ from django.db.models.signals import post_save, pre_save
         # return True
 TYPE_ABONNEMENT = (
     ('VH', 'Volume Horaire'),
-    ('OU', 'Ouvert'),
-    ('SL', 'Seance limité'),
+    ('AL', 'Accés Libre'),
+    ('SF', 'Seances Fix'),
+    ('SL', 'Seances Libre'),
 )
+
 class Abonnement(models.Model):
-    name              = models.CharField(max_length=70, verbose_name="Nom")
-    price             = models.DecimalField(max_digits=15, decimal_places=0, verbose_name="prix")
-    number_of_days    = models.IntegerField()# number of days
-    seances_quantity  = models.IntegerField()
-    salles            = models.ManyToManyField(Salle, related_name='abonnements')
-    systeme_cochage   = models.BooleanField(default=False)
-    actif             = models.BooleanField(default=True)
-    # objects           = AbonnementManager()
+    name             = models.CharField(max_length=70, verbose_name="Nom")
+    type_of          = models.CharField(choices= TYPE_ABONNEMENT, max_length=2, default='VH',verbose_name="type d'abonnement")
+    price            = models.DecimalField(max_digits=15, decimal_places=0, verbose_name="prix")
+    length           = models.IntegerField()# number of days
+    seances_quantity = models.IntegerField( blank=True, null=True)
+    salles           = models.ManyToManyField(Salle, related_name='abonnements')
+    actif            = models.BooleanField(default=True)
+    # objects        = AbonnementManager()
     def __str__(self):
         return self.name
 
-    def get_seances_quantity(self):
-        return self.seances_quantity
-
-
+    def time_volume(self):
+        return True if self.type_of == "VH" else False
+    def free_access(self):
+        return True if self.type_of == "AL" else False
+    def fixed_sessions(self):
+        return True if self.type_of == "SF" else False
+    def free_sessions(self):
+        return True if self.type_of == "SL" else False
+        
 class AbonnementClient(models.Model):
     start_date          = models.DateField()# number of days
     end_date            = models.DateField()# number of days
-    created_date_time   = models.DateTimeField(auto_now_add=True)
-    updated_date_time   = models.DateTimeField(auto_now=True)
     client              = models.ForeignKey(Client, related_name="abonnement_client", on_delete=models.CASCADE)
     type_abonnement     = models.ForeignKey(Abonnement, related_name="type_abonnement_client", on_delete=models.CASCADE)
     presence_quantity   = models.IntegerField(blank=True, null=True)
-    creneaux            = models.ManyToManyField(Creneau, verbose_name="créneau", related_name='pizzas', blank=True)
+    creneaux            = models.ManyToManyField(Creneau, verbose_name="créneau", related_name='abonnements', blank=True)
     reste               = models.DecimalField(max_digits=15, decimal_places=0, verbose_name="prix", blank=True, null=True)
     archiver            = models.BooleanField(default=False)
+    created_date_time   = models.DateTimeField(auto_now_add=True)
+    updated_date_time   = models.DateTimeField(auto_now=True)
     objects             = models.Manager()
     # validity            = ManagerValidity()
 
@@ -70,9 +77,12 @@ class AbonnementClient(models.Model):
     def __str__(self):
         return  str(self.id)
     def get_type(self):
-        return self.type_abonnement.type
+        return self.type_abonnement.type_of
 
 
+
+    def update_remains(self):
+        pass
 # def dette_signal(sender, instance, **kwargs):
 #     id_client = instance.client.id
 #     client = Client.objects.get(id=id_client)
@@ -86,19 +96,19 @@ class AbonnementClient(models.Model):
 # post_save.connect(dette_signal, sender=AbonnementClient)
 
 
-def abc_created_signal(sender, instance, created,**kwargs):
-    if created:
-        abon = instance.type_abonnement
-        presence_quantity = abon.seances_quantity
-        reste = abon.price
-        # end_date = datetime.now().date() + timedelta(days = number_of_days)
-        #  updates
-        instance.reste = reste
-        instance.presence_quantity = presence_quantity
-        # instance.end_date = end_date
-        instance.save()
+# def abc_created_signal(sender, instance, created,**kwargs):
+#     if created:
+#         abon = instance.type_abonnement
+#         presence_quantity = abon.seances_quantity
+#         reste = abon.price
+#         # end_date = datetime.now().date() + timedelta(days = length)
+#         #  updates
+#         instance.reste = reste
+#         instance.presence_quantity = presence_quantity
+#         # instance.end_date = end_date
+#         instance.save()
 
-post_save.connect(abc_created_signal, sender=AbonnementClient)
+# post_save.connect(abc_created_signal, sender=AbonnementClient)
 
 
 
@@ -107,7 +117,7 @@ post_save.connect(abc_created_signal, sender=AbonnementClient)
     #     print('validated_data =====>', validated_data)
     #     # return AbonnementClient.objects.create(**validated_data)
     #     abon = validated_data['type_abonnement']
-    #     number = Abonnement.objects.get(id = abon.id).number_of_days
+    #     number = Abonnement.objects.get(id = abon.id).length
     #     delta = timedelta(days = number)
     #     end_date = datetime.now().date() + delta
     #     presence_quantity = Abonnement.objects.get(id = abon.id).seances_quantity

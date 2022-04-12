@@ -26,7 +26,6 @@ class Paiement(Transaction):
     # hello = models.TextField(blank=True, null=True)
     def __str__(self):
         return str(self.amount)
-
     class Meta:
         ordering = ['-last_modified']
 

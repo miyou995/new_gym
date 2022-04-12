@@ -92,7 +92,7 @@ def deactivate_abc_api_view(request, pk):
 def renew_api_view(request, pk):
     abc  = AbonnementClient.objects.get( id = pk)
     abon = abc.type_abonnement
-    jours =   abon.number_of_days
+    jours =   abon.length
     seances = abon.seances_quantity
     end_date = abc.end_date
     delta = timedelta(days = jours)

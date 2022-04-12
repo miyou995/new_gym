@@ -94,8 +94,8 @@ class PresenceAutoSerialiser(serializers.ModelSerializer):
         client = Client.objects.get(id=cd_client)
         client_id = client.id
         print('id client =>',client)
-        creneaux = Creneau.range.get_creneaux_of_day().filter(pizzas__client=client)
-        # print('Les creneaux of client=====>',Creneau.objects.filter(pizzas__client=client))
+        creneaux = Creneau.range.get_creneaux_of_day().filter(abonnements__client=client)
+        # print('Les creneaux of client=====>',Creneau.objects.filter(abonnements__client=client))
         print('Les creneaux du Today client=====>', creneaux)
         # print('CLIENT ID => ', client.id)
         # init_time = 1

@@ -96,11 +96,12 @@ class CreneauClientListAPIView(generics.ListAPIView):
     serializer_class = CreneauClientSerialiser
     # permission_classes = (IsAuthenticated,)
     def get_queryset(self):
-        
         client = self.request.query_params.get('cl', None)
         print('cliiiientr', client)
-        abc = AbonnementClient.objects.filter(client= client, type_abonnement__systeme_cochage=False)
-        creneaux = Creneau.objects.filter(pizzas__client=client, pizzas__type_abonnement__systeme_cochage=False)
+        abc = AbonnementClient.objects.filter(client= client)
+        # abc = AbonnementClient.objects.filter(client= client, type_abonnement__systeme_cochage=False)
+        # creneaux = Creneau.objects.filter(abonnements__client=client, abonnements__type_abonnement__systeme_cochage=False)
+        creneaux = Creneau.objects.filter(abonnements__client=client)
         return creneaux
 
 class CreneauCoachListAPIView(generics.ListAPIView):
@@ -118,7 +119,7 @@ class CreneauAbcListAPIView(generics.ListAPIView):
     # permission_classes = (IsAuthenticated,)
     def get_queryset(self):
         abonnement = self.request.query_params.get('ab', None)
-        creneaux = Creneau.objects.filter(pizzas__id =abonnement)
+        creneaux = Creneau.objects.filter(abonnements__id =abonnement)
         return creneaux
 
 # @api_view(['GET'])

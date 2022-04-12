@@ -67,6 +67,7 @@ const Configuration = (props) => {
     
     const [salllesActivities, setSalllesActivities] = useState([]);
     const [dureeInd, setDureeInd] = useState("");
+    const [typeOf, setTypeOf] = useState("");
     const [activityColor, setActivityColor] = useState("");
     
     
@@ -328,10 +329,10 @@ const Configuration = (props) => {
                     </div>
                 </div>
                 {/* FIN MALADIES */}
-                <div className=" col-lg-4 config-tableaux">
+                <div className=" col-lg-6 config-tableaux">
                     <div className="card">
                         <div className="card-header">
-                            <h4 onClick={e => setAbonnementListModal(true)} className="card-title ajouter">Type D'abonnement</h4>
+                            <h4  className="card-title ajouter">Type D'abonnement</h4>
                             <Button onClick={e => { setAbonnementCreateModal(true)}}>Ajouter</Button>
                         </div>
                         <div className="card-body">
@@ -341,7 +342,7 @@ const Configuration = (props) => {
                                         <thead>
                                             <tr>
                                                 <th className="text-left">Abonnement</th>
-                                                <th>Nombre de Séance </th>
+                                                <th>Durée <br /> <small>(seances/ heures)</small></th>
                                                 <th className="text-right">Nombre d'activités'</th>
                                                 <th >Inscrits</th>
                                             </tr>
@@ -353,6 +354,7 @@ const Configuration = (props) => {
                                                 setAbonnementId(abonnement.id)
                                                 setSelectedActivities(getAbonnementsActitivties(abonnement.salles))
                                                 setAbDuree(abonnement.number_of_days)
+                                                setTypeOf(abonnement.type_of)
                                                 await setDureeInd(getDureeIndex(abonnement.number_of_days))
                                             }}>
                                                 <td className="text-left">{abonnement.name}</td>
@@ -439,7 +441,8 @@ const Configuration = (props) => {
             selectedActivities: selectedActivities,
             activities : activities,
             salles: salllesActivities, 
-            dureeInd: dureeInd
+            dureeInd: dureeInd,
+            // typeOf : typeOf
             }
             } />
          </>
