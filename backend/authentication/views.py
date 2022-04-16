@@ -12,7 +12,7 @@ from django.views.decorators.csrf import ensure_csrf_cookie , csrf_protect
 from django.utils.decorators import method_decorator
 # Create your views here.
 from django.contrib import auth
-
+from rest_framework_simplejwt.tokens import RefreshToken
 # @method_decorator(csrf_protect, name='dispatch')
 
 # @method_decorator(ensure_csrf_cookie, name='dispatch')
@@ -38,21 +38,17 @@ class SignUpView(APIView):
         except:
             return Response({"error" : " vérifier votre connection"})
 
+
 class BlacklistTokenUpdateView(APIView):
     permission_classes = [AllowAny]
     authentication_classes = ()
-
     def post(self, request):
-        print('POOOOOOOOSRT')
         try:
-            print('TRYYYYYYYY 2',self.request.data[0])
-            print('TRYYYYYYYY',request.data)
             refresh_token = request.data["refresh"]
             token = RefreshToken(refresh_token)
             token.blacklist()
             return Response(status=status.HTTP_205_RESET_CONTENT)
         except Exception as e:
-            print('EXCEEEEPT', e)
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
 @method_decorator(ensure_csrf_cookie, name='dispatch')

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import jwt_decode from "jwt-decode";
 
 import { Link } from "react-router-dom";
 /// Scroll
@@ -9,7 +10,7 @@ import avatar from "../../../images/avatar/1.jpg";
 import { Dropdown } from "react-bootstrap";
 // import { LogoutUser } from "../../utils/auth";
 import { set } from "js-cookie";
-import { axiosInstance } from "../../utils/auth";
+// import { axiosInstance } from "../../utils/auth";
   import AuthContext from "../../context/AuthContext";
 import { useGetAPI, usePostAPI } from '../../components/useAPI'
 import { useContext } from "react";
@@ -36,14 +37,14 @@ const Header = ({ onNote, toggle, onProfile, onNotification, onClick }) => {
   const Logout = async e => {
     let endpoint = `${process.env.REACT_APP_API_URL}/rest-api/auth/logout/blacklist`
     const authToken = localStorage.getItem('authTokens')
-    const refresh = authToken['refresh']
-    console.log('refresh', refresh);
-    console.log('refresh 2 ', authToken.refresh);
-    console.log('authToken', authToken);
+    const refresh =  JSON.parse(localStorage.getItem("authTokens"))
+    console.log('refresh', jwt_decode(localStorage.getItem("authTokens")));
+    // console.log('refresh 2 ', authToken.refresh);
+    console.log('authToken',  JSON.parse(localStorage.getItem("authTokens")).refresh);
     axios.post(endpoint, refresh).then( () => {
       console.log(refresh);
       localStorage.removeItem('authTokens');
-      axiosInstance.defaults.headers['Authorization'] = null;
+      // axiosInstance.defaults.headers['Authorization'] = null;
       history.push('/login');
     })
   }

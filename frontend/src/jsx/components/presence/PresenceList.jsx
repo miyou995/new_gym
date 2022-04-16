@@ -131,20 +131,22 @@ const getCurrentDay = (PresneceDate) => {
          setPresencesCount(result.data.count)
       }
       presenceDateDate()
-   }, [startDate, endDate, nextpage, searchValue, client, presenceCreatedSuccess, presenceupdatedSuccess, salleId, editModal, presneceCreateModal, startHour, filterActivity]);
+   }, [startDate, endDate, clientId,nextpage, searchValue, client, presenceCreatedSuccess, presenceupdatedSuccess, salleId, editModal, presneceCreateModal, startHour, filterActivity]);
 
 const HandleSubmit = (e) => {
    e.preventDefault();
-   const presenceData =  axios.get(`${process.env.REACT_APP_API_URL}/rest-api/clients/${clientId}/`).then(async res=> {
+   const presenceData =  axios.get(`${process.env.REACT_APP_API_URL}/rest-api/get-client/?cl=${clientId}`).then(async res=> {
       if (res.data.last_presence) {
          setPresenceId(res.data.last_presence)
          await axios.put( `${process.env.REACT_APP_API_URL}/rest-api/presence/edit/${res.data.last_presence}/`)
          notifySuccess(`la sortie de ${clientId} a été éffectué Avec Succée`)
+         setClientId('')
          return presenceData
       } else {
          try {
             const presenceData1 = await axios.post(presenceCreateEND,{client: clientId}).then(res => {
                notifySuccess(`Entrée autorisée, ${clientId}`)
+               setClientId('')
             })
             return presenceData1
          } catch (error) {
@@ -169,7 +171,7 @@ const HandleSubmit = (e) => {
                   <div className='row'>
                      <div className="col-6">
                      <label htmlFor="entree">Présence Automatique </label>
-                        <input name='entree' type="text" className="form-control" placeholder=" ID Client" onChange={e =>  setClientId(e.target.value)} />
+                        <input name='entree' type="text" className="form-control" value={clientId} placeholder=" ID Client" onChange={e =>  setClientId(e.target.value)} />
                      </div>
                      <div className="col-6 mt-auto">
                         <Button  variant="success" type="submit" > Valider</Button>

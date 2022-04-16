@@ -52,12 +52,24 @@ class ClientDetailAPIView(generics.RetrieveUpdateAPIView):
     serializer_class = ClientSerialiser
     # permission_classes = (AllowAny, )
     def get_object(self):
-        obj = get_object_or_404(Client.objects.filter(id=self.kwargs["pk"]))
-        return obj
+        try:
+            client = Client.objects.get(id = self.request.query_params.get('cl', None))
+        except :
+            client = Client.objects.get(carte = self.request.query_params.get('cl', None))
+        
+        print('object, client', client)
+        return client
+
     def get(self , request, *args, **kwargs):
-        # try:
-        obj = get_object_or_404(Client.objects.filter(id=self.kwargs["pk"]))
-        ax = self.serializer_class(obj)
+        params = self.request.query_params.get('cl', None)
+        print('object,params', params)
+        try:
+            client = Client.objects.get(id = params)
+        except :
+            client = Client.objects.get(carte = params)
+             
+        # obj = get_object_or_404(Client.objects.filter(id=self.kwargs["pk"]))
+        ax = self.serializer_class(client)
         return Response(ax.data)
         # except:
         #     msg = 'le client nexiste pas'

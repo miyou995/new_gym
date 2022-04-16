@@ -81,6 +81,7 @@ const PresenceCreateModal = ({show, onShowShange, presenceData}) => {
     //    }
     //    fetchData();
     // }, [props.match.params.id] );
+    
     useEffect( ()  => {
       if (client !== '') {
          axios.get(`${process.env.REACT_APP_API_URL}/rest-api/abonnement-by-client/?cl=${client}`).then(response => {

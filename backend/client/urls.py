@@ -16,6 +16,8 @@ urlpatterns = [
     path('clients-name-drop/', ClientNamesDropListAPIView.as_view(),  name="client-name"),
     path('clients-presence/', ClientPresenceViewAPI.as_view(),  name="client-presence"),
     path('clients/<str:pk>/', ClientDetailAPIView.as_view(), name="client-detail"),
+    path('get-client/', ClientDetailAPIView.as_view(), name="client-detail"),
+
     path('clients/create', ClientAPIView.as_view(),  name="client-create"),
     path('clients/delete/<str:pk>/', ClientDestroyAPIView.as_view(), name="client-delete"),
     # Personnel paths

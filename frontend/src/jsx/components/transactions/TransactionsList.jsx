@@ -5,8 +5,6 @@ import axios from 'axios';
 import Search from "../../layouts/Search";
 import ShortCuts from "../ShortCuts";
 import { ToastContainer, toast } from 'react-toastify'
-/// Transaction Modal
-// import TransactionCreateModal from './TransactionCreateModal';
 import PaiementCreateModal from './PaiementCreateModal';
 import RemunerationCoachModal from './RemunerationCoachModal';
 import RemunerationPersonnelModal from './RemunerationPersonnelModal';
@@ -14,10 +12,7 @@ import AutreCreateModal from './AutreCreateModal';
 // import DetteCreateModal from './DetteCreateModal';
 /// images 
 
-import avartar5 from "../../../images/avatar/5.png";
-import avartar1 from "../../../images/avatar/1.png";
 import { Link } from "react-router-dom";
-import { useGetAPI } from '../useAPI'
 import { transformToNestObject } from "react-hook-form";
 
 import {
@@ -79,7 +74,7 @@ const [startDate, setStartDate] = useState(formatDate(new Date('2021-01-05')));
    const [presenceData, setPresenceData] = useState([]);
    const [searchValue, setSearchValue] = useState('')
    const [transData, setTransData] = useState([]);
-   // const savedTransactions = useGetAPI(endpoint)
+   // const savedTransactions = (endpoint)
    // console.log('els clieeents', savedTransactions);
    const capitalizeFirstLetter = (word) => {
       if (word)
@@ -110,21 +105,22 @@ const [nextpage, setNextpage] = useState(1);
       //    setEndDate(res.data.results)
       //    console.log('le resultat des clients est ', res.data);
       // })
-      const presenceDateDate = async () => {
+      const dateDebut = formatDate(startDate)
+      const dateFin = formatDate(endDate)
+      axios.get(`${process.env.REACT_APP_API_URL}/rest-api/transactions/?page=${nextpage}&start_date=${dateDebut}&end_date=${dateFin}`).then( res => {
+         console.log('result ', res);
+         setTransData(res.data.results)
+      })
+      // const presenceDateDate =  () => {
          // const page = nextpage
-         const dateDebut = formatDate(startDate)
-         const dateFin = formatDate(endDate)
-         const result =  await axios.get(`${process.env.REACT_APP_API_URL}/rest-api/transactions/?page=${nextpage}&start_date=${dateDebut}&end_date=${dateFin}`)
-         console.log('result ', result);
-         setTransData(result.data.results)
-      }
+      // }
    // }else {
    //    axios.get(endpoint).then(res => {
    //       setStartDate(res.data.results)
    //       setEndDate(res.data.results)
    //       console.log('le resultat des clients est ', res.data);
    //    })}
-   presenceDateDate()
+   // presenceDateDate()
    }, [startDate, endDate,nextpage,paiementModal,remunerationCoachModal,remunerationPersonnelModal,autreModal]);
    return (
       <Fragment>

@@ -41,9 +41,9 @@ export const AuthProvider = ({ children }) => {
     if (response.status === 200) {
       setAuthTokens(data);
       setUser(jwt_decode(data.access));
-      console.log("DATAAAAAAAAAA", data);
+      // console.log("DATAAAAAAAAAA", data);
       localStorage.setItem("authTokens", JSON.stringify(data));
-      history.push("/");
+      window.location ="/";
     } else {
       alert("Something went wrong!");
     }

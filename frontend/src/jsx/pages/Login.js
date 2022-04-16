@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 
-import { axiosInstance} from "../utils/auth";
 import {ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import AuthContext from "../context/AuthContext";

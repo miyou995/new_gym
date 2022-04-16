@@ -104,7 +104,6 @@ class SideBar extends Component {
                         <i className="flaticon-381-controls"></i>
                         <span className="nav-text">Transactions</span>
                      </Link>
-                     
                   </li>
                   <li className={`${plan.includes(path) ? "mm-active" : ""}`}>
                      <Link to="/creneaux">
@@ -163,15 +162,20 @@ class SideBar extends Component {
                               Personnel
                            </Link>
                         </li>
-                   
                      </ul>
                   </li>
-                  {/* Fin Coaches & personnel  */}
                   <li className={`${config.includes(path) ? "mm-active" : ""}`}>
                      <Link to="/configuration">
                         <i className="flaticon-381-settings"></i>
                         <span className="nav-text">configuration</span>
                      </Link>
+                  </li>
+                  <li className={`${config.includes(path) ? "mm-active" : ""}`}>
+                     <Link to="/users">
+                        <i className="flaticon-381-user-1"></i>
+                        <span className="nav-text">Utilisateurs</span>
+                     </Link>
+                  </li>
                      {/* <ul>
                         <li>
                            <Link className={`${path === "table-bootstrap-basic"? "mm-active": ""}`} onClick={() => this.props.onClick()} to="/table-bootstrap-basic">
@@ -189,7 +193,6 @@ class SideBar extends Component {
                            </Link>
                         </li>
                      </ul> */}
-                  </li>
                   {/* <li className={`${presen.includes(path) ? "mm-active" : ""}`}>
                      <Link to="/presences">
                         <i className="flaticon-381-television"></i>

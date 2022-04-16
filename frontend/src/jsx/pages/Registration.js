@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
-import { axiosInstance } from "../utils/auth";
+// import { axiosInstance } from "../utils/auth";
 import { useHistory } from 'react-router-dom';
 const Register = () => {
   const history = useHistory();
@@ -24,17 +25,11 @@ const Register = () => {
 		});
 	};
 
-  // const onSubmit = (e) => {
-  //   e.preventDefault();
-  //   registerUser(first_name, last_name, email, password, re_password);
-  // };
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		console.log(formData);
-
-		axiosInstance
-			.post(`rest-api/auth/register`, {
+		axios.post(`${process.env.REACT_APP_API_URL}/rest-api/auth/register`, {
 				email: formData.email,
         first_name:formData.first_name,
         last_name: formData.last_name,
@@ -42,11 +37,12 @@ const Register = () => {
 				re_password: formData.re_password,
 			})
 			.then((res) => {
-				history.push('/login');
+				window.location = '/login';
 				console.log(res);
 				console.log(res.data);
 			});
 	};
+  
   return (
     <div className="authincation h-100 p-meddle">
       <div className="container h-100">

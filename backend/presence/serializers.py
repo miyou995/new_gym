@@ -86,7 +86,10 @@ class PresenceAutoSerialiser(serializers.ModelSerializer):
         FTM = '%H:%M:%S'
         current_time = datetime.now().strftime("%H:%M:%S")
         cd_client = validated_data['abc']['client']
-        client = Client.objects.get(id=cd_client)
+        try:
+            client = Client.objects.get(id=cd_client)
+        except:
+            client = Client.objects.get(carte=cd_client)
         creneaux = Creneau.range.get_creneaux_of_day().filter(abonnements__client=client)
         # print('Les creneaux of client=====>',Creneau.objects.filter(abonnements__client=client))
         print('Les creneaux du Today client=====>', creneaux)
