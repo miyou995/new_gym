@@ -5,10 +5,9 @@ import ShortCuts from "../ShortCuts";
 import { useGetAPI, usePutAPI } from "../useAPI";
 import { useHistory } from "react-router-dom";
 //  useNavigate in V6
+import {notifySuccess, notifyError} from '../Alert'
 
-function refreshPage() {
-  window.location.reload(false);
-}
+
 const PersonnelEdit = (props) => {
   // let creneauxEnd = `${process.env.REACT_APP_API_URL}/rest-api/creneau/`
   const currentPersonnelId = props.match.params.id;
@@ -29,6 +28,7 @@ const PersonnelEdit = (props) => {
   const [blood, setBlood] = useState("");
   const [note, setNote] = useState("");
   const [etat, setEtat] = useState("");
+  const [fonction, setFonction] = useState("");
   // const [dette, setDette] = useState("");
   //FK
   // const [creneau, setCreneau] = useState("");
@@ -45,6 +45,7 @@ const PersonnelEdit = (props) => {
       setBlood(res.data.blood);
       setNote(res.data.note);
       setEtat(res.data.etat);
+      setFonction(res.data.function)
       // setDette(res.data.dette)
       // setCreneau(res.data.creneau)
     });
@@ -59,6 +60,7 @@ const PersonnelEdit = (props) => {
       phone: phone,
       email: email,
       nationality: nationality,
+      function: fonction,
       birth_date: birthDate,
       state: etat,
       blood: blood,
@@ -66,9 +68,12 @@ const PersonnelEdit = (props) => {
       // dette :Number(dette),
       // creneau :Number(creneau),
     };
-    usePutAPI(personnelURI, EditedPersonnel);
-    history.push("/personnel");
-    refreshPage();
+    usePutAPI(personnelURI, EditedPersonnel).then( res => {
+      notifySuccess('Personnel modifier avec succés')
+        history.push("/personnel");
+      }).catch(err => {
+        notifyError("Erreur lors de la modification du personnel")
+      })
   };
   return (
     <div className="">
@@ -105,6 +110,10 @@ const PersonnelEdit = (props) => {
                     onChange={(e) => setFirstName(e.target.value)}
                   />
                 </div>
+                <div className="form-group col-md-6">
+                      <label>Fonction</label>
+                      <input type="text" name="functiopn"  className="form-control"value={fonction}  onChange={e => setFonction(e.target.value)}/>
+                    </div>
                 <div className="form-group col-md-6">
                   <label>Email </label>
                   <input

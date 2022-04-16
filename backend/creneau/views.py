@@ -67,7 +67,6 @@ class CreneauDetailAPIView(generics.RetrieveUpdateAPIView):
     queryset = Creneau.objects.all()
     # permission_classes = (IsAuthenticated,)
     serializer_class = CreneauSerialiser
-
     def get_object(self):
         obj = get_object_or_404(Creneau.objects.filter(id=self.kwargs["pk"]))
         # range = Creneau.objects.filter(hour_start) 
@@ -101,14 +100,13 @@ class CreneauClientListAPIView(generics.ListAPIView):
         abc = AbonnementClient.objects.filter(client= client)
         # abc = AbonnementClient.objects.filter(client= client, type_abonnement__systeme_cochage=False)
         # creneaux = Creneau.objects.filter(abonnements__client=client, abonnements__type_abonnement__systeme_cochage=False)
-        creneaux = Creneau.objects.filter(abonnements__client=client)
+        creneaux = Creneau.objects.filter(abonnements__client=client).distinct()
         return creneaux
 
 class CreneauCoachListAPIView(generics.ListAPIView):
     serializer_class = CreneauClientSerialiser
     # permission_classes = (IsAuthenticated,)
     def get_queryset(self):
-        
         coach = self.request.query_params.get('cl', None)
         print('cliiiientr', coach)
         creneaux = Creneau.objects.filter(coach=coach)

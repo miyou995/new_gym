@@ -57,6 +57,7 @@ class Remuneration(Transaction):
         return str(self.amount)
     class Meta:
         ordering = ['-date_creation']
+        
 class RemunerationProf(Transaction):
     coach = models.ForeignKey(Coach, related_name="rem_coachs", on_delete=models.SET_NULL,blank=True, null=True)
     def __str__(self):

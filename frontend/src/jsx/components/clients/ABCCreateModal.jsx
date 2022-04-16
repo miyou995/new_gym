@@ -5,8 +5,8 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import axios from 'axios';
 import PageTitle from "../../layouts/PageTitle";
-import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import {notifySuccess, notifyError} from '../Alert'
+
 
 // import { Dropdown, Tab, Nav } from "react-bootstrap";
 // import { Link } from "react-router-dom";
@@ -110,36 +110,36 @@ const ABCCreateModal = ({show, onShowShange, clientData}) => {
       }
     }, [selectAbonnement, planningId]);
 
-    const notifySuccess = () => {
-        toast.success('Abonnement Créer Avec Succés', {
-          position: 'top-right',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-        })
-      }
-    const notifyError = () => {
-        toast.error('Echec lors de la création', {
-          position: 'top-right',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-        })
-      }
-      useEffect(() => {
-        if (error == true) {
-          notifyError()
-        }
-      }, [error]);
-      useEffect(() => {
-        if (success == true) {
-          notifySuccess()
-        }
-      }, [success]);
+    // const notifySuccess = () => {
+    //     toast.success('Abonnement Créer Avec Succés', {
+    //       position: 'top-right',
+    //       autoClose: 5000,
+    //       hideProgressBar: false,
+    //       closeOnClick: true,
+    //       pauseOnHover: true,
+    //       draggable: true,
+    //     })
+    //   }
+    // const notifyError = () => {
+    //     toast.error('Echec lors de la création', {
+    //       position: 'top-right',
+    //       autoClose: 5000,
+    //       hideProgressBar: false,
+    //       closeOnClick: true,
+    //       pauseOnHover: true,
+    //       draggable: true,
+    //     })
+    //   }
+    //   useEffect(() => {
+    //     if (error == true) {
+    //       notifyError()
+    //     }
+    //   }, [error]);
+    //   useEffect(() => {
+    //     if (success == true) {
+    //       notifySuccess()
+    //     }
+    //   }, [success]);
     const selectAllCreneaux = (creneauxObject) => {
       let creneaux = []
       for (let i = 0; i < creneauxObject.length; i++) {
@@ -229,21 +229,23 @@ const getSelectedDays = (creneauxIds, tousLesCreneaux) => {
   days = [...new Set(days)]
   return days
 }
-
     const handleSubmit = async e => {
       e.preventDefault();
-          const newABC = {
-            client :clientId,
-            type_abonnement :Number(selectAbonnement),
-            start_date: startDate,
-            creneaux :creneaux,
-          }
-          const axWait = await axios.post(abonnementClientCreateEND, newABC)
-          setSuccess(true)
-          console.log('the axwait', axWait);
-          handleShow()
-          return axWait
-        }
+      const newABC = {
+        client :clientId,
+        type_abonnement :Number(selectAbonnement),
+        start_date: startDate,
+        creneaux :creneaux,
+      }
+      const axWait = await axios.post(abonnementClientCreateEND, newABC).then( e => {
+        notifySuccess("Abonnement creer avec succés")
+        handleShow()
+      }).catch(err => {
+        notifyError("Erreur lors de la creation de l'abonnement'")
+        console.log('the axwait', err);
+      })
+      return axWait
+    }
 return ( 
     <Modal  className="fade bd-example-modal-lg" size="xl" onHide={handleShow} show={show}>
     <Modal.Header>

@@ -8,9 +8,7 @@ import axios from 'axios';
 import { Dropdown, Tab, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-function refreshPage() {
-  window.location.reload(false);
-}
+
 const PresencesClientModal = ({show, onShowShange, presencesData}) => {
     const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
     const formatDate = (date) => {

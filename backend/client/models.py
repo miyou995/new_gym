@@ -71,6 +71,7 @@ class Maladie(models.Model):
 
 class Client(models.Model):
     id          = models.CharField(max_length=50, primary_key=True)
+    carte       = models.CharField(max_length=100, unique=True, blank=True, null=True)
     last_name   = models.CharField(max_length=50, verbose_name='Nom')
     first_name  = models.CharField(max_length=50, verbose_name='Prénom')
     civility    = models.CharField(choices=CIVILITY_CHOICES , max_length=3, default='MME', verbose_name='Civilité', blank=True, null=True)
@@ -89,8 +90,8 @@ class Client(models.Model):
     dette       = models.DecimalField(max_digits=10, decimal_places=0, blank=True, null=True,default=0)
     dette_assurance      = models.DecimalField(max_digits=10, decimal_places=0, blank=True, null=True,default=0)
     fin_assurance       = models.DateField(max_length=50, null=True, blank=True)
-    maladies = models.ManyToManyField(Maladie)
-    objects = models.Manager()
+    maladies    = models.ManyToManyField(Maladie)
+    objects     = models.Manager()
     abonnement_manager = AbonnementManager()
 
 
@@ -157,6 +158,7 @@ class Personnel(models.Model):
     first_name      = models.CharField(max_length=50, verbose_name='Prénom')
     civility        = models.CharField(choices=CIVILITY_CHOICES , max_length=3, default='MME', verbose_name='Civilité')
     adress          = models.CharField(max_length=200, verbose_name='Adresse', blank=True, null=True)
+    function        = models.CharField(max_length=200, verbose_name='Fonction', blank=True, null=True)
     phone           = models.CharField(max_length=22, verbose_name='Téléphone', blank=True, null=True)
     email           = models.CharField(max_length=50, verbose_name='E-mail',blank=True, null=True)
     nationality     = models.CharField(max_length=50, verbose_name='Nationalité')

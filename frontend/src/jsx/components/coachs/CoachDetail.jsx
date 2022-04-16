@@ -7,7 +7,7 @@ import { Dropdown, Tab, Nav, Button } from "react-bootstrap";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import ShortCuts from "../ShortCuts";
 import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import {notifySuccess, notifyError} from '../Alert'
 
 import product1 from "../../../images/product/1.jpg";
 import Search from "../../layouts/Search";
@@ -37,54 +37,53 @@ const presencesCoachEND = `${process.env.REACT_APP_API_URL}/rest-api/presence/by
 const coachDetailEnd = `${process.env.REACT_APP_API_URL}/rest-api/coachs/${coachID}/`
   
 
-  const [error, setError] = useState(false)
-  const [success, setSuccess] = useState(false)
+  // const [error, setError] = useState(false)
+  // const [success, setSuccess] = useState(false)
   
-  const notifySuccess = () => {
-    toast.success('Entrée Enregistré', {
-      position: 'top-right',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-    })
-  }
+  // const notifySuccess = () => {
+  //   toast.success('Entrée Enregistré', {
+  //     position: 'top-right',
+  //     autoClose: 5000,
+  //     hideProgressBar: false,
+  //     closeOnClick: true,
+  //     pauseOnHover: true,
+  //     draggable: true,
+  //   })
+  // }
 
-  const notifySortie = () => {
-    toast.success('Sortie Enregistré', {
-      position: 'top-right',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-    })
-  }
+  // const notifySortie = () => {
+  //   toast.success('Sortie Enregistré', {
+  //     position: 'top-right',
+  //     autoClose: 5000,
+  //     hideProgressBar: false,
+  //     closeOnClick: true,
+  //     pauseOnHover: true,
+  //     draggable: true,
+  //   })
+  // }
 
-  const notifyError = () => {
-    toast.error('erreur lors Presence Coach', {
-      position: 'top-right',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-    })
-  }
-  useEffect(() => {
-    if (error === true) {
-      notifyError()
-    }
-    setError(false)
-  }, [error]);
-  useEffect(() => {
-    if (success === true) {
-      notifySuccess()
-      setSuccess(false)
-    }
-  }, [success]);
-
+  // const notifyError = () => {
+  //   toast.error('erreur lors Presence Coach', {
+  //     position: 'top-right',
+  //     autoClose: 5000,
+  //     hideProgressBar: false,
+  //     closeOnClick: true,
+  //     pauseOnHover: true,
+  //     draggable: true,
+  //   })
+  // }
+  // useEffect(() => {
+  //   if (error === true) {
+  //     notifyError()
+  //   }
+  //   setError(false)
+  // }, [error]);
+  // useEffect(() => {
+  //   if (success === true) {
+  //     notifySuccess()
+  //     setSuccess(false)
+  //   }
+  // }, [success]);
   useEffect(() => {
     //  const clientId = props.match.params.id;
      const fetchData = async () => {
@@ -102,7 +101,7 @@ const coachDetailEnd = `${process.env.REACT_APP_API_URL}/rest-api/coachs/${coach
      axios.get(presencesCoachEND).then( res => {
             setPresnecesCoach(res.data)
            })
-  }, [props.match.params.id, error, success] );
+  }, [props.match.params.id] );
   useEffect(() => {
     //  const clientId = props.match.params.id;
      const fetchData = async () => {
@@ -123,15 +122,20 @@ const coachDetailEnd = `${process.env.REACT_APP_API_URL}/rest-api/coachs/${coach
       coach: Number(coachID)
     }
     axios.post(presenceCreateEND, Newcoach).then(
-      notifySuccess()
-    )
+      notifySuccess('Entrée coach Enregistré')
+      ).catch(err => {
+      notifySuccess('erreur Enregistrement Presence Coach')
+    })
   }
   const updatePresence = async () => {
     const Newcoach = {
       coach: Number(coachID)
     }
-    await axios.put(presenceUpdateEND, Newcoach)
-    notifySortie()
+    await axios.put(presenceUpdateEND, Newcoach).then(
+      notifySuccess('Sortie coach Enregistré')
+      ).catch(err => {
+      notifySuccess('erreur Enregistrement Sortie Coach')
+    })
   }
   useEffect(() => {
      const fetchData = async () => {

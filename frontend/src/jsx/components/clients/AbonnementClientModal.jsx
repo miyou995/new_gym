@@ -63,9 +63,7 @@ return (
                         <td>
                            {abc.cochage ? 'prepayé' : 'Normal'}
                         </td>
-                        <td>
-                           {abc.presence_quantity}
-                        </td>
+                        <td>{abc.is_time_volume ? abc.left_minutes : abc.is_free_access ? 'Forfait': abc.presence_quantity }</td>
                         <td>
                            {abc.end_date}
                         </td>

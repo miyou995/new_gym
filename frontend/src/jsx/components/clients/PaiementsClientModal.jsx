@@ -8,9 +8,7 @@ import axios from 'axios';
 import { Dropdown, Tab, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
  
-function refreshPage() {
-  window.location.reload(false);
-}
+
 const PaiementsClientModal = ({show, onShowShange, paiementsData}) => {
     const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
     const [paiements, setPaimeents] = useState([])

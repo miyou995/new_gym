@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import jwt_decode from "jwt-decode";
 
 import { axiosInstance} from "../utils/auth";
+import {ToastContainer} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
+import {notifyError} from '../components/Alert'
 
 const Login = ({ history }) => {
   // const [email, setEmail] = useState("");
@@ -13,6 +18,7 @@ const Login = ({ history }) => {
 		password: '',
 	});
   const [formData, updateFormData] = useState(initialFormData);
+  // const [error , setError] = useState("");
   const { email, password } = formData;
 
   const handleChange = (e) => {
@@ -21,7 +27,16 @@ const Login = ({ history }) => {
 			[e.target.name]: e.target.value.trim(),
 		});
 	};
-
+  const [authTokens, setAuthTokens] = useState(() =>
+    localStorage.getItem("authTokens")
+      ? JSON.parse(localStorage.getItem("authTokens"))
+      : null
+  );
+  const [user, setUser] = useState(() =>
+    localStorage.getItem("authTokens")
+      ? jwt_decode(localStorage.getItem("authTokens"))
+      : null
+  );
   // const config = {
   //   headers: {
   //     Accept: "application/json",
@@ -41,18 +56,34 @@ const Login = ({ history }) => {
 				password: formData.password,
 			})
 			.then((res) => {
-				localStorage.setItem('access_token', res.data.access);
-				localStorage.setItem('refresh_token', res.data.refresh);
-				axiosInstance.defaults.headers['Authorization'] =
-					'JWT ' + localStorage.getItem('access_token');
-				history.push('/');
+				// localStorage.setItem('authTokens', res.data);
+				// // localStorage.setItem('refresh_token', res.data.refresh);
+				// axiosInstance.defaults.headers['Authorization'] =
+				// 	'JWT ' + localStorage.getItem('access_token');
+				// // history.push('/');
+        if (res.status === 200) {
+          console.log("DATAAAAAAA", res.data);
+          setAuthTokens(res.data);
+          setUser(jwt_decode(res.data.access));
+          localStorage.setItem("authTokens", JSON.stringify(res.data));
+          history.push("/");
+        } else {
+          alert("Something went wrong!");
+        }
+        window.location = "/";
 				console.log(res);
 				console.log(res.data);
-			});
+				console.log("response status =>",res.status);
+			}).catch(err => {
+        notifyError('Errur, veuiller vérivifer vos identifiant')
+				console.log("response status  err=>",err);
+      })
 	};
 
   return (
     <div className="authincation h-100 p-meddle">
+      <ToastContainer position='top-right' autoClose={5000} hideProgressBar={false} newestOnTop closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
+
       <div className="container h-100">
         <div className="row justify-content-center h-100 align-items-center">
           <div className="col-md-6">

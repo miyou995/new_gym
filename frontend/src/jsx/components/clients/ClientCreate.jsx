@@ -8,7 +8,8 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import ShortCuts from "../ShortCuts";
 import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+
+import {notifySuccess, notifyError} from '../Alert'
 
 
 function refreshPage() {
@@ -23,6 +24,7 @@ const CreateClient = () => {
   const [selectedMaladies, setSelectedMaladies] = useState([])
   const [civility, setCivility] = useState('MLL');
   const [lastName, setLastName] = useState("");
+  const [carte, setCarte] = useState("");
   const [firstName, setFirstName] = useState("");
   const [adress, setAdress] = useState("");
   const [phone, setPhone] = useState("");
@@ -37,7 +39,7 @@ const CreateClient = () => {
   const [picture, setPicture] = useState(null);
   const [clientCreated, setClientCreated] = useState(false);
   const [realMaladies, setRealMaladies] = useState([])
-  //FK 
+  
   const handleCheckbox = (event) => {
     const maladie = event.target.name
     if ( event.target.checked){
@@ -53,6 +55,7 @@ const CreateClient = () => {
       console.log('unchecked=======>', selectedMaladies);
   }
 }
+
 // useEffect(() => {
 //   if (clientCreated == true) {
 //     notifyClientCreated()
@@ -60,16 +63,6 @@ const CreateClient = () => {
 //   }
 // }, [clientCreated]);
 
-const notifyClientCreated = () => {
-  toast.success('Client Ajouté Avec Succée', {
-    position: 'top-right',
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-  })
-}
 
 const handleImage = (e) => {
   // if (e.target.name === "picture") {
@@ -121,6 +114,7 @@ const getSelectedMaladies = ( ) => {
     console.log('the blood', blood);
 
       formData.append('civility',civility );
+      formData.append('carte',carte );
       formData.append('last_name',lastName );
       formData.append('first_name',firstName );
       formData.append('adress',adress );
@@ -146,15 +140,17 @@ const getSelectedMaladies = ( ) => {
       	.then((res) => {
       		// console.log(res.data);
           history.push("/client")
-          notifyClientCreated() 
+          notifySuccess('Adhérent Ajouté Avec Succée') 
           console.log('THE NEW CLIENT ONEEE ', res.data);
       	})
-      	.catch((err) => console.log('THE NEW CLIENT ', formData));
+      	.catch((err) => {
+          notifyError("Erreur, création abonnement")
+          console.log('THE NEW CLIENT ', formData)
+        });
     }
   return (
         <div className="">
          <ToastContainer position='top-right' autoClose={5000} hideProgressBar={false} newestOnTop closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
-
           <div className="testimonial-one owl-right-nav owl-carousel owl-loaded owl-drag mb-4">
         <ShortCuts />
       </div>
@@ -167,8 +163,12 @@ const getSelectedMaladies = ( ) => {
                 <form onSubmit={HandleSubmit}>
                   <div className="form-row">
                     <div className="form-group col-md-6">
+                      <label>Carte</label>
+                      <input type="text" name="carte" className="form-control" placeholder="Carte de l'adhérent" required onChange={e => setCarte(e.target.value)}/>
+                    </div>
+                    <div className="form-group col-md-6">
                       <label>Nom</label>
-                      <input type="text" name="last_name" className="form-control" placeholder="Nom du client" required onChange={e => setLastName(e.target.value)}/>
+                      <input type="text" name="last_name" className="form-control" placeholder="Nom de l'adhérent" required onChange={e => setLastName(e.target.value)}/>
                     </div>
                     <div className="form-group col-md-6">
                       <label>Photo</label>
@@ -176,7 +176,7 @@ const getSelectedMaladies = ( ) => {
                     </div>
                     <div className="form-group col-md-6"> 
                       <label>Prénom</label>
-                      <input  type="text" name="first_name"  className="form-control"  placeholder="Prénom du client" required onChange={e => setFirstName(e.target.value)}/>
+                      <input  type="text" name="first_name"  className="form-control"  placeholder="Prénom de l'adhérent" required onChange={e => setFirstName(e.target.value)}/>
                     </div>
                     <div className="form-group col-md-6">
                       <label>Email</label>

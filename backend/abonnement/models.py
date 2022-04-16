@@ -86,6 +86,7 @@ class AbonnementClient(models.Model):
         return True if self.type_abonnement.type_of == "SF" else False
     def is_free_sessions(self):
         return True if self.type_abonnement.type_of == "SL" else False
+        
     def is_valid(self):
         today = date.today()
         if today < self.end_date:

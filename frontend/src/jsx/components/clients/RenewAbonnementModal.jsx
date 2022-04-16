@@ -2,12 +2,11 @@ import React, { useState, useCallback, useEffect } from "react";
 import { Row, Card, Col, Button, Modal, Table } from "react-bootstrap";
 import { useGetAPI, usePutAPI } from '../useAPI'
 import axios from 'axios';
+import {notifySuccess, notifyError} from '../Alert'
 
 // import { Dropdown, Tab, Nav } from "react-bootstrap";
 // import { Link } from "react-router-dom";
-function refreshPage() {
-  window.location.reload(false);
-}
+
 const capitalizeFirstLetter = (word) => {
   if (word)
       return word.charAt(0).toUpperCase() + word.slice(1);
@@ -126,7 +125,12 @@ const handleSubmit = async () => {
     creneaux: selectedCreneau,
     reste : reste
   }
-  await axios.patch(abcEditEND, abcData)
+  await axios.patch(abcEditEND, abcData).then( e => {
+    notifySuccess('Abonnement mis A jour avec succés')
+    handleShow()
+  }).catch( err => {
+    notifyError("Erreur lors de la modification de l'abonnement")
+  })
   // refreshPage()
   handleShow()
 }

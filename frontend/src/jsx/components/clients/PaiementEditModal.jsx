@@ -5,15 +5,13 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import axios from 'axios';
 import PageTitle from "../../layouts/PageTitle";
-import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+// import { ToastContainer, toast } from 'react-toastify'
+// import 'react-toastify/dist/ReactToastify.css'
+import {notifySuccess, notifyError} from '../Alert'
 
 // import { Dropdown, Tab, Nav } from "react-bootstrap";
 // import { Link } from "react-router-dom";
 
-function refreshPage() {
-  window.location.reload(false);
-}
 
 const PaiementEditModal = ({show, onShowShange, paiementData}) => {
     const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
@@ -57,44 +55,7 @@ const PaiementEditModal = ({show, onShowShange, paiementData}) => {
 
     }, [show, paiementData['paiementIdInfo']])
     
-    const notifySuccess = () => {
-      toast.success('Paiement  Modifier Avec Succée', {
-        position: 'top-right',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      })
-    }
-  const notifyError = () => {
-      toast.error('Echec de Modification paiement', {
-        position: 'top-right',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      })
-    }
-    useEffect(() => {
-      if (error == true) {
-        notifyError()
-      }
-    }, [error]);
-    useEffect(() => {
-      if (success == true) {
-        notifySuccess()
-      }
-    }, [success]);
 
-    const handleDelete = e => {
-      axios.delete().then(
-          // refreshPage(),
-          handleShow()
-      )
-  }
-  
     const handleSubmit = async e => {
       e.preventDefault();
         const paiementDetails = {
@@ -106,12 +67,12 @@ const PaiementEditModal = ({show, onShowShange, paiementData}) => {
         try {
          await axios.patch(paiementCreateEND, paiementDetails).then(res => {
            if (res.status === 200) {
-             setSuccess(true)
+            notifySuccess('Paiement Modifier avec succés')
              handleShow()
            }
          })
         } catch (error) {
-          setError(true)
+          notifyError("Erreur lors de la modification du paiement")
         }
         // refreshPage()
         // setCreneaux([])

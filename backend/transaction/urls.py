@@ -1,6 +1,6 @@
 from django.urls import path, include
-from .views import PaiementAPIView, PaiementListAPIView, PaiementDetailAPIView, PaiementDestroyAPIView, AutreAPIView, AutreListAPIView, AutreDetailAPIView, AutreDestroyAPIView, AssuranceAPIView, AssuranceListAPIView, AssuranceDetailAPIView, AssuranceDestroyAPIView, RemunerationAPIView, RemunerationListAPIView, RemunerationDetailAPIView, RemunerationDestroyAPIView, RemunerationProfAPIView, RemunerationProfListAPIView, RemunerationProfDetailAPIView, RemunerationProfDestroyAPIView, TransactionListAPIView, TransactionDetailAPIView, PaiementCoachListAPIView, total_charges, chiffre_affaire,  TransToday, PaiementClientListAPIView, ca_by_salle, ca_by_ab, MyModelViewSet, ca_by_date
-
+from .views import PaiementAPIView, PaiementListAPIView, PaiementDetailAPIView, PaiementDestroyAPIView, AutreAPIView, AutreListAPIView, AutreDetailAPIView, AutreDestroyAPIView, AssuranceAPIView, AssuranceListAPIView, AssuranceDetailAPIView, AssuranceDestroyAPIView, RemunerationAPIView, RemunerationListAPIView, RemunerationDetailAPIView, RemunerationDestroyAPIView, RemunerationProfAPIView, RemunerationProfListAPIView, RemunerationProfDetailAPIView, RemunerationProfDestroyAPIView, TransactionListAPIView, TransactionDetailAPIView, PaiementCoachListAPIView, total_charges, chiffre_affaire,  TransToday, PaiementClientListAPIView, ca_by_salle, ca_by_ab, MyModelViewSet, ca_by_date, PaiementEmployeListAPIView
+# RemunerationEmployeListAPIView, RemunerationEmployeDetailAPIView, RemunerationEmployeAPIView, PaiementEmployeListAPIView
 
 app_name = 'transactions'
 
@@ -30,13 +30,20 @@ urlpatterns = [
 
     path('remuneration/create', RemunerationAPIView.as_view(),  name="remuneration-create"),
     path('remuneration/', RemunerationListAPIView.as_view(),  name="remuneration"),
+    path('remunerationProf-by-coach/', PaiementEmployeListAPIView.as_view(),  name="remunerationProf-create"),
     path('remuneration/<int:pk>/', RemunerationDetailAPIView.as_view(), name="remuneration-delete"),
     path('remuneration/delete/<int:pk>/', RemunerationDestroyAPIView.as_view(), name="remuneration-delete"),
 
-    path('remunerationProf/create', RemunerationProfAPIView.as_view(),  name="remunerationProf-create"),
-    path('remunerationProf-by-coach/', PaiementCoachListAPIView.as_view(),  name="remunerationProf-create"),
+
+    # path('remunerationProf/', RemunerationEmployeListAPIView.as_view(),  name="remunerationEmploye"),
+    # path('remunerationEmploye/<int:pk>/', RemunerationEmployeDetailAPIView.as_view(), name="remunerationEmploye-delete"),
+    # path('remunerationEmploye/create', RemunerationEmployeAPIView.as_view(),  name="remunerationEmploye-create"),
+    # path('remunerationEmploye-by-coach/', PaiementEmployeListAPIView.as_view(),  name="remunerationEmploye-create"),
+
     path('remunerationProf/', RemunerationProfListAPIView.as_view(),  name="remunerationProf"),
     path('remunerationProf/<int:pk>/', RemunerationProfDetailAPIView.as_view(), name="remunerationProf-delete"),
+    path('remunerationProf/create', RemunerationProfAPIView.as_view(),  name="remunerationProf-create"),
+    path('remunerationProf-by-coach/', PaiementCoachListAPIView.as_view(),  name="remunerationProf-create"),
     path('remunerationProf/delete/<int:pk>/', RemunerationProfDestroyAPIView.as_view(), name="remunerationProf-delete"),
     path('total-charges/', total_charges, name="total-charges"),
     path('chiffre-affaire/', chiffre_affaire, name="chiffre-affaire"),

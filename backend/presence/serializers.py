@@ -117,6 +117,10 @@ class PresenceAutoSerialiser(serializers.ModelSerializer):
             # abonnement = abon_list.first()
             print('l \'abonnement du client est le :>>>>>>>>>>', abonnement)
             # is_valid = AbonnementClient.validity.is_valid(abonnement.id)
+            if abonnement.is_time_volume() and abonnement.presence_quantity > 30:
+                presence = Presence.objects.create(abc= abonnement, creneau= cren_ref, is_in_list=True, hour_entree=current_time, is_in_salle=True)
+                return presence
+
             if abonnement.presence_quantity > -2:
             # AbonnementClient.validity.is_valid(obj.id)
                 presence = Presence.objects.create(abc= abonnement, creneau= cren_ref, is_in_list=True, hour_entree=current_time, is_in_salle=True)
@@ -145,11 +149,11 @@ class PresenceEditSerialiser(serializers.ModelSerializer):
         print('lheure de hour_entree', entree)
         print('lheure de sortie', sortie)
         difference_secondes = (sortie - entree ).total_seconds()
-        difference_hour =  difference_secondes / 3600
+        difference_minutes =  difference_secondes / 60
         # print('lheure de difference', difference.total_seconds() / 3600)
         abonnement = instance.abc
         if abonnement.is_time_volume():
-            abonnement.presence_quantity -= difference_hour
+            abonnement.presence_quantity -= difference_minutes
             abonnement.save()
 
         instance.is_in_salle = False

@@ -12,7 +12,6 @@ const MaladieCreateModal = ({show, onShowShange}) => {
     const maladieCreateEnd = `${process.env.REACT_APP_API_URL}/rest-api/maladie/create/`
 
 const [name, setName] = useState('')
-
     const HandleSubmit = async e => {
         e.preventDefault();
         await axios.post(maladieCreateEnd, {name : name}).then( res => {
@@ -21,7 +20,7 @@ const [name, setName] = useState('')
             }).catch(err => {
               notifyError("Erreur lors de la creation de la Maladie")
             })
-      }
+        }
 return ( 
     <Modal  className="fade bd-example-modal-lg" size="xl"onHide={handleShow} show={show}>
     <Modal.Header>

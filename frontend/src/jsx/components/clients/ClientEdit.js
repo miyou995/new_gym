@@ -11,6 +11,7 @@ import {  useHistory } from "react-router-dom";
 import ShortCuts from "../ShortCuts";
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import {notifySuccess, notifyError} from '../Alert'
 
 axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = 'X-CSRFToken';
@@ -41,6 +42,7 @@ const EditClient = (props) => {
 
   const [civility, setCivility] = useState();
   const [lastName, setLastName] = useState("");
+  const [carte, setCarte] = useState("");
   const [firstName, setFirstName] = useState("");
   const [adress, setAdress] = useState("");
   const [phone, setPhone] = useState("");
@@ -93,6 +95,7 @@ const [picture, setPicture] = useState(null);
       setNote(res.data.note)
       setEtat(res.data.etat)
       setDette(res.data.dette)
+      setCarte(res.data.carte)
       // console.log('the real maladies', realMaladies);
       setGotResult(true)
     })
@@ -112,45 +115,45 @@ useEffect(() => {
   }
 }, [success]);
 
-useEffect(() => {
-  if (deleted == true) {
-    notifyDeleted()
-    setDeleted(false)
-    console.log("this is the deletation ", deleted);
-  }
-}, [deleted]);
+// useEffect(() => {
+//   if (deleted == true) {
+//     notifyDeleted()
+//     setDeleted(false)
+//     console.log("this is the deletation ", deleted);
+//   }
+// }, [deleted]);
 
-const notifySuccess = () => {
-  toast.success('Profile client modifié Avec Succés', {
-    position: 'top-right',
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-  })
-}
-const notifyError = () => {
-  toast.error('Echec de la modification', {
-    position: 'top-right',
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-  })
-}
+// const notifySuccess = () => {
+//   toast.success('Profile client modifié Avec Succés', {
+//     position: 'top-right',
+//     autoClose: 5000,
+//     hideProgressBar: false,
+//     closeOnClick: true,
+//     pauseOnHover: true,
+//     draggable: true,
+//   })
+// }
+// const notifyError = () => {
+//   toast.error('Echec de la modification', {
+//     position: 'top-right',
+//     autoClose: 5000,
+//     hideProgressBar: false,
+//     closeOnClick: true,
+//     pauseOnHover: true,
+//     draggable: true,
+//   })
+// }
 
-const notifyDeleted = () => {
-  toast.success(`le client avec l'id: ${currentClientId} a été supprimer avec succés`, {
-    position: 'top-right',
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-  })
-}
+// const notifyDeleted = () => {
+//   toast.success(`le client avec l'id: ${currentClientId} a été supprimer avec succés`, {
+//     position: 'top-right',
+//     autoClose: 5000,
+//     hideProgressBar: false,
+//     closeOnClick: true,
+//     pauseOnHover: true,
+//     draggable: true,
+//   })
+// }
 
 // useEffect(() => {
 //   if (error == true) {
@@ -187,14 +190,9 @@ const deletClient =async () => {
       'X-CSRFToken': Cookies.get('csrftoken')
   }}
     ).then(()=>{
-      notifyDeleted()
-      setTimeout(() => {
-        // refreshPage()
-        history.push(`/client/`)
-        }, 1500);
-    }
-    ).then(()=> {
-      })
+      notifySuccess('Adhérent Supprimé Avec Succée') 
+      history.push(`/client/`)
+    })
 }
 
 const getSelectedMaladies = () => {
@@ -215,6 +213,7 @@ const getSelectedMaladies = () => {
     // }
     let formData = new FormData();
         formData.append('civility',civility );
+        formData.append('carte',carte );
         formData.append('last_name',lastName );
         formData.append('first_name',firstName );
         formData.append('adress',adress );
@@ -255,16 +254,20 @@ const getSelectedMaladies = () => {
                 <form onSubmit={HandleSubmit}>
                   <div className="form-row">
                     <div className="form-group  col-md-4 col-xl-3">
+                      <label>Carte </label>
+                      <input type="text" name="last_name" className="form-control"value={carte}  onChange={e => setCarte(e.target.value)}/>
+                    </div>
+                    <div className="form-group  col-md-4 col-xl-3">
                       <label>Nom </label>
-                      <input type="text" name="last_name" className="form-control"value={lastName} placeholder="Nom du client" onChange={e => setLastName(e.target.value)}/>
+                      <input type="text" name="last_name" className="form-control"value={lastName}  onChange={e => setLastName(e.target.value)}/>
                     </div>
                     <div className="form-group col-md-4 col-xl-3">
                       <label>Prénom</label>
-                      <input  type="text" name="first_name"  className="form-control" value={firstName} placeholder="Prénom du client"onChange={e => setFirstName(e.target.value)}/>
+                      <input  type="text" name="first_name"  className="form-control" value={firstName} onChange={e => setFirstName(e.target.value)}/>
                     </div>
                     <div className="form-group col-md-4 col-xl-3">
                       <label>Photo</label>
-                      <input type="file" accept="image/*" name="picture" className="form-control" placeholder="Photo d'identité " onChange={handleImage}/>
+                      <input type="file" accept="image/*" name="picture"  className="form-control" placeholder="Photo d'identité " onChange={handleImage}/>
                     </div>
                     <div className="form-group col-md-4 col-xl-3">
                       <label>Email </label>

@@ -1,8 +1,9 @@
 import React, { useState , useEffect} from "react";
 import { Link } from "react-router-dom";
 // import productData from "../productData";
-import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from 'react-toastify'
+import {notifySuccess, notifyError} from '../Alert'
+
 import { Helmet } from 'react-helmet'
 import axios from 'axios';
 import { useGetAPI } from '../useAPI'
@@ -76,43 +77,43 @@ const ProductDetail = (props) => {
     }
     try {
       const axWait = await axios.post(presenceCreateEND, clientData)
-        notifyPresenceSuccess()
+      notifySuccess('Presence enregistré avec succés')
         return axWait
     } catch (error) {
-      notifyPresenceError()
+      notifyError("Cet adherant n'a aucun cours maintenant")
       }
     }
-  useEffect(() => {
-    if (presenceSuccess == true) {
-      notifyPresenceSuccess()
-    }
-  }, [presenceSuccess]);
-  useEffect(() => {
-    if (presenceError == true) {
-      notifyPresenceError()
-    }
-  }, [presenceError]);
+  // useEffect(() => {
+  //   if (presenceSuccess == true) {
+  //     notifyPresenceSuccess()
+  //   }
+  // }, [presenceSuccess]);
+  // useEffect(() => {
+  //   if (presenceError == true) {
+  //     notifyPresenceError()
+  //   }
+  // }, [presenceError]);
 
-  const notifyPresenceSuccess = () => {
-    toast.success('Activité Creer Avec Succée', {
-      position: 'top-right',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-    })
-  }
-  const notifyPresenceError = () => {
-    toast.error('le client avec l\'ID ' +' ' + clientId +' ' +"n'a pas le droit d'assisté a cours", {
-      position: 'top-right',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-    })
-  }
+  // const notifyPresenceSuccess = () => {
+  //   toast.success('Activité Creer Avec Succée', {
+  //     position: 'top-right',
+  //     autoClose: 5000,
+  //     hideProgressBar: false,
+  //     closeOnClick: true,
+  //     pauseOnHover: true,
+  //     draggable: true,
+  //   })
+  // }
+  // const notifyPresenceError = () => {
+  //   toast.error('le client avec l\'ID ' +' ' + clientId +' ' +"n'a pas le droit d'assisté a cours", {
+  //     position: 'top-right',
+  //     autoClose: 5000,
+  //     hideProgressBar: false,
+  //     closeOnClick: true,
+  //     pauseOnHover: true,
+  //     draggable: true,
+  //   })
+  // }
 
   // useEffect(() => {
   //   //  const clientId = props.match.params.id;
@@ -367,7 +368,7 @@ const editProfile = (e) =>{
                       setAbonClientReste(abonnement.reste)
                       }}>
                       <td className="text-left">{abonnement.type_abonnement_name}</td>
-                      <td>{abonnement.presence_quantity > 50  ? 'Forfait': abonnement.presence_quantity }</td>
+                      <td>{abonnement.is_time_volume ? abonnement.left_minutes : abonnement.is_free_access ? 'Forfait': abonnement.presence_quantity }</td>
                       <td className="text-right">{abonnement.start_date}</td>
                       <td className="text-right">{abonnement.end_date}</td>
                       <td className="text-right">{abonnement.price}</td>

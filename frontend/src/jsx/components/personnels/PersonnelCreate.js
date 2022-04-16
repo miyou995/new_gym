@@ -4,8 +4,8 @@ import ShortCuts from "../ShortCuts";
 
 import { useGetAPI, usePostAPI } from '../useAPI'
 import {  useHistory } from "react-router-dom";
+import {notifySuccess, notifyError} from '../Alert'
 
- 
 
 const PersonnelCreate = () => {
   
@@ -14,6 +14,7 @@ const PersonnelCreate = () => {
   const [civility, setCivility] = useState();
   const [lastName, setLastName] = useState("");
   const [firstName, setFirstName] = useState("");
+  const [fonction, setFonction] = useState("");
   const [adress, setAdress] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
@@ -21,7 +22,7 @@ const PersonnelCreate = () => {
   const [birthDate, setBirthDate] = useState("");
   const [blood, setBlood] = useState("");
   const [note, setNote] = useState("");
-  const [etat, setEtat] = useState("");
+  const [etat, setEtat] = useState("A");
   //FK 
    
   const HandleSubmit = async e => {
@@ -30,6 +31,7 @@ const PersonnelCreate = () => {
       const newPersonnel = {
         civility :civility,
         last_name :lastName,
+        function :fonction,
         first_name :firstName,
         adress :adress,
         phone :phone,
@@ -40,8 +42,12 @@ const PersonnelCreate = () => {
         blood :blood,
         note :note,
       }
-      usePostAPI(endpoint, newPersonnel)
-      history.push("/personnel")
+      usePostAPI(endpoint, newPersonnel).then( res => {
+          notifySuccess('Employé creer avec succés')
+          history.push("/personnel")
+        }).catch(err => {
+          notifyError("Erreur lors de la creation d'employé")
+        })
 
   }
   return (
@@ -59,17 +65,20 @@ const PersonnelCreate = () => {
                   <div className="form-row">
                     <div className="form-group col-md-6">
                       <label>Nom</label>
-                      <input type="text" name="last_name" className="form-control" placeholder="Nom du client" onChange={e => setLastName(e.target.value)}/>
+                      <input type="text" name="last_name" className="form-control"  onChange={e => setLastName(e.target.value)}/>
                     </div>
                     <div className="form-group col-md-6">
                       <label>Prénom</label>
-                      <input  type="text" name="first_name"  className="form-control"  placeholder="Prénom du client"onChange={e => setFirstName(e.target.value)}/>
+                      <input type="text" name="first_name"  className="form-control" onChange={e => setFirstName(e.target.value)}/>
+                    </div>
+                    <div className="form-group col-md-6">
+                      <label>Fonction</label>
+                      <input type="text" name="functiopn"  className="form-control"  onChange={e => setFonction(e.target.value)}/>
                     </div>
                     <div className="form-group col-md-6">
                       <label>Email</label>
-                      <input  type="email" name="email"  className="form-control"  placeholder="Email"onChange={e => setEmail(e.target.value)}/>
+                      <input type="email" name="email"  className="form-control"  onChange={e => setEmail(e.target.value)}/>
                     </div>
-
                     <div className="form-group col-md-6">
                       <label>Adresse</label>
                       <input type="text"name="adress" className="form-control" onChange={e => setAdress(e.target.value)}/>
@@ -92,9 +101,9 @@ const PersonnelCreate = () => {
                     <div className="form-group col-md-4">
                       <label>Civilité</label>
                       <select  defaultValue={"option"} name="civility"  className="form-control" onChange={e => setCivility(e.target.value)}>
-                      <option value="option" disabled>Cliquez pour choisir</option>
+                        <option value="option" disabled>Cliquez pour choisir</option>
                         <option value="MLL">Mlle</option>
-                        <option value="MME" >Mme</option>
+                        <option value="MME">Mme</option>
                         <option value="MR" >Mr</option>
                       </select>
                     </div>
@@ -111,24 +120,20 @@ const PersonnelCreate = () => {
                         <option value='AB-'>AB-</option>
                         <option value='AB+'>AB+</option>
                       </select>
-                      
                     </div>
                     <div className="form-group col-md-4">
                       <label>état</label>
-                      <select  defaultValue={"option"} name="state" className="form-control" onChange={e => setEtat(e.target.value)}>
-                        <option value="option" disabled>Cliquez pour choisir</option>
-                        <option value="A" >Active</option>
-                        <option value="N" >Non active</option>
-                        <option value="S" >Suspendue</option>
+                      <select value={etat} name="state" className="form-control" onChange={e => setEtat(e.target.value)}>
+                        <option value="A">Active</option>
+                        <option value="N">Non active</option>
+                        <option value="S">Suspendue</option>
                       </select>
                     </div>
                   </div>
-                  
                   <div className="form-row">
                     <label>Note</label>
                     <textarea name="note" className="form-control" onChange={e => setNote(e.target.value)}/>
                   </div>
-
                   <button type="submit" className="btn btn-primary">
                     Creer
                   </button>
@@ -137,9 +142,7 @@ const PersonnelCreate = () => {
             </div>
           </div>
         </div>
-      
-  )
-}
+)}
 export default PersonnelCreate;
 
 

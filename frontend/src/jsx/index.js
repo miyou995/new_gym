@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-
+import { AuthProvider } from "./context/AuthContext";
 /// React router dom
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 /// Css
 import "./index.css";
 import "./chart.css";
+import PrivateRoute from "./utils/PrivateRoute";
 
 
 /// Layout
@@ -91,7 +92,6 @@ const Markup = () => {
     /// Dashboard
  
     { url: "", component: Home },
-    { url: "login", component: Login },
     // { url: "my-wallet", component: Wallet },
     // { url: "coin-details", component: CoinDetails },
     // { url: "market-capital", component: MarketCapital },
@@ -187,14 +187,12 @@ const Markup = () => {
   return (
     <Router basename="/">
       {/* <Redirect from='/' to='/login' /> */}
-      <div
-        id={`${!pagePath ? "main-wrapper" : ""}`}
-        className={`${!pagePath ? "show menu-toggle" : "mh100vh"}`}
-      >
+      <AuthProvider>
+      <div id={`${!pagePath ? "main-wrapper" : ""}`}className={`${!pagePath ? "show menu-toggle" : "mh100vh"}`}>
         {!pagePath && (
           <Nav
+          activeEvent={activeEvent}
             onClick={() => setActiveEvent(!activeEvent)}
-            activeEvent={activeEvent}
             onClick2={() => setActiveEvent(false)}
             onClick3={() => setActiveEvent(true)}
           />
@@ -204,13 +202,12 @@ const Markup = () => {
             !pagePath ? "content-body" : ""
           }`}
         >
-          <div
-            className={`${!pagePath ? "container-fluid" : ""}`}
-            style={{ minHeight: window.screen.height - 60 }}
-          >
+          <div className={`${!pagePath ? "container-fluid" : ""}`}style={{ minHeight: window.screen.height - 60 }}>
             <Switch>
+              <Route exact component={Login} path="/login" />
+
               {routes.map((data, i) => (
-                <Route
+                <PrivateRoute
                   key={i}
                   exact
                   path={`/${data.url}`}
@@ -222,6 +219,7 @@ const Markup = () => {
         </div>
         {!pagePath && <Footer />}
       </div>
+      </AuthProvider>
     </Router>
   );
 };

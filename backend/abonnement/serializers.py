@@ -94,18 +94,16 @@ class AbonnementClientSerialiser(serializers.ModelSerializer):
         return the_next_day
 
     def create(self, validated_data):
-        # print('VALIDATED DATA', validated_data)
         client = validated_data['client']
         creneaux = validated_data['creneaux']
         type_ab = validated_data['type_abonnement']
         start_date = validated_data['start_date']
         duree = type_ab.length
         duree_semaine = (duree // 7) - 1 
-        # print('le client',client)
-        # print('l" abonnement ',type_ab)
         selected_creneau= [cre.id for cre in creneaux]
         print('l-- selected_creneau ',selected_creneau)
         dates_array = []
+        seances= type_ab.seances_quantity
         if type_ab.fixed_sessions():
             print('on the if')
             for creneau in creneaux :
@@ -116,11 +114,13 @@ class AbonnementClientSerialiser(serializers.ModelSerializer):
             print('la MAX : ', max(dates_array))
             maxed_date = max(dates_array)
             calculated_end_date = maxed_date + datetime.timedelta(weeks=duree_semaine)
+        elif type_ab.time_volume():
+            seances= type_ab.seances_quantity * 60
         else:
             print('on the else')
             calculated_end_date = start_date + datetime.timedelta(days=duree)
         print('la calculated_end_date : ', calculated_end_date)
-        abc_instance = AbonnementClient.objects.create(client= client, start_date= start_date ,end_date= calculated_end_date, type_abonnement = type_ab, presence_quantity=type_ab.seances_quantity, reste=type_ab.price)
+        abc_instance = AbonnementClient.objects.create(client= client, start_date= start_date ,end_date= calculated_end_date, type_abonnement = type_ab, presence_quantity=seances, reste=type_ab.price)
 
         for cren in selected_creneau:
             abc_instance.creneaux.add(cren)    
@@ -159,14 +159,25 @@ class AbonnementClientSerialiser(serializers.ModelSerializer):
         # print('presennnce =====>', presence_quantity)
         # return AbonnementClient.objects.create(end_date=end_date,presence_quantity=presence_quantity**validated_data)
 class AbonnementClientDetailSerializer(serializers.ModelSerializer):
+    # is_volume = serializers.BooleanField(source='is_time_volume')
+    left_minutes = serializers.SerializerMethodField('get_left_minutes', read_only=True)
     type_abonnement_name = serializers.SerializerMethodField('get_type_abonnement_name', read_only=True)
     # cochage       = serializers.CharField(source='type_abonnement.systeme_cochage', read_only=True)
     price       = serializers.CharField(source='type_abonnement.price', read_only=True)
     class Meta:
         model = AbonnementClient
-        fields =('id', 'start_date','end_date', 'type_abonnement' , 'type_abonnement_name','presence_quantity', 'creneaux',  'reste', 'price')
+        fields =('id', 'start_date','end_date', 'type_abonnement' , 'type_abonnement_name','presence_quantity', 'creneaux',  'reste', 'price', 'left_minutes', 'is_time_volume', 'is_free_access', 'is_fixed_sessions', 'is_free_sessions', 'is_valid')
+
     def get_type_abonnement_name(self, obj):
         return obj.type_abonnement.name
+
+    def get_left_minutes(self, obj):
+        minutes = obj.presence_quantity
+        time = divmod(minutes, 60)
+        print('en heures', time)
+        time_string = "{}H: {}M".format(time[0], time[1])
+        print('en time_string', time_string)
+        return time_string
 
 class AbonnementSerialiser(serializers.ModelSerializer):   
     clients_number = serializers.SerializerMethodField('get_clients_number', read_only=True)

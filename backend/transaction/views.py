@@ -131,6 +131,14 @@ class RemunerationDetailAPIView(generics.RetrieveUpdateAPIView):
         obj = get_object_or_404(Remuneration.objects.filter(id=self.kwargs["pk"]))
         return obj
     
+class PaiementEmployeListAPIView(generics.ListAPIView):
+    serializer_class = RemunerationPostSerialiser
+    # permission_classes = (IsAuthenticated,)
+    def get_queryset(self):
+        employe_id = self.request.query_params.get('em', None)
+        print('cliiiientr', employe_id)
+        creneaux = Remuneration.objects.filter(nom_id=employe_id)
+        return creneaux
 
 class RemunerationDestroyAPIView(generics.DestroyAPIView):
     queryset = Remuneration.objects.all()

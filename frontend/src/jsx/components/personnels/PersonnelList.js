@@ -56,8 +56,7 @@ const PersonnelList = () => {
                <div className="testimonial-one owl-right-nav owl-carousel owl-loaded owl-drag mb-4">
         <ShortCuts />
       </div>
-            <Search name= 'Employé' lien= "/personnel/create"/>
-
+         <Search name= 'Employé' lien= "/personnel/create"/>
          <div className="row">
             <div className="col-lg-12">
                <div className="card">

@@ -4,17 +4,20 @@ import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 /// Scroll
 import PerfectScrollbar from "react-perfect-scrollbar";
-
-/// Image
 import profile from "../../../images/profile/pic1.jpg";
 import avatar from "../../../images/avatar/1.jpg";
 import { Dropdown } from "react-bootstrap";
 // import { LogoutUser } from "../../utils/auth";
 import { set } from "js-cookie";
 import { axiosInstance } from "../../utils/auth";
+  import AuthContext from "../../context/AuthContext";
 import { useGetAPI, usePostAPI } from '../../components/useAPI'
+import { useContext } from "react";
+
+
 
 const Header = ({ onNote, toggle, onProfile, onNotification, onClick }) => {
+
   var path = window.location.pathname.split("/");
   var name = path[path.length - 1].split("-");
 
@@ -25,9 +28,10 @@ const Header = ({ onNote, toggle, onProfile, onNotification, onClick }) => {
     ? filterName.filter((f) => f !== "app")
     : filterName;
   const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const { user, logoutUser } = useContext(AuthContext);
+
   const [token, setToken] = useState("");
   const [username, SetUsername] = useState("");
-  
   const Logout = async e => {
   let endpoint = `${process.env.REACT_APP_API_URL}/rest-api/auth/logout/blacklist`
   const refresh = localStorage.getItem('refresh_token')
@@ -59,7 +63,7 @@ const Header = ({ onNote, toggle, onProfile, onNotification, onClick }) => {
               </div>
             </div>
             <ul className="navbar-nav header-right">
-              <Dropdown className="nav-item dropdown notification_dropdown ml-sm-3">
+              {/* <Dropdown className="nav-item dropdown notification_dropdown ml-sm-3">
                 <Dropdown.Toggle
                   variant=""
                   className="nav-link  ai-icon i-false"
@@ -195,7 +199,7 @@ const Header = ({ onNote, toggle, onProfile, onNotification, onClick }) => {
                     </div>
                   </PerfectScrollbar>
                 </Dropdown.Menu>
-              </Dropdown>
+              </Dropdown> */}
               <Dropdown className="nav-item dropdown header-profile ml-sm-4 ml-2">
                 <Dropdown.Toggle
                   as="a"
@@ -205,13 +209,17 @@ const Header = ({ onNote, toggle, onProfile, onNotification, onClick }) => {
                 >
                   <div className="header-info">
                     <span className="text-black">
-                      Hello, <strong>Thomas</strong>
+                      Hello, <strong>{user ? "Admin" : " byeee"}</strong>
                     </span>
                     <p className="fs-12 mb-0">Super Admin</p>
                   </div>
                   <img src={profile} width={20} alt="" />
                 </Dropdown.Toggle>
+                {
+                    user && 
                 <Dropdown.Menu align="right" className="mt-2">
+                  {/* 
+                  
                   <Link to="/app-profile" className="dropdown-item ai-icon">
                     <svg
                       id="icon-user1"
@@ -231,7 +239,8 @@ const Header = ({ onNote, toggle, onProfile, onNotification, onClick }) => {
                     </svg>
                     <span className="ml-2">Profile </span>
                   </Link>
-                  <Link to="/email-inbox" className="dropdown-item ai-icon">
+                  */}
+                  {/* <Link to="/email-inbox" className="dropdown-item ai-icon">
                     <svg
                       id="icon-inbox"
                       xmlns="http://www.w3.org/2000/svg"
@@ -249,10 +258,8 @@ const Header = ({ onNote, toggle, onProfile, onNotification, onClick }) => {
                       <polyline points="22,6 12,13 2,6" />
                     </svg>
                     <span className="ml-2">Inbox </span>
-                  </Link>
-                  
-
-                  
+                  </Link> */}
+                 
                     <span className="dropdown-item ai-icon" onClick={(e) => Logout(e)}>
                     <svg
                       id="icon-logout"
@@ -271,7 +278,10 @@ const Header = ({ onNote, toggle, onProfile, onNotification, onClick }) => {
                       <polyline points="16 17 21 12 16 7" />
                       <line x1={21} y1={12} x2={9} y2={12} />
                     </svg> Logout </span>
+
+                  
                 </Dropdown.Menu>
+                  }
               </Dropdown>
             </ul>
           </div>

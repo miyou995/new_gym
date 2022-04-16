@@ -68,7 +68,7 @@ class ClientSerialiser(serializers.ModelSerializer):
     class Meta:
         model = Client
         read_only_fields = ('id','date_added','abonnement_detail')
-        fields= ('id', 'picture','civility','civility_display','last_name', 'first_name', 'adress', 'phone', 'email', 'nationality', 'birth_date', 'blood', 'state_display','note', 'dette', 'date_added', 'maladies', 'maladie_name','abonnement_detail', 'presences', 'last_presence', 'age', 'debut_assurance', 'fin_assurance','profession')
+        fields= ('id', 'picture','carte','civility','civility_display','last_name', 'first_name', 'adress', 'phone', 'email', 'nationality', 'birth_date', 'blood', 'state_display','note', 'dette', 'date_added', 'maladies', 'maladie_name','abonnement_detail', 'presences', 'last_presence', 'age', 'debut_assurance', 'fin_assurance','profession')
  
     def get_maladie_name(self, obj):
         maladies_queryset = obj.maladies.all()
@@ -104,7 +104,7 @@ class ClientSerialiser(serializers.ModelSerializer):
             presence = False
             return presence
     
-
+    
     def calculate_age(self, obj):
         today = date.today()
         born = obj.birth_date
@@ -125,7 +125,7 @@ class PersonnelSerializer(serializers.ModelSerializer):
     class Meta : 
         model = Personnel
         read_only_fields = ('date_added',)
-        fields = ('id','civility','civility_display', 'last_name', 'first_name', 'adress', 'phone', 'email', 'nationality', 'birth_date', 'blood', 'state','state_display','note','date_added')
+        fields = ('id','civility','civility_display', 'function', 'last_name', 'first_name', 'adress', 'phone', 'email', 'nationality', 'birth_date', 'blood', 'state','state_display','note','date_added')
 
 
 class CoachSerializer(serializers.ModelSerializer):
@@ -141,7 +141,6 @@ class CoachSerializer(serializers.ModelSerializer):
         fields= ('id','civility','civility_display','last_name', 'first_name', 'adress', 'phone', 'email', 'nationality', 'birth_date', 'blood', 'state','state_display','note', 'salaire', 'date_added', 'pay_per_hour',  'last_presence', 'color')
 
     def get_last_presence(self, obj):
-        
         print('this is the latest presence',Coach.custom_manager.get_last_presence(obj.id))
         return Coach.custom_manager.get_last_presence(obj.id)
 

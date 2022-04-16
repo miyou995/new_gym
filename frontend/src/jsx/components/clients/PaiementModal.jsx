@@ -5,8 +5,8 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import axios from 'axios';
 import PageTitle from "../../layouts/PageTitle";
-import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+
+import {notifySuccess, notifyError} from '../Alert'
 
 // import { Dropdown, Tab, Nav } from "react-bootstrap";
 // import { Link } from "react-router-dom";
@@ -27,8 +27,8 @@ const PaiementModal = ({show, onShowShange, clientData}) => {
     const [abcId, setAbcId] = useState([])
     const [dateCreation, setDateCreation] = useState(formatDate(new Date()))
     const [note, setNote] = useState("")
-    const [error, setError] = useState(false)
-    const [success, setSuccess] = useState(false)
+    // const [error, setError] = useState(false)
+    // const [success, setSuccess] = useState(false)
     
     // useEffect(() => {
     //   if (show == true) {
@@ -45,35 +45,36 @@ const PaiementModal = ({show, onShowShange, clientData}) => {
     //     fetchData();
     //   }
     // }, [clientId] );
-    const notifySuccess = () => {
-      toast.success('Paiement  effectuer Avec Succée', {
-        position: 'top-right',
-        autoClose: 5000,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      })
-    }
-  const notifyError = () => {
-      toast.error('Echec de paiement', {
-        position: 'top-right',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      })
-    }
-    useEffect(() => {
-      if (error == true) {
-        notifyError()
-      }
-    }, [error]);
-    useEffect(() => {
-      if (success == true) {
-        notifySuccess()
-      }
-    }, [success]);
+  //   const notifySuccess = () => {
+  //     toast.success('Paiement  effectuer Avec Succée', {
+  //       position: 'top-right',
+  //       autoClose: 5000,
+  //       closeOnClick: true,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //     })
+  //   }
+  // const notifyError = () => {
+  //     toast.error('Echec de paiement', {
+  //       position: 'top-right',
+  //       autoClose: 5000,
+  //       hideProgressBar: false,
+  //       closeOnClick: true,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //     })
+  //   }
+  //   useEffect(() => {
+  //     if (error == true) {
+  //       notifyError()
+  //     }
+  //   }, [error]);
+  //   useEffect(() => {
+  //     if (success == true) {
+  //       notifySuccess()
+  //     }
+  //   }, [success]);
+
     const handleSubmit = async e => {
       e.preventDefault();
         const paiementDetails = {
@@ -84,22 +85,14 @@ const PaiementModal = ({show, onShowShange, clientData}) => {
         }
         console.log(" =================> new Creneau ", paiementDetails);
         try {
-          const axWait =await axios.post(paiementCreateEND, paiementDetails)
-          setSuccess(true)
-          setTimeout(() => {
-            // refreshPage()
-          }, 100);
-
-          // return axWait
+          await axios.post(paiementCreateEND, paiementDetails)
+          notifySuccess('Paiement effectuer avec succés')
           handleShow()
         } catch (error) {
-          setError(true)
-          console.log('je suis la ', error);
-          
+           notifyError("Echec de paiement")
+            console.log('je suis la ', error);
         }
-        // refreshPage()
-        // setCreneaux([])
-        // handleShow()
+
       }
 return ( 
 

@@ -5,17 +5,14 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import axios from 'axios';
 import PageTitle from "../../layouts/PageTitle";
+import {notifySuccess, notifyError} from '../Alert'
 
-// import { Dropdown, Tab, Nav } from "react-bootstrap";
-// import { Link } from "react-router-dom";
-function refreshPage() {
-  window.location.reload(false);
-}
 const PaiementModal = ({show, onShowShange, coachData}) => {
     const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
      const coachId  = coachData['coachId']
      const coachName =  coachData['coachName']
   const paiementCreateEND =`${process.env.REACT_APP_API_URL}/rest-api/transactions/remunerationProf/create` 
+
   const [amount, setAmount] = useState("")
     const handleSubmit = e => {
       e.preventDefault();
@@ -24,8 +21,12 @@ const PaiementModal = ({show, onShowShange, coachData}) => {
           amount : amount
         }
         console.log(" =================> new Creneau ", paiementDetails);
-        axios.post(paiementCreateEND, paiementDetails)
-        handleShow()
+        axios.post(paiementCreateEND, paiementDetails).then( res => {
+          notifySuccess('Paiement creer avec succés')
+                handleShow()
+          }).catch(err => {
+            notifyError("echec de paiement")
+          })
       }
 return ( 
     <Modal  className="fade bd-example-modal-lg" size="xl" onHide={handleShow} show={show}>

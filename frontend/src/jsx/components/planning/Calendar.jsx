@@ -193,8 +193,10 @@ const getDay = (days,creneauDay) => {
                   options={plannings}
                   getOptionLabel={(option) => option.name || ''}
                   onChange={((event, value) =>  {
-                    setPlanningId(value.id)
-                    setDefaultPlanning(value)
+                    if (value) {
+                      setPlanningId(value.id)
+                      setDefaultPlanning(value)
+                    }
                   })} 
                   renderInput={(params) => (<TextField {...params} name="planning" label="Plannings" variant="outlined" fullWidth />)}
                 />
@@ -204,8 +206,10 @@ const getDay = (days,creneauDay) => {
                     options={salles}
                     getOptionLabel={(option) => option.name || ''}
                     onChange={((event, value) =>  {
+                    if (value) {
                       setSalleId(value.id)
                       setDefaultSalle(value)
+                    }
                     })} 
                     renderInput={(params) => (<TextField {...params} name="salle" label="Salles" variant="outlined" fullWidth />)}
                 />
@@ -414,9 +418,7 @@ const getDay = (days,creneauDay) => {
                 creneauName: creneauName,
                 creneauColor: creneauColor,
                 creneau: creneau
-                }
-                
-                } />
+                }} />
               </div>
           </Card>
         </Col>

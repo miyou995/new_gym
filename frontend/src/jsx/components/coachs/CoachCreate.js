@@ -5,7 +5,7 @@ import { useGetAPI, usePostAPI } from '../useAPI'
 import {  useHistory } from "react-router-dom";
 import ShortCuts from "../ShortCuts";
 import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import {notifySuccess, notifyError} from '../Alert'
  
 function refreshPage() {
   window.location.reload(false);
@@ -67,11 +67,12 @@ const CoachCreate = () => {
         newCoach.adress = adress
       }
       
-      usePostAPI(endpoint, newCoach)
-      history.push("/coach")
-      setTimeout(() => {
-        refreshPage()
-      }, 1200);
+      usePostAPI(endpoint, newCoach).then( res => {
+          notifySuccess('Coach creer avec succés')
+          history.push("/coach")
+        }).catch(err => {
+          notifyError("Erreur lors de la creation de Coach")
+        })
 
   }
   return (
@@ -89,12 +90,12 @@ const CoachCreate = () => {
                 <form onSubmit={HandleSubmit}>
                   <div className="form-row">
                     <div className="form-group col-md-3">
-                      <label>Nom</label>
-                      <input type="text" name="last_name" className="form-control" placeholder="Nom du client" required onChange={e => setLastName(e.target.value)}/>
+                      <label>Nom*</label>
+                      <input type="text" name="last_name" className="form-control" placeholder="Nom du coach" required onChange={e => setLastName(e.target.value)}/>
                     </div>
                     <div className="form-group col-md-3">
-                      <label>Prénom</label>
-                      <input  type="text" name="first_name"  className="form-control"  placeholder="Prénom du client" required onChange={e => setFirstName(e.target.value)}/>
+                      <label>Prénom*</label>
+                      <input  type="text" name="first_name"  className="form-control"  placeholder="Prénom du coach" required onChange={e => setFirstName(e.target.value)}/>
                     </div>
                     <div className="form-group col-md-3">
                       <label>Email</label>
@@ -106,7 +107,7 @@ const CoachCreate = () => {
                       <input type="text"name="adress" className="form-control" onChange={e => setAdress(e.target.value)}/>
                     </div>
                     <div className="form-group col-md-3">
-                      <label>Date de naissance</label>
+                      <label>Date de naissance*</label>
                       <input type="date" name="birth_date" className="form-control" required onChange={e => setBirthDate(e.target.value)}/>
                     </div>
                     <div className="form-group col-md-3">
@@ -136,8 +137,8 @@ const CoachCreate = () => {
                         </div>
                     </div>
                     <div className="form-group col-md-4">
-                      <label>Groupe sanguin</label>
-                      <select defaultValue={"option"} name="blood" className="form-control" onChange={e => setBlood(e.target.value)}>
+                      <label>Groupe sanguin *</label>
+                      <select defaultValue={"option"} name="blood" className="form-control" onChange={e => setBlood(e.target.value)}required >
                       <option value="option" disabled>Cliquez pour choisir</option>
                         <option value='A-' >A-</option>
                         <option value='A+' >A+</option>
