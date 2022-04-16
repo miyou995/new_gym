@@ -13,6 +13,7 @@ import { axiosInstance } from "../../utils/auth";
   import AuthContext from "../../context/AuthContext";
 import { useGetAPI, usePostAPI } from '../../components/useAPI'
 import { useContext } from "react";
+import axios from "axios";
 
 
 
@@ -33,21 +34,24 @@ const Header = ({ onNote, toggle, onProfile, onNotification, onClick }) => {
   const [token, setToken] = useState("");
   const [username, SetUsername] = useState("");
   const Logout = async e => {
-  let endpoint = `${process.env.REACT_APP_API_URL}/rest-api/auth/logout/blacklist`
-  const refresh = localStorage.getItem('refresh_token')
-  usePostAPI(endpoint, refresh)
-  console.log(refresh);
-  localStorage.removeItem('access_token');
-  localStorage.removeItem('refresh_token');
-  axiosInstance.defaults.headers['Authorization'] = null;
-  history.push('/login');
-}
+    let endpoint = `${process.env.REACT_APP_API_URL}/rest-api/auth/logout/blacklist`
+    const authToken = localStorage.getItem('authTokens')
+    const refresh = authToken['refresh']
+    console.log('refresh', refresh);
+    console.log('refresh 2 ', authToken.refresh);
+    console.log('authToken', authToken);
+    axios.post(endpoint, refresh).then( () => {
+      console.log(refresh);
+      localStorage.removeItem('authTokens');
+      axiosInstance.defaults.headers['Authorization'] = null;
+      history.push('/login');
+    })
+  }
 
 // const response = axiosInstance.post('rest-api/auth/logout/blacklist', {
 //   refresh_token: localStorage.getItem('refresh_token'),
 // });
   let history = useHistory();
-
 
   return (
     <div className="header">

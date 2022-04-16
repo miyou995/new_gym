@@ -7847,3 +7847,76 @@ RuntimeError: You called this URL via POST, but the URL doesn't end in a slash a
 2022-04-16 15:37:34,580 django.request WARNING  Bad Request: /rest-api/auth/logout/blacklist
 2022-04-16 15:44:42,581 django.request WARNING  Bad Request: /rest-api/auth/logout/blacklist
 2022-04-16 15:44:47,200 django.request WARNING  Bad Request: /rest-api/auth/logout/blacklist
+2022-04-16 16:53:14,921 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-16 16:59:23,168 django.request WARNING  Bad Request: /rest-api/auth/logout/blacklist
+2022-04-16 17:03:48,831 django.request WARNING  Bad Request: /rest-api/auth/logout/blacklist
+2022-04-16 17:03:53,979 django.request WARNING  Bad Request: /rest-api/auth/logout/blacklist
+2022-04-16 17:07:25,407 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\authentication\views.py changed, reloading.
+2022-04-16 17:07:27,114 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-16 17:08:01,646 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\authentication\views.py changed, reloading.
+2022-04-16 17:08:03,463 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-16 17:08:15,038 django.request WARNING  Method Not Allowed: /rest-api/auth/logout/blacklist
+2022-04-16 17:09:24,937 django.request WARNING  Unauthorized: /api/token/
+2022-04-16 17:09:27,257 django.request WARNING  Unauthorized: /api/token/
+2022-04-16 17:09:38,659 django.request WARNING  Bad Request: /rest-api/auth/logout/blacklist
+2022-04-16 17:09:50,186 django.request WARNING  Bad Request: /rest-api/auth/logout/blacklist
+2022-04-16 17:09:51,333 django.request WARNING  Bad Request: /rest-api/auth/logout/blacklist
+2022-04-16 17:09:51,534 django.request WARNING  Bad Request: /rest-api/auth/logout/blacklist
+2022-04-16 17:09:51,826 django.request WARNING  Bad Request: /rest-api/auth/logout/blacklist
+2022-04-16 17:10:30,290 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\authentication\views.py changed, reloading.
+2022-04-16 17:10:31,804 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-16 17:11:15,815 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\authentication\views.py changed, reloading.
+2022-04-16 17:11:17,342 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-16 17:11:24,267 django.request WARNING  Method Not Allowed: /rest-api/auth/logout/blacklist
+2022-04-16 17:11:31,095 django.request WARNING  Method Not Allowed: /rest-api/auth/logout/blacklist
+2022-04-16 17:11:40,180 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\authentication\views.py changed, reloading.
+2022-04-16 17:11:41,754 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-16 17:12:26,540 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\authentication\views.py changed, reloading.
+2022-04-16 17:12:28,814 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-16 17:12:30,921 django.request WARNING  Bad Request: /rest-api/auth/logout/blacklist
+2022-04-16 17:12:56,236 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\authentication\views.py changed, reloading.
+2022-04-16 17:12:57,941 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-16 17:13:01,113 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\authentication\views.py changed, reloading.
+2022-04-16 17:13:02,700 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-16 17:13:04,675 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\authentication\views.py changed, reloading.
+2022-04-16 17:13:06,224 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-16 17:13:08,154 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\authentication\views.py changed, reloading.
+2022-04-16 17:13:10,286 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-16 17:13:12,603 django.request WARNING  Bad Request: /rest-api/auth/logout/blacklist
+2022-04-16 17:13:27,056 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\authentication\views.py changed, reloading.
+2022-04-16 17:13:28,724 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-16 17:13:39,773 django.request WARNING  Bad Request: /rest-api/auth/logout/blacklist
+2022-04-16 17:14:00,206 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\authentication\views.py changed, reloading.
+2022-04-16 17:14:02,084 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-16 17:14:11,763 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\authentication\views.py changed, reloading.
+2022-04-16 17:14:13,793 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-16 17:14:15,597 django.request WARNING  Bad Request: /rest-api/auth/logout/blacklist
+2022-04-16 17:14:26,474 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\authentication\views.py changed, reloading.
+2022-04-16 17:14:28,029 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-16 17:14:31,397 django.request WARNING  Bad Request: /rest-api/auth/logout/blacklist
+2022-04-16 17:14:38,697 django.request WARNING  Bad Request: /rest-api/auth/logout/blacklist
+2022-04-16 17:14:57,375 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\authentication\views.py changed, reloading.
+2022-04-16 17:14:59,110 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-16 17:15:02,539 django.request WARNING  Bad Request: /rest-api/auth/logout/blacklist
+2022-04-16 17:15:20,758 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\authentication\views.py changed, reloading.
+2022-04-16 17:15:22,423 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-16 17:15:28,888 django.request WARNING  Bad Request: /rest-api/auth/logout/blacklist
+2022-04-16 17:15:48,712 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\authentication\views.py changed, reloading.
+2022-04-16 17:15:50,542 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-16 17:15:55,687 django.request WARNING  Bad Request: /rest-api/auth/logout/blacklist
+2022-04-16 17:16:14,017 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\authentication\views.py changed, reloading.
+2022-04-16 17:16:15,772 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-16 17:16:16,986 django.request WARNING  Bad Request: /rest-api/auth/logout/blacklist
+2022-04-16 17:16:20,041 django.request WARNING  Bad Request: /rest-api/auth/logout/blacklist
+2022-04-16 17:16:28,218 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\authentication\views.py changed, reloading.
+2022-04-16 17:16:30,176 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-16 17:16:31,834 django.request WARNING  Bad Request: /rest-api/auth/logout/blacklist
+2022-04-16 17:16:47,023 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\authentication\views.py changed, reloading.
+2022-04-16 17:16:48,781 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-16 17:16:50,607 django.request WARNING  Bad Request: /rest-api/auth/logout/blacklist
+2022-04-16 17:18:31,089 django.request WARNING  Bad Request: /rest-api/auth/logout/blacklist
+2022-04-16 17:18:59,539 django.request WARNING  Bad Request: /rest-api/auth/logout/blacklist
+2022-04-16 17:19:47,846 django.request WARNING  Bad Request: /rest-api/auth/logout/blacklist
+2022-04-16 17:20:04,751 django.request WARNING  Bad Request: /rest-api/auth/logout/blacklist
+2022-04-16 17:20:33,337 django.request WARNING  Bad Request: /rest-api/auth/logout/blacklist
+2022-04-16 17:21:16,133 django.request WARNING  Bad Request: /rest-api/auth/logout/blacklist

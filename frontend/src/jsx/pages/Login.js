@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 
 import { axiosInstance} from "../utils/auth";
 import {ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-
+import AuthContext from "../context/AuthContext";
 import {notifyError} from '../components/Alert'
 
 const Login = ({ history }) => {
@@ -20,23 +20,14 @@ const Login = ({ history }) => {
   const [formData, updateFormData] = useState(initialFormData);
   // const [error , setError] = useState("");
   const { email, password } = formData;
-
+  const { loginUser } = useContext(AuthContext);
   const handleChange = (e) => {
 		updateFormData({
 			...formData,
 			[e.target.name]: e.target.value.trim(),
 		});
 	};
-  const [authTokens, setAuthTokens] = useState(() =>
-    localStorage.getItem("authTokens")
-      ? JSON.parse(localStorage.getItem("authTokens"))
-      : null
-  );
-  const [user, setUser] = useState(() =>
-    localStorage.getItem("authTokens")
-      ? jwt_decode(localStorage.getItem("authTokens"))
-      : null
-  );
+
   // const config = {
   //   headers: {
   //     Accept: "application/json",
@@ -46,39 +37,12 @@ const Login = ({ history }) => {
 
   // const body = JSON.stringify({ email, password });
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		console.log(formData);
-
-		axiosInstance
-			.post(`api/token/`, {
-				email: formData.email,
-				password: formData.password,
-			})
-			.then((res) => {
-				// localStorage.setItem('authTokens', res.data);
-				// // localStorage.setItem('refresh_token', res.data.refresh);
-				// axiosInstance.defaults.headers['Authorization'] =
-				// 	'JWT ' + localStorage.getItem('access_token');
-				// // history.push('/');
-        if (res.status === 200) {
-          console.log("DATAAAAAAA", res.data);
-          setAuthTokens(res.data);
-          setUser(jwt_decode(res.data.access));
-          localStorage.setItem("authTokens", JSON.stringify(res.data));
-          history.push("/");
-        } else {
-          alert("Something went wrong!");
-        }
-        window.location = "/";
-				console.log(res);
-				console.log(res.data);
-				console.log("response status =>",res.status);
-			}).catch(err => {
-        notifyError('Errur, veuiller vérivifer vos identifiant')
-				console.log("response status  err=>",err);
-      })
-	};
+  const handleSubmit = e => {
+    e.preventDefault();
+    const email = formData.email;
+    const password = formData.password;
+    formData.email.length > 0 && loginUser(email, password);
+  };
 
   return (
     <div className="authincation h-100 p-meddle">

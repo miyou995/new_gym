@@ -45,13 +45,14 @@ class BlacklistTokenUpdateView(APIView):
     def post(self, request):
         print('POOOOOOOOSRT')
         try:
+            print('TRYYYYYYYY 2',self.request.data[0])
             print('TRYYYYYYYY',request.data)
-            refresh_token = request.data["refresh_token"]
+            refresh_token = request.data["refresh"]
             token = RefreshToken(refresh_token)
             token.blacklist()
             return Response(status=status.HTTP_205_RESET_CONTENT)
         except Exception as e:
-            print('EXCEEEEPT')
+            print('EXCEEEEPT', e)
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
 @method_decorator(ensure_csrf_cookie, name='dispatch')
