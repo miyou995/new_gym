@@ -144,10 +144,10 @@ const [nextpage, setNextpage] = useState(1);
                   + Autre Transaction
                   </div>
                 <div className="col-md-2">
-                      <input type="date" name="birth_date" value={startDate} className="form-control"  onChange={e => setStartDate(e.target.value)}/>
+                      <input type="date"  value={startDate} className="form-control"  onChange={e => setStartDate(e.target.value)}/>
                </div>
                <div className=" col-md-2">
-                     <input type="date" name="birth_date" value={endDate} className="form-control"  onChange={e => setEndDate(e.target.value)}/>
+                     <input type="date"  value={endDate} className="form-control"  onChange={e => setEndDate(e.target.value)}/>
                </div>
             </div>
 

@@ -1802,7 +1802,7 @@ pre {
   color: #495057;
   background-color: #fff;
   background-clip: padding-box;
-  border: 1px solid #f0f1f5;
+  border: 1px solid #656666;
   border-radius: 0.75rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
   @media (prefers-reduced-motion: reduce) {
@@ -2934,7 +2934,7 @@ input[type="button"].btn-block {
   text-align: center;
   white-space: nowrap;
   background-color: #e9ecef;
-  border: 1px solid #f0f1f5;
+  border: 1px solid #3b3b3b;
   border-radius: 0.75rem; }
   .input-group-text input[type="radio"],
   .input-group-text input[type="checkbox"] {
@@ -21842,11 +21842,13 @@ svg text {
 #chart_employee_gender, #chart_employee_status {
   width: auto;
   height: 350px; }
-
+.label {
+  color: #3e0202;
+}
 .form-control {
   border-radius: 0;
   background: #fff;
-  border: 1px solid #f0f1f5;
+  border: 1px solid #222324;
   color: #6e6e6e;
   height: 56px; }
   @media only screen and (max-width: 1400px) {

@@ -85,7 +85,7 @@ const PersonnelCreate = () => {
                     </div>
                     <div className="form-group col-md-6">
                       <label>Date de naissance</label>
-                      <input type="date" name="birth_date" className="form-control" onChange={e => setBirthDate(e.target.value)}/>
+                      <input type="date" name="birth_date"  max="2099-01-01" className="form-control" onChange={e => setBirthDate(e.target.value)}/>
                     </div>
                     <div className="form-group col-md-6">
                       <label>Nationalité</label>

@@ -12,9 +12,7 @@ import { ToastContainer, toast } from 'react-toastify'
 import {notifySuccess, notifyError} from '../Alert'
 
 
-function refreshPage() {
-  window.location.reload(false);
-}
+
 const CreateClient = () => {
   const config = { headers: { 'Content-Type': 'multipart/form-data' } };
   let maladiesEnd = `${process.env.REACT_APP_API_URL}/rest-api/maladies/`
@@ -37,7 +35,7 @@ const CreateClient = () => {
   // const [dette, setDette] = useState("");
   
   const [picture, setPicture] = useState(null);
-  const [clientCreated, setClientCreated] = useState(false);
+  // const [clientCreated, setClientCreated] = useState(false);
   const [realMaladies, setRealMaladies] = useState([])
   
   const handleCheckbox = (event) => {
@@ -91,27 +89,9 @@ const getSelectedMaladies = ( ) => {
     e.preventDefault();
 		let formData = new FormData();
 
-    // const newClient = {
-    //   civility :civility,
-    //   last_name :lastName,
-    //   first_name :firstName,
-    //   adress :adress,
-    //   phone :phone,
-    //   email :email,
-    //   nationality :nationality,
-    //   birth_date :birthDate,
-    //   state: etat,
-    //   blood :blood,
-    //   note :note,
-    //   dette :Number(dette),
-    //   maladies: selectedMaladies,
-    //   picture: picture.image[0], 
-    //   }
-      // usePostAPI(endpoint, newClient)
-      // history.push("/client")
-      	// let formData = new FormData();
 
-    console.log('the blood', blood);
+
+    console.log('the carte', carte);
 
       formData.append('civility',civility );
       formData.append('carte',carte );
@@ -144,8 +124,9 @@ const getSelectedMaladies = ( ) => {
           console.log('THE NEW CLIENT ONEEE ', res.data);
       	})
       	.catch((err) => {
-          notifyError("Erreur, création abonnement")
-          console.log('THE NEW CLIENT ', formData)
+          notifyError(`Erreur,  ${err}`)
+          console.log('THE NEW CLIENT ', err.response.data[0])
+          console.log('THE NEW CLIENT ', err.response)
         });
     }
   return (
@@ -163,11 +144,11 @@ const getSelectedMaladies = ( ) => {
                 <form onSubmit={HandleSubmit}>
                   <div className="form-row">
                     <div className="form-group col-md-6">
-                      <label>Carte</label>
-                      <input type="text" name="carte" className="form-control" placeholder="Carte de l'adhérent" required onChange={e => setCarte(e.target.value)}/>
+                      <label>Carte*</label>
+                      <input type="text" name="carte" className="form-control" value={carte} placeholder="Carte de l'adhérent" required onChange={e => setCarte(e.target.value)}/>
                     </div>
                     <div className="form-group col-md-6">
-                      <label>Nom</label>
+                      <label>Nom*</label>
                       <input type="text" name="last_name" className="form-control" placeholder="Nom de l'adhérent" required onChange={e => setLastName(e.target.value)}/>
                     </div>
                     <div className="form-group col-md-6">
@@ -188,22 +169,22 @@ const getSelectedMaladies = ( ) => {
                       <input type="text"name="adress" className="form-control" onChange={e => setAdress(e.target.value)}/>
                     </div>
                     <div className="form-group col-md-6">
-                      <label>Date de naissance</label>
-                      <input type="date" name="birth_date" className="form-control" onChange={e => setBirthDate(e.target.value)}/>
+                      <label>Date de naissance*</label>
+                      <input type="date" name="birth_date" className="form-control" max="2099-01-01" onChange={e => setBirthDate(e.target.value)}/>
                     </div>
                     <div className="form-group col-md-6">
                       <label>Nationalité</label>
                       <input type="text" name="nationality" value={nationality} className="form-control" onChange={e => setNationality(e.target.value)} />
                     </div>
                     <div className="form-group col-md-6">
-                      <label>Téléphone</label>
+                      <label>Téléphone*</label>
                       <input type="text" name="phone" className="form-control" onChange={e => setPhone(e.target.value)} />
                     </div>
                   </div>
                 
                   <div className="form-row">
                     <div className="form-group col-md-4">
-                      <label>Civilité</label>
+                      <label>Civilité*</label>
                       <select  value={civility} name="civility"  className="form-control" onChange={e => setCivility(e.currentTarget.value)}>
                       {/* <option value="option" disabled>Cliquez pour choisir</option> */}
                         <option value="MLL" >Mlle</option>
@@ -212,7 +193,7 @@ const getSelectedMaladies = ( ) => {
                       </select>
                     </div>
                     <div className="form-group col-md-4">
-                      <label>Groupe sanguin</label>
+                      <label>Groupe sanguin*</label>
                       <select defaultValue={"option"} name="blood" className="form-control"  onChange={e => setBlood(e.target.value)}>
                       <option value="option" disabled>Cliquez pour choisir</option>
                         <option value='A-' >A-</option>

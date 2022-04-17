@@ -52,6 +52,8 @@ const PresenceList = () => {
    const [presneceCreateModal, setPresneceCreateModal] = useState(false);
    const [nextpage, setNextpage] = useState(1);
    const [client, setClient ] = useState('')
+   const [carteClient, setCarteClient ] = useState('')
+   
    const [clientId, setClientId ] = useState('')
    const [presenceId, setPresenceId ] = useState('')
    const [hourIn, setHourIn ] = useState('') 
@@ -338,15 +340,7 @@ const HandleSubmit = (e) => {
                     Précédent
                   </Button>
                   <span >
-                      <input
-                        to='/transactions'
-                        type='number'
-                        className='paginate_button_client'
-
-                        onChange={e => setNextpage(e.target.value)}
-                      value={nextpage}
-                      style={{width: '100px', border: 'none', height:'99%', textAlign: 'center', fontSize:'15px', backgroundColor: '#ffffff'}}
-                      />
+                      <input to='/transactions' type='number' className='paginate_button_client' onChange={e => setNextpage(e.target.value)} value={nextpage} style={{width: '100px', border: 'none', height:'99%', textAlign: 'center', fontSize:'15px', backgroundColor: '#ffffff'}}/>
                   </span>
                   <Button 
                   style={{width: '100px', border: 'none', height:'48px', color:'#ffffff',textAlign: 'center', fontSize:'15px', padding:'2px'}}

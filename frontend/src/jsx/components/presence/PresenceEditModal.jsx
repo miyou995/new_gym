@@ -66,17 +66,17 @@ return (
     </Modal.Header>
     <Modal.Body>
       <div>
-               <div className="row justify-content-around d-flex m-4">
-                  <div >
-                     <h4 className='text-black'>Date : <span className='text-primary'> {date}</span></h4>
-                     <h4 className='text-black'>Activité : <span className='text-primary'> {activity}</span></h4>
-                  </div>
-                  <div>
-                     <Link className="btn-sm btn-success ml-auto" target='_blank' to={`/client/${clientID}`}>
-                        Fiche Client
-                     </Link>
-                  </div>
-               </div>
+         <div className="row justify-content-around d-flex m-4">
+            <div >
+               <h4 className='text-black'>Date : <span className='text-primary'> {date}</span></h4>
+               <h4 className='text-black'>Activité : <span className='text-primary'> {activity}</span></h4>
+            </div>
+            <div>
+               <Link className="btn-sm btn-success ml-auto" target='_blank' to={`/client/${clientID}`}>
+                  Fiche Client
+               </Link>
+            </div>
+         </div>
          <form onSubmit={handleSubmit}>
             <div className="form-row">
                <div className="form-group col-md-6">

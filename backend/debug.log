@@ -8583,3 +8583,2402 @@ Traceback (most recent call last):
     return Database.Cursor.execute(self, query, params)
 django.db.utils.OperationalError: no such table: authentication_user
 2022-04-17 10:16:01,577 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 21:29:37,204 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 21:33:13,301 django.request WARNING  Bad Request: /rest-api/abonnement/create
+2022-04-17 21:33:24,942 django.request WARNING  Bad Request: /rest-api/abonnement/create
+2022-04-17 21:34:10,224 django.request WARNING  Bad Request: /rest-api/abonnement/create
+2022-04-17 21:36:42,391 django.request WARNING  Bad Request: /rest-api/abonnement/create
+2022-04-17 21:37:28,349 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\config\settings.py changed, reloading.
+2022-04-17 21:37:30,148 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 21:37:33,465 django.request WARNING  Bad Request: /rest-api/abonnement/create
+2022-04-17 21:38:05,397 django.request WARNING  Bad Request: /rest-api/abonnement/create
+2022-04-17 21:38:56,427 django.request WARNING  Bad Request: /rest-api/abonnement/create
+2022-04-17 21:42:56,056 django.request WARNING  Bad Request: /rest-api/clients/create
+2022-04-17 22:03:11,957 django.request ERROR    Internal Server Error: /rest-api/clients/C9/
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\backend\client\views.py", line 66, in get
+    client = Client.objects.get(id = params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 435, in get
+    raise self.model.DoesNotExist(
+client.models.Client.DoesNotExist: Client matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\backend\client\views.py", line 68, in get
+    client = Client.objects.get(carte = params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 439, in get
+    raise self.model.MultipleObjectsReturned(
+client.models.Client.MultipleObjectsReturned: get() returned more than one Client -- it returned 7!
+2022-04-17 22:03:13,717 django.request ERROR    Internal Server Error: /rest-api/clients/undefined/
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\backend\client\views.py", line 66, in get
+    client = Client.objects.get(id = params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 435, in get
+    raise self.model.DoesNotExist(
+client.models.Client.DoesNotExist: Client matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\backend\client\views.py", line 68, in get
+    client = Client.objects.get(carte = params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 439, in get
+    raise self.model.MultipleObjectsReturned(
+client.models.Client.MultipleObjectsReturned: get() returned more than one Client -- it returned 7!
+2022-04-17 22:04:04,107 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\config\settings.py changed, reloading.
+2022-04-17 22:04:05,831 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 22:04:58,785 django.request ERROR    Internal Server Error: /rest-api/clients/undefined/
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\backend\client\views.py", line 66, in get
+    client = Client.objects.get(id = params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 435, in get
+    raise self.model.DoesNotExist(
+client.models.Client.DoesNotExist: Client matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\backend\client\views.py", line 68, in get
+    client = Client.objects.get(carte = params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 439, in get
+    raise self.model.MultipleObjectsReturned(
+client.models.Client.MultipleObjectsReturned: get() returned more than one Client -- it returned 7!
+2022-04-17 22:05:31,088 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\views.py changed, reloading.
+2022-04-17 22:05:32,928 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 22:05:43,131 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\views.py changed, reloading.
+2022-04-17 22:05:45,160 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 22:06:08,725 django.request ERROR    Internal Server Error: /rest-api/clients/C9/
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 457, in get_attribute
+    return get_attribute(instance, self.source_attrs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 97, in get_attribute
+    instance = getattr(instance, attr)
+AttributeError: 'QuerySet' object has no attribute 'last_name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\backend\client\views.py", line 72, in get
+    return Response(ax.data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 555, in data
+    ret = super().data
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 509, in to_representation
+    attribute = field.get_attribute(instance)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 490, in get_attribute
+    raise type(exc)(msg)
+AttributeError: Got AttributeError when attempting to get a value for field `last_name` on serializer `ClientSerialiser`.
+The serializer field might be named incorrectly and not match any attribute or key on the `QuerySet` instance.
+Original exception text was: 'QuerySet' object has no attribute 'last_name'.
+2022-04-17 22:06:09,561 django.request ERROR    Internal Server Error: /rest-api/clients/undefined/
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 457, in get_attribute
+    return get_attribute(instance, self.source_attrs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 97, in get_attribute
+    instance = getattr(instance, attr)
+AttributeError: 'QuerySet' object has no attribute 'last_name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\backend\client\views.py", line 72, in get
+    return Response(ax.data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 555, in data
+    ret = super().data
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 509, in to_representation
+    attribute = field.get_attribute(instance)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 490, in get_attribute
+    raise type(exc)(msg)
+AttributeError: Got AttributeError when attempting to get a value for field `last_name` on serializer `ClientSerialiser`.
+The serializer field might be named incorrectly and not match any attribute or key on the `QuerySet` instance.
+Original exception text was: 'QuerySet' object has no attribute 'last_name'.
+2022-04-17 22:11:29,843 django.request ERROR    Internal Server Error: /rest-api/clients/C9/
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 457, in get_attribute
+    return get_attribute(instance, self.source_attrs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 97, in get_attribute
+    instance = getattr(instance, attr)
+AttributeError: 'QuerySet' object has no attribute 'last_name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\backend\client\views.py", line 72, in get
+    return Response(ax.data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 555, in data
+    ret = super().data
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 509, in to_representation
+    attribute = field.get_attribute(instance)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 490, in get_attribute
+    raise type(exc)(msg)
+AttributeError: Got AttributeError when attempting to get a value for field `last_name` on serializer `ClientSerialiser`.
+The serializer field might be named incorrectly and not match any attribute or key on the `QuerySet` instance.
+Original exception text was: 'QuerySet' object has no attribute 'last_name'.
+2022-04-17 22:12:07,437 django.request ERROR    Internal Server Error: /rest-api/clients/C9/
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 457, in get_attribute
+    return get_attribute(instance, self.source_attrs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 97, in get_attribute
+    instance = getattr(instance, attr)
+AttributeError: 'QuerySet' object has no attribute 'last_name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\backend\client\views.py", line 72, in get
+    return Response(ax.data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 555, in data
+    ret = super().data
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 509, in to_representation
+    attribute = field.get_attribute(instance)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 490, in get_attribute
+    raise type(exc)(msg)
+AttributeError: Got AttributeError when attempting to get a value for field `last_name` on serializer `ClientSerialiser`.
+The serializer field might be named incorrectly and not match any attribute or key on the `QuerySet` instance.
+Original exception text was: 'QuerySet' object has no attribute 'last_name'.
+2022-04-17 22:12:11,398 django.request ERROR    Internal Server Error: /rest-api/clients/C8/
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 457, in get_attribute
+    return get_attribute(instance, self.source_attrs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 97, in get_attribute
+    instance = getattr(instance, attr)
+AttributeError: 'QuerySet' object has no attribute 'last_name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\backend\client\views.py", line 72, in get
+    return Response(ax.data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 555, in data
+    ret = super().data
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 509, in to_representation
+    attribute = field.get_attribute(instance)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 490, in get_attribute
+    raise type(exc)(msg)
+AttributeError: Got AttributeError when attempting to get a value for field `last_name` on serializer `ClientSerialiser`.
+The serializer field might be named incorrectly and not match any attribute or key on the `QuerySet` instance.
+Original exception text was: 'QuerySet' object has no attribute 'last_name'.
+2022-04-17 22:18:37,028 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\serializers.py changed, reloading.
+2022-04-17 22:18:38,722 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 22:18:50,951 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\serializers.py changed, reloading.
+2022-04-17 22:18:52,643 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 22:19:39,793 django.request ERROR    Internal Server Error: /rest-api/clients/C8/
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 457, in get_attribute
+    return get_attribute(instance, self.source_attrs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 97, in get_attribute
+    instance = getattr(instance, attr)
+AttributeError: 'QuerySet' object has no attribute 'last_name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\backend\client\views.py", line 72, in get
+    return Response(ax.data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 555, in data
+    ret = super().data
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 509, in to_representation
+    attribute = field.get_attribute(instance)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 490, in get_attribute
+    raise type(exc)(msg)
+AttributeError: Got AttributeError when attempting to get a value for field `last_name` on serializer `ClientSerialiser`.
+The serializer field might be named incorrectly and not match any attribute or key on the `QuerySet` instance.
+Original exception text was: 'QuerySet' object has no attribute 'last_name'.
+2022-04-17 22:20:32,081 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\serializers.py changed, reloading.
+2022-04-17 22:20:33,840 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 22:20:49,506 django.request ERROR    Internal Server Error: /rest-api/clients/C8/
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 457, in get_attribute
+    return get_attribute(instance, self.source_attrs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 97, in get_attribute
+    instance = getattr(instance, attr)
+AttributeError: 'QuerySet' object has no attribute 'last_name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\backend\client\views.py", line 72, in get
+    return Response(ax.data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 555, in data
+    ret = super().data
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 509, in to_representation
+    attribute = field.get_attribute(instance)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 490, in get_attribute
+    raise type(exc)(msg)
+AttributeError: Got AttributeError when attempting to get a value for field `last_name` on serializer `ClientSerialiser`.
+The serializer field might be named incorrectly and not match any attribute or key on the `QuerySet` instance.
+Original exception text was: 'QuerySet' object has no attribute 'last_name'.
+2022-04-17 22:20:55,077 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\serializers.py changed, reloading.
+2022-04-17 22:20:56,735 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 22:20:58,180 django.request ERROR    Internal Server Error: /rest-api/clients/C8/
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 457, in get_attribute
+    return get_attribute(instance, self.source_attrs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 97, in get_attribute
+    instance = getattr(instance, attr)
+AttributeError: 'QuerySet' object has no attribute 'first_name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\backend\client\views.py", line 72, in get
+    return Response(ax.data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 555, in data
+    ret = super().data
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 509, in to_representation
+    attribute = field.get_attribute(instance)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 490, in get_attribute
+    raise type(exc)(msg)
+AttributeError: Got AttributeError when attempting to get a value for field `first_name` on serializer `ClientSerialiser`.
+The serializer field might be named incorrectly and not match any attribute or key on the `QuerySet` instance.
+Original exception text was: 'QuerySet' object has no attribute 'first_name'.
+2022-04-17 22:21:04,873 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\serializers.py changed, reloading.
+2022-04-17 22:21:06,476 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 22:21:29,057 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\views.py changed, reloading.
+2022-04-17 22:21:30,942 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 22:22:57,110 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\views.py changed, reloading.
+2022-04-17 22:22:58,860 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 22:23:03,225 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\urls.py changed, reloading.
+2022-04-17 22:23:05,055 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 22:23:06,654 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\urls.py changed, reloading.
+2022-04-17 22:23:08,418 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 22:23:11,078 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\views.py changed, reloading.
+2022-04-17 22:23:12,875 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 22:23:43,172 django.request ERROR    Internal Server Error: /rest-api/clients/C8/
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 457, in get_attribute
+    return get_attribute(instance, self.source_attrs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 97, in get_attribute
+    instance = getattr(instance, attr)
+AttributeError: 'QuerySet' object has no attribute 'last_name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\backend\client\views.py", line 96, in get
+    return Response(ax.data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 555, in data
+    ret = super().data
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 509, in to_representation
+    attribute = field.get_attribute(instance)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 490, in get_attribute
+    raise type(exc)(msg)
+AttributeError: Got AttributeError when attempting to get a value for field `last_name` on serializer `ClientSerialiser`.
+The serializer field might be named incorrectly and not match any attribute or key on the `QuerySet` instance.
+Original exception text was: 'QuerySet' object has no attribute 'last_name'.
+2022-04-17 22:24:57,386 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\views.py changed, reloading.
+2022-04-17 22:24:59,391 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 22:25:32,516 django.request ERROR    Internal Server Error: /rest-api/get-client/
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 457, in get_attribute
+    return get_attribute(instance, self.source_attrs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 97, in get_attribute
+    instance = getattr(instance, attr)
+AttributeError: 'QuerySet' object has no attribute 'last_name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\backend\client\views.py", line 70, in get
+    return Response(ax.data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 555, in data
+    ret = super().data
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 509, in to_representation
+    attribute = field.get_attribute(instance)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 490, in get_attribute
+    raise type(exc)(msg)
+AttributeError: Got AttributeError when attempting to get a value for field `last_name` on serializer `ClientSerialiser`.
+The serializer field might be named incorrectly and not match any attribute or key on the `QuerySet` instance.
+Original exception text was: 'QuerySet' object has no attribute 'last_name'.
+2022-04-17 22:25:40,583 django.request WARNING  Not Found: /rest-api/clients/undefined/
+2022-04-17 22:25:42,393 django.request WARNING  Not Found: /rest-api/clients/undefined/
+2022-04-17 22:26:29,896 django.request ERROR    Internal Server Error: /rest-api/get-client/
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 457, in get_attribute
+    return get_attribute(instance, self.source_attrs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 97, in get_attribute
+    instance = getattr(instance, attr)
+AttributeError: 'QuerySet' object has no attribute 'last_name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\backend\client\views.py", line 70, in get
+    return Response(ax.data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 555, in data
+    ret = super().data
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 509, in to_representation
+    attribute = field.get_attribute(instance)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 490, in get_attribute
+    raise type(exc)(msg)
+AttributeError: Got AttributeError when attempting to get a value for field `last_name` on serializer `ClientSerialiser`.
+The serializer field might be named incorrectly and not match any attribute or key on the `QuerySet` instance.
+Original exception text was: 'QuerySet' object has no attribute 'last_name'.
+2022-04-17 22:33:33,642 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\serializers.py changed, reloading.
+2022-04-17 22:33:35,703 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 22:33:41,270 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\serializers.py changed, reloading.
+2022-04-17 22:33:42,953 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 22:34:13,955 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\serializers.py changed, reloading.
+2022-04-17 22:34:15,565 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 22:34:17,163 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\serializers.py changed, reloading.
+2022-04-17 22:34:18,696 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 22:34:22,998 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\serializers.py changed, reloading.
+2022-04-17 22:34:24,661 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 22:34:28,499 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\serializers.py changed, reloading.
+2022-04-17 22:34:30,080 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 22:34:38,444 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\serializers.py changed, reloading.
+2022-04-17 22:34:40,121 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 22:35:26,002 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\serializers.py changed, reloading.
+2022-04-17 22:35:28,026 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 22:35:45,119 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\views.py changed, reloading.
+2022-04-17 22:35:47,030 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 22:35:52,629 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\views.py changed, reloading.
+2022-04-17 22:35:54,374 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 22:35:59,854 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\views.py changed, reloading.
+2022-04-17 22:36:01,619 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 22:36:27,209 django.request ERROR    Internal Server Error: /rest-api/get-client/
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 457, in get_attribute
+    return get_attribute(instance, self.source_attrs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 97, in get_attribute
+    instance = getattr(instance, attr)
+AttributeError: 'QuerySet' object has no attribute 'id'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\backend\client\views.py", line 70, in get
+    return Response(ax.data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 555, in data
+    ret = super().data
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 509, in to_representation
+    attribute = field.get_attribute(instance)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 490, in get_attribute
+    raise type(exc)(msg)
+AttributeError: Got AttributeError when attempting to get a value for field `id` on serializer `ClientLastPresenceSerializer`.
+The serializer field might be named incorrectly and not match any attribute or key on the `QuerySet` instance.
+Original exception text was: 'QuerySet' object has no attribute 'id'.
+2022-04-17 22:44:22,268 django.request ERROR    Internal Server Error: /rest-api/get-client/
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 457, in get_attribute
+    return get_attribute(instance, self.source_attrs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 97, in get_attribute
+    instance = getattr(instance, attr)
+AttributeError: 'QuerySet' object has no attribute 'id'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\backend\client\views.py", line 70, in get
+    return Response(ax.data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 555, in data
+    ret = super().data
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 509, in to_representation
+    attribute = field.get_attribute(instance)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 490, in get_attribute
+    raise type(exc)(msg)
+AttributeError: Got AttributeError when attempting to get a value for field `id` on serializer `ClientLastPresenceSerializer`.
+The serializer field might be named incorrectly and not match any attribute or key on the `QuerySet` instance.
+Original exception text was: 'QuerySet' object has no attribute 'id'.
+2022-04-17 22:45:07,083 django.request ERROR    Internal Server Error: /rest-api/get-client/
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 457, in get_attribute
+    return get_attribute(instance, self.source_attrs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 97, in get_attribute
+    instance = getattr(instance, attr)
+AttributeError: 'QuerySet' object has no attribute 'id'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\backend\client\views.py", line 70, in get
+    return Response(ax.data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 555, in data
+    ret = super().data
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 509, in to_representation
+    attribute = field.get_attribute(instance)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 490, in get_attribute
+    raise type(exc)(msg)
+AttributeError: Got AttributeError when attempting to get a value for field `id` on serializer `ClientLastPresenceSerializer`.
+The serializer field might be named incorrectly and not match any attribute or key on the `QuerySet` instance.
+Original exception text was: 'QuerySet' object has no attribute 'id'.
+2022-04-17 22:45:34,172 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\views.py changed, reloading.
+2022-04-17 22:45:36,526 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 22:53:49,290 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\views.py changed, reloading.
+2022-04-17 22:53:51,400 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 22:53:57,760 django.request ERROR    Internal Server Error: /rest-api/get-client/
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\backend\client\views.py", line 53, in get_object
+    client = Client.objects.get(id = self.request.query_params.get('cl', None))
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 435, in get
+    raise self.model.DoesNotExist(
+client.models.Client.DoesNotExist: Client matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 208, in get
+    return self.retrieve(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 54, in retrieve
+    instance = self.get_object()
+  File "C:\Users\amd\Desktop\Octogym\backend\client\views.py", line 55, in get_object
+    client = Client.objects.get(carte = self.request.query_params.get('cl', None))
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 435, in get
+    raise self.model.DoesNotExist(
+client.models.Client.DoesNotExist: Client matching query does not exist.
+2022-04-17 23:03:34,718 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\views.py changed, reloading.
+2022-04-17 23:03:36,342 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 23:05:01,677 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\views.py changed, reloading.
+2022-04-17 23:05:03,538 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 23:06:20,194 django.request WARNING  Bad Request: /rest-api/clients/create
+2022-04-17 23:12:42,843 django.request WARNING  Bad Request: /rest-api/clients/create
+2022-04-17 23:14:05,155 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\serializers.py changed, reloading.
+2022-04-17 23:14:07,175 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 23:14:40,684 django.request ERROR    Internal Server Error: /rest-api/clients/create
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: UNIQUE constraint failed: client_client.id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 962, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 453, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\amd\Desktop\Octogym\backend\client\models.py", line 116, in save
+    return super().save(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 739, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 776, in save_base
+    updated = self._save_table(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 881, in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 919, in _do_insert
+    return manager._insert(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 1270, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1416, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\debug_toolbar\panels\sql\tracking.py", line 205, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\debug_toolbar\panels\sql\tracking.py", line 140, in _record
+    return method(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: UNIQUE constraint failed: client_client.id
+2022-04-17 23:19:31,844 django.request ERROR    Internal Server Error: /rest-api/clients/create
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: UNIQUE constraint failed: client_client.id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 962, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 453, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\amd\Desktop\Octogym\backend\client\models.py", line 116, in save
+    return super().save(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 739, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 776, in save_base
+    updated = self._save_table(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 881, in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 919, in _do_insert
+    return manager._insert(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 1270, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1416, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\debug_toolbar\panels\sql\tracking.py", line 205, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\debug_toolbar\panels\sql\tracking.py", line 140, in _record
+    return method(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: UNIQUE constraint failed: client_client.id
+2022-04-17 23:26:57,157 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\models.py changed, reloading.
+2022-04-17 23:26:58,900 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 23:27:00,917 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\models.py changed, reloading.
+2022-04-17 23:27:02,593 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 23:27:04,618 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\models.py changed, reloading.
+2022-04-17 23:27:06,463 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 23:27:53,722 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\models.py changed, reloading.
+2022-04-17 23:27:55,621 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 23:28:08,350 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\models.py changed, reloading.
+2022-04-17 23:29:22,579 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 23:29:45,337 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\models.py changed, reloading.
+2022-04-17 23:29:47,878 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 23:29:51,202 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\models.py changed, reloading.
+2022-04-17 23:29:53,011 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 23:29:58,527 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\models.py changed, reloading.
+2022-04-17 23:30:00,266 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 23:30:13,293 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 23:30:24,816 django.request ERROR    Internal Server Error: /rest-api/clients/create
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: UNIQUE constraint failed: client_client.id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 962, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 453, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\amd\Desktop\Octogym\backend\client\models.py", line 120, in save
+    return super().save(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 739, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 776, in save_base
+    updated = self._save_table(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 881, in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 919, in _do_insert
+    return manager._insert(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 1270, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1416, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\debug_toolbar\panels\sql\tracking.py", line 205, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\debug_toolbar\panels\sql\tracking.py", line 140, in _record
+    return method(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: UNIQUE constraint failed: client_client.id
+2022-04-17 23:30:58,855 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\models.py changed, reloading.
+2022-04-17 23:31:00,383 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 23:31:08,421 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\models.py changed, reloading.
+2022-04-17 23:31:10,639 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 23:31:34,464 django.request ERROR    Internal Server Error: /rest-api/clients/create
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: UNIQUE constraint failed: client_client.id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 962, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 453, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\amd\Desktop\Octogym\backend\client\models.py", line 120, in save
+    return super().save(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 739, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 776, in save_base
+    updated = self._save_table(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 881, in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 919, in _do_insert
+    return manager._insert(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 1270, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1416, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\debug_toolbar\panels\sql\tracking.py", line 205, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\debug_toolbar\panels\sql\tracking.py", line 140, in _record
+    return method(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: UNIQUE constraint failed: client_client.id
+2022-04-17 23:32:13,740 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\models.py changed, reloading.
+2022-04-17 23:32:15,430 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 23:32:20,580 django.request ERROR    Internal Server Error: /rest-api/clients/create
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: UNIQUE constraint failed: client_client.id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 962, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 453, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\amd\Desktop\Octogym\backend\client\models.py", line 120, in save
+    return super().save(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 739, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 776, in save_base
+    updated = self._save_table(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 881, in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 919, in _do_insert
+    return manager._insert(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 1270, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1416, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\debug_toolbar\panels\sql\tracking.py", line 205, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\debug_toolbar\panels\sql\tracking.py", line 140, in _record
+    return method(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: UNIQUE constraint failed: client_client.id
+2022-04-17 23:33:04,691 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\models.py changed, reloading.
+2022-04-17 23:33:06,339 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 23:33:09,685 django.request ERROR    Internal Server Error: /rest-api/clients/create
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: UNIQUE constraint failed: client_client.id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 962, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 453, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\amd\Desktop\Octogym\backend\client\models.py", line 120, in save
+    return super().save(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 739, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 776, in save_base
+    updated = self._save_table(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 881, in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 919, in _do_insert
+    return manager._insert(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 1270, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1416, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\debug_toolbar\panels\sql\tracking.py", line 205, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\debug_toolbar\panels\sql\tracking.py", line 140, in _record
+    return method(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: UNIQUE constraint failed: client_client.id
+2022-04-17 23:33:19,429 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\models.py changed, reloading.
+2022-04-17 23:33:21,300 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 23:33:38,781 django.request ERROR    Internal Server Error: /rest-api/clients/create
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: UNIQUE constraint failed: client_client.id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 962, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 453, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\amd\Desktop\Octogym\backend\client\models.py", line 120, in save
+    return super().save(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 739, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 776, in save_base
+    updated = self._save_table(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 881, in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 919, in _do_insert
+    return manager._insert(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 1270, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1416, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\debug_toolbar\panels\sql\tracking.py", line 205, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\debug_toolbar\panels\sql\tracking.py", line 140, in _record
+    return method(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: UNIQUE constraint failed: client_client.id
+2022-04-17 23:34:43,200 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\models.py changed, reloading.
+2022-04-17 23:34:45,248 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 23:34:55,315 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\models.py changed, reloading.
+2022-04-17 23:34:57,084 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 23:35:11,825 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\models.py changed, reloading.
+2022-04-17 23:35:13,913 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 23:35:18,304 django.request ERROR    Internal Server Error: /rest-api/clients/create
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: UNIQUE constraint failed: client_client.id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 962, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 453, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\amd\Desktop\Octogym\backend\client\models.py", line 120, in save
+    return super().save(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 739, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 776, in save_base
+    updated = self._save_table(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 881, in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 919, in _do_insert
+    return manager._insert(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 1270, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1416, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\debug_toolbar\panels\sql\tracking.py", line 205, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\debug_toolbar\panels\sql\tracking.py", line 140, in _record
+    return method(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: UNIQUE constraint failed: client_client.id
+2022-04-17 23:35:46,617 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\models.py changed, reloading.
+2022-04-17 23:35:48,385 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 23:35:51,688 django.request ERROR    Internal Server Error: /rest-api/clients/create
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: UNIQUE constraint failed: client_client.id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 962, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 453, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\amd\Desktop\Octogym\backend\client\models.py", line 120, in save
+    return super().save(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 739, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 776, in save_base
+    updated = self._save_table(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 881, in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 919, in _do_insert
+    return manager._insert(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 1270, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1416, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\debug_toolbar\panels\sql\tracking.py", line 205, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\debug_toolbar\panels\sql\tracking.py", line 140, in _record
+    return method(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: UNIQUE constraint failed: client_client.id
+2022-04-17 23:36:15,321 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\models.py changed, reloading.
+2022-04-17 23:36:17,409 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 23:36:27,626 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\models.py changed, reloading.
+2022-04-17 23:36:29,504 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 23:36:33,934 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\models.py changed, reloading.
+2022-04-17 23:36:35,711 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 23:36:38,452 django.request ERROR    Internal Server Error: /rest-api/clients/create
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: UNIQUE constraint failed: client_client.id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 962, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 453, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\amd\Desktop\Octogym\backend\client\models.py", line 122, in save
+    return super().save(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 739, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 776, in save_base
+    updated = self._save_table(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 881, in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 919, in _do_insert
+    return manager._insert(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 1270, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1416, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\debug_toolbar\panels\sql\tracking.py", line 205, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\debug_toolbar\panels\sql\tracking.py", line 140, in _record
+    return method(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: UNIQUE constraint failed: client_client.id
+2022-04-17 23:36:53,261 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\models.py changed, reloading.
+2022-04-17 23:36:55,181 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 23:37:02,994 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\models.py changed, reloading.
+2022-04-17 23:37:04,863 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 23:37:12,880 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\models.py changed, reloading.
+2022-04-17 23:37:14,993 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 23:37:23,569 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\models.py changed, reloading.
+2022-04-17 23:37:25,658 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 23:39:07,141 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\models.py changed, reloading.
+2022-04-17 23:39:08,853 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 23:39:33,108 django.request ERROR    Internal Server Error: /rest-api/clients/create
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: UNIQUE constraint failed: client_client.id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 962, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 453, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\amd\Desktop\Octogym\backend\client\models.py", line 122, in save
+    return super().save(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 739, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 776, in save_base
+    updated = self._save_table(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 881, in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 919, in _do_insert
+    return manager._insert(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 1270, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1416, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\debug_toolbar\panels\sql\tracking.py", line 205, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\debug_toolbar\panels\sql\tracking.py", line 140, in _record
+    return method(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: UNIQUE constraint failed: client_client.id
+2022-04-17 23:41:01,715 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\models.py changed, reloading.
+2022-04-17 23:41:03,842 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 23:41:32,203 django.request ERROR    Internal Server Error: /rest-api/clients/create
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: UNIQUE constraint failed: client_client.id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 962, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 453, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\amd\Desktop\Octogym\backend\client\models.py", line 122, in save
+    return super().save(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 739, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 776, in save_base
+    updated = self._save_table(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 881, in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 919, in _do_insert
+    return manager._insert(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 1270, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1416, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\debug_toolbar\panels\sql\tracking.py", line 205, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\debug_toolbar\panels\sql\tracking.py", line 140, in _record
+    return method(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: UNIQUE constraint failed: client_client.id
+2022-04-17 23:46:35,785 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\models.py changed, reloading.
+2022-04-17 23:46:37,752 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 23:47:00,413 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\models.py changed, reloading.
+2022-04-17 23:47:01,897 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 23:47:21,292 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\models.py changed, reloading.
+2022-04-17 23:47:23,688 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 23:47:26,763 django.request ERROR    Internal Server Error: /rest-api/clients/create
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: UNIQUE constraint failed: client_client.id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 962, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 453, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\amd\Desktop\Octogym\backend\client\models.py", line 121, in save
+    return super().save(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 739, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 776, in save_base
+    updated = self._save_table(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 881, in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 919, in _do_insert
+    return manager._insert(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 1270, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1416, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\debug_toolbar\panels\sql\tracking.py", line 205, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\debug_toolbar\panels\sql\tracking.py", line 140, in _record
+    return method(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: UNIQUE constraint failed: client_client.id
+2022-04-17 23:47:46,661 django.request ERROR    Internal Server Error: /rest-api/clients/create
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: UNIQUE constraint failed: client_client.id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 962, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 453, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\amd\Desktop\Octogym\backend\client\models.py", line 121, in save
+    return super().save(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 739, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 776, in save_base
+    updated = self._save_table(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 881, in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 919, in _do_insert
+    return manager._insert(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 1270, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1416, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\debug_toolbar\panels\sql\tracking.py", line 205, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\debug_toolbar\panels\sql\tracking.py", line 140, in _record
+    return method(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: UNIQUE constraint failed: client_client.id
+2022-04-17 23:48:04,184 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\models.py changed, reloading.
+2022-04-17 23:48:06,262 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 23:48:07,762 django.request ERROR    Internal Server Error: /rest-api/clients/create
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: UNIQUE constraint failed: client_client.id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 962, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 453, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\amd\Desktop\Octogym\backend\client\models.py", line 121, in save
+    return super().save(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 739, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 776, in save_base
+    updated = self._save_table(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 881, in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 919, in _do_insert
+    return manager._insert(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 1270, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1416, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\debug_toolbar\panels\sql\tracking.py", line 205, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\debug_toolbar\panels\sql\tracking.py", line 140, in _record
+    return method(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: UNIQUE constraint failed: client_client.id
+2022-04-17 23:48:22,265 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\models.py changed, reloading.
+2022-04-17 23:48:24,077 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 23:48:26,100 django.request ERROR    Internal Server Error: /rest-api/clients/create
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: UNIQUE constraint failed: client_client.id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 962, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 453, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\amd\Desktop\Octogym\backend\client\models.py", line 121, in save
+    return super().save(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 739, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 776, in save_base
+    updated = self._save_table(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 881, in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 919, in _do_insert
+    return manager._insert(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 1270, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1416, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\debug_toolbar\panels\sql\tracking.py", line 205, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\debug_toolbar\panels\sql\tracking.py", line 140, in _record
+    return method(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: UNIQUE constraint failed: client_client.id
+2022-04-17 23:48:37,016 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\models.py changed, reloading.
+2022-04-17 23:48:38,640 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 23:48:42,682 django.request ERROR    Internal Server Error: /rest-api/clients/create
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: UNIQUE constraint failed: client_client.id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 962, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 453, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\amd\Desktop\Octogym\backend\client\models.py", line 121, in save
+    return super().save(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 739, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 776, in save_base
+    updated = self._save_table(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 881, in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 919, in _do_insert
+    return manager._insert(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 1270, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1416, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\debug_toolbar\panels\sql\tracking.py", line 205, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\debug_toolbar\panels\sql\tracking.py", line 140, in _record
+    return method(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: UNIQUE constraint failed: client_client.id
+2022-04-17 23:48:53,446 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\models.py changed, reloading.
+2022-04-17 23:48:55,068 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 23:48:57,461 django.request ERROR    Internal Server Error: /rest-api/clients/create
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: UNIQUE constraint failed: client_client.id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 962, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 453, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\amd\Desktop\Octogym\backend\client\models.py", line 121, in save
+    return super().save(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 739, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 776, in save_base
+    updated = self._save_table(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 881, in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 919, in _do_insert
+    return manager._insert(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 1270, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1416, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\debug_toolbar\panels\sql\tracking.py", line 205, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\debug_toolbar\panels\sql\tracking.py", line 140, in _record
+    return method(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: UNIQUE constraint failed: client_client.id
+2022-04-17 23:49:57,106 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\config\urls.py changed, reloading.
+2022-04-17 23:49:58,689 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 23:49:59,237 django.request WARNING  Not Found: /fr/admin
+2022-04-17 23:49:59,931 django.request WARNING  Not Found: /favicon.ico
+2022-04-17 23:50:40,179 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\models.py changed, reloading.
+2022-04-17 23:50:41,950 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 23:53:01,364 django.request ERROR    Internal Server Error: /rest-api/clients/create
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: UNIQUE constraint failed: client_client.id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 962, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 453, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\amd\Desktop\Octogym\backend\client\models.py", line 121, in save
+    return super().save(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 739, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 776, in save_base
+    updated = self._save_table(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 881, in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 919, in _do_insert
+    return manager._insert(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 1270, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1416, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\debug_toolbar\panels\sql\tracking.py", line 205, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\debug_toolbar\panels\sql\tracking.py", line 140, in _record
+    return method(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: UNIQUE constraint failed: client_client.id
+2022-04-17 23:53:54,109 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\models.py changed, reloading.
+2022-04-17 23:53:55,912 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 23:54:08,046 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\models.py changed, reloading.
+2022-04-17 23:54:10,154 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-17 23:54:13,423 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\models.py changed, reloading.
+2022-04-17 23:54:15,160 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-18 00:01:36,267 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-18 00:01:58,777 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\models.py changed, reloading.
+2022-04-18 00:02:00,251 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-18 00:02:22,268 django.request ERROR    Internal Server Error: /rest-api/clients/create
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: UNIQUE constraint failed: client_client.id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 962, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 453, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\amd\Desktop\Octogym\backend\client\models.py", line 122, in save
+    return super().save(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 739, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 776, in save_base
+    updated = self._save_table(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 881, in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\base.py", line 919, in _do_insert
+    return manager._insert(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 1270, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1416, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\debug_toolbar\panels\sql\tracking.py", line 205, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\debug_toolbar\panels\sql\tracking.py", line 140, in _record
+    return method(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: UNIQUE constraint failed: client_client.id
+2022-04-18 00:02:44,419 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\models.py changed, reloading.
+2022-04-18 00:02:46,094 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-18 00:03:09,177 django.request WARNING  Bad Request: /rest-api/clients/create
+2022-04-18 00:06:15,540 django.request WARNING  Bad Request: /rest-api/clients/create
+2022-04-18 00:07:04,356 django.request WARNING  Bad Request: /rest-api/clients/create
+2022-04-18 00:07:36,191 django.request WARNING  Bad Request: /rest-api/clients/create
+2022-04-18 00:11:06,961 django.request WARNING  Bad Request: /rest-api/clients/create
+2022-04-18 00:11:45,359 django.request WARNING  Bad Request: /rest-api/clients/create
+2022-04-18 00:12:15,615 django.request WARNING  Bad Request: /rest-api/clients/create
+2022-04-18 00:12:52,628 django.request WARNING  Bad Request: /rest-api/clients/create
+2022-04-18 00:13:22,604 django.request WARNING  Bad Request: /rest-api/clients/create
+2022-04-18 00:13:45,192 django.request WARNING  Bad Request: /rest-api/clients/create
+2022-04-18 00:15:23,908 django.request WARNING  Bad Request: /rest-api/clients/create
+2022-04-18 00:16:02,035 django.request WARNING  Bad Request: /rest-api/clients/create

@@ -34,7 +34,7 @@ const AbonnementCreateModal = ({show, onShowShange}) => {
     const [duree, setDuree] = useState('')
     const [displayLength, setDisplayLength] = useState(true)
     const [length, setLength] = useState("Nombre d'heures")
-    const [typeOfValue, setTypeOfValue] = useState("VO")
+    const [typeOfValue, setTypeOfValue] = useState("VH")
     // const [numOfWeek, setNumOfWeek] = useState(false)
     
     const [alertSuccess, setAlertSuccess] = useState(false)
@@ -63,6 +63,7 @@ const AbonnementCreateModal = ({show, onShowShange}) => {
     }
     const handleTypeOfValueChange = (event) => {
         setTypeOfValue(event.target.value)
+        console.log(typeOfValue);
     }
 
     const handleSubmit = async e => {
@@ -104,7 +105,7 @@ return (
 
               <RadioGroup row aria-label="position" name="position" value={typeOfValue} onChange={handleTypeOfValueChange}>
                 <FormControlLabel
-                    value="VO"
+                    value="VH"
                     control={<Radio color="primary" />}
                     label="Volume Horaire"
                     labelPlacement="start"

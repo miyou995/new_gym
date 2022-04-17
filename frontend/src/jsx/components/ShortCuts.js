@@ -141,7 +141,7 @@ const ShortCuts = () => {
         <div className="items">
           <div>
             <img className="mb-3 ml-auto mr-auto" src={tresorieImg}  />
-            <h6 className=" mb-0 text-center">Trésorie</h6>
+            <h6 className=" mb-0 text-center">Chiffre d'affiare</h6>
           </div>
         </div>
       </Link>
@@ -149,7 +149,7 @@ const ShortCuts = () => {
         <div className="items">
           <div>
             <img className="mb-3 ml-auto mr-auto" src={creneauImg}  />
-            <h6 className=" mb-0 text-center">Planning</h6>
+            <h6 className=" mb-0 text-center">Créneaux</h6>
             {/* <span className="fs-12">Gestion des Créneaux</span> */}
           </div>
         </div>

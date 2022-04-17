@@ -83,7 +83,9 @@ class Client(models.Model):
     birth_date  = models.DateField(max_length=50, verbose_name='Date de naissance', blank=True, null=True)
     blood       = models.CharField(choices=BLOOD_CHOICES , max_length=3, verbose_name='Groupe sanguin')
     date_added  = models.DateField(auto_now_add=True)
+    created      = models.DateTimeField(verbose_name='Date de Création',  auto_now_add=True)
     profession  = models.CharField(max_length=50, blank=True, null=True)
+    updated      = models.DateTimeField(verbose_name='Date de dernière mise à jour',  auto_now=True)
     # date_added  = models.DateTimeField(auto_now_add=True, verbose_name='Date d\'inscription')
     # state       = models.CharField(choices=STATE_CHOICES , max_length=3, verbose_name='Etat', blank=True, null=True)
     note        = models.TextField(blank=True, null=True)
@@ -105,10 +107,14 @@ class Client(models.Model):
     def save(self, *args, **kwargs):
         if not self.id:
             try :
-                last_id = Client.objects.all().last().id
+                # print('clientsd==> ', timezone.now())
+                last_id = Client.objects.latest('created').id
                 print('yesssss last id = ', last_id)
                 number = int(last_id[1::])+1
-                the_id = f'C{number}'   
+                print('the number', number)     
+                result  = str(number).zfill(4)
+                print('the result', result)     
+                the_id = f'C{result}'   
                 print('the id', the_id)     
                 self.id = the_id
             except:
@@ -140,6 +146,9 @@ class Coach(models.Model):
     # maladies        = models.ManyToManyField(Maladie)
     heures_done     = models.IntegerField( blank=True, null=True)
     pay_per_hour    = models.IntegerField( blank=True, null=True, default=1)
+    created      = models.DateTimeField(verbose_name='Date de Création',  auto_now_add=True)
+
+    updated      = models.DateTimeField(verbose_name='Date de dernière mise à jour',  auto_now=True)
     objects = models.Manager()
     custom_manager = PresenceManager()
     def __str__(self):
@@ -165,6 +174,9 @@ class Personnel(models.Model):
     birth_date      = models.DateField(max_length=50, verbose_name='Date de naissance')
     blood           = models.CharField(choices=BLOOD_CHOICES , max_length=3, verbose_name='Groupe sanguin')
     date_added      = models.DateTimeField(auto_now_add=True, verbose_name='Date de recrutement')
+    created      = models.DateTimeField(verbose_name='Date de Création',  auto_now_add=True)
+    updated      = models.DateTimeField(verbose_name='Date de dernière mise à jour',  auto_now=True)
+
     state           = models.CharField(choices=STATE_CHOICES , max_length=3, verbose_name='Etat', default='A')
     note            = models.TextField(blank=True, null=True)
     social_security = models.CharField(max_length=150)

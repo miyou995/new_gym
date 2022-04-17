@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import ClientAPIView, ClientListAPIView, ClientDestroyAPIView, ClientDetailAPIView, PersonnelCreateAPIView, PersonnelListAPIView, PersonnelDetailAPIView, PersonnelDestroyAPIView ,CoachCreateAPIView ,CoachListAPIView ,CoachDetailAPIView ,CoachDestroyAPIView, MaladieCreateAPIView, MaladieViewSet, ClientNameViewAPI,  total_dettes, total_abonnes, ClientPresenceViewAPI, ClientNamesDropListAPIView, MaladieDetailViewAPI
+from .views import ClientAPIView, ClientListAPIView, ClientDestroyAPIView, ClientDetailAPIView, PersonnelCreateAPIView, PersonnelListAPIView, PersonnelDetailAPIView, PersonnelDestroyAPIView ,CoachCreateAPIView ,CoachListAPIView ,CoachDetailAPIView ,CoachDestroyAPIView, MaladieCreateAPIView, MaladieViewSet, ClientNameViewAPI,  total_dettes, total_abonnes, ClientPresenceViewAPI, ClientNamesDropListAPIView, MaladieDetailViewAPI, GETClientDetailAPIView
 from django.views.generic import TemplateView
 
 app_name = 'client'
@@ -16,7 +16,7 @@ urlpatterns = [
     path('clients-name-drop/', ClientNamesDropListAPIView.as_view(),  name="client-name"),
     path('clients-presence/', ClientPresenceViewAPI.as_view(),  name="client-presence"),
     path('clients/<str:pk>/', ClientDetailAPIView.as_view(), name="client-detail"),
-    path('get-client/', ClientDetailAPIView.as_view(), name="client-detail"),
+    path('get-client/', GETClientDetailAPIView.as_view(), name="client-detail"),
 
     path('clients/create', ClientAPIView.as_view(),  name="client-create"),
     path('clients/delete/<str:pk>/', ClientDestroyAPIView.as_view(), name="client-delete"),

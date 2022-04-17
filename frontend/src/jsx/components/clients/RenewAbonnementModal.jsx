@@ -162,11 +162,11 @@ return (
                         </div>
                         <div className="form-group col-md-4">
                           <label className="text-black">séances restantes</label>
-                          <input type="number" name="birth_date"value={presences} className="form-control" onChange={e => setPresences(e.target.value)}/>
+                          <input type="number" value={presences} className="form-control" onChange={e => setPresences(e.target.value)}/>
                         </div>
                         <div className="form-group col-md-4">
                           <label className="text-black">Reste</label>
-                          <input type="number" name="birth_date"value={reste} className="form-control" onChange={e => setReste(e.target.value)}/>
+                          <input type="number" value={reste} className="form-control" onChange={e => setReste(e.target.value)}/>
                         </div>
                       </div>
                     </form>

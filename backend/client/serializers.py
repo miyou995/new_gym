@@ -50,7 +50,7 @@ class ClientCreateSerialiser(serializers.ModelSerializer):
 
     class Meta:
         model = Client
-        fields= ( 'picture','civility','civility_display','last_name', 'first_name', 'adress', 'phone', 'email', 'nationality', 'birth_date', 'blood', 'state_display','note',  'date_added', 'maladies', 'profession')
+        fields= ( 'picture','civility','civility_display','carte', 'last_name', 'first_name', 'adress', 'phone', 'email', 'nationality', 'birth_date', 'blood', 'state_display','note',  'date_added', 'maladies', 'profession')
  
 
 
@@ -68,7 +68,7 @@ class ClientSerialiser(serializers.ModelSerializer):
     class Meta:
         model = Client
         read_only_fields = ('id','date_added','abonnement_detail')
-        fields= ('id', 'picture','carte','civility','civility_display','last_name', 'first_name', 'adress', 'phone', 'email', 'nationality', 'birth_date', 'blood', 'state_display','note', 'dette', 'date_added', 'maladies', 'maladie_name','abonnement_detail', 'presences', 'last_presence', 'age', 'debut_assurance', 'fin_assurance','profession')
+        fields= ('id', 'picture','carte','civility','civility_display', 'last_name', 'first_name', 'adress', 'phone', 'email', 'nationality', 'birth_date', 'blood', 'state_display','note', 'dette', 'date_added', 'maladies', 'maladie_name','abonnement_detail', 'presences', 'last_presence', 'age', 'debut_assurance', 'fin_assurance','profession')
  
     def get_maladie_name(self, obj):
         maladies_queryset = obj.maladies.all()
@@ -113,6 +113,23 @@ class ClientSerialiser(serializers.ModelSerializer):
             return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
         except:
             return 0
+
+class ClientLastPresenceSerializer(serializers.ModelSerializer):
+    last_presence = serializers.SerializerMethodField('get_last_presence', read_only=True)
+    class Meta:
+        model = Client
+        fields= ('id', 'carte', 'dette', 'date_added', 'last_presence')
+        
+    def get_last_presence(self, obj):
+        try :
+            # presence = client.presences.filter(is_in_salle=True).last().id
+            presence = Presence.objects.filter(abc__client=obj, is_in_salle=True).last().id
+            # print(presence, ' JJJJJJJJJJJJJJJJJJJJJJ')
+            return presence
+        except:
+            presence = False
+            return presence
+    
 
     # def create(self, validated_data):
     #     print('validated Client Data', validated_data)
@@ -178,6 +195,6 @@ class ClientNameDropSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Client
-        fields = ('id', 'last_name', 'first_name', 'adress', 'phone', 'date_added')
+        fields = ('id', 'carte','last_name', 'first_name', 'adress', 'phone', 'date_added')
 
 

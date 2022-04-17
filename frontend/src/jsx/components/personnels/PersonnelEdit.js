@@ -141,6 +141,7 @@ const PersonnelEdit = (props) => {
                   <input
                     type="date"
                     name="birth_date"
+                    max="2099-01-01" 
                     className="form-control"
                     value={birthDate}
                     onChange={(e) => setBirthDate(e.target.value)}

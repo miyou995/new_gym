@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from rest_framework import generics, viewsets
 from .models import Client, Personnel, Coach, Maladie
-from .serializers import ClientSerialiser, PersonnelSerializer, CoachSerializer, MaladieSerializer, ClientNameSerializer, ClientCreateSerialiser, ClientNameDropSerializer
+from .serializers import ClientSerialiser, PersonnelSerializer, CoachSerializer, MaladieSerializer, ClientNameSerializer, ClientCreateSerialiser, ClientNameDropSerializer, ClientLastPresenceSerializer
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.parsers import MultiPartParser, FormParser
@@ -43,7 +43,30 @@ class ClientNamesDropListAPIView(generics.ListAPIView):
     permission_classes = (AllowAny, )
 
 
+class GETClientDetailAPIView(generics.RetrieveAPIView):
+    queryset = Client.objects.all()
+    # permission_classes = (IsAuthenticated,)
+    serializer_class = ClientLastPresenceSerializer
+    # permission_classes = (AllowAny,)
+    def get_object(self):
+        try:
+            client = Client.objects.get(id = self.request.query_params.get('cl', None))
+        except :
+            client = Client.objects.get(carte = self.request.query_params.get('cl', None))
+        print('object, client', client)
+        return client
 
+    # def get(self , request, *args, **kwargs):
+    #     params = self.request.query_params.get('cl', None)
+    #     print('object,params', params)
+    #     try:
+    #         client = Client.objects.get(id = params)
+    #     except :
+    #         client = Client.objects.filter(carte = params)
+    #     print('les client !!!', client)
+    #     # obj = get_object_or_404(Client.objects.filter(id=self.kwargs["pk"]))
+    #     ax = self.serializer_class(client)
+    #     return Response(ax.data)
 
 class ClientDetailAPIView(generics.RetrieveUpdateAPIView):
     queryset = Client.objects.all()
@@ -51,24 +74,12 @@ class ClientDetailAPIView(generics.RetrieveUpdateAPIView):
     serializer_class = ClientSerialiser
     # permission_classes = (AllowAny, )
     def get_object(self):
-        try:
-            client = Client.objects.get(id = self.request.query_params.get('cl', None))
-        except :
-            client = Client.objects.get(carte = self.request.query_params.get('cl', None))
-        
-        print('object, client', client)
-        return client
-
+        obj = get_object_or_404(Client.objects.filter(id=self.kwargs["pk"]))
+        return obj
     def get(self , request, *args, **kwargs):
-        params = self.request.query_params.get('cl', None)
-        print('object,params', params)
-        try:
-            client = Client.objects.get(id = params)
-        except :
-            client = Client.objects.get(carte = params)
-             
-        # obj = get_object_or_404(Client.objects.filter(id=self.kwargs["pk"]))
-        ax = self.serializer_class(client)
+        # try:
+        obj = get_object_or_404(Client.objects.filter(id=self.kwargs["pk"]))
+        ax = self.serializer_class(obj)
         return Response(ax.data)
         # except:
         #     msg = 'le client nexiste pas'

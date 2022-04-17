@@ -279,7 +279,7 @@ const getSelectedMaladies = () => {
                     </div>
                     <div className="form-group col-md-4 col-xl-3">
                       <label>Date de naissance </label>
-                      <input type="date" name="birth_date" className="form-control" value={birthDate}onChange={e => setBirthDate(e.target.value)}/>
+                      <input type="date" name="birth_date" max="2099-01-01"  className="form-control" value={birthDate}onChange={e => setBirthDate(e.target.value)}/>
                     </div>
                     <div className="form-group col-md-4 col-xl-3">
                       <label>Nationalité</label>
