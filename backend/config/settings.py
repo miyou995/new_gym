@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-m@qx+wsk0=4r0)_7=#b*#6)tn6_n#@hv=*tt#!_2rotvo*4byl'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -98,10 +98,10 @@ SIMPLE_JWT = {
     'TOKEN_TYPE_CLAIM': 'token_type',
 }
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',# third party
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware', #DJango debug toolbar
-    'corsheaders.middleware.CorsMiddleware',# third party
     'django.middleware.common.CommonMiddleware',
     # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -110,18 +110,19 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000"
-]
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:3000"
+# ]
 
+CORS_ORIGIN_ALLOW_ALL = True
 ROOT_URLCONF = 'config.urls'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         # 'DIRS': [BASE_DIR / 'build'],
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [BASE_DIR / 'build'],
         'APP_DIRS': True,
         'OPTIONS': { 
             'context_processors': [
@@ -228,8 +229,8 @@ STATIC_URL = '/static/'
 # STATICFILES_DIR = [ BASE_DIR / 'static' ]
 STATIC_ROOT = BASE_DIR / 'assets'
 STATICFILES_DIRS = [
-   # BASE_DIR / 'build/static',
-   BASE_DIR,
+   BASE_DIR / 'build/static',
+#    BASE_DIR,
 ]
 
 

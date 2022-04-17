@@ -205,31 +205,16 @@ const Header = ({ onNote, toggle, onProfile, onNotification, onClick }) => {
                   </PerfectScrollbar>
                 </Dropdown.Menu>
               </Dropdown> */}
-              <Dropdown className="nav-item dropdown header-profile ml-sm-4 ml-2">
-                <Dropdown.Toggle
-                  as="a"
-                  to="#"
-                  variant=""
-                  className="nav-link i-false c-pointer"
-                >
-                  <div className="header-info">
-                    <span className="text-black">
-                      Hello, <strong>{user ? "Admin" : " byeee"}</strong>
-                    </span>
-                    <p className="fs-12 mb-0">Super Admin</p>
-                  </div>
-                  <img src={profile} width={20} alt="" />
-                </Dropdown.Toggle>
-                {
-                    user && 
-                <Dropdown.Menu align="right" className="mt-2">
-                  {/* 
-                  
-                  <Link to="/app-profile" className="dropdown-item ai-icon">
-                    <svg
-                      id="icon-user1"
+                                <div className="nav-item dropdown header-profile ml-sm-4 ml-2">
+                                {
+                    user ? ( 
+                    // <Dropdown.Menu align="right" className="mt-2">
+                    // </Dropdown.Menu>
+                    <span className="dropdown-item ai-icon"style={{ cursor: 'pointer'}}  onClick={(e) => Logout(e)}>
+                    {/* <svg
+                      id="icon-logout"
                       xmlns="http://www.w3.org/2000/svg"
-                      className="text-primary"
+                      className="text-danger"
                       width={18}
                       height={18}
                       viewBox="0 0 24 24"
@@ -238,34 +223,13 @@ const Header = ({ onNote, toggle, onProfile, onNotification, onClick }) => {
                       strokeWidth={2}
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                    >
-                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                      <circle cx={12} cy={7} r={4} />
-                    </svg>
-                    <span className="ml-2">Profile </span>
-                  </Link>
-                  */}
-                  {/* <Link to="/email-inbox" className="dropdown-item ai-icon">
-                    <svg
-                      id="icon-inbox"
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="text-success"
-                      width={18}
-                      height={18}
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                      <polyline points="22,6 12,13 2,6" />
-                    </svg>
-                    <span className="ml-2">Inbox </span>
-                  </Link> */}
-                 
-                    <span className="dropdown-item ai-icon" onClick={(e) => Logout(e)}>
+                    > 
+                      <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                      <polyline points="16 17 21 12 16 7" />
+                      <line x1={21} y1={12} x2={9} y2={12} />
+                    </svg>*/}Se Déconnecté </span>
+                  ) : (
+                    <Link className="dropdown-item ai-icon" to={`/login`} >
                     <svg
                       id="icon-logout"
                       xmlns="http://www.w3.org/2000/svg"
@@ -282,12 +246,27 @@ const Header = ({ onNote, toggle, onProfile, onNotification, onClick }) => {
                       <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
                       <polyline points="16 17 21 12 16 7" />
                       <line x1={21} y1={12} x2={9} y2={12} />
-                    </svg> Logout </span>
+                    </svg> Se Connecter </Link>
+                  )}
+                                </div>
 
-                  
-                </Dropdown.Menu>
-                  }
-              </Dropdown>
+              {/* <Dropdown className="nav-item dropdown header-profile ml-sm-4 ml-2">
+                <Dropdown.Toggle
+                  as="a"
+                  to="#"
+                  variant=""
+                  className="nav-link i-false c-pointer"
+                >
+                  <div className="header-info">
+                    <span className="text-black">
+                       <strong>{user ? "Bienvenue" : ""}</strong>
+                    </span>
+                    <p className="fs-12 mb-0">Super Admin</p>
+                  </div>
+                  <img src={profile} width={20} alt="" />
+                </Dropdown.Toggle>
+
+              </Dropdown> */}
             </ul>
           </div>
         </nav>

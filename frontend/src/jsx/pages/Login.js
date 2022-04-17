@@ -68,7 +68,7 @@ const Login = ({ history }) => {
                         </label>
                         <input type="password" className="form-control" value={password} name="password" onChange={(e) => handleChange(e)} />
                       </div>
-                      <div className="form-row d-flex justify-content-between mt-4 mb-2">
+                      {/* <div className="form-row d-flex justify-content-between mt-4 mb-2">
                         <div className="form-group">
                           <div className="custom-control custom-checkbox ml-1">
                             <input type="checkbox" className="custom-control-input" id="basic_checkbox_1" />
@@ -80,18 +80,18 @@ const Login = ({ history }) => {
                             Forgot Password?
                           </Link>
                         </div>
-                      </div>
+                      </div> */}
                       <div className="text-center">
                         <input type="submit" value="Sign Me In" className="btn btn-primary btn-block" />
                       </div>
                     </form>
                     <div className="new-account mt-3">
-                      <p>
+                      {/* <p>
                        Vous n'avez pas de compte ?{" "}
                         <Link className="text-primary" to="/register">
                           Creer un compte
                         </Link>
-                      </p>
+                      </p> */}
                     </div>
                   </div>
                 </div>
