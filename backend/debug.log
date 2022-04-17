@@ -10982,3 +10982,4 @@ django.db.utils.IntegrityError: UNIQUE constraint failed: client_client.id
 2022-04-18 00:13:45,192 django.request WARNING  Bad Request: /rest-api/clients/create
 2022-04-18 00:15:23,908 django.request WARNING  Bad Request: /rest-api/clients/create
 2022-04-18 00:16:02,035 django.request WARNING  Bad Request: /rest-api/clients/create
+2022-04-18 00:18:25,904 django.utils.autoreload INFO     Watching for file changes with StatReloader
