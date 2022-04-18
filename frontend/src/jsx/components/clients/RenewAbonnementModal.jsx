@@ -393,12 +393,14 @@ return (
                 <Button onClick={handleShow} variant="danger light" className='m-2' > Fermer </Button>
                 <Button onClick={handleSubmit} variant="primary" className='m-2' > Valider </Button>
                   <div onClick={async e => { 
-                    await axios.get(`${process.env.REACT_APP_API_URL}/rest-api/abonnement-client/renew/${abonId}` )
-                    setRenouvler(true)
-                    setTimeout(() => {
-                      // refreshPage()
+                    await axios.get(`${process.env.REACT_APP_API_URL}/rest-api/abonnement-client/renew/${abonId}` ).then( () => {
+                      setRenouvler(true)
+                      notifySuccess(" l'abonement a été renouvelé avec succés")
                       handleShow()
-                    }, 100);
+                    }).catch(err => {
+                      notifyError(" erreur lors du renouvelement ")
+                    })
+                    
                   }}
                       role="button" className="btn btn-secondary popover-tes cursor-abonnement" >
                     Renouveler l'abonnement

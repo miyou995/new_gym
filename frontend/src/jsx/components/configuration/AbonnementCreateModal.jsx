@@ -139,7 +139,8 @@ return (
                         setHelpText("Abonnement limité par un nombre de seance avec des horaires fléxible")
                     }}
                 />
-                  <FormControlLabel
+              </RadioGroup>
+                  {/* <FormControlLabel
                     value="AL"
                     control={<Radio color="primary" />}
                     label="Accés Libre"
@@ -148,8 +149,7 @@ return (
                         setDisplayLength(false)
                         setHelpText("Abonnement limité uniquement par sa date")
                     }}
-                />
-              </RadioGroup>
+                /> */}
               </div>
 
           </div>

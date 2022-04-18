@@ -102,10 +102,15 @@ def renew_api_view(request, pk):
         new_start_date = end_date
         abc.start_date = new_start_date
         abc.save()
-        try:
+        if abc.is_time_volume():
+            abc.presence_quantity += seances*60
+        else:
             abc.presence_quantity += seances
-        except:
-            abc.presence_quantity = seances
+
+        # try:
+        #     abc.presence_quantity += seances
+        # except:
+        #     abc.presence_quantity = seances
         abc.end_date = new_start_date + delta
         try:
             abc.reste += abon.price
