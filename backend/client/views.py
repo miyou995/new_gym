@@ -190,7 +190,7 @@ class ClientNameViewAPI(generics.ListAPIView):
 
     queryset = Client.objects.all().order_by('-id')
     serializer_class = ClientNameSerializer
-    search_fields = [ '=id','^last_name', '^first_name', '^phone']
+    search_fields = [ '=id','=carte', '^last_name', '^first_name', '^phone']
     filter_backends = (filters.SearchFilter,)
 
 class MaladieDetailViewAPI(generics.RetrieveUpdateDestroyAPIView):

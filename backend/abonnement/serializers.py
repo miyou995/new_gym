@@ -104,6 +104,8 @@ class AbonnementClientSerialiser(serializers.ModelSerializer):
         print('l-- selected_creneau ',selected_creneau)
         dates_array = []
         seances= type_ab.seances_quantity
+        calculated_end_date = start_date + datetime.timedelta(days=duree)
+
         if type_ab.fixed_sessions():
             print('on the if')
             for creneau in creneaux :

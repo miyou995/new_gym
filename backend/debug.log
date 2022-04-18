@@ -11427,3 +11427,83 @@ AssertionError: It is redundant to specify `source='abonnement_name'` on field '
 2022-04-18 09:19:41,795 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
 2022-04-18 09:19:43,686 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2022-04-18 09:19:49,066 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-18 10:20:53,584 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-18 10:21:36,247 django.utils.autoreload INFO     C:\Users\Taki Eddine\Desktop\gym\new_gym\backend\config\settings.py changed, reloading.
+2022-04-18 10:21:38,907 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-18 10:21:42,676 django.utils.autoreload INFO     C:\Users\Taki Eddine\Desktop\gym\new_gym\backend\config\urls.py changed, reloading.
+2022-04-18 10:21:45,204 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-18 11:01:28,855 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-18 11:03:15,006 django.utils.autoreload INFO     C:\Users\Taki Eddine\Desktop\gym\new_gym\backend\client\views.py changed, reloading.
+2022-04-18 11:03:16,663 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-18 11:05:06,142 django.request WARNING  Bad Request: /rest-api/abonnement/create
+2022-04-18 11:05:12,727 django.request WARNING  Bad Request: /rest-api/abonnement/create
+2022-04-18 11:07:19,677 django.utils.autoreload INFO     C:\Users\Taki Eddine\Desktop\gym\new_gym\backend\client\views.py changed, reloading.
+2022-04-18 11:07:21,239 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-18 11:07:25,589 django.utils.autoreload INFO     C:\Users\Taki Eddine\Desktop\gym\new_gym\backend\client\views.py changed, reloading.
+2022-04-18 11:07:27,287 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-18 11:07:52,056 django.request ERROR    Internal Server Error: /rest-api/abonnement-client/create
+Traceback (most recent call last):
+  File "C:\Users\Taki Eddine\Desktop\gym\new_gym\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Taki Eddine\Desktop\gym\new_gym\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Taki Eddine\Desktop\gym\new_gym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\Taki Eddine\Desktop\gym\new_gym\venv\lib\site-packages\django\views\generic\base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\Taki Eddine\Desktop\gym\new_gym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Taki Eddine\Desktop\gym\new_gym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\Taki Eddine\Desktop\gym\new_gym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Taki Eddine\Desktop\gym\new_gym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Taki Eddine\Desktop\gym\new_gym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\Taki Eddine\Desktop\gym\new_gym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\Taki Eddine\Desktop\gym\new_gym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\Taki Eddine\Desktop\gym\new_gym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\Taki Eddine\Desktop\gym\new_gym\backend\abonnement\serializers.py", line 122, in create
+    print('la calculated_end_date : ', calculated_end_date)
+UnboundLocalError: local variable 'calculated_end_date' referenced before assignment
+2022-04-18 11:08:43,685 django.request ERROR    Internal Server Error: /rest-api/abonnement-client/create
+Traceback (most recent call last):
+  File "C:\Users\Taki Eddine\Desktop\gym\new_gym\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Taki Eddine\Desktop\gym\new_gym\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Taki Eddine\Desktop\gym\new_gym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\Taki Eddine\Desktop\gym\new_gym\venv\lib\site-packages\django\views\generic\base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\Taki Eddine\Desktop\gym\new_gym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Taki Eddine\Desktop\gym\new_gym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\Taki Eddine\Desktop\gym\new_gym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Taki Eddine\Desktop\gym\new_gym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Taki Eddine\Desktop\gym\new_gym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\Taki Eddine\Desktop\gym\new_gym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\Taki Eddine\Desktop\gym\new_gym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\Taki Eddine\Desktop\gym\new_gym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\Taki Eddine\Desktop\gym\new_gym\backend\abonnement\serializers.py", line 122, in create
+    print('la calculated_end_date : ', calculated_end_date)
+UnboundLocalError: local variable 'calculated_end_date' referenced before assignment
+2022-04-18 11:09:48,734 django.utils.autoreload INFO     C:\Users\Taki Eddine\Desktop\gym\new_gym\backend\abonnement\serializers.py changed, reloading.
+2022-04-18 11:09:50,733 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-18 11:10:03,875 django.utils.autoreload INFO     C:\Users\Taki Eddine\Desktop\gym\new_gym\backend\abonnement\serializers.py changed, reloading.
+2022-04-18 11:10:05,417 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-18 11:13:06,476 django.utils.autoreload INFO     C:\Users\Taki Eddine\Desktop\gym\new_gym\backend\config\settings.py changed, reloading.
+2022-04-18 11:13:08,179 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-18 11:15:00,000 django.utils.autoreload INFO     C:\Users\Taki Eddine\Desktop\gym\new_gym\backend\client\views.py changed, reloading.
+2022-04-18 11:15:01,851 django.utils.autoreload INFO     Watching for file changes with StatReloader

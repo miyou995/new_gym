@@ -6,7 +6,8 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import axios from 'axios';
 import PageTitle from "../../layouts/PageTitle";
 import {notifySuccess, notifyError} from '../Alert'
-
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 // import { Dropdown, Tab, Nav } from "react-bootstrap";
 // import { Link } from "react-router-dom";
 import useForm from 'react-hook-form';
@@ -59,11 +60,23 @@ return (
                 </div>
             </div>
             <div className="form-group row">
-            <label className="col-sm-3 col-form-label">Planning par défaut </label>
-                <div className="col-sm-9">
-                    <input type="checkbox" value={is_default} className="form-control"  onChange={e => setDefault(e.target.value)}/>
-                </div>
-            </div>
+              <FormControlLabel
+                control={
+                    <Checkbox 
+                        checked={is_default}
+                        onChange={e=> {
+                        setDefault(!is_default)
+                            console.log('target value', e.target.value);
+                        }}
+
+                        name="checkedB"
+                        color="primary"
+                    />
+                }
+                label="Salle par défaut"
+            />
+          </div>
+          
 
           <div className="form-group row">
               <div className="col-sm-10">
