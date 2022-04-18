@@ -11599,3 +11599,5 @@ Traceback (most recent call last):
 ValueError: Field 'id' expected a number but got ''.
 2022-04-18 12:04:02,033 django.utils.autoreload INFO     C:\Users\Taki Eddine\Desktop\gym\new_gym\backend\config\urls.py changed, reloading.
 2022-04-18 12:04:04,452 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-18 12:16:12,339 django.utils.autoreload INFO     C:\Users\Taki Eddine\Desktop\gym\new_gym\backend\config\urls.py changed, reloading.
+2022-04-18 12:16:16,153 django.utils.autoreload INFO     Watching for file changes with StatReloader
