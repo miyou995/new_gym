@@ -29,14 +29,25 @@ class Paiement(Transaction):
     class Meta:
         ordering = ['-last_modified']
 
-
-
+    def get_abonnement_name(self):
+        try:
+            return abonnement_client.type_abonnement
+        except:
+            return ""
+    def get_client_last_name(self):
+        try:
+            return abonnement_client.client.last_name
+        except:
+            return ""
+    def get_client_id(self):
+        try:
+            return abonnement_client.client.id
+        except:
+            return ""
 class Autre(Transaction):
     name = models.CharField(max_length=200, null=True, blank=True)
-
     def __str__(self):
         return str(self.amount)
-
     class Meta:
         ordering = ['-date_creation']
 

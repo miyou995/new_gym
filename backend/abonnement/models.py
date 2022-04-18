@@ -66,7 +66,7 @@ class Abonnement(models.Model):
 class AbonnementClient(models.Model):
     start_date          = models.DateField()# number of days
     end_date            = models.DateField()# number of days
-    client              = models.ForeignKey(Client, related_name="abonnement_client", on_delete=models.CASCADE)
+    client              = models.ForeignKey(Client, related_name="abonnement_client", on_delete=models.PROTECT)
     type_abonnement     = models.ForeignKey(Abonnement, related_name="type_abonnement_client", on_delete=models.CASCADE)
     presence_quantity   = models.IntegerField(blank=True, null=True)
     creneaux            = models.ManyToManyField(Creneau, verbose_name="créneau", related_name='abonnements', blank=True)

@@ -5,6 +5,8 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import {notifySuccess, notifyError} from '../Alert'
 import axios from 'axios';
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 const PlanningEditModal = ({show, onShowShange, planningData}) => {
     const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
@@ -56,10 +58,21 @@ return (
               </div>
           </div>
           <div className="form-group row">
-              <label className="col-sm-3 col-form-label">Planning par défaut </label>
-              <div className="col-sm-9">
-                  <input type="checkbox" value={is_default} className="form-control" checked={is_default} onChange={e => setDefault(!is_default)}/>
-              </div>
+          <FormControlLabel
+                control={
+                    <Checkbox 
+                        checked={is_default}
+                        onChange={e=> {
+                        setDefault(!is_default)
+                            console.log('target value', e.target.value);
+                        }}
+
+                        name="checkedB"
+                        color="primary"
+                    />
+                }
+                label="Planning par défaut"
+            />
           </div>
           <div className="form-group row d-flex justify-content-between">
               <div className="m-3">

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React,  {useState, Component, useEffect } from "react";
 
 /// Link
 import { Link } from "react-router-dom";
@@ -32,10 +32,10 @@ class MM extends Component {
    }
 }
 
-class SideBar extends Component {
-   /// Open menu
-   componentDidMount() {
-      // sidebar open/close
+const SideBar =  () => {
+//       this.mm = new MetisMenu(this.$el);
+const [path,setPath] = useState("");
+   useEffect(()=>{
       var btn = document.querySelector(".nav-control");
       var aaa = document.querySelector("#main-wrapper");
 
@@ -44,26 +44,38 @@ class SideBar extends Component {
       }
 
       btn.addEventListener("click", toggleFunc);
-   }
-   render() {
-      /// Path
-      let path = window.location.pathname;
-      path = path.split("/");
-      path = path[path.length - 1];
+   },[]) //notice the empty array here
+   /// Open menu
+   // componentDidMount() {
+   //    // sidebar open/close
+   //    var btn = document.querySelector(".nav-control");
+   //    var aaa = document.querySelector("#main-wrapper");
 
-      /// Active menu
-      let app = ["",],
-         abon = ["abonnees",'client'],
-         // tresor = ["tresorie",],
-         trans = ["transactions",],
-         plan = ["planning",],
-         // cren = ["creneaux",],
-         // salles = ["salles",],
-         // activit = ["activites",],
-         presen = ["presences",],
-         // coachPersonnel = ["coachs-personnels",],
-         table = ["table-bootstrap-basic", "table-datatable-basic"],
-         config = ["configuration"];
+   //    function toggleFunc() {
+   //       return aaa.classList.toggle("menu-toggle");
+   //    }
+
+   //    btn.addEventListener("click", toggleFunc);
+   // }
+   // return() {
+   //    /// Path
+   //    let path = window.location.pathname;
+   //    path = path.split("/");
+   //    path = path[path.length - 1];
+
+   //    /// Active menu
+   //    let app = ["",],
+   //       abon = ["abonnees",'client'],
+   //       // tresor = ["tresorie",],
+   //       trans = ["transactions",],
+   //       plan = ["planning",],
+   //       // cren = ["creneaux",],
+   //       // salles = ["salles",],
+   //       // activit = ["activites",],
+   //       presen = ["presences",],
+   //       // coachPersonnel = ["coachs-personnels",],
+   //       table = ["table-bootstrap-basic", "table-datatable-basic"],
+   //       config = ["configuration"];
 
  
 
@@ -71,7 +83,13 @@ class SideBar extends Component {
          <div className="deznav">
             <PerfectScrollbar className="deznav-scroll">
                <MM className="metismenu" id="menu">
-                  <li className={`${ app.includes(path) ? "mm-active" : ""}`}>
+               <li >
+                     <Link  to="/" >
+                        <i className="flaticon-381-home"></i>
+                        <span className="nav-text"> Tableau de bord </span>
+                     </Link>
+                  </li>
+                  {/* <li className={`${ path ? "mm-active" : ""}`}>
                      <Link className="has-arrow ai-icon" to="#">
                         <i className="flaticon-381-home"></i>
                         <span className="nav-text">Tableau de bord</span>
@@ -83,7 +101,7 @@ class SideBar extends Component {
                            </Link>
                         </li>
                      </ul>
-                  </li>
+                  </li> */}
                   {/* DASHBOARD */}
                   {/* <li className={`${tresor.includes(path) ? "mm-active" : ""}`}>
                      <Link to="/tresorie">
@@ -92,20 +110,20 @@ class SideBar extends Component {
                      </Link>
                   </li> */}
                   {/* Fin trésorie */}
-                  <li className={`${abon.includes(path) ? "mm-active"  : ""}`}>
+                  <li >
                      <Link to="/client">
                         <i className="flaticon-381-user-9"></i>
                         <span className="nav-text"> Abonnées </span>
                      </Link>
                   </li>
                   {/* Fin ABonnées */}
-                  <li className={`${trans.includes(path) ? "mm-active" : ""}`}>
+                  <li >
                      <Link to="/transactions">
                         <i className="flaticon-381-controls"></i>
                         <span className="nav-text">Transactions</span>
                      </Link>
                   </li>
-                  <li className={`${plan.includes(path) ? "mm-active" : ""}`}>
+                  <li >
                      <Link to="/creneaux">
                         <i className="flaticon-381-calendar"></i>
                         <span className="nav-text">Créneaux</span>
@@ -137,7 +155,7 @@ class SideBar extends Component {
                   </li> */}
                   {/* Fin planning */}
                   
-                  <li className={`${presen.includes(path) ? "mm-active" : ""}`}>
+                  <li >
                      <Link to="/presences">
                         <i className="flaticon-381-blueprint"></i>
                         <span className="nav-text">Présences</span>
@@ -146,7 +164,7 @@ class SideBar extends Component {
                   {/* Fin présences */}
                   
                   {/* Coaches & personnel */}
-                  <li className={`${table.includes(path) ? "mm-active" : ""}`}>
+                  <li >
                      <Link className="has-arrow ai-icon" to="#">
                         <i className="flaticon-381-user-5"></i>
                         <span className="nav-text">Coachs & Personnels</span>
@@ -164,13 +182,13 @@ class SideBar extends Component {
                         </li>
                      </ul>
                   </li>
-                  <li className={`${config.includes(path) ? "mm-active" : ""}`}>
+                  <li >
                      <Link to="/configuration">
                         <i className="flaticon-381-settings"></i>
                         <span className="nav-text">configuration</span>
                      </Link>
                   </li>
-                  <li className={`${config.includes(path) ? "mm-active" : ""}`}>
+                  <li >
                      <Link to="/users">
                         <i className="flaticon-381-user-1"></i>
                         <span className="nav-text">Utilisateurs</span>
@@ -233,6 +251,6 @@ class SideBar extends Component {
          </div>
       );
    }
-}
+// }
 
 export default SideBar;
