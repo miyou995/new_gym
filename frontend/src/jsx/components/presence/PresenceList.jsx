@@ -152,7 +152,7 @@ const HandleSubmit = (e) => {
             })
             return presenceData1
          } catch (error) {
-            notifyError("Erreur lors de la modification du Planning")
+            notifyError("Erreur, Entrée non autorisée")
          }} 
    }).catch(err => {
       notifyError("Cet ID n'existe pas dans nos fichier")

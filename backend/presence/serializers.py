@@ -209,12 +209,13 @@ class PresenceClientSerialiser(serializers.ModelSerializer):
     client_activity = serializers.SerializerMethodField('get_activity', read_only=True)
     client_last_name = serializers.SerializerMethodField('get_client_name', read_only=True)
     client = serializers.CharField(source='abc.client.id', read_only=True)
+    dettes = serializers.CharField(source='abc.client.dettes', read_only=True)
     abc_name = serializers.CharField(source='abc.type_abonnement', read_only=True)
 
     class Meta:
         model = Presence
-        fields= ('id','abc','abc_name','client','creneau', 'is_in_list', 'hour_entree', 'hour_sortie', 'is_in_salle','client_activity', 'client_last_name','date')
-        
+        fields= ('id','abc','abc_name','client','creneau', 'is_in_list', 'hour_entree', 'dettes','hour_sortie', 'is_in_salle','client_activity', 'client_last_name','date')
+
 
     def get_activity(self, obj):
         # activite = obj.creneau.activity.name

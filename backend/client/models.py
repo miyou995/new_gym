@@ -4,6 +4,7 @@ from django.urls import reverse
 # from creneau.models import Creneau
 from django.template.defaultfilters import slugify
 from django.db import models
+from django.db.models import Sum
 
 # Create your models here.
 class AbonnementManager(models.Manager):
@@ -121,6 +122,13 @@ class Client(models.Model):
                 self.id = "C0001"
         return super().save(*args, **kwargs)
 
+    def dettes(self):
+        try:
+            # dettes = AbonnementClient.objects.filter(client =self.id).aggregate(Sum('reste'))
+            dettes = self.abonnement_client.all().aggregate(Sum('reste'))
+        except:
+            dettes = 0
+        return dettes['reste__sum']
 
 
 class Coach(models.Model):
@@ -159,6 +167,7 @@ class Coach(models.Model):
 
     def get_absolute_url(self):
         return reverse("client:coach_detail", kwargs={"pk": self.pk})
+
 
 
 

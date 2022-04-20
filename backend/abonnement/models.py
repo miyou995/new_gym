@@ -105,14 +105,43 @@ class AbonnementClient(models.Model):
             return self.creneaux.first().planning
         except:
             return None
+
     def get_activites(self):
         activities = Activity.objects.filter(salle__abonnements__type_abonnement_client=self)
         # activites = self.type_abonnement.salles.activities
         print('les activité de cet abc ', activities)
         return activities
 
-    def update_remains(self):
-        pass
+    def renew_abc(self):
+        type_abonnement = self.type_abonnement
+        delta = timedelta(days = type_abonnement.length)
+        new_start_date = self.start_date
+        if self.is_valid():
+            self.end_date = self.end_date + delta
+            self.reste += type_abonnement.price
+            self.presence_quantity += type_abonnement.seances_quantity
+            if self.is_time_volume():
+                print("cest un abonnement de volume horaire")
+                self.presence_quantity += type_abonnement.seances_quantity *60
+            else:
+                print("cest un abonnement de Seances")
+                self.presence_quantity += type_abonnement.seances_quantity
+        else:
+            self.start_date =  date.today()
+            self.end_date = self.start_date + delta
+            self.reste += type_abonnement.price
+            if self.is_time_volume():
+                print("cest un abonnement de volume horaire")
+                self.presence_quantity = type_abonnement.seances_quantity *60
+            else:
+                print("cest un abonnement de Seances")
+                self.presence_quantity = type_abonnement.seances_quantity
+        self.save()
+        # methode creer normaleemnt rest view / la method ne marche pas !!
+        
+
+
+
 
 def creneau_created_signal(sender, instance, created,**kwargs):
     if created:

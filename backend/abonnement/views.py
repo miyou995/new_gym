@@ -88,47 +88,57 @@ def deactivate_abc_api_view(request, pk):
     return Response({'message' : "l'abonnement a été suprimer avec Success"})
 
 
-@api_view(['GET'])
+
+@api_view(['POST'])
 def renew_api_view(request, pk):
     abc  = AbonnementClient.objects.get( id = pk)
-    abon = abc.type_abonnement
-    jours =   abon.length
-    seances = abon.seances_quantity
-    end_date = abc.end_date
-    delta = timedelta(days = jours)
-    new_start_date = abc.start_date
-    print('DELTA , ', delta)
-    if abc.is_valid():
-        new_start_date = end_date
-        abc.start_date = new_start_date
-        abc.save()
-        if abc.is_time_volume():
-            abc.presence_quantity += seances*60
-        else:
-            abc.presence_quantity += seances
+    abc.renew_abc()
+    print('abc renewed')
+    return Response({'message' : "l'abonnement a été renouvelé avec Success"})
 
-        # try:
-        #     abc.presence_quantity += seances
-        # except:
-        #     abc.presence_quantity = seances
-        abc.end_date = new_start_date + delta
-        try:
-            abc.reste += abon.price
-        except:
-            abc.reste = abon.price
-        abc.save()
-    else:
-        abc.start_date =  date.today()
-        print('abc start date')
-        abc.end_date = new_start_date + delta
-        abc.presence_quantity = seances
-        try:
-            abc.reste += abon.price
-        except:
-            abc.reste += abon.price
-        abc.save()
-    # print('reqeust', jours, ' heeey', seances)
-    return Response({'new date' : abc.end_date, 'seances': abc.presence_quantity})
+
+
+# @api_view(['GET'])
+# def renew_api_view(request, pk):
+#     abc  = AbonnementClient.objects.get( id = pk)
+#     abon = abc.type_abonnement
+#     jours =   abon.length
+#     seances = abon.seances_quantity
+#     end_date = abc.end_date
+#     delta = timedelta(days = jours)
+#     new_start_date = abc.start_date
+#     print('DELTA , ', delta)
+#     if abc.is_valid():
+#         new_start_date = end_date
+#         abc.start_date = new_start_date
+#         abc.save()
+#         if abc.is_time_volume():
+#             abc.presence_quantity += seances*60
+#         else:
+#             abc.presence_quantity += seances
+#         # try:
+#         #     abc.presence_quantity += seances
+#         # except:
+#         #     abc.presence_quantity = seances
+
+#         abc.end_date = new_start_date + delta
+#         try:
+#             abc.reste += abon.price
+#         except:
+#             abc.reste = abon.price
+#         abc.save()
+#     else:
+#         abc.start_date =  date.today()
+#         print('abc start date')
+#         abc.end_date = new_start_date + delta
+#         abc.presence_quantity = seances
+#         try:
+#             abc.reste += abon.price
+#         except:
+#             abc.reste += abon.price
+#         abc.save()
+#     # print('reqeust', jours, ' heeey', seances)
+#     return Response({'new date' : abc.end_date, 'seances': abc.presence_quantity})
 
 class AbonnementClientDetailListApi(generics.ListAPIView):
     serializer_class = AbonnementClientDetailSerializer    

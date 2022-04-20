@@ -270,15 +270,10 @@ const Home = () => {
                     ))}
                   </thead>
                   <tbody>
-                    
-                    
-                    
                   </tbody>
                 </table>
               </div>
             </PerfectScrollbar>
-
-
             </div>
             <div className="card-footer border-0 pt-0 text-center">
               <Link to="/presences" className="btn-link">
@@ -309,6 +304,8 @@ const Home = () => {
                     <tr >
                       <th className="text-left">ID</th>
                       <th >Nom</th>
+                      <th >Activité</th>
+                      <th >Dettes</th>
                       {/* <th className="text-right">Salle</th> */}
                     </tr>
                   { presencesClient.map ( presence => (
@@ -317,20 +314,19 @@ const Home = () => {
                       {/* <td>{presence.hour_sortie}</td> */}
                       <td className="text-left">{presence.client}</td>
                       <td >{presence.client_last_name}</td>
-                      {/* <td className="text-right">{presence.client_activity}</td> */}
+                      <td >{presence.client_activity}</td>
+                      
+                                      
+                      
+                      <td style={presence.dettes > 0 ? {color: '#FF2E2E'} : {color: '#000000'}}>{presence.dettes}</td>
                     </tr>
                     ))}
                   </thead>
                   <tbody>
-                    
-                    
-                    
                   </tbody>
                 </table>
               </div>
             </PerfectScrollbar>
-
-
             </div>
             <div className="card-footer border-0 pt-0 text-center">
               <Link to="/presences" className="btn-link">
