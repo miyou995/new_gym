@@ -89,7 +89,9 @@ class AbonnementClient(models.Model):
         
     def is_valid(self):
         today = date.today()
-        if today < self.end_date:
+        print('today', today)
+        print('end_date', self.end_date)
+        if today <= self.end_date:
             return True
         else:
             return False 
@@ -116,27 +118,34 @@ class AbonnementClient(models.Model):
         type_abonnement = self.type_abonnement
         delta = timedelta(days = type_abonnement.length)
         new_start_date = self.start_date
+        self.reste += type_abonnement.price
         if self.is_valid():
             self.end_date = self.end_date + delta
-            self.reste += type_abonnement.price
-            self.presence_quantity += type_abonnement.seances_quantity
+            # self.presence_quantity += type_abonnement.seances_quantity
             if self.is_time_volume():
                 print("cest un abonnement de volume horaire")
-                self.presence_quantity += type_abonnement.seances_quantity *60
+                added = type_abonnement.seances_quantity *60
+                print('added', added)
+                self.presence_quantity += added
             else:
                 print("cest un abonnement de Seances")
-                self.presence_quantity += type_abonnement.seances_quantity
-        else:
+                added = type_abonnement.seances_quantity
+                print('added', added)
+                self.presence_quantity += added
+            print("cest  self.presence_quantity ", self.presence_quantity )
+            
             self.start_date =  date.today()
             self.end_date = self.start_date + delta
             self.reste += type_abonnement.price
+        else:
             if self.is_time_volume():
-                print("cest un abonnement de volume horaire")
+                print("cest un abonnement de volume horaire 2")
                 self.presence_quantity = type_abonnement.seances_quantity *60
             else:
-                print("cest un abonnement de Seances")
+                print("cest un abonnement de Seances 2")
                 self.presence_quantity = type_abonnement.seances_quantity
         self.save()
+        return self
         # methode creer normaleemnt rest view / la method ne marche pas !!
         
 
@@ -202,6 +211,5 @@ post_save.connect(creneau_created_signal, sender=Creneau)
 
 
     # 0561 64 40 67 aymen bencherchali
-
 
 

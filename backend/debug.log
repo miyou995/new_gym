@@ -12179,3 +12179,243 @@ NameError: name 'abon' is not defined
 2022-04-20 12:39:27,741 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2022-04-20 12:39:34,339 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
 2022-04-20 12:39:36,207 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-21 09:49:38,509 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-21 10:29:21,975 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-21 10:29:23,718 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-21 10:31:01,979 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-21 10:31:03,981 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-21 10:31:04,567 django.request WARNING  Method Not Allowed: /rest-api/abonnement-client/detail/3/
+2022-04-21 10:31:05,527 django.request WARNING  Not Found: /favicon.ico
+2022-04-21 10:31:09,348 django.request WARNING  Method Not Allowed: /rest-api/abonnement-client/detail/6/
+2022-04-21 10:31:22,789 django.request WARNING  Method Not Allowed: /rest-api/abonnement-client/detail/6/
+2022-04-21 10:31:25,018 django.request WARNING  Method Not Allowed: /rest-api/abonnement-client/detail/4/
+2022-04-21 10:31:41,317 django.request ERROR    Internal Server Error: /rest-api/abonnement-client/renew/4/
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py", line 92, in get
+    abc = self.get_object(pk)
+AttributeError: 'RenewABCView' object has no attribute 'get_object'
+2022-04-21 10:32:50,269 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-21 10:32:52,029 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-21 10:32:56,337 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-21 10:32:58,144 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-21 10:33:01,304 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-21 10:33:03,105 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-21 10:33:39,921 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-21 10:33:41,769 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-21 10:33:47,152 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-21 10:33:48,869 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-21 10:33:53,151 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-21 10:33:54,856 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-21 10:34:23,049 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-21 10:34:24,712 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-21 10:34:28,994 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-21 10:34:30,665 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-21 10:34:40,711 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-21 10:34:42,406 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-21 10:34:44,378 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-21 10:34:45,992 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-21 10:36:16,626 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-21 10:36:18,606 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-21 10:36:21,525 django.request ERROR    Internal Server Error: /rest-api/abonnement-client/renew/4/
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py", line 98, in get
+    abc.renew()
+AttributeError: 'AbonnementClient' object has no attribute 'renew'
+2022-04-21 10:36:41,569 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-21 10:36:43,339 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-21 10:37:53,175 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-21 10:37:54,878 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-21 10:40:04,562 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-21 10:40:06,354 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-21 10:40:20,885 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-21 10:40:22,610 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-21 10:40:37,200 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-21 10:40:38,793 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-21 10:40:50,020 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-21 10:40:51,819 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-21 11:01:01,992 django.request WARNING  Not Found: /favicon.ico
+2022-04-21 11:01:51,381 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-21 11:01:53,296 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-21 11:16:58,546 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-21 11:16:59,683 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-21 11:17:35,543 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-21 11:17:36,555 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-21 11:19:44,282 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-21 11:19:45,368 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-21 11:20:22,459 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-21 11:20:23,983 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-21 11:25:21,319 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-21 11:25:22,917 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-21 11:31:12,262 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-21 11:31:13,907 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-21 11:31:45,408 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-21 11:31:47,383 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-21 11:32:03,447 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-21 11:32:05,339 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-21 11:32:37,494 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-21 11:32:39,201 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-21 11:34:29,946 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-21 11:34:31,406 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-21 11:34:38,902 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-21 11:34:40,720 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-21 11:34:46,204 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-21 11:34:48,034 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-21 11:35:19,779 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-21 11:35:20,752 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-21 11:35:26,355 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-21 11:35:27,841 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-21 11:35:51,567 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-21 11:35:53,518 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-21 11:45:34,651 django.request WARNING  Method Not Allowed: /rest-api/abonnement-client/renew/20/
+2022-04-21 11:47:24,110 django.request ERROR    Internal Server Error: /rest-api/get-client/
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\backend\client\views.py", line 53, in get_object
+    client = Client.objects.get(id = self.request.query_params.get('cl', None))
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 435, in get
+    raise self.model.DoesNotExist(
+client.models.Client.DoesNotExist: Client matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 208, in get
+    return self.retrieve(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 54, in retrieve
+    instance = self.get_object()
+  File "C:\Users\amd\Desktop\Octogym\backend\client\views.py", line 55, in get_object
+    client = Client.objects.get(carte = self.request.query_params.get('cl', None))
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 435, in get
+    raise self.model.DoesNotExist(
+client.models.Client.DoesNotExist: Client matching query does not exist.
+2022-04-21 11:47:30,109 django.request ERROR    Internal Server Error: /rest-api/get-client/
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\backend\client\views.py", line 53, in get_object
+    client = Client.objects.get(id = self.request.query_params.get('cl', None))
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 435, in get
+    raise self.model.DoesNotExist(
+client.models.Client.DoesNotExist: Client matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 208, in get
+    return self.retrieve(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 54, in retrieve
+    instance = self.get_object()
+  File "C:\Users\amd\Desktop\Octogym\backend\client\views.py", line 55, in get_object
+    client = Client.objects.get(carte = self.request.query_params.get('cl', None))
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 435, in get
+    raise self.model.DoesNotExist(
+client.models.Client.DoesNotExist: Client matching query does not exist.
+2022-04-21 11:48:01,531 django.request ERROR    Internal Server Error: /rest-api/get-client/
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\backend\client\views.py", line 53, in get_object
+    client = Client.objects.get(id = self.request.query_params.get('cl', None))
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 435, in get
+    raise self.model.DoesNotExist(
+client.models.Client.DoesNotExist: Client matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 208, in get
+    return self.retrieve(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 54, in retrieve
+    instance = self.get_object()
+  File "C:\Users\amd\Desktop\Octogym\backend\client\views.py", line 55, in get_object
+    client = Client.objects.get(carte = self.request.query_params.get('cl', None))
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 435, in get
+    raise self.model.DoesNotExist(
+client.models.Client.DoesNotExist: Client matching query does not exist.

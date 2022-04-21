@@ -8,7 +8,7 @@ from datetime import timedelta, date
 from rest_framework.response import Response
 from client.models import Client
 from django.db.models import Sum
-
+from rest_framework.views import APIView
 
 
 class AbonnementClientCreateAPIView(generics.CreateAPIView):
@@ -87,7 +87,26 @@ def deactivate_abc_api_view(request, pk):
     ab.save()
     return Response({'message' : "l'abonnement a été suprimer avec Success"})
 
-
+class RenewABCView(APIView):
+    def get_object(self, pk):
+        try:
+            return AbonnementClient.objects.get(pk=pk)
+        except AbonnementClient.DoesNotExist:
+            raise Http404
+    def get(self, request, pk, format=None):
+        abc = self.get_object(pk)
+        abc.renew_abc()
+        serializer = AbonnementClientDetailSerializer(abc)
+        return Response(serializer.data)
+    def put(self, request, pk, format=None):
+        abc = self.get_object(pk)
+        abc.renew()
+        abc.save()
+        serializer = AbonnementClientDetailSerializer(abc, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
 def renew_api_view(request, pk):

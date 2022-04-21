@@ -187,7 +187,7 @@ class AbonnementSerialiser(serializers.ModelSerializer):
     class Meta:
         model = Abonnement
         read_only_fields = ('clients_number','salle_name')
-        fields= ('id', 'name', 'price', 'length', 'seances_quantity', 'salles', 'clients_number','salle_name', 'type_of', 'actif')
+        fields= ('id', 'name', 'price', 'type_of','length', 'seances_quantity', 'salles', 'clients_number','salle_name', 'type_of', 'actif')
 
     def get_clients_number(self, obj):
         try:
