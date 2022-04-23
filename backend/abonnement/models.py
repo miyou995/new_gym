@@ -16,9 +16,10 @@ class SubscriptionManager(models.Manager):
     def free_sessions(self):
         return self.filter(type_abonnement__type_of=="SL")
     def free_access_subscription(self):
-        return self.exclude(type_abonnement__type_of= "SF")
-# class ManagerValidity(models.Manager):
+        return self.exclude(type_abonnement__type_of== "SF")
 
+
+# class ManagerValidity(models.Manager):
 #     def is_valid(self, abc_id):
 #         abonnement = AbonnementClient.objects.get(id = abc_id)
 #         abc_end_date = abonnement.end_date
@@ -80,7 +81,7 @@ class AbonnementClient(models.Model):
     updated_date_time   = models.DateTimeField(auto_now=True)
     objects             = models.Manager()
     # validity            = ManagerValidity()
-    subscription_type   =SubscriptionManager()
+    subscription_type   = SubscriptionManager()
 
 
     def is_time_volume(self):
@@ -110,7 +111,7 @@ class AbonnementClient(models.Model):
             return False
     def get_next_date(self, given_start_date, day):
         today = date.today()
-        formated_start_date = datetime.strptime(given_start_date, "%Y-%M-%d")
+        formated_start_date = datetime.strptime(given_start_date, "%Y-%m-%d")
         weekday = formated_start_date.weekday()
         print('TODAY DE TODAY', weekday)
         the_next_date = formated_start_date + timedelta((day-weekday) % 7)
@@ -118,30 +119,43 @@ class AbonnementClient(models.Model):
 
     def get_end_date(self, start_date, creneaux):
         duree = self.type_abonnement.length
-        print('get_end_date start_date => ', start_date)
+        # print('get_end_date start_date => ', start_date)
+        # print('get_end_date duree => ', duree)
         duree_semaine = (duree // 7) - 1 
         selected_creneau= [cre.id for cre in creneaux]
+        # print('get_end_date duree_semaine => ', duree_semaine)
         dates_array = []
-        formated_start_date = datetime.strptime(start_date, "%Y-%M-%d")
+        formated_start_date = datetime.strptime(start_date, "%Y-%m-%d")
+        # print('get_end_date formated_start_date => ', formated_start_date)
         calculated_end_date = formated_start_date + timedelta(days=duree)
+        # print('get_end_date calculated_end_date 1 => ', calculated_end_date)
         if self.is_fixed_sessions():
             for creneau in creneaux :
                 jour = self.get_day_index(creneau.day)
+                # print('get_end_date jour  => ', jour)
                 next_date = self.get_next_date(start_date, jour)
-                print(f'le prochain {creneau.day} in: {jour} est le {next_date}')
+                # print('get_end_date next_date  ====> ', next_date)
+                # print(f'le prochain {creneau.day} in: {jour} est le {next_date}')
                 dates_array.append(next_date)
             maxed_date = max(dates_array)
             calculated_end_date = maxed_date + timedelta(weeks=duree_semaine)
+            # print('get_end_date calculated_end_date 2 => ', calculated_end_date)
         return calculated_end_date
 
 
 
 
-
-    def is_valid(self):
+    def is_no_more_actif(self):
         today = date.today()
-        print('today', today)
-        print('end_date', self.end_date)
+        if today > self.end_date:
+            return True
+        else:
+            return False 
+
+    def is_actif(self):
+        today = date.today()
+        # print('today', today)
+        # print('end_date', self.end_date)
         if today <= self.end_date:
             return True
         else:
@@ -171,6 +185,8 @@ class AbonnementClient(models.Model):
         creneaux = self.creneaux.all()
         creneaux_ids = self.creneaux.all().values_list('id', flat=True)
         new_end_date = self.get_end_date(renew_start_date, creneaux)
+        print('the renew_start_date', renew_start_date)
+        print('the new_end_date', new_end_date)
         new_start_date = renew_start_date
         self.pk = None
         self.save()

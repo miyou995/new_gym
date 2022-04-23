@@ -181,11 +181,13 @@ const ProductDetail = (props) => {
      }
      fetchData();
   }, [props.match.params.id, aBCmodalCreate, abonDetailModal, paiementModal, paiementEditModal] );
+
 const capitalizeFirstLetter = (word) => {
    if (word)
        return word.charAt(0).toUpperCase() + word.slice(1);
    return '';
 };
+
 const populatePaimentData = (e) => {
   setPaiementIdInfo(e.target.id)
   setPaiementAmountInfo(e.target.amount)
@@ -298,14 +300,14 @@ useEffect(() => {
             </Dropdown>
         </div>
       </div>
-          <div className="row d-flex justify-content-start mb-3 ml-4">
+          {/* <div className="row d-flex justify-content-start mb-3 ml-4">
               <div className="btn btn-success ml-4" onClick={e => setPaiementModal(true) }>
                   + Paiement 
               </div>
               <div className="btn btn-danger ml-4" onClick={e => setRenewAbcModal(true)}>
                 Renouvelé un abonnement
               </div>
-          </div>
+          </div> */}
       <div className="container-fluid" style={{padding: '0px'}}>
 
       <div className="row d-flex no-gutters ">

@@ -12,11 +12,19 @@ function refreshPage() {
   window.location.reload(false);
 }
 const AbonnementClientModal = ({show, onShowShange, abcData}) => {
+   const formatDate = (date) => {
+      return new Date(date).toISOString().slice(0, 10)
+   }
+   const today = new Date()
+   var before = today.setDate(today.getDate() - 60);
+   var after = today.setDate(today.getDate() + 120);
     const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+    const [startDate, setStartDate] = useState(formatDate(before));
+    const [endDate, setEndDate] = useState(formatDate(after));
   
     const [abcs, setAbcs] = useState([])
       const clientId = abcData['clientId']
-      const abcEnd = `${process.env.REACT_APP_API_URL}/rest-api/abonnement-by-client/?cl=${clientId}`
+      const abcEnd = `${process.env.REACT_APP_API_URL}/rest-api/abonnement-by-client-all/?cl=${clientId}&start=${startDate}&end=${endDate}`
     useEffect(() => {
        const fetchData = async () => {
           try {
@@ -27,7 +35,7 @@ const AbonnementClientModal = ({show, onShowShange, abcData}) => {
           }
        }
        fetchData();
-    }, [abcData['clientId']] );  
+    }, [abcData['clientId'], startDate, endDate] );  
 return ( 
     <Modal className="fade bd-example-modal-lg" size="lg" onHide={handleShow} show={show}>
     <Modal.Header>
@@ -37,6 +45,16 @@ return (
     </Modal.Header>
     <Modal.Body>
       <div className="col-xl-12 col-lg-6">
+      <div className="row d-flex">
+         <div className="form-group col-md-6">
+            <label className='text-dark font-weight-bold'>Date de début</label>
+            <input type="date" name="start_date" className="form-control" value={startDate}  onChange={e => setStartDate(e.target.value)}/>
+         </div>
+         <div className="form-group col-md-6">
+            <label className='text-dark font-weight-bold'>Date de Fin</label>
+            <input type="date" name="end_date" className="form-control" value={endDate}  onChange={e => setEndDate(e.target.value)}/>
+         </div>
+       </div>
          <div className="card">
             {/* <div className="card-header border-0 d-xl-flex d-lg-block d-md-flex d-sm-flex d-block">
                   <h4 className="fs-20 text-black">

@@ -162,15 +162,26 @@ def renew_api_view(request, pk):
 #         abc.save()
 #     # print('reqeust', jours, ' heeey', seances)
 #     return Response({'new date' : abc.end_date, 'seances': abc.presence_quantity})
+class AbonnementClientAllDetailListApi(generics.ListAPIView):
+    serializer_class = AbonnementClientDetailSerializer    
+    def get_queryset(self):
+        client = self.request.query_params.get('cl', None)
+        start_from = self.request.query_params.get('start', None)
+        end_from = self.request.query_params.get('end', None)
+        ab_type = self.request.query_params.get('ab_type', None)
+        print('cliiiientr', client)
+        today = date.today()
+        abonnements = AbonnementClient.objects.filter(client=client, archiver=False, end_date__gte=start_from, end_date__lte=end_from)
+        return abonnements
 
-class AbonnementClientDetailListApi(generics.ListAPIView):
+class AbonnementClientActifsDetailListApi(generics.ListAPIView):
     serializer_class = AbonnementClientDetailSerializer    
     def get_queryset(self):
         client = self.request.query_params.get('cl', None)
         print('cliiiientr', client)
-        abonnements = AbonnementClient.objects.filter(client=client, archiver=False)
+        today = date.today()
+        abonnements = AbonnementClient.objects.filter(client=client, archiver=False, end_date__gte=today)
         return abonnements
-
 
 class AbonnementClientTransactionsDetailListApi(generics.ListAPIView):
     # pagination_class = StandardResultsSetPagination

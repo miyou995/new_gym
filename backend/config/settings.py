@@ -81,8 +81,10 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
     'TIME_FORMAT':  '%H:%M',
     'DATETIME_FORMAT': '%d %m %Y %H:%M', 
+    # "DATE_INPUT_FORMATS": ["%d-%m-%Y"],
     # 'PAGE_SIZE': 20,
 }
+
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=10),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=10),
