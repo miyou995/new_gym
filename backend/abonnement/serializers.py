@@ -24,6 +24,20 @@ class ClientDropSerializer(serializers.ModelSerializer):
         model = Client
         fields = '__all__'
 
+class AbonnementClientRenewSerializer(serializers.ModelSerializer):
+    start_renew_date = serializers.CharField(write_only=True)
+    abc = serializers.IntegerField(write_only=True)
+    class Meta:
+        model = AbonnementClient
+        read_only_fields = ('client','start_date', 'abc','end_date')
+        fields= ('id','client', 'abc', 'start_renew_date', 'presence_quantity', 'creneaux','reste')
+    
+    def create(self, validated_data):
+        abc_id = validated_data['abc']
+        start_renew_date = validated_data['start_renew_date']
+        abc = AbonnementClient.objects.get(id=abc_id)
+        abc_instance = abc.renew_abc(start_renew_date) 
+        return abc_instance 
 
 class AbonnementClientDetailUpdateSerialiser(serializers.ModelSerializer):
     activity = serializers.SerializerMethodField('get_activity', read_only=True)
@@ -123,7 +137,6 @@ class AbonnementClientSerialiser(serializers.ModelSerializer):
             calculated_end_date = start_date + datetime.timedelta(days=duree)
         print('la calculated_end_date : ', calculated_end_date)
         abc_instance = AbonnementClient.objects.create(client= client, start_date= start_date ,end_date= calculated_end_date, type_abonnement = type_ab, presence_quantity=seances, reste=type_ab.price)
-
         for cren in selected_creneau:
             abc_instance.creneaux.add(cren)    
         abc_instance.save()

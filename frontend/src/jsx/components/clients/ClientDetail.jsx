@@ -23,22 +23,23 @@ import Search from "../../layouts/Search";
 import { createContext } from "react";
 import ABCCreateModal from './ABCCreateModal';
 import PaiementModal from './PaiementModal'
-import RenewAbonnementModal from './RenewAbonnementModal'
+import ABCDetailModal from './ABCDetailModal'
 import ShortCuts from "../ShortCuts";
 import AssuranceCreateModal from './AssuranceCreateModal';
 import PaiementsClientModal from './PaiementsClientModal';
 import PresencesClientModal from './PresencesClientModal';
 import PaiementEditModal from './PaiementEditModal';
+import RenewAbonnementModal from './RenewAbonnementModal';
 import AbonnementClientModal from './AbonnementClientModal';
 import femaleImg from "../../../images/profile/female.png";
 
 const ProductDetail = (props) => {
-   const [client, setClient] = useState({});
-   const [aBCmodalCreate, setABCModalCreate] = useState(false);
-   const [paiementModal, setPaiementModal] = useState(false);
-   const [abonDetailModal, setAbonDetailModal] = useState(false);
-   const [abonClient, setAbonClient] = useState([]);
-   const [transClient, setTransClient] = useState([]);
+  const [client, setClient] = useState({});
+  const [aBCmodalCreate, setABCModalCreate] = useState(false);
+  const [paiementModal, setPaiementModal] = useState(false);
+  const [abonDetailModal, setAbonDetailModal] = useState(false);
+  const [abonClient, setAbonClient] = useState([]);
+  const [transClient, setTransClient] = useState([]);
    const [presencesClient, setPresnecesClient] = useState([]);
    const [dettesClient, setDettesClient] = useState([]);
    const [creneauxClient, setCreneauxClient] = useState([]);
@@ -64,6 +65,7 @@ const ProductDetail = (props) => {
    const [clientPaiementsModal, setClientPaiementsModal] = useState(false);
    const [clientPresencesModal, setClientPresencesModal] = useState(false);
    const [clientAbcModal, setClientAbcModal] = useState(false);
+   const [renewAbcModal, setRenewAbcModal] = useState(false);
    
    const clientId = props.match.params.id;
    const presenceCreateEND = `${process.env.REACT_APP_API_URL}/rest-api/presence/create`
@@ -199,10 +201,6 @@ useEffect(() => {
     
   }
 }, [populatePaimentData]);
-const editProfile = (e) =>{
-  // history.push(`/client/edit/${client.id}`)
-} 
-
   return (
     <>
      <Helmet>
@@ -212,16 +210,16 @@ const editProfile = (e) =>{
         <ShortCuts />
       </div>
       <ToastContainer
-                  position='top-right'
-                  autoClose={5000}
-                  hideProgressBar={false}
-                  newestOnTop
-                  closeOnClick
-                  rtl={false}
-                  pauseOnFocusLoss
-                  draggable
-                  pauseOnHover
-                />
+        position='top-right'
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       {/* info profile */}
       <div className="profile-info">
         <div className="profile-photo">
@@ -229,7 +227,6 @@ const editProfile = (e) =>{
         </div>
         <div className="profile-details">
           <div>
-
             <div className="profile-name px-3 pt-2">
               <h4 className="text-primary mb-0">
               {capitalizeFirstLetter(client.last_name)} {capitalizeFirstLetter(client.first_name)}
@@ -301,6 +298,14 @@ const editProfile = (e) =>{
             </Dropdown>
         </div>
       </div>
+          <div className="row d-flex justify-content-start mb-3 ml-4">
+              <div className="btn btn-success ml-4" onClick={e => setPaiementModal(true) }>
+                  + Paiement 
+              </div>
+              <div className="btn btn-danger ml-4" onClick={e => setRenewAbcModal(true)}>
+                Renouvelé un abonnement
+              </div>
+          </div>
       <div className="container-fluid" style={{padding: '0px'}}>
 
       <div className="row d-flex no-gutters ">
@@ -318,8 +323,8 @@ const editProfile = (e) =>{
               <h6 className='text-primary' style={{fontSize: '0.9rem'}}>Groupe sanguin:&nbsp;&nbsp; <span className="badge badge-danger light">{client.blood}</span> </h6>
               <h6 className='text-primary' style={{fontSize: '0.9rem'}}>Nationalité:                <span className="item text-light">{client.nationality}</span> </h6>
               <h6 className='text-primary' style={{fontSize: '0.9rem'}}>Date de naissance:          <span className="item text-light">{client.birth_date}</span> </h6>
-              <h6 className='text-primary' style={{fontSize: '0.9rem'}}>Age:          <span className="item text-light">{client.age}</span> </h6>
-              <h6 className='text-primary' style={{fontSize: '0.9rem'}}>Profession :         <span className="item text-light">{client.profession}</span> </h6>
+              <h6 className='text-primary' style={{fontSize: '0.9rem'}}>Age:                        <span className="item text-light">{client.age}</span> </h6>
+              <h6 className='text-primary' style={{fontSize: '0.9rem'}}>Profession :                <span className="item text-light">{client.profession}</span> </h6>
               <h5 className='text-primary' style={{fontSize: '0.9rem'}}>Maladies:</h5>
               <ul>
                 {client.maladie_name && client.maladie_name.map(maladie =>(
@@ -427,7 +432,7 @@ const editProfile = (e) =>{
                   <div className='ajouter' onClick= { e => setClientPresencesModal(true)}> <h4>Seances / Presences</h4> </div>
                 </Card.Title>
                 <Card.Title>
-                    <div className=' ajouter'  onClick= { e => addPresence(true)}>  <i className="fa fa-plus text-primary mr-2" /></div>
+                    <div className=' ajouter'  onClick= { e => addPresence(true)}> <i className="fa fa-plus text-primary mr-2" /></div>
                 </Card.Title>
               </Card.Header>
               <Card.Body>
@@ -455,21 +460,22 @@ const editProfile = (e) =>{
             </Card>
         </div>
         <ABCCreateModal show={aBCmodalCreate} onShowShange={setABCModalCreate} clientData={{clientId: clientId}} />
+        <RenewAbonnementModal show={renewAbcModal} onShowShange={setRenewAbcModal} clientData={{clientId: clientId}}/>
         <PaiementsClientModal show={clientPaiementsModal} onShowShange={setClientPaiementsModal} paiementsData={{clientId: clientId}} />
         <PresencesClientModal show={clientPresencesModal} onShowShange={setClientPresencesModal} presencesData={{clientId: clientId}} />
         <AbonnementClientModal show={clientAbcModal} onShowShange={setClientAbcModal} abcData={{clientId: clientId}} />
         <PaiementModal show={paiementModal} onShowShange={setPaiementModal} clientData={{clientId: clientId, abcs :abonClient}} />
         <PaiementEditModal show={paiementEditModal} onShowShange={setPaiementEditModal} paiementData={{clientId: clientId,
-        abcs :abonClient,
-        paiementIdInfo: paiementIdInfo,
-        paiementAmountInfo: paiementAmountInfo,
-        paiementABCInfo: paiementABCInfo,
-        paiementDateInfo: paiementDateInfo,
-        paiementNotesInfo: paiementNotesInfo,
-        paiementABCName : paiementABCName,
+          abcs :abonClient,
+          paiementIdInfo: paiementIdInfo,
+          paiementAmountInfo: paiementAmountInfo,
+          paiementABCInfo: paiementABCInfo,
+          paiementDateInfo: paiementDateInfo,
+          paiementNotesInfo: paiementNotesInfo,
+          paiementABCName : paiementABCName,
         }} />
         
-        <RenewAbonnementModal show={abonDetailModal} onShowShange={setAbonDetailModal} abonnementData={{
+        <ABCDetailModal show={abonDetailModal} onShowShange={setAbonDetailModal} abonnementData={{
           clientId: clientId, 
           abonClientID: abonClientID,
           abonClientType : abonClientType,
@@ -480,6 +486,7 @@ const editProfile = (e) =>{
           abonClientReste :abonClientReste
           }} />
           <AssuranceCreateModal show={assuranceModal} onShowShange={setAssuranceModal} clientData={{clientId: clientId}}/>
+          {/* <AssuranceCreateModal show={assuranceModal} onShowShange={setAssuranceModal} clientData={{clientId: clientId}}/> */}
       </div>
       </div>
     </>

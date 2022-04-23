@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from rest_framework import generics
 from .models import Abonnement,  AbonnementClient
-from .serializers import AbonnementClientSerialiser, AbonnementSerialiser, AbonnementClientDetailUpdateSerialiser, AbonnementClientDetailSerializer, AbonnementClientTransactionsSerializer, ABCCreneauSerializer
+from .serializers import AbonnementClientSerialiser, AbonnementSerialiser, AbonnementClientDetailUpdateSerialiser, AbonnementClientDetailSerializer, AbonnementClientTransactionsSerializer, ABCCreneauSerializer, AbonnementClientRenewSerializer
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.decorators import api_view, permission_classes
 from datetime import timedelta, date
@@ -15,6 +15,10 @@ class AbonnementClientCreateAPIView(generics.CreateAPIView):
     queryset = AbonnementClient.objects.all()
     serializer_class = AbonnementClientSerialiser
 
+
+class AbonnementClientRenewAPIView(generics.CreateAPIView):
+    queryset = AbonnementClient.objects.all()
+    serializer_class = AbonnementClientRenewSerializer
 
 class AbonnementClientListAPIView(generics.ListAPIView):
     queryset = AbonnementClient.objects.filter(archiver=False)
@@ -98,7 +102,7 @@ class RenewABCView(APIView):
         abc.renew_abc()
         serializer = AbonnementClientDetailSerializer(abc)
         return Response(serializer.data)
-    def put(self, request, pk, format=None):
+    def post(self, request, pk, format=None):
         abc = self.get_object(pk)
         abc.renew()
         abc.save()

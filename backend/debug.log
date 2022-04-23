@@ -12419,3 +12419,1479 @@ Traceback (most recent call last):
   File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\query.py", line 435, in get
     raise self.model.DoesNotExist(
 client.models.Client.DoesNotExist: Client matching query does not exist.
+2022-04-23 10:48:46,943 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 13:08:14,198 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 13:20:46,514 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\urls.py changed, reloading.
+2022-04-23 13:20:48,150 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 13:20:59,170 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-23 13:21:00,944 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 13:21:51,991 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-23 13:21:53,629 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 13:23:48,987 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 13:23:50,690 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 13:24:21,306 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 13:24:22,326 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 13:24:24,827 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 13:24:26,538 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 13:24:34,811 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 13:24:36,646 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 13:24:46,159 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 13:24:47,832 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 13:26:10,082 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 13:26:11,667 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 13:26:34,619 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 13:26:36,275 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 13:26:41,173 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 13:26:42,211 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 13:43:38,069 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 13:43:39,154 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 13:46:11,964 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 13:46:13,101 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 13:46:43,726 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 13:46:44,937 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 13:57:25,212 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 13:57:26,334 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 13:58:14,760 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 13:58:15,831 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 13:58:19,586 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 13:58:20,876 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 13:58:44,350 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 13:58:45,445 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 13:58:46,939 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 13:58:47,908 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 13:59:01,954 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 13:59:03,880 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 13:59:09,370 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 13:59:10,501 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 13:59:31,768 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 13:59:33,003 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 13:59:43,880 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 13:59:45,670 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:01:11,402 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:01:13,260 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:01:27,794 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:01:29,535 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:01:33,869 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:01:35,667 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:08:47,237 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:08:49,106 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:10:17,234 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:10:18,826 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:10:29,887 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:10:31,635 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:10:50,791 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:10:52,554 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:11:09,347 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:11:11,229 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:11:15,578 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:11:17,415 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:11:35,276 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:11:37,094 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:11:45,973 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:11:47,744 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:11:51,972 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:11:53,673 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:12:05,928 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:12:07,785 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:12:15,850 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:12:17,956 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:13:50,592 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:13:51,700 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:13:55,310 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:13:57,003 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:14:01,324 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:14:03,160 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:14:06,256 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:14:08,166 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:14:19,288 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:14:21,220 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:14:30,163 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:14:32,190 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:14:44,686 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:14:46,471 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:17:02,509 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:17:04,515 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:17:34,970 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:17:36,816 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:17:41,095 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:17:42,672 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:18:12,065 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:18:14,056 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:18:23,023 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:18:24,907 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:20:49,800 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:20:51,640 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:23:29,627 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:23:31,494 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:23:46,284 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:23:48,182 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:23:50,222 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:23:52,075 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:23:55,365 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:23:57,513 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:24:19,382 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-23 14:24:21,309 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:24:25,858 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-23 14:24:27,874 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:24:35,813 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-23 14:24:38,007 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:24:50,524 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-23 14:24:52,617 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:24:54,731 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-23 14:24:57,002 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:25:43,447 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-23 14:25:45,825 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:25:54,902 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-23 14:25:56,994 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:25:59,151 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-23 14:26:01,082 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:26:05,478 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-23 14:26:07,471 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:26:09,576 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-23 14:26:11,264 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:26:12,858 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-23 14:26:14,813 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:26:21,454 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-23 14:26:23,367 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:26:29,943 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-23 14:26:31,620 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:27:32,132 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\urls.py changed, reloading.
+2022-04-23 14:27:33,960 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:27:47,334 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\urls.py changed, reloading.
+2022-04-23 14:27:49,043 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:27:53,349 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\urls.py changed, reloading.
+2022-04-23 14:27:55,090 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:28:02,820 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\urls.py changed, reloading.
+2022-04-23 14:28:04,494 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:28:06,677 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\urls.py changed, reloading.
+2022-04-23 14:28:08,714 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:30:39,053 django.request ERROR    Internal Server Error: /rest-api/abonnement-client/renouveler
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 18, in create
+    serializer.is_valid(raise_exception=True)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 227, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 426, in run_validation
+    value = self.to_internal_value(data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 479, in to_internal_value
+    for field in fields:
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 362, in _writable_fields
+    for field in self.fields.values():
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\utils\functional.py", line 48, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 356, in fields
+    for key, value in self.get_fields().items():
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 1076, in get_fields
+    field_class, field_kwargs = self.build_field(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 1222, in build_field
+    return self.build_unknown_field(field_name, model_class)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 1340, in build_unknown_field
+    raise ImproperlyConfigured(
+django.core.exceptions.ImproperlyConfigured: Field name `activity` is not valid for model `AbonnementClient`.
+2022-04-23 14:31:03,912 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-23 14:31:05,934 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:31:24,364 django.request WARNING  Bad Request: /rest-api/abonnement-client/renouveler
+2022-04-23 14:31:39,048 django.request WARNING  Bad Request: /rest-api/abonnement-client/renouveler
+2022-04-23 14:31:50,741 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-23 14:31:52,838 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:31:55,845 django.request WARNING  Bad Request: /rest-api/abonnement-client/renouveler
+2022-04-23 14:32:13,650 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-23 14:32:15,778 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:32:17,784 django.request ERROR    Internal Server Error: /rest-api/abonnement-client/renouveler
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py", line 35, in create
+    abc_id = validated_data['id']
+KeyError: 'id'
+2022-04-23 14:33:16,741 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-23 14:33:18,489 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:33:32,455 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-23 14:33:34,279 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:33:42,888 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-23 14:33:45,110 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:34:19,961 django.request ERROR    Internal Server Error: /rest-api/abonnement-client/renouveler
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 18, in create
+    serializer.is_valid(raise_exception=True)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 227, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 426, in run_validation
+    value = self.to_internal_value(data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 479, in to_internal_value
+    for field in fields:
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 362, in _writable_fields
+    for field in self.fields.values():
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\utils\functional.py", line 48, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 356, in fields
+    for key, value in self.get_fields().items():
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 1052, in get_fields
+    field_names = self.get_field_names(declared_fields, info)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 1148, in get_field_names
+    assert field_name in fields, (
+AssertionError: The field 'abc_id' was declared on serializer AbonnementClientRenewSerializer, but has not been included in the 'fields' option.
+2022-04-23 14:34:34,410 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-23 14:34:36,190 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:34:47,371 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-23 14:34:49,278 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:34:51,300 django.request WARNING  Bad Request: /rest-api/abonnement-client/renouveler
+2022-04-23 14:35:20,956 django.request ERROR    Internal Server Error: /rest-api/abonnement-client/renouveler
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py", line 39, in create
+    abc_instance = abc.renew_abc(start_renew_date)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 169, in renew_abc
+    new_end_date = self.get_end_date(renew_start_date, creneaux)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 123, in get_end_date
+    calculated_end_date = start_date + datetime.timedelta(days=duree)
+AttributeError: type object 'datetime.datetime' has no attribute 'timedelta'
+2022-04-23 14:36:15,997 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:36:18,330 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:36:28,429 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:36:30,622 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:36:32,981 django.request ERROR    Internal Server Error: /rest-api/abonnement-client/renouveler
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py", line 39, in create
+    abc_instance = abc.renew_abc(start_renew_date)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 169, in renew_abc
+    new_end_date = self.get_end_date(renew_start_date, creneaux)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 123, in get_end_date
+    calculated_end_date = start_date + timedelta(days=duree)
+TypeError: can only concatenate str (not "datetime.timedelta") to str
+2022-04-23 14:37:15,120 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:37:17,050 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:37:19,099 django.request ERROR    Internal Server Error: /rest-api/abonnement-client/renouveler
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py", line 39, in create
+    abc_instance = abc.renew_abc(start_renew_date)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 170, in renew_abc
+    new_end_date = self.get_end_date(renew_start_date, creneaux)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 124, in get_end_date
+    calculated_end_date = start_date + timedelta(days=duree)
+TypeError: can only concatenate str (not "datetime.timedelta") to str
+2022-04-23 14:38:22,033 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:38:23,889 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:38:25,910 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:38:27,633 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:39:22,078 django.request ERROR    Internal Server Error: /rest-api/abonnement-client/renouveler
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py", line 39, in create
+    abc_instance = abc.renew_abc(start_renew_date)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 171, in renew_abc
+    new_end_date = self.get_end_date(renew_start_date, creneaux)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 124, in get_end_date
+    formated_start_date = datetime(start_date)
+TypeError: an integer is required (got type str)
+2022-04-23 14:41:15,588 django.request ERROR    Internal Server Error: /rest-api/abonnement-client/renouveler
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py", line 39, in create
+    abc_instance = abc.renew_abc(start_renew_date)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 171, in renew_abc
+    new_end_date = self.get_end_date(renew_start_date, creneaux)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 124, in get_end_date
+    formated_start_date = datetime(start_date)
+TypeError: an integer is required (got type str)
+2022-04-23 14:41:40,915 django.request ERROR    Internal Server Error: /rest-api/abonnement-client/renouveler
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py", line 39, in create
+    abc_instance = abc.renew_abc(start_renew_date)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 171, in renew_abc
+    new_end_date = self.get_end_date(renew_start_date, creneaux)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 124, in get_end_date
+    formated_start_date = datetime(start_date)
+TypeError: an integer is required (got type str)
+2022-04-23 14:43:00,917 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:43:02,809 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:43:03,971 django.request ERROR    Internal Server Error: /rest-api/abonnement-client/renouveler
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py", line 39, in create
+    abc_instance = abc.renew_abc(start_renew_date)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 171, in renew_abc
+    new_end_date = self.get_end_date(renew_start_date, creneaux)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 125, in get_end_date
+    calculated_end_date = formated_start_date + timedelta(days=duree)
+NameError: name 'formated_start_date' is not defined
+2022-04-23 14:43:14,001 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:43:15,832 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:43:17,008 django.request ERROR    Internal Server Error: /rest-api/abonnement-client/renouveler
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py", line 39, in create
+    abc_instance = abc.renew_abc(start_renew_date)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 171, in renew_abc
+    new_end_date = self.get_end_date(renew_start_date, creneaux)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 125, in get_end_date
+    calculated_end_date = start_date + timedelta(days=duree)
+TypeError: can only concatenate str (not "datetime.timedelta") to str
+2022-04-23 14:47:23,590 django.request ERROR    Internal Server Error: /rest-api/abonnement-client/renouveler
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py", line 39, in create
+    abc_instance = abc.renew_abc(start_renew_date)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 171, in renew_abc
+    new_end_date = self.get_end_date(renew_start_date, creneaux)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 125, in get_end_date
+    calculated_end_date = start_date + timedelta(days=duree)
+TypeError: can only concatenate str (not "datetime.timedelta") to str
+2022-04-23 14:48:03,063 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:48:04,984 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:48:53,855 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:48:55,668 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:49:00,042 django.request ERROR    Internal Server Error: /rest-api/abonnement-client/renouveler
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py", line 39, in create
+    abc_instance = abc.renew_abc(start_renew_date)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 171, in renew_abc
+    new_end_date = self.get_end_date(renew_start_date, creneaux)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 124, in get_end_date
+    formated_start_date = datetime.strptime(start_date, "%Y-%M-%D")
+  File "C:\Users\amd\AppData\Local\Programs\Python\Python39\lib\_strptime.py", line 568, in _strptime_datetime
+    tt, fraction, gmtoff_fraction = _strptime(data_string, format)
+  File "C:\Users\amd\AppData\Local\Programs\Python\Python39\lib\_strptime.py", line 341, in _strptime
+    raise ValueError("'%s' is a bad directive in format '%s'" %
+ValueError: 'D' is a bad directive in format '%Y-%M-%D'
+2022-04-23 14:49:06,278 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:49:08,663 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:49:11,384 django.request ERROR    Internal Server Error: /rest-api/abonnement-client/renouveler
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py", line 39, in create
+    abc_instance = abc.renew_abc(start_renew_date)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 171, in renew_abc
+    new_end_date = self.get_end_date(renew_start_date, creneaux)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 126, in get_end_date
+    if type_ab.fixed_sessions():
+NameError: name 'type_ab' is not defined
+2022-04-23 14:49:43,971 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:49:45,691 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:49:49,439 django.request ERROR    Internal Server Error: /rest-api/abonnement-client/renouveler
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py", line 39, in create
+    abc_instance = abc.renew_abc(start_renew_date)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 171, in renew_abc
+    new_end_date = self.get_end_date(renew_start_date, creneaux)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 129, in get_end_date
+    next_date = self.get_next_date(start_date, jour)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 112, in get_next_date
+    today = datetime.date.today()
+AttributeError: 'method_descriptor' object has no attribute 'today'
+2022-04-23 14:50:29,663 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:50:32,219 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:50:35,531 django.request ERROR    Internal Server Error: /rest-api/abonnement-client/renouveler
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py", line 39, in create
+    abc_instance = abc.renew_abc(start_renew_date)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 171, in renew_abc
+    new_end_date = self.get_end_date(renew_start_date, creneaux)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 129, in get_end_date
+    next_date = self.get_next_date(start_date, jour)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 113, in get_next_date
+    weekday = given_start_date.weekday()
+AttributeError: 'str' object has no attribute 'weekday'
+2022-04-23 14:52:39,663 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:52:41,588 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:52:50,101 django.request ERROR    Internal Server Error: /rest-api/abonnement-client/renouveler
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py", line 39, in create
+    abc_instance = abc.renew_abc(start_renew_date)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 171, in renew_abc
+    new_end_date = self.get_end_date(renew_start_date, creneaux)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 129, in get_end_date
+    next_date = self.get_next_date(start_date, jour)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 115, in get_next_date
+    the_next_day = given_start_date + timedelta((day-weekday) % 7)
+TypeError: can only concatenate str (not "datetime.timedelta") to str
+2022-04-23 14:53:44,916 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:53:47,021 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:53:49,242 django.request ERROR    Internal Server Error: /rest-api/abonnement-client/renouveler
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py", line 39, in create
+    abc_instance = abc.renew_abc(start_renew_date)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 171, in renew_abc
+    new_end_date = self.get_end_date(renew_start_date, creneaux)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 129, in get_end_date
+    next_date = self.get_next_date(start_date, jour)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 115, in get_next_date
+    the_next_day = given_start_date + timedelta((day-weekday) % 7)
+TypeError: can only concatenate str (not "datetime.timedelta") to str
+2022-04-23 14:54:46,162 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:54:48,620 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:54:51,134 django.request ERROR    Internal Server Error: /rest-api/abonnement-client/renouveler
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py", line 39, in create
+    abc_instance = abc.renew_abc(start_renew_date)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 172, in renew_abc
+    new_end_date = self.get_end_date(renew_start_date, creneaux)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 130, in get_end_date
+    next_date = self.get_next_date(start_date, jour)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 116, in get_next_date
+    the_next_day = given_start_date + timedelta((day-weekday) % 7)
+TypeError: can only concatenate str (not "datetime.timedelta") to str
+2022-04-23 14:55:12,003 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:55:13,837 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:55:21,430 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:55:22,453 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:55:26,029 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:55:27,706 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:55:31,527 django.request ERROR    Internal Server Error: /rest-api/abonnement-client/renouveler
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py", line 39, in create
+    abc_instance = abc.renew_abc(start_renew_date)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 172, in renew_abc
+    new_end_date = self.get_end_date(renew_start_date, creneaux)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 130, in get_end_date
+    next_date = self.get_next_date(start_date, jour)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 114, in get_next_date
+    weekday = formated_start_date.weekday()
+AttributeError: 'str' object has no attribute 'weekday'
+2022-04-23 14:56:20,575 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:56:22,208 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:56:59,489 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:57:01,410 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:57:10,507 django.request ERROR    Internal Server Error: /rest-api/abonnement-client/renouveler
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py", line 39, in create
+    abc_instance = abc.renew_abc(start_renew_date)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 172, in renew_abc
+    new_end_date = self.get_end_date(renew_start_date, creneaux)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 130, in get_end_date
+    next_date = self.get_next_date(start_date, jour)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 116, in get_next_date
+    the_next_date = given_start_date + timedelta((day-weekday) % 7)
+TypeError: can only concatenate str (not "datetime.timedelta") to str
+2022-04-23 14:57:33,718 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:57:36,023 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:57:38,055 django.request ERROR    Internal Server Error: /rest-api/abonnement-client/renouveler
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\fields\__init__.py", line 1823, in get_prep_value
+    return int(value)
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'QuerySet'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py", line 39, in create
+    abc_instance = abc.renew_abc(start_renew_date)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 176, in renew_abc
+    self.creneaux.add(creneaux)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\fields\related_descriptors.py", line 950, in add
+    self._add_items(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\fields\related_descriptors.py", line 1126, in _add_items
+    target_ids = self._get_target_ids(target_field_name, objs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\fields\related_descriptors.py", line 1073, in _get_target_ids
+    target_ids.add(target_field.get_prep_value(obj))
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\fields\related.py", line 977, in get_prep_value
+    return self.target_field.get_prep_value(value)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\fields\__init__.py", line 1825, in get_prep_value
+    raise e.__class__(
+TypeError: Field 'id' expected a number but got <QuerySet [<Creneau: 10:00:00>, <Creneau: 10:00:00>, <Creneau: 11:15:00>]>.
+2022-04-23 14:58:37,847 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 14:58:39,884 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 14:59:00,497 django.request ERROR    Internal Server Error: /rest-api/abonnement-client/renouveler
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py", line 39, in create
+    abc_instance = abc.renew_abc(start_renew_date)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 172, in renew_abc
+    new_end_date = self.get_end_date(renew_start_date, creneaux)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 123, in get_end_date
+    selected_creneau= [cre.id for cre in creneaux]
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 123, in <listcomp>
+    selected_creneau= [cre.id for cre in creneaux]
+AttributeError: 'int' object has no attribute 'id'
+2022-04-23 15:00:32,979 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 15:00:34,626 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 15:00:37,811 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 15:00:39,426 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 15:00:45,908 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 15:00:47,613 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 15:00:51,903 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 15:00:53,625 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 15:00:57,947 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 15:00:59,857 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 15:01:03,592 django.request ERROR    Internal Server Error: /rest-api/abonnement-client/renouveler
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\fields\__init__.py", line 1823, in get_prep_value
+    return int(value)
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'QuerySet'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py", line 39, in create
+    abc_instance = abc.renew_abc(start_renew_date)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 177, in renew_abc
+    self.creneaux.add(creneaux_ids)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\fields\related_descriptors.py", line 950, in add
+    self._add_items(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\fields\related_descriptors.py", line 1126, in _add_items
+    target_ids = self._get_target_ids(target_field_name, objs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\fields\related_descriptors.py", line 1073, in _get_target_ids
+    target_ids.add(target_field.get_prep_value(obj))
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\fields\related.py", line 977, in get_prep_value
+    return self.target_field.get_prep_value(value)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\fields\__init__.py", line 1825, in get_prep_value
+    raise e.__class__(
+TypeError: Field 'id' expected a number but got <QuerySet [1, 34, 35]>.
+2022-04-23 15:01:33,447 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 15:01:35,240 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 15:01:39,066 django.request ERROR    Internal Server Error: /rest-api/abonnement-client/renouveler
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\fields\__init__.py", line 1823, in get_prep_value
+    return int(value)
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'QuerySet'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py", line 39, in create
+    abc_instance = abc.renew_abc(start_renew_date)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 179, in renew_abc
+    # self.creneaux.add(creneaux_ids)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\fields\related_descriptors.py", line 950, in add
+    self._add_items(
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\fields\related_descriptors.py", line 1126, in _add_items
+    target_ids = self._get_target_ids(target_field_name, objs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\fields\related_descriptors.py", line 1073, in _get_target_ids
+    target_ids.add(target_field.get_prep_value(obj))
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\fields\related.py", line 977, in get_prep_value
+    return self.target_field.get_prep_value(value)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\db\models\fields\__init__.py", line 1825, in get_prep_value
+    raise e.__class__(
+TypeError: Field 'id' expected a number but got <QuerySet [1, 34, 35]>.
+2022-04-23 15:01:53,573 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 15:01:56,676 django.request ERROR    Internal Server Error: /rest-api/abonnement-client/renouveler
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py", line 39, in create
+    abc_instance = abc.renew_abc(start_renew_date)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py", line 184, in renew_abc
+    return new_abc
+NameError: name 'new_abc' is not defined
+2022-04-23 15:02:06,385 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-23 15:02:08,511 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 15:02:11,407 django.request ERROR    Internal Server Error: /rest-api/abonnement-client/renouveler
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 457, in get_attribute
+    return get_attribute(instance, self.source_attrs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 97, in get_attribute
+    instance = getattr(instance, attr)
+AttributeError: 'AbonnementClient' object has no attribute 'abc_id'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 20, in create
+    headers = self.get_success_headers(serializer.data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 555, in data
+    ret = super().data
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 509, in to_representation
+    attribute = field.get_attribute(instance)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 490, in get_attribute
+    raise type(exc)(msg)
+AttributeError: Got AttributeError when attempting to get a value for field `abc_id` on serializer `AbonnementClientRenewSerializer`.
+The serializer field might be named incorrectly and not match any attribute or key on the `AbonnementClient` instance.
+Original exception text was: 'AbonnementClient' object has no attribute 'abc_id'.
+2022-04-23 15:02:59,929 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-23 15:03:01,703 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 15:03:29,779 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-23 15:03:31,690 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 15:03:36,956 django.request ERROR    Internal Server Error: /rest-api/abonnement-client/renouveler
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 457, in get_attribute
+    return get_attribute(instance, self.source_attrs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 97, in get_attribute
+    instance = getattr(instance, attr)
+AttributeError: 'AbonnementClient' object has no attribute 'abc_id'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 20, in create
+    headers = self.get_success_headers(serializer.data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 555, in data
+    ret = super().data
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 509, in to_representation
+    attribute = field.get_attribute(instance)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 490, in get_attribute
+    raise type(exc)(msg)
+AttributeError: Got AttributeError when attempting to get a value for field `abc_id` on serializer `AbonnementClientRenewSerializer`.
+The serializer field might be named incorrectly and not match any attribute or key on the `AbonnementClient` instance.
+Original exception text was: 'AbonnementClient' object has no attribute 'abc_id'.
+2022-04-23 15:07:47,784 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-23 15:07:49,631 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 15:07:53,474 django.request ERROR    Internal Server Error: /rest-api/abonnement-client/renouveler
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 18, in create
+    serializer.is_valid(raise_exception=True)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 227, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 426, in run_validation
+    value = self.to_internal_value(data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 479, in to_internal_value
+    for field in fields:
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 362, in _writable_fields
+    for field in self.fields.values():
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\utils\functional.py", line 48, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 356, in fields
+    for key, value in self.get_fields().items():
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 1052, in get_fields
+    field_names = self.get_field_names(declared_fields, info)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 1148, in get_field_names
+    assert field_name in fields, (
+AssertionError: The field 'abc_id' was declared on serializer AbonnementClientRenewSerializer, but has not been included in the 'fields' option.
+2022-04-23 15:07:59,851 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-23 15:08:01,495 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 15:08:08,183 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-23 15:08:10,088 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 15:08:40,429 django.request ERROR    Internal Server Error: /rest-api/abonnement-client/renouveler
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 457, in get_attribute
+    return get_attribute(instance, self.source_attrs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 97, in get_attribute
+    instance = getattr(instance, attr)
+AttributeError: 'AbonnementClient' object has no attribute 'abc'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 20, in create
+    headers = self.get_success_headers(serializer.data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 555, in data
+    ret = super().data
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 509, in to_representation
+    attribute = field.get_attribute(instance)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 490, in get_attribute
+    raise type(exc)(msg)
+AttributeError: Got AttributeError when attempting to get a value for field `abc` on serializer `AbonnementClientRenewSerializer`.
+The serializer field might be named incorrectly and not match any attribute or key on the `AbonnementClient` instance.
+Original exception text was: 'AbonnementClient' object has no attribute 'abc'.
+2022-04-23 15:09:48,218 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\serializers.py changed, reloading.
+2022-04-23 15:09:50,333 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 15:09:56,916 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-23 15:09:58,684 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 15:10:06,977 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-23 15:10:08,969 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 15:10:13,334 django.request ERROR    Internal Server Error: /rest-api/abonnement-client/renouveler
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py", line 37, in create
+    start_renew_date = validated_data['start_renew_date']
+KeyError: 'start_renew_date'
+2022-04-23 15:10:33,511 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-23 15:10:35,205 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 15:10:39,889 django.request ERROR    Internal Server Error: /rest-api/abonnement-client/renouveler
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py", line 37, in create
+    start_renew_date = validated_data['start_renew_date']
+KeyError: 'start_renew_date'
+2022-04-23 15:10:50,401 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-23 15:10:52,556 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 15:10:54,489 django.request ERROR    Internal Server Error: /rest-api/abonnement-client/renouveler
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py", line 36, in create
+    abc_id = validated_data['abc']
+KeyError: 'abc'
+2022-04-23 15:11:00,800 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-23 15:11:02,718 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 15:16:16,567 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-23 15:16:18,259 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-23 15:16:31,835 django.request ERROR    Internal Server Error: /rest-api/abonnement-client/renouveler
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 457, in get_attribute
+    return get_attribute(instance, self.source_attrs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 97, in get_attribute
+    instance = getattr(instance, attr)
+AttributeError: 'AbonnementClient' object has no attribute 'start_renew_date'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 20, in create
+    headers = self.get_success_headers(serializer.data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 555, in data
+    ret = super().data
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 509, in to_representation
+    attribute = field.get_attribute(instance)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 490, in get_attribute
+    raise type(exc)(msg)
+AttributeError: Got AttributeError when attempting to get a value for field `start_renew_date` on serializer `AbonnementClientRenewSerializer`.
+The serializer field might be named incorrectly and not match any attribute or key on the `AbonnementClient` instance.
+Original exception text was: 'AbonnementClient' object has no attribute 'start_renew_date'.
+2022-04-23 15:16:41,932 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-23 15:16:43,720 django.utils.autoreload INFO     Watching for file changes with StatReloader

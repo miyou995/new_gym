@@ -54,6 +54,8 @@ class Abonnement(models.Model):
     def __str__(self):
         return self.name
 
+
+
     def time_volume(self):
         return True if self.type_of == "VH" else False
     def free_access(self):
@@ -62,6 +64,8 @@ class Abonnement(models.Model):
         return True if self.type_of == "SF" else False
     def free_sessions(self):
         return True if self.type_of == "SL" else False
+
+
         
 class AbonnementClient(models.Model):
     start_date          = models.DateField()# number of days
@@ -78,6 +82,7 @@ class AbonnementClient(models.Model):
     # validity            = ManagerValidity()
     subscription_type   =SubscriptionManager()
 
+
     def is_time_volume(self):
         return True if self.type_abonnement.type_of == "VH" else False
     def is_free_access(self):
@@ -86,7 +91,53 @@ class AbonnementClient(models.Model):
         return True if self.type_abonnement.type_of == "SF" else False
     def is_free_sessions(self):
         return True if self.type_abonnement.type_of == "SL" else False
-        
+    def get_day_index(self, day):
+        if day == 'DI':
+            return 6
+        elif day == 'LU':
+            return 0
+        elif day == 'MA':
+            return 1
+        elif day == 'ME':
+            return 2
+        elif day == 'JE':
+            return 3
+        elif day == 'VE':
+            return 4
+        elif day == 'SA':
+            return 5
+        else:
+            return False
+    def get_next_date(self, given_start_date, day):
+        today = date.today()
+        formated_start_date = datetime.strptime(given_start_date, "%Y-%M-%d")
+        weekday = formated_start_date.weekday()
+        print('TODAY DE TODAY', weekday)
+        the_next_date = formated_start_date + timedelta((day-weekday) % 7)
+        return the_next_date
+
+    def get_end_date(self, start_date, creneaux):
+        duree = self.type_abonnement.length
+        print('get_end_date start_date => ', start_date)
+        duree_semaine = (duree // 7) - 1 
+        selected_creneau= [cre.id for cre in creneaux]
+        dates_array = []
+        formated_start_date = datetime.strptime(start_date, "%Y-%M-%d")
+        calculated_end_date = formated_start_date + timedelta(days=duree)
+        if self.is_fixed_sessions():
+            for creneau in creneaux :
+                jour = self.get_day_index(creneau.day)
+                next_date = self.get_next_date(start_date, jour)
+                print(f'le prochain {creneau.day} in: {jour} est le {next_date}')
+                dates_array.append(next_date)
+            maxed_date = max(dates_array)
+            calculated_end_date = maxed_date + timedelta(weeks=duree_semaine)
+        return calculated_end_date
+
+
+
+
+
     def is_valid(self):
         today = date.today()
         print('today', today)
@@ -114,38 +165,55 @@ class AbonnementClient(models.Model):
         print('les activité de cet abc ', activities)
         return activities
 
-    def renew_abc(self):
+    def renew_abc(self, renew_start_date):
         type_abonnement = self.type_abonnement
         delta = timedelta(days = type_abonnement.length)
-        new_start_date = self.start_date
-        self.reste += type_abonnement.price
-        if self.is_valid():
-            self.end_date = self.end_date + delta
-            # self.presence_quantity += type_abonnement.seances_quantity
-            if self.is_time_volume():
-                print("cest un abonnement de volume horaire")
-                added = type_abonnement.seances_quantity *60
-                print('added', added)
-                self.presence_quantity += added
-            else:
-                print("cest un abonnement de Seances")
-                added = type_abonnement.seances_quantity
-                print('added', added)
-                self.presence_quantity += added
-            print("cest  self.presence_quantity ", self.presence_quantity )
-            
-            self.start_date =  date.today()
-            self.end_date = self.start_date + delta
-            self.reste += type_abonnement.price
-        else:
-            if self.is_time_volume():
-                print("cest un abonnement de volume horaire 2")
-                self.presence_quantity = type_abonnement.seances_quantity *60
-            else:
-                print("cest un abonnement de Seances 2")
-                self.presence_quantity = type_abonnement.seances_quantity
+        creneaux = self.creneaux.all()
+        creneaux_ids = self.creneaux.all().values_list('id', flat=True)
+        new_end_date = self.get_end_date(renew_start_date, creneaux)
+        new_start_date = renew_start_date
+        self.pk = None
         self.save()
+        for creneau in creneaux:
+            self.creneaux.add(creneau)
+        # self.creneaux.add(creneaux_ids) 
+        self.end_date = new_end_date
+        self.start_date = new_start_date
+        self.save()
+        # abc_id = self.id
         return self
+    # def renew_abc(self, renew_start_date):
+    #     type_abonnement = self.type_abonnement
+    #     delta = timedelta(days = type_abonnement.length)
+    #     new_start_date = self.start_date
+    #     self.reste += type_abonnement.price
+    #     if self.is_valid():
+    #         self.end_date = self.end_date + delta
+    #         # self.presence_quantity += type_abonnement.seances_quantity
+    #         if self.is_time_volume():
+    #             print("cest un abonnement de volume horaire")
+    #             added = type_abonnement.seances_quantity *60
+    #             print('added', added)
+    #             self.presence_quantity += added
+    #         else:
+    #             print("cest un abonnement de Seances")
+    #             added = type_abonnement.seances_quantity
+    #             print('added', added)
+    #             self.presence_quantity += added
+    #         print("cest  self.presence_quantity ", self.presence_quantity )
+            
+    #         self.start_date =  date.today()
+    #         self.end_date = self.start_date + delta
+    #         self.reste += type_abonnement.price
+    #     else:
+    #         if self.is_time_volume():
+    #             print("cest un abonnement de volume horaire 2")
+    #             self.presence_quantity = type_abonnement.seances_quantity *60
+    #         else:
+    #             print("cest un abonnement de Seances 2")
+    #             self.presence_quantity = type_abonnement.seances_quantity
+    #     self.save()
+    #     return self
         # methode creer normaleemnt rest view / la method ne marche pas !!
         
 

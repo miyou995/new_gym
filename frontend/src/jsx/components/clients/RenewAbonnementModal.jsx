@@ -12,8 +12,9 @@ const capitalizeFirstLetter = (word) => {
       return word.charAt(0).toUpperCase() + word.slice(1);
   return '';
 };
-const RenewAbonnementModal = ({show, onShowShange, abonnementData}) => {
-    const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+
+const RenewAbonnementModal = ({show, onShowShange, clientData}) => {
+  const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
   const [clientId, setClientId] = useState('')
   const [abonId, setAbontId] = useState('')
   const [type, setType] = useState('')
@@ -27,12 +28,8 @@ const RenewAbonnementModal = ({show, onShowShange, abonnementData}) => {
   
   
   const [abc, setAbc] = useState({})
-  const abcDetailEND =`${process.env.REACT_APP_API_URL}/rest-api/abonnement-client/${abonId}` 
-  const abcRenewEND =`${process.env.REACT_APP_API_URL}/rest-api/abonnement-client/renew/${abonId}` 
-  const abcEditEND =`${process.env.REACT_APP_API_URL}/rest-api/abonnement-client/${abonId}/` 
   const creneauClientEND = `${process.env.REACT_APP_API_URL}/rest-api/creneau/by-client?cl=${clientId}`
   let creneauPerAbonnementEND = `${process.env.REACT_APP_API_URL}/rest-api/creneau/by-abonnement?ab=${type}`
-const abonnementDeleteEND = `${process.env.REACT_APP_API_URL}/rest-api/abonnement-client/deativate/${abonnementData['abonClientID']}`
 
   
   const [samedi, setSamedi] = useState([]);
@@ -57,19 +54,14 @@ const abonnementDeleteEND = `${process.env.REACT_APP_API_URL}/rest-api/abonnemen
 
   useEffect(() => {
     if (show == true) {
-      setAbontId(abonnementData['abonClientID'])
-      setClientId(abonnementData['clientId'])
-      setType(abonnementData['abonClientType'])
-      setEndDate(abonnementData['abonClientEnd'])
-      setPresences(abonnementData['abonClientpresences'])
-      setReste(abonnementData['abonClientReste'])
-      setTypeName(abonnementData['abonClientTypeName'])
+      setClientId(clientData['clientId'])
+      // setType(clientData['abonClientType'])
+      // setEndDate(clientData['abonClientEnd'])
+      // setPresences(clientData['abonClientpresences'])
+      // setReste(clientData['abonClientReste'])
+      // setTypeName(clientData['abonClientTypeName'])
       // console.log('vdfbvfknb', abonId);
-      setSeleCreneau(abonnementData['abonnementClientCreneaux'])
-        axios.get(abcDetailEND).then(res => {
-          setAbc(res.data)
-          console.log('-------------------',abc)
-        })
+      // setSeleCreneau(clientData['abonnementClientCreneaux'])
       }
     }, [show, renouvler]);
     let result1=[]
@@ -125,12 +117,7 @@ const handleSubmit = async () => {
     creneaux: selectedCreneau,
     reste : reste
   }
-  await axios.patch(abcEditEND, abcData).then( e => {
-    notifySuccess('Abonnement mis A jour avec succés')
-    handleShow()
-  }).catch( err => {
-    notifyError("Erreur lors de la modification de l'abonnement")
-  })
+  
   // refreshPage()
   handleShow()
 }
@@ -207,7 +194,6 @@ return (
                 </tr>
                   }
               { lundi.length > 0 &&
-
               <tr>
                 <th style={{verticalAlign: "middle"}}>
                       <h4 className='pl-2 text-dark font-weight-bold'>Lundi</h4>
@@ -390,7 +376,7 @@ return (
               </Table>
               </div>
                 <div className="col-12">
-                <Button onClick={handleShow} variant="danger light" className='m-2' > Fermer </Button>
+                <Button onClick={handleShow}   variant="danger light" className='m-2' > Fermer </Button>
                 <Button onClick={handleSubmit} variant="primary" className='m-2' > Valider </Button>
                   <div onClick={async e => { 
                     await axios.post(`${process.env.REACT_APP_API_URL}/rest-api/abonnement-client/renew/${abonId}/` ).then( () => {
@@ -405,13 +391,7 @@ return (
                       role="button" className="btn btn-secondary popover-tes cursor-abonnement" >
                     Renouveler l'abonnement
                   </div>
-                <Button 
-                onClick={ async () => {
-                  await axios.get(abonnementDeleteEND)
-                  handleShow()
-                  }}
-                variant="danger" 
-                className='m-2' > Supprimer </Button>
+                
                 </div>
               </div>
 
