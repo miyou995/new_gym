@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 // Images
-import transactionImg from "../../images/profile/creneau.png";
+import transactionImg from "../../images/profile/transaction.png";
 import creneauImg from "../../images/profile/creneau.png";
 import abonnementImg from "../../images/profile/abonnement.png";
 import clientsImg from "../../images/profile/clients.png";

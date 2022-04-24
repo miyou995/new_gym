@@ -19,7 +19,7 @@ class Transaction(models.Model):
     class Meta:
         ordering = ['-last_modified']
 
-    
+
 class Paiement(Transaction):
     # type = models.ForeignKey(Abonnement, verbose_name="abonnement" , related_name="abonnements", on_delete=models.CASCADE)
     abonnement_client = models.ForeignKey(AbonnementClient,on_delete=models.SET_NULL, related_name='transactions', blank=True, null=True)
@@ -34,6 +34,7 @@ class Paiement(Transaction):
             return abonnement_client.type_abonnement
         except:
             return ""
+
     def get_client_last_name(self):
         try:
             return abonnement_client.client.last_name

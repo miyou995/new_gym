@@ -37,7 +37,7 @@ const ABCDetailModal = ({show, onShowShange, abonnementData}) => {
   const abcEditEND =`${process.env.REACT_APP_API_URL}/rest-api/abonnement-client/${abonId}/` 
   const creneauClientEND = `${process.env.REACT_APP_API_URL}/rest-api/creneau/by-client?cl=${clientId}`
   let creneauPerAbonnementEND = `${process.env.REACT_APP_API_URL}/rest-api/creneau/by-abonnement?ab=${type}`
-const abonnementDeleteEND = `${process.env.REACT_APP_API_URL}/rest-api/abonnement-client/deativate/${abonnementData['abonClientID']}`
+const abonnementDeleteEND = `${process.env.REACT_APP_API_URL}/rest-api/abonnement-client/delete/${abonnementData['abonClientID']}/`
 
   
   const [samedi, setSamedi] = useState([]);
@@ -446,15 +446,17 @@ return (
                     </Tab.Pane>
                   </Tab.Content>
                 </div>
-
                   <div className="col-12">
                   <Button onClick={handleShow} variant="danger light" className='m-2' > Fermer </Button>
                   <Button onClick={handleSubmit} variant="primary" className='m-2' > Valider </Button>
-                 
                   <Button 
-                    onClick={ async () => {
-                      await axios.get(abonnementDeleteEND)
-                      handleShow()
+                    onClick={ () => {
+                       axios.delete(abonnementDeleteEND).then( res =>{
+                        notifySuccess(res.message)
+                        handleShow()
+                      }).catch(err =>{
+                        notifyError("erreur lors de la supression de l'abonnement")
+                      })
                       }}
                     variant="danger" 
                     className='m-2' > Supprimer </Button>

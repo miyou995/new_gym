@@ -15092,3 +15092,226 @@ The serializer field might be named incorrectly and not match any attribute or k
 Original exception text was: 'Client' object has no attribute 'name'.
 2022-04-24 00:50:55,747 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\transaction\serializers.py changed, reloading.
 2022-04-24 00:50:57,990 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 09:40:03,944 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 10:05:21,592 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\transaction\models.py changed, reloading.
+2022-04-24 10:05:22,657 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 10:10:15,157 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\transaction\models.py changed, reloading.
+2022-04-24 10:10:15,983 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 10:11:06,235 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\transaction\models.py changed, reloading.
+2022-04-24 10:11:07,137 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 10:20:12,018 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\transaction\models.py changed, reloading.
+2022-04-24 10:20:13,404 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 10:20:32,870 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 10:21:17,407 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\transaction\models.py changed, reloading.
+2022-04-24 10:21:18,735 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 10:24:47,733 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\transaction\models.py changed, reloading.
+2022-04-24 10:24:49,406 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 10:26:14,463 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 10:26:29,929 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\config\urls.py changed, reloading.
+2022-04-24 10:26:31,608 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 10:26:40,284 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\config\settings.py changed, reloading.
+2022-04-24 10:26:41,656 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 10:27:14,028 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 10:30:06,342 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 10:32:38,878 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 10:36:12,196 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-24 10:36:14,039 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 10:36:22,891 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-24 10:36:24,714 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 10:37:43,937 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-24 10:37:45,759 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 10:43:02,744 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-24 10:43:04,550 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 10:43:18,078 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-24 10:43:19,832 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 10:43:57,835 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-24 10:43:59,476 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 10:44:36,824 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-24 10:44:38,503 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 10:44:40,483 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-24 10:44:42,519 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 10:44:59,884 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-24 10:45:01,540 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 10:45:53,645 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-24 10:45:55,322 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 10:49:07,579 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-24 10:49:09,060 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 10:51:15,667 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-24 10:51:17,091 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 10:51:22,545 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-24 10:51:24,257 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 10:51:42,958 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\config\settings.py changed, reloading.
+2022-04-24 10:51:44,777 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 10:52:38,232 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\config\urls.py changed, reloading.
+2022-04-24 10:52:39,959 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 10:52:46,399 django.request WARNING  Not Found: /favicon.ico
+2022-04-24 10:54:26,947 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\config\settings.py changed, reloading.
+2022-04-24 10:55:16,666 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 10:55:46,598 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 10:56:26,625 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-24 10:56:28,281 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 10:56:55,193 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-24 10:56:56,795 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 10:58:16,798 django.request WARNING  Method Not Allowed (PATCH): /rest-api/abonnement-client/deativate/40
+2022-04-24 10:58:16,799 django.request WARNING  Method Not Allowed: /rest-api/abonnement-client/deativate/40
+2022-04-24 10:58:44,539 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-24 10:58:46,302 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 10:58:55,812 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-24 10:58:57,206 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:02:46,955 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-24 11:02:48,639 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:02:52,282 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-24 11:02:54,119 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:03:02,028 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-24 11:03:03,796 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:03:09,272 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-24 11:03:11,020 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:03:18,761 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-04-24 11:03:20,555 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:03:22,681 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-24 11:03:24,427 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:04:01,892 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-24 11:04:03,748 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:04:06,930 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-24 11:04:08,582 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:04:14,220 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-24 11:04:15,805 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:04:24,825 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-24 11:04:26,680 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:04:35,832 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\urls.py changed, reloading.
+2022-04-24 11:04:37,534 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:04:57,554 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-24 11:04:59,323 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:05:04,365 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-24 11:05:06,076 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:05:33,972 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-24 11:05:36,354 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:06:46,227 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-24 11:06:48,015 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:09:28,389 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-24 11:09:30,368 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:09:56,180 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-24 11:09:58,175 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:10:01,446 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-24 11:10:03,248 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:10:56,808 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\urls.py changed, reloading.
+2022-04-24 11:10:58,700 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:11:04,302 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\urls.py changed, reloading.
+2022-04-24 11:11:06,006 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:11:15,515 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\urls.py changed, reloading.
+2022-04-24 11:11:17,249 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:11:24,513 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\urls.py changed, reloading.
+2022-04-24 11:11:26,175 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:12:28,741 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-24 11:12:30,544 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:12:33,241 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-24 11:12:35,002 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:12:37,771 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-24 11:12:39,621 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:13:23,376 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-24 11:13:25,308 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:13:28,014 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-24 11:13:29,681 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:13:49,919 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\urls.py changed, reloading.
+2022-04-24 11:13:51,939 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:16:16,229 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\views.py changed, reloading.
+2022-04-24 11:16:18,079 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:16:24,601 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-24 11:16:26,333 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:17:19,173 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-24 11:17:20,907 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:17:26,458 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-24 11:17:28,376 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:17:35,167 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-24 11:17:36,889 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:17:45,827 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-24 11:17:47,627 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:17:53,084 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-24 11:17:54,682 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:17:56,232 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-24 11:17:57,927 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:18:11,685 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-24 11:18:13,423 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:18:18,987 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\serializers.py changed, reloading.
+2022-04-24 11:18:20,875 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:19:04,655 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-24 11:19:06,473 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:19:17,832 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\urls.py changed, reloading.
+2022-04-24 11:19:19,512 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:19:21,434 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\urls.py changed, reloading.
+2022-04-24 11:19:23,169 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:19:26,368 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\urls.py changed, reloading.
+2022-04-24 11:19:28,148 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:20:23,606 django.request WARNING  Method Not Allowed (DELETE): /rest-api/abonnement-client/delete/40
+2022-04-24 11:20:23,607 django.request WARNING  Method Not Allowed: /rest-api/abonnement-client/delete/40
+2022-04-24 11:20:53,103 django.request WARNING  Method Not Allowed (DELETE): /rest-api/abonnement-client/delete/40
+2022-04-24 11:20:53,104 django.request WARNING  Method Not Allowed: /rest-api/abonnement-client/delete/40
+2022-04-24 11:21:46,389 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\views.py changed, reloading.
+2022-04-24 11:21:48,252 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:22:06,680 django.request WARNING  Method Not Allowed (DELETE): /rest-api/abonnement-client/delete/40
+2022-04-24 11:22:06,680 django.request WARNING  Method Not Allowed: /rest-api/abonnement-client/delete/40
+2022-04-24 11:22:17,822 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\config\settings.py changed, reloading.
+2022-04-24 11:22:19,388 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:22:20,790 django.request WARNING  Method Not Allowed (DELETE): /rest-api/abonnement-client/delete/40
+2022-04-24 11:22:20,793 django.request WARNING  Method Not Allowed: /rest-api/abonnement-client/delete/40
+2022-04-24 11:22:24,808 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\config\settings.py changed, reloading.
+2022-04-24 11:22:26,293 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:22:29,068 django.request WARNING  Method Not Allowed (DELETE): /rest-api/abonnement-client/delete/40
+2022-04-24 11:22:29,069 django.request WARNING  Method Not Allowed: /rest-api/abonnement-client/delete/40
+2022-04-24 11:23:00,667 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\config\urls.py changed, reloading.
+2022-04-24 11:23:02,375 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:23:03,200 django.request WARNING  Method Not Allowed: /rest-api/abonnement-client/delete/40/
+2022-04-24 11:23:03,858 django.request WARNING  Not Found: /favicon.ico
+2022-04-24 11:23:15,663 django.request WARNING  Not Found: /rest-api/abonnement-client/40/
+2022-04-24 11:24:43,749 django.request WARNING  Not Found: /rest-api/abonnement-client/40/
+2022-04-24 11:25:10,382 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\config\urls.py changed, reloading.
+2022-04-24 11:25:12,171 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:25:16,439 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\config\settings.py changed, reloading.
+2022-04-24 11:25:18,275 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:26:46,540 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-24 11:26:48,071 django.request ERROR    Internal Server Error: /rest-api/transactions/trans-today/
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 457, in get_attribute
+    return get_attribute(instance, self.source_attrs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 97, in get_attribute
+    instance = getattr(instance, attr)
+AttributeError: 'NoneType' object has no attribute 'type_abonnement'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\drf_multiple_model\views.py", line 8, in get
+    return self.list(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\drf_multiple_model\mixins.py", line 112, in list
+    data = query_data['serializer_class'](queryset, many=True, context=context).data
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 768, in data
+    ret = super().data
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 686, in to_representation
+    return [
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 509, in to_representation
+    attribute = field.get_attribute(instance)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\fields.py", line 490, in get_attribute
+    raise type(exc)(msg)
+AttributeError: Got AttributeError when attempting to get a value for field `abonnement_name` on serializer `PaiementSerialiser`.
+The serializer field might be named incorrectly and not match any attribute or key on the `Paiement` instance.
+Original exception text was: 'NoneType' object has no attribute 'type_abonnement'.

@@ -23,7 +23,11 @@ class ClientDropSerializer(serializers.ModelSerializer):
     class Meta:
         model = Client
         fields = '__all__'
-
+class AbonnementClientAllSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AbonnementClient
+        fields= '__all__'
+        
 class AbonnementClientRenewSerializer(serializers.ModelSerializer):
     start_renew_date = serializers.CharField(write_only=True)
     abc = serializers.IntegerField(write_only=True)

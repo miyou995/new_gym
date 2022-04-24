@@ -84,6 +84,13 @@ class AbonnementClient(models.Model):
     subscription_type   = SubscriptionManager()
 
 
+    def put_archiver(self):
+        self.archiver = True 
+        self.actif = False 
+        self.creneaux.set([]) 
+        self.save()
+        print("ABCCCCC DELETEEDDDD")
+        return self
     def is_time_volume(self):
         return True if self.type_abonnement.type_of == "VH" else False
     def is_free_access(self):
@@ -144,7 +151,6 @@ class AbonnementClient(models.Model):
 
 
 
-
     def is_no_more_actif(self):
         today = date.today()
         if today > self.end_date:
@@ -195,6 +201,7 @@ class AbonnementClient(models.Model):
         # self.creneaux.add(creneaux_ids) 
         self.end_date = new_end_date
         self.start_date = new_start_date
+        self.reste = type_abonnement.price
         self.save()
         # abc_id = self.id
         return self

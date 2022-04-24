@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from rest_framework import generics
 from .models import Abonnement,  AbonnementClient
-from .serializers import AbonnementClientSerialiser, AbonnementSerialiser, AbonnementClientDetailUpdateSerialiser, AbonnementClientDetailSerializer, AbonnementClientTransactionsSerializer, ABCCreneauSerializer, AbonnementClientRenewSerializer
+from .serializers import AbonnementClientSerialiser, AbonnementSerialiser, AbonnementClientDetailUpdateSerialiser, AbonnementClientDetailSerializer, AbonnementClientTransactionsSerializer, ABCCreneauSerializer, AbonnementClientRenewSerializer, AbonnementClientAllSerializer
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.decorators import api_view, permission_classes
 from datetime import timedelta, date
@@ -41,12 +41,11 @@ class AbonnementClientDetailAPIView(generics.RetrieveUpdateAPIView):
 
 class AbonnementClientDestroyAPIView(generics.DestroyAPIView):
     queryset = AbonnementClient.objects.all()
-    serializer_class = AbonnementClientSerialiser
+    serializer_class = AbonnementClientAllSerializer
 
 
 def delete_all(request):
     return Abonnement.objects.all().delete()
-
     ##### FIN TYPE #####
 
 
@@ -83,13 +82,23 @@ def deactivate_api_view(request, pk):
     return Response({'message' : "l'abonnement a été suprimer avec Success"})
 
 
-@api_view(['GET'])
+@api_view(['DELETE'])
 def deactivate_abc_api_view(request, pk):
-    ab  = AbonnementClient.objects.get( id = pk)
-    ab.archiver = True 
-    ab.creneaux.set([]) 
-    ab.save()
+    print('-------------------------------------------------------')
+    abc  = AbonnementClient.objects.get( id = pk).delete()
     return Response({'message' : "l'abonnement a été suprimer avec Success"})
+
+class DeactivateAbcView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = AbonnementClient.objects.all()
+    serializer_class = AbonnementClientRenewSerializer
+
+# class DeactivateAbcView(APIView):
+#     def get(self, request, pk, format=None):
+#         print('-------------------------------------------------------')
+#         abc = self.get_object(pk)
+#         abc.put_archiver()
+#         serializer = AbonnementClientDetailSerializer(abc)
+#         return Response(serializer.data)
 
 class RenewABCView(APIView):
     def get_object(self, pk):
