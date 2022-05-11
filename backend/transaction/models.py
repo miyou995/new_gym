@@ -6,6 +6,7 @@ from datetime import date, datetime
 # Create your models here.
 from django.db.models.signals import post_save, post_delete
 import calendar
+from simple_history.models import HistoricalRecords
 
 class Transaction(models.Model):
     amount          = models.DecimalField(max_digits=11, decimal_places=0, default = 0)
@@ -23,6 +24,7 @@ class Transaction(models.Model):
 class Paiement(Transaction):
     # type = models.ForeignKey(Abonnement, verbose_name="abonnement" , related_name="abonnements", on_delete=models.CASCADE)
     abonnement_client = models.ForeignKey(AbonnementClient,on_delete=models.SET_NULL, related_name='transactions', blank=True, null=True)
+    history = HistoricalRecords()
     # hello = models.TextField(blank=True, null=True)
     def __str__(self):
         return str(self.amount)
@@ -46,6 +48,7 @@ class Paiement(Transaction):
         except:
             return ""
 class Autre(Transaction):
+    history = HistoricalRecords()
     name = models.CharField(max_length=200, null=True, blank=True)
     def __str__(self):
         return str(self.amount)
@@ -54,6 +57,7 @@ class Autre(Transaction):
 
 class AssuranceTransaction(Transaction):
     # type = models.CharField(max_length=200, null=True, blank=True)
+    history = HistoricalRecords()
     client = models.ForeignKey(Client,on_delete=models.SET_NULL, related_name='assurances',blank=True, null=True)
 
     def __str__(self):
@@ -64,6 +68,7 @@ class AssuranceTransaction(Transaction):
 
 
 class Remuneration(Transaction):
+    history = HistoricalRecords()
     nom = models.ForeignKey(Personnel, related_name="rem_personnels", on_delete=models.SET_NULL,blank=True, null=True)
     def __str__(self):
         return str(self.amount)
@@ -71,6 +76,7 @@ class Remuneration(Transaction):
         ordering = ['-date_creation']
         
 class RemunerationProf(Transaction):
+    history = HistoricalRecords()
     coach = models.ForeignKey(Coach, related_name="rem_coachs", on_delete=models.SET_NULL,blank=True, null=True)
     def __str__(self):
         return str(self.amount)

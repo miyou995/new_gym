@@ -121,3 +121,10 @@ class ReadUsersView(serializers.ModelSerializer):
         model = User
         fields = ('id', 'email')
         # read_only_fields = 'username'
+
+
+class ObtainTokenSerializer(TokenObtainPairSerializer):
+    @classmethod
+    def get_token(cls, user):
+        token = super(ObtainTokenSerializer, cls).get_token(user)
+        return token

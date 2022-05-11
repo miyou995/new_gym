@@ -8,12 +8,15 @@ from datetime import timedelta, datetime, timezone
 from decimal import Decimal
 from django.utils import timezone
 from abonnement.models import AbonnementClient
+from simple_history.models import HistoricalRecords
+from django.conf import settings
 
 class PresenceManager(models.Manager):
     def get_presence(self, client_id):
         # client = Client.objects.get(id=client_id)
-        presences = Presence.objects.filter(client__id=client_id, is_in_salle=True)
+        presences = Presence.objects.filter(abc__client__id=client_id, is_in_salle=True)
         print('TRUEEEEEEEEEEEE', presences)
+        print('client_id', client_id)
         try :
             presence = presences.last().id
         except :
@@ -34,6 +37,9 @@ class Presence(models.Model):
     
     objects = models.Manager()
     presence_manager = PresenceManager()
+    history = HistoricalRecords(user_model=settings.AUTH_USER_MODEL)
+
+
 
     # def __str__(self):
     #     return str(f' le client {self.client}, {self.date}')
@@ -56,6 +62,7 @@ class PresenceCoach(models.Model):
     hour_entree = models.TimeField()
     hour_sortie = models.TimeField(auto_now_add=False, null=True, blank=True)
     is_in_salle = models.BooleanField(default=False)
+    history = HistoricalRecords()
 
 
 def presence_coach_create_signal(sender, instance, created,**kwargs):

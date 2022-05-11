@@ -6,7 +6,6 @@ import {ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import AuthContext from "../context/AuthContext";
 import {notifyError} from '../components/Alert'
-
 const Login = ({ history }) => {
   // const [email, setEmail] = useState("");
   // const [password, setPassword] = useState("");
@@ -20,6 +19,7 @@ const Login = ({ history }) => {
   // const [error , setError] = useState("");
   const { email, password } = formData;
   const { loginUser } = useContext(AuthContext);
+
   const handleChange = (e) => {
 		updateFormData({
 			...formData,

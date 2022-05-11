@@ -23,6 +23,9 @@ import ClientDetail from "./components/clients/ClientDetail";
 import ClientCreate from "./components/clients/ClientCreate";
 import Clients from "./components/clients/Clients";
 import PresenceList from "./components/presence/PresenceList";
+import HistoryList from "./components/history/HistoryAbc"
+import HistoryTrans from "./components/history/HistoryTrans"
+import HistoryPresence from "./components/history/HistoryPresence"
 // import PresenceDetail from "./components/presence/PresenceDetail";
 // import PresenceEdit from "./components/presence/PresenceEdit";
 
@@ -121,10 +124,13 @@ const Markup = () => {
     // { url: "clients", component: ClientList },
     { url: "client", component: ClientList },
     { url: "presences", component: PresenceList },
+    { url: "history-abc", component: HistoryList },
+    { url: "history-trans", component: HistoryTrans },
+    { url: "history-presence", component: HistoryPresence },
+    
     // { url: "presence/detail/:id", component: PresenceDetail },
     // { url: "presence/edit/:id", component: PresenceEdit },
     
-   
     { url: "client/create", component: ClientCreate },
     { url: "client/:id", component: ClientDetail },
     { url: "client/edit/:id", component: EditClient },
@@ -209,7 +215,6 @@ const Markup = () => {
           <div className={`${!pagePath ? "container-fluid" : ""}`}style={{ minHeight: window.screen.height - 60 }}>
             <Switch>
               <Route exact component={Login} path="/login" />
-
               {routes.map((data, i) => (
                 <PrivateRoute
                   key={i}

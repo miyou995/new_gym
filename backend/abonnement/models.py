@@ -5,6 +5,7 @@ from salle_activite.models import Activity, Salle
 from creneau.models import Creneau
 # Signals imports
 from django.db.models.signals import post_save, pre_save
+from simple_history.models import HistoricalRecords
 
 class SubscriptionManager(models.Manager):
     def time_volume(self):
@@ -56,7 +57,6 @@ class Abonnement(models.Model):
         return self.name
 
 
-
     def time_volume(self):
         return True if self.type_of == "VH" else False
     def free_access(self):
@@ -79,10 +79,9 @@ class AbonnementClient(models.Model):
     archiver            = models.BooleanField(default=False)
     created_date_time   = models.DateTimeField(auto_now_add=True)
     updated_date_time   = models.DateTimeField(auto_now=True)
+    history = HistoricalRecords()
     objects             = models.Manager()
-    # validity            = ManagerValidity()
     subscription_type   = SubscriptionManager()
-
 
     def put_archiver(self):
         self.archiver = True 

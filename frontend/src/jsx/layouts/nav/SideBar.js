@@ -77,7 +77,7 @@ const [path,setPath] = useState("");
    //       table = ["table-bootstrap-basic", "table-datatable-basic"],
    //       config = ["configuration"];
 
- 
+
 
       return (
          <div className="deznav">
@@ -110,20 +110,20 @@ const [path,setPath] = useState("");
                      </Link>
                   </li> */}
                   {/* Fin trésorie */}
-                  <li >
+                  <li>
                      <Link to="/client">
                         <i className="flaticon-381-user-9"></i>
                         <span className="nav-text"> Abonnées </span>
                      </Link>
                   </li>
                   {/* Fin ABonnées */}
-                  <li >
+                  <li>
                      <Link to="/transactions">
                         <i className="flaticon-381-controls"></i>
                         <span className="nav-text">Transactions</span>
                      </Link>
                   </li>
-                  <li >
+                  <li>
                      <Link to="/creneaux">
                         <i className="flaticon-381-calendar"></i>
                         <span className="nav-text">Créneaux</span>
@@ -154,17 +154,15 @@ const [path,setPath] = useState("");
                      </ul>
                   </li> */}
                   {/* Fin planning */}
-                  
-                  <li >
+                  <li>
                      <Link to="/presences">
                         <i className="flaticon-381-blueprint"></i>
                         <span className="nav-text">Présences</span>
                      </Link>
                   </li>
                   {/* Fin présences */}
-                  
                   {/* Coaches & personnel */}
-                  <li >
+                  <li>
                      <Link className="has-arrow ai-icon" to="#">
                         <i className="flaticon-381-user-5"></i>
                         <span className="nav-text">Coachs & Personnels</span>
@@ -182,16 +180,22 @@ const [path,setPath] = useState("");
                         </li>
                      </ul>
                   </li>
-                  <li >
+                  <li>
                      <Link to="/configuration">
                         <i className="flaticon-381-settings"></i>
                         <span className="nav-text">configuration</span>
                      </Link>
                   </li>
-                  <li >
+                  <li>
                      <Link to="/users">
                         <i className="flaticon-381-user-1"></i>
                         <span className="nav-text">Utilisateurs</span>
+                     </Link>
+                  </li>
+                  <li>
+                     <Link to="/history-abc">
+                        <i className="flaticon-381-bookmark-1"></i>
+                        <span className="nav-text">Historique</span>
                      </Link>
                   </li>
                      {/* <ul>

@@ -52,7 +52,8 @@ class GETClientDetailAPIView(generics.RetrieveAPIView):
         try:
             client = Client.objects.get(id = self.request.query_params.get('cl', None))
         except :
-            client = Client.objects.get(carte = self.request.query_params.get('cl', None))
+            client = get_object_or_404(Client, carte=self.request.query_params.get('cl', None))
+            # client = Client.objects.get(carte = self.request.query_params.get('cl', None))
         print('object, client', client)
         return client
 
@@ -148,7 +149,7 @@ class CoachListAPIView(generics.ListAPIView):
     permission_classes = (IsAuthenticated,)
     serializer_class = CoachSerializer
     # lookup_field = 'slug'
-    permission_classes = (AllowAny, )
+    # permission_classes = (AllowAny, )
 
 
 class CoachDetailAPIView(generics.RetrieveUpdateAPIView):

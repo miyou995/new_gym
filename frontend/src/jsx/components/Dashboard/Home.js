@@ -2,6 +2,7 @@ import React, { Fragment , useState, useEffect} from "react";
 import { Dropdown, Tab, Nav, Row } from "react-bootstrap";
 import { Link, Router, useHistory } from "react-router-dom";
 import { useGetAPI, usePutAPI } from '../useAPI'
+import axiosInstance from "../useAxios";
 
 import PerfectScrollbar from "react-perfect-scrollbar";
 
@@ -10,6 +11,7 @@ import ShortCuts from "../ShortCuts";
 import axios from "axios";
 
 const Home = () => {
+  const api = axiosInstance;
 
   //  const dettesAND = `${process.env.REACT_APP_API_URL}/rest-api/clients-dettes/`
    const dettesAND = `${process.env.REACT_APP_API_URL}/rest-api/totales-restes/`
@@ -47,27 +49,28 @@ const Home = () => {
    // console.log('dettesglobal', dettes);
    
    useEffect(() => {
-      axios.get(dettesAND).then((res) => {
+    axiosInstance.get(dettesAND).then((res) => {
+      console.log('respojnnnnnnnnn', res);
          setDettesglobal(res.data['totales_dettes']['reste__sum'])
       })
-      axios.get(chargesAND).then((res) => {
+      api.get(chargesAND).then((res) => {
          setTotaldepenses(res.data.total_charges)
       })
-      axios.get(ttcAND).then((res) => {
+      api.get(ttcAND).then((res) => {
          setChiffreDaffaire(res.data.chiffre_affaire)
       })
-      axios.get(clientCount).then((res) => {
+      api.get(clientCount).then((res) => {
          setNombreAbonne(res.data.abonnees)
       })
-      axios.get(transactionsTodayEND).then((res) => {
+      api.get(transactionsTodayEND).then((res) => {
          setTransClient(res.data)
          console.log('res trans clients', res.data);
       })
-      axios.get(presencesTodayEND).then((res) => {
+      api.get(presencesTodayEND).then((res) => {
          setPresnecesClient(res.data)
          console.log('les clients actuellement en salle', res.data);
       })
-      // axios.get(coachsEND).then((res) => {
+      // api.get(coachsEND).then((res) => {
       //    setCoachData(res.data)
       // })
    }, []);

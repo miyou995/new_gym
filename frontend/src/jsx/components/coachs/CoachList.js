@@ -10,6 +10,7 @@ import avartar1 from "../../../images/avatar/1.png";
 import { Link } from "react-router-dom";
 import { useGetAPI } from '../useAPI'
 import ShortCuts from "../ShortCuts";
+import axiosInstance from "../useAxios";
 
 
 
@@ -43,14 +44,17 @@ const Drop = (props) => {
 };
 const CoachList = () => {
    let endpoint = `${process.env.REACT_APP_API_URL}/rest-api/coachs/`
+   const api = axiosInstance;
 
    const [coachData, setCoachData] = useState([]);
-   const savedCoachs = useGetAPI(endpoint)
+   // const savedCoachs = api.get(endpoint)
    
    useEffect(() => {
-      const coachs = savedCoachs
-      setCoachData(coachs)
-   }, [savedCoachs]);
+      axiosInstance.get(endpoint).then( res=> {
+         setCoachData(res.data)
+      }) 
+      // const coachs = savedCoachs
+   }, [endpoint]);
    // console.log('els clieeents', savedClients);
 
 

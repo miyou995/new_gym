@@ -14,6 +14,8 @@ import { useGetAPI, usePostAPI } from '../useAPI'
 import PresenceEditModal from './PresenceEditModal'
 import PresenceCreateModal from './PresenceCreateModal'
 import TextField from '@material-ui/core/TextField';
+import useAxios from "../useAxios";
+// import axiosInstance from "../../axiosApi";
 
 export const ClientContext = React.createContext()
 function refreshPage() {
@@ -48,6 +50,9 @@ const Drop = (props) => {
 };
 
 const PresenceList = () => {
+   const api = useAxios();
+
+
    const [editModal, setEditModal] = useState(false);
    const [presneceCreateModal, setPresneceCreateModal] = useState(false);
    const [nextpage, setNextpage] = useState(1);
@@ -128,7 +133,8 @@ const getCurrentDay = (PresneceDate) => {
       const presenceDateDate = async () => {
          const dateDebut = formatDate(startDate)
          const dateFin = formatDate(endDate)
-         const result =  await axios.get(`${process.env.REACT_APP_API_URL}/rest-api/presence/?page=${nextpage}&start_date=${dateDebut}&end_date=${dateFin}&abc__client_id=${searchValue}&creneau__activity__salle=${salleId}&hour=${startHour}&creneau__activity=${filterActivity}`)
+         const result =  await api.get(`${process.env.REACT_APP_API_URL}/rest-api/presence/?page=${nextpage}&start_date=${dateDebut}&end_date=${dateFin}&abc__client_id=${searchValue}&creneau__activity__salle=${salleId}&hour=${startHour}&creneau__activity=${filterActivity}`)
+         console.log('cest un result ', result);
          setPresenceData(result.data.results)
          setPresencesCount(result.data.count)
       }
@@ -137,7 +143,7 @@ const getCurrentDay = (PresneceDate) => {
 
 const HandleSubmit = (e) => {
    e.preventDefault();
-   const presenceData =  axios.get(`${process.env.REACT_APP_API_URL}/rest-api/get-client/?cl=${clientId}`).then(async res=> {
+   const presenceData =  api.get(`${process.env.REACT_APP_API_URL}/rest-api/get-client/?cl=${clientId}`).then(async res=> {
       if (res.data.last_presence) {
          setPresenceId(res.data.last_presence)
          await axios.put( `${process.env.REACT_APP_API_URL}/rest-api/presence/edit/${res.data.last_presence}/`)
@@ -166,7 +172,7 @@ const HandleSubmit = (e) => {
          </Link>
          <div className="testimonial-one owl-right-nav owl-carousel owl-loaded owl-drag mb-4">
             <ShortCuts />
-         </div>
+         </div> 
          <div className="m-5 row">
             <div className='col- col-md-4'>
                <form onSubmit={HandleSubmit}>
@@ -196,27 +202,23 @@ const HandleSubmit = (e) => {
             <div className="form-group col-md-2">
                <label style={{color:'#000000'}} >Salle d'activité</label>
                   <Autocomplete
-                  // id={(option) =>  option['id']}
-                  onChange={((event, value) =>  {
-                     try {
-                        setSalleId(value.id)
-                     } catch (error) {
-                        setSalleId('')
-                     }
-                  })}
-                  // onChange={handleSubmit}
-                  options={sallesData}
-                  //  value={activities[creneauActivite]}
-                  
-                  getOptionSelected={(option) =>  option['id']}
-                  getOptionLabel={(option) =>  option['name']}
-                  style={{ color: '#000' }}
-                  renderInput={(params) => 
-                     <TextField {...params} style={{color:"#000"}}  className='text-light' label="Salles" variant="outlined"  
-                     InputLabelProps={{
-                        style: { color: '#000' }, 
-                     }}
-                     />}
+                     // id={(option) =>  option['id']}
+                     onChange={((event, value) =>  {
+                        try {
+                           setSalleId(value.id)
+                        } catch (error) {
+                           setSalleId('')
+                        }
+                     })}
+                     // onChange={handleSubmit}
+                     options={sallesData}
+                     //  value={activities[creneauActivite]}
+                     
+                     getOptionSelected={(option) =>  option['id']}
+                     getOptionLabel={(option) =>  option['name']}
+                     style={{ color: '#000' }}
+                     renderInput={(params) => 
+                     <TextField {...params} style={{color:"#000"}}  className='text-light' label="Salles" variant="outlined" InputLabelProps={{style: { color: '#000' }, }}/>}
                   />
 
             </div>

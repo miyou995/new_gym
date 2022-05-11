@@ -6,9 +6,9 @@ from rest_framework.response import Response
 
 class PaiementSerialiser(serializers.ModelSerializer):
     # client = serializers.SerializerMethodField('abonnement_client.client', read_only=True)
-    abonnement_name = serializers.CharField(source='abonnement_client.type_abonnement.name')
-    client_last_name = serializers.CharField(source='abonnement_client.client')
-    client_id = serializers.CharField(source='abonnement_client.client.id')
+    abonnement_name = serializers.CharField(source='abonnement_client.type_abonnement', read_only = True)
+    client_last_name = serializers.CharField(source='abonnement_client.client', read_only=True)
+    client_id = serializers.CharField(source='abonnement_client.client.id', read_only=True)
     abc_id = serializers.IntegerField(source='abonnement_client.id', read_only=True)
 
     class Meta:

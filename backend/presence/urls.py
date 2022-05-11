@@ -1,9 +1,8 @@
 from django.urls import path, include
-from .views import PresenceListAPIView, PresenceDetailAPIView, PresenceDestroyAPIView, PresenceEditAPIView,PresenceCoachCreateAPI,PresenceCoachListAPI,PresenceCoachDetailUpdateAPI,PresenceCoachDestroyAPI, PresenceCoachEditAPIView, PresenceClientDetailAPI, PresenceByCoachListAPI, PresenceClientIsInAPI, PresencePostAPIView, PresenceClientAutoCreateAPI, AllPresenceListAPIView
+from .views import PresenceListAPIView, PresenceDetailAPIView, PresenceDestroyAPIView, PresenceEditAPIView,PresenceCoachCreateAPI,PresenceCoachListAPI,PresenceCoachDetailUpdateAPI,PresenceCoachDestroyAPI, PresenceCoachEditAPIView, PresenceClientDetailAPI, PresenceByCoachListAPI, PresenceClientIsInAPI, PresencePostAPIView, PresenceClientAutoCreateAPI, AllPresenceListAPIView, PresenceHistoryListAPIView, PresenceManualEditAPIView
 
 
 app_name = 'presence'
-
 
 
 urlpatterns = [
@@ -13,6 +12,7 @@ urlpatterns = [
     path('auto-create', PresenceClientAutoCreateAPI.as_view(),  name="presence"),
     path('presence-create', PresencePostAPIView.as_view(),  name="presence-create"),
     path('client/', PresenceClientDetailAPI.as_view(),  name="presence-client"),
+    path('history/', PresenceHistoryListAPIView.as_view(),  name="presence-history"),
 
     path('coachs/', PresenceCoachListAPI.as_view(), name="presence-edit"),
     path('by-coachs/', PresenceByCoachListAPI.as_view(), name="presence-by-coach"),
@@ -26,6 +26,7 @@ urlpatterns = [
     path('coach/edit/<int:pk>/', PresenceCoachEditAPIView.as_view(), name="presence-edit"),
 
     path('edit/<int:pk>/', PresenceEditAPIView.as_view(), name="presence-edit"),
+    path('manual-edit/<int:pk>/', PresenceManualEditAPIView.as_view(), name="presence-manual"),
     path('<int:pk>/', PresenceDetailAPIView.as_view(), name="presence-detail"),
     
     # path('detail/<int:pk>/', PresenceDetailAPIView.as_view(), name="presence-detail"),

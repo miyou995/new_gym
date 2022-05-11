@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from rest_framework import generics
 from .models import Abonnement,  AbonnementClient
-from .serializers import AbonnementClientSerialiser, AbonnementSerialiser, AbonnementClientDetailUpdateSerialiser, AbonnementClientDetailSerializer, AbonnementClientTransactionsSerializer, ABCCreneauSerializer, AbonnementClientRenewSerializer, AbonnementClientAllSerializer
+from .serializers import AbonnementClientSerialiser, AbonnementSerialiser, AbonnementClientDetailUpdateSerialiser, AbonnementClientDetailSerializer, AbonnementClientTransactionsSerializer, ABCCreneauSerializer, AbonnementClientRenewSerializer, AbonnementClientAllSerializer, AbonnementClientHistorySerializer
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.decorators import api_view, permission_classes
 from datetime import timedelta, date
@@ -9,7 +9,36 @@ from rest_framework.response import Response
 from client.models import Client
 from django.db.models import Sum
 from rest_framework.views import APIView
+from django.db.models import Q
 
+def is_valid_queryparam(param):
+    return param != '' and param is not None
+
+def get_filtered_abc_history(request):
+    qs = AbonnementClient.history.all()
+    start_from = request.query_params.get('start', None)
+    end_from = request.query_params.get('end', None)
+    usr = request.query_params.get('usr', None)
+    cl = request.query_params.get('cl', None)
+    abc = request.query_params.get('abc', None)
+    if is_valid_queryparam(start_from):
+        qs = qs.filter(history_date__gte=start_from).distinct()
+    if is_valid_queryparam(end_from):
+        qs = qs.filter(history_date__lte=end_from).distinct()
+    if is_valid_queryparam(abc):
+        qs = qs.filter(id=abc).distinct()  
+    if is_valid_queryparam(cl):
+        try:
+            client = Client.objects.get(id=cl) 
+        except:
+            client =  get_object_or_404(Client, carte=cl)
+        # client = Q( Client.objects.get(id=cl) | Client.objects.get(carte=cl) )
+        if client:
+            qs = qs.filter(client=client).distinct()
+
+    if is_valid_queryparam(usr):
+        qs = qs.filter(history_user=usr).distinct()
+    return {'qs': qs}
 
 class AbonnementClientCreateAPIView(generics.CreateAPIView):
     queryset = AbonnementClient.objects.all()
@@ -171,6 +200,18 @@ def renew_api_view(request, pk):
 #         abc.save()
 #     # print('reqeust', jours, ' heeey', seances)
 #     return Response({'new date' : abc.end_date, 'seances': abc.presence_quantity})
+
+class AbonnementClientHistoryListAPIView(generics.ListAPIView):
+    queryset = AbonnementClient.history.all()
+    print('queryset', queryset.count())
+    # permission_classes = (IsAuthenticated,)
+    serializer_class = AbonnementClientHistorySerializer
+    def get_queryset(self):
+        queryset = get_filtered_abc_history(self.request)['qs']
+        print('queryset', queryset.count())
+        print('queryset', queryset)                                                                                     
+        return queryset
+
 class AbonnementClientAllDetailListApi(generics.ListAPIView):
     serializer_class = AbonnementClientDetailSerializer    
     def get_queryset(self):

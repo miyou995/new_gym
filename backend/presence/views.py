@@ -4,9 +4,10 @@ from django.shortcuts import render, get_object_or_404
 from rest_framework import generics
 from rest_framework.settings import perform_import
 from .models import Presence, PresenceCoach
-from .serializers import PresenceSerialiser,  PresenceEditSerialiser, PresenceCoachSerializer, PresenceClientSerialiser, PresencePostSerialiser, PresenceAutoSerialiser
+from .serializers import PresenceSerialiser,  PresenceEditSerialiser, PresenceCoachSerializer, PresenceClientSerialiser, PresencePostSerialiser, PresenceAutoSerialiser, PresenceHistorySerialiser, PresenceManualEditSerialiser
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from django.db.models import Q
+
 # from client.models import Client # a supprimer apres les tests
 # from abonnement.models import AbonnementClient
 # from datetime import date 
@@ -59,6 +60,17 @@ class PresencePostAPIView(generics.CreateAPIView):
         #     presence.is_in_salle = True
         #     serializer.save()
         # return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+class PresenceHistoryListAPIView(generics.ListAPIView):
+    queryset = Presence.history.all()
+    print('queryset', queryset.count())
+    # permission_classes = (IsAuthenticated,)
+    serializer_class = PresenceHistorySerialiser
+    # def get_queryset(self):
+    #     queryset = get_filtered_abc_history(self.request)['qs']
+    #     print('queryset', queryset.count())
+    #     print('queryset', queryset)                                                                                     
+    #     return queryset
 
 class AllPresenceListAPIView(generics.ListAPIView):
     queryset = Presence.objects.all()
@@ -197,26 +209,35 @@ class PresenceDetailAPIView(generics.RetrieveUpdateAPIView):
     # permission_classes = (IsAuthenticated,)
     serializer_class = PresenceSerialiser
 
-    def get_object(self):
-        obj = get_object_or_404(Presence.objects.filter(id=self.kwargs["pk"]))
-        creneaux = Presence.presence_manager.get_presence(30)
-        # abon = abonnement[0].id
-        print('get_abonnement..................0....', creneaux)
-        # #### ce passe dans une fonction
-        # prenseces = abon.presence_quantity 
-        # print('ceci est labonnement du client ', abon)
+    # def get_object(self):
+    #     obj = get_object_or_404(Presence.objects.filter(id=self.kwargs["pk"]))
+    #     creneaux = Presence.presence_manager.get_presence(30)
+    #     # abon = abonnement[0].id
+    #     print('get_abonnement..................0....', creneaux)
+    #     # #### ce passe dans une fonction
+    #     # prenseces = abon.presence_quantity 
+    #     # print('ceci est labonnement du client ', abon)
 
-        # abonnement.update(presence_quantity = prenseces - 1 )
-        return obj
+    #     # abonnement.update(presence_quantity = prenseces - 1 )
+    #     return obj
 
 class PresenceEditAPIView(generics.RetrieveUpdateAPIView):
     queryset = Presence.objects.all()
     # permission_classes = (IsAuthenticated,)
-    serializer_class = PresenceEditSerialiser
+    serializer_class = PresenceManualEditSerialiser
     def get_object(self):
-        obj = get_object_or_404(Presence.objects.filter(id=self.kwargs["pk"]))
+        obj = get_object_or_404(Presence, id=self.kwargs["pk"])
+        print('Salle ... ', obj , obj.id)
         return obj
 
+class PresenceManualEditAPIView(generics.RetrieveUpdateAPIView):
+    queryset = Presence.objects.all()
+    # permission_classes = (IsAuthenticated,)
+    serializer_class = PresencePostSerialiser
+    def get_object(self):
+        obj = get_object_or_404(Presence, id=self.kwargs["pk"])
+        print('Salle ... ', obj , obj.id)
+        return obj
 
 
 class PresenceDestroyAPIView(generics.DestroyAPIView):

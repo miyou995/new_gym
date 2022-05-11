@@ -15,6 +15,9 @@ import { set } from "js-cookie";
 import { useGetAPI, usePostAPI } from '../../components/useAPI'
 import { useContext } from "react";
 import axios from "axios";
+// import {notifySuccess, notifyError} from '../Alert'
+import {notifySuccess, notifyError} from '../../components/Alert'
+import ShortCuts from "../../components/ShortCuts";
 
 
 
@@ -36,16 +39,19 @@ const Header = ({ onNote, toggle, onProfile, onNotification, onClick }) => {
   const [username, SetUsername] = useState("");
   const Logout = async e => {
     let endpoint = `${process.env.REACT_APP_API_URL}/rest-api/auth/logout/blacklist`
-    const authToken = localStorage.getItem('authTokens')
-    const refresh =  JSON.parse(localStorage.getItem("authTokens"))
-    console.log('refresh', jwt_decode(localStorage.getItem("authTokens")));
+    // const authToken = localStorage.getItem('authTokens')
+    const authToken =  JSON.parse(localStorage.getItem("authTokens"))
+    console.log('authToken', jwt_decode(localStorage.getItem("authTokens")));
     // console.log('refresh 2 ', authToken.refresh);
-    console.log('authToken',  JSON.parse(localStorage.getItem("authTokens")).refresh);
-    axios.post(endpoint, refresh).then( () => {
-      console.log(refresh);
+    console.log('refresh',  JSON.parse(localStorage.getItem("authTokens")).refresh);
+    axios.post(endpoint, {refresh :authToken.refresh}).then( () => {
+      console.log(authToken.refresh);
       localStorage.removeItem('authTokens');
       // axiosInstance.defaults.headers['Authorization'] = null;
       history.push('/login');
+    }).catch(err => {
+      notifyError(err.error)
+      console.log('err =>', err);
     })
   }
 
@@ -271,6 +277,9 @@ const Header = ({ onNote, toggle, onProfile, onNotification, onClick }) => {
           </div>
         </nav>
       </div>
+      {/* <div className="testimonial-one owl-right-nav owl-carousel owl-loaded owl-drag my-4 d-block">
+        <ShortCuts />
+      </div> */}
     </div>
   );
 };

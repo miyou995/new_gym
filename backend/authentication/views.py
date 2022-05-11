@@ -1,20 +1,19 @@
 from django.shortcuts import render, get_object_or_404
-from rest_framework import generics, viewsets
+from rest_framework import generics, viewsets, status, permissions
 # from django.contrib.auth.models import User
 from django.conf import settings
 from authentication.models import User
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status
-from .serializers import RegisterSerializer, ChangePasswordSerializer, UpdateUserSerializer, ReadUsersView
+from .serializers import RegisterSerializer, ChangePasswordSerializer, UpdateUserSerializer, ReadUsersView, ObtainTokenSerializer
 from django.views.decorators.csrf import ensure_csrf_cookie , csrf_protect
 from django.utils.decorators import method_decorator
 # Create your views here.
 from django.contrib import auth
 from rest_framework_simplejwt.tokens import RefreshToken
 # @method_decorator(csrf_protect, name='dispatch')
-
+from rest_framework_simplejwt.views import TokenObtainPairView
 # @method_decorator(ensure_csrf_cookie, name='dispatch')
 class SignUpView(APIView):
     permission_classes = (AllowAny,)
@@ -44,42 +43,49 @@ class BlacklistTokenUpdateView(APIView):
     authentication_classes = ()
     def post(self, request):
         try:
-            refresh_token = request.data["refresh"]
+            refresh_token = request.data.get("refresh", None)
+            # print('refresh_token',refresh_token)
             token = RefreshToken(refresh_token)
             token.blacklist()
             return Response(status=status.HTTP_205_RESET_CONTENT)
         except Exception as e:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+            # print('eeee',e)
+            return Response({"error": "déconnection refusé"},status=status.HTTP_400_BAD_REQUEST)
 
-@method_decorator(ensure_csrf_cookie, name='dispatch')
-class GetCSRFTOkent(APIView):
-    permission_classes= (AllowAny,)
-    def get(self, request, format=None):
-        return Response({'success': 'CSRF cookie set'})
+# @method_decorator(ensure_csrf_cookie, name='dispatch')
+# class GetCSRFTOkent(APIView):
+#     permission_classes= (AllowAny,)
+#     def get(self, request, format=None):
+#         return Response({'success': 'CSRF cookie set'})
 
-@method_decorator(ensure_csrf_cookie, name='dispatch')
-class LoginView(APIView):
-    permission_classes =(AllowAny,)
-    def post(self, request, format=None):
-        data = self.request.data
-        username= data['username']
-        password= data['password']
-        user = auth.authenticate(username=username, password=password)
+class LoginView(TokenObtainPairView):
+    permission_classes = (permissions.AllowAny,)
+    serializer_class = ObtainTokenSerializer
 
-        if user is not None:
-            auth.login(request, user)
-            return Response({'success' : 'utilisateur connecté', 'username': username})
-        else : 
-            return Response({ 'error' : 'connection echoué'})
 
-@method_decorator(ensure_csrf_cookie, name='dispatch')
-class LogOutView(APIView):
-    def post(self, request, format=None):
-        try:
-            auth.logout(request)
-            return Response({'success': ' Déconnection réussit'})
-        except:
-            return Response({ ' error' : 'Déconnection echoué'})
+# @method_decorator(ensure_csrf_cookie, name='dispatch')
+# class LoginView(APIView):
+#     permission_classes =(AllowAny,)
+#     def post(self, request, format=None):
+#         data = self.request.data
+#         username= data['username']
+#         password= data['password']
+#         user = auth.authenticate(username=username, password=password)
+
+#         if user is not None:
+#             auth.login(request, user)
+#             return Response({'success' : 'utilisateur connecté', 'username': username})
+#         else : 
+#             return Response({ 'error' : 'connection echoué'})
+
+# @method_decorator(ensure_csrf_cookie, name='dispatch')
+# class LogOutView(APIView):
+#     def post(self, request, format=None):
+#         try:
+#             auth.logout(request)
+#             return Response({'success': ' Déconnection réussit'})
+#         except:
+#             return Response({ ' error' : 'Déconnection echoué'})
 
 class GetUsersView(generics.ListAPIView):
     queryset = User.objects.all()
@@ -129,48 +135,45 @@ class DeleteUserView(generics.RetrieveAPIView):
         
 
 class ChangePasswordView(generics.UpdateAPIView):
-
     queryset = User.objects.all()
     permission_classes = (IsAuthenticated,)
     serializer_class = ChangePasswordSerializer
 
 
 class UpdateProfileView(generics.UpdateAPIView):
-
     queryset = User.objects.all()
     permission_classes = (IsAuthenticated,)
     serializer_class = UpdateUserSerializer
 
 
-class LogoutView(APIView):
-    permission_classes = (IsAuthenticated,)
+# class LogoutView(APIView):
+#     permission_classes = (IsAuthenticated,)
+#     def post(self, request):
+#         try:
+#             refresh_token = request.data["refresh_token"]
+#             token = RefreshToken(refresh_token)
+#             token.blacklist()
 
-    def post(self, request):
-        try:
-            refresh_token = request.data["refresh_token"]
-            token = RefreshToken(refresh_token)
-            token.blacklist()
-
-            return Response(status=status.HTTP_205_RESET_CONTENT)
-        except Exception as e:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
-
-
-class LogoutAllView(APIView):
-    permission_classes = (IsAuthenticated,)
-
-    def post(self, request):
-        tokens = OutstandingToken.objects.filter(user_id=request.user.id)
-        for token in tokens:
-            t, _ = BlacklistedToken.objects.get_or_create(token=token)
-
-        return Response(status=status.HTTP_205_RESET_CONTENT)
+#             return Response(status=status.HTTP_205_RESET_CONTENT)
+#         except Exception as e:
+#             return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
-class UserAPIView(generics.ListAPIView):
-    queryset = User.objects.all()
-    permission_classes = (IsAuthenticated,)
-    serializer_class = ReadUsersView
+# class LogoutAllView(APIView):
+#     permission_classes = (IsAuthenticated,)
+
+#     def post(self, request):
+#         tokens = OutstandingToken.objects.filter(user_id=request.user.id)
+#         for token in tokens:
+#             t, _ = BlacklistedToken.objects.get_or_create(token=token)
+
+#         return Response(status=status.HTTP_205_RESET_CONTENT)
+
+
+# class UserAPIView(generics.ListAPIView):
+#     queryset = User.objects.all()
+#     permission_classes = (IsAuthenticated,)
+#     serializer_class = ReadUsersView
 
 
 class UserDetailAPIView(generics.RetrieveUpdateDestroyAPIView):

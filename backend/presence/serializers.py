@@ -21,6 +21,17 @@ class SimilarCreneauSerializer(serializers.ModelSerializer):
     def get_activity_name(self, obj):
         return obj.activity.name
 
+class PresenceHistorySerialiser(serializers.ModelSerializer):
+    history_user_name = serializers.CharField(source= 'history_user')
+    client = serializers.CharField(source = "abc.client")
+    class Meta:
+        model = Presence.history.model
+        fields= "__all__"
+
+class PresenceManualEditSerialiser(serializers.ModelSerializer):
+    class Meta:
+        model = Presence
+        fields= "__all__"
 #  presence manuelle non strict
 class PresencePostSerialiser(serializers.ModelSerializer):
     # client = serializers.IntegerField(max_value=None, min_value=None, write_only=True)

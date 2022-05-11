@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework import routers
-from .views import ChangePasswordView, UpdateProfileView, LogoutView, LogoutAllView, UserAPIView, UserDetailAPIView, SignUpView, GetCSRFTOkent ,LoginView, LogOutView, DeleteUserView, GetUsersView, BlacklistTokenUpdateView
+from .views import ChangePasswordView, UpdateProfileView, UserDetailAPIView, SignUpView, LoginView, DeleteUserView, GetUsersView, BlacklistTokenUpdateView
 # from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 
@@ -14,10 +14,12 @@ urlpatterns = [
     path('register', SignUpView.as_view()),
     path('login', LoginView.as_view()),
     # path('logout', LogOutView.as_view()),
-    path('users', GetUsersView.as_view()),
+    path('users/', GetUsersView.as_view()),
     path('delete/:id', DeleteUserView.as_view()),
-    path('csrf_cookie', GetCSRFTOkent.as_view()),
-    path('logout/blacklist', BlacklistTokenUpdateView.as_view(),name='blacklist')
+    # path('csrf_cookie', GetCSRFTOkent.as_view()),
+    path('logout/blacklist', BlacklistTokenUpdateView.as_view(),name='blacklist'),
+    path('api/token/', LoginView.as_view(), name='token_obtain_pair'),
+
     # path('', include('rest_auth.urls')), 
     # path('register/', include('rest_auth.registration.urls'))
     # path('', include('djoser.urls')), 

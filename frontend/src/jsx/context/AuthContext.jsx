@@ -21,10 +21,9 @@ export const AuthProvider = ({ children }) => {
 //   console.log("test get user ", localStorage.getItem("access_token"))
 
   const [loading, setLoading] = useState(true);
-  const getTokenEnd = `${process.env.REACT_APP_API_URL}/api/token/`
-    const registerEnd = `${process.env.REACT_APP_API_URL}/rest-api/auth/register/`
+  const getTokenEnd = `${process.env.REACT_APP_API_URL}/rest-api/auth/api/token/`
+  const registerEnd = `${process.env.REACT_APP_API_URL}/rest-api/auth/register/`
   const history = useHistory();
-
   const loginUser = async (email, password) => {
     const response = await fetch(getTokenEnd, {
       method: "POST",
@@ -84,7 +83,7 @@ export const AuthProvider = ({ children }) => {
     loginUser,
     logoutUser
   };
-
+console.log('USERRRR', user);
   useEffect(() => {
     if (authTokens) {
       setUser(jwt_decode(authTokens.access));

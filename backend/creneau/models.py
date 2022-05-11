@@ -3,6 +3,7 @@ from planning.models import Planning
 from client.models import Coach, Client
 from salle_activite.models import Activity
 # Create your models here.
+from simple_history.models import HistoricalRecords
 from datetime import datetime, time, timedelta
 DAYS_CHOICES = (
     ('SA', 'Samedi'),
@@ -147,6 +148,8 @@ class Creneau(models.Model):
     range = RangeManager()
     created = models.DateTimeField(verbose_name='Date de Création', auto_now_add=True)
     updated = models.DateTimeField(verbose_name='Date de dernière mise à jour', auto_now=True)
+    history = HistoricalRecords()
+
     class Meta:
         ordering = ['hour_start']
 

@@ -6,11 +6,15 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import axios from 'axios';
 import { Dropdown, Tab, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import {notifySuccess, notifyError} from '../Alert'
+import axiosInstance from "../useAxios";
  
-function refreshPage() {
-  window.location.reload(false);
-}
+// function refreshPage() {
+//   window.location.reload(false);
+// }
 const PresenceEditModal = ({show, onShowShange, presenceData}) => {
+   const api = axiosInstance();
+
     const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
     const client  =presenceData['client']
     const clientID  =presenceData['clientId']
@@ -29,7 +33,7 @@ const PresenceEditModal = ({show, onShowShange, presenceData}) => {
 
     
 
-    let presenceUpdateEND = `${process.env.REACT_APP_API_URL}/rest-api/presence/${presenceId}/`
+    let presenceUpdateEND = `${process.env.REACT_APP_API_URL}/rest-api/presence/manual-edit/${presenceId}/`
 
     useEffect(() => {
  
@@ -54,7 +58,14 @@ const PresenceEditModal = ({show, onShowShange, presenceData}) => {
          date :presenceDate,
       }
       // console.log(" =================> new Creneau ", newCreneau);
-      await axios.patch(presenceUpdateEND, newCreneau)
+      await axiosInstance.patch(presenceUpdateEND, newCreneau).then( () => {
+
+         notifySuccess('Présence modifié avec succées ')
+         handleShow()
+      }
+      ).catch(
+         notifyError('erreur lors de la modification')
+      )
     }
 
 return ( 
@@ -77,6 +88,7 @@ return (
                </Link>
             </div>
          </div>
+
          <form onSubmit={handleSubmit}>
             <div className="form-row">
                <div className="form-group col-md-6">

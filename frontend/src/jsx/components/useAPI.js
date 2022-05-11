@@ -5,13 +5,13 @@ axios.defaults.xsrfHeaderName = "X-CSRFToken";
 const config = { headers: { "Content-Type": "multipart/form-data" } };
 
 export const useGetAPI = (endpoint) => {
-  const [data, setDdata] = useState([]);
+  const [data, setData] = useState([]);
   useEffect(() => {
     getData();
   }, []);
   const getData = async () => {
     const response = await axios.get(endpoint);
-    setDdata(response.data);
+    setData(response.data);
   };
   return data;
 };

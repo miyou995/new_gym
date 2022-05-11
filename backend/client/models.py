@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.template.defaultfilters import slugify
 from django.db import models
 from django.db.models import Sum
+from simple_history.models import HistoricalRecords
 
 # Create your models here.
 class AbonnementManager(models.Manager):
@@ -96,6 +97,7 @@ class Client(models.Model):
     maladies    = models.ManyToManyField(Maladie)
     objects     = models.Manager()
     abonnement_manager = AbonnementManager()
+    history = HistoricalRecords()
 
 
 
@@ -146,6 +148,7 @@ class Coach(models.Model):
     note            = models.TextField(blank=True, null=True)
     salaire         = models.DecimalField(max_digits=10, decimal_places=0, blank=True, null=True,default=0)
     color           = models.CharField( max_length=50, default='#333333',blank=True, null=True) 
+    history = HistoricalRecords()
     # s           = models.DecimalField(max_digits=10, decimal_places=2, null=True)
     # creneau         = models.ForeignKey(Creneau, verbose_name="créneau" , on_delete=models.CASCADE)
 
@@ -186,6 +189,7 @@ class Personnel(models.Model):
     created      = models.DateTimeField(verbose_name='Date de Création',  auto_now_add=True)
     updated      = models.DateTimeField(verbose_name='Date de dernière mise à jour',  auto_now=True)
 
+    history = HistoricalRecords()
     state           = models.CharField(choices=STATE_CHOICES , max_length=3, verbose_name='Etat', default='A')
     note            = models.TextField(blank=True, null=True)
     social_security = models.CharField(max_length=150)

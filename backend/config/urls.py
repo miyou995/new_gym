@@ -38,11 +38,11 @@ urlpatterns = [
     path('rest-api/assurance/', include('assurance.urls')),
     path('rest-api/salle-activite/', include('salle_activite.urls')),
     path('rest-api/api-auth/', include('rest_framework.urls')),
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    # path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
-    path ('',TemplateView.as_view(template_name="index.html"), name='index'),
-    re_path(r'^(?:.*)/?$', TemplateView.as_view(template_name="index.html"), name='index'),
+    # path ('',TemplateView.as_view(template_name="index.html"), name='index'),
+    # re_path(r'^(?:.*)/?$', TemplateView.as_view(template_name="index.html"), name='index'),
 
     # path('markdownx/', include('markdownx.urls')),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) 

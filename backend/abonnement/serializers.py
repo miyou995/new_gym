@@ -8,6 +8,7 @@ from salle_activite.serializers import ActivitySerialiser, SalleSerialiser
 from transaction.models import Paiement
 from client.models import Client
 import datetime
+from django.shortcuts import get_object_or_404
 
 class PaiementClientSerializer(serializers.ModelSerializer):
     class Meta:
@@ -23,11 +24,62 @@ class ClientDropSerializer(serializers.ModelSerializer):
     class Meta:
         model = Client
         fields = '__all__'
+        
 class AbonnementClientAllSerializer(serializers.ModelSerializer):
     class Meta:
         model = AbonnementClient
         fields= '__all__'
-        
+
+class AbonnementClientHistorySerializer(serializers.ModelSerializer):
+    left_minutes = serializers.SerializerMethodField('get_left_minutes', read_only=True)
+    history_user_name = serializers.CharField(source= 'history_user')
+    history_ab_type = serializers.CharField(source= 'type_abonnement.type_of')
+    is_time_volume = serializers.SerializerMethodField()
+    is_free_access = serializers.SerializerMethodField()
+    is_fixed_sessions = serializers.SerializerMethodField()
+    is_free_sessions = serializers.SerializerMethodField()
+    # fixed_sessions = serializers.CharField(source= 'is_fixed_sessions')
+    # free_sessions = serializers.CharField(source= 'is_free_sessions')
+    # history_user_name = serializers.SerializerMethodField()
+    class Meta:
+        model = AbonnementClient.history.model
+        # read_only_fields = ('client','start_date', 'end_date')
+        # fields =('id', 'start_date','end_date', 'type_abonnement' , 'presence_quantity', 'reste', 'left_minutes', 'is_time_volume', 'is_free_access', 'is_fixed_sessions', 'is_free_sessions', 'history_user_name', 'history_ab_type')
+        fields= '__all__'
+        # fields= ('id','client','presence_quantity', 'history','creneaux','reste')
+    def get_left_minutes(self, obj):
+        minutes = obj.presence_quantity
+        time = divmod(minutes, 60)
+        print('en heures', time)
+        time_string = "{}H: {}M".format(time[0], time[1])
+        print('en time_string', time_string)
+        return time_string
+
+    def get_is_time_volume(self, obj):
+        abc = get_object_or_404(AbonnementClient, id=obj.id)
+        if abc.is_time_volume():
+            return True
+        else:
+            return False
+    def get_is_free_access(self, obj):
+        abc = get_object_or_404(AbonnementClient, id=obj.id)
+        if abc.is_free_access():
+            return True
+        else:
+            return False
+    def get_is_fixed_sessions(self, obj):
+        abc = get_object_or_404(AbonnementClient, id=obj.id)
+        if abc.is_fixed_sessions():
+            return True
+        else:
+            return False
+    def get_is_free_sessions(self, obj):
+        abc = get_object_or_404(AbonnementClient, id=obj.id)
+        if abc.is_free_sessions():
+            return True
+        else:
+            return False
+
 class AbonnementClientRenewSerializer(serializers.ModelSerializer):
     start_renew_date = serializers.CharField(write_only=True)
     abc = serializers.IntegerField(write_only=True)
