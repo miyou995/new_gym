@@ -127,4 +127,5 @@ class ObtainTokenSerializer(TokenObtainPairSerializer):
     @classmethod
     def get_token(cls, user):
         token = super(ObtainTokenSerializer, cls).get_token(user)
+        print('the token', token)
         return token

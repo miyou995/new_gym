@@ -1,22 +1,22 @@
 import React, { useState , useEffect, useContext} from "react";
-import axios from 'axios';
 
 import { ClientsContext } from './Clients';
+import useAxios from "../useAxios";
 
-import {useGetAPI} from '../useAPI'
  
 // import { Tab, Nav,Row, Card, Col, Button, Modal, Container } from "react-bootstrap";
 // import { Link } from "react-router-dom";
 
 const HandleClient = () => {
   // const { state, dispatch } = useContext(SalleContext);
+  const api = useAxios();
   
   const [creneaux, setCreneaux] = useState([]);
 
   useEffect(() => {
       const fetchCreneaux =  async () => {
          try {
-            const result = await axios.get(`${process.env.REACT_APP_API_URL}/rest-api/creneau/`)
+            const result = await api.get(`${process.env.REACT_APP_API_URL}/rest-api/creneau/`)
 
             setCreneaux(result.data)
           //   console.log('cest le resultat data',result.data);
@@ -45,12 +45,16 @@ const HandleClient = () => {
   const [dette, setDette] = useState("");
   //FK 
 const [creneau, setCreneau] = useState("");
+const [savedClients, setSavedClients] = useState([]);
    
    
   
   let endpoint = `${process.env.REACT_APP_API_URL}/rest-api/clients/` //ENDPOINT TO GET THE MODEL INSTANCE LIKE HERE CLIENTS 
-  const savedClients = useGetAPI(endpoint)
-  // const savedSalles = useAPI(endpoint)
+  useEffect(() => {
+    api.get(endpoint).then((res) => {
+      setSavedClients(res.data)
+    })
+  }, []);
 
 
 
@@ -81,7 +85,7 @@ const [creneau, setCreneau] = useState("");
         creneau :Number(creneau),
       }
       console.log('the new planning',newClient );
-      await axios.post(endpoint, newClient)
+      await api.post(endpoint, newClient)
 
       dispatcher({type:'add', payload:newClient})
 

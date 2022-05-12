@@ -1,16 +1,15 @@
 import React, { Fragment , useState, useEffect} from "react";
 import PageTitle from "../../layouts/PageTitle";
 import { Dropdown } from "react-bootstrap";
-import axios from 'axios';
+import useAxios from "../useAxios";
 import Search from "../../layouts/Search";
 
 /// images
 import avartar5 from "../../../images/avatar/5.png";
 import avartar1 from "../../../images/avatar/1.png";
 import { Link } from "react-router-dom";
-import { useGetAPI } from '../useAPI'
+
 import ShortCuts from "../ShortCuts";
-import axiosInstance from "../useAxios";
 
 
 
@@ -34,7 +33,7 @@ const Drop = (props) => {
             <Dropdown.Menu>
                <Dropdown.Item href={`/coach/edit/${props.id}`}>Modifier</Dropdown.Item>
                <Dropdown.Item type='button' className="text-danger" onClick={ async () => {
-                    await axios.delete(`${process.env.REACT_APP_API_URL}/rest-api/coachs/delete/${props.id}`)
+                    await useAxios.delete(`${process.env.REACT_APP_API_URL}/rest-api/coachs/delete/${props.id}`)
                     refreshPage()
                     }}>
                    Supprimer
@@ -43,14 +42,15 @@ const Drop = (props) => {
          </Dropdown>
 };
 const CoachList = () => {
+  const api = useAxios();
+
    let endpoint = `${process.env.REACT_APP_API_URL}/rest-api/coachs/`
-   const api = axiosInstance;
 
    const [coachData, setCoachData] = useState([]);
    // const savedCoachs = api.get(endpoint)
    
    useEffect(() => {
-      axiosInstance.get(endpoint).then( res=> {
+      api.get(endpoint).then( res=> {
          setCoachData(res.data)
       }) 
       // const coachs = savedCoachs

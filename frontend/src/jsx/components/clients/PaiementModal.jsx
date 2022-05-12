@@ -1,12 +1,11 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { Row, Card, Col, Button, Modal, Table } from "react-bootstrap";
-import { useGetAPI, usePutAPI } from '../useAPI'
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import axios from 'axios';
 import PageTitle from "../../layouts/PageTitle";
 
 import {notifySuccess, notifyError} from '../Alert'
+import useAxios from "../useAxios";
 
 // import { Dropdown, Tab, Nav } from "react-bootstrap";
 // import { Link } from "react-router-dom";
@@ -19,7 +18,8 @@ const formatDate = (date) => {
 }
 const PaiementModal = ({show, onShowShange, clientData}) => {
     const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
-    const clientId = clientData['clientId']
+  const api = useAxios();
+  const clientId = clientData['clientId']
     const abonnements = clientData['abcs']
     const paiementCreateEND =`${process.env.REACT_APP_API_URL}/rest-api/transactions/paiement/create` 
     const [amount, setAmount] = useState("")
@@ -35,7 +35,7 @@ const PaiementModal = ({show, onShowShange, clientData}) => {
         
     //     const fetchData = async () => {
     //        try {
-    //           const res = await axios.get(`${process.env.REACT_APP_API_URL}/rest-api/abonnement-by-client/?cl=${clientId}`);
+    //           const res = await api.get(`${process.env.REACT_APP_API_URL}/rest-api/abonnement-by-client/?cl=${clientId}`);
     //           setAbc(res.data)
     //           console.log('ceci est le resultat de labonnement client ', res.data);
     //        } catch (error) {
@@ -85,7 +85,7 @@ const PaiementModal = ({show, onShowShange, clientData}) => {
         }
         console.log(" =================> new Creneau ", paiementDetails);
         try {
-          await axios.post(paiementCreateEND, paiementDetails)
+          await api.post(paiementCreateEND, paiementDetails)
           notifySuccess('Paiement effectuer avec succés')
           handleShow()
         } catch (error) {

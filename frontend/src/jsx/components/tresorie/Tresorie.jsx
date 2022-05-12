@@ -1,17 +1,18 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { useGetAPI, usePutAPI } from '../useAPI'
+ 
 
 import { ToastContainer } from 'react-toastify'
 import ShortCuts from "../ShortCuts";
 import PerfectScrollbar from "react-perfect-scrollbar";
-import axios from "axios";
+import useAxios from "../useAxios";
 
 
 
 const CoinDetails = () => {
-    const formatDate = (date) => {
+  const api = useAxios();
+  const formatDate = (date) => {
         return new Date(date).toISOString().slice(0, 10)
      }
      
@@ -24,13 +25,13 @@ const CoinDetails = () => {
     const caByABEND = `${process.env.REACT_APP_API_URL}/rest-api/transactions/paiement/ca-by-abonnement?st=${formatDate(startDate)}&nd=${formatDate(endDate)}`
     const caEND = `${process.env.REACT_APP_API_URL}/rest-api/transactions/ca_by_date?st=${formatDate(startDate)}&nd=${formatDate(endDate)}`
 useEffect(() => {
-    axios.get(caBySalleEND).then((res) => {
+   api.get(caBySalleEND).then((res) => {
         setCaBySalle(res.data)
      })
-     axios.get(caByABEND).then((res) => {
+    api.get(caByABEND).then((res) => {
         setCaByAB(res.data)
      })
-     axios.get(caEND).then((res) => {
+    api.get(caEND).then((res) => {
       setChiffre(res.data)
       console.log('resulta ca', res.data);
    })

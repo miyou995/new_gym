@@ -1,7 +1,7 @@
-import axios from 'axios';
+import useAxios from "../useAxios";
 
 
-const url = axios.create({
+const url = api.create({
     baseURL: `${process.env.REACT_APP_API_URL}/rest-api`,
 });
 

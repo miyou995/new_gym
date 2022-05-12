@@ -1,9 +1,9 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { Row, Card, Col, Button, Modal, Table } from "react-bootstrap";
-import { useGetAPI, usePutAPI, usePostAPI } from '../useAPI'
+
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import axios from 'axios';
+import useAxios from "../useAxios";
 import PageTitle from "../../layouts/PageTitle";
 import {notifySuccess, notifyError} from '../Alert'
 import Checkbox from '@material-ui/core/Checkbox';
@@ -14,7 +14,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 // import createPalette from "@material-ui/core/styles/createPalette";
 
 const PlanningCreateModal = ({show, onShowShange}) => {
-    const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+  const api = useAxios();
+  const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
     // const creneauPerAbonnementEND = `${process.env.REACT_APP_API_URL}/rest-api/abonnement/`
     const planningCreateEnd = `${process.env.REACT_APP_API_URL}/rest-api/planning/create`
 
@@ -27,7 +28,7 @@ const [is_default, setDefault] = useState(false)
             is_default : is_default
             // salle_sport : 1
         }
-        await axios.post(planningCreateEnd, ebonnementFormData).then( res => {
+        await api.post(planningCreateEnd, ebonnementFormData).then( res => {
                 notifySuccess('Planning creer avec succés')
                 handleShow()
             }).catch(err => {

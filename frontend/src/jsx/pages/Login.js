@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import AuthContext from "../context/AuthContext";
 import {notifyError} from '../components/Alert'
 const Login = ({ history }) => {
+  
   // const [email, setEmail] = useState("");
   // const [password, setPassword] = useState("");
   // const [token, setToken] = useState("");

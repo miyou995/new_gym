@@ -1,20 +1,21 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { Row, Card, Col, Button, Modal, Table } from "react-bootstrap";
-import { useGetAPI, usePutAPI, usePostAPI } from '../useAPI'
+
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import axios from 'axios';
+import useAxios from "../useAxios";
 import PageTitle from "../../layouts/PageTitle";
 import {notifySuccess, notifyError} from '../Alert'
 
 const MaladieCreateModal = ({show, onShowShange}) => {
     const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
-    const maladieCreateEnd = `${process.env.REACT_APP_API_URL}/rest-api/maladie/create/`
+  const api = useAxios();
+  const maladieCreateEnd = `${process.env.REACT_APP_API_URL}/rest-api/maladie/create/`
 
 const [name, setName] = useState('')
     const HandleSubmit = async e => {
         e.preventDefault();
-        await axios.post(maladieCreateEnd, {name : name}).then( res => {
+        await api.post(maladieCreateEnd, {name : name}).then( res => {
             notifySuccess('Maladie creer avec succés')
                   handleShow()
             }).catch(err => {

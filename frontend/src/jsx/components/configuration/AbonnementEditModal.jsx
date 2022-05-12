@@ -1,9 +1,9 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { Row, Card, Col, Button, Modal, Table } from "react-bootstrap";
-import { useGetAPI, usePutAPI } from '../useAPI'
+ 
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import axios from 'axios';
+import useAxios from "../useAxios";
 import PageTitle from "../../layouts/PageTitle";
 // import { Dropdown, Tab, Nav } from "react-bootstrap";
 // import { Link } from "react-router-dom";
@@ -20,7 +20,8 @@ function refreshPage() {
 }
 
 const AbonnementEditModal = ({show, onShowShange, abonnementData}) => {
-    const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+  const api = useAxios();
+  const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
     // const abonnementEditEND = `${process.env.REACT_APP_API_URL}/rest-api/abonnement/`
     // const creneauPerAbonnementEND = `${process.env.REACT_APP_API_URL}/rest-api/abonnement/`
 
@@ -66,7 +67,7 @@ useEffect(() => {
      setShowModal(true)   
     }
   if (show == true) {
-    axios.get(abonnementEditEND).then(res => {
+    api.get(abonnementEditEND).then(res => {
       setName(res.data.name)
       setPrice(res.data.price)
       setNumberOfDays(res.data.number_of_days)
@@ -84,7 +85,7 @@ useEffect(() => {
   }
 }, [abonnementData['abonnementId']]);
     const handleDelete = e => {
-        axios.delete(abonnementDeleteEND).then(
+        api.delete(abonnementDeleteEND).then(
             // refreshPage(),
             notifySuccess('Abonnement supprimé'),
             handleShow()
@@ -107,7 +108,7 @@ useEffect(() => {
           length    : Number(duree),
           type_of : typeOfValue
       }
-      const response = await axios.put(abonnementEditEND, abonnementFormData).then(res => {
+      const response = await api.put(abonnementEditEND, abonnementFormData).then(res => {
             setSelectedActivities([])
             notifySuccess('Modifictation de labonnement effectué')
             handleShow()
@@ -249,7 +250,7 @@ return (
                 </div>
                 <div className="m-3">
                   <button type="button" className="btn btn-danger" onClick={ async () => {
-                    await axios.get(`${process.env.REACT_APP_API_URL}/rest-api/abonnement/deativate/${abonnementData['abonnementId']}/`)
+                    await api.get(`${process.env.REACT_APP_API_URL}/rest-api/abonnement/deativate/${abonnementData['abonnementId']}/`)
                     handleShow()
                     }}>Supprimer</button>
                 </div>

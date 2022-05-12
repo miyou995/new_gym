@@ -1,9 +1,10 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { Row, Card, Col, Button, Modal, Table } from "react-bootstrap";
-import { useGetAPI, usePutAPI, usePostAPI } from '../useAPI'
+
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import axios from 'axios';
+import useAxios from "../useAxios";
+
 import PageTitle from "../../layouts/PageTitle";
 import {notifySuccess, notifyError} from '../Alert'
 import Checkbox from '@material-ui/core/Checkbox';
@@ -14,7 +15,8 @@ import useForm from 'react-hook-form';
 import createPalette from "@material-ui/core/styles/createPalette";
 
 const SalleActiviteCreateModal = ({show, onShowShange}) => {
-    const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+  const api = useAxios();
+  const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
     // const creneauPerAbonnementEND = `${process.env.REACT_APP_API_URL}/rest-api/abonnement/`
     const salleActiviteCreateEnd = `${process.env.REACT_APP_API_URL}/rest-api/salle-activite/create`
 
@@ -32,7 +34,7 @@ const [is_default, setDefault] = useState(false)
             name : name,
             is_default : is_default,
         }
-        await axios.post(salleActiviteCreateEnd, ebonnementFormData).then( res => {
+        await api.post(salleActiviteCreateEnd, ebonnementFormData).then( res => {
             notifySuccess('Salle creer avec succés')
                   handleShow()
             }).catch(err => {

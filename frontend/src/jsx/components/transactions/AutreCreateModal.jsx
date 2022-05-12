@@ -1,17 +1,16 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { Row, Card, Col, Button, Modal, Container } from "react-bootstrap";
-import { useGetAPI, usePutAPI } from '../useAPI'
+ 
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import axios from 'axios';
+import useAxios from "../useAxios";
 import { Dropdown, Tab, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
  
-function refreshPage() {
-  window.location.reload(false);
-}
+
 const AutreCreateModal = ({show, onShowShange, transactionData}) => {
     const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+    const api = useAxios();
 
     let endpoint = `${process.env.REACT_APP_API_URL}/rest-api/transactions/autre/create`
 
@@ -29,7 +28,7 @@ const AutreCreateModal = ({show, onShowShange, transactionData}) => {
         name :nom,
         notes : note
       }
-     await axios.post(endpoint, newTransaction)
+     await api.post(endpoint, newTransaction)
       // refreshPage()
       handleShow()
     }

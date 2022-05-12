@@ -1,9 +1,9 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { Row, Card, Col, Button, Modal, Table } from "react-bootstrap";
-import { useGetAPI, usePutAPI } from '../useAPI'
+ 
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import axios from 'axios';
+import useAxios from "../useAxios";
 import {notifySuccess, notifyError} from '../Alert'
 
 // import { Dropdown, Tab, Nav } from "react-bootstrap";
@@ -16,12 +16,10 @@ import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import Radio from '@material-ui/core/Radio';
 
-function refreshPage() {
-  window.location.reload(false);
-}
 
 const AbonnementCreateModal = ({show, onShowShange}) => {
-    const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+  const api = useAxios();
+  const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
     const activitiesEND = `${process.env.REACT_APP_API_URL}/rest-api/salle-activite/`
     const abonnementCreateEND = `${process.env.REACT_APP_API_URL}/rest-api/abonnement/create`
     // const creneauPerAbonnementEND = `${process.env.REACT_APP_API_URL}/rest-api/abonnement/`
@@ -40,8 +38,14 @@ const AbonnementCreateModal = ({show, onShowShange}) => {
     const [alertSuccess, setAlertSuccess] = useState(false)
     const [helpText, setHelpText] = useState("Abonnement limité par un nombre d'heures")
     const [alertError, setAlertError] = useState(false)
-    const activities = useGetAPI(activitiesEND)
-    
+    const [activities, setActivities] = useState([])
+  
+    //FK 
+    useEffect(() => {
+      api.get(activitiesEND).then((res) => {
+        setActivities(res.data)
+      })
+    }, []);
   const  DureeAb = [
     {mois :'1 Jour', jours : 1},
     {mois :'15 Jour', jours : 15},
@@ -80,7 +84,7 @@ const AbonnementCreateModal = ({show, onShowShange}) => {
             type_of : typeOfValue
 
         }
-        await axios.post(abonnementCreateEND, abonnementFormData)
+        await api.post(abonnementCreateEND, abonnementFormData)
         .then( res => {
             notifySuccess('Abonnement creer avec succés')
             handleShow()

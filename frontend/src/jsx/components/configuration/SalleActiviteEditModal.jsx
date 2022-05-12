@@ -1,9 +1,9 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { Row, Card, Col, Button, Modal, Table } from "react-bootstrap";
-import { useGetAPI, usePutAPI, usePostAPI } from '../useAPI'
+
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import axios from 'axios';
+import useAxios from "../useAxios";
 import PageTitle from "../../layouts/PageTitle";
 import {notifySuccess, notifyError} from '../Alert'
 import Checkbox from '@material-ui/core/Checkbox';
@@ -16,7 +16,8 @@ function refreshPage() {
   window.location.reload(false);
 }
 const SalleActiviteEditModal = ({show, onShowShange, salleData}) => {
-    const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+  const api = useAxios();
+  const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
     // const creneauPerAbonnementEND = `${process.env.REACT_APP_API_URL}/rest-api/abonnement/`
     const salleActiviteUpdateEnd = `${process.env.REACT_APP_API_URL}/rest-api/salle-activite/${salleData['salleId']}/`
     const [name, setName] = useState('')
@@ -35,7 +36,7 @@ const SalleActiviteEditModal = ({show, onShowShange, salleData}) => {
             is_default : is_default
         }
         console.log(" =================> salleFormData ", salleFormData);
-        axios.put(salleActiviteUpdateEnd, salleFormData).then( res => {
+        api.put(salleActiviteUpdateEnd, salleFormData).then( res => {
             notifySuccess('Salle modifier avec succés')
                 handleShow()
             }).catch(err => {
@@ -84,7 +85,7 @@ return (
             </div>
             <div className="m-3">
                 <button type="button" className="btn btn-danger" onClick={ async () => {
-                await axios.delete(`${process.env.REACT_APP_API_URL}/rest-api/salle-activite/delete/${salleData['salleId']}/`)
+                await api.delete(`${process.env.REACT_APP_API_URL}/rest-api/salle-activite/delete/${salleData['salleId']}/`)
                 notifySuccess(`La salle ${salleData['salleName']} a été supprimer avec succés`)
                 handleShow()
                 }}>

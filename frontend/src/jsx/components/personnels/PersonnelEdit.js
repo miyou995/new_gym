@@ -1,20 +1,28 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ShortCuts from "../ShortCuts";
-
-import { useGetAPI, usePutAPI } from "../useAPI";
+import useAxios from "../useAxios";
 import { useHistory } from "react-router-dom";
 //  useNavigate in V6
 import {notifySuccess, notifyError} from '../Alert'
 
 
 const PersonnelEdit = (props) => {
+  const api = useAxios();
   // let creneauxEnd = `${process.env.REACT_APP_API_URL}/rest-api/creneau/`
   const currentPersonnelId = props.match.params.id;
 
   let personnelURI = `${process.env.REACT_APP_API_URL}/rest-api/personnel/${currentPersonnelId}/`;
 
-  const creneaux = useGetAPI(personnelURI);
+  const [creneaux, setCreneaux] = useState([])
+  
+  //FK 
+  useEffect(() => {
+    api.get(personnelURI).then((res) => {
+      setCreneaux(res.data)
+    })
+  }, []);
+
   const history = useHistory();
 
   const [civility, setCivility] = useState();
@@ -68,7 +76,7 @@ const PersonnelEdit = (props) => {
       // dette :Number(dette),
       // creneau :Number(creneau),
     };
-    usePutAPI(personnelURI, EditedPersonnel).then( res => {
+    api.put(personnelURI, EditedPersonnel).then( res => {
       notifySuccess('Personnel modifier avec succés')
         history.push("/personnel");
       }).catch(err => {

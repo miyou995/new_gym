@@ -1,7 +1,7 @@
 import React, { Fragment , useState, useEffect} from "react";
 import PageTitle from "../../layouts/PageTitle";
 import { Dropdown } from "react-bootstrap";
-import axios from 'axios';
+import useAxios from "../useAxios";
 import { Row, Card, Col, Button, Modal, Container } from "react-bootstrap";
 import ShortCuts from "../ShortCuts";
 import { ToastContainer, toast } from 'react-toastify'
@@ -9,12 +9,13 @@ import { ToastContainer, toast } from 'react-toastify'
 import {notifySuccess, notifyError} from '../Alert'
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { Link } from "react-router-dom";
-import { useGetAPI, usePostAPI } from '../useAPI'
+
 
 import TextField from '@material-ui/core/TextField';
 
 export const ClientContext = React.createContext()
 const HistoryList = () => {
+     const api = useAxios();
 
    const formatDate = (date) => {
       try {
@@ -66,10 +67,6 @@ const HistoryList = () => {
    const [presencesCount, setPresencesCount] = useState('')
    const [startDate, setStartDate] = useState(formatDate(new Date('2000-01-01')));
    const [endDate, setEndDate] = useState(formatDate(new Date()));
-   const [salleId, setSalleId] = useState('');
-   const [startHour, setStartHour] = useState('');
-   const sallesData = useGetAPI(`${process.env.REACT_APP_API_URL}/rest-api/salle-activite/`)
-   const historyAbcEnd = `${process.env.REACT_APP_API_URL}/rest-api/abonnement-client-history/`
    let usersEnd =  `${process.env.REACT_APP_API_URL}/rest-api/auth/users`
 
    // console.table('els clieeents', salle);
@@ -84,13 +81,13 @@ const HistoryList = () => {
 
 
 useEffect(() => {
-   axios.get(usersEnd).then(res => {
+   api.get(usersEnd).then(res => {
       setUsers(res.data)
    })
 }, [])
 
 useEffect(() => {
-   axios.get(`${process.env.REACT_APP_API_URL}/rest-api/abonnement-client-history?cl=${searchValue}&abc=${abcId}&start=${startDate}&end=${endDate}&usr=${userId}`).then(res => {
+   api.get(`${process.env.REACT_APP_API_URL}/rest-api/abonnement-client-history?cl=${searchValue}&abc=${abcId}&start=${startDate}&end=${endDate}&usr=${userId}`).then(res => {
       setAbcsData(res.data)
       console.log('setAbcsData', res.data);
    })
@@ -101,7 +98,7 @@ useEffect(() => {
    //    const presenceDateDate = async () => {
    //       const dateDebut = formatDate(startDate)
    //       const dateFin = formatDate(endDate)
-   //       const result =  await axios.get(`${process.env.REACT_APP_API_URL}/rest-api/presence/?page=${nextpage}&start_date=${dateDebut}&end_date=${dateFin}&abc__client_id=${searchValue}&creneau__activity__salle=${salleId}&hour=${startHour}&creneau__activity=${filterActivity}`)
+   //       const result =  await api.get(`${process.env.REACT_APP_API_URL}/rest-api/presence/?page=${nextpage}&start_date=${dateDebut}&end_date=${dateFin}&abc__client_id=${searchValue}&creneau__activity__salle=${salleId}&hour=${startHour}&creneau__activity=${filterActivity}`)
    //       setPresenceData(result.data.results)
    //       setPresencesCount(result.data.count)
    //    }

@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
-import axios from 'axios';
+import useAxios from "../useAxios";
 
-import { useGetAPI, usePostAPI } from '../useAPI'
 import {  useHistory } from "react-router-dom";
-import DropdownMultiselect from "react-multiselect-dropdown-bootstrap";
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import ShortCuts from "../ShortCuts";
@@ -14,10 +12,10 @@ import {notifySuccess, notifyError} from '../Alert'
 
 
 const CreateClient = () => {
+  const api = useAxios();
   const config = { headers: { 'Content-Type': 'multipart/form-data' } };
   let maladiesEnd = `${process.env.REACT_APP_API_URL}/rest-api/maladies/`
   
-  const maladies = useGetAPI(maladiesEnd)
   const history = useHistory();
   const [selectedMaladies, setSelectedMaladies] = useState([])
   const [civility, setCivility] = useState('MLL');
@@ -37,7 +35,12 @@ const CreateClient = () => {
   const [picture, setPicture] = useState(null);
   // const [clientCreated, setClientCreated] = useState(false);
   const [realMaladies, setRealMaladies] = useState([])
-  
+  const [maladies, setMaladies] = useState([])
+  useEffect(() => {
+    api.get(maladiesEnd).then((res) => {
+      setMaladies(res.data)
+    })
+  }, []);
   const handleCheckbox = (event) => {
     const maladie = event.target.name
     if ( event.target.checked){
@@ -115,8 +118,7 @@ const getSelectedMaladies = ( ) => {
       }else{
         console.log('il ny a pas de photo', typeof(picture));
       }
-      axios
-      	.post(endpoint, formData, config)
+      api.post(endpoint, formData, config)
       	.then((res) => {
       		// console.log(res.data);
           history.push("/client")

@@ -1,22 +1,15 @@
 import React, { Fragment , useState, useEffect} from "react";
 import PageTitle from "../../layouts/PageTitle";
 import { Dropdown } from "react-bootstrap";
-import axios from 'axios';
 import Search from "../../layouts/Search";
 import ShortCuts from "../ShortCuts";
-
-/// images
-import avartar5 from "../../../images/avatar/5.png";
-import avartar1 from "../../../images/avatar/1.png";
+import useAxios from "../useAxios";
 import { Link } from "react-router-dom";
-import { useGetAPI } from '../useAPI'
 
 
 
- const removeObject = async (props) => {
-   let endpoint = `${process.env.REACT_APP_API_URL}/rest-api/clients/delete/`
-   await axios.delete(endpoint + props.id)
-  }
+
+
 const Drop = (props) => {
    return <Dropdown>
             <Dropdown.Toggle variant="" className="table-dropdown i-false">
@@ -32,7 +25,7 @@ const Drop = (props) => {
             <Dropdown.Menu>
                <Dropdown.Item href={`/abonnements/edit/${props.id}`}>Modifier</Dropdown.Item>
                <Dropdown.Item type='button' className="text-danger" onClick={ async () => {
-                    await axios.delete(`${process.env.REACT_APP_API_URL}/rest-api/abonnements/delete/${props.id}/`)
+                    await useAxios.delete(`${process.env.REACT_APP_API_URL}/rest-api/abonnements/delete/${props.id}/`)
                     }}>
                    Supprimer
                 </Dropdown.Item>
@@ -43,9 +36,18 @@ const Drop = (props) => {
 
 
 const PresenceList = () => {
+   const api = useAxios();
    let endpoint = `${process.env.REACT_APP_API_URL}/rest-api/abonnement/`
+  const [savedAbonnements, setSavedAbonnements] = useState([])
 
-   const savedAbonnements = useGetAPI(endpoint)
+
+   useEffect(() => {
+      api.get(endpoint).then((res) => {
+         savedAbonnements(res.data)
+      })
+    }, []);
+
+
    console.table('els clieeents', savedAbonnements);
    const capitalizeFirstLetter = (word) => {
       if (word)

@@ -1,9 +1,9 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { Row, Card, Col, Button, Modal, Container } from "react-bootstrap";
-import { useGetAPI, usePutAPI } from '../useAPI'
+ 
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import axios from 'axios';
+import useAxios from "../useAxios";
 import {notifySuccess, notifyError} from '../Alert'
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -11,7 +11,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 // import { Link } from "react-router-dom";
 import useForm from 'react-hook-form';
 const PaiementCreateModal = ({show, onShowShange, creneauData}) => {
-    const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+  const api = useAxios();
+  const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
     const creneauCreateEND = `${process.env.REACT_APP_API_URL}/rest-api/creneau/create/`
 
     const [newActivity, setNewActivity] = useState("")
@@ -78,7 +79,7 @@ const handleSubmit = e => {
         newCreneau.color = color
     }
     console.log(" =================> new Creneau ", newCreneau);
-    axios.post(creneauCreateEND, newCreneau).then( res => {
+    api.post(creneauCreateEND, newCreneau).then( res => {
       notifySuccess('Créneau creer avec succés')
           handleShow()
       }).catch(err => {

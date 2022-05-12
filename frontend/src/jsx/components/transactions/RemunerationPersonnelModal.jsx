@@ -1,25 +1,32 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { Row, Card, Col, Button, Modal, Container } from "react-bootstrap";
-import { useGetAPI, usePutAPI , usePostAPI} from '../useAPI'
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import axios from 'axios';
 import { Dropdown, Tab, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import useAxios from "../useAxios";
 import {notifySuccess, notifyError} from '../Alert'
  
 function refreshPage() {
   window.location.reload(false);
 }
 const RemunerationPersonnelModal = ({show, onShowShange, transactionData}) => {
+  const api = useAxios();
     const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
 
    
   let personnelEnd = `${process.env.REACT_APP_API_URL}/rest-api/personnel/`
   // let abonnementEnd = `${process.env.REACT_APP_API_URL}/rest-api/abonnement/`
   
-  const personnels = useGetAPI(personnelEnd)
-  
+  // const personnels = useGetAPI(personnelEnd)
+  const [personnels, setPersonnels] = useState([])
+
+  useEffect(() => {
+    api.get(personnelEnd).then((res) => {
+      setPersonnels(res.data)
+    })
+  }, []);
+
   // const history = useHistory();
   const [amount, setAmount] = useState("");
   const [note, setNote] = useState("");
@@ -37,7 +44,7 @@ const RemunerationPersonnelModal = ({show, onShowShange, transactionData}) => {
       notes : note ,
       nom : nom
       }
-      await usePostAPI(endpoint, newClient).then( res => {
+      await api.post(endpoint, newClient).then( res => {
         notifySuccess('Transaction creer avec succés')
               handleShow()
         }).catch(err => {

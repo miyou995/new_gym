@@ -1,7 +1,6 @@
 import React, { Fragment , useState, useEffect} from "react";
 import PageTitle from "../../layouts/PageTitle";
 import { Dropdown } from "react-bootstrap";
-import axios from 'axios';
 import { Row, Card, Col, Button, Modal, Container } from "react-bootstrap";
 import ShortCuts from "../ShortCuts";
 import { ToastContainer, toast } from 'react-toastify'
@@ -9,7 +8,7 @@ import { ToastContainer, toast } from 'react-toastify'
 import {notifySuccess, notifyError} from '../Alert'
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { Link } from "react-router-dom";
-import { useGetAPI, usePostAPI } from '../useAPI'
+
 
 import PresenceEditModal from './PresenceEditModal'
 import PresenceCreateModal from './PresenceCreateModal'
@@ -21,33 +20,7 @@ export const ClientContext = React.createContext()
 function refreshPage() {
    window.location.reload(false);
  }
- const removeObject = async (props) => {
-   let endpoint = `${process.env.REACT_APP_API_URL}/rest-api/presence/delete/`
-   await axios.delete(endpoint + props.id)
-  }
-const Drop = (props) => {
-   return <Dropdown>
-            <Dropdown.Toggle variant="" className="table-dropdown i-false">
-               <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                  <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-                     <rect x="0" y="0" width="24" height="24"></rect>
-                     <circle fill="#000000" cx="5" cy="12" r="2"></circle>
-                     <circle fill="#000000" cx="12" cy="12" r="2"></circle>
-                     <circle fill="#000000" cx="19" cy="12" r="2"></circle>
-                  </g>
-               </svg>
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-               <Dropdown.Item href={`/presence/edit/${props.id}`}>Modifier</Dropdown.Item>
-               <Dropdown.Item type='button' className="text-danger" onClick={ async () => {
-                    await axios.delete(`${process.env.REACT_APP_API_URL}/rest-api/presence/delete/${props.id}/`)
-                    refreshPage()
-                    }}>
-                   Supprimer
-                </Dropdown.Item>
-            </Dropdown.Menu>
-         </Dropdown>
-};
+
 
 const PresenceList = () => {
    const api = useAxios();
@@ -75,8 +48,11 @@ const PresenceList = () => {
    const [searchValue, setSearchValue] = useState('')
    const [searchBarActivated, setSearchBarActivated] = useState(false)
    const [presenceData, setPresenceData] = useState([]);
+   const [sallesData, setSallesData] = useState([]);
+   const [activities, setActivities] = useState([]);
    const [presencesCount, setPresencesCount] = useState('')
-
+   
+   
 
    // console.table('els clieeents', salle);
 
@@ -102,9 +78,18 @@ const PresenceList = () => {
    const [endDate, setEndDate] = useState(formatDate(new Date()));
    const [salleId, setSalleId] = useState('');
    const [startHour, setStartHour] = useState('');
-   const sallesData = useGetAPI(`${process.env.REACT_APP_API_URL}/rest-api/salle-activite/`)
-   const activities = useGetAPI(`${process.env.REACT_APP_API_URL}/rest-api/salle-activite/activite/`)
+   // const sallesData = useGetAPI(`${process.env.REACT_APP_API_URL}/rest-api/salle-activite/`)
+   // const activities = useGetAPI(`${process.env.REACT_APP_API_URL}/rest-api/salle-activite/activite/`)
    let presenceCreateEND =  `${process.env.REACT_APP_API_URL}/rest-api/presence/auto-create`
+   
+   useEffect(() => {
+      api.get(`${process.env.REACT_APP_API_URL}/rest-api/salle-activite/`).then( res=> {
+         setSallesData(res.data)
+      }) 
+      api.get(`${process.env.REACT_APP_API_URL}/rest-api/salle-activite/activite/`).then( res=> {
+         setActivities(res.data)
+      }) 
+   }, []);
 
 const getCurrentDay = (PresneceDate) => {
    const date = new Date(PresneceDate).getDay()
@@ -146,13 +131,13 @@ const HandleSubmit = (e) => {
    const presenceData =  api.get(`${process.env.REACT_APP_API_URL}/rest-api/get-client/?cl=${clientId}`).then(async res=> {
       if (res.data.last_presence) {
          setPresenceId(res.data.last_presence)
-         await axios.put( `${process.env.REACT_APP_API_URL}/rest-api/presence/edit/${res.data.last_presence}/`)
+         await api.put( `${process.env.REACT_APP_API_URL}/rest-api/presence/edit/${res.data.last_presence}/`)
          notifySuccess(`la sortie de ${clientId} a été éffectué Avec Succée`)
          setClientId('')
          return presenceData
       } else {
          try {
-            const presenceData1 = await axios.post(presenceCreateEND,{client: clientId}).then(res => {
+            const presenceData1 = await api.post(presenceCreateEND,{client: clientId}).then(res => {
                notifySuccess(`Entrée autorisée, ${clientId}`)
                setClientId('')
             })

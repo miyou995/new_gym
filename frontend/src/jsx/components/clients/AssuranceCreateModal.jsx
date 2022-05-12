@@ -1,9 +1,8 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { Row, Card, Col, Button, Modal, Container } from "react-bootstrap";
-import { useGetAPI, usePostAPI } from '../useAPI'
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import axios from 'axios';
+import useAxios from "../useAxios";
 import { Dropdown, Tab, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
  
@@ -11,6 +10,7 @@ function refreshPage() {
   window.location.reload(false);
 }
 const AssuranceCreateModal = ({show, onShowShange, clientData}) => {
+  const api = useAxios();
     const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
 
     // let clientEnd = `${process.env.REACT_APP_API_URL}/rest-api/clients-name/`
@@ -50,7 +50,7 @@ const AssuranceCreateModal = ({show, onShowShange, clientData}) => {
         // type : type ,
         client : clientData['clientId']
         }
-        await usePostAPI(endpoint, newTransaction)
+        await api.post(endpoint, newTransaction)
         // history.push("/client")
         refreshPage()
         // handleShow()

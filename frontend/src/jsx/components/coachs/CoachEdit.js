@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from "react";
-import axios from 'axios';
+import useAxios from "../useAxios";
 
-import { useGetAPI, usePutAPI } from '../useAPI'
+ 
 import {  useHistory } from "react-router-dom";
 import ShortCuts from "../ShortCuts";
 
  
 
 const CoachEdit = (props) => {
-  let creneauxEnd = `${process.env.REACT_APP_API_URL}/rest-api/creneau/`
+  const api = useAxios();
   const currentCoachId = props.match.params.id;
 
   let coachURI = `${process.env.REACT_APP_API_URL}/rest-api/coachs/${currentCoachId}/`
   
-  const creneaux = useGetAPI(creneauxEnd)
   const history = useHistory();
 
   const [civility, setCivility] = useState();
@@ -33,7 +32,7 @@ const CoachEdit = (props) => {
 
 
   useEffect(() => {
-    axios.get(coachURI).then((res) => {
+    api.get(coachURI).then((res) => {
       setCivility(res.data.civility)
       setLastName(res.data.last_name)
       setFirstName(res.data.first_name)
@@ -66,8 +65,9 @@ const CoachEdit = (props) => {
         pay_per_hour : paye
 
       }
-      usePutAPI(coachURI, EditedPersonnel)
-      history.push("/coach")
+      api.put(coachURI, EditedPersonnel).then(()=> {
+        history.push("/coach")
+      })
 
   }
   return (

@@ -12,7 +12,6 @@ import { Dropdown } from "react-bootstrap";
 import { set } from "js-cookie";
 // import { axiosInstance } from "../../utils/auth";
   import AuthContext from "../../context/AuthContext";
-import { useGetAPI, usePostAPI } from '../../components/useAPI'
 import { useContext } from "react";
 import axios from "axios";
 // import {notifySuccess, notifyError} from '../Alert'
@@ -37,6 +36,7 @@ const Header = ({ onNote, toggle, onProfile, onNotification, onClick }) => {
 
   const [token, setToken] = useState("");
   const [username, SetUsername] = useState("");
+  
   const Logout = async e => {
     let endpoint = `${process.env.REACT_APP_API_URL}/rest-api/auth/logout/blacklist`
     // const authToken = localStorage.getItem('authTokens')

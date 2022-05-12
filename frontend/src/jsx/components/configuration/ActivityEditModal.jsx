@@ -1,12 +1,13 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { Row, Card, Col, Button, Modal, Table } from "react-bootstrap";
-import { useGetAPI, usePutAPI } from '../useAPI'
+ 
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import axios from 'axios';
+import useAxios from "../useAxios";
 import PageTitle from "../../layouts/PageTitle";
 
 const ActivityEditModal = ({show, onShowShange, activityData}) => {
+  const api = useAxios();
   const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
   const activityEditEND = `${process.env.REACT_APP_API_URL}/rest-api/salle-activite/activite/${activityData['activityId']}/`
   
@@ -42,7 +43,7 @@ const handleSubmit = async e => {
       salle : Number(newSalle),
       color: color
   }
-  await axios.patch(activityEditEND, activityFormData)
+  await api.patch(activityEditEND, activityFormData)
   handleShow()
 }
 
@@ -96,7 +97,7 @@ return (
               </div>
               <div className="m-3">
                   <button type="submit" className="btn btn-danger" onClick={ async () => {
-                    await axios.delete(`${process.env.REACT_APP_API_URL}/rest-api/salle-activite/activite/delete/${activityData['activityId']}/` )
+                    await api.delete(`${process.env.REACT_APP_API_URL}/rest-api/salle-activite/activite/delete/${activityData['activityId']}/` )
                     handleShow()}}>
                       Supprimer
                   </button>

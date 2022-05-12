@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import axios from 'axios';
+import useAxios from "../useAxios";
 import ShortCuts from "../ShortCuts";
 
-import { useGetAPI, usePostAPI } from '../useAPI'
+
 import {  useHistory } from "react-router-dom";
 import {notifySuccess, notifyError} from '../Alert'
 
 
 const PersonnelCreate = () => {
+  const api = useAxios();
   
   const history = useHistory();
 
@@ -42,7 +43,7 @@ const PersonnelCreate = () => {
         blood :blood,
         note :note,
       }
-      usePostAPI(endpoint, newPersonnel).then( res => {
+      api.post(endpoint, newPersonnel).then( res => {
           notifySuccess('Employé creer avec succés')
           history.push("/personnel")
         }).catch(err => {

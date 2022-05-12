@@ -1,13 +1,13 @@
 import React, { Fragment , useState, useEffect} from "react";
 import PageTitle from "../../layouts/PageTitle";
 import { Dropdown, Button } from "react-bootstrap";
-import axios from 'axios';
 import Search from "../../layouts/Search";
 import ShortCuts from "../ShortCuts";
 import { ToastContainer, toast } from 'react-toastify'
 import PaiementCreateModal from './PaiementCreateModal';
 import RemunerationCoachModal from './RemunerationCoachModal';
 import RemunerationPersonnelModal from './RemunerationPersonnelModal';
+import useAxios from "../useAxios";
 import AutreCreateModal from './AutreCreateModal';
 // import DetteCreateModal from './DetteCreateModal';
 /// images 
@@ -20,39 +20,10 @@ import {
  } from '@material-ui/pickers';
  import DateFnsUtils from '@date-io/date-fns';
  
-function refreshPage() {
-   window.location.reload(false);
- }
- const removeObject = async (props) => {
-   let endpoint = `${process.env.REACT_APP_API_URL}/rest-api/transactions/delete/`
-   await axios.delete(endpoint + props.id)
-  }
-const Drop = (props) => {
-   return <Dropdown>
-      <Dropdown.Toggle variant="" className="table-dropdown i-false">
-         <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-            <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-               <rect x="0" y="0" width="24" height="24"></rect>
-               <circle fill="#000000" cx="5" cy="12" r="2"></circle>
-               <circle fill="#000000" cx="12" cy="12" r="2"></circle>
-               <circle fill="#000000" cx="19" cy="12" r="2"></circle>
-            </g>
-         </svg>
-      </Dropdown.Toggle>
-      <Dropdown.Menu>
-         <Dropdown.Item href={`/client/edit/${props.id}`}>Modifier</Dropdown.Item>
-         <Dropdown.Item type='button' className="text-danger" onClick={ async () => {
-               await axios.delete(`${process.env.REACT_APP_API_URL}/rest-api/clients/delete/${props.id}/`)
-               refreshPage()
-               }}>
-               Supprimer
-            </Dropdown.Item>
-      </Dropdown.Menu>
-   </Dropdown>
-};
 
 
 const TransactionList = () => {
+   const api = useAxios();
 
    const formatDate = (date) => {
       try {
@@ -86,13 +57,13 @@ const [startDate, setStartDate] = useState(formatDate(new Date('2021-01-05')));
    //    const dateDebut = formatDate(startDate)
    //    const dateFin = formatDate(endDate)
    //    if (searchValue !== '') {
-   //       axios.get(`${process.env.REACT_APP_API_URL}/rest-api/transactions/?start_date=${dateDebut}&end_date=${dateFin}&search=${searchValue}`).then(res => {
+   //       api.get(`${process.env.REACT_APP_API_URL}/rest-api/transactions/?start_date=${dateDebut}&end_date=${dateFin}&search=${searchValue}`).then(res => {
    //          setTransData(res.data)
    //          console.log('le resultat des clients est ', res.data);
    //       })
    //    }else {
 
-   //       axios.get(`${process.env.REACT_APP_API_URL}/rest-api/transactions/?start_date=${dateDebut}&end_date=${dateFin}&search=${searchValue}`).then(res => {
+   //       api.get(`${process.env.REACT_APP_API_URL}/rest-api/transactions/?start_date=${dateDebut}&end_date=${dateFin}&search=${searchValue}`).then(res => {
    //          setTransData(res.data)
    //          console.log('le resultat des clients est ', res.data);
    //       })}
@@ -100,14 +71,14 @@ const [startDate, setStartDate] = useState(formatDate(new Date('2021-01-05')));
 const [nextpage, setNextpage] = useState(1);
 
    useEffect(() =>  {
-      // axios.get(`${process.env.REACT_APP_API_URL}/rest-api/presence/?start_date=${startDate}&end_date=${endDate}`).then(res => {
+      // api.get(`${process.env.REACT_APP_API_URL}/rest-api/presence/?start_date=${startDate}&end_date=${endDate}`).then(res => {
       //    setStartDate(res.data.results)
       //    setEndDate(res.data.results)
       //    console.log('le resultat des clients est ', res.data);
       // })
       const dateDebut = formatDate(startDate)
       const dateFin = formatDate(endDate)
-      axios.get(`${process.env.REACT_APP_API_URL}/rest-api/transactions/?page=${nextpage}&start_date=${dateDebut}&end_date=${dateFin}`).then( res => {
+      api.get(`${process.env.REACT_APP_API_URL}/rest-api/transactions/?page=${nextpage}&start_date=${dateDebut}&end_date=${dateFin}`).then( res => {
          console.log('result ', res);
          setTransData(res.data.results)
       })
@@ -115,7 +86,7 @@ const [nextpage, setNextpage] = useState(1);
          // const page = nextpage
       // }
    // }else {
-   //    axios.get(endpoint).then(res => {
+   //    api.get(endpoint).then(res => {
    //       setStartDate(res.data.results)
    //       setEndDate(res.data.results)
    //       console.log('le resultat des clients est ', res.data);

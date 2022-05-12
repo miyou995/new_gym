@@ -4,9 +4,9 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
 // import { useCookies } from 'react-cookie';
 import Cookies from 'js-cookie';
+import useAxios from "../useAxios";
 
 
-import { useGetAPI, usePutAPI } from '../useAPI'
 import {  useHistory } from "react-router-dom";
 import ShortCuts from "../ShortCuts";
 import { ToastContainer, toast } from 'react-toastify'
@@ -26,6 +26,7 @@ function refreshPage() {
 
 
 const EditClient = (props) => {
+  const api = useAxios();
   let history = useHistory();
   const config = { headers: { 'Content-Type': 'multipart/form-data' } };
 
@@ -33,10 +34,11 @@ const EditClient = (props) => {
   let maladiesEnd = `${process.env.REACT_APP_API_URL}/rest-api/maladies/`
 
   let clientURI = `${process.env.REACT_APP_API_URL}/rest-api/clients/${currentClientId}/`
-  const maladies = useGetAPI(maladiesEnd)
-  
+
+
   // const history = useHistory();
   const [realMaladies, setRealMaladies] = useState([])
+  const [maladies, setMaladies] = useState([])
   const [selectedMaladies, setSelectedMaladies] = useState([])
   const [pushedMaladies, setPushedMaladies] = useState([])
 
@@ -59,8 +61,14 @@ const [deleted, setDeleted] = useState(false)
 const [success, setSuccess] = useState(false)
 const [picture, setPicture] = useState(null);
 
-//FK 
-  const getmaladiesNames = (actiAbon) => {
+
+useEffect(() => {
+  api.get(maladiesEnd).then((res) => {
+    setMaladies(res.data)
+  })
+}, []);
+
+const getmaladiesNames = (actiAbon) => {
     const provActiId = []
     const indexesList = []
     // const 
@@ -81,7 +89,7 @@ const [picture, setPicture] = useState(null);
 }
   useEffect(() => {
   const fetchData =  () => {
-     axios.get(clientURI).then((res) => {
+     api.get(clientURI).then((res) => {
       setRealMaladies(res.data.maladies)
       setCivility(res.data.civility)
       setLastName(res.data.last_name)
@@ -173,7 +181,7 @@ const handleImage = (e) => {
 };
 // const deletClient =async () => {
 //   const url = `${process.env.REACT_APP_API_URL}/rest-api/clients/delete/${currentClientId}/`
-//   await axios.delete(url).then(()=>{
+//   await api.delete(url).then(()=>{
 //     notifyDeleted()
 //       // history.push(`/client/`) 
 //     })
@@ -183,7 +191,7 @@ const handleImage = (e) => {
 
 const deletClient =async () => {
   const url = `${process.env.REACT_APP_API_URL}/rest-api/clients/delete/${currentClientId}/`
-  await axios.delete(url,
+  await api.delete(url,
    { headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
@@ -231,7 +239,7 @@ const getSelectedMaladies = () => {
         if (picture !== null) {
           formData.append('picture', picture.image[0]);
         }
-        await axios.put(clientURI, formData, config).then(() => {
+        await api.put(clientURI, formData, config).then(() => {
           setTimeout(()=>{
             notifySuccess('Profile Modifier avec succés')
           }, 100)

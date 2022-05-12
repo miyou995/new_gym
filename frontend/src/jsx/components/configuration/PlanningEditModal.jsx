@@ -1,15 +1,16 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { Row, Card, Col, Button, Modal, Table } from "react-bootstrap";
-import { useGetAPI, usePutAPI, usePostAPI } from '../useAPI'
+
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import {notifySuccess, notifyError} from '../Alert'
-import axios from 'axios';
+import useAxios from "../useAxios";
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 const PlanningEditModal = ({show, onShowShange, planningData}) => {
-    const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+  const api = useAxios();
+  const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
     // const creneauPerAbonnementEND = `${process.env.REACT_APP_API_URL}/rest-api/abonnement/`
     
     const [is_default, setDefault] = useState(false)
@@ -23,7 +24,7 @@ const PlanningEditModal = ({show, onShowShange, planningData}) => {
             is_default : is_default
         }
         console.log('the form', planningForm);
-        await axios.put(planningEditEnd, planningForm).then( res => {
+        await api.put(planningEditEnd, planningForm).then( res => {
             notifySuccess('Planning modifier avec succés')
                 handleShow()
             }).catch(err => {
@@ -82,7 +83,7 @@ return (
               </div>
               <div className="m-3">
                   <button type="button" className="btn btn-danger" onClick={ async () => {
-                    await axios.delete(`${process.env.REACT_APP_API_URL}/rest-api/planning/delete/${planId}/` )
+                    await api.delete(`${process.env.REACT_APP_API_URL}/rest-api/planning/delete/${planId}/` )
                     notifySuccess(`Le planning ${planName} a été supprimer avec succés`)
                     handleShow()}}>Supprimer</button>
               </div>

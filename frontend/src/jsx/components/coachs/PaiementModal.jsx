@@ -1,14 +1,15 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { Row, Card, Col, Button, Modal, Table } from "react-bootstrap";
-import { useGetAPI, usePutAPI } from '../useAPI'
+ 
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import axios from 'axios';
+import useAxios from "../useAxios";
 import PageTitle from "../../layouts/PageTitle";
 import {notifySuccess, notifyError} from '../Alert'
 
 const PaiementModal = ({show, onShowShange, coachData}) => {
-    const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+  const api = useAxios();
+  const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
      const coachId  = coachData['coachId']
      const coachName =  coachData['coachName']
   const paiementCreateEND =`${process.env.REACT_APP_API_URL}/rest-api/transactions/remunerationProf/create` 
@@ -21,7 +22,7 @@ const PaiementModal = ({show, onShowShange, coachData}) => {
           amount : amount
         }
         console.log(" =================> new Creneau ", paiementDetails);
-        axios.post(paiementCreateEND, paiementDetails).then( res => {
+        api.post(paiementCreateEND, paiementDetails).then( res => {
           notifySuccess('Paiement creer avec succés')
                 handleShow()
           }).catch(err => {

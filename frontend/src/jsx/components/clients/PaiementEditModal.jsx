@@ -1,10 +1,8 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { Row, Card, Col, Button, Modal, Table } from "react-bootstrap";
-import { useGetAPI, usePutAPI } from '../useAPI'
 import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
-import axios from 'axios';
 import PageTitle from "../../layouts/PageTitle";
+import useAxios from "../useAxios";
 // import { ToastContainer, toast } from 'react-toastify'
 // import 'react-toastify/dist/ReactToastify.css'
 import {notifySuccess, notifyError} from '../Alert'
@@ -15,7 +13,8 @@ import {notifySuccess, notifyError} from '../Alert'
 
 const PaiementEditModal = ({show, onShowShange, paiementData}) => {
     const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
-    const clientId = paiementData['clientId']
+  const api = useAxios();
+  const clientId = paiementData['clientId']
     const abonnements = paiementData['abcs']
 
     const amountInfo = paiementData['paiementAmountInfo']
@@ -65,7 +64,7 @@ const PaiementEditModal = ({show, onShowShange, paiementData}) => {
         }
         console.log(" =================> new Creneau ", paiementDetails);
         try {
-         await axios.patch(paiementCreateEND, paiementDetails).then(res => {
+         await api.patch(paiementCreateEND, paiementDetails).then(res => {
            if (res.status === 200) {
             notifySuccess('Paiement Modifier avec succés')
              handleShow()
@@ -124,7 +123,7 @@ return (
         <div className='col-3'>
                 {/* <Button variant="primary" type="submit">Supprimer</Button> */}
                 <Button type="button" className="btn btn-danger" onClick={ async () => {
-                await axios.delete(paiementDeleteEND)
+                await api.delete(paiementDeleteEND)
                 handleShow()
                 }}>
                     Supprimer

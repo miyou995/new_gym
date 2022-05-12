@@ -1,19 +1,18 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { Row, Card, Col, Button, Modal, Container } from "react-bootstrap";
-import { useGetAPI, usePutAPI } from '../useAPI'
+ 
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import axios from 'axios';
+import useAxios from "../useAxios";
 import { Dropdown, Tab, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import {notifySuccess, notifyError} from '../Alert'
-import axiosInstance from "../useAxios";
  
 // function refreshPage() {
 //   window.location.reload(false);
 // }
 const PresenceEditModal = ({show, onShowShange, presenceData}) => {
-   const api = axiosInstance();
+   const api = useAxios();
 
     const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
     const client  =presenceData['client']
@@ -58,7 +57,7 @@ const PresenceEditModal = ({show, onShowShange, presenceData}) => {
          date :presenceDate,
       }
       // console.log(" =================> new Creneau ", newCreneau);
-      await axiosInstance.patch(presenceUpdateEND, newCreneau).then( () => {
+      await api.patch(presenceUpdateEND, newCreneau).then( () => {
 
          notifySuccess('Présence modifié avec succées ')
          handleShow()
@@ -111,7 +110,7 @@ return (
                </div>
                <div>
                   <Button variant="danger light"  onClick={ async () => {
-                    await axios.delete(`${process.env.REACT_APP_API_URL}/rest-api/presence/delete/${presenceId}/`, )
+                    await api.delete(`${process.env.REACT_APP_API_URL}/rest-api/presence/delete/${presenceId}/`, )
                     handleShow()}}>Supprimé</Button>
                </div>
             </div>

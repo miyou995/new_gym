@@ -1,15 +1,17 @@
 import React, { useState, useCallback, useEffect } from "react";
 
 import { Row, Card, Col, Button, Modal, Container } from "react-bootstrap";
-import { useGetAPI, usePutAPI } from '../useAPI'
+import useAxios from "../useAxios";
+ 
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import axios from 'axios';
 import { Dropdown, Tab, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
  
 
 const PaiementsClientModal = ({show, onShowShange, paiementsData}) => {
+  const api = useAxios();
+
     const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
     const [paiements, setPaimeents] = useState([])
     const clientId = paiementsData['clientId']
@@ -18,7 +20,7 @@ const PaiementsClientModal = ({show, onShowShange, paiementsData}) => {
     useEffect(() => {
        const fetchData = async () => {
           try {
-             const res = await axios.get(paiementsEnd);
+             const res = await api.get(paiementsEnd);
              setPaimeents(res.data)
           } catch (error) {
              console.log(error);

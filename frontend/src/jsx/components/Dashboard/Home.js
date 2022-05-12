@@ -1,17 +1,16 @@
 import React, { Fragment , useState, useEffect} from "react";
 import { Dropdown, Tab, Nav, Row } from "react-bootstrap";
 import { Link, Router, useHistory } from "react-router-dom";
-import { useGetAPI, usePutAPI } from '../useAPI'
-import axiosInstance from "../useAxios";
+ 
+import useAxios from "../useAxios";
 
 import PerfectScrollbar from "react-perfect-scrollbar";
 
 // import Contacts from "../Dhrev/Home/slider/Contacts";
 import ShortCuts from "../ShortCuts";
-import axios from "axios";
 
 const Home = () => {
-  const api = axiosInstance;
+  const api = useAxios();
 
   //  const dettesAND = `${process.env.REACT_APP_API_URL}/rest-api/clients-dettes/`
    const dettesAND = `${process.env.REACT_APP_API_URL}/rest-api/totales-restes/`
@@ -28,8 +27,8 @@ const Home = () => {
    const [presenceId, setPresenceId ] = useState('')
   
    const [coachData, setCoachData] = useState([]);
-   
-   
+
+
    const [ chiffreDaffaire, setChiffreDaffaire]= useState('')
   
    const [ dettesglobal, setDettesglobal]= useState('')
@@ -49,10 +48,10 @@ const Home = () => {
    // console.log('dettesglobal', dettes);
    
    useEffect(() => {
-    axiosInstance.get(dettesAND).then((res) => {
+    api.get(dettesAND).then((res) => {
       console.log('respojnnnnnnnnn', res);
          setDettesglobal(res.data['totales_dettes']['reste__sum'])
-      })
+      })  
       api.get(chargesAND).then((res) => {
          setTotaldepenses(res.data.total_charges)
       })
@@ -75,7 +74,7 @@ const Home = () => {
       // })
    }, []);
    useEffect(() => {
-      axios.get(presencesParSalleEnd).then( res => {
+      api.get(presencesParSalleEnd).then( res => {
          setSalle(res.data.presences)
          console.log('presenEEEESSSSS', res.data);
       })
@@ -88,16 +87,16 @@ const Home = () => {
       e.preventDefault();
       const clientId = {client : Number(client)}
       // getIdPresence(client)
-      axios.get(`${process.env.REACT_APP_API_URL}/rest-api/clients/${client}/`).then(res=> {
+      api.get(`${process.env.REACT_APP_API_URL}/rest-api/clients/${client}/`).then(res=> {
          if (res.data.last_presence) {
             
             console.log('id de la presence', res.data.last_presence);
             setPresenceId(res.data.last_presence)
             console.log('erreur lors du cposr ligne 85', presenceId);
-            axios.patch( `${process.env.REACT_APP_API_URL}/rest-api/presence/edit/${res.data.last_presence}/`)
+            api.patch( `${process.env.REACT_APP_API_URL}/rest-api/presence/edit/${res.data.last_presence}/`)
          }else {
 
-            axios.post(presenceCreateEND, clientId)
+            api.post(presenceCreateEND, clientId)
          }
       }).catch( err => {
 

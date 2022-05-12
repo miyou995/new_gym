@@ -3,13 +3,13 @@ import { Dropdown, Tab, Nav, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
-import { useGetAPI, usePutAPI } from '../useAPI'
+ 
 import ShortCuts from "../ShortCuts";
 
 import { ToastContainer } from 'react-toastify'
 
 
-import axios from 'axios';
+import useAxios from "../useAxios";
 import PerfectScrollbar from "react-perfect-scrollbar";
 
 import AbonnementCreateModal from './AbonnementCreateModal';
@@ -24,7 +24,8 @@ import AbonnementListModal from './AbonnementListModal'
 import MaladieCreateModal from './MaladieCreateModal'
 import MaladieEditModal from './MaladieEditModal'
 const Configuration = (props) => {
-    const abonnementsListEND = `${process.env.REACT_APP_API_URL}/rest-api/abonnement/`
+  const api = useAxios();
+  const abonnementsListEND = `${process.env.REACT_APP_API_URL}/rest-api/abonnement/`
     const maladiesEnd = `${process.env.REACT_APP_API_URL}/rest-api/maladies/`
     const activitiesEND = `${process.env.REACT_APP_API_URL}/rest-api/salle-activite/activite/`
     const salleActivitiesEND = `${process.env.REACT_APP_API_URL}/rest-api/salle-activite/`
@@ -85,20 +86,20 @@ const Configuration = (props) => {
       ]
 
     useEffect(() => {
-        axios.get(maladiesEnd).then(res =>{
+        api.get(maladiesEnd).then(res =>{
             setMaladies(res.data)
             console.log('Maladies', res.data);
         })
     }, [maladieCreateModal, maladieEditModal, maladiesEnd]);
 
     useEffect(() => {
-        axios.get(activitiesEND).then(res =>{
+        api.get(activitiesEND).then(res =>{
             setActivities(res.data)
         })
     }, [activitiesEND, activityCreateModal, activityEditModal]);
 
     useEffect(() => {
-        axios.get(salleActivitiesEND).then(res =>{
+        api.get(salleActivitiesEND).then(res =>{
             setSalllesActivities(res.data)
         })
     }, [salleActiviteCreateModal, salleActivitiesEND, salleActiviteEditModal]);
@@ -111,7 +112,7 @@ const Configuration = (props) => {
     // const salllesActivities = useGetAPI(salleActivitiesEND)
     const [plannings, setPlannings] = useState([]);
     useEffect(() => {
-    axios.get(planningsEND).then(res => {
+    api.get(planningsEND).then(res => {
         setPlannings(res.data)
         console.log('plannings', res.data);
     })
@@ -167,7 +168,7 @@ const Configuration = (props) => {
         //  const clientId = props.match.params.id;
          const fetchData = async () => {
             try {
-               const res = await axios.get(abonnementsListEND);
+               const res = await api.get(abonnementsListEND);
                setAbonnements(res.data)
                 console.log('ghirrrr =creneauxClient', abonnements);
             } catch (error) {

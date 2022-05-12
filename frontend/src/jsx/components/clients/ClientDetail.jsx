@@ -5,8 +5,6 @@ import { ToastContainer } from 'react-toastify'
 import {notifySuccess, notifyError} from '../Alert'
 
 import { Helmet } from 'react-helmet'
-import axios from 'axios';
-import { useGetAPI } from '../useAPI'
 import { Dropdown, Tab, Nav, Button } from "react-bootstrap";
 import {
   Row,
@@ -32,6 +30,7 @@ import PaiementEditModal from './PaiementEditModal';
 import RenewAbonnementModal from './RenewAbonnementModal';
 import AbonnementClientModal from './AbonnementClientModal';
 import femaleImg from "../../../images/profile/female.png";
+import useAxios from "../useAxios";
 
 const ProductDetail = (props) => {
   const [client, setClient] = useState({});
@@ -73,12 +72,14 @@ const ProductDetail = (props) => {
   const creneauClientEND = `${process.env.REACT_APP_API_URL}/rest-api/creneau/by-client?cl=${clientId}`
   // console.log('les trnasactions ',transactions);
   // console.log('le id de labonnd client est ', abonnementClientCreneaux);
+  const api = useAxios();
+
   const addPresence = async () => {
     const clientData =  {
       client : Number(clientId)
     }
     try {
-      const axWait = await axios.post(presenceCreateEND, clientData)
+      const axWait = await api.post(presenceCreateEND, clientData)
       notifySuccess('Presence enregistré avec succés')
         return axWait
     } catch (error) {
@@ -121,7 +122,7 @@ const ProductDetail = (props) => {
   //   //  const clientId = props.match.params.id;
   //    const fetchData = async () => {
   //       try {
-  //          const res = await axios.get(creneauClientEND);
+  //          const res = await api.get(creneauClientEND);
   //          let creneaux = res.data
   //         //  let result = (creneaux) => creneaux.filter((v,i) => creneaux.indexOf(v) === i)
   //          setCreneauxClient(creneaux)
@@ -136,7 +137,7 @@ const ProductDetail = (props) => {
   useEffect(() => {
      const fetchData = async () => {
         try {
-           const res = await axios.get(`${process.env.REACT_APP_API_URL}/rest-api/clients/${clientId}/`);
+           const res = await api.get(`${process.env.REACT_APP_API_URL}/rest-api/clients/${clientId}/`);
            setClient(res.data);
         } catch (error) {
            console.log(error);
@@ -148,7 +149,7 @@ const ProductDetail = (props) => {
   useEffect(() => {
      const fetchData = async () => {
         try {
-           const res = await axios.get(creneauClientEND);
+           const res = await api.get(creneauClientEND);
            setCreneauxClient(res.data)
         } catch (error) {
         }
@@ -159,9 +160,9 @@ const ProductDetail = (props) => {
   useEffect(() => {
      const fetchData = async () => {
         try {
-           const res = await axios.get(transactionClientEND);
+           const res = await api.get(transactionClientEND);
            setTransClient(res.data)
-           const res2 = await axios.get(`${process.env.REACT_APP_API_URL}/rest-api/abonnement-client-dettes/?cl=${clientId}`);
+           const res2 = await api.get(`${process.env.REACT_APP_API_URL}/rest-api/abonnement-client-dettes/?cl=${clientId}`);
            setDettesClient(res2.data.abonnees.reste__sum)
         } catch (error) {
            console.log(error);
@@ -173,7 +174,7 @@ const ProductDetail = (props) => {
     //  const clientId = props.match.params.id;
      const fetchData = async () => {
         try {
-           const res = await axios.get(`${process.env.REACT_APP_API_URL}/rest-api/abonnement-by-client/?cl=${clientId}`);
+           const res = await api.get(`${process.env.REACT_APP_API_URL}/rest-api/abonnement-by-client/?cl=${clientId}`);
            setAbonClient(res.data)
         } catch (error) {
            console.log(error);

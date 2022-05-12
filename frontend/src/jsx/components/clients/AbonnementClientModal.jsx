@@ -1,18 +1,14 @@
 import React, { useState, useCallback, useEffect } from "react";
 
-import { Row, Card, Col, Button, Modal, Container } from "react-bootstrap";
-import { useGetAPI, usePutAPI } from '../useAPI'
-import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
-import axios from 'axios';
-import { Dropdown, Tab, Nav } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import {  Button, Modal } from "react-bootstrap";
+import useAxios from "../useAxios";
  
 function refreshPage() {
   window.location.reload(false);
 }
 const AbonnementClientModal = ({show, onShowShange, abcData}) => {
-   const formatDate = (date) => {
+  const api = useAxios();
+  const formatDate = (date) => {
       return new Date(date).toISOString().slice(0, 10)
    }
    const today = new Date()
@@ -28,7 +24,7 @@ const AbonnementClientModal = ({show, onShowShange, abcData}) => {
     useEffect(() => {
        const fetchData = async () => {
           try {
-             const res = await axios.get(abcEnd);
+             const res = await api.get(abcEnd);
              setAbcs(res.data)
           } catch (error) {
              console.log(error);

@@ -1,29 +1,37 @@
 import React, { useState, useEffect } from "react";
-import axios from 'axios';
+import useAxios from "../useAxios";
 
-import { useGetAPI, usePostAPI } from '../useAPI'
 import {  useHistory } from "react-router-dom";
 
  
 
 const AbonnementCreate = (props) => {
   let activityEnd = `${process.env.REACT_APP_API_URL}/rest-api/salle-activite/activite/`
+  
+  const api = useAxios();
 
-  const activities = useGetAPI(activityEnd)
-
+  
   // let presenceURI = `${process.env.REACT_APP_API_URL}/rest-api/abonnement/${currentPresenceId}/`
   const history = useHistory();
-
+  
   // const [abActivity, setAbActivity] = useState([]);
   const [abName, setAbName] = useState('')
   const [abPrice, setabPrice] = useState('')
   const [abNumDays, setAbNumDays] = useState('')
   const [abSeancesQuantity, setAbSeancesQuantity] = useState('')
   const [selectedActivities, setSelectedActivities] = useState([])
- 
+  const [activities, setActivities] = useState([])
+  
+    //FK 
+    useEffect(() => {
+      api.get(activityEnd).then((res) => {
+        setActivities(res.data)
+      })
+    }, []);
+
   //FK 
   // useEffect(() => {
-  //   axios.get(presenceURI).then((res) => {
+  //   api.get(presenceURI).then((res) => {
     
   //     setAbActivity(res.data.activity)
   //     setAbName(res.data.name)
@@ -85,9 +93,11 @@ const handleCheckbox = (event) => {
     number_of_days:abNumDays,
     seances_quantity:abSeancesQuantity,
   }
-    usePostAPI(endpoint, newAbonnement)
-    history.push("/client")
-    console.log('THE NEW CLIENT ', newAbonnement);
+    api.post(endpoint, newAbonnement).then( () => {
+      history.push("/client")
+      console.log('THE NEW CLIENT ', newAbonnement);
+
+    })
   }
   return (
         <div className="">

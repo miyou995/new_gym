@@ -1,20 +1,29 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { Row, Card, Col, Button, Modal, Container } from "react-bootstrap";
-import { useGetAPI, usePostAPI } from '../useAPI'
+
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import axios from 'axios';
+import useAxios from "../useAxios";
 import { Dropdown, Tab, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import {notifySuccess, notifyError} from '../Alert'
  
 
 const AssuranceCreateModal = ({show, onShowShange}) => {
-    const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+  const api = useAxios();
+  const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
     let clientEnd = `${process.env.REACT_APP_API_URL}/rest-api/clients-name/`
     let assuranceEnd = `${process.env.REACT_APP_API_URL}/rest-api/assurance/`
-    const clients = useGetAPI(clientEnd)
-    const assurance = useGetAPI(assuranceEnd)
+  const [clients, setClients] = useState([])
+  const [assurance, setAssurance] = useState([])
+  useEffect(() => {
+    api.get(clientEnd).then((res) => {
+      setClients(res.data)
+    })
+    api.get(assuranceEnd).then((res) => {
+      setAssurance(res.data)
+    })
+  }, []);
     // const history = useHistory();
     const [amount, setAmount] = useState("");
     const [notes, setNotes] = useState("");
@@ -31,7 +40,7 @@ const AssuranceCreateModal = ({show, onShowShange}) => {
         // type : type ,
         client : client
         }
-        await usePostAPI(endpoint, newTransaction).then( res => {
+        await api.post(endpoint, newTransaction).then( res => {
           notifySuccess('Transaction creer avec succés')
                 handleShow()
           }).catch(err => {

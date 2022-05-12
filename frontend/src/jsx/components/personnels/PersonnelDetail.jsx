@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 // import productData from "../productData";
-import axios from "axios";
+import useAxios from "../useAxios";
 import { Tab, Button } from "react-bootstrap";
-import { useGetAPI } from "../useAPI";
+
 import PerfectScrollbar from "react-perfect-scrollbar";
 
 import { ToastContainer, toast } from 'react-toastify'
@@ -18,6 +18,7 @@ import PaiementModal from './PaiementModal'
 
 
 const PersonnelDetail = (props) => {
+  const api = useAxios();
   const [paiementModal, setPaiementModal] = useState(false);
   const [employe, setEmploye] = useState({});
   const [transactionsEmploye, setTransactionsEmploye] = useState([]);
@@ -26,7 +27,13 @@ const PersonnelDetail = (props) => {
 
   let PersonnelDetailEndpoint = `${process.env.REACT_APP_API_URL}/rest-api/personnel/${employeId}`;
   const transactionsEmployeEnd = `${process.env.REACT_APP_API_URL}/rest-api/transactions/remuneration/${employeId}`;
-  const personnelData = useGetAPI(PersonnelDetailEndpoint);
+  const [personnelData, setPersonnelData] = useState([])
+  //FK 
+  useEffect(() => {
+    api.get(PersonnelDetailEndpoint).then((res) => {
+      setPersonnelData(res.data)
+    })
+  }, []);
   useEffect(() => {
     const personnelSelected = personnelData;
     setEmploye(personnelSelected);
@@ -38,7 +45,7 @@ const PersonnelDetail = (props) => {
   };
   useEffect(() => {
     //  const clientId = props.match.params.id;
-     axios.get(transactionsEmployeEnd).then( res => {
+     api.get(transactionsEmployeEnd).then( res => {
       setTransactionsEmploye(res.data)
            })
   }, [props.match.params.id] );

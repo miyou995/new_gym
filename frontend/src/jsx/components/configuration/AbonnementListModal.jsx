@@ -1,9 +1,9 @@
 import React, { useState, useCallback, useEffect, memo } from "react";
 import { Row, Card, Col, Button, Modal, Table } from "react-bootstrap";
-import { useGetAPI, usePutAPI } from '../useAPI'
+ 
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import axios from 'axios';
+import useAxios from "../useAxios";
 import PageTitle from "../../layouts/PageTitle";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
@@ -15,7 +15,8 @@ function refreshPage() {
   window.location.reload(false);
 }
 const AbonnementListModal = ({show, onShowShange, abonnementData}) => {
-    const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+  const api = useAxios();
+  const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
     // const abonnementEditEND = `${process.env.REACT_APP_API_URL}/rest-api/abonnement/`
     // const creneauPerAbonnementEND = `${process.env.REACT_APP_API_URL}/rest-api/abonnement/`
 
@@ -36,7 +37,7 @@ const AbonnementListModal = ({show, onShowShange, abonnementData}) => {
 // const provArray = []
 useEffect(() => {
   if (show == true) {
-    axios.get(abonnementsEND).then(res => {
+    api.get(abonnementsEND).then(res => {
       setAbonnements(res.data)
       // setName(res.data.name)
       // setPrice(res.data.price)
@@ -68,7 +69,7 @@ useEffect(() => {
     // //   setSelectedActivities(provArray)
     // }
 // const handleDelete = e => {
-//     axios.delete(abonnementDeleteEND).then(
+//     api.delete(abonnementDeleteEND).then(
 //         refreshPage(),
 //         handleShow()
 //     )

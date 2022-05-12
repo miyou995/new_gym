@@ -1,10 +1,10 @@
 import React, { useState, useCallback, useEffect } from "react";
 
 import { Row, Card, Col, Button, Modal, Tab, Nav } from "react-bootstrap";
-import { useGetAPI, usePutAPI } from '../useAPI'
+ 
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import axios from 'axios';
+import useAxios from "../useAxios";
 import { Link } from "react-router-dom";
 import {notifySuccess, notifyError} from '../Alert'
 import Checkbox from '@material-ui/core/Checkbox';
@@ -12,7 +12,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 
 const CreneauCreateModal = ({show, onShowShange, creneauData}) => {
-    const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+  const api = useAxios();
+  const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
 
     let creneauUpdateEND = `${process.env.REACT_APP_API_URL}/rest-api/creneau/${creneauData['creneauId']}/`
     const creneauDetailEnd = `${process.env.REACT_APP_API_URL}/rest-api/abc-by-creneau?cr=${creneauData['creneauId']}`
@@ -58,7 +59,7 @@ const CreneauCreateModal = ({show, onShowShange, creneauData}) => {
 
     
     useEffect(() => {
-      // axios.get(creneauDetailEND).then((res) => {
+      // api.get(creneauDetailEND).then((res) => {
       //   setCreneauDetail(res.data)
       //   console.log(res.data);
       if (creneauData['creneauId']) {
@@ -93,7 +94,7 @@ const CreneauCreateModal = ({show, onShowShange, creneauData}) => {
 
 
     useEffect(() => {
-      axios.get(creneauDetailEnd).then(res => {
+      api.get(creneauDetailEnd).then(res => {
          setAbc(res.data)
          console.log('les abc dee ce creneau sotn ', res.data);
       })
@@ -141,7 +142,7 @@ const CreneauCreateModal = ({show, onShowShange, creneauData}) => {
          newCreneau.color = color
       }
        console.log(" =================> new Creneau ", newCreneau);
-      axios.put(creneauUpdateEND, newCreneau).then( res => {
+      api.put(creneauUpdateEND, newCreneau).then( res => {
          
       notifySuccess('Créneau modifier avec succés')
           handleShow()
@@ -367,7 +368,7 @@ return (
                               </div>
                               <div className="m-3">
                                  <Button variant="primary" type="button" className="btn btn-danger ml-auto" onClick={ async () => {
-                                    await axios.delete(`${process.env.REACT_APP_API_URL}/rest-api/creneau/delete/${creneauData['creneauId']}/`)
+                                    await api.delete(`${process.env.REACT_APP_API_URL}/rest-api/creneau/delete/${creneauData['creneauId']}/`)
                                     handleShow()
                                  }}>Supprimer</Button>
                               </div>

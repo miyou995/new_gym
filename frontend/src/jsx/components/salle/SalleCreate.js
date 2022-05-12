@@ -1,21 +1,27 @@
 import React, { useState , useEffect, useReducer, useContext} from "react";
-import axios from 'axios';
+import useAxios from "../useAxios";
 import { Button } from 'react-bootstrap';
 import { SalleContext } from './Salle';
-import {useGetAPI} from '../useAPI'
 
 
 
 const AddSalle = () => {
   const { state, dispatch } = useContext(SalleContext);
+  const api = useAxios();
 
   const [salleName, setSalleName] = useState("");
   const [salleAdresse, setSalleAdresse] = useState("");
   const [sallePhone, setSallePhone] = useState("");
 
   let endpoint = `${process.env.REACT_APP_API_URL}/rest-api/salle-sport/`
+  const [savedSalles, setSavedSalles] = useState([])
   
-  const savedSalles = useGetAPI(endpoint)
+  //FK 
+  useEffect(() => {
+    api.get(endpoint).then((res) => {
+      setSavedSalles(res.data)
+    })
+  }, []);
   
   useEffect(()=>{
     dispatch({type: "get", payload: savedSalles})
@@ -27,7 +33,7 @@ const AddSalle = () => {
       e.preventDefault();
       const newSalle = {name:salleName, adresse: salleAdresse, phone: sallePhone}
 
-      await axios.post(endpoint, newSalle)
+      await api.post(endpoint, newSalle)
       dispatch({type:'add', payload:newSalle})
       setSalleName('')
       setSalleAdresse('')

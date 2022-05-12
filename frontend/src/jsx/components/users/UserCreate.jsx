@@ -1,18 +1,19 @@
 import React, { Fragment , useState} from "react";
 import PageTitle from "../../layouts/PageTitle";
 import { Dropdown, Button } from "react-bootstrap";
-import axios from 'axios';
 import ShortCuts from "../ShortCuts";
 import { ToastContainer, toast } from 'react-toastify'
 // import DetteCreateModal from './DetteCreateModal';
 /// images 
 import { Link } from "react-router-dom";
 import { useHistory } from 'react-router-dom';
+import useAxios from "../useAxios";
 
 
 
 const UserCreate = () => {
-    const history = useHistory();
+  const api = useAxios();
+  const history = useHistory();
     const initialFormData = Object.freeze({
       email: "",
       first_name: "",
@@ -34,7 +35,7 @@ const UserCreate = () => {
       const handleSubmit = (e) => {
           e.preventDefault();
           console.log(formData);
-          axios.post(`${process.env.REACT_APP_API_URL}/rest-api/auth/register`, {
+          api.post(`${process.env.REACT_APP_API_URL}/rest-api/auth/register`, {
             email: formData.email,
             first_name:formData.first_name,
             last_name: formData.last_name,

@@ -1,9 +1,9 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { Row, Card, Col, Button, Modal, Table } from "react-bootstrap";
-import { useGetAPI, usePutAPI } from '../useAPI'
+ 
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import axios from 'axios';
+import useAxios from "../useAxios";
 import PageTitle from "../../layouts/PageTitle";
 import ColorPicker_ from "material-ui-color-picker";
 import {notifySuccess, notifyError} from '../Alert'
@@ -13,7 +13,8 @@ function refreshPage() {
   window.location.reload(false);
 }
 const ActivityCreateModal = ({show, onShowShange, activityData}) => {
-    const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+  const api = useAxios();
+  const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
     // const activitiesEND = `${process.env.REACT_APP_API_URL}/rest-api/salle-activite/activite/`
     const activityCreateEND = `${process.env.REACT_APP_API_URL}/rest-api/salle-activite/activite/create`
     // const creneauPerAbonnementEND = `${process.env.REACT_APP_API_URL}/rest-api/abonnement/`
@@ -29,7 +30,7 @@ const [color, setColor] = useState("");
             salle : Number(salle),
             color: color
         }
-        axios.post(activityCreateEND, activityFormData).then(res => {
+        api.post(activityCreateEND, activityFormData).then(res => {
           notifySuccess('Activité creer avec succés')
           handleShow()
         }).catch( err => {

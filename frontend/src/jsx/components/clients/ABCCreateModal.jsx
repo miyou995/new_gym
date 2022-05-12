@@ -1,12 +1,12 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { Row, Card, Col, Button, Modal, Table } from "react-bootstrap";
-import { useGetAPI, usePutAPI } from '../useAPI'
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import axios from 'axios';
+// import api from 'axios';
 import PageTitle from "../../layouts/PageTitle";
 import {notifySuccess, notifyError} from '../Alert'
 
+import useAxios from "../useAxios";
 
 // import { Dropdown, Tab, Nav } from "react-bootstrap";
 // import { Link } from "react-router-dom";
@@ -15,6 +15,7 @@ function refreshPage() {
   window.location.reload(false);
 }
 const ABCCreateModal = ({show, onShowShange, clientData}) => {
+  const api = useAxios();
   const [showCreneau, setShowCreneau] = useState(false)
     const handleShow = useCallback( () => {
       onShowShange(false)
@@ -50,6 +51,7 @@ const ABCCreateModal = ({show, onShowShange, clientData}) => {
     const [error, setError] = useState(false)
     const [success, setSuccess] = useState(false)
     const [planningId, setPlanningId] = useState("");
+    const [plannings, setPlannings] = useState([]);
 
     // let creneauPerAbonnementEND = `${process.env.REACT_APP_API_URL}/rest-api/creneau/by-abonnement?ab=${selectAbonnement}`
     let creenauxSallePlanningEND = `${process.env.REACT_APP_API_URL}/rest-api/creneau/by-ab-plan?ab=${selectAbonnement}&pl=${planningId}` 
@@ -58,7 +60,11 @@ const ABCCreateModal = ({show, onShowShange, clientData}) => {
     const abonnementEND = `${process.env.REACT_APP_API_URL}/rest-api/abonnement/`
     let planningEND = `${process.env.REACT_APP_API_URL}/rest-api/planning/`
 
-    const plannings = useGetAPI(planningEND)
+    useEffect(() => {
+      api.get(planningEND).then((res) => {
+        setPlannings(res.data)
+      })
+    }, []);
     let result1=[]
     let result2=[]
     let result3=[]
@@ -69,7 +75,7 @@ const ABCCreateModal = ({show, onShowShange, clientData}) => {
     // console.log('the daaaaaays', selectedDays);
     useEffect(() => {
       if (show == true) {
-        axios.get(abonnementEND).then(res =>{
+        api.get(abonnementEND).then(res =>{
           setAbonnements(res.data)
         })
       }
@@ -79,7 +85,7 @@ const ABCCreateModal = ({show, onShowShange, clientData}) => {
     useEffect(() => {
       
       if (showCreneau == true) {
-        axios.get(creenauxSallePlanningEND).then(res =>{
+        api.get(creenauxSallePlanningEND).then(res =>{
           setTousLesCreneaux(res.data)
           res.data.forEach((req) => {
           if (req.day == "SA") {
@@ -237,7 +243,7 @@ const getSelectedDays = (creneauxIds, tousLesCreneaux) => {
         start_date: startDate,
         creneaux :creneaux,
       }
-      const axWait = await axios.post(abonnementClientCreateEND, newABC).then( e => {
+      const axWait = await api.post(abonnementClientCreateEND, newABC).then( e => {
         notifySuccess("Abonnement creer avec succés")
         handleShow()
       }).catch(err => {

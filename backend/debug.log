@@ -19805,3 +19805,66 @@ Original exception text was: 'HistoricalPresence' object has no attribute 'type_
 2022-05-11 16:05:20,933 django.request WARNING  Bad Request: /api/token/refresh/
 2022-05-11 16:05:48,315 django.request WARNING  Unauthorized: /rest-api/coachs/
 2022-05-11 16:05:48,366 django.request WARNING  Bad Request: /api/token/refresh/
+2022-05-12 07:57:53,159 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-05-12 07:58:03,951 django.request WARNING  Unauthorized: /rest-api/salle-activite/by-salles/
+2022-05-12 08:07:50,333 django.request WARNING  Unauthorized: /rest-api/salle-activite/by-salles/
+2022-05-12 08:10:44,697 django.request WARNING  Unauthorized: /rest-api/salle-activite/by-salles/
+2022-05-12 08:10:47,682 django.request WARNING  Unauthorized: /rest-api/salle-activite/by-salles/
+2022-05-12 08:10:50,481 django.request WARNING  Unauthorized: /rest-api/salle-activite/by-salles/
+2022-05-12 09:27:57,768 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-05-12 09:28:13,019 django.request WARNING  Unauthorized: /rest-api/auth/api/token/
+2022-05-12 09:31:32,407 django.request WARNING  Bad Request: /rest-api/auth/api/token/
+2022-05-12 09:34:00,494 django.request WARNING  Unauthorized: /rest-api/auth/api/token/
+2022-05-12 09:39:37,633 django.request WARNING  Bad Request: /rest-api/auth/api/token/
+2022-05-12 09:46:12,323 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\authentication\serializers.py changed, reloading.
+2022-05-12 09:46:14,086 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-05-12 10:03:06,122 django.request WARNING  Unauthorized: /rest-api/salle-activite/by-salles/
+2022-05-12 10:33:28,893 django.request WARNING  Unauthorized: /rest-api/auth/api/token/
+2022-05-12 10:33:39,159 django.request WARNING  Unauthorized: /rest-api/salle-activite/by-salles/
+2022-05-12 10:33:47,898 django.request WARNING  Unauthorized: /rest-api/salle-activite/
+2022-05-12 10:33:47,900 django.request WARNING  Unauthorized: /rest-api/salle-activite/activite/
+2022-05-12 10:34:13,918 django.request WARNING  Unauthorized: /rest-api/transactions/paiement/ca-by-abonnement
+2022-05-12 10:34:13,921 django.request WARNING  Unauthorized: /rest-api/transactions/ca_by_date
+2022-05-12 10:34:13,928 django.request WARNING  Unauthorized: /rest-api/transactions/paiement/ca-by-salle
+2022-05-12 10:34:15,013 django.request WARNING  Unauthorized: /rest-api/salle-activite/by-salles/
+2022-05-12 10:34:45,974 django.request WARNING  Unauthorized: /rest-api/salle-activite/
+2022-05-12 10:34:45,977 django.request WARNING  Unauthorized: /rest-api/salle-activite/activite/
+2022-05-12 10:35:11,749 django.request WARNING  Unauthorized: /rest-api/salle-activite/
+2022-05-12 10:35:11,753 django.request WARNING  Unauthorized: /rest-api/salle-activite/activite/
+2022-05-12 10:35:45,003 django.request WARNING  Unauthorized: /rest-api/salle-activite/activite/
+2022-05-12 10:35:45,005 django.request WARNING  Unauthorized: /rest-api/salle-activite/
+2022-05-12 10:42:35,985 django.request WARNING  Not Found: /rest-api/presence/histroy/
+2022-05-12 10:42:36,491 django.request WARNING  Not Found: /favicon.ico
+2022-05-12 10:42:47,013 django.request WARNING  Unauthorized: /rest-api/presence/history/
+2022-05-12 10:43:02,912 django.request WARNING  Unauthorized: /rest-api/salle-activite/
+2022-05-12 10:43:02,961 django.request WARNING  Unauthorized: /rest-api/abonnement-client-history/
+2022-05-12 10:43:02,963 django.request WARNING  Unauthorized: /rest-api/auth/users/
+2022-05-12 10:43:04,522 django.request WARNING  Unauthorized: /rest-api/salle-activite/
+2022-05-12 10:43:04,525 django.request WARNING  Unauthorized: /rest-api/presence/history/
+2022-05-12 10:43:04,554 django.request WARNING  Unauthorized: /rest-api/auth/users/
+2022-05-12 10:43:32,255 django.request WARNING  Unauthorized: /rest-api/presence/history/
+2022-05-12 10:43:32,262 django.request WARNING  Unauthorized: /rest-api/salle-activite/
+2022-05-12 10:43:32,288 django.request WARNING  Unauthorized: /rest-api/auth/users/
+2022-05-12 10:43:41,671 django.request WARNING  Unauthorized: /rest-api/salle-activite/
+2022-05-12 10:43:41,677 django.request WARNING  Unauthorized: /rest-api/presence/history/
+2022-05-12 10:43:41,715 django.request WARNING  Unauthorized: /rest-api/auth/users/
+2022-05-12 10:43:48,735 django.request WARNING  Unauthorized: /rest-api/presence/history/
+2022-05-12 10:43:48,737 django.request WARNING  Unauthorized: /rest-api/salle-activite/
+2022-05-12 10:43:50,754 django.request WARNING  Unauthorized: /rest-api/salle-activite/
+2022-05-12 10:44:03,154 django.request WARNING  Unauthorized: /rest-api/salle-activite/
+2022-05-12 10:44:05,413 django.request WARNING  Unauthorized: /rest-api/salle-activite/
+2022-05-12 10:44:06,812 django.request WARNING  Unauthorized: /rest-api/salle-activite/
+2022-05-12 10:45:32,745 django.request WARNING  Unauthorized: /rest-api/salle-activite/
+2022-05-12 10:45:32,797 django.request WARNING  Unauthorized: /rest-api/abonnement-client-history/
+2022-05-12 10:45:32,807 django.request WARNING  Unauthorized: /rest-api/auth/users/
+2022-05-12 11:30:30,090 django.request WARNING  Unauthorized: /rest-api/coachs/
+2022-05-12 11:30:30,092 django.request WARNING  Unauthorized: /rest-api/salle-activite/activite/
+2022-05-12 11:30:30,095 django.request WARNING  Unauthorized: /rest-api/abc-by-creneau
+2022-05-12 11:30:30,098 django.request WARNING  Unauthorized: /rest-api/salle-activite/
+2022-05-12 11:30:30,111 django.request WARNING  Unauthorized: /rest-api/salle-activite/default_salle/
+2022-05-12 11:30:30,118 django.request WARNING  Unauthorized: /rest-api/planning/
+2022-05-12 11:30:30,167 django.request WARNING  Unauthorized: /rest-api/planning/default_planning/
+2022-05-12 11:30:30,169 django.request WARNING  Unauthorized: /rest-api/creneau/by-salle-planning
+2022-05-12 11:59:33,165 django.request WARNING  Unauthorized: /rest-api/clients-name/
+2022-05-12 13:52:44,503 django.request WARNING  Unauthorized: /rest-api/presence/history/
+2022-05-12 13:52:45,062 django.request WARNING  Not Found: /favicon.ico

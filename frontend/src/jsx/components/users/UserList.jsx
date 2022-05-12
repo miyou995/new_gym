@@ -1,20 +1,21 @@
 import React, { Fragment , useState, useEffect} from "react";
 import PageTitle from "../../layouts/PageTitle";
 import { Dropdown, Button } from "react-bootstrap";
-import axios from 'axios';
 import ShortCuts from "../ShortCuts";
 import { ToastContainer, toast } from 'react-toastify'
 // import DetteCreateModal from './DetteCreateModal';
 /// images 
 import { Link } from "react-router-dom";
+import useAxios from "../useAxios";
 
 
 
 const UserList = () => {
+   const api = useAxios();
 
 const [usersData, setUsersData] = useState([]);
    useEffect(() =>  {
-      axios.get(`${process.env.REACT_APP_API_URL}/rest-api/auth/users`).then( res => {
+      api.get(`${process.env.REACT_APP_API_URL}/rest-api/auth/users`).then( res => {
          console.log('result ', res);
          setUsersData(res.data)
       }).catch( err => {

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from 'axios';
 
-import { useGetAPI, usePostAPI } from '../useAPI'
+
 import {  useHistory } from "react-router-dom";
 import ShortCuts from "../ShortCuts";
 import { ToastContainer, toast } from 'react-toastify'

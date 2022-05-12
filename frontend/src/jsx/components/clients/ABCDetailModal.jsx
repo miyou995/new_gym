@@ -1,8 +1,7 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { Row, Card, Col, Button, Modal, Tab, Nav, Table } from "react-bootstrap";
+import useAxios from "../useAxios";
 
-import { useGetAPI, usePutAPI } from '../useAPI'
-import axios from 'axios';
 import {notifySuccess, notifyError} from '../Alert'
 
 // import { Dropdown, Tab, Nav } from "react-bootstrap";
@@ -14,6 +13,7 @@ const capitalizeFirstLetter = (word) => {
   return '';
 };
 const ABCDetailModal = ({show, onShowShange, abonnementData}) => {
+  const api = useAxios();
   const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
   const today = new Date().toISOString().slice(0, 10)
 
@@ -71,7 +71,7 @@ const abonnementDeleteEND = `${process.env.REACT_APP_API_URL}/rest-api/abonnemen
       setTypeName(abonnementData['abonClientTypeName'])
       // console.log('vdfbvfknb', abonId);
       setSeleCreneau(abonnementData['abonnementClientCreneaux'])
-        axios.get(abcDetailEND).then(res => {
+        api.get(abcDetailEND).then(res => {
           setAbc(res.data)
           console.log('-------------------',abc)
         })
@@ -87,7 +87,7 @@ const abonnementDeleteEND = `${process.env.REACT_APP_API_URL}/rest-api/abonnemen
     useEffect(() => {
       // console.log('selected salle', typeof selectedSalle );
       if (type !== '' ) {
-        axios.get(creneauPerAbonnementEND).then(res =>{
+        api.get(creneauPerAbonnementEND).then(res =>{
           res.data.forEach((req) => {
           if (req.day == "SA") {
             result1.push(req);
@@ -127,7 +127,7 @@ const handleRenew = () => {
     start_renew_date: startRenewData,
     abc : Number(abonId)
   }
-  axios.post(abcRenewEND, renewData).then( () => {
+  api.post(abcRenewEND, renewData).then( () => {
     setRenouvler(true)
     notifySuccess(" l'abonement a été renouvelé avec succés")
     handleShow()
@@ -143,7 +143,7 @@ const handleSubmit = async () => {
     creneaux: selectedCreneau,
     reste : reste
   }
-  await axios.patch(abcEditEND, abcData).then( e => {
+  await api.patch(abcEditEND, abcData).then( e => {
     notifySuccess('Abonnement mis A jour avec succés')
     handleShow()
   }).catch( err => {
@@ -451,7 +451,7 @@ return (
                   <Button onClick={handleSubmit} variant="primary" className='m-2' > Valider </Button>
                   <Button 
                     onClick={ () => {
-                       axios.delete(abonnementDeleteEND).then( res =>{
+                       api.delete(abonnementDeleteEND).then( res =>{
                         notifySuccess(res.message)
                         handleShow()
                       }).catch(err =>{

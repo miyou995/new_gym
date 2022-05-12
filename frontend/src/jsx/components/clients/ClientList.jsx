@@ -1,14 +1,11 @@
 import React, { Fragment , useState, useEffect} from "react";
 import PageTitle from "../../layouts/PageTitle";
 import { Dropdown, Button } from "react-bootstrap";
-import axios from 'axios';
-import Search from "../../layouts/Search";
+import useAxios from "../useAxios";
 
 /// images
 import avartar5 from "../../../images/avatar/5.png";
-import avartar1 from "../../../images/avatar/1.png";
 import { Link } from "react-router-dom";
-import { useGetAPI } from '../useAPI'
 
 import ShortCuts from "../ShortCuts";
 
@@ -21,36 +18,10 @@ export const ClientContext = React.createContext()
 function refreshPage() {
    window.location.reload(false);
  }
- const removeObject = async (props) => {
-   let endpoint = `${process.env.REACT_APP_API_URL}/rest-api/clients/delete/`
-   await axios.delete(endpoint + props.id)
-  }
-const Drop = (props) => {
-   return <Dropdown>
-            <Dropdown.Toggle variant="" className="table-dropdown i-false">
-               <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                  <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-                     <rect x="0" y="0" width="24" height="24"></rect>
-                     <circle fill="#000000" cx="5" cy="12" r="2"></circle>
-                     <circle fill="#000000" cx="12" cy="12" r="2"></circle>
-                     <circle fill="#000000" cx="19" cy="12" r="2"></circle>
-                  </g>
-               </svg>
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-               <Dropdown.Item href={`/client/edit/${props.id}`}>Modifier</Dropdown.Item>
-               <Dropdown.Item type='button' className="text-danger" onClick={ async () => {
-                    await axios.delete(`${process.env.REACT_APP_API_URL}/rest-api/clients/delete/${props.id}/`)
-                    refreshPage()
-                    }}>
-                   Supprimer
-                </Dropdown.Item>
-            </Dropdown.Menu>
-         </Dropdown>
-};
 
 
 const ClientList = () => {
+   const api = useAxios();
 
    const formatDate = (date) => {
       try {
@@ -74,12 +45,12 @@ const ClientList = () => {
    
 useEffect(() =>  {
    if (searchValue !== '') {
-      axios.get(searchEndpoint).then(res => {
+      api.get(searchEndpoint).then(res => {
          setclientData(res.data.results)
          console.log('le resultat des clients est ', res.data);
       })
    }else {
-      axios.get(endpoint).then(res => {
+      api.get(endpoint).then(res => {
          setclientData(res.data.results)
          console.log('le resultat des clients est ', res.data);
       })}

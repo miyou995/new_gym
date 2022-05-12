@@ -1,8 +1,8 @@
 import React, { useState , useEffect} from "react";
 import { Link } from "react-router-dom";
 // import productData from "../productData";
-import axios from 'axios';
-import { useGetAPI } from '../useAPI'
+import useAxios from "../useAxios";
+
 import { Dropdown, Tab, Nav, Button } from "react-bootstrap";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import ShortCuts from "../ShortCuts";
@@ -15,7 +15,8 @@ import { createContext } from "react";
 import PaiementModal from './PaiementModal'
 // import RenewAbonnementModal from './RenewAbonnementModal'
 const CoachDetail = (props) => {
-   const [coach, setCoach] = useState({});
+  const api = useAxios();
+  const [coach, setCoach] = useState({});
   //  const [aBCmodalCreate, setABCModalCreate] = useState(false);
    const [paiementModal, setPaiementModal] = useState(false);
   //  const [abonDetailModal, setAbonDetailModal] = useState(false);
@@ -88,7 +89,7 @@ const coachDetailEnd = `${process.env.REACT_APP_API_URL}/rest-api/coachs/${coach
     //  const clientId = props.match.params.id;
      const fetchData = async () => {
         try {
-           const res = await axios.get(creneauCoachEND);
+           const res = await api.get(creneauCoachEND);
            setCreneauxCoach(res.data)
         } catch (error) {
            console.log(error);
@@ -98,7 +99,7 @@ const coachDetailEnd = `${process.env.REACT_APP_API_URL}/rest-api/coachs/${coach
   }, [props.match.params.id] );
   useEffect(() => {
     //  const clientId = props.match.params.id;
-     axios.get(presencesCoachEND).then( res => {
+     api.get(presencesCoachEND).then( res => {
             setPresnecesCoach(res.data)
            })
   }, [props.match.params.id] );
@@ -106,7 +107,7 @@ const coachDetailEnd = `${process.env.REACT_APP_API_URL}/rest-api/coachs/${coach
     //  const clientId = props.match.params.id;
      const fetchData = async () => {
         try {
-           const res = await axios.get(transactionClientEND);
+           const res = await api.get(transactionClientEND);
            setTransCoach(res.data)
  
             console.log('ghirrrr =creneauxClient', transCoach);
@@ -121,7 +122,7 @@ const coachDetailEnd = `${process.env.REACT_APP_API_URL}/rest-api/coachs/${coach
     const Newcoach = {
       coach: Number(coachID)
     }
-    axios.post(presenceCreateEND, Newcoach).then(
+    api.post(presenceCreateEND, Newcoach).then(
       notifySuccess('Entrée coach Enregistré')
       ).catch(err => {
       notifySuccess('erreur Enregistrement Presence Coach')
@@ -131,7 +132,7 @@ const coachDetailEnd = `${process.env.REACT_APP_API_URL}/rest-api/coachs/${coach
     const Newcoach = {
       coach: Number(coachID)
     }
-    await axios.put(presenceUpdateEND, Newcoach).then(
+    await api.put(presenceUpdateEND, Newcoach).then(
       notifySuccess('Sortie coach Enregistré')
       ).catch(err => {
       notifySuccess('erreur Enregistrement Sortie Coach')
@@ -140,7 +141,7 @@ const coachDetailEnd = `${process.env.REACT_APP_API_URL}/rest-api/coachs/${coach
   useEffect(() => {
      const fetchData = async () => {
         try {
-           const res = await axios.get(coachDetailEnd);
+           const res = await api.get(coachDetailEnd);
            setCoach(res.data)
           //  console.log(res.data, ' COOOOOOOOOO');
            setLastPresence(res.data.last_presence)

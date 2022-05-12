@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import axios from 'axios';
+import useAxios from "../useAxios";
 
-import { useGetAPI, usePutAPI } from '../useAPI'
 import {  useHistory } from "react-router-dom";
 
  
@@ -10,10 +9,10 @@ function refreshPage() {
 }
 const AbonnementEdit = (props) => {
   let activityEnd = `${process.env.REACT_APP_API_URL}/rest-api/salle-activite/activite/`
+  const api = useAxios();
 
-  const activities = useGetAPI(activityEnd)
   const abonnementId = props.match.params.id;
-
+  
   let presenceURI = `${process.env.REACT_APP_API_URL}/rest-api/abonnement/${abonnementId}/`
   let presenceEditURI = `${process.env.REACT_APP_API_URL}/rest-api/abonnement/${abonnementId}/`
   const history = useHistory();
@@ -26,10 +25,17 @@ const AbonnementEdit = (props) => {
   const [abNumClients, setAbNumClients] = useState('')
   const [selectedActivities, setSelectedActivities] = useState([])
   const [isSelected, setIsSelected] = useState(true)
- 
+  const [activities, setActivities] = useState([])
+  
+  useEffect(() => {
+    api.get(activityEnd).then((res) => {
+      setActivities(res.data)
+    })
+  }, []);
+
   //FK 
   useEffect(() => {
-    axios.get(presenceURI).then((res) => {
+    api.get(presenceURI).then((res) => {
     
       setAbActivity(res.data.activity)
       setSelectedActivities(res.data.activity)//fzefzefezfezf
@@ -123,13 +129,12 @@ const handleCheckbox = (event) => {
         number_of_days:abNumDays,
         activity:selectedActivities,
         seances_quantity:abSeancesQuantity,
-        // activity_name:abActivityName,
-        // clients_number:abNumClients
       }
-      // const newClient = setNewPresence()
-      console.log('_______---------_______=======>', newAbonnement);
-      usePutAPI(presenceEditURI, newAbonnement)
-
+      api.put(presenceEditURI, newAbonnement).then( () => {
+        history.push("/client")
+        console.log('THE NEW CLIENT ', newAbonnement);
+  
+      })
       // history.push("/abonnements")
       // refreshPage()
   }

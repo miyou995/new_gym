@@ -1,6 +1,6 @@
 import React, { useState , useEffect} from "react";
-import { useGetAPI } from '../useAPI'
 import axios from 'axios';
+import useAxios from "../useAxios";
 import CreneauEditModal from './CreneauEditModal';
 import CreneauCreateModal from './CreneauCreateModal';
 import ShortCuts from "../ShortCuts";
@@ -24,10 +24,21 @@ let defaultPlanningIdEnd = `${process.env.REACT_APP_API_URL}/rest-api/planning/d
 let activitiesEnd = `${process.env.REACT_APP_API_URL}/rest-api/salle-activite/activite/`
 
 const Calendar = () => {
-  const activities = useGetAPI(activitiesEnd)
-  const coachs = useGetAPI(coachEnd)
-  const plannings = useGetAPI(planningEND)
-  const salles = useGetAPI(sallesEnd)
+  const api = useAxios();
+
+  const [activities, setActivities] = useState([])
+  const [coachs, setCoachs] = useState([])
+  const [plannings, setPlannings] = useState([])
+  const [salles, setSalles] = useState([])
+  
+  //FK 
+  useEffect(() => {
+    api.get(activitiesEnd).then((res) => {setActivities(res.data)})
+    api.get(coachEnd).then((res) => {setCoachs(res.data)})
+    api.get(planningEND).then((res) => {setPlannings(res.data)})
+    api.get(sallesEnd).then((res) => {setSalles(res.data)})
+  }, []);
+
   // const defaultSalleGet = useGetAPI(defaultSalleIdEnd)
   // const defaultPlanningGet = useGetAPI(defaultPlanningIdEnd)
   const [modal, setModal] = useState(false);
@@ -86,11 +97,11 @@ const Calendar = () => {
 ]
 
 useEffect(() => {
-  axios.get(defaultSalleIdEnd).then(function name(response) {
+  api.get(defaultSalleIdEnd).then(function name(response) {
     setSalleId(response.data['default_salle'].id)
     setDefaultSalle(response.data['default_salle'])
   })
-  axios.get(defaultPlanningIdEnd).then(function name(response) {
+  api.get(defaultPlanningIdEnd).then(function name(response) {
     setPlanningId(response.data['default_planning'].id)
     setDefaultPlanning(response.data['default_planning'])
   })
@@ -100,7 +111,7 @@ useEffect(() => {
   console.log("salleId", salleId)
   console.log("planningId", planningId)
   const FetchData = () => {
-      axios.get(`${process.env.REACT_APP_API_URL}/rest-api/creneau/by-salle-planning?sa=${salleId}&pl=${planningId}`)
+      api.get(`${process.env.REACT_APP_API_URL}/rest-api/creneau/by-salle-planning?sa=${salleId}&pl=${planningId}`)
     .then(function (response) {
       console.log('les creneaux ', response.data);
       response.data.forEach((req) => {

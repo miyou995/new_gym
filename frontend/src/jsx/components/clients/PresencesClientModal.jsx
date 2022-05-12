@@ -1,15 +1,17 @@
 import React, { useState, useCallback, useEffect } from "react";
 
 import { Row, Card, Col, Button, Modal, Container } from "react-bootstrap";
-import { useGetAPI, usePutAPI } from '../useAPI'
+import useAxios from "../useAxios";
+ 
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import axios from 'axios';
 import { Dropdown, Tab, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 
 const PresencesClientModal = ({show, onShowShange, presencesData}) => {
+  const api = useAxios();
+
     const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
     const formatDate = (date) => {
       return new Date(date).toISOString().slice(0, 10)
@@ -23,7 +25,7 @@ const PresencesClientModal = ({show, onShowShange, presencesData}) => {
    //  useEffect(() => {
    //    // if (paiementsData['clientId']) {
    //       if (show == 'true') {
-   //          axios.get(paiementsEnd).then( res => {
+   //          api.get(paiementsEnd).then( res => {
    //             setPaimeents(res.data)
    //             console.log('les paiements', paiements, res.data);
    //          })
@@ -34,7 +36,7 @@ const PresencesClientModal = ({show, onShowShange, presencesData}) => {
       //  const clientId = props.match.params.id;
        const fetchData = async () => {
           try {
-             const res = await axios.get(presencesEnd);
+             const res = await api.get(presencesEnd);
              setPresences(res.data.results)
              setPresencesCount(res.data.count)
               console.log('ghirrrr =transClient', res.data);

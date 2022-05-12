@@ -1,7 +1,8 @@
 import React, { Fragment , useState, useEffect} from "react";
 import PageTitle from "../../layouts/PageTitle";
 import { Dropdown } from "react-bootstrap";
-import axios from 'axios';
+import useAxios from "../useAxios";
+
 import Search from "../../layouts/Search";
 import ShortCuts from "../ShortCuts";
 
@@ -9,7 +10,7 @@ import ShortCuts from "../ShortCuts";
 import avartar5 from "../../../images/avatar/5.png";
 import avartar1 from "../../../images/avatar/1.png";
 import { Link } from "react-router-dom";
-import { useGetAPI } from '../useAPI'
+
 
 function refreshPage() {
    window.location.reload(false);
@@ -30,7 +31,7 @@ const Drop = (props) => {
             <Dropdown.Menu>
                <Dropdown.Item href={`/personnel/edit/${props.id}`}>Modifier</Dropdown.Item>
                <Dropdown.Item type='button' className="text-danger" onClick={ async () => {
-                    await axios.delete(`${process.env.REACT_APP_API_URL}/rest-api/personnel/delete/${props.id}`)
+                    await useAxios.delete(`${process.env.REACT_APP_API_URL}/rest-api/personnel/delete/${props.id}`)
                     refreshPage()
                     }}>
                    Supprimer
@@ -40,10 +41,15 @@ const Drop = (props) => {
 };
 const PersonnelList = () => {
    let endpoint = `${process.env.REACT_APP_API_URL}/rest-api/personnel/`
+   const api = useAxios();
 
    const [personnelData, setPersonnelData] = useState([]);
-   const savedPersonnel = useGetAPI(endpoint)
-   
+   const [savedPersonnel, setSavedPersonnel] = useState([]);
+   useEffect(() => {
+      api.get(endpoint).then((res) => {
+         setSavedPersonnel(res.data)
+      })
+    }, []);
    useEffect(() => {
       const personnels = savedPersonnel
       setPersonnelData(personnels)

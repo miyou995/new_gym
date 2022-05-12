@@ -1,16 +1,17 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { Row, Card, Col, Button, Modal, Container } from "react-bootstrap";
-import { useGetAPI, usePutAPI } from '../useAPI'
+ 
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import axios from 'axios';
 // import { Dropdown, Tab, Nav } from "react-bootstrap";
 // import { Link } from "react-router-dom";
 import useForm from 'react-hook-form';
 import {notifySuccess, notifyError} from '../Alert'
+import useAxios from "../useAxios";
 
 const PaiementCreateModal = ({show, onShowShange}) => {
     const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+    const api = useAxios();
 
     // const {register, handleSubmit, errors } = useForm();
 
@@ -34,7 +35,7 @@ const PaiementCreateModal = ({show, onShowShange}) => {
     useEffect(() => {
        const fetchData = async () => {
           try {
-             const res = await axios.get(clientsEnd);
+             const res = await api.get(clientsEnd);
              setClients(res.data)
             //  console.log('les clizents ???', res.data.results);
           } catch (error) {
@@ -48,7 +49,7 @@ const PaiementCreateModal = ({show, onShowShange}) => {
         
         const fetchData = async () => {
            try {
-              const res = await axios.get(`${process.env.REACT_APP_API_URL}/rest-api/abonnement-by-client/?cl=${clientId}`);
+              const res = await api.get(`${process.env.REACT_APP_API_URL}/rest-api/abonnement-by-client/?cl=${clientId}`);
               setAbc(res.data)
               console.log('ceci est le resultat de labonnement client ', res.data);
            } catch (error) {
@@ -66,7 +67,7 @@ const PaiementCreateModal = ({show, onShowShange}) => {
         // type : Number(abonnement),
         note : note
       }
-      await axios.post(paiementCreateEnd, newTransaction).then( res => {
+      await api.post(paiementCreateEnd, newTransaction).then( res => {
         notifySuccess('Paiement creer avec succés')
               handleShow()
         }).catch(err => {

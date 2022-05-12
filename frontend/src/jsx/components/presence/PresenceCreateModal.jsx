@@ -1,15 +1,16 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { Row, Card, Col, Button, Modal, Container } from "react-bootstrap";
-import { useGetAPI, usePutAPI } from '../useAPI'
+ 
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import axios from 'axios';
+import useAxios from "../useAxios";
 import { Dropdown, Tab, Navn, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import {notifySuccess, notifyError} from '../Alert'
 
 const PresenceCreateModal = ({show, onShowShange, presenceData}) => {
-    const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+  const api = useAxios();
+  const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
 
     const [samedi, setSamedi] = useState([]);
     const [dimanche, setDimanche] = useState([]);
@@ -71,7 +72,7 @@ const PresenceCreateModal = ({show, onShowShange, presenceData}) => {
     //   //  const clientId = props.match.params.id;
     //    const fetchData = async () => {
     //       try {
-    //          const res = await axios.get(creneauClientEND);
+    //          const res = await api.get(creneauClientEND);
     //          setCreneauxClient(res.data)
    
     //           console.log('ghirrrr =creneauxClient', creneauxClient);
@@ -84,7 +85,7 @@ const PresenceCreateModal = ({show, onShowShange, presenceData}) => {
     
     useEffect( ()  => {
       if (client !== '') {
-         axios.get(`${process.env.REACT_APP_API_URL}/rest-api/abonnement-by-client/?cl=${client}`).then(response => {
+         api.get(`${process.env.REACT_APP_API_URL}/rest-api/abonnement-by-client/?cl=${client}`).then(response => {
           setAbonnementsClient(response.data) ;
           console.log(response.data);
         }).catch(errors => {
@@ -95,7 +96,7 @@ const PresenceCreateModal = ({show, onShowShange, presenceData}) => {
     useEffect( ()  => {
       const fetchData =  () => {
        if (show == true) {
-         axios.get(planningsEnd).then(responses => {
+         api.get(planningsEnd).then(responses => {
           setPlannings(responses.data) ;
         }).catch(errors => {
            console.log('erreurs lines 67', errors);
@@ -107,7 +108,7 @@ const PresenceCreateModal = ({show, onShowShange, presenceData}) => {
    useEffect( ()  => {
     const fetchData = async () => {
      if (show == true) {
-      await axios.get(clientsEND).then(responses => {
+      await api.get(clientsEND).then(responses => {
         setClients(responses.data) ;
       }).catch(errors => {
          console.log('erreurs lines 67', errors);
@@ -120,7 +121,7 @@ const PresenceCreateModal = ({show, onShowShange, presenceData}) => {
   //     const fetchData = async () => {
 
   //      if (show == true) {
-  //       await axios.get(abonnementEND).then(responses => {
+  //       await api.get(abonnementEND).then(responses => {
   //         setAbonnements(responses.data) ;
   //       }).catch(errors => {
   //          console.log('erreurs lines 83', errors);
@@ -134,7 +135,7 @@ const PresenceCreateModal = ({show, onShowShange, presenceData}) => {
     useEffect( ()  => {
       const fetchData =  () => {
        if (show == true) {
-         axios.get(sallesEnd).then(responses => {
+         api.get(sallesEnd).then(responses => {
           setSalles(responses.data) ;
         }).catch(errors => {
            console.log('erreurs lines 98', errors);
@@ -156,7 +157,7 @@ const PresenceCreateModal = ({show, onShowShange, presenceData}) => {
     useEffect(() => {
       // console.log('selected salle', typeof selectedSalle );
       if (selectedAbonnement !== '' ) {
-        axios.get(creneauClientEND).then(res =>{
+        api.get(creneauClientEND).then(res =>{
           console.log('creneaux end', res.data);
           res.data.forEach((req) => {
           if (req.day == "SA") {
@@ -212,7 +213,7 @@ const PresenceCreateModal = ({show, onShowShange, presenceData}) => {
         newCreneau.hour_sortie = hourOut
       }
       console.log(" =================> new Creneau ", newCreneau);
-      await axios.post(presenceCreateEND, newCreneau).then( res => {
+      await api.post(presenceCreateEND, newCreneau).then( res => {
         notifySuccess('Presence Manuelle enregistré')
         handleShow()
       }).catch( err => {
