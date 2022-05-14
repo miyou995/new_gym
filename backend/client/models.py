@@ -104,6 +104,9 @@ class Client(models.Model):
     def __str__(self):
         return str(self.id)
     
+    def full_name(self):
+        return str(self.last_name)+ " " +str(self.first_name)
+
     def get_absolute_url(self):
         return reverse("client:client-detail", args={"slug": self.slug})
 

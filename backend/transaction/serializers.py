@@ -6,14 +6,17 @@ from rest_framework.response import Response
 
 class PaiementSerialiser(serializers.ModelSerializer):
     # client = serializers.SerializerMethodField('abonnement_client.client', read_only=True)
+    start_abc   = serializers.CharField(source='abonnement_client.start_date', read_only = True)
+    end_abc     = serializers.CharField(source='abonnement_client.end_date', read_only = True)
     abonnement_name = serializers.CharField(source='abonnement_client.type_abonnement', read_only = True)
-    client_last_name = serializers.CharField(source='abonnement_client.client', read_only=True)
+    client_last_name = serializers.CharField(source='abonnement_client.client.full_name', read_only=True)
     client_id = serializers.CharField(source='abonnement_client.client.id', read_only=True)
     abc_id = serializers.IntegerField(source='abonnement_client.id', read_only=True)
+    quantity = serializers.CharField(source='abonnement_client.get_quantity_str', read_only=True)
 
     class Meta:
         model = Paiement
-        fields= ('id', 'amount', 'abonnement_client', 'last_modified', 'notes', 'abonnement_name', 'date_creation', 'client_last_name', 'client_id', 'abc_id')
+        fields= ('id', 'amount', 'abonnement_client', 'last_modified', 'notes', 'abonnement_name', 'date_creation', 'client_last_name', 'client_id', 'abc_id', 'start_abc', 'end_abc', 'quantity')
 
 
 class PaiementFiltersSerialiser(serializers.ModelSerializer):

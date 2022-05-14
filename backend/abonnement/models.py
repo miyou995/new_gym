@@ -204,6 +204,21 @@ class AbonnementClient(models.Model):
         self.save()
         # abc_id = self.id
         return self
+
+
+
+    def get_quantity_str(self):
+        if self.is_time_volume():
+            minutes = self.presence_quantity
+            time = divmod(minutes, 60)
+            print('en heures', time)
+            time_string = "{}H: {}M".format(time[0], time[1])
+            print('en time_string', time_string)
+            return time_string
+        else:
+            return self.presence_quantity
+
+
     # def renew_abc(self, renew_start_date):
     #     type_abonnement = self.type_abonnement
     #     delta = timedelta(days = type_abonnement.length)

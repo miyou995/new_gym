@@ -82,6 +82,7 @@
     "react-summernote": "^2.0.2",
     "react-svg-map": "^2.1.2",
     "react-times": "^3.1.12",
+    "react-to-print": "^2.14.7",
     "react-toastify": "^6.2.0",
     "react-weekly-schedule": "0.0.0-development",
     "recharts": "^1.8.5",

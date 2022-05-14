@@ -1,4 +1,4 @@
-import React, { useState , useEffect} from "react";
+import React, { useState , useEffect, useRef} from "react";
 import { Link } from "react-router-dom";
 // import productData from "../productData";
 import { ToastContainer } from 'react-toastify'
@@ -31,6 +31,27 @@ import RenewAbonnementModal from './RenewAbonnementModal';
 import AbonnementClientModal from './AbonnementClientModal';
 import femaleImg from "../../../images/profile/female.png";
 import useAxios from "../useAxios";
+import ReactToPrint from 'react-to-print';
+import { ComponentToPrint } from './ComponentToPrint';
+
+const ComponentToPrintWrapper = ({ item }) => {
+  console.log('iteMM', item);
+  const componentRef = useRef();
+  return (
+    <div style={{ display: "flex" }}>
+     
+      <ReactToPrint
+        trigger={() =>   <div > Imprimer <i className="fa la-print text-danger mr-2 h5" /> </div>}
+        content={() => componentRef.current}
+      />
+      <div className="d-none">
+      
+        <ComponentToPrint ref={componentRef} value={item} />
+      </div>
+    </div>
+  );
+};
+
 
 const ProductDetail = (props) => {
   const [client, setClient] = useState({});
@@ -152,6 +173,7 @@ const ProductDetail = (props) => {
            const res = await api.get(creneauClientEND);
            setCreneauxClient(res.data)
         } catch (error) {
+          console.log(error);
         }
      }
      fetchData();
@@ -405,24 +427,25 @@ useEffect(() => {
                     <th scope="col">Mantant</th>
                     <th scope="col">Date</th>
                     <th scope="col">Abonnement</th>
+                    <th scope="col">Reçu</th>
                   </tr>
                 </thead>
                 <tbody>
                   {transClient.map(trans => (
                     <tr className="ajouter" key={trans.id} onClick={ e => {
-                      setPaiementEditModal(true)
-                      setPaiementIdInfo(trans.id)
-                      setPaiementAmountInfo(trans.amount)
-                      setPaiementABCInfo(trans.abc_id)
-                      setPaiementABCName(trans.abonnement_name)
-                      setPaiementDateInfo(trans.date_creation)
-                      setPaiementNotesInfo(trans.notes)
-                      }}>
-                        <td className="text-left" >{trans.amount}</td>
+                        setPaiementIdInfo(trans.id)
+                        setPaiementAmountInfo(trans.amount)
+                        setPaiementABCInfo(trans.abc_id)
+                        setPaiementABCName(trans.abonnement_name)
+                        setPaiementDateInfo(trans.date_creation)
+                        setPaiementNotesInfo(trans.notes)
+                        }}>
+                        <td className="text-left" onClick={e => setPaiementEditModal(true)}>{trans.amount}</td>
                         <td>{trans.date_creation}</td>
                         <td className="text-left">{trans.abonnement_name}</td>
+                        <td><ComponentToPrintWrapper item={trans} /></td>
                     </tr>
-                    ))}
+                  ))}
                 </tbody>
               </Table>
             </Card.Body>

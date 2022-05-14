@@ -7,6 +7,7 @@ import useAxios from "../useAxios";
 // import 'react-toastify/dist/ReactToastify.css'
 import {notifySuccess, notifyError} from '../Alert'
 
+
 // import { Dropdown, Tab, Nav } from "react-bootstrap";
 // import { Link } from "react-router-dom";
 
@@ -14,6 +15,7 @@ import {notifySuccess, notifyError} from '../Alert'
 const PaiementEditModal = ({show, onShowShange, paiementData}) => {
     const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
   const api = useAxios();
+  
   const clientId = paiementData['clientId']
     const abonnements = paiementData['abcs']
 
@@ -85,6 +87,7 @@ return (
       </Button>
     </Modal.Header>
     <Modal.Body>
+
     <form onSubmit={handleSubmit}>
         <div className="row">
           <div className="form-group col-md-6">
@@ -119,6 +122,8 @@ return (
 
             <Button onClick={handleShow} variant="danger light" > Fermer </Button>
             <Button variant="primary" type="submit">Valider</Button>
+          
+            
           </div>
         <div className='col-3'>
                 {/* <Button variant="primary" type="submit">Supprimer</Button> */}

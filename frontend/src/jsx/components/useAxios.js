@@ -12,7 +12,7 @@ const useAxios = () => {
     
   const axiosInstance = axios.create({
     baseURL,
-    timeout: 5000,
+    timeout: 15000,
     headers: { Authorization: `JWT ${authTokens?.access}` }
   });
 

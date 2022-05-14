@@ -19868,3 +19868,266 @@ Original exception text was: 'HistoricalPresence' object has no attribute 'type_
 2022-05-12 11:59:33,165 django.request WARNING  Unauthorized: /rest-api/clients-name/
 2022-05-12 13:52:44,503 django.request WARNING  Unauthorized: /rest-api/presence/history/
 2022-05-12 13:52:45,062 django.request WARNING  Not Found: /favicon.ico
+2022-05-12 18:04:35,254 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-05-12 18:05:07,714 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-12 18:05:45,752 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\config\settings.py changed, reloading.
+2022-05-12 18:05:48,088 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-05-12 18:06:59,964 django.request WARNING  Bad Request: /rest-api/presence/auto-create
+2022-05-14 09:52:13,359 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-05-14 09:52:38,471 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 09:52:38,494 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 09:52:41,471 django.request WARNING  Not Found: /media/photos/3.jpg
+2022-05-14 09:53:30,334 django.request WARNING  Not Found: /media/photos/3.jpg
+2022-05-14 09:53:45,175 django.request WARNING  Not Found: /media/photos/3.jpg
+2022-05-14 09:53:49,642 django.request WARNING  Not Found: /media/photos/3.jpg
+2022-05-14 09:54:33,784 django.request WARNING  Not Found: /media/photos/3.jpg
+2022-05-14 10:14:02,845 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 10:14:02,847 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 10:14:02,849 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 10:14:02,850 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 10:14:02,855 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 10:14:02,865 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 10:14:08,058 django.request WARNING  Not Found: /media/photos/3.jpg
+2022-05-14 10:49:09,722 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 10:49:09,765 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 10:49:09,765 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 10:49:09,766 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 10:49:09,768 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 10:49:09,865 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 10:49:12,938 django.request WARNING  Not Found: /media/photos/3.jpg
+2022-05-14 10:49:52,772 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 10:49:52,772 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 10:49:52,773 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 10:49:52,774 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 10:51:28,633 django.request WARNING  Not Found: /media/photos/3.jpg
+2022-05-14 10:51:28,765 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 10:51:28,766 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 10:51:28,767 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 10:51:28,767 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 10:51:32,741 django.request WARNING  Not Found: /media/photos/3.jpg
+2022-05-14 10:51:45,791 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 10:51:45,819 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 10:51:45,831 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 10:51:45,836 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 10:51:50,841 django.request WARNING  Not Found: /media/photos/3.jpg
+2022-05-14 10:52:03,752 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 10:52:03,753 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 10:52:03,754 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 10:52:03,754 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 10:52:05,976 django.request WARNING  Not Found: /media/photos/3.jpg
+2022-05-14 10:52:11,754 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 10:52:11,756 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 10:52:11,756 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 10:52:11,760 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 10:52:13,741 django.request WARNING  Not Found: /media/photos/3.jpg
+2022-05-14 10:54:50,025 django.request WARNING  Not Found: /media/photos/3.jpg
+2022-05-14 10:54:57,909 django.request WARNING  Not Found: /media/photos/3.jpg
+2022-05-14 10:55:04,575 django.request WARNING  Not Found: /media/photos/3.jpg
+2022-05-14 10:55:22,456 django.request WARNING  Not Found: /media/photos/3.jpg
+2022-05-14 10:56:26,012 django.request WARNING  Not Found: /media/photos/3.jpg
+2022-05-14 11:04:39,512 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 11:04:39,512 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 11:04:39,534 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 11:04:39,535 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 11:04:57,087 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-05-14 11:05:03,253 django.request WARNING  Not Found: /media/photos/3.jpg
+2022-05-14 11:25:11,494 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 11:25:11,501 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 11:25:11,510 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 11:25:11,512 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 11:26:51,136 django.request WARNING  Not Found: /media/photos/3.jpg
+2022-05-14 11:27:23,616 django.request WARNING  Not Found: /media/photos/3.jpg
+2022-05-14 11:28:00,353 django.request WARNING  Not Found: /media/photos/3.jpg
+2022-05-14 11:29:00,447 django.request WARNING  Not Found: /media/photos/3.jpg
+2022-05-14 11:29:15,787 django.request WARNING  Not Found: /media/photos/3.jpg
+2022-05-14 11:31:06,054 django.request WARNING  Not Found: /media/photos/3.jpg
+2022-05-14 11:31:43,810 django.request WARNING  Not Found: /media/photos/3.jpg
+2022-05-14 11:32:11,899 django.request WARNING  Not Found: /media/photos/3.jpg
+2022-05-14 11:40:11,588 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 11:40:11,598 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 11:40:11,602 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 11:40:11,604 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 11:40:11,605 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 11:41:52,417 django.request WARNING  Not Found: /media/photos/3.jpg
+2022-05-14 11:42:06,966 django.request WARNING  Not Found: /media/photos/3.jpg
+2022-05-14 11:45:36,386 django.request WARNING  Not Found: /media/photos/3.jpg
+2022-05-14 11:46:21,619 django.request WARNING  Not Found: /media/photos/3.jpg
+2022-05-14 11:50:01,436 django.request WARNING  Not Found: /media/photos/3.jpg
+2022-05-14 11:53:46,904 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 11:53:46,915 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 11:53:46,915 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 11:53:47,384 django.request WARNING  Not Found: /media/photos/3.jpg
+2022-05-14 11:53:52,413 django.request WARNING  Not Found: /media/photos/3.jpg
+2022-05-14 11:54:22,467 django.request WARNING  Not Found: /media/photos/3.jpg
+2022-05-14 11:54:39,276 django.request WARNING  Not Found: /media/photos/3.jpg
+2022-05-14 11:55:17,858 django.request WARNING  Not Found: /media/photos/3.jpg
+2022-05-14 11:56:04,989 django.request WARNING  Not Found: /media/photos/3.jpg
+2022-05-14 11:57:48,951 django.request WARNING  Not Found: /media/photos/3.jpg
+2022-05-14 14:31:01,643 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-05-14 14:33:25,752 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 14:33:25,755 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 14:33:25,800 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 14:36:39,015 django.request WARNING  Not Found: /media/photos/3.jpg
+2022-05-14 14:41:10,500 django.request WARNING  Not Found: /media/photos/3.jpg
+2022-05-14 14:42:07,721 django.request WARNING  Not Found: /media/photos/3.jpg
+2022-05-14 14:42:51,431 django.request WARNING  Not Found: /media/photos/3.jpg
+2022-05-14 14:43:29,260 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 14:43:29,277 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 14:43:29,278 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 14:43:29,280 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 14:43:29,281 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 14:43:29,291 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 14:44:31,392 django.request WARNING  Not Found: /media/photos/3.jpg
+2022-05-14 14:45:11,652 django.request WARNING  Not Found: /media/photos/3.jpg
+2022-05-14 14:47:04,477 django.request WARNING  Not Found: /media/photos/3.jpg
+2022-05-14 14:47:06,537 django.request WARNING  Not Found: /media/photos/3.jpg
+2022-05-14 14:48:08,047 django.request WARNING  Not Found: /media/photos/3.jpg
+2022-05-14 14:50:01,528 django.request WARNING  Unauthorized: /rest-api/transactions/paiement-by-client/
+2022-05-14 14:50:01,582 django.request WARNING  Not Found: /static/rest_framework/css/bootstrap.min.css
+2022-05-14 14:50:01,585 django.request WARNING  Not Found: /static/rest_framework/css/bootstrap-tweaks.css
+2022-05-14 14:50:01,590 django.request WARNING  Not Found: /static/rest_framework/css/prettify.css
+2022-05-14 14:50:01,594 django.request WARNING  Not Found: /static/rest_framework/css/default.css
+2022-05-14 14:50:01,595 django.request WARNING  Not Found: /static/rest_framework/js/csrf.js
+2022-05-14 14:50:01,597 django.request WARNING  Not Found: /static/rest_framework/js/bootstrap.min.js
+2022-05-14 14:50:01,600 django.request WARNING  Not Found: /static/rest_framework/js/jquery-3.5.1.min.js
+2022-05-14 14:50:01,603 django.request WARNING  Not Found: /static/rest_framework/js/prettify-min.js
+2022-05-14 14:50:01,604 django.request WARNING  Not Found: /static/rest_framework/js/ajax-form.js
+2022-05-14 14:50:01,606 django.request WARNING  Not Found: /static/rest_framework/js/default.js
+2022-05-14 14:50:02,044 django.request WARNING  Not Found: /favicon.ico
+2022-05-14 14:50:04,313 django.request WARNING  Unauthorized: /rest-api/transactions/paiement-by-client/
+2022-05-14 14:50:04,341 django.request WARNING  Not Found: /static/rest_framework/css/bootstrap.min.css
+2022-05-14 14:50:04,343 django.request WARNING  Not Found: /static/rest_framework/css/bootstrap-tweaks.css
+2022-05-14 14:50:04,344 django.request WARNING  Not Found: /static/rest_framework/css/default.css
+2022-05-14 14:50:04,345 django.request WARNING  Not Found: /static/rest_framework/js/jquery-3.5.1.min.js
+2022-05-14 14:50:04,347 django.request WARNING  Not Found: /static/rest_framework/js/ajax-form.js
+2022-05-14 14:50:04,349 django.request WARNING  Not Found: /static/rest_framework/css/prettify.css
+2022-05-14 14:50:04,354 django.request WARNING  Not Found: /static/rest_framework/js/csrf.js
+2022-05-14 14:50:04,359 django.request WARNING  Not Found: /static/rest_framework/js/bootstrap.min.js
+2022-05-14 14:50:04,362 django.request WARNING  Not Found: /static/rest_framework/js/default.js
+2022-05-14 14:50:04,366 django.request WARNING  Not Found: /static/rest_framework/js/prettify-min.js
+2022-05-14 14:50:04,554 django.request WARNING  Not Found: /favicon.ico
+2022-05-14 14:50:47,460 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\config\settings.py changed, reloading.
+2022-05-14 14:51:28,639 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-05-14 14:51:29,648 django.request WARNING  Not Found: /static/rest_framework/css/bootstrap.min.css
+2022-05-14 14:51:29,650 django.request WARNING  Not Found: /static/rest_framework/css/default.css
+2022-05-14 14:51:29,651 django.request WARNING  Not Found: /static/rest_framework/css/bootstrap-tweaks.css
+2022-05-14 14:51:29,652 django.request WARNING  Not Found: /static/rest_framework/css/prettify.css
+2022-05-14 14:51:29,654 django.request WARNING  Not Found: /static/rest_framework/js/jquery-3.5.1.min.js
+2022-05-14 14:51:29,658 django.request WARNING  Not Found: /static/rest_framework/js/ajax-form.js
+2022-05-14 14:51:29,661 django.request WARNING  Not Found: /static/rest_framework/js/bootstrap.min.js
+2022-05-14 14:51:29,665 django.request WARNING  Not Found: /static/rest_framework/js/csrf.js
+2022-05-14 14:51:29,668 django.request WARNING  Not Found: /static/rest_framework/js/prettify-min.js
+2022-05-14 14:51:29,671 django.request WARNING  Not Found: /static/rest_framework/js/default.js
+2022-05-14 14:51:30,113 django.request WARNING  Not Found: /favicon.ico
+2022-05-14 14:51:53,485 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\config\settings.py changed, reloading.
+2022-05-14 14:51:55,530 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-05-14 15:32:00,068 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 15:38:47,982 django.request WARNING  Not Found: /favicon.ico
+2022-05-14 15:38:57,192 django.request WARNING  Not Found: //rest-api/transactions/paiement-by-client/
+2022-05-14 15:40:54,034 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\models.py changed, reloading.
+2022-05-14 15:40:56,874 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-05-14 15:41:06,304 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\models.py changed, reloading.
+2022-05-14 15:41:09,269 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-05-14 15:41:12,128 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\transaction\serializers.py changed, reloading.
+2022-05-14 15:41:14,809 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-05-14 15:41:19,108 django.request WARNING  Not Found: /favicon.ico
+2022-05-14 15:41:41,119 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\client\models.py changed, reloading.
+2022-05-14 15:41:43,760 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-05-14 15:42:36,704 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 15:42:36,845 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 15:59:23,438 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 15:59:23,572 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 15:59:26,328 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 16:29:17,818 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\transaction\serializers.py changed, reloading.
+2022-05-14 16:29:20,554 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-05-14 16:29:24,055 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\transaction\serializers.py changed, reloading.
+2022-05-14 16:29:27,208 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-05-14 16:29:34,032 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\transaction\serializers.py changed, reloading.
+2022-05-14 16:29:36,589 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-05-14 16:29:53,461 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\transaction\serializers.py changed, reloading.
+2022-05-14 16:29:57,593 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-05-14 16:30:09,910 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\transaction\serializers.py changed, reloading.
+2022-05-14 16:30:12,720 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-05-14 16:30:14,999 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 16:30:31,285 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\transaction\serializers.py changed, reloading.
+2022-05-14 16:30:33,979 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-05-14 16:30:57,296 django.request WARNING  Not Found: /favicon.ico
+2022-05-14 16:32:18,810 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-05-14 16:32:20,615 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-05-14 16:32:49,445 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-05-14 16:32:51,796 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-05-14 16:33:18,978 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-05-14 16:33:22,124 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-05-14 16:33:54,207 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-05-14 16:33:57,016 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-05-14 16:34:37,660 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-05-14 16:34:40,270 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-05-14 16:35:10,899 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-05-14 16:35:12,799 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-05-14 16:35:15,393 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-05-14 16:35:17,835 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-05-14 16:35:22,676 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-05-14 16:35:25,151 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-05-14 16:35:35,669 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-05-14 16:35:38,421 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-05-14 16:36:10,482 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\transaction\serializers.py changed, reloading.
+2022-05-14 16:36:13,152 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-05-14 16:36:17,549 django.request ERROR    Internal Server Error: /rest-api/transactions/paiement-by-client/
+Traceback (most recent call last):
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\mixins.py", line 46, in list
+    return Response(serializer.data)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 768, in data
+    ret = super().data
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 686, in to_representation
+    return [
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 507, in to_representation
+    for field in fields:
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 368, in _readable_fields
+    for field in self.fields.values():
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\django\utils\functional.py", line 48, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 356, in fields
+    for key, value in self.get_fields().items():
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 1052, in get_fields
+    field_names = self.get_field_names(declared_fields, info)
+  File "C:\Users\amd\Desktop\Octogym\venv\lib\site-packages\rest_framework\serializers.py", line 1148, in get_field_names
+    assert field_name in fields, (
+AssertionError: The field 'quantity' was declared on serializer PaiementSerialiser, but has not been included in the 'fields' option.
+2022-05-14 16:36:30,939 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\transaction\serializers.py changed, reloading.
+2022-05-14 16:36:33,489 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-05-14 16:37:47,869 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-05-14 16:37:50,379 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-05-14 16:38:54,089 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\abonnement\models.py changed, reloading.
+2022-05-14 16:38:57,013 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-05-14 16:39:00,044 django.utils.autoreload INFO     C:\Users\amd\Desktop\Octogym\backend\transaction\serializers.py changed, reloading.
+2022-05-14 16:39:02,910 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-05-14 16:40:26,166 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 16:40:26,409 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 16:40:26,658 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 16:40:26,859 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 16:40:27,040 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 16:40:27,118 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 16:40:27,230 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-05-14 16:40:27,260 django.request WARNING  Unauthorized: /api/token/refresh/

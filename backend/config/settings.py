@@ -74,7 +74,8 @@ REST_FRAMEWORK = {
         #  "rest_framework.authentication.SessionAuthentication",
     ],
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.AllowAny',
+        # 'rest_framework.permissions.IsAuthenticated',
     ],
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
     'TIME_FORMAT':  '%H:%M',
@@ -82,6 +83,7 @@ REST_FRAMEWORK = {
     # "DATE_INPUT_FORMATS": ["%d-%m-%Y"],
     # 'PAGE_SIZE': 20,
 }
+
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=10),
