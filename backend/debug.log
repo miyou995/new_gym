@@ -23026,3 +23026,15 @@ NameError: name 'type_abonnement__type_of' is not defined
 2022-07-26 12:19:08,940 amqp         DEBUG    Start from server, version: 0.9, properties: {'capabilities': {'publisher_confirms': True, 'exchange_exchange_bindings': True, 'basic.nack': True, 'consumer_cancel_notify': True, 'connection.blocked': True, 'consumer_priorities': True, 'authentication_failure_close': True, 'per_consumer_qos': True, 'direct_reply_to': True}, 'cluster_name': 'rabbit@DESKTOP-PC6U1IH', 'copyright': 'Copyright (c) 2007-2022 VMware, Inc. or its affiliates.', 'information': 'Licensed under the MPL 2.0. Website: https://rabbitmq.com', 'platform': 'Erlang/OTP 24.2.2', 'product': 'RabbitMQ', 'version': '3.9.13'}, mechanisms: [b'PLAIN', b'AMQPLAIN'], locales: ['en_US']
 2022-07-26 12:19:08,955 amqp         DEBUG    using channel_id: 1
 2022-07-26 12:19:08,961 amqp         DEBUG    Channel open
+2022-07-26 17:36:16,994 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-07-26 17:39:02,627 django.request WARNING  Not Found: /
+2022-07-26 17:39:32,637 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/config/urls.py changed, reloading.
+2022-07-26 17:39:34,841 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-07-26 17:42:21,195 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/config/settings.py changed, reloading.
+2022-07-26 17:42:23,044 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-07-26 17:42:50,183 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-07-26 17:47:28,951 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/presence/urls.py changed, reloading.
+2022-07-26 17:47:30,858 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-07-26 17:49:12,933 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-07-26 17:51:30,192 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-07-26 17:52:07,797 django.utils.autoreload INFO     Watching for file changes with StatReloader

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from 'axios';
 
+import useAxios from "../useAxios";
 
 import {  useHistory } from "react-router-dom";
 import ShortCuts from "../ShortCuts";
@@ -12,6 +13,7 @@ function refreshPage() {
 }
 const CoachCreate = () => {
   // let creneauxEnd = `${process.env.REACT_APP_API_URL}/rest-api/creneau/`
+  const api = useAxios();
   
   // const creneaux = useGetAPI(creneauxEnd)
   const history = useHistory();
@@ -67,7 +69,7 @@ const CoachCreate = () => {
         newCoach.adress = adress
       }
       
-      usePostAPI(endpoint, newCoach).then( res => {
+      api.post(endpoint, newCoach).then( res => {
           notifySuccess('Coach creer avec succés')
           history.push("/coach")
         }).catch(err => {

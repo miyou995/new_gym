@@ -127,7 +127,6 @@ const handleCheckbox = (event) => {
                       <label>Nombre de Séances </label>
                       <input type="number" name="last_name" className="form-control" placeholder="ex: 8" onChange={e => setAbSeancesQuantity(e.target.value)}/>
                     </div>
-                    
                   <div className="col-6">
                   <label>
                       Activitées
@@ -152,7 +151,6 @@ const handleCheckbox = (event) => {
             </div>
           </div>
         </div>
-      
   )
 }
 export default AbonnementCreate;
