@@ -1,4 +1,5 @@
 venv/
+ubvenv/
 node_modules/
 backend.rar
 frontend/frontend.rar
