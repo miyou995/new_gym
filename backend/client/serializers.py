@@ -68,7 +68,7 @@ class ClientSerialiser(serializers.ModelSerializer):
     class Meta:
         model = Client
         read_only_fields = ('id','date_added','abonnement_detail')
-        fields= ('id', 'picture','carte','civility','civility_display', 'last_name', 'first_name', 'adress', 'phone', 'email', 'nationality', 'birth_date', 'blood', 'state_display','note', 'dette', 'date_added', 'maladies', 'maladie_name','abonnement_detail', 'presences', 'last_presence', 'age', 'debut_assurance', 'fin_assurance','profession')
+        fields= ('id', 'picture','carte','hex_card','civility','civility_display', 'last_name', 'first_name', 'adress', 'phone', 'email', 'nationality', 'birth_date', 'blood', 'state_display','note', 'dette', 'date_added', 'maladies', 'maladie_name','abonnement_detail', 'presences', 'last_presence', 'age', 'debut_assurance', 'fin_assurance','profession')
  
     def get_maladie_name(self, obj):
         maladies_queryset = obj.maladies.all()

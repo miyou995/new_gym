@@ -246,3 +246,14 @@ sudo journalctl -u marchesa
 sudo systemctl restart marchesa
 
 sudo ln -s /etc/nginx/sites-available/marchesa
+   
+
+
+
+
+
+
+
+
+
+   

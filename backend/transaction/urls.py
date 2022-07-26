@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import PaiementAPIView, PaiementListAPIView, PaiementDetailAPIView, PaiementDestroyAPIView, AutreAPIView, AutreListAPIView, AutreDetailAPIView, AutreDestroyAPIView, AssuranceAPIView, AssuranceListAPIView, AssuranceDetailAPIView, AssuranceDestroyAPIView, RemunerationAPIView, RemunerationListAPIView, RemunerationDetailAPIView, RemunerationDestroyAPIView, RemunerationProfAPIView, RemunerationProfListAPIView, RemunerationProfDetailAPIView, RemunerationProfDestroyAPIView, TransactionListAPIView, TransactionDetailAPIView, PaiementCoachListAPIView, total_charges, chiffre_affaire,  TransToday, PaiementClientListAPIView, ca_by_salle, ca_by_ab, MyModelViewSet, ca_by_date, PaiementEmployeListAPIView
+from .views import PaiementAPIView, PaiementListAPIView, PaiementDetailAPIView, PaiementDestroyAPIView, AutreAPIView, AutreListAPIView, AutreDetailAPIView, AutreDestroyAPIView, AssuranceAPIView, AssuranceListAPIView, AssuranceDetailAPIView, AssuranceDestroyAPIView, RemunerationAPIView, RemunerationListAPIView, RemunerationDetailAPIView, RemunerationDestroyAPIView, RemunerationProfAPIView, RemunerationProfListAPIView, RemunerationProfDetailAPIView, RemunerationProfDestroyAPIView, TransactionListAPIView, TransactionDetailAPIView, PaiementCoachListAPIView, total_charges, chiffre_affaire,  TransToday, PaiementClientListAPIView, ca_by_salle, ca_by_ab, MyModelViewSet, ca_by_date, PaiementEmployeListAPIView, PaiementHistoryListAPIView
 # RemunerationEmployeListAPIView, RemunerationEmployeDetailAPIView, RemunerationEmployeAPIView, PaiementEmployeListAPIView
 
 app_name = 'transactions'
@@ -10,6 +10,7 @@ urlpatterns = [
     # path('detail/<int:pk>/', TransactionDetailAPIView.as_view(),  name="transaction-detail"),
     path('paiement/create', PaiementAPIView.as_view(),  name="paiement-create"),
     path('paiement/', PaiementListAPIView.as_view(),  name="paiement"),
+    path('paiement/', PaiementListAPIView.as_view(),  name="paiement"),
     path('paiement/by_test', MyModelViewSet.as_view(),  name="paiement"),
     path('paiement/ca-by-salle', ca_by_salle,  name="ca-by-filters"),
     path('paiement/ca-by-abonnement', ca_by_ab,  name="ca-by-filters"),
@@ -17,6 +18,7 @@ urlpatterns = [
     path('paiement-by-client/', PaiementClientListAPIView.as_view(),  name="paiement"),
     path('paiement/<int:pk>/', PaiementDetailAPIView.as_view(), name="paiement-delete"),
     path('paiement/delete/<int:pk>/', PaiementDestroyAPIView.as_view(), name="paiement-delete"),
+    path('paiement/history/', PaiementHistoryListAPIView.as_view(),  name="paiement-history"),
 
     path('autre/create', AutreAPIView.as_view(),  name="autre-create"),
     path('autre/', AutreListAPIView.as_view(),  name="autre"),

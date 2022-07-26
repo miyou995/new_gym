@@ -1,10 +1,12 @@
 from django.db import models
 from planning.models import Planning
-from client.models import Coach, Client
+# from client.models import Coach
 from salle_activite.models import Activity
 # Create your models here.
 from simple_history.models import HistoricalRecords
 from datetime import datetime, time, timedelta
+
+
 DAYS_CHOICES = (
     ('SA', 'Samedi'),
     ('DI', 'Dimanche'),
@@ -127,11 +129,6 @@ class RangeManager(models.Manager):
     #     return cren
 
 
-    # def get_clients(self, creneau_id):
-    #     # actual_creneau = Creneau.objects.get(id= creneau_id)
-    #     # abonnement = A
-    #     clients = Client.objects.filter(abonnement_client__abonnements = actual_creneau)
-    #     print('YYYYYYYYYYYYYYYYYYY', clients)
 
 
 
@@ -143,7 +140,7 @@ class Creneau(models.Model):
     planning = models.ForeignKey(Planning, on_delete=models.CASCADE)
     color           = models.CharField( max_length=50, blank=True, null=True) 
     activity  = models.ForeignKey(Activity, verbose_name="activities", related_name="creneaux", on_delete=models.CASCADE)
-    coach  = models.ForeignKey(Coach , on_delete=models.CASCADE, related_name='creneaux', blank=True, null=True)
+    coach  = models.ForeignKey('client.Coach' , on_delete=models.CASCADE, related_name='creneaux', blank=True, null=True)
     objects = models.Manager()
     range = RangeManager()
     created = models.DateTimeField(verbose_name='Date de Création', auto_now_add=True)

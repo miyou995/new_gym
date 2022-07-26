@@ -1,5 +1,4 @@
 from django.db import models
-
 # Create your models here.
 
 class SalleManager(models.Manager):
@@ -9,14 +8,27 @@ class SalleManager(models.Manager):
             salle = Salle.objects.filter(is_default=True).last()
         return salle
 
+class Door(models.Model):
+    ip_adress = models.CharField(max_length=20, verbose_name="Adresse ip de la porte")
+    username  = models.CharField(max_length=50, verbose_name="username de la porte")
+    password  = models.CharField(max_length=30, verbose_name="password de la porte")
+    def __str__(self):
+        return self.ip_adress
+
 class Salle(models.Model):
     name = models.CharField(max_length=50, verbose_name="nom de la salle d'activité")
+    door = models.ForeignKey(Door, on_delete=models.CASCADE, related_name='salles', blank=True, null=True)
     is_default      = models.BooleanField(default=False)
     # coach = models.ManyToManyField("app.Coach")
     objects = models.Manager()
     custom_manager = SalleManager()
+
     def __str__(self):
         return self.name
+        
+    @property
+    def get_door(self):
+        return self.door.ip_adress
     def save(self, *args, **kwargs):
         if self.is_default:
             self.is_default = True

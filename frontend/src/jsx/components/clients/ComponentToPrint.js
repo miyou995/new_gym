@@ -47,7 +47,7 @@ console.log('PROESSSS', props);
                             </table>
                         </div>
                     </div>
-                    <div className="d-flex flex-row-reverse bg-dark text-white p-4">
+                    <div className="d-flex flex-row-reverse bg-light text-dark p-4">
                         <div className="py-3 px-5 text-right">
                             <div className="mb-2">Total</div>
                             <div className="h2 font-weight-light">{props.value.amount}</div>
@@ -57,7 +57,6 @@ console.log('PROESSSS', props);
             </div>
         </div>
     </div>
-    <div className="text-light mt-5 mb-5 text-center small">by : <a className="text-light" target="_blank" href="http://totoprayogo.com">totoprayogo.com</a></div>
 </div>
   );
 });
@@ -81,7 +80,6 @@ console.log('PROESSSS', props);
 //                             <p className="text-muted">Due to: 4 Dec, 2019</p>
 //                         </div>
 //                     </div>
-
 //                     <hr className="my-5" />
 
 //                     <div className="row pb-5 p-5">

@@ -1,5 +1,4 @@
 from django.db import models
-from client.models import Client
 from datetime import datetime, timedelta, date
 from salle_activite.models import Activity, Salle 
 from creneau.models import Creneau
@@ -17,7 +16,7 @@ class SubscriptionManager(models.Manager):
     def free_sessions(self):
         return self.filter(type_abonnement__type_of=="SL")
     def free_access_subscription(self):
-        return self.exclude(type_abonnement__type_of== "SF")
+        return self.exclude(type_abonnement__type_of=="SF")
 
 
 # class ManagerValidity(models.Manager):
@@ -71,7 +70,7 @@ class Abonnement(models.Model):
 class AbonnementClient(models.Model):
     start_date          = models.DateField()# number of days
     end_date            = models.DateField()# number of days
-    client              = models.ForeignKey(Client, related_name="abonnement_client", on_delete=models.PROTECT)
+    client              = models.ForeignKey('client.Client', related_name="abonnement_client", on_delete=models.PROTECT)
     type_abonnement     = models.ForeignKey(Abonnement, related_name="type_abonnement_client", on_delete=models.CASCADE)
     presence_quantity   = models.IntegerField(blank=True, null=True)
     creneaux            = models.ManyToManyField(Creneau, verbose_name="créneau", related_name='abonnements', blank=True)
@@ -260,7 +259,8 @@ class AbonnementClient(models.Model):
 def creneau_created_signal(sender, instance, created,**kwargs):
     if created:
         # get abc that have free access VH, AL, SL - 
-        abonnements = AbonnementClient.subscription_type.free_access_subscription()
+        abonnements = AbonnementClient.objects.all()
+        # abonnements = AbonnementClient.subscription_type.free_access_subscription()
         # get abc that has same activities as creneaux abonnements 
         activity = instance.activity
         for abonnement in abonnements:

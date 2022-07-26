@@ -1,5 +1,5 @@
 from django.db import models
-from client.models import Coach
+# from client.models import Coach
 from creneau.models import Creneau
 from django.db.models.signals import pre_save, post_save, post_delete, pre_delete
 # Create your models here.
@@ -55,7 +55,7 @@ class Presence(models.Model):
 
 
 class PresenceCoach(models.Model):
-    coach      = models.ForeignKey(Coach, on_delete=models.CASCADE,related_name='presencesCoach', null=True, blank=True)
+    coach      = models.ForeignKey('client.Coach', on_delete=models.CASCADE,related_name='presencesCoach', null=True, blank=True)
     date        = models.DateField(auto_now_add=True)
     # creneau     = models.ForeignKey(Creneau, on_delete=models.CASCADE,related_name='presencesCoach', null=True, blank=True)
     # is_in_list  = models.BooleanField(default=True) # check if the person is in the list of client that should be in this creneau
@@ -90,34 +90,34 @@ def presence_coach_create_signal(sender, instance, created,**kwargs):
         # coach.save()
 
 
-def presence_coach_signal(sender, instance, **kwargs):
-    FTM = '%H:%M:%S'
-    if instance.hour_sortie:
-        id_coach = instance.coach.id
-        coach = Coach.objects.get(id=id_coach)
-        try :
-            par_heur = coach.pay_per_hour 
-            entree = str(instance.hour_entree)
-            sortie = str(instance.hour_sortie)
-            duree_hour =   datetime.strptime(sortie, FTM) - datetime.strptime(entree, FTM) 
-            duree_seconde = timedelta.total_seconds(duree_hour) 
-            temps_heure = duree_seconde / 60
-            # print('le total du temps passé COACH est de de !: ', par_heur)
-            # montant = instance.amount
-            # total_heures = 
-            # decimal.Decimal(str(a)
+# def presence_coach_signal(sender, instance, **kwargs):
+#     FTM = '%H:%M:%S'
+#     if instance.hour_sortie:
+#         id_coach = instance.coach.id
+#         coach = Coach.objects.get(id=id_coach)
+#         try :
+#             par_heur = coach.pay_per_hour 
+#             entree = str(instance.hour_entree)
+#             sortie = str(instance.hour_sortie)
+#             duree_hour =   datetime.strptime(sortie, FTM) - datetime.strptime(entree, FTM) 
+#             duree_seconde = timedelta.total_seconds(duree_hour) 
+#             temps_heure = duree_seconde / 60
+#             # print('le total du temps passé COACH est de de !: ', par_heur)
+#             # montant = instance.amount
+#             # total_heures = 
+#             # decimal.Decimal(str(a)
         
-            salaire_seance = (int(temps_heure) / 60 )  * par_heur
-            coach.salaire += Decimal(str(salaire_seance))
-            # print('le total du temps passé COACH est de de !: ', coach.salaire)
+#             salaire_seance = (int(temps_heure) / 60 )  * par_heur
+#             coach.salaire += Decimal(str(salaire_seance))
+#             # print('le total du temps passé COACH est de de !: ', coach.salaire)
 
-            coach.save()
-        except :
-            coach.salaire += 0
-            coach.save()
+#             coach.save()
+#         except :
+#             coach.salaire += 0
+#             coach.save()
 
 
-pre_save.connect(presence_coach_signal, sender=PresenceCoach)
+# pre_save.connect(presence_coach_signal, sender=PresenceCoach)
 
 # 33756.
   
@@ -143,4 +143,3 @@ pre_save.connect(presence_coach_signal, sender=PresenceCoach)
 # post_delete.connect(presence_delete_signal, sender=Presence)
 
 
- 

@@ -1,11 +1,16 @@
 
 from django.db import models
 from django.urls import reverse
-# from creneau.models import Creneau
+from creneau.models import Creneau
 from django.template.defaultfilters import slugify
 from django.db import models
 from django.db.models import Sum
 from simple_history.models import HistoricalRecords
+from django.db.models.signals import post_save, pre_save
+from abonnement.models import AbonnementClient
+from presence.models import Presence
+from datetime import datetime, timedelta
+
 
 # Create your models here.
 class AbonnementManager(models.Manager):
@@ -74,6 +79,7 @@ class Maladie(models.Model):
 class Client(models.Model):
     id          = models.CharField(max_length=50, primary_key=True)
     carte       = models.CharField(max_length=100, unique=True, blank=True, null=True)
+    hex_card    = models.CharField(max_length=100, unique=True, blank=True, null=True)
     last_name   = models.CharField(max_length=50, verbose_name='Nom')
     first_name  = models.CharField(max_length=50, verbose_name='Prénom')
     civility    = models.CharField(choices=CIVILITY_CHOICES , max_length=3, default='MME', verbose_name='Civilité', blank=True, null=True)
@@ -110,6 +116,50 @@ class Client(models.Model):
     def get_absolute_url(self):
         return reverse("client:client-detail", args={"slug": self.slug})
 
+    def has_permission(self, door_ip):
+        FTM = '%H:%M:%S'
+        current_time = datetime.now().strftime("%H:%M:%S")
+        creneaux = Creneau.range.get_creneaux_of_day().filter(abonnements__client=self, activity__salle__door__ip_adress= door_ip)
+        print('les creneau permis', creneaux)
+
+        if len(creneaux) :
+            dur_ref_time_format = abs(datetime.strptime(str(creneaux[0].hour_start), FTM) - datetime.strptime(current_time, FTM))
+            dur_ref= timedelta.total_seconds(dur_ref_time_format) 
+            cren_ref = creneaux[0]
+            for cr in creneaux:
+                start = str(cr.hour_start)
+                print('heure de début', start)
+                temps = abs(datetime.strptime(start, FTM) - datetime.strptime(current_time, FTM))
+                duree_seconde = timedelta.total_seconds(temps) 
+                if dur_ref > duree_seconde:
+                    dur_ref = duree_seconde
+                    cren_ref = cr
+            abon_list = AbonnementClient.objects.filter(client = self,creneaux = cren_ref, archiver = False )
+            for ab in abon_list: # si il y'a plusieurs abonnement on previlegie les abonnement normal vu qu'il ne sont pas recuperable
+                # print("abonnement dans la bouvcle", ab.type_abonnement.free_sessions)
+                if not ab.type_abonnement.free_sessions:
+                    # if AbonnementClient.validity.is_valid(ab.id):
+                    abonnement = ab
+                else:
+                    print('je suis laaaa')
+                    abonnement = ab
+            # abonnement = abon_list.first()
+            print('l \'abonnement du client est le :>>>>>>>>>>', abonnement)
+            # is_valid = AbonnementClient.validity.is_valid(abonnement.id)
+            if abonnement.is_time_volume() and abonnement.presence_quantity > 30:
+                presence = Presence.objects.create(abc= abonnement, creneau= cren_ref, is_in_list=True, hour_entree=current_time, is_in_salle=True)
+                return presence
+
+            if abonnement.presence_quantity > -2:
+            # AbonnementClient.validity.is_valid(obj.id)
+                presence = Presence.objects.create(abc= abonnement, creneau= cren_ref, is_in_list=True, hour_entree=current_time, is_in_salle=True)
+                if abonnement.is_fixed_sessions() or abonnement.is_free_sessions():
+                    abonnement.presence_quantity -= 1
+                abonnement.save()
+                return presence
+            return True
+        return False
+
     def save(self, *args, **kwargs):
         if not self.id:
             try :
@@ -125,6 +175,18 @@ class Client(models.Model):
                 self.id = the_id
             except:
                 self.id = "C0001"
+        if self.carte:
+            # old_carte = self.carte
+            # print('old_carte', old_carte) 
+            int_carte = int(self.carte)
+            str_carte = str(int_carte)
+            print('carte', str_carte) 
+            new_int_carte =  int(str_carte)
+            hex_card = hex(new_int_carte)
+            deleted_x = hex_card.replace('0x', '')
+            self.hex_card = deleted_x.upper().zfill(8)
+            print('deleted_x', deleted_x) 
+            print(' hex_card', self.hex_card) 
         return super().save(*args, **kwargs)
 
     def dettes(self):
@@ -211,3 +273,15 @@ class Personnel(models.Model):
     def get_absolute_url(self):
         return reverse("client:personnel_detail", kwargs={"pk": self.pk})
 
+
+# @receiver(post_save, sender=Client)
+# def create_client(sender, instance, created,**kwargs):
+#     if created:
+#         old_carte = instance.carte
+#         print('old_carte', old_carte) 
+#         carte = int(instance.carte)
+#         print('carte', carte) 
+#         instance.carte = hex(carte).upper()
+#         print('LAST carte', instance.carte) 
+
+# post_save.connect(create_client, sender=Client)

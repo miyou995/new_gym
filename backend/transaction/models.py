@@ -23,7 +23,7 @@ class Transaction(models.Model):
 
 class Paiement(Transaction):
     # type = models.ForeignKey(Abonnement, verbose_name="abonnement" , related_name="abonnements", on_delete=models.CASCADE)
-    abonnement_client = models.ForeignKey(AbonnementClient,on_delete=models.SET_NULL, related_name='transactions', blank=True, null=True)
+    abonnement_client = models.ForeignKey(AbonnementClient,on_delete=models.PROTECT, related_name='transactions')
     history = HistoricalRecords()
     # hello = models.TextField(blank=True, null=True)
     def __str__(self):

@@ -53,6 +53,18 @@ class AssuranceSerialiser(serializers.ModelSerializer):
         return Response({'id' : obj.client.id, 'name' : obj.client.last_name}).data
 
 
+class PaiementHistorySerialiser(serializers.ModelSerializer):
+    history_user_name = serializers.CharField(source= 'history_user')
+    client = serializers.SerializerMethodField('get_client_name', read_only=True)
+    # client = serializers.CharField(source = "abonnement_client.client")
+    class Meta:
+        model = Paiement.history.model
+        fields= "__all__"
+    def get_client_name(self, obj):
+        try:
+           return obj.abonnement_client.client.full_name()
+        except : 
+            return 'null'
 class AutreSerialiser(serializers.ModelSerializer):
     class Meta:
         model = Autre
@@ -68,6 +80,7 @@ class RemunerationSerialiser(serializers.ModelSerializer):
     class Meta:
         model = Remuneration 
         fields= ('id', 'amount', 'client', 'last_modified', 'notes', 'date_creation')
+
     def get_client_name(self, obj):
         return Response({'id' : obj.nom.id, 'name' : obj.nom.last_name}).data
 

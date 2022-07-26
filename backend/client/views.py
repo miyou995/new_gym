@@ -22,7 +22,11 @@ class ClientAPIView(generics.CreateAPIView):
     serializer_class = ClientCreateSerialiser
     queryset = Client.objects.all()
     parser_classes = [MultiPartParser, FormParser]
-
+    # def perform_create(self, serializer):
+    #     queryset = SignupRequest.objects.filter(user=self.request.user)
+    #     if queryset.exists():
+    #         raise ValidationError('You have already signed up')
+    #     serializer.save(user=self.request.user)
     # lookup_field = 'slug'
    # permission_classes = (AllowAny, )
 

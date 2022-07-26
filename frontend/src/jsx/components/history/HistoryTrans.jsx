@@ -68,7 +68,6 @@ export const ClientContext = React.createContext()
    const [endDate, setEndDate] = useState(formatDate(new Date()));
    const [salleId, setSalleId] = useState('');
    const [startHour, setStartHour] = useState('');
-   const historyAbcEnd = `${process.env.REACT_APP_API_URL}/rest-api/abonnement-client-history/`
    let usersEnd =  `${process.env.REACT_APP_API_URL}/rest-api/auth/users`
 
    // console.table('els clieeents', salle);
@@ -89,7 +88,7 @@ useEffect(() => {
 }, [])
 
 useEffect(() => {
-   api.get(`${process.env.REACT_APP_API_URL}/rest-api/abonnement-client-history?cl=${searchValue}&abc=${abcId}&start=${startDate}&end=${endDate}&usr=${userId}`).then(res => {
+   api.get(`${process.env.REACT_APP_API_URL}/rest-api/transactions/paiement/history?cl=${searchValue}&abc=${abcId}&start=${startDate}&end=${endDate}&usr=${userId}`).then(res => {
       setAbcsData(res.data)
       console.log('setAbcsData', res.data);
    })

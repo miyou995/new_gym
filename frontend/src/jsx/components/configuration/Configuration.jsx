@@ -11,6 +11,7 @@ import { ToastContainer } from 'react-toastify'
 
 import useAxios from "../useAxios";
 import PerfectScrollbar from "react-perfect-scrollbar";
+import {notifySuccess, notifyError} from '../Alert'
 
 import AbonnementCreateModal from './AbonnementCreateModal';
 import AbonnementEditModal from './AbonnementEditModal';
@@ -23,16 +24,21 @@ import PlanningEditModal from './PlanningEditModal'
 import AbonnementListModal from './AbonnementListModal'
 import MaladieCreateModal from './MaladieCreateModal'
 import MaladieEditModal from './MaladieEditModal'
+import DoorModal from './DoorModal'
 const Configuration = (props) => {
   const api = useAxios();
   const abonnementsListEND = `${process.env.REACT_APP_API_URL}/rest-api/abonnement/`
     const maladiesEnd = `${process.env.REACT_APP_API_URL}/rest-api/maladies/`
+    const doorsEnd = `${process.env.REACT_APP_API_URL}/rest-api/salle-activite/door/`
     const activitiesEND = `${process.env.REACT_APP_API_URL}/rest-api/salle-activite/activite/`
     const salleActivitiesEND = `${process.env.REACT_APP_API_URL}/rest-api/salle-activite/`
     const planningsEND = `${process.env.REACT_APP_API_URL}/rest-api/planning/`
+    const startListenEND = `${process.env.REACT_APP_API_URL}/rest-api/salle-activite/start_listening`
+    const stopListenEND = `${process.env.REACT_APP_API_URL}/rest-api/salle-activite/stop_listening`
     
     const [ abonnements , setAbonnements] =useState([])
     const [ maladies , setMaladies] =useState([])
+    const [ doors , setDoors] =useState([])
     const [selectedActivities, setSelectedActivities] = useState([])
 
     const [ abonnementListModal , setAbonnementListModal] =useState(false)
@@ -46,6 +52,7 @@ const Configuration = (props) => {
     const [ activityEditModal, setActivityEditModal] = useState(false)
     const [ maladieCreateModal, setMaladieCreateModal] = useState(false)
     const [ maladieEditModal, setMaladieEditModal] = useState(false)
+    const [ doorModal, setDoorModal] = useState(false)
 
     const [abonnementId, setAbonnementId] = useState('')
     const [activityId, setActivityId] = useState('')
@@ -57,15 +64,19 @@ const Configuration = (props) => {
     const [isDefaultPlanning, setDefaultPlanning] = useState('')
     const [isDefaultSalle, setDefaultSalle] = useState('')
     const [salleName, setSalleName] = useState('')
+    const [doorId, setDoorId] = useState('')
+    const [doorIp, setDoorIp] = useState('')
+    const [doorUsername, setDoorUsername] = useState('')
+    const [doorPassword, setDoorPassword] = useState('')
 
     const [color, setColor] = useState("")
     const [salle, setSalle] = useState("")
     const [initEffect, setInitEffect] = useState(false)
+    const [gymStatus, setGymStatus] = useState(false)
     const [activityName, setActivityName] = useState("")
     const [abDuree, setAbDuree] = useState("")
 
     const [abIdFromList, setAbIdFromList] = useState("")
-    
     const [salllesActivities, setSalllesActivities] = useState([]);
     const [dureeInd, setDureeInd] = useState("");
     const [typeOf, setTypeOf] = useState("");
@@ -104,6 +115,11 @@ const Configuration = (props) => {
         })
     }, [salleActiviteCreateModal, salleActivitiesEND, salleActiviteEditModal]);
 
+    useEffect(() => {
+        api.get(doorsEnd).then(res =>{
+            setDoors(res.data)
+        })
+    }, [doorModal]);
     // useEffect(() => {
     //     setDureeInd(DureeAb.findIndex(x => x.jours === Number(abDuree)))
     //     console.log('dureee de labonnement', DureeAb.findIndex(x => x.jours === Number(abDuree)));
@@ -141,6 +157,31 @@ const Configuration = (props) => {
             }            
         }
     }
+    const openTheGym = () => {
+        if (gymStatus === false) {
+            api.get(startListenEND).then(res => {
+                notifySuccess('Toutes les Portes sont activé')
+                setGymStatus(true)
+              }).catch( err => {
+                notifyError("Erreur lors de l'ouverture des portes, veuillez contacter le support'")
+              })
+        }else{
+            notifyError('Toutes les Portes sont déja activé')
+        }
+    }
+    const closeTheGym = () => {
+        if (gymStatus === true) {
+            api.get(stopListenEND).then(res => {
+                notifySuccess('Toutes les Portes sont Désactivé')
+                setGymStatus(true)
+              }).catch( err => {
+                notifyError("Erreur lors de la fermeture des portes, veuillez contacter le support'")
+              })
+        }else{
+            notifyError('Toutes les Portes sont déja Désactivé')
+        }
+    }
+
     const getFkIndex = (list,selctedItem) => {
         for (let i = 0; i < list.length; i++) {
           if (selctedItem === list[i].id){
@@ -149,6 +190,7 @@ const Configuration = (props) => {
             }            
         }
       }
+
 //  testFunc is the function to send data from child to parent # is triggered from the child
     const TestFunc = useCallback((abId, acti) =>  {
         if (abId !== '') {
@@ -195,6 +237,15 @@ const Configuration = (props) => {
             <div className="testimonial-one owl-right-nav owl-carousel owl-loaded owl-drag mb-4">
                 <ShortCuts />
             </div>
+            <div className="row d-flex justify-content-around m-3">
+                <div>
+                    <Button className="btn btn-success" onClick={ e => {openTheGym()}}>Ouvrir La salle</Button>
+                </div>
+                <div>
+                    <Button className="btn btn-danger" onClick={ e => {closeTheGym()}}>Fermer La salle</Button>
+                {/* <Button onClick={ closeTheGym()}>fermé La salle</Button> */}
+                </div>
+            </div>
             <div className="row no-gutters">
                 <div className="col-lg-2 col-sm-6">
                     <div className="card">
@@ -231,13 +282,17 @@ const Configuration = (props) => {
                     <div className="card">
                         <div className="card-header">
                             <h4 className="card-title">Salle</h4>
-                            <Button onClick={e => { setSalleActiviteCreateModal(true)}}>Ajouter</Button>
+                            <Button onClick={e => { 
+                                setSalleActiviteCreateModal(true)
+                                
+                                }}>Ajouter</Button>
                         </div>
                         <div className="card-body">
                         <table className="table text-center bg-warning-hover">
                   <thead>
                     <tr>
                       <th>Nom de la salle </th>
+                      <th>Adresse IP</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -248,10 +303,13 @@ const Configuration = (props) => {
                         setSalleId(salle.id)
                         setDefaultSalle(salle.is_default)
                         setSalleName(salle.name)
+                        setDoorId(getFkIndex(doors, salle.door))
+                        setDoorIp(salle.get_adress)
                         console.log(initEffect)
                         // setSelectedActivities(getsallesActitivties(salle.activity))
                     }}>
                       <td >{salle.name}</td>
+                      <td >{salle.get_door}</td>
                     </tr>
                   ))}
                     </tbody>
@@ -330,6 +388,48 @@ const Configuration = (props) => {
                     </div>
                 </div>
                 {/* FIN MALADIES */}
+                 {/* DEBUT portes */}
+                 <div className="col-xl-4 col-lg-4">
+                    <div className="card">
+                        <div className="card-header">
+                            <h4 className="card-title">Portes</h4>
+                            <Button onClick={e => { 
+                                setDoorModal(true)
+                                setDoorId('')
+                                setDoorIp('')
+                                setDoorUsername('')
+                                setDoorPassword('')
+                                }}>Ajouter</Button>
+                        </div>
+                        <div className="card-body">
+                            <PerfectScrollbar   style={{ height: "370px" }}   id="DZ_W_TimeLine" className="widget-timeline dz-scroll height370 ps ps--active-y" >
+                                <div className="table-responsive card-table">
+                                    <table className="table text-center bg-warning-hover">
+                                        <thead>
+                                            <tr>
+                                                <th className="text-left">Nom</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {doors.map( door => (
+                                            <tr className='cursor-abonnement' key={door.id} onClick={e => {
+                                                setDoorModal(true)
+                                                setDoorId(door.id)
+                                                setDoorIp(door.ip_adress)
+                                                setDoorUsername(door.username)
+                                                setDoorPassword(door.password)
+                                            }}>
+                                                <td className="text-left">{door.ip_adress}</td>
+                                            </tr>
+                                        ))}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </PerfectScrollbar>
+                        </div>
+                    </div>
+                </div>
+                {/* FIN portes */}
                 <div className=" col-lg-6 config-tableaux">
                     <div className="card">
                         <div className="card-header">
@@ -415,12 +515,18 @@ const Configuration = (props) => {
             activityName: activityName, 
             salles: salllesActivities, 
             salleId:salleId}} />
-        <SalleActiviteCreateModal  show={salleActiviteCreateModal} onShowShange={setSalleActiviteCreateModal}  />
+        <SalleActiviteCreateModal  show={salleActiviteCreateModal} onShowShange={setSalleActiviteCreateModal}  salleData={{doors : doors}} />
         <PlanningCreateModal  show={planningCreateModal} onShowShange={setPlanningCreateModal}  />
         <MaladieCreateModal  show={maladieCreateModal} onShowShange={setMaladieCreateModal}  />
         <MaladieEditModal  show={maladieEditModal} onShowShange={setMaladieEditModal} maladieData={{
             maladieId : maladieId,
             maladieName : maladieName
+        }} />
+        <DoorModal  show={doorModal} onShowShange={setDoorModal} doorData={{
+            doorId : doorId,
+            doorIp : doorIp,
+            doorUsername: doorUsername,
+            doorPassword: doorPassword
         }} />
         <PlanningEditModal  show={planningEditModal} onShowShange={setPlanningEditModal} planningData={{
             planId : planId,
@@ -433,7 +539,10 @@ const Configuration = (props) => {
         < SalleActiviteEditModal  show={salleActiviteEditModal} onShowShange={setSalleActiviteEditModal}  salleData={{
             salleId : salleId,
             salleName : salleName,
-            isDefaultSalle : isDefaultSalle
+            isDefaultSalle : isDefaultSalle,
+            doors : doors,
+            doorId : doorId,
+            doorIp : doorIp,
             }} />
         <AbonnementEditModal show={abonnementEditModal} onShowShange={setAbonnementEditModal} 
         abonnementData={

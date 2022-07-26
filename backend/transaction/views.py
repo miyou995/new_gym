@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from rest_framework import generics, serializers
 from .models import Paiement, Autre, AssuranceTransaction, Remuneration, RemunerationProf, Transaction
 import json
-from .serializers import PaiementSerialiser, AutreSerialiser, AssuranceSerialiser, RemunerationSerialiser, RemunerationProfSerialiser, TransactionSerialiser, RemunerationProfPostSerialiser,PaiementPostSerialiser, AssurancePostSerialiser, RemunerationPostSerialiser, PaiementFiltersSerialiser
+from .serializers import PaiementSerialiser, AutreSerialiser, AssuranceSerialiser, RemunerationSerialiser, RemunerationProfSerialiser, TransactionSerialiser, RemunerationProfPostSerialiser,PaiementPostSerialiser, AssurancePostSerialiser, RemunerationPostSerialiser, PaiementFiltersSerialiser, PaiementHistorySerialiser
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from drf_multiple_model.views import FlatMultipleModelAPIView, ObjectMultipleModelAPIView
 from drf_multiple_model.pagination import MultipleModelLimitOffsetPagination
@@ -18,6 +18,7 @@ from abonnement.models import Abonnement
 from abonnement.serializers import AbonnementTestSerializer
 from django.http import HttpResponse
 from django.http import JsonResponse
+
 class StandardResultsSetPagination(pagination.PageNumberPagination):
     page_size = 20
     page_size_query_param = 'page_size'
@@ -39,6 +40,15 @@ class PaiementListAPIView(generics.ListAPIView):
     # permission_classes = (IsAuthenticated,)
     serializer_class = PaiementSerialiser
 
+class PaiementHistoryListAPIView(generics.ListAPIView):
+    queryset = Paiement.history.all()
+    # permission_classes = (IsAuthenticated,)
+    serializer_class = PaiementHistorySerialiser
+    # def get_queryset(self):
+    #     queryset = get_filtered_abc_history(self.request)['qs']
+    #     print('queryset', queryset.count())
+    #     print('queryset', queryset)                                                                                     
+    #     return queryset
 
 class PaiementDetailAPIView(generics.RetrieveUpdateAPIView):
     queryset = Paiement.objects.all()

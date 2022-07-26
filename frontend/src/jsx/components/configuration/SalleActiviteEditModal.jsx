@@ -20,19 +20,28 @@ const SalleActiviteEditModal = ({show, onShowShange, salleData}) => {
   const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
     // const creneauPerAbonnementEND = `${process.env.REACT_APP_API_URL}/rest-api/abonnement/`
     const salleActiviteUpdateEnd = `${process.env.REACT_APP_API_URL}/rest-api/salle-activite/${salleData['salleId']}/`
+    const doors = salleData['doors']
+    const selectedDoor  = salleData['doorId']
     const [name, setName] = useState('')
+
     const [is_default, setDefault] = useState(false)
+    const [door, setDoor] = useState([])
+
+
+    console.log('doors doors', doors);
+    console.log('selected DOOR', salleData['doorId']);
 
     useEffect(() => {
-      if (show == true) {
-          setName(salleData['salleName'])
-          setDefault(salleData['isDefaultSalle'])
-      }
+    if (show == true) {
+        setName(salleData['salleName'])
+        setDefault(salleData['isDefaultSalle'])
+    }
     }, [salleData['salleId']]);
     const HandleSubmit = e => {
         e.preventDefault();
         const salleFormData = {
             name : name,
+            door : Number(door),
             is_default : is_default
         }
         console.log(" =================> salleFormData ", salleFormData);
@@ -42,7 +51,7 @@ const SalleActiviteEditModal = ({show, onShowShange, salleData}) => {
             }).catch(err => {
                 notifyError("Erreur lors de la modification de la salle")
             })
-      }
+      } 
 return ( 
     <Modal  className="fade bd-example-modal-lg" size="xl" onHide={handleShow} show={show}>
     <Modal.Header>
@@ -53,29 +62,48 @@ return (
     </Modal.Header>
     <Modal.Body>
       <form onSubmit={HandleSubmit}>
-          <div className="form-group row">
-              <label className="col-sm-3 col-form-label">Nom  </label>
+            <div className="form-group row">
+                <label className="col-sm-3 col-form-label">Nom  </label>
+                <div className="col-sm-9">
+                    <input type="text" value={name} className="form-control" placeholder="..." onChange={e => setName(e.target.value)}/>
+                </div>
+            </div>
+            <div className="form-group row">
+              <label className="col-sm-3 col-form-label">Salle </label>
               <div className="col-sm-9">
-                  <input type="text" value={name} className="form-control" placeholder="..." onChange={e => setName(e.target.value)}/>
-              </div>
-          </div>
-          <div className="form-group row">
-              <FormControlLabel
-                control={
-                    <Checkbox 
-                        checked={is_default}
-                        onChange={e=> {
-                        setDefault(!is_default)
-                            console.log('target value', e.target.value);
-                        }}
+                  <Autocomplete
+                      onChange={((event, value) =>  {
+                        setDoor(value.id)
+                    }
+                        )} 
+                    //   value={salles}
+                      options={salleData['doors']}
+                      defaultValue={doors[selectedDoor]}
+                      getOptionSelected={(option) =>  option['id']}
 
-                        name="checkedB"
-                        color="primary"
-                    />
-                }
-                label="Salle par défaut"
-            />
-          </div>
+                      id="size-small-standard-multi"
+                      getOptionLabel={(option) =>  ( option['ip_adress'])}
+                      renderInput={(params) =>
+                  (<TextField {...params} name="door" label="Porte" variant="outlined" fullWidth />)}
+                />
+              </div>
+            </div>
+            <div className="form-group row">
+                <FormControlLabel
+                    control={
+                        <Checkbox 
+                            checked={is_default}
+                            onChange={e=> {
+                            setDefault(!is_default)
+                                console.log('target value', e.target.value);
+                            }}
+                            name="checkedB"
+                            color="primary"
+                        />
+                    }
+                    label="Salle par défaut"
+                />
+            </div>
           
           <div className="form-group row d-flex justify-content-between">
             <div className="m-3">

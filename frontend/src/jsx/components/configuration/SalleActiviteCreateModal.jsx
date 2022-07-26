@@ -14,7 +14,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import useForm from 'react-hook-form';
 import createPalette from "@material-ui/core/styles/createPalette";
 
-const SalleActiviteCreateModal = ({show, onShowShange}) => {
+const SalleActiviteCreateModal = ({show, onShowShange, salleData}) => {
   const api = useAxios();
   const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
     // const creneauPerAbonnementEND = `${process.env.REACT_APP_API_URL}/rest-api/abonnement/`
@@ -25,6 +25,7 @@ const [price, setPrice] = useState('')
 const [numberOfDays, setNumberOfDays] = useState('')
 const [seancesQuantity, setSeancesQuantity] = useState('')
 const [activity, setActivity] = useState([])
+const [door, setDoor] = useState([])
 const [selectedActivities, setSelectedActivities] = useState([])
 const [is_default, setDefault] = useState(false)
 
@@ -32,6 +33,7 @@ const [is_default, setDefault] = useState(false)
         e.preventDefault();
         const ebonnementFormData = {
             name : name,
+            door : door,
             is_default : is_default,
         }
         await api.post(salleActiviteCreateEnd, ebonnementFormData).then( res => {
@@ -61,25 +63,45 @@ return (
                     <input type="text" value={name} className="form-control" placeholder="..." onChange={e => setName(e.target.value)}/>
                 </div>
             </div>
-            <div className="form-group row">
-              <FormControlLabel
-                control={
-                    <Checkbox 
-                        checked={is_default}
-                        onChange={e=> {
-                        setDefault(!is_default)
-                            console.log('target value', e.target.value);
-                        }}
 
-                        name="checkedB"
-                        color="primary"
-                    />
-                }
-                label="Salle par défaut"
-            />
+
+            <div className="form-group row">
+              <label className="col-sm-3 col-form-label">Salle </label>
+              <div className="col-sm-9">
+                  <Autocomplete
+                      onChange={((event, value) =>  {
+                        setDoor(value.id)
+                    }
+                        )} 
+                    //   value={salles}
+                      options={salleData['doors']}
+                      getOptionSelected={(option) =>  option['id']}
+
+                      id="size-small-standard-multi"
+                      getOptionLabel={(option) =>  ( option['ip_adress'])}
+                      renderInput={(params) =>
+                  (<TextField {...params} name="door" label="Porte" variant="outlined" fullWidth />)}
+                />
+              </div>
           </div>
           
+          <div className="form-group row">
+                <FormControlLabel
+                    control={
+                        <Checkbox 
+                            checked={is_default}
+                            onChange={e=> {
+                            setDefault(!is_default)
+                                console.log('target value', e.target.value);
+                            }}
 
+                            name="checkedB"
+                            color="primary"
+                        />
+                    }
+                    label="Salle par défaut"
+                />
+            </div>
           <div className="form-group row">
               <div className="col-sm-10">
                   <button type="submit" className="btn btn-primary">
