@@ -9,7 +9,7 @@ def start_linsten_1():
     print('CALLED') 
     device = AccessControl()
     print(' the instance start_linsten_1', device)
-    device.get_login_info(ip='192.168.1.2', port=37777, username='admin', password='123456')
+    device.get_login_info(ip='192.168.1.230', port=37777, username='admin', password='123456')
     result = device.login()
     device.alarm_listen()
     if result:
