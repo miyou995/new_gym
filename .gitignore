@@ -4,3 +4,11 @@ node_modules/
 backend.rar
 frontend/frontend.rar
 frontend/node_modules.rar
+
+# Django #
+*.log
+*.pot
+*.pyc
+__pycache__
+db.sqlite3
+media

@@ -63,7 +63,7 @@ class PresencePostAPIView(generics.CreateAPIView):
 
 class PresenceHistoryListAPIView(generics.ListAPIView):
     queryset = Presence.history.all()
-    print('queryset', queryset.count())
+    # print('queryset', queryset.count())
     # permission_classes = (IsAuthenticated,)
     serializer_class = PresenceHistorySerialiser
     # def get_queryset(self):

@@ -203,7 +203,7 @@ def renew_api_view(request, pk):
 
 class AbonnementClientHistoryListAPIView(generics.ListAPIView):
     queryset = AbonnementClient.history.all()
-    print('queryset', queryset.count())
+    # print('queryset', queryset.count())
     # permission_classes = (IsAuthenticated,)
     serializer_class = AbonnementClientHistorySerializer
     def get_queryset(self):
