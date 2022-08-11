@@ -3,10 +3,11 @@ from rest_framework import generics, viewsets, status, permissions
 # from django.contrib.auth.models import User
 from django.conf import settings
 from authentication.models import User
+from django.contrib.auth.models import Group 
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .serializers import RegisterSerializer, ChangePasswordSerializer, UpdateUserSerializer, ReadUsersView, ObtainTokenSerializer
+from .serializers import RegisterSerializer, ChangePasswordSerializer, UpdateUserSerializer, ReadUsersView, ObtainTokenSerializer, GroupSerializer
 from django.views.decorators.csrf import ensure_csrf_cookie , csrf_protect
 from django.utils.decorators import method_decorator
 # Create your views here.
@@ -15,27 +16,31 @@ from rest_framework_simplejwt.tokens import RefreshToken
 # @method_decorator(csrf_protect, name='dispatch')
 from rest_framework_simplejwt.views import TokenObtainPairView
 # @method_decorator(ensure_csrf_cookie, name='dispatch')
+
 class SignUpView(APIView):
     permission_classes = (AllowAny,)
     serializer_class = RegisterSerializer
 
     def post(self, request, format=None):
         data = self.request.data
+        print(' LE GFROUP', data['group'])
+        group = Group.objects.get(name=data['group']) # HNa lazem fiulter bach njoibou liste ou ndiro for loop najoutiw fiha le group bel wahed
         email= data['email']
         password= data['password']
         re_password = data['re_password']
         try:
             if password == re_password:
                 if User.objects.filter(email=email).exists():
-                    return Response({ ' error' : 'nom d\'utilisateur existe déja'})
+                    return Response({ ' error' : 'nom d\'utilisateur existe déja'}, status=status.HTTP_400_BAD_REQUEST)
                 else:
                     user = User.objects.create_user(email=email, password=password) 
+                    user.groups.add(group)
                     user.save()
                     return Response({ 'success' : 'utilisateur creer avec succés'})
             else:
-                return Response({ 'error' : 'les mots de pass ne sont pas identique'})
+                return Response({ 'error' : 'les mots de pass ne sont pas identique'}, status=status.HTTP_400_BAD_REQUEST)
         except:
-            return Response({"error" : " vérifier votre connection"})
+            return Response({"error" : "vérifier votre connection"}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class BlacklistTokenUpdateView(APIView):
@@ -174,6 +179,11 @@ class UpdateProfileView(generics.UpdateAPIView):
 #     queryset = User.objects.all()
 #     permission_classes = (IsAuthenticated,)
 #     serializer_class = ReadUsersView
+
+class GetGroupsView(generics.ListAPIView):
+    queryset = Group.objects.all()
+    permission_classes = (IsAuthenticated,)
+    serializer_class = GroupSerializer
 
 
 class UserDetailAPIView(generics.RetrieveUpdateDestroyAPIView):

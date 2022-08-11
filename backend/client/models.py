@@ -115,13 +115,22 @@ class Client(models.Model):
 
     def get_absolute_url(self):
         return reverse("client:client-detail", args={"slug": self.slug})
-
+    
+    def is_on_salle(self):
+        # presences = Client.objects.prefetch_related('abonnement_client__presences', is_in_salle=True).filter(id=self.pk)
+        presences = Client.objects.filter(abonnement_client__presences_abc__is_in_salle=True, id=self.pk ).distinct()
+        if presences:
+            return True
+        else: 
+            print('not inb salle presences ---------------------->', presences)
+            return False
     def has_permission(self, door_ip):
         FTM = '%H:%M:%S'
         current_time = datetime.now().strftime("%H:%M:%S")
         creneaux = Creneau.range.get_creneaux_of_day().filter(abonnements__client=self, activity__salle__door__ip_adress= door_ip)
         print('les creneau permis', creneaux)
-
+        if self.is_on_salle :
+            return True
         if len(creneaux) :
             dur_ref_time_format = abs(datetime.strptime(str(creneaux[0].hour_start), FTM) - datetime.strptime(current_time, FTM))
             dur_ref= timedelta.total_seconds(dur_ref_time_format) 

@@ -19,7 +19,6 @@ axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 export const ClientContext = React.createContext()
 
 
-
 function refreshPage() {
   window.location.reload(false);
 }

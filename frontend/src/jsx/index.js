@@ -17,7 +17,6 @@ import Footer from "./layouts/Footer";
 
 import ClientList from "./components/clients/ClientList";
 import UserList from "./components/users/UserList";
-import UserCreate from "./components/users/UserCreate";
 import EditClient from "./components/clients/ClientEdit";
 import ClientDetail from "./components/clients/ClientDetail";
 import ClientCreate from "./components/clients/ClientCreate";
@@ -117,7 +116,6 @@ const Markup = () => {
     // trésorie
     { url: "tresorie", component: Tresorie },
     { url: "users", component: UserList },
-    { url: "users/create", component: UserCreate },
     // Transactions
     // { url: "transaction", component: CoinDetails },
     // clients

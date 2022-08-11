@@ -79,11 +79,13 @@ class ClientDetailAPIView(generics.RetrieveUpdateAPIView):
     serializer_class = ClientSerialiser
     # permission_classes = (AllowAny, )
     def get_object(self):
+
         obj = get_object_or_404(Client.objects.filter(id=self.kwargs["pk"]))
         return obj
     def get(self , request, *args, **kwargs):
         # try:
         obj = get_object_or_404(Client.objects.filter(id=self.kwargs["pk"]))
+        obj.is_on_salle()
         ax = self.serializer_class(obj)
         return Response(ax.data)
         # except:

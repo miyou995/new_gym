@@ -20,12 +20,13 @@ class UserSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class RegisterSerializer(serializers.ModelSerializer):
+    group = serializers.CharField(required=True)
     email = serializers.EmailField(required=True,validators=[UniqueValidator(queryset=User.objects.all())])
     password = serializers.CharField(write_only=True, required=True, validators=[validate_password])
     re_password = serializers.CharField(write_only=True, required=True)
     class Meta:
         model = User
-        fields = ('password', 're_password', 'email', 'first_name', 'last_name')
+        fields = ('password', 're_password', 'email', 'first_name', 'last_name', 'group')
         extra_kwargs = {
             'first_name': {'required': False},
             'last_name': {'required': False}
@@ -37,6 +38,8 @@ class RegisterSerializer(serializers.ModelSerializer):
         return attrs
 
     def create(self, validated_data):
+        group = Group.objects.get(name=validated_data['group']) 
+        print(' THE GROUP', group)
         user = User.objects.create(
             email=validated_data['email'],
             first_name=validated_data['first_name'],
@@ -44,7 +47,9 @@ class RegisterSerializer(serializers.ModelSerializer):
             is_active =True,
             is_staff =True
         )
+
         user.set_password(validated_data['password'])
+        user.groups.add(group)
         user.save()
         return user
 
@@ -119,9 +124,13 @@ class UpdateUserSerializer(serializers.ModelSerializer):
 class ReadUsersView(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'email')
+        fields = ('id', 'email', 'groups')
         # read_only_fields = 'username'
-
+class GroupSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Group
+        fields = '__all__'
+        # read_only_fields = 'username'
 
 class ObtainTokenSerializer(TokenObtainPairSerializer):
     @classmethod

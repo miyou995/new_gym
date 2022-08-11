@@ -7,20 +7,28 @@ import { ToastContainer, toast } from 'react-toastify'
 /// images 
 import { Link } from "react-router-dom";
 import useAxios from "../useAxios";
-
+import UserModal from "./UserModal"
 
 
 const UserList = () => {
-   const api = useAxios();
-
+const api = useAxios();
 const [usersData, setUsersData] = useState([]);
-   useEffect(() =>  {
+const [userModal, setUserModal] = useState(false);
+const [userId, setUserId] = useState("");
+const [userGroups, setUserGroups] = useState([]);
+const [groups, setGroups] = useState([]);
+const groupsEnd = `${process.env.REACT_APP_API_URL}/rest-api/auth/groups/`
+
+   useEffect( () =>  {
       api.get(`${process.env.REACT_APP_API_URL}/rest-api/auth/users`).then( res => {
          console.log('result ', res);
          setUsersData(res.data)
       }).catch( err => {
          console.log('IRRROR', err);
       })
+      api.get(groupsEnd).then( res => {
+         setGroups(res.data)
+     })
    }, []);
    return (
       <Fragment>
@@ -31,15 +39,15 @@ const [usersData, setUsersData] = useState([]);
          </div>
          <div className="form-head d-flex mb-4 mb-md-5 align-items-start">
             <div className="input-group search-area d-inline-flex">
-               
-            </div>
+               </div>
                {/* <div className="input-group search-area d-inline-flex ml-3">
                   <input type="date" name="birth_date" value={startDate} className="form-control"  onChange={e => setStartDate(e.target.value)}/>
                </div>
                <div className="input-group search-area d-inline-flex ml-3">
                   <input type="date" name="birth_date" value={endDate} className="form-control"  onChange={e => setEndDate(e.target.value)}/>
                </div> */}
-            <Link to="/users/create" className="btn btn-primary ml-auto">Ajouter un utilisateur</Link>
+               <Button onClick={e => { setUserModal(true)}}>Ajouter</Button>
+            {/* <Link to="/users/create" className="btn btn-primary ml-auto">Ajouter un utilisateur</Link> */}
          </div>
 
             {/* <Search name= 'Abonnée' lien= "/client/create"/> */}
@@ -78,19 +86,23 @@ const [usersData, setUsersData] = useState([]);
                            </thead>
                            <tbody id="customers">
                            {usersData.map(user => (
-                              <tr role="row" key={user.id} className="btn-reveal-trigger presences">
+                              <tr role="row" key={user.id} className="btn-reveal-trigger presences cursor-abonnement"onClick={e => {
+                                 setUserId(user.id)
+                                 setUserGroups(user.groups)
+                                 console.log('user data-> ', user);
+                              }}>
                                  <td className=" pl-5"> { user.id } </td>
                                  <td className="customer_shop_single">
-                                       <div className="media d-flex align-items-center">
-                                          <div className="media-body">
-                                             <h5 className="mb-0 fs--1">
+                                    <div className="media d-flex align-items-center">
+                                       <div className="media-body">
+                                          <h5 className="mb-0 fs--1">
                                              {user.email}
-                                             </h5>
-                                          </div>
+                                          </h5>
                                        </div>
+                                    </div>
                                  </td>
                               </tr>
-                              ))}
+                           ))}
                            </tbody>
                         </table>
                      </div>
@@ -98,7 +110,12 @@ const [usersData, setUsersData] = useState([]);
                </div>
             </div>
          </div>
-         
+         < UserModal show={userModal} onShowShange={setUserModal}  userData={{
+            userId : userId,
+            userGroups: userGroups,
+            groups : groups
+            // userGroop : userGroop,
+            }} />
       </Fragment>
    );
 };

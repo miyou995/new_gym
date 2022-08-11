@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework import routers
-from .views import ChangePasswordView, UpdateProfileView, UserDetailAPIView, SignUpView, LoginView, DeleteUserView, GetUsersView, BlacklistTokenUpdateView
+from .views import ChangePasswordView, UpdateProfileView, UserDetailAPIView, SignUpView, LoginView, DeleteUserView, GetUsersView, BlacklistTokenUpdateView, GetGroupsView
 # from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 
@@ -13,6 +13,8 @@ urlpatterns = [
     path('register', SignUpView.as_view()),
     path('login', LoginView.as_view()),
     path('users/', GetUsersView.as_view()),
+    path('groups/', GetGroupsView.as_view()),
+    path('users/<int:pk>/', UserDetailAPIView.as_view(), name="user-detail"),
     path('delete/:id', DeleteUserView.as_view()),
     path('api/token/', LoginView.as_view(), name='token_obtain_pair'),
 
@@ -27,7 +29,6 @@ urlpatterns = [
     # path('login/', include('djoser.urls.authtoken')),
     
     # path('users/', UserAPIView.as_view(),  name="user"),
-    # path('users/<int:pk>/', UserDetailAPIView.as_view(), name="user-detail"),
     # path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     # path('login/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     # path('register/', RegisterView.as_view(), name='auth_register'),

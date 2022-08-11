@@ -198,9 +198,8 @@ return (
                     <label className="col-sm-3 col-form-label">Durée </label>
                 <div className="form-group col-sm-9">
                     <Autocomplete
-                        onChange={(event, value) => 
-                        {
-                            try {
+                        onChange={(event, value) => {
+                          try {
                             setDuree(value.jours)
                         } catch (error) {
                             setDuree('')
