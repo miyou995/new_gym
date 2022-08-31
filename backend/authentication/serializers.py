@@ -88,7 +88,7 @@ class UpdateUserSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(required=True)
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'email')
+        fields = ('first_name', 'last_name', 'email', 'groups')
         extra_kwargs = {
             'first_name': {'required': True},
             'last_name': {'required': True},
@@ -120,11 +120,11 @@ class UpdateUserSerializer(serializers.ModelSerializer):
 
         return instance
 
-
+ 
 class ReadUsersView(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'email', 'groups')
+        fields = ('id', 'email', 'groups','first_name', 'last_name',)
         # read_only_fields = 'username'
 class GroupSerializer(serializers.ModelSerializer):
     class Meta:

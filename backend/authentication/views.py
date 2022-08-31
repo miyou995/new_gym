@@ -24,7 +24,6 @@ class SignUpView(APIView):
     def post(self, request, format=None):
         data = self.request.data
         print(' LE GFROUP', data['group'])
-        group = Group.objects.get(name=data['group']) # HNa lazem fiulter bach njoibou liste ou ndiro for loop najoutiw fiha le group bel wahed
         email= data['email']
         password= data['password']
         re_password = data['re_password']
@@ -34,8 +33,13 @@ class SignUpView(APIView):
                     return Response({ ' error' : 'nom d\'utilisateur existe déja'}, status=status.HTTP_400_BAD_REQUEST)
                 else:
                     user = User.objects.create_user(email=email, password=password) 
-                    user.groups.add(group)
                     user.save()
+                    try:
+                        group = Group.objects.get(id=data['group']) 
+                        user.groups.add(group)
+                        print(' Group=====>', group)
+                    except:
+                        pass
                     return Response({ 'success' : 'utilisateur creer avec succés'})
             else:
                 return Response({ 'error' : 'les mots de pass ne sont pas identique'}, status=status.HTTP_400_BAD_REQUEST)

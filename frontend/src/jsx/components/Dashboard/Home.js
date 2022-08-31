@@ -83,6 +83,8 @@ const Home = () => {
    const ToFicheClient = (clientID) => {
       history.push(`/client/${clientID}`)
    }
+   const hello = "sdvsv"
+
    const HandlePresenceSubmit = (e) => {
       e.preventDefault();
       const clientId = {client : Number(client)}
@@ -102,7 +104,6 @@ const Home = () => {
 
          console.log('erreur lors du cposr',err);
       }
-
    )}
    return (
       <Fragment>
@@ -111,18 +112,18 @@ const Home = () => {
               <ShortCuts />
             </div>
       <div className="row">
-        <div className="col-xl-3 col-xxl-6 col-lg-6 col-sm-6 ">
-          <div className="card currency-bx overflow-hidden relative bg-warning">
-            <div className="card-body p-4">
-              <div className="media align-items-center">
-                <div className="media-body">
-                  <h5 className="text-white fs-20">Chiffre D'affaire Global</h5>
-                  <h1 className="text-white mb-0">{chiffreDaffaire}</h1>
+          <div className="col-xl-3 col-xxl-6 col-lg-6 col-sm-6 ">
+            <div className="card currency-bx overflow-hidden relative bg-warning">
+              <div className="card-body p-4">
+                <div className="media align-items-center">
+                  <div className="media-body">
+                    <h5 className="text-white fs-20">Chiffre D'affaire Global</h5>
+                    <h1 className="text-white mb-0">{chiffreDaffaire}</h1>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
         <div className="col-xl-3 col-xxl-6 col-lg-6 col-sm-6 ">
           <div className="card currency-bx overflow-hidden relative bg-secondary">
             <div className="card-body p-4">

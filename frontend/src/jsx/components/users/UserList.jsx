@@ -15,10 +15,12 @@ const api = useAxios();
 const [usersData, setUsersData] = useState([]);
 const [userModal, setUserModal] = useState(false);
 const [userId, setUserId] = useState("");
-const [userGroups, setUserGroups] = useState([]);
+const [selectedUser, setSelectedUser] = useState("");
+
+
+const [userGroup, setUserGroup] = useState([]);
 const [groups, setGroups] = useState([]);
 const groupsEnd = `${process.env.REACT_APP_API_URL}/rest-api/auth/groups/`
-
    useEffect( () =>  {
       api.get(`${process.env.REACT_APP_API_URL}/rest-api/auth/users`).then( res => {
          console.log('result ', res);
@@ -28,28 +30,28 @@ const groupsEnd = `${process.env.REACT_APP_API_URL}/rest-api/auth/groups/`
       })
       api.get(groupsEnd).then( res => {
          setGroups(res.data)
+         console.log("MY GROUSP ", res.data);
      })
    }, []);
+   const setSelectedGroup = (groups, groupId ) => {
+      for (let i = 0; i < groups.length; i++) {
+          if (groupId == groups[i].id){
+             return i
+          }            
+      }
+  }
    return (
       <Fragment>
          <ToastContainer position='top-right' autoClose={5000} hideProgressBar={false} newestOnTop closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
-
          <div className="testimonial-one owl-right-nav owl-carousel owl-loaded owl-drag mb-4">
             <ShortCuts />
          </div>
          <div className="form-head d-flex mb-4 mb-md-5 align-items-start">
             <div className="input-group search-area d-inline-flex">
-               </div>
-               {/* <div className="input-group search-area d-inline-flex ml-3">
-                  <input type="date" name="birth_date" value={startDate} className="form-control"  onChange={e => setStartDate(e.target.value)}/>
-               </div>
-               <div className="input-group search-area d-inline-flex ml-3">
-                  <input type="date" name="birth_date" value={endDate} className="form-control"  onChange={e => setEndDate(e.target.value)}/>
-               </div> */}
+            </div>
                <Button onClick={e => { setUserModal(true)}}>Ajouter</Button>
             {/* <Link to="/users/create" className="btn btn-primary ml-auto">Ajouter un utilisateur</Link> */}
          </div>
-
             {/* <Search name= 'Abonnée' lien= "/client/create"/> */}
             {/* <div className="row d-flex justify-content-arround mb-3">
                   <div className="btn btn-success ml-auto" onClick={e => setPaiementModal(true) }>
@@ -86,10 +88,13 @@ const groupsEnd = `${process.env.REACT_APP_API_URL}/rest-api/auth/groups/`
                            </thead>
                            <tbody id="customers">
                            {usersData.map(user => (
-                              <tr role="row" key={user.id} className="btn-reveal-trigger presences cursor-abonnement"onClick={e => {
+                              <tr role="row" key={user.id} className="btn-reveal-trigger presences cursor-abonnement" onClick={e => {
                                  setUserId(user.id)
-                                 setUserGroups(user.groups)
+                                 setSelectedUser(user)
+                                 setUserGroup(user.groups)
+                                 setUserModal(true)
                                  console.log('user data-> ', user);
+                                 console.log("user group", userGroup);
                               }}>
                                  <td className=" pl-5"> { user.id } </td>
                                  <td className="customer_shop_single">
@@ -112,7 +117,8 @@ const groupsEnd = `${process.env.REACT_APP_API_URL}/rest-api/auth/groups/`
          </div>
          < UserModal show={userModal} onShowShange={setUserModal}  userData={{
             userId : userId,
-            userGroups: userGroups,
+            selectedUser : setSelectedUser,
+            userGroup: userGroup,
             groups : groups
             // userGroop : userGroop,
             }} />

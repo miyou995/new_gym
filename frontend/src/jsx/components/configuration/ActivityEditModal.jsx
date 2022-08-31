@@ -25,7 +25,6 @@ const ActivityEditModal = ({show, onShowShange, activityData}) => {
   console.log('sallesActivite',sallesActivite);
 
 useEffect(() => {
-
   if (activityData['activityId']) {
     setName(activityData['activityName'])
     setColor(activityData['color'])

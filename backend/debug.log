@@ -23102,3 +23102,529 @@ Traceback (most recent call last):
     raise FieldError('Related Field got invalid lookup: {}'.format(lookups[0]))
 django.core.exceptions.FieldError: Related Field got invalid lookup: presences_abc
 2022-08-11 16:42:41,867 django.request WARNING  Not Found: /rest-api/clients/undefined/
+2022-08-15 13:46:59,766 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-08-15 13:47:56,834 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-08-15 14:01:03,148 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-08-15 14:03:51,184 django.request ERROR    Internal Server Error: /rest-api/auth/register
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/authentication/views.py", line 27, in post
+    group = Group.objects.get(name=data['group']) # HNa lazem fiulter bach njoibou liste ou ndiro for loop najoutiw fiha le group bel wahed
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 435, in get
+    raise self.model.DoesNotExist(
+django.contrib.auth.models.Group.DoesNotExist: Group matching query does not exist.
+2022-08-15 14:04:09,401 django.request ERROR    Internal Server Error: /rest-api/auth/register
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/authentication/views.py", line 27, in post
+    group = Group.objects.get(name=data['group']) # HNa lazem fiulter bach njoibou liste ou ndiro for loop najoutiw fiha le group bel wahed
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 435, in get
+    raise self.model.DoesNotExist(
+django.contrib.auth.models.Group.DoesNotExist: Group matching query does not exist.
+2022-08-15 14:11:28,156 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-08-15 14:30:59,512 django.request ERROR    Internal Server Error: /rest-api/auth/register
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/authentication/views.py", line 27, in post
+    group = Group.objects.get(name=data['group']) # HNa lazem fiulter bach njoibou liste ou ndiro for loop najoutiw fiha le group bel wahed
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 435, in get
+    raise self.model.DoesNotExist(
+django.contrib.auth.models.Group.DoesNotExist: Group matching query does not exist.
+2022-08-15 14:31:43,738 django.request ERROR    Internal Server Error: /rest-api/auth/register
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/authentication/views.py", line 26, in post
+    print(' LE GFROUP', data['group'])
+KeyError: 'group'
+2022-08-15 14:32:05,324 django.request ERROR    Internal Server Error: /rest-api/auth/register
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/authentication/views.py", line 26, in post
+    print(' LE GFROUP', data['group'])
+KeyError: 'group'
+2022-08-15 14:36:00,979 django.request ERROR    Internal Server Error: /rest-api/auth/register
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/authentication/views.py", line 27, in post
+    group = Group.objects.get(name=data['group']) # HNa lazem fiulter bach njoibou liste ou ndiro for loop najoutiw fiha le group bel wahed
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 435, in get
+    raise self.model.DoesNotExist(
+django.contrib.auth.models.Group.DoesNotExist: Group matching query does not exist.
+2022-08-15 14:36:43,553 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/authentication/views.py changed, reloading.
+2022-08-15 14:36:45,725 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-08-15 14:37:13,018 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/authentication/views.py changed, reloading.
+2022-08-15 14:37:15,289 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-08-15 14:37:34,814 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/authentication/views.py changed, reloading.
+2022-08-15 14:37:37,204 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-08-15 14:37:40,767 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/authentication/views.py changed, reloading.
+2022-08-15 14:37:42,988 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-08-15 14:37:53,701 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/authentication/views.py changed, reloading.
+2022-08-15 14:37:55,819 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-08-15 14:39:07,504 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/authentication/views.py changed, reloading.
+2022-08-15 14:39:09,663 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-08-15 14:39:27,481 django.request WARNING  Not Found: /rest-api/users
+2022-08-15 14:39:28,520 django.request WARNING  Not Found: /favicon.ico
+2022-08-15 14:52:24,709 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/authentication/serializers.py changed, reloading.
+2022-08-15 14:52:26,817 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-08-15 14:52:30,042 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/authentication/serializers.py changed, reloading.
+2022-08-15 14:52:32,111 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-08-15 15:06:11,274 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-08-22 10:05:07,525 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-08-22 10:06:45,821 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-08-22 10:15:11,464 django.request WARNING  Not Found: /
+2022-08-22 10:15:12,534 django.request WARNING  Not Found: /favicon.ico
+2022-08-22 10:15:30,472 django.request ERROR    Internal Server Error: /rest-api/clients/C0008/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py", line 88, in get
+    obj.is_on_salle()
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py", line 121, in is_on_salle
+    presences = Client.objects.filter(abonnement_client__presences_abc__is_in_salle=True, id=self.pk ).distinct()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 941, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 961, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 968, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1393, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1412, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1339, in build_filter
+    raise FieldError('Related Field got invalid lookup: {}'.format(lookups[0]))
+django.core.exceptions.FieldError: Related Field got invalid lookup: presences_abc
+2022-08-22 10:15:39,584 django.request ERROR    Internal Server Error: /rest-api/clients/C0008/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py", line 88, in get
+    obj.is_on_salle()
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py", line 121, in is_on_salle
+    presences = Client.objects.filter(abonnement_client__presences_abc__is_in_salle=True, id=self.pk ).distinct()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 941, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 961, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 968, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1393, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1412, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1339, in build_filter
+    raise FieldError('Related Field got invalid lookup: {}'.format(lookups[0]))
+django.core.exceptions.FieldError: Related Field got invalid lookup: presences_abc
+2022-08-22 10:16:01,517 django.request ERROR    Internal Server Error: /rest-api/clients/C0008/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py", line 88, in get
+    obj.is_on_salle()
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py", line 121, in is_on_salle
+    presences = Client.objects.filter(abonnement_client__presences_abc__is_in_salle=True, id=self.pk ).distinct()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 941, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 961, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 968, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1393, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1412, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1339, in build_filter
+    raise FieldError('Related Field got invalid lookup: {}'.format(lookups[0]))
+django.core.exceptions.FieldError: Related Field got invalid lookup: presences_abc
+2022-08-22 10:16:27,789 celery.backends.redis ERROR    Connection to Redis lost: Retry (0/20) now.
+2022-08-22 10:16:27,791 celery.backends.redis ERROR    Connection to Redis lost: Retry (1/20) in 1.00 second.
+2022-08-22 10:16:28,793 celery.backends.redis ERROR    Connection to Redis lost: Retry (2/20) in 1.00 second.
+2022-08-22 10:16:29,795 celery.backends.redis ERROR    Connection to Redis lost: Retry (3/20) in 1.00 second.
+2022-08-22 10:16:30,797 celery.backends.redis ERROR    Connection to Redis lost: Retry (4/20) in 1.00 second.
+2022-08-22 10:16:31,800 celery.backends.redis ERROR    Connection to Redis lost: Retry (5/20) in 1.00 second.
+2022-08-22 10:16:32,802 celery.backends.redis ERROR    Connection to Redis lost: Retry (6/20) in 1.00 second.
+2022-08-22 10:16:33,804 celery.backends.redis ERROR    Connection to Redis lost: Retry (7/20) in 1.00 second.
+2022-08-22 10:16:34,806 celery.backends.redis ERROR    Connection to Redis lost: Retry (8/20) in 1.00 second.
+2022-08-22 10:16:35,809 celery.backends.redis ERROR    Connection to Redis lost: Retry (9/20) in 1.00 second.
+2022-08-22 10:16:36,811 celery.backends.redis ERROR    Connection to Redis lost: Retry (10/20) in 1.00 second.
+2022-08-22 10:16:37,813 celery.backends.redis ERROR    Connection to Redis lost: Retry (11/20) in 1.00 second.
+2022-08-22 10:16:38,815 celery.backends.redis ERROR    Connection to Redis lost: Retry (12/20) in 1.00 second.
+2022-08-22 10:16:39,817 celery.backends.redis ERROR    Connection to Redis lost: Retry (13/20) in 1.00 second.
+2022-08-22 10:16:40,819 celery.backends.redis ERROR    Connection to Redis lost: Retry (14/20) in 1.00 second.
+2022-08-22 10:16:41,820 celery.backends.redis ERROR    Connection to Redis lost: Retry (15/20) in 1.00 second.
+2022-08-22 10:16:42,822 celery.backends.redis ERROR    Connection to Redis lost: Retry (16/20) in 1.00 second.
+2022-08-22 10:16:43,823 celery.backends.redis ERROR    Connection to Redis lost: Retry (17/20) in 1.00 second.
+2022-08-22 10:16:44,825 celery.backends.redis ERROR    Connection to Redis lost: Retry (18/20) in 1.00 second.
+2022-08-22 10:16:45,827 celery.backends.redis ERROR    Connection to Redis lost: Retry (19/20) in 1.00 second.
+2022-08-22 10:16:46,829 celery.backends.redis CRITICAL 
+Retry limit exceeded while trying to reconnect to the Celery redis result store backend. The Celery application must be restarted.
+
+2022-08-22 10:16:47,178 django.request ERROR    Internal Server Error: /rest-api/salle-activite/start_listening/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 611, in connect
+    sock = self.retry.call_with_retry(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 612, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 677, in _connect
+    raise err
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 665, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/backends/redis.py", line 126, in reconnect_on_error
+    yield
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/backends/redis.py", line 176, in _consume_from
+    self._pubsub.subscribe(key)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/client.py", line 1592, in subscribe
+    ret_val = self.execute_command("SUBSCRIBE", *new_channels.keys())
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/client.py", line 1433, in execute_command
+    self.connection = self.connection_pool.get_connection(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 1387, in get_connection
+    connection.connect()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 617, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 611, in connect
+    sock = self.retry.call_with_retry(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 612, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 677, in _connect
+    raise err
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 665, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py", line 106, in start_listening
+    start_linsten_1.delay()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/app/task.py", line 426, in delay
+    return self.apply_async(args, kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/app/task.py", line 566, in apply_async
+    return app.send_task(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/app/base.py", line 740, in send_task
+    self.backend.on_task_call(P, task_id)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/backends/redis.py", line 343, in on_task_call
+    self.result_consumer.consume_from(task_id)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/backends/redis.py", line 168, in consume_from
+    return self.start(task_id)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/backends/redis.py", line 146, in start
+    self._consume_from(initial_task_id)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/backends/redis.py", line 176, in _consume_from
+    self._pubsub.subscribe(key)
+  File "/usr/lib/python3.8/contextlib.py", line 131, in __exit__
+    self.gen.throw(type, value, traceback)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/backends/redis.py", line 129, in reconnect_on_error
+    self._ensure(self._reconnect_pubsub, ())
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/backends/redis.py", line 354, in ensure
+    return retry_over_time(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/kombu/utils/functional.py", line 344, in retry_over_time
+    return fun(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/backends/redis.py", line 114, in _reconnect_pubsub
+    metas = self.backend.client.mget(self.subscribed_to)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/commands/core.py", line 1893, in mget
+    return self.execute_command("MGET", *args, **options)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/client.py", line 1235, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 1387, in get_connection
+    connection.connect()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 617, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+2022-08-22 10:18:28,762 django.request ERROR    Internal Server Error: /rest-api/clients/C0011/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py", line 88, in get
+    obj.is_on_salle()
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py", line 121, in is_on_salle
+    presences = Client.objects.filter(abonnement_client__presences_abc__is_in_salle=True, id=self.pk ).distinct()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 941, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 961, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 968, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1393, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1412, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1339, in build_filter
+    raise FieldError('Related Field got invalid lookup: {}'.format(lookups[0]))
+django.core.exceptions.FieldError: Related Field got invalid lookup: presences_abc
+2022-08-31 14:41:57,908 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-08-31 14:43:15,059 django.request WARNING  Not Found: /fr/
+2022-08-31 14:43:15,971 django.request WARNING  Not Found: /favicon.ico
+2022-08-31 14:57:01,510 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-08-31 14:57:55,923 django.request WARNING  Not Found: /rest-api/abonnement-client-history/
+2022-08-31 15:45:12,077 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-08-31 18:59:42,081 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-08-31 19:00:22,714 django.request ERROR    Internal Server Error: /rest-api/clients/C0008/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py", line 88, in get
+    obj.is_on_salle()
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py", line 121, in is_on_salle
+    presences = Client.objects.filter(abonnement_client__presences_abc__is_in_salle=True, id=self.pk ).distinct()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 941, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 961, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 968, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1393, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1412, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1339, in build_filter
+    raise FieldError('Related Field got invalid lookup: {}'.format(lookups[0]))
+django.core.exceptions.FieldError: Related Field got invalid lookup: presences_abc
+2022-08-31 19:00:45,853 django.request ERROR    Internal Server Error: /rest-api/clients/C0008/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py", line 88, in get
+    obj.is_on_salle()
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py", line 121, in is_on_salle
+    presences = Client.objects.filter(abonnement_client__presences_abc__is_in_salle=True, id=self.pk ).distinct()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 941, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 961, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 968, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1393, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1412, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1339, in build_filter
+    raise FieldError('Related Field got invalid lookup: {}'.format(lookups[0]))
+django.core.exceptions.FieldError: Related Field got invalid lookup: presences_abc
+2022-08-31 19:08:38,152 django.request WARNING  Not Found: /rest-api/abonnement-client-history/
+2022-08-31 19:43:24,708 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-08-31 19:55:09,603 django.request WARNING  Unauthorized: /api/token/refresh/
