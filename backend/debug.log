@@ -23628,3 +23628,4 @@ django.core.exceptions.FieldError: Related Field got invalid lookup: presences_a
 2022-08-31 19:08:38,152 django.request WARNING  Not Found: /rest-api/abonnement-client-history/
 2022-08-31 19:43:24,708 django.request WARNING  Unauthorized: /api/token/refresh/
 2022-08-31 19:55:09,603 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-01 09:56:02,728 django.utils.autoreload INFO     Watching for file changes with StatReloader
