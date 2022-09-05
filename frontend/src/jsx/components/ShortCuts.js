@@ -15,6 +15,8 @@ import dashboardImg from "../../images/profile/dashboard.png";
 import confImg from "../../images/profile/gear.png";
 import stafImg from "../../images/profile/waiter.png";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import useAxios from "./useAxios";
 
 function SampleNextArrow(props) {
   const { onClick } = props;
@@ -27,12 +29,12 @@ function SampleNextArrow(props) {
 
 const ShortCuts = () => {
   const settings = {
-    slidesToShow: 9,
+    slidesToShow: 7,
     slidesToScroll: 1,
     dots: false,
     autoplay: false,
     // autoplaySpeed: 2000,
-    centerMode: true,
+    centerMode: false,
     // infinite: true,
     // touchMove: true,
     className: "contacts-card",
@@ -73,7 +75,26 @@ const ShortCuts = () => {
       },
     ],
   };
+
+  const api = useAxios()
+  
+  const [uStatus, setUStatus] = useState(null);
+
+  api.get(`${process.env.REACT_APP_API_URL}/rest-api/clients-name-drop/`).then(res => {
+    console.log(res.status);
+    setUStatus(res.status);
+ }).catch(error => {
+    if (error.response) {
+       console.log(error.response.data);
+       console.log(error.response.status);
+       console.log(error.response.headers);
+       setUStatus(error.response.status);
+    }
+ })
+
+
   return (
+    // <div className="d-flex justify-content-around text-center contacts-card">
     <Slider {...settings}>
       <Link to="/">
         <div className="items">
@@ -84,15 +105,19 @@ const ShortCuts = () => {
           </div>
         </div>
       </Link>
-      <Link to="/transactions">
-        <div className="items">
-          <div>
-            <img className="mb-3 ml-auto mr-auto" src={transactionImg}  />
-            <h6 className=" mb-0 text-center">Transactions</h6>
-            {/* <span className="fs-12">Gestion des transaction</span> */}
+      {uStatus === 200 ? (
+        <Link to="/transactions">
+          <div className="items">
+            <div>
+              <img className="mb-3 ml-auto mr-auto" src={transactionImg}  />
+              <h6 className=" mb-0 text-center">Transactions</h6>
+              {/* <span className="fs-12">Gestion des transaction</span> */}
+            </div>
           </div>
-        </div>
-      </Link>
+        </Link> 
+        ) : null } 
+     
+
       {/* <Link to="/Abonnements">
          <div className="items">
             <div>
@@ -163,7 +188,9 @@ const ShortCuts = () => {
           </div>
         </div>
       </Link>
-    </Slider>
+   </Slider> 
+  //  </div>
+
   );
 };
 
