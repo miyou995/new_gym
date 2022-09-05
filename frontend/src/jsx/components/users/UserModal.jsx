@@ -2,7 +2,10 @@ import React, { Fragment , useCallback, useEffect, useState} from "react";
 import PageTitle from "../../layouts/PageTitle";
 import { Dropdown, Button, Modal } from "react-bootstrap";
 import ShortCuts from "../ShortCuts";
-import { ToastContainer, toast } from 'react-toastify'
+// import { ToastContainer, toast } from 'react-toastify'
+
+import {notifySuccess, notifyError} from '../Alert'
+
 // import DetteCreateModal from './DetteCreateModal';
 /// images 
 import { Link } from "react-router-dom";
@@ -20,15 +23,25 @@ const UserModal = ({show, onShowShange, userData}) => {
   const [selectedUser, setSelectedUser] = useState();
   const [groups, setGroups] = useState();
 
-    const initialFormData = Object.freeze({
-      email: userData["user"],
-      first_name: userData["user"],
-      last_name: userData["user"],
-      password: userData["user"],
-      re_password: userData["user"],
-      });
+    // const initialFormData = Object.freeze({
+    //   email: userData["user"],
+    //   first_name: userData["user"],
+    //   last_name: userData["user"],
+    //   password: userData["user"],
+    //   re_password: userData["user"],
+    //   });
+      
+    const [formData, setFormData] = useState({
+        email: '',
+        first_name: '',
+        last_name: '',
+        password: '',
+        eventTitle: '',
+        re_password: '', 
+    })
 
-    const [formData, setFormData] = useState(initialFormData);
+    // const [formData, setFormData] = useState(initialFormData);
+
     const [userGroup, setUserGroup] = useState(userData['userGroup']);
     const [group, setGroup] = useState('');
 
@@ -43,13 +56,18 @@ const UserModal = ({show, onShowShange, userData}) => {
   //  const groupIndex = () => {
   //   const groupList = userGroup
   //  }
-    const { first_name, last_name, email, password, re_password} = formData;
+  
+    // const { first_name, last_name, email, password, re_password} = formData;
+
       const handleChange = (e) => {
-          setFormData({
+        setFormData({
               ...formData,
               [e.target.name]: e.target.value.trim(),
           });
       };
+      
+    
+      
 
       const handleSubmit = (e) => {
           e.preventDefault();
@@ -65,8 +83,15 @@ const UserModal = ({show, onShowShange, userData}) => {
               // window.location = '/login';
               console.log(res);
               console.log(res.data);
+              notifySuccess(" Le Client a été ajouter avec succés");
+              onShowShange(false)
+          }).catch(err => {
+            notifyError("Erreur lors de la creation de l'abonnement")
           });
       };
+
+      console.log(formData);
+
    return (
     <Modal  className="fade bd-example-modal-md" size="md" onHide={handleShow} show={show}>
     <Modal.Header>
@@ -82,19 +107,19 @@ const UserModal = ({show, onShowShange, userData}) => {
             <label className="mb-1">
               <strong>Email</strong>
             </label>
-            <input type="email" className="form-control" placeholder="hello@example.com" name="email" onChange={(e) => handleChange(e)} value={formData.email} />
+            <input type="email" className="form-control" placeholder="hello@example.com" name="email" onChange={(e) => handleChange(e)} value={formData?.email} />
           </div>
           <div className="form-group">
             <label className="mb-1">
               <strong>Nom</strong>
             </label>
-            <input type="nom" className="form-control" placeholder="votre nom..." name="first_name" onChange={(e) => handleChange(e)} value={formData.first_name} />
+            <input type="nom" className="form-control" placeholder="votre nom..." name="first_name" onChange={(e) => handleChange(e)} value={formData?.first_name} />
           </div>
           <div className="form-group">
             <label className="mb-1">
               <strong>Prénom</strong>
             </label>
-            <input type="nom" className="form-control" placeholder="votre Prénom..." name="last_name" onChange={(e) => handleChange(e)} value={formData.last_name} />
+            <input type="nom" className="form-control" placeholder="votre Prénom..." name="last_name" onChange={(e) => handleChange(e)} value={formData?.last_name} />
           </div>
           <div className="form-group">
             <label>Role(s)</label>
@@ -112,16 +137,16 @@ const UserModal = ({show, onShowShange, userData}) => {
             <label className="mb-1">
               <strong>Password</strong>
             </label>
-            <input type="password" className="form-control" name="password" onChange={(e) => handleChange(e)} value={password} />
+            <input type="password" className="form-control" name="password" onChange={(e) => handleChange(e)} value={formData.password} />
           </div>
           <div className="form-group">
             <label className="mb-1">
               <strong>Password</strong>
             </label>
-            <input type="password" className="form-control" name="re_password" onChange={(e) => handleChange(e)} value={re_password} />
+            <input type="password" className="form-control" name="re_password" onChange={(e) => handleChange(e)} value={formData.re_password} />
           </div>
           <div className="text-center mt-4">
-            <button type="submit" className="btn btn-primary btn-block" > Confirmer </button>
+            <button type="submit" className="btn btn-primary btn-block"> Confirmer </button>
           </div>
         </form>
         <div className="new-account mt-3">

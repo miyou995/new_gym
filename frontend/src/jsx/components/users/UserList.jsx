@@ -14,13 +14,20 @@ const UserList = () => {
 const api = useAxios();
 const [usersData, setUsersData] = useState([]);
 const [userModal, setUserModal] = useState(false);
+
+const [editUserModal, setEditUserModal] = useState(true);
+
+
 const [userId, setUserId] = useState("");
 const [selectedUser, setSelectedUser] = useState("");
 
+//not getting first_name, last_name "null"
+//must refresh when creating account!!
 
 const [userGroup, setUserGroup] = useState([]);
 const [groups, setGroups] = useState([]);
 const groupsEnd = `${process.env.REACT_APP_API_URL}/rest-api/auth/groups/`
+
    useEffect( () =>  {
       api.get(`${process.env.REACT_APP_API_URL}/rest-api/auth/users`).then( res => {
          console.log('result ', res);
@@ -32,7 +39,8 @@ const groupsEnd = `${process.env.REACT_APP_API_URL}/rest-api/auth/groups/`
          setGroups(res.data)
          console.log("MY GROUSP ", res.data);
      })
-   }, []);
+   }, [userModal]);
+
    const setSelectedGroup = (groups, groupId ) => {
       for (let i = 0; i < groups.length; i++) {
           if (groupId == groups[i].id){
@@ -89,7 +97,7 @@ const groupsEnd = `${process.env.REACT_APP_API_URL}/rest-api/auth/groups/`
                            <tbody id="customers">
                            {usersData.map(user => (
                               <tr role="row" key={user.id} className="btn-reveal-trigger presences cursor-abonnement" onClick={e => {
-                                 setUserId(user.id)
+                                 setUserId( editUserModal ? user.id : userId)
                                  setSelectedUser(user)
                                  setUserGroup(user.groups)
                                  setUserModal(true)
@@ -115,13 +123,16 @@ const groupsEnd = `${process.env.REACT_APP_API_URL}/rest-api/auth/groups/`
                </div>
             </div>
          </div>
-         < UserModal show={userModal} onShowShange={setUserModal}  userData={{
-            userId : userId,
-            selectedUser : setSelectedUser,
-            userGroup: userGroup,
-            groups : groups
-            // userGroop : userGroop,
-            }} />
+         {/* just appearing the modal  */}
+         { userModal == true && 
+            <UserModal show={userModal} onShowShange={setUserModal}  userData={{
+               userId : userId,
+               selectedUser : setSelectedUser,
+               userGroup: userGroup,
+               groups : groups
+               // userGroop : userGroop,
+            }} /> }
+
       </Fragment>
    );
 };
