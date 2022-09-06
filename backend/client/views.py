@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from rest_framework import generics, viewsets
 from .models import Client, Personnel, Coach, Maladie
 from .serializers import ClientSerialiser, PersonnelSerializer, CoachSerializer, MaladieSerializer, ClientNameSerializer, ClientCreateSerialiser, ClientNameDropSerializer, ClientLastPresenceSerializer
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.permissions import AllowAny, IsAuthenticated,IsAdminUser
 from rest_framework.response import Response
 from rest_framework.parsers import MultiPartParser, FormParser
 from django_auto_prefetching import AutoPrefetchViewSetMixin
@@ -36,7 +36,7 @@ class ClientListAPIView(AutoPrefetchViewSetMixin, generics.ListAPIView):
     # permission_classes = (IsAuthenticated,)
     serializer_class = ClientSerialiser
     # lookup_field = 'slug'
-    permission_classes = (AllowAny, )
+    permission_classes = (IsAdminUser, )
     search_fields = ['=id','last_name',  'first_name', 'phone']
 
 
@@ -44,7 +44,7 @@ class ClientNamesDropListAPIView(generics.ListAPIView):
     queryset = Client.objects.all()
     # permission_classes = (IsAuthenticated,)
     serializer_class = ClientNameDropSerializer
-    permission_classes = (AllowAny, )
+    permission_classes = (IsAdminUser, )
 
 
 class GETClientDetailAPIView(generics.RetrieveAPIView):
@@ -193,7 +193,7 @@ class MaladieViewSet(viewsets.ViewSet):
 
 class ClientNameViewAPI(generics.ListAPIView):
     pagination_class = StandardResultsSetPagination
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAdminUser,)
 
     queryset = Client.objects.all().order_by('-id')
     serializer_class = ClientNameSerializer

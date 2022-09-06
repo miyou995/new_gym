@@ -8,24 +8,24 @@ import { ToastContainer, toast } from 'react-toastify'
 import { Link } from "react-router-dom";
 import useAxios from "../useAxios";
 import UserModal from "./UserModal"
+// import EditForm from "./EditForm";
+// import UpdateIcon from '@material-ui/icons/Update';
+// import DeleteIcon from '@material-ui/icons/Delete';
 
-
+import Pagination from "./Pagination.js";
+import Users from "./Users";
 const UserList = () => {
+
 const api = useAxios();
 const [usersData, setUsersData] = useState([]);
 const [userModal, setUserModal] = useState(false);
-
-const [editUserModal, setEditUserModal] = useState(true);
-
-
 const [userId, setUserId] = useState("");
 const [selectedUser, setSelectedUser] = useState("");
 
-//not getting first_name, last_name "null"
-//must refresh when creating account!!
 
 const [userGroup, setUserGroup] = useState([]);
 const [groups, setGroups] = useState([]);
+
 const groupsEnd = `${process.env.REACT_APP_API_URL}/rest-api/auth/groups/`
 
    useEffect( () =>  {
@@ -48,6 +48,17 @@ const groupsEnd = `${process.env.REACT_APP_API_URL}/rest-api/auth/groups/`
           }            
       }
   }
+   // const [users, setUsers] = useState([]);
+   const [loading, setLoading] = useState(false);
+   const [currentPage, setCurrentPage] = useState(1);
+   const [UserPerPage] = useState(2);
+
+  const indexOfLastUser = currentPage * UserPerPage;
+  const indexOfFirstUser = indexOfLastUser - UserPerPage;
+  const currentUsers = usersData.slice(indexOfFirstUser, indexOfLastUser);
+
+   const paginate = pageNumber => setCurrentPage(pageNumber);
+  
    return (
       <Fragment>
          <ToastContainer position='top-right' autoClose={5000} hideProgressBar={false} newestOnTop closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
@@ -95,44 +106,36 @@ const groupsEnd = `${process.env.REACT_APP_API_URL}/rest-api/auth/groups/`
                               </tr>
                            </thead>
                            <tbody id="customers">
-                           {usersData.map(user => (
-                              <tr role="row" key={user.id} className="btn-reveal-trigger presences cursor-abonnement" onClick={e => {
-                                 setUserId( editUserModal ? user.id : userId)
-                                 setSelectedUser(user)
-                                 setUserGroup(user.groups)
-                                 setUserModal(true)
-                                 console.log('user data-> ', user);
-                                 console.log("user group", userGroup);
-                              }}>
-                                 <td className=" pl-5"> { user.id } </td>
-                                 <td className="customer_shop_single">
-                                    <div className="media d-flex align-items-center">
-                                       <div className="media-body">
-                                          <h5 className="mb-0 fs--1">
-                                             {user.email}
-                                          </h5>
-                                       </div>
-                                    </div>
-                                 </td>
-                              </tr>
-                           ))}
+                              <Users usersData={currentUsers} setUserId={setUserId} setSelectedUser={setSelectedUser}
+                              setUserGroup={setUserGroup} userGroup={userGroup} loading={loading}/>
                            </tbody>
                         </table>
+                        <Pagination
+                           UserPerPage={UserPerPage}
+                           totalUsers={usersData.length}
+                           paginate={paginate}
+                        />
+ 
+                        
                      </div>
                   </div>
                </div>
             </div>
          </div>
-         {/* just appearing the modal  */}
          { userModal == true && 
-            <UserModal show={userModal} onShowShange={setUserModal}  userData={{
-               userId : userId,
-               selectedUser : setSelectedUser,
-               userGroup: userGroup,
-               groups : groups
-               // userGroop : userGroop,
-            }} /> }
+         <UserModal show={userModal} onShowShange={setUserModal}  userData={{
+            userId : userId,
+            selectedUser : setSelectedUser,
+            userGroup: userGroup,
+            groups : groups
+            // userGroop : userGroop,
+            }}
+           />
+         }
 
+            {/* <EditForm show={userModal} onShowShange={setUserModal} userData={{
+               userId: userId,
+            }} /> */}
       </Fragment>
    );
 };
