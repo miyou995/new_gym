@@ -25,6 +25,8 @@ class SignUpView(APIView):
         data = self.request.data
         print(' LE GFROUP', data['group'])
         email= data['email']
+        first_name = data['first_name']
+        last_name = data['last_name']
         password= data['password']
         re_password = data['re_password']
         try:
@@ -32,7 +34,7 @@ class SignUpView(APIView):
                 if User.objects.filter(email=email).exists():
                     return Response({ ' error' : 'nom d\'utilisateur existe déja'}, status=status.HTTP_400_BAD_REQUEST)
                 else:
-                    user = User.objects.create_user(email=email, password=password) 
+                    user = User.objects.create_user(email=email, password=password, first_name=first_name, last_name=last_name) 
                     user.save()
                     try:
                         group = Group.objects.get(id=data['group']) 
