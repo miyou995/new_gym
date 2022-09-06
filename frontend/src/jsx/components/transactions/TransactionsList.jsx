@@ -104,17 +104,17 @@ const [startDate, setStartDate] = useState(formatDate(new Date('2021-01-05')));
    })
 
 
-   api.get(`${process.env.REACT_APP_API_URL}/rest-api/clients-name-drop/`).then(res => {
-      console.log(res.status);
-      setUStatus(res.status);
-   }).catch(error => {
-      if (error.response) {
-         console.log(error.response.data);
-         console.log(error.response.status);
-         console.log(error.response.headers);
-         setUStatus(error.response.status);
-      }
-   })
+   // api.get(`${process.env.REACT_APP_API_URL}/rest-api/clients-name-drop/`).then(res => {
+   //    console.log(res.status);
+   //    setUStatus(res.status);
+   // }).catch(error => {
+   //    if (error.response) {
+   //       console.log(error.response.data);
+   //       console.log(error.response.status);
+   //       console.log(error.response.headers);
+   //       setUStatus(error.response.status);
+   //    }
+   // })
 
       // const presenceDateDate =  () => {
          // const page = nextpage
