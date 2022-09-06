@@ -12,7 +12,7 @@ import AutreCreateModal from './AutreCreateModal';
 // import DetteCreateModal from './DetteCreateModal';
 /// images 
 
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { transformToNestObject } from "react-hook-form";
 
 import {
@@ -68,7 +68,14 @@ const [startDate, setStartDate] = useState(formatDate(new Date('2021-01-05')));
    //          console.log('le resultat des clients est ', res.data);
    //       })}
    // }, [searchValue]);
-const [nextpage, setNextpage] = useState(1);
+
+   const [uStatus, setUStatus] = useState(null);
+
+   const [nextpage, setNextpage] = useState(1);
+   
+
+   const history = useHistory();
+
 
    useEffect(() =>  {
       // api.get(`${process.env.REACT_APP_API_URL}/rest-api/presence/?start_date=${startDate}&end_date=${endDate}`).then(res => {
@@ -76,12 +83,39 @@ const [nextpage, setNextpage] = useState(1);
       //    setEndDate(res.data.results)
       //    console.log('le resultat des clients est ', res.data);
       // })
+
       const dateDebut = formatDate(startDate)
       const dateFin = formatDate(endDate)
+
       api.get(`${process.env.REACT_APP_API_URL}/rest-api/transactions/?page=${nextpage}&start_date=${dateDebut}&end_date=${dateFin}`).then( res => {
+         // setUStatus(res.status);
+         console.log(res.status);
          console.log('result ', res);
-         setTransData(res.data.results)
-      })
+         // setTransData(res.data.results);
+         // console.log(res.status)
+         // return res.status < 400;
+      }).catch((error) => {
+         if (error.response) {
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+
+      }
+   })
+
+
+   api.get(`${process.env.REACT_APP_API_URL}/rest-api/clients-name-drop/`).then(res => {
+      console.log(res.status);
+      setUStatus(res.status);
+   }).catch(error => {
+      if (error.response) {
+         console.log(error.response.data);
+         console.log(error.response.status);
+         console.log(error.response.headers);
+         setUStatus(error.response.status);
+      }
+   })
+
       // const presenceDateDate =  () => {
          // const page = nextpage
       // }
@@ -93,13 +127,23 @@ const [nextpage, setNextpage] = useState(1);
    //    })}
    // presenceDateDate()
    }, [startDate, endDate,nextpage,paiementModal,remunerationCoachModal,remunerationPersonnelModal,autreModal]);
+
+
+
+   console.log(uStatus);
+
    return (
       <Fragment>
+        
          <ToastContainer position='top-right' autoClose={5000} hideProgressBar={false} newestOnTop closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
-
+      
          <div className="testimonial-one owl-right-nav owl-carousel owl-loaded owl-drag mb-4">
-            <ShortCuts />
+            <ShortCuts  />
          </div>
+
+         {uStatus == 200 && (
+         <>
+
             {/* <Search name= 'Abonnée' lien= "/client/create"/> */}
             <div className="row d-flex justify-content-arround mb-3">
                   <div className="btn btn-success ml-auto" onClick={e => setPaiementModal(true) }>
@@ -236,7 +280,11 @@ const [nextpage, setNextpage] = useState(1);
                Suivant
             </Button>
             </div>
+
          </div>
+   
+         </>
+         )}
       </Fragment>
    );
 };
