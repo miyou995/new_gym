@@ -194,6 +194,7 @@ import ShortCuts from "../ShortCuts";
 
 const UpdateModal = (props) => {
     const api = useAxios();
+    
     const currentUserId = props.match.params.id;
 
     let userURI = `${process.env.REACT_APP_API_URL}/rest-api/auth/users/${currentUserId}/`
@@ -234,10 +235,12 @@ const UpdateModal = (props) => {
     }
 
     const [u, setU] = useState(404);
+    const [userEditStatus, setUserEditStatus] = useState(null);
 
     const aa = api.get(`${process.env.REACT_APP_API_URL}/rest-api/auth/users/${currentUserId}/`)
         .then(res => {
             setU(res.status);
+            setUserEditStatus(res.status);
             console.log(res.status);
         }).catch(err => {
             const { status, data, config } = err.response;
@@ -247,6 +250,7 @@ const UpdateModal = (props) => {
             if (status === 400 && config.method === 'get' && data.error.hasOwnProperty('id')) {
                 history.push('/users')
             }
+            setUserEditStatus(err.response.status)
             console.log(err)
             // history.push('/users')
         })
@@ -261,43 +265,46 @@ const UpdateModal = (props) => {
             <div className="testimonial-one owl-right-nav owl-carousel owl-loaded owl-drag mb-4">
                 <ShortCuts />
             </div>
-            <div className="card">
-                <div className="card-header">
-                    <h4 className="card-title">Modifier Utilisateur</h4>
-                </div>
-                <div className="card-body">
-                    <div className="basic-form">
-                        <form onSubmit={HandleSubmit}>
-                            <div className="form-row">
-                                <div className="form-group col-md-6">
-                                    <label>Nom </label>
-                                    <input type="text" name="last_name" className="form-control" value={lastName} placeholder="Nom du client" onChange={e => setLastName(e.target.value)} />
-                                </div>
-                                <div className="form-group col-md-6">
-                                    <label>Prénom</label>
-                                    <input type="text" name="first_name" className="form-control" value={firstName} placeholder="Prénom du client" onChange={e => setFirstName(e.target.value)} />
-                                </div>
-                                <div className="form-group col-md-6">
-                                    <label>Email </label>
-                                    <input type="email" name="email" className="form-control" value={email} placeholder="Email" onChange={e => setEmail(e.target.value)} />
-                                </div>
-                                {/* <div className="form-group col-md-4">
-                      <label>état</label>
-                      <select  defaultValue={"option"} name="state" className="form-control"value={etat} onChange={e => setEtat(e.target.value)}>
-                        <option value="option" disabled>Cliquez pour choisir</option>
-                        <option value="A" >Active</option>
-                        <option value="N" >Non active</option>
-                        <option value="S" >Suspendue</option>
-                      </select>
-                    </div> */}
-                            </div>
-                            <button type="submit" className="btn btn-primary">
-                                Confirmer la modification
-                            </button>
-                        </form>
+            {userEditStatus == 200 && (
+                <div className="card">
+        <div className="card-header">
+            <h4 className="card-title">Modifier Utilisateur</h4>
+        </div>
+        <div className="card-body">
+            <div className="basic-form">
+                <form onSubmit={HandleSubmit}>
+                    <div className="form-row">
+                        <div className="form-group col-md-6">
+                            <label>Nom </label>
+                            <input type="text" name="last_name" className="form-control" value={lastName} placeholder="Nom du client" onChange={e => setLastName(e.target.value)} />
+                        </div>
+                        <div className="form-group col-md-6">
+                            <label>Prénom</label>
+                            <input type="text" name="first_name" className="form-control" value={firstName} placeholder="Prénom du client" onChange={e => setFirstName(e.target.value)} />
+                        </div>
+                        <div className="form-group col-md-6">
+                            <label>Email </label>
+                            <input type="email" name="email" className="form-control" value={email} placeholder="Email" onChange={e => setEmail(e.target.value)} />
+                        </div>
+                        {/* <div className="form-group col-md-4">
+              <label>état</label>
+              <select  defaultValue={"option"} name="state" className="form-control"value={etat} onChange={e => setEtat(e.target.value)}>
+                <option value="option" disabled>Cliquez pour choisir</option>
+                <option value="A" >Active</option>
+                <option value="N" >Non active</option>
+                <option value="S" >Suspendue</option>
+              </select>
+            </div> */}
                     </div>
-                </div>
+                    <button type="submit" className="btn btn-primary">
+                        Confirmer la modification
+                    </button>
+                </form>
             </div>
+        </div>
+                </div>
+            )}
+    
         </div>
 
     )
