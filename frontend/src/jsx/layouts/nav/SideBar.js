@@ -1,13 +1,15 @@
 import React,  {useState, Component, useEffect } from "react";
 
 /// Link
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 /// Scroll
 import PerfectScrollbar from "react-perfect-scrollbar";
 
 /// Menu
 import MetisMenu from "metismenujs";
+import useAxios from "../../components/useAxios";
+import SbNavLinks from "./SbNavLinks";
 
 ///
 // import drump from "../../../images/card/drump.png";
@@ -78,17 +80,50 @@ const [path,setPath] = useState("");
    //       config = ["configuration"];
 
 
+   const api = useAxios();
+
+   const [uStatus, setUStatus] = useState(null);
+
+   api.get(`${process.env.REACT_APP_API_URL}/rest-api/clients-name-drop/`).then(res => {
+      console.log(res.status);
+      setUStatus(res.status);
+   }).catch(error => {
+      if (error.response) {
+         console.log(error.response.data);
+         console.log(error.response.status);
+         console.log(error.response.headers);
+         setUStatus(error.response.status);
+      }
+   })
+
+  
 
       return (
          <div className="deznav">
             <PerfectScrollbar className="deznav-scroll">
                <MM className="metismenu" id="menu">
-               <li >
+               <SbNavLinks LinkName="/" Icon="flaticon-381-home" Name="Tableau de bord" />
+               <SbNavLinks LinkName="/client" Icon="flaticon-381-user-9" Name="Abonnées" />
+               {uStatus === 200 && (
+                  <SbNavLinks LinkName="/transactions" Icon="flaticon-381-controls" Name="Transactions" />
+
+               )}
+               <SbNavLinks LinkName="/creneaux" Icon="flaticon-381-calendar" Name="Creneaux" />
+               <SbNavLinks LinkName="/presences" Icon="flaticon-381-blueprint" Name="Présences" />
+               <SbNavLinks LinkName="/coach" Icon="flaticon-381-user-1" Name="Coachs" />
+               <SbNavLinks LinkName="/personnel" Icon="flaticon-381-user-4" Name="Personnel" />
+               <SbNavLinks LinkName="/configuration" Icon="flaticon-381-settings" Name="configuration" />
+               <SbNavLinks LinkName="/users" Icon="flaticon-381-user-1" Name="Utilisateurs " />
+               <SbNavLinks LinkName="/history-abc" Icon="flaticon-381-bookmark-1" Name="History " />
+
+
+
+               {/* <li >
                      <Link  to="/" >
                         <i className="flaticon-381-home"></i>
                         <span className="nav-text"> Tableau de bord </span>
                      </Link>
-                  </li>
+                  </li> */}
                   {/* <li className={`${ path ? "mm-active" : ""}`}>
                      <Link className="has-arrow ai-icon" to="#">
                         <i className="flaticon-381-home"></i>
@@ -110,25 +145,33 @@ const [path,setPath] = useState("");
                      </Link>
                   </li> */}
                   {/* Fin trésorie */}
-                  <li>
+
+                  {/* <li>
                      <Link to="/client">
                         <i className="flaticon-381-user-9"></i>
                         <span className="nav-text"> Abonnées </span>
                      </Link>
-                  </li>
+                  </li> */}
                   {/* Fin ABonnées */}
-                  <li>
+
+                  {/* <li>
+                     {uStatus === 200 && (
                      <Link to="/transactions">
                         <i className="flaticon-381-controls"></i>
                         <span className="nav-text">Transactions</span>
                      </Link>
-                  </li>
-                  <li>
+                     )}
+
+                  </li> */}
+
+                  {/* <li>
                      <Link to="/creneaux">
                         <i className="flaticon-381-calendar"></i>
                         <span className="nav-text">Créneaux</span>
                      </Link>
-                  </li>
+                  </li> */}
+
+
                   {/* <li
                      className={`${plan.includes(path) ? "mm-active" : ""}`}>
                      <Link className="has-arrow ai-icon" to="/planning">
@@ -154,15 +197,18 @@ const [path,setPath] = useState("");
                      </ul>
                   </li> */}
                   {/* Fin planning */}
-                  <li>
+
+
+                  {/* <li>
                      <Link to="/presences">
                         <i className="flaticon-381-blueprint"></i>
                         <span className="nav-text">Présences</span>
                      </Link>
-                  </li>
+                  </li> */}
                   {/* Fin présences */}
+
                   {/* Coaches & personnel */}
-                  <li>
+                  {/* <li>
                      <Link className="has-arrow ai-icon" to="#">
                         <i className="flaticon-381-user-5"></i>
                         <span className="nav-text">Coachs & Personnels</span>
@@ -197,7 +243,7 @@ const [path,setPath] = useState("");
                         <i className="flaticon-381-bookmark-1"></i>
                         <span className="nav-text">Historique</span>
                      </Link>
-                  </li>
+                  </li> */}
                      {/* <ul>
                         <li>
                            <Link className={`${path === "table-bootstrap-basic"? "mm-active": ""}`} onClick={() => this.props.onClick()} to="/table-bootstrap-basic">

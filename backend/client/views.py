@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from rest_framework import generics, viewsets
 from .models import Client, Personnel, Coach, Maladie
 from .serializers import ClientSerialiser, PersonnelSerializer, CoachSerializer, MaladieSerializer, ClientNameSerializer, ClientCreateSerialiser, ClientNameDropSerializer, ClientLastPresenceSerializer
-from rest_framework.permissions import AllowAny, IsAuthenticated,IsAdminUser
+from rest_framework.permissions import AllowAny, IsAuthenticated,IsAdminUser, DjangoModelPermissions
 from rest_framework.response import Response
 from rest_framework.parsers import MultiPartParser, FormParser
 from django_auto_prefetching import AutoPrefetchViewSetMixin
@@ -16,6 +16,21 @@ class StandardResultsSetPagination(pagination.PageNumberPagination):
     page_size = 20
     page_size_query_param = 'page_size'
     max_page_size = 100
+
+class BaseModelPerm(DjangoModelPermissions):
+
+    def get_custom_perms(self, method, view):
+        app_name = view.model._meta.app_label
+        if hasattr(view, 'extra_perms_map'):
+            print(' YA TOUNSIII')
+            return [app_name+"."+perms for perms in view.extra_perms_map.get(method, [])]
+        else:
+            return []
+
+    def has_permission(self, request, view):
+        perms = self.get_required_permissions(request.method, view.model)
+        perms.extend(self.get_custom_perms(request.method, view))
+        return ( request.user and request.user.has_perms(perms) )
 
 
 class ClientAPIView(generics.CreateAPIView):
@@ -120,7 +135,10 @@ class PersonnelListAPIView(generics.ListAPIView):
     # permission_classes = (IsAuthenticated,)
     serializer_class = PersonnelSerializer
     # lookup_field = 'slug'
-    permission_classes = (AllowAny, )
+    # permission_classes = (AllowAny, )
+    extra_perms_map = {
+        "GET": ["client.view_client"]
+    }
 
 
 class PersonnelDetailAPIView(generics.RetrieveUpdateAPIView):
@@ -192,8 +210,13 @@ class MaladieViewSet(viewsets.ViewSet):
 
 
 class ClientNameViewAPI(generics.ListAPIView):
+    model = Client
     pagination_class = StandardResultsSetPagination
-    permission_classes = (IsAdminUser,)
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["client.view_client"]
+    }
+
 
     queryset = Client.objects.all().order_by('-id')
     serializer_class = ClientNameSerializer
