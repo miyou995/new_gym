@@ -1,60 +1,139 @@
 import React from "react";
+import logo from "../../../images/logo.png";
 
 export const ComponentToPrint = React.forwardRef((props, ref) => {
 //   const { id, date } = props;
 console.log('PROESSSS', props);
   return (
     <div className="container"  ref={ref}>
-    <div className="row">
-        <div className="col-12">
+    <div className="row px-5">
+        {/* <div className="col-12">
             <div className="card">
-                <div className="card-body p-0">
+                <div className="p-0">
                     <div className="row p-5">
                         <div className="col-md-6">
-                            <img src="http://via.placeholder.com/400x90?text=logo" />
+                            <img  src={logo} style={{width: "4rem", height: "4rem"}} />
                         </div>
                         <div className="col-md-6 text-right">
-                            <p className="font-weight-bold mb-1">N°: #{props.value.id}</p>
-                            <p className="text-muted">Date:{props.value.date_creation}</p>
+                            <p className="font-weight-bold mb-1">N°: <span className="font-weight-light">#{props.value.id}</span></p>
+                            <p className="text-muted">Date: <span className="font-weight-light">{props.value.date_creation}</span></p>
                         </div>
                         <div className="col-md-6">
-                            <p className="font-weight-bold mb-4">Adhérant</p>
-                            <p className="mb-1">Nom: {props.value.client_last_name}</p>
-                            <p className="mb-1">ID: {props.value.client_id}</p>
+                            <p className="font-weight-bold mb-4 h4">Adhérant</p>
+                            <p className="mb-1 h4">Nom: <span className="font-weight-light">{props.value.client_last_name}</span></p>
+                            <p className="mb-1 h4">ID: <span className="font-weight-light">{props.value.client_id}</span></p>
                         </div>
                     </div>   
                     <div className="row p-5">
-                        <div className="col-md-12">
+                        <div className="col-reverse">
                             <table className="table">
                                 <thead>
                                     <tr>
-                                        <th className="border-0 text-uppercase small font-weight-bold">Abonnement </th>
-                                        <th className="border-0 text-uppercase small font-weight-bold">Séances</th>
-                                        <th className="border-0 text-uppercase small font-weight-bold">Début</th>
-                                        <th className="border-0 text-uppercase small font-weight-bold">Fin</th>
-                                        <th className="border-0 text-uppercase small font-weight-bold">Montant</th>
+                                        <th style={{fontSize: "21px"}} className="border-0 text-uppercase font-weight-bold h1">Abonnement</th>
+                                        <th style={{fontSize: "21px"}} className="border-0 text-uppercase font-weight-bold h1">Séances</th>
+                                        <th style={{fontSize: "21px"}} className="border-0 text-uppercase font-weight-bold h1">Début</th>
+                                        <th style={{fontSize: "21px"}} className="border-0 text-uppercase font-weight-bold h1">Fin</th>
+                                        <th style={{fontSize: "21px"}} className="border-0 text-uppercase font-weight-bold h1">Montant</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>{props.value.abonnement_name}</td>
-                                        <td>{props.value.quantity}</td>
-                                        <td>{props.value.start_abc}</td>
-                                        <td>{props.value.end_abc}</td>
-                                        <td>{props.value.amount}</td>
+                                        <td><div style={{fontSize: "19px"}} className="font-weight-lighter mt-1 h1" >{props.value.abonnement_name}</div></td>
+                                        <td><div style={{fontSize: "19px"}} className="font-weight-lighter mt-1 h1" >{props.value.quantity}</div></td>
+                                        <td><div style={{fontSize: "19px"}} className="font-weight-lighter mt-1 h1" >{props.value.start_abc}</div></td>
+                                        <td><div style={{fontSize: "19px"}} className="font-weight-lighter mt-1 h1" >{props.value.end_abc}</div></td>
+                                        <td><div style={{fontSize: "19px"}} className="font-weight-lighter mt-1 h1" >{props.value.amount}</div></td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                    <div className="d-flex flex-row-reverse bg-light text-dark p-4">
-                        <div className="py-3 px-5 text-right">
-                            <div className="mb-2">Total</div>
-                            <div className="h2 font-weight-light">{props.value.amount}</div>
+                    <div className="container">
+                        <div className="d-flex align-items-center">
+                            <h4 className=''>Abonnement</h4>
+                            <div style={{fontSize: "19px"}} className="font-weight-lighter mt-1 h1" >{props.value.abonnement_name}</div>
+                        </div>
+                        <div className="d-flex align-items-center">
+                            <h4>Séances</h4>
+                            <div style={{fontSize: "19px"}} className="font-weight-lighter mt-1 h1" >{props.value.quantity}</div>
+                        </div>
+                        <div className="d-flex align-items-center">
+                            <h4>Début</h4>
+                            <div style={{fontSize: "19px"}} className="font-weight-lighter mt-1 h1" >{props.value.start_abc}</div>
+                        </div>
+                        <div className="d-flex align-items-center">
+                            <h4>Fin</h4>
+                            <div style={{fontSize: "19px"}} className="font-weight-lighter mt-1 h1" >{props.value.end_abc}</div>
+                        </div>
+                        <div className="d-flex">
+                            <h4>Montant</h4>
+                            <div style={{fontSize: "19px"}} className="font-weight-lighter mt-1 h1" >{props.value.amount}</div>
+                        </div>
+                    </div>
+                    <div className="d-flex flex-row bg-light text-dark p-2">
+                        <div className="py-2 px-3 d-flex text-left">
+                            <div className="mb-2 h3 mr-4">Total : </div>
+                            <div className="h3 font-weight-light">{props.value.amount}</div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div> */}
+        <div className="col-12 pt-5 p-3">
+            <div className="row pt-4 p-5">
+                <div className="col-12 mb-2 text-center">
+                    <img  src={logo} style={{width: "5rem", height: "5rem"}} />
+                </div>
+            </div>   
+        
+            <div className="row mb-5 py-3 ">
+                <div className="col-6">
+                    <p className="font-weight-bold mb-4 h2">Adhérant</p>
+                    <p className="mb-1 h3 mb-3">ID : <span className="font-weight-light">{props.value.client_id}</span></p>
+                    <p className="mb-1 h3 mb-2">Nom : <span className="font-weight-light">{props.value.client_last_name}</span></p>
+                </div>
+                <div className="col-6 text-right font-italic">
+                    <p className="mb-1 h3 ">N° : <span className="font-weight-light">#{props.value.id}</span></p>
+                    <p className="text-muted h3">Date : <span className="font-weight-light">{props.value.date_creation}</span></p>
+                </div>
+            </div>
+
+
+            <hr className="mb-2"/>
+
+
+            <div className="row d-flex align-items-center px-5 mx-5 pt-5 mb-5">
+                <div className="col-12 justify-content-between align-items-center d-flex mb-3 text-uppercase">
+                    <th><h4 className='h2 mr-5'>Abonnement : </h4></th>
+                    <td><div className="text-left font-weight-lighter mt-1 h2 text-capitalize" >{props.value.abonnement_name}</div></td>
+                </div>
+                <div className="col-12 justify-content-between align-items-center d-flex mb-3 text-uppercase">
+                    <th><h4 className="h2 mr-5">Séances : </h4></th>
+                    <td><div className="text-left font-weight-lighter mt-1 h2" >{props.value.quantity}</div></td>
+                </div>
+                <div className="col-12 justify-content-between align-items-center d-flex mb-3 text-uppercase">
+                    <th><h4 className="h2 mr-5">Début : </h4></th>
+                    <td><div className="text-left font-weight-lighter mt-1 h2" >{props.value.start_abc}</div></td>
+                </div>
+                <div className="col-12 justify-content-between align-items-center d-flex mb-3 text-uppercase ">
+                    <th><h4 className="h2 mr-5">Fin : </h4></th>
+                    <td><div className="text-left font-weight-lighter mt-1 h2" >{props.value.end_abc}</div></td>
+                </div>
+                <div className="col-12 justify-content-between align-items-center d-flex mb-3 text-uppercase">
+                    <th><h4 className="h2 mr-5">Montant : </h4></th>
+                    <td><div className="text-left font-weight-lighter mt-1 h2" >{props.value.amount}</div></td>
+                </div>
+            </div>
+
+
+            <div className="d-flex flex-row bg-light text-dark p-2 mt-5">
+                <div className="py-2 px-3 d-flex text-left align-items-center">
+                    <div className="mb-2 h1 mr-4">Total : </div>
+                    <div className="h1 font-weight-light">{props.value.amount}</div>
+                </div>
+            </div>
+
+
         </div>
     </div>
 </div>
