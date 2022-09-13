@@ -24754,3 +24754,4 @@ django.core.exceptions.FieldError: Related Field got invalid lookup: presences_a
 2022-09-08 16:03:29,625 django.request WARNING  Unauthorized: /api/token/refresh/
 2022-09-08 16:03:29,668 django.request WARNING  Unauthorized: /api/token/refresh/
 2022-09-08 16:03:29,757 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-11 09:15:34,418 django.utils.autoreload INFO     Watching for file changes with StatReloader

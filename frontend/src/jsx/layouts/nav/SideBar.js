@@ -1,7 +1,7 @@
 import React,  {useState, Component, useEffect } from "react";
 
 /// Link
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 /// Scroll
 import PerfectScrollbar from "react-perfect-scrollbar";
@@ -10,7 +10,7 @@ import PerfectScrollbar from "react-perfect-scrollbar";
 import MetisMenu from "metismenujs";
 import useAxios from "../../components/useAxios";
 import SbNavLinks from "./SbNavLinks";
-
+import useAaxios from "../../components/useAaxios";
 ///
 // import drump from "../../../images/card/drump.png";
 
@@ -46,7 +46,9 @@ const [path,setPath] = useState("");
       }
 
       btn.addEventListener("click", toggleFunc);
-   },[]) //notice the empty array here
+   },[]) 
+   
+   //notice the empty array here
    /// Open menu
    // componentDidMount() {
    //    // sidebar open/close
@@ -79,85 +81,57 @@ const [path,setPath] = useState("");
    //       table = ["table-bootstrap-basic", "table-datatable-basic"],
    //       config = ["configuration"];
 
-
-
    const api = useAxios();
-   
 
-   const formatDate = (date) => {
-      try {
-         const returned = new Date(date).toISOString().slice(0, 10)
-         return returned
-      } catch (error) {
-         const returned = new Date().toISOString().slice(0, 10)
-         return returned
-      }
-   }
+   // const [uStatus, setUStatus] = useState(null);
 
-   const [startDate, setStartDate] = useState(formatDate(new Date('2021-01-05')));
-   const [endDate, setEndDate] = useState(formatDate(new Date()));
+   // api.get(`${process.env.REACT_APP_API_URL}/rest-api/clients-name-drop/`).then(res => {
+   //    console.log(res.status);
+   //    setUStatus(res.status);
+   // }).catch(error => {
+   //    if (error.response) {
+   //       console.log(error.response.data);
+   //       console.log(error.response.status);
+   //       console.log(error.response.headers);
+   //       setUStatus(error.response.status);
+   //    }
+   // })
 
-   const [uStatus, setUStatus] = useState(null);
-   const [clientStatus, setClientStatus] = useState(null);
-
-
+   // const [TransactionsStatus, setTransactionStatus] = useState()
    const [nextpage, setNextpage] = useState(1);
+   const baseURL = `${process.env.REACT_APP_API_URL}`
+   // const tansactionsURL = `${baseURL}/rest-api/clients-name-drop/`;
+   var cURL = `${baseURL}/rest-api/clients-name/?page=${nextpage}`;
+   var coachURL = `${baseURL}/rest-api/coachs`
 
-      const dateDebut = formatDate(startDate)
-      const dateFin = formatDate(endDate)
-   
-      api.get(`${process.env.REACT_APP_API_URL}/rest-api/transactions/?page=${nextpage}&start_date=${dateDebut}&end_date=${dateFin}`).then(res => {
-         console.log(res.status);
-         setUStatus(res.status);
-      }).catch(error => {
-         if (error.response) {
-            console.log(error.response.data);
-            console.log(error.response.status);
-            console.log(error.response.headers);
-            setUStatus(error.response.status);
-         }
-      })
+   // const { transactionStatus } = useAaxios(tansactionsURL, 'GET');
+   const { clientStatus } = useAaxios(cURL, 'GET');
+   const { coachStatus } = useAaxios(coachURL, 'GET');
 
-      api.get(`${process.env.REACT_APP_API_URL}/rest-api/clients-name/?page=${nextpage}`).then(res => {
-         console.log(res.status);
-         setClientStatus(res.status);
-      }).catch(error => {
-         if (error.response) {
-            console.log(error.response.data);
-            console.log(error.response.status);
-            console.log(error.response.headers);
-            setClientStatus(error.response.status);
-         }
-      })
+
   
+
 
       return (
          <div className="deznav">
             <PerfectScrollbar className="deznav-scroll">
                <MM className="metismenu" id="menu">
-               {/* <SbNavLinks LinkName="/" Icon="flaticon-381-home" Name="Tableau de bord" /> */}
-               {clientStatus === 200 && (
-                  <SbNavLinks LinkName="/client" Icon="flaticon-381-user-9" Name="Abonnées" />
-               )}
-               {uStatus === 200 && (
-                  <SbNavLinks LinkName="/transactions" Icon="flaticon-381-controls" Name="Transactions" />
-               )}
-               <SbNavLinks LinkName="/creneaux" Icon="flaticon-381-calendar" Name="Creneaux" />
-               <SbNavLinks LinkName="/presences" Icon="flaticon-381-blueprint" Name="Présences" />
-               <SbNavLinks LinkName="/coach" Icon="flaticon-381-user-1" Name="Coachs" />
-               <SbNavLinks LinkName="/personnel" Icon="flaticon-381-user-4" Name="Personnel" />
-               <SbNavLinks LinkName="/configuration" Icon="flaticon-381-settings" Name="configuration" />
-               <SbNavLinks LinkName="/users" Icon="flaticon-381-user-1" Name="Utilisateurs " />
-               <SbNavLinks LinkName="/history-abc" Icon="flaticon-381-bookmark-1" Name="History " />
-
-
-
-               {/* <li >
-                     <Link  to="/" >
-                        <i className="flaticon-381-home"></i>
-                        <span className="nav-text"> Tableau de bord </span>
-                     </Link>
-                  </li> */}
+                  {/* <SbNavLinks LinkName="" Icon="flaticon-381-home" Name="Tableau de bord" /> */}
+                  {clientStatus == 200 && (
+                     <SbNavLinks LinkName="/client" Icon="flaticon-381-user-9" Name="Abonnées" />
+                  )}
+                  {/* {transactionStatus === 200 && ( */}
+                     <SbNavLinks LinkName="/transactions" Icon="flaticon-381-controls" Name="Transactions" />
+                  {/* )} */}
+                  <SbNavLinks LinkName="/creneaux" Icon="flaticon-381-calendar" Name="Creneaux" />
+                  <SbNavLinks LinkName="/presences" Icon="flaticon-381-blueprint" Name="Présences" />
+                  {coachStatus == 200 && (
+                     <SbNavLinks LinkName="/coach" Icon="flaticon-381-user-1" Name="Coachs" />
+                  )}
+                  <SbNavLinks LinkName="/personnel" Icon="flaticon-381-user-4" Name="Personnel" />
+                  <SbNavLinks LinkName="/configuration" Icon="flaticon-381-settings" Name="configuration" />
+                  <SbNavLinks LinkName="/users" Icon="flaticon-381-user-1" Name="Utilisateurs " />
+                  <SbNavLinks LinkName="/history-abc" Icon="flaticon-381-bookmark-1" Name="History " />
                   {/* <li className={`${ path ? "mm-active" : ""}`}>
                      <Link className="has-arrow ai-icon" to="#">
                         <i className="flaticon-381-home"></i>
@@ -179,7 +153,6 @@ const [path,setPath] = useState("");
                      </Link>
                   </li> */}
                   {/* Fin trésorie */}
-
                   {/* <li>
                      <Link to="/client">
                         <i className="flaticon-381-user-9"></i>
@@ -187,25 +160,18 @@ const [path,setPath] = useState("");
                      </Link>
                   </li> */}
                   {/* Fin ABonnées */}
-
                   {/* <li>
-                     {uStatus === 200 && (
                      <Link to="/transactions">
                         <i className="flaticon-381-controls"></i>
                         <span className="nav-text">Transactions</span>
                      </Link>
-                     )}
-
-                  </li> */}
-
-                  {/* <li>
+                  </li>
+                  <li>
                      <Link to="/creneaux">
                         <i className="flaticon-381-calendar"></i>
                         <span className="nav-text">Créneaux</span>
                      </Link>
                   </li> */}
-
-
                   {/* <li
                      className={`${plan.includes(path) ? "mm-active" : ""}`}>
                      <Link className="has-arrow ai-icon" to="/planning">
@@ -231,8 +197,6 @@ const [path,setPath] = useState("");
                      </ul>
                   </li> */}
                   {/* Fin planning */}
-
-
                   {/* <li>
                      <Link to="/presences">
                         <i className="flaticon-381-blueprint"></i>
@@ -240,7 +204,6 @@ const [path,setPath] = useState("");
                      </Link>
                   </li> */}
                   {/* Fin présences */}
-
                   {/* Coaches & personnel */}
                   {/* <li>
                      <Link className="has-arrow ai-icon" to="#">
