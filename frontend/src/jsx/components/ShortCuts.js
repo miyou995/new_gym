@@ -76,21 +76,54 @@ const ShortCuts = () => {
     ],
   };
 
-  const api = useAxios()
-  
-  const [uStatus, setUStatus] = useState(null);
-
-  api.get(`${process.env.REACT_APP_API_URL}/rest-api/clients-name-drop/`).then(res => {
-    console.log(res.status);
-    setUStatus(res.status);
- }).catch(error => {
-    if (error.response) {
-       console.log(error.response.data);
-       console.log(error.response.status);
-       console.log(error.response.headers);
-       setUStatus(error.response.status);
+  const formatDate = (date) => {
+    try {
+       const returned = new Date(date).toISOString().slice(0, 10)
+       return returned
+    } catch (error) {
+       const returned = new Date().toISOString().slice(0, 10)
+       return returned
     }
- })
+ }
+
+ const api = useAxios();
+ const [startDate, setStartDate] = useState(formatDate(new Date('2021-01-05')));
+ const [endDate, setEndDate] = useState(formatDate(new Date()));
+
+ const [uStatus, setUStatus] = useState(null);
+ const [clientStatus, setClientStatus] = useState(null);
+
+
+ const [nextpage, setNextpage] = useState(1);
+
+
+    const dateDebut = formatDate(startDate)
+    const dateFin = formatDate(endDate)
+ 
+    api.get(`${process.env.REACT_APP_API_URL}/rest-api/transactions/?page=${nextpage}&start_date=${dateDebut}&end_date=${dateFin}`).then(res => {
+       console.log(res.status);
+       setUStatus(res.status);
+    }).catch(error => {
+       if (error.response) {
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+          setUStatus(error.response.status);
+       }
+    })
+
+    api.get(`${process.env.REACT_APP_API_URL}/rest-api/clients-name/?page=${nextpage}`).then(res => {
+      console.log(res.status);
+      setClientStatus(res.status);
+   }).catch(error => {
+      if (error.response) {
+         console.log(error.response.data);
+         console.log(error.response.status);
+         console.log(error.response.headers);
+         setClientStatus(error.response.status);
+      }
+   })
+ 
 
 
   return (
@@ -126,6 +159,7 @@ const ShortCuts = () => {
             </div>
          </div>
          </Link> */}
+      {clientStatus == 200 && (
       <Link to="/client">
         <div className="items">
           <div>
@@ -135,6 +169,8 @@ const ShortCuts = () => {
           </div>
         </div>
       </Link>
+      )}
+      
       <Link to="/coach">
         <div className="items">
           <div>
@@ -166,7 +202,7 @@ const ShortCuts = () => {
         <div className="items">
           <div>
             <img className="mb-3 ml-auto mr-auto" src={tresorieImg}  />
-            <h6 className=" mb-0 text-center">Chiffre d'affiare</h6>
+            <h6 className=" mb-0 text-center">Chiffre d'affaire</h6>
           </div>
         </div>
       </Link>

@@ -12,6 +12,7 @@ import AutreCreateModal from './AutreCreateModal';
 // import DetteCreateModal from './DetteCreateModal';
 /// images 
 
+
 import { Link, useHistory } from "react-router-dom";
 import { transformToNestObject } from "react-hook-form";
 
@@ -34,6 +35,7 @@ const TransactionList = () => {
          return returned
       }
    }
+   
 const [startDate, setStartDate] = useState(formatDate(new Date('2021-01-05')));
    const [endDate, setEndDate] = useState(formatDate(new Date()));
    const [paiementModal, setPaiementModal] = useState(false);
@@ -72,7 +74,7 @@ const [startDate, setStartDate] = useState(formatDate(new Date('2021-01-05')));
    const [uStatus, setUStatus] = useState(null);
 
    const [nextpage, setNextpage] = useState(1);
-   
+
 
    const history = useHistory();
 
@@ -91,6 +93,8 @@ const [startDate, setStartDate] = useState(formatDate(new Date('2021-01-05')));
          // setUStatus(res.status);
          console.log(res.status);
          console.log('result ', res);
+         setUStatus(res.status);
+
          // setTransData(res.data.results);
          // console.log(res.status)
          // return res.status < 400;
@@ -99,22 +103,24 @@ const [startDate, setStartDate] = useState(formatDate(new Date('2021-01-05')));
             console.log(error.response.data);
             console.log(error.response.status);
             console.log(error.response.headers);
+            setUStatus(error.response.status);
+
 
       }
    })
 
 
-   api.get(`${process.env.REACT_APP_API_URL}/rest-api/clients-name-drop/`).then(res => {
-      console.log(res.status);
-      setUStatus(res.status);
-   }).catch(error => {
-      if (error.response) {
-         console.log(error.response.data);
-         console.log(error.response.status);
-         console.log(error.response.headers);
-         setUStatus(error.response.status);
-      }
-   })
+   // api.get(`${process.env.REACT_APP_API_URL}/rest-api/clients-name-drop/`).then(res => {
+   //    console.log(res.status);
+   //    setUStatus(res.status);
+   // }).catch(error => {
+   //    if (error.response) {
+   //       console.log(error.response.data);
+   //       console.log(error.response.status);
+   //       console.log(error.response.headers);
+   //       setUStatus(error.response.status);
+   //    }
+   // })
 
       // const presenceDateDate =  () => {
          // const page = nextpage

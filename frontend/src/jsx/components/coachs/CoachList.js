@@ -46,16 +46,27 @@ const CoachList = () => {
 
    let endpoint = `${process.env.REACT_APP_API_URL}/rest-api/coachs/`
 
+   
    const [coachData, setCoachData] = useState([]);
+   const [coachStatus, setCoachStatus] = useState(null);
    // const savedCoachs = api.get(endpoint)
    
    useEffect(() => {
       api.get(endpoint).then( res=> {
          setCoachData(res.data)
-      }) 
+         setCoachStatus(res.status);
+
+      }).catch(err => {
+         if (err.response) {
+            console.log(err.response.data);
+            console.log(err.response.status);
+            console.log(err.response.headers);
+            setCoachStatus(err.response.status);
+      }})
       // const coachs = savedCoachs
    }, [endpoint]);
    // console.log('els clieeents', savedClients);
+
 
 
    return (
@@ -64,7 +75,10 @@ const CoachList = () => {
          <div className="testimonial-one owl-right-nav owl-carousel owl-loaded owl-drag mb-4">
         <ShortCuts />
       </div>
-            <Search name= 'Ajouter Coach' lien= "/coach/create"/>
+
+      {coachStatus == 200 && (
+      <>
+         <Search name= 'Ajouter Coach' lien= "/coach/create"/>
 
          <div className="row">
             <div className="col-lg-12">
@@ -123,6 +137,8 @@ const CoachList = () => {
                </div>
             </div>
          </div>
+      </>
+      )}
       </Fragment>
    );
 };

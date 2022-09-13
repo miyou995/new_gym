@@ -118,8 +118,9 @@ class Client(models.Model):
     
     def is_on_salle(self):
         # presences = Client.objects.prefetch_related('abonnement_client__presences', is_in_salle=True).filter(id=self.pk)
-        presences = Client.objects.filter(abonnement_client__presences_abc__is_in_salle=True, id=self.pk ).distinct()
-        if presences:
+        # presences = Client.objects.filter(abonnement_client__presences_abc__is_in_salle=True, id=self.pk ).distinct()
+        if True:
+        # if presences:
             return True
         else: 
             print('not inb salle presences ---------------------->', presences)
