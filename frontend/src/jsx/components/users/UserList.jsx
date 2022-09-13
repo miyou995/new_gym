@@ -25,6 +25,7 @@ const [selectedUser, setSelectedUser] = useState("");
 
 const [userGroup, setUserGroup] = useState([]);
 const [groups, setGroups] = useState([]);
+const [usersStatus, setUsersStatus] = useState(null);
 
 const groupsEnd = `${process.env.REACT_APP_API_URL}/rest-api/auth/groups/`
 
@@ -32,8 +33,10 @@ const groupsEnd = `${process.env.REACT_APP_API_URL}/rest-api/auth/groups/`
       api.get(`${process.env.REACT_APP_API_URL}/rest-api/auth/users`).then( res => {
          console.log('result ', res);
          setUsersData(res.data)
+         setUsersStatus(res.status)
       }).catch( err => {
          console.log('IRRROR', err);
+         setUsersStatus(err.response.status)
       })
       api.get(groupsEnd).then( res => {
          setGroups(res.data)
@@ -51,7 +54,7 @@ const groupsEnd = `${process.env.REACT_APP_API_URL}/rest-api/auth/groups/`
    // const [users, setUsers] = useState([]);
    const [loading, setLoading] = useState(false);
    const [currentPage, setCurrentPage] = useState(1);
-   const [UserPerPage] = useState(2);
+   const [UserPerPage] = useState(4);
 
   const indexOfLastUser = currentPage * UserPerPage;
   const indexOfFirstUser = indexOfLastUser - UserPerPage;
@@ -65,6 +68,8 @@ const groupsEnd = `${process.env.REACT_APP_API_URL}/rest-api/auth/groups/`
          <div className="testimonial-one owl-right-nav owl-carousel owl-loaded owl-drag mb-4">
             <ShortCuts />
          </div>
+         {usersStatus == 200 && (
+         <>
          <div className="form-head d-flex mb-4 mb-md-5 align-items-start">
             <div className="input-group search-area d-inline-flex">
             </div>
@@ -136,6 +141,8 @@ const groupsEnd = `${process.env.REACT_APP_API_URL}/rest-api/auth/groups/`
             {/* <EditForm show={userModal} onShowShange={setUserModal} userData={{
                userId: userId,
             }} /> */}
+         </>
+         )}
       </Fragment>
    );
 };

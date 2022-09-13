@@ -37,16 +37,34 @@ import { ComponentToPrint } from './ComponentToPrint';
 const ComponentToPrintWrapper = ({ item }) => {
   console.log('iteMM', item);
   const componentRef = useRef();
+
+  const marginTop="40px"
+  const marginRight="5px"
+  const marginBottom="40px"
+  const marginLeft="5px"
+
+
+  const getPageMargins = () => {
+    return `@page { margin: ${marginTop} ${marginRight} ${marginBottom} ${marginLeft}  !important; }`;
+  };
+
+// const pageStyle = `
+//   @page {
+//     size: landscape;
+//   }
+// `;
+
   return (
-    <div style={{ display: "flex" }}>
+    <div style={{ display: "flex"}}>
      
       <ReactToPrint
         trigger={() =>   <div > Imprimer <i className="fa la-print text-danger mr-2 h5" /> </div>}
-        content={() => componentRef.current}
+        content={() => componentRef.current }
+    
       />
       <div className="d-none">
-      
-        <ComponentToPrint ref={componentRef} value={item} />
+        <style> {getPageMargins()}</style>
+        <ComponentToPrint ref={componentRef} value={item}></ComponentToPrint>
       </div>
     </div>
   );
