@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from rest_framework import generics
 from .models import SalleSport
 from .serializers import SalleSportSerialiser
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.permissions import AllowAny, IsAuthenticated, DjangoModelPermissions
 
 
 class SalleSportAPIView(generics.CreateAPIView):

@@ -24755,3 +24755,208 @@ django.core.exceptions.FieldError: Related Field got invalid lookup: presences_a
 2022-09-08 16:03:29,668 django.request WARNING  Unauthorized: /api/token/refresh/
 2022-09-08 16:03:29,757 django.request WARNING  Unauthorized: /api/token/refresh/
 2022-09-11 09:15:34,418 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 13:45:36,488 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 13:46:14,849 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-13 13:46:16,859 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-13 13:46:17,010 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-13 13:46:17,224 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-13 13:46:17,421 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-13 13:46:17,654 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-13 13:46:17,793 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-13 13:46:17,890 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-13 13:46:17,918 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-13 13:46:18,308 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-13 13:46:18,390 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-13 13:47:39,212 django.request WARNING  Not Found: /rest-api/abonnement-client-history/
+2022-09-13 13:47:48,239 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/serializers.py changed, reloading.
+2022-09-13 13:47:50,221 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 13:47:54,817 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/serializers.py changed, reloading.
+2022-09-13 13:47:56,732 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 13:48:03,070 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/serializers.py changed, reloading.
+2022-09-13 13:48:04,923 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 13:48:13,666 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/serializers.py changed, reloading.
+2022-09-13 13:48:15,674 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 14:03:17,196 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-13 14:03:19,213 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 14:03:50,383 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-13 14:03:52,286 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 14:03:55,419 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-13 14:03:57,421 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 14:04:06,034 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-13 14:04:07,985 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 14:04:15,294 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-13 14:04:17,124 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 14:04:26,121 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-13 14:04:28,135 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 14:04:35,655 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-13 14:04:37,448 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 14:04:49,992 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-13 14:04:51,751 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 14:05:03,118 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-13 14:05:04,806 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 14:09:05,902 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-13 14:09:07,833 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 14:40:18,539 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-13 14:40:20,638 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 14:40:28,144 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-13 14:40:30,132 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 14:40:35,880 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-13 14:40:37,647 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 14:40:43,603 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-13 14:40:45,336 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 14:40:52,651 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-13 14:40:54,707 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 14:49:44,216 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-13 14:49:46,204 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 14:50:05,625 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-13 14:50:07,389 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 14:50:11,667 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-13 14:50:13,634 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 14:50:16,664 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-13 14:50:18,625 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 14:50:31,404 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-13 14:50:33,716 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 14:51:03,298 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-13 14:51:05,112 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 14:51:22,372 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-13 14:51:24,264 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 14:51:30,237 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-13 14:51:32,018 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 14:51:36,255 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-13 14:51:38,075 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 14:51:49,501 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-13 14:51:51,439 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 14:51:58,855 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-13 14:52:00,416 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 14:52:17,063 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-13 14:52:18,925 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 14:52:27,463 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-13 14:52:29,135 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 14:52:32,098 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-13 14:52:33,693 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 14:53:03,777 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-13 14:53:05,514 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 14:53:27,473 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-13 14:53:29,362 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 14:53:35,095 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-13 14:53:36,850 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:26:51,408 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:26:53,350 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:27:08,969 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:27:10,981 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:27:33,840 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:27:35,819 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:27:44,887 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:27:46,912 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:27:55,879 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:27:57,990 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:28:08,558 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:28:10,493 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:28:29,307 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:28:31,365 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:28:36,574 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:28:38,640 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:28:42,482 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:28:44,609 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:28:47,001 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:28:49,075 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:29:29,431 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:29:31,597 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:29:33,991 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:29:35,812 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:29:50,399 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:29:52,299 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:29:55,864 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:29:57,724 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:29:59,875 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:30:01,753 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:30:05,414 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:30:07,196 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:30:09,451 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:30:11,382 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:30:35,667 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:30:37,533 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:30:41,060 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:30:43,144 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:31:09,974 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:31:11,871 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:31:56,195 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:31:58,187 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:32:03,316 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:32:05,189 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:32:13,445 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:32:15,152 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:35:27,621 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:35:29,602 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:35:41,546 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:35:43,531 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:35:55,278 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:35:57,002 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:36:04,580 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:36:06,550 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:36:42,899 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:36:44,742 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:36:48,324 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:36:50,060 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:37:21,888 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:37:23,531 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:37:32,414 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:37:34,147 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:37:40,424 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:37:42,218 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:38:04,143 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:38:05,869 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:38:56,421 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:38:58,275 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:39:01,759 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:39:04,172 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:39:46,692 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:39:49,000 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:41:07,717 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:41:09,858 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:42:23,548 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:42:25,288 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:44:31,151 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:44:33,085 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:44:46,160 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:44:47,893 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:44:55,325 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:44:57,022 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:45:00,439 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:45:02,101 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:45:13,760 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:45:15,424 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:45:18,956 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:45:21,052 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:45:27,544 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:45:29,131 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:45:32,594 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:45:34,256 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:45:39,029 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:45:40,825 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:46:07,054 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:46:09,030 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:49:05,839 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 15:49:08,018 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 15:49:10,253 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-13 15:49:12,176 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 16:02:12,782 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-13 16:02:14,799 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 16:27:48,226 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-13 16:27:49,896 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 16:28:58,247 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-13 16:29:00,100 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 16:29:02,320 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-13 16:29:04,162 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 16:29:28,208 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 16:29:30,161 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 16:29:47,389 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 16:29:49,315 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 16:29:52,821 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 16:29:54,815 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 16:29:59,661 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 16:30:01,537 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 16:30:09,058 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 16:30:10,975 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-13 16:30:17,396 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/views.py changed, reloading.
+2022-09-13 16:30:19,141 django.utils.autoreload INFO     Watching for file changes with StatReloader

@@ -18,17 +18,15 @@ class StandardResultsSetPagination(pagination.PageNumberPagination):
     max_page_size = 100
 
 class BaseModelPerm(DjangoModelPermissions):
-
     def get_custom_perms(self, method, view):
         app_name = view.model._meta.app_label
         if hasattr(view, 'extra_perms_map'):
-            print(' YA TOUNSIII')
             return [app_name+"."+perms for perms in view.extra_perms_map.get(method, [])]
         else:
             return []
 
     def has_permission(self, request, view):
-        perms = self.get_required_permissions(request.method, view.model)
+        perms = self.get_required_permissions(request.method, view.queryset.model)
         perms.extend(self.get_custom_perms(request.method, view))
         return ( request.user and request.user.has_perms(perms) )
 
@@ -37,6 +35,11 @@ class ClientAPIView(generics.CreateAPIView):
     serializer_class = ClientCreateSerialiser
     queryset = Client.objects.all()
     parser_classes = [MultiPartParser, FormParser]
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["client.view_client"]
+    }
+
     # def perform_create(self, serializer):
     #     queryset = SignupRequest.objects.filter(user=self.request.user)
     #     if queryset.exists():
@@ -51,7 +54,10 @@ class ClientListAPIView(AutoPrefetchViewSetMixin, generics.ListAPIView):
     # permission_classes = (IsAuthenticated,)
     serializer_class = ClientSerialiser
     # lookup_field = 'slug'
-    permission_classes = (IsAdminUser, )
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["client.view_client"]
+    }
     search_fields = ['=id','last_name',  'first_name', 'phone']
 
 
@@ -59,14 +65,22 @@ class ClientNamesDropListAPIView(generics.ListAPIView):
     queryset = Client.objects.all()
     # permission_classes = (IsAuthenticated,)
     serializer_class = ClientNameDropSerializer
-    permission_classes = (IsAdminUser, )
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["client.view_client"]
+    }
+
 
 
 class GETClientDetailAPIView(generics.RetrieveAPIView):
     queryset = Client.objects.all()
     # permission_classes = (IsAuthenticated,)
     serializer_class = ClientLastPresenceSerializer
-    # permission_classes = (AllowAny,)
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["client.view_client"]
+    }
+
     def get_object(self):
         try:
             client = Client.objects.get(id = self.request.query_params.get('cl', None))
@@ -92,7 +106,11 @@ class ClientDetailAPIView(generics.RetrieveUpdateAPIView):
     queryset = Client.objects.all()
     # permission_classes = (IsAuthenticated,)
     serializer_class = ClientSerialiser
-    # permission_classes = (AllowAny, )
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["client.change_client"]
+    }
+
     def get_object(self):
 
         obj = get_object_or_404(Client.objects.filter(id=self.kwargs["pk"]))
@@ -113,7 +131,10 @@ class ClientDestroyAPIView(generics.DestroyAPIView):
     queryset = Client.objects.all()
     serializer_class = ClientSerialiser
     # lookup_field = 'slug'
-    # permission_classes = (AllowAny, )
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["client.delete_client"]
+    }
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
         self.perform_destroy(instance)
@@ -126,7 +147,10 @@ class ClientDestroyAPIView(generics.DestroyAPIView):
 class PersonnelCreateAPIView(generics.CreateAPIView):
     queryset = Personnel.objects.all()
     serializer_class = PersonnelSerializer
-    permission_classes = (AllowAny, )
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["client.view_personnel"]
+    }
 
 
 
@@ -135,9 +159,9 @@ class PersonnelListAPIView(generics.ListAPIView):
     # permission_classes = (IsAuthenticated,)
     serializer_class = PersonnelSerializer
     # lookup_field = 'slug'
-    # permission_classes = (AllowAny, )
+    permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["client.view_client"]
+        "GET": ["client.view_personnel"]
     }
 
 
@@ -145,7 +169,10 @@ class PersonnelDetailAPIView(generics.RetrieveUpdateAPIView):
     queryset = Personnel.objects.all()
     # permission_classes = (IsAuthenticated,)
     serializer_class = PersonnelSerializer
-    # permission_classes = (AllowAny, )
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["client.change_personnel"]
+    }
 
     def get_object(self):
         obj = get_object_or_404(Personnel.objects.filter(id=self.kwargs["pk"]))
@@ -156,7 +183,10 @@ class PersonnelDestroyAPIView(generics.DestroyAPIView):
     queryset = Personnel.objects.all()
     serializer_class = PersonnelSerializer
     # lookup_field = 'slug'
-    permission_classes = (AllowAny, )
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["client.delete_personnel"]
+    }
 
 ###############################################
 #################   COACHS   ##################
@@ -164,7 +194,10 @@ class PersonnelDestroyAPIView(generics.DestroyAPIView):
 class CoachCreateAPIView(generics.CreateAPIView):
     queryset = Coach.objects.all()
     serializer_class = CoachSerializer
-    permission_classes = (AllowAny, )
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["client.add_coach"]
+    }
 
 
 
@@ -173,14 +206,20 @@ class CoachListAPIView(generics.ListAPIView):
     permission_classes = (IsAuthenticated,)
     serializer_class = CoachSerializer
     # lookup_field = 'slug'
-    # permission_classes = (AllowAny, )
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["client.view_coach"]
+    }
 
 
 class CoachDetailAPIView(generics.RetrieveUpdateAPIView):
     queryset = Coach.objects.all()
     # permission_classes = (IsAuthenticated,)
     serializer_class = CoachSerializer
-    # permission_classes = (AllowAny, )
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["client.change_client"]
+    }
 
     def get_object(self):
         obj = get_object_or_404(Coach.objects.filter(id=self.kwargs["pk"]))
@@ -191,17 +230,28 @@ class CoachDestroyAPIView(generics.DestroyAPIView):
     queryset = Coach.objects.all()
     serializer_class = CoachSerializer
     # lookup_field = 'slug'
-    permission_classes = (AllowAny, )
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["client.delete_coach"]
+    }
+
 
 class MaladieCreateAPIView(generics.CreateAPIView):
     queryset = Maladie.objects.all()
     serializer_class = MaladieSerializer
-    permission_classes = (AllowAny, )
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["client.add_maladie"]
+    }
+
 
 class MaladieViewSet(viewsets.ViewSet):
     queryset = Maladie.objects.all()
     serializer_class = MaladieSerializer
-    permission_classes = (AllowAny, )
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["client.view_maladie"]
+    }
 
     def list(self, request):
         queryset = Maladie.objects.all()
@@ -210,13 +260,11 @@ class MaladieViewSet(viewsets.ViewSet):
 
 
 class ClientNameViewAPI(generics.ListAPIView):
-    model = Client
     pagination_class = StandardResultsSetPagination
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
         "GET": ["client.view_client"]
     }
-
 
     queryset = Client.objects.all().order_by('-id')
     serializer_class = ClientNameSerializer
@@ -226,7 +274,10 @@ class ClientNameViewAPI(generics.ListAPIView):
 class MaladieDetailViewAPI(generics.RetrieveUpdateDestroyAPIView):
     queryset = Maladie.objects.all()
     serializer_class = MaladieSerializer
-
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["client.change_maladie"]
+    }
 # class ClientPaeiementsViewAPI(generics.ListAPIView):
 #     queryset = Client.objects.all()
 #     serializer_class = ClientTransactionsSerializer
@@ -236,6 +287,10 @@ class ClientPresenceViewAPI(generics.ListAPIView):
     serializer_class = ClientNameDropSerializer
     search_fields = ['^last_name', '=id', '^first_name']
     filter_backends = (filters.SearchFilter,)
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["client.view_client"]
+    }
 
 @api_view(['GET'])
 def total_dettes(request):
