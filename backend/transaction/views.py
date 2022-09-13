@@ -3,7 +3,7 @@ from rest_framework import generics, serializers
 from .models import Paiement, Autre, AssuranceTransaction, Remuneration, RemunerationProf, Transaction
 import json
 from .serializers import PaiementSerialiser, AutreSerialiser, AssuranceSerialiser, RemunerationSerialiser, RemunerationProfSerialiser, TransactionSerialiser, RemunerationProfPostSerialiser,PaiementPostSerialiser, AssurancePostSerialiser, RemunerationPostSerialiser, PaiementFiltersSerialiser, PaiementHistorySerialiser
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.permissions import AllowAny, IsAuthenticated, DjangoModelPermissions
 from drf_multiple_model.views import FlatMultipleModelAPIView, ObjectMultipleModelAPIView
 from drf_multiple_model.pagination import MultipleModelLimitOffsetPagination
 from rest_framework.decorators import api_view, permission_classes
