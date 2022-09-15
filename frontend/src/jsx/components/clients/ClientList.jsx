@@ -8,6 +8,8 @@ import avartar5 from "../../../images/avatar/5.png";
 import { Link } from "react-router-dom";
 
 import ShortCuts from "../ShortCuts";
+import useAuth from "../useAuth";
+import { setDate } from "date-fns";
 
 
 
@@ -42,6 +44,8 @@ const ClientList = () => {
    const [searchBarActivated, setSearchBarActivated] = useState(false)
    var endpoint = `${process.env.REACT_APP_API_URL}/rest-api/clients-name/?page=${nextpage}`
    var searchEndpoint = `${process.env.REACT_APP_API_URL}/rest-api/clients-name/?search=${searchValue}`
+   const clientAuthorizationEnd = `${process.env.REACT_APP_API_URL}/rest-api/get_client_authorization/`
+
    
 useEffect(() =>  {
    if (searchValue !== '') {
@@ -55,6 +59,28 @@ useEffect(() =>  {
          console.log('le resultat des clients est ', res.data);
       })}
 }, [nextpage, searchValue]);
+
+// const [clientStatus, setClientStatus] = useState(null);
+
+const clientAuth = useAuth(clientAuthorizationEnd, 'GET')
+
+
+// if(clientAuth)
+// api.get(endpoint).then(res => {
+//   console.log(res.status);
+//   setClientStatus(res.status);
+  
+// }).catch(error => {
+//   if (error.response) {
+//      console.log(error.response.data);
+//      console.log(error.response.status);
+//      console.log(error.response.headers);
+//      setClientStatus(error.response.status);
+
+//   }
+// })
+
+// console.log("clientStatus ==>", clientStatus)
 
 
 console.log('le searchValue des searchValue est ', searchValue);
@@ -70,6 +96,8 @@ console.log('le searchValue des searchValue est ', searchValue);
          <div className="testimonial-one owl-right-nav owl-carousel owl-loaded owl-drag mb-4">
             <ShortCuts />
          </div>
+         {clientAuth && (
+         <>
          {/* <PageTitle activeMenu="Liste" motherMenu="Abonnées" /> */}
          <div className="form-head d-flex mb-4 mb-md-5 align-items-start">
             <div className="input-group search-area d-inline-flex">
@@ -191,6 +219,9 @@ console.log('le searchValue des searchValue est ', searchValue);
 
               </div>
          }
+         </>
+         )}
+
       </Fragment>
    );
 };

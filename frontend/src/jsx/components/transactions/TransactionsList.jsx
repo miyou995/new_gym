@@ -12,6 +12,7 @@ import AutreCreateModal from './AutreCreateModal';
 // import DetteCreateModal from './DetteCreateModal';
 /// images 
 
+
 import { Link, useHistory } from "react-router-dom";
 import { transformToNestObject } from "react-hook-form";
 
@@ -19,6 +20,7 @@ import {
    MuiPickersUtilsProvider,KeyboardDatePicker
  } from '@material-ui/pickers';
  import DateFnsUtils from '@date-io/date-fns';
+import useAuth from "../useAuth";
  
 
 
@@ -34,6 +36,7 @@ const TransactionList = () => {
          return returned
       }
    }
+   
 const [startDate, setStartDate] = useState(formatDate(new Date('2021-01-05')));
    const [endDate, setEndDate] = useState(formatDate(new Date()));
    const [paiementModal, setPaiementModal] = useState(false);
@@ -72,10 +75,13 @@ const [startDate, setStartDate] = useState(formatDate(new Date('2021-01-05')));
    const [uStatus, setUStatus] = useState(null);
 
    const [nextpage, setNextpage] = useState(1);
-   
 
    const history = useHistory();
 
+   const dateDebut = formatDate(startDate)
+   const dateFin = formatDate(endDate)
+   
+   const transactionAuth = `${process.env.REACT_APP_API_URL}/rest-api/transactions/?page=${nextpage}&start_date=${dateDebut}&end_date=${dateFin}`;
 
    useEffect(() =>  {
       // api.get(`${process.env.REACT_APP_API_URL}/rest-api/presence/?start_date=${startDate}&end_date=${endDate}`).then(res => {
@@ -84,13 +90,14 @@ const [startDate, setStartDate] = useState(formatDate(new Date('2021-01-05')));
       //    console.log('le resultat des clients est ', res.data);
       // })
 
-      const dateDebut = formatDate(startDate)
-      const dateFin = formatDate(endDate)
+    
 
-      api.get(`${process.env.REACT_APP_API_URL}/rest-api/transactions/?page=${nextpage}&start_date=${dateDebut}&end_date=${dateFin}`).then( res => {
+      api.get(transactionAuth).then( res => {
          // setUStatus(res.status);
          console.log(res.status);
          console.log('result ', res);
+         setUStatus(res.status);
+
          // setTransData(res.data.results);
          // console.log(res.status)
          // return res.status < 400;
@@ -99,22 +106,29 @@ const [startDate, setStartDate] = useState(formatDate(new Date('2021-01-05')));
             console.log(error.response.data);
             console.log(error.response.status);
             console.log(error.response.headers);
+            setUStatus(error.response.status);
+
 
       }
    })
 
+   
+   // !!! rahi : if clientAuth == true , il n'affiche pas la listes des client car la listes des client endpoint is diffrent -- clientList.jsx
+   // f admin meme ki ndir permissions,  f Network y'affichili bli i dont have access ( error 403 )
 
-   api.get(`${process.env.REACT_APP_API_URL}/rest-api/clients-name-drop/`).then(res => {
-      console.log(res.status);
-      setUStatus(res.status);
-   }).catch(error => {
-      if (error.response) {
-         console.log(error.response.data);
-         console.log(error.response.status);
-         console.log(error.response.headers);
-         setUStatus(error.response.status);
-      }
-   })
+   
+
+   // api.get(`${process.env.REACT_APP_API_URL}/rest-api/clients-name-drop/`).then(res => {
+   //    console.log(res.status);
+   //    setUStatus(res.status);
+   // }).catch(error => {
+   //    if (error.response) {
+   //       console.log(error.response.data);
+   //       console.log(error.response.status);
+   //       console.log(error.response.headers);
+   //       setUStatus(error.response.status);
+   //    }
+   // })
 
       // const presenceDateDate =  () => {
          // const page = nextpage
@@ -129,8 +143,10 @@ const [startDate, setStartDate] = useState(formatDate(new Date('2021-01-05')));
    }, [startDate, endDate,nextpage,paiementModal,remunerationCoachModal,remunerationPersonnelModal,autreModal]);
 
 
+   const trAuth = useAuth(transactionAuth, 'GET')
 
-   console.log(uStatus);
+
+   console.log("trAuth ===> ", trAuth);
 
    return (
       <Fragment>
@@ -140,8 +156,7 @@ const [startDate, setStartDate] = useState(formatDate(new Date('2021-01-05')));
          <div className="testimonial-one owl-right-nav owl-carousel owl-loaded owl-drag mb-4">
             <ShortCuts  />
          </div>
-
-         {uStatus == 200 && (
+         {trAuth && (
          <>
 
             {/* <Search name= 'Abonnée' lien= "/client/create"/> */}
@@ -283,8 +298,9 @@ const [startDate, setStartDate] = useState(formatDate(new Date('2021-01-05')));
 
          </div>
    
-         </>
+         </>  
          )}
+
       </Fragment>
    );
 };
