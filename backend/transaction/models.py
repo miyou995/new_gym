@@ -19,7 +19,7 @@ class Transaction(models.Model):
 
     class Meta:
         ordering = ['-last_modified']
-
+        permissions = [('can_view_history', 'Can View history')]
 
 class Paiement(Transaction):
     # type = models.ForeignKey(Abonnement, verbose_name="abonnement" , related_name="abonnements", on_delete=models.CASCADE)

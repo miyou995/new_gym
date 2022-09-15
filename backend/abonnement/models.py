@@ -54,7 +54,8 @@ class Abonnement(models.Model):
     # objects        = AbonnementManager()
     def __str__(self):
         return self.name
-
+    class Meta:
+        permissions = [('can_view_history', 'Can View history')]
 
     def time_volume(self):
         return True if self.type_of == "VH" else False
@@ -210,9 +211,9 @@ class AbonnementClient(models.Model):
         if self.is_time_volume():
             minutes = self.presence_quantity
             time = divmod(minutes, 60)
-            print('en heures', time)
+            # print('en heures', time)
             time_string = "{}H: {}M".format(time[0], time[1])
-            print('en time_string', time_string)
+            # print('en time_string', time_string)
             return time_string
         else:
             return self.presence_quantity

@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import AbonnementAPIView, AbonnementListAPIView, AbonnementDetailAPIView, AbonnementDestroyAPIView ,AbonnementClientCreateAPIView ,AbonnementClientListAPIView ,AbonnementClientDetailAPIView ,AbonnementClientDestroyAPIView, renew_api_view, AbonnementClientActifsDetailListApi, AbonnementClientTransactionsDetailListApi, total_dettes_abonnee, deactivate_api_view,deactivate_abc_api_view, ABClientByCreneauListAPIView, total_restes_abonnees, RenewABCView, AbonnementClientRenewAPIView, AbonnementClientAllDetailListApi, AbonnementClientHistoryListAPIView
+from .views import AbonnementAPIView, AbonnementListAPIView, AbonnementDetailAPIView, AbonnementDestroyAPIView ,AbonnementClientCreateAPIView ,AbonnementClientListAPIView ,AbonnementClientDetailAPIView ,AbonnementClientDestroyAPIView, renew_api_view, AbonnementClientActifsDetailListApi, AbonnementClientTransactionsDetailListApi, total_dettes_abonnee, deactivate_api_view,deactivate_abc_api_view, ABClientByCreneauListAPIView, total_restes_abonnees, RenewABCView, AbonnementClientRenewAPIView, AbonnementClientAllDetailListApi, AbonnementClientHistoryListAPIView, get_abonnement_authorization, get_abonnementclient_authorization
 # , RenewalSubscription
 from .views import *
 app_name = 'abonnement'
@@ -27,6 +27,8 @@ urlpatterns = [
     path('abonnement-client/create', AbonnementClientCreateAPIView.as_view(),  name="type-create"),
     path('abonnement-client/renouveler', AbonnementClientRenewAPIView.as_view(),  name="abc-renew"),
     path('abonnement-client/delete/<int:pk>/', AbonnementClientDestroyAPIView.as_view(), name="type-delete"),
+    path('get_abonnement_authorization/', get_abonnement_authorization, name="get_abonnement_authorization"),
+    path('get_abonnementclient_authorization/', get_abonnementclient_authorization, name="get_abonnementclient_authorization"),
 ]
 
 
