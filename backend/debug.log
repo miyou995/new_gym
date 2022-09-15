@@ -31333,3 +31333,5 @@ AttributeError: 'NoneType' object has no attribute 'model'
 2022-09-15 11:13:27,243 django.request WARNING  Forbidden: /rest-api/transactions/trans-today/
 2022-09-15 11:13:27,529 django.request WARNING  Forbidden: /rest-api/presence/is-in/
 2022-09-15 11:13:27,676 django.request WARNING  Forbidden: /rest-api/get_client_authorization/
+2022-09-15 11:15:40,435 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-15 11:15:42,119 django.utils.autoreload INFO     Watching for file changes with StatReloader

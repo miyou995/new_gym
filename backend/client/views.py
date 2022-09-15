@@ -309,7 +309,7 @@ def total_abonnes(request):
 #     total_abonnees = Client.objects.all().count()
 #     return Response( { 'abonnees': total_abonnees})
 
-
+#sdvdsvsddsv
 
 @api_view(['GET'])
 def get_client_authorization(request):
