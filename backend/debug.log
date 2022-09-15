@@ -31276,3 +31276,60 @@ AttributeError: 'NoneType' object has no attribute 'model'
 2022-09-15 10:08:07,899 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2022-09-15 10:08:14,685 django.request WARNING  Unauthorized: /api/token/refresh/
 2022-09-15 10:08:15,085 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 10:21:01,201 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-15 10:21:07,663 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 10:21:07,885 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 10:21:08,347 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 10:21:08,506 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 10:21:08,672 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 10:50:10,684 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 10:50:10,836 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 11:07:25,069 django.request WARNING  Not Found: /favicon.ico
+2022-09-15 11:09:32,871 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-15 11:09:35,364 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-15 11:09:41,634 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-15 11:09:43,714 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-15 11:10:26,527 django.request WARNING  Forbidden: /rest-api/get_client_authorization/
+2022-09-15 11:10:26,708 django.request WARNING  Forbidden: /rest-api/get_client_authorization/
+2022-09-15 11:10:27,230 django.request WARNING  Forbidden: /rest-api/presence/is-in/
+2022-09-15 11:10:27,363 django.request WARNING  Forbidden: /rest-api/transactions/trans-today/
+2022-09-15 11:11:27,363 django.request WARNING  Unauthorized: /rest-api/presence/is-in/
+2022-09-15 11:11:47,836 django.request WARNING  Forbidden: /rest-api/get_client_authorization/
+2022-09-15 11:11:48,276 django.request WARNING  Forbidden: /rest-api/get_client_authorization/
+2022-09-15 11:11:52,125 django.request WARNING  Forbidden: /rest-api/get_client_authorization/
+2022-09-15 11:11:52,170 django.request WARNING  Forbidden: /rest-api/salle-activite/
+2022-09-15 11:11:52,449 django.request WARNING  Forbidden: /rest-api/coachs/
+2022-09-15 11:11:52,490 django.request WARNING  Forbidden: /rest-api/salle-activite/activite/
+2022-09-15 11:11:52,650 django.request WARNING  Forbidden: /rest-api/abc-by-creneau
+2022-09-15 11:11:53,200 django.request WARNING  Forbidden: /rest-api/creneau/by-salle-planning
+2022-09-15 11:11:53,357 django.request WARNING  Forbidden: /rest-api/get_client_authorization/
+2022-09-15 11:11:53,962 django.request WARNING  Forbidden: /rest-api/creneau/by-salle-planning
+2022-09-15 11:11:54,256 django.request WARNING  Forbidden: /rest-api/creneau/by-salle-planning
+2022-09-15 11:13:06,559 django.request WARNING  Forbidden: /rest-api/salle-activite/activite/
+2022-09-15 11:13:06,726 django.request WARNING  Forbidden: /rest-api/get_client_authorization/
+2022-09-15 11:13:06,773 django.request WARNING  Forbidden: /rest-api/salle-activite/
+2022-09-15 11:13:06,972 django.request WARNING  Forbidden: /rest-api/maladies/
+2022-09-15 11:13:07,137 django.request WARNING  Forbidden: /rest-api/salle-activite/door/
+2022-09-15 11:13:07,396 django.request WARNING  Forbidden: /rest-api/abonnement/
+2022-09-15 11:13:07,638 django.request WARNING  Forbidden: /rest-api/get_client_authorization/
+2022-09-15 11:13:07,727 django.request WARNING  Forbidden: /rest-api/salle-activite/
+2022-09-15 11:13:10,809 django.request WARNING  Forbidden: /rest-api/maladies/
+2022-09-15 11:13:10,812 django.request WARNING  Forbidden: /rest-api/get_client_authorization/
+2022-09-15 11:13:11,052 django.request WARNING  Forbidden: /rest-api/salle-activite/door/
+2022-09-15 11:13:11,060 django.request WARNING  Forbidden: /rest-api/salle-activite/
+2022-09-15 11:13:11,085 django.request WARNING  Forbidden: /rest-api/salle-activite/activite/
+2022-09-15 11:13:11,444 django.request WARNING  Forbidden: /rest-api/abonnement/
+2022-09-15 11:13:11,700 django.request WARNING  Forbidden: /rest-api/get_client_authorization/
+2022-09-15 11:13:11,866 django.request WARNING  Forbidden: /rest-api/salle-activite/
+2022-09-15 11:13:21,145 django.request WARNING  Forbidden: /rest-api/get_client_authorization/
+2022-09-15 11:13:21,342 django.request WARNING  Forbidden: /rest-api/maladies/
+2022-09-15 11:13:21,357 django.request WARNING  Forbidden: /rest-api/salle-activite/
+2022-09-15 11:13:21,413 django.request WARNING  Forbidden: /rest-api/salle-activite/door/
+2022-09-15 11:13:21,451 django.request WARNING  Forbidden: /rest-api/salle-activite/activite/
+2022-09-15 11:13:21,925 django.request WARNING  Forbidden: /rest-api/abonnement/
+2022-09-15 11:13:22,178 django.request WARNING  Forbidden: /rest-api/get_client_authorization/
+2022-09-15 11:13:22,210 django.request WARNING  Forbidden: /rest-api/salle-activite/
+2022-09-15 11:13:26,950 django.request WARNING  Forbidden: /rest-api/get_client_authorization/
+2022-09-15 11:13:27,243 django.request WARNING  Forbidden: /rest-api/transactions/trans-today/
+2022-09-15 11:13:27,529 django.request WARNING  Forbidden: /rest-api/presence/is-in/
+2022-09-15 11:13:27,676 django.request WARNING  Forbidden: /rest-api/get_client_authorization/
