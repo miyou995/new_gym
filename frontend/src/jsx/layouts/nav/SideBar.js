@@ -101,8 +101,8 @@ const [path,setPath] = useState("");
    const [nextpage, setNextpage] = useState(1);
    const baseURL = `${process.env.REACT_APP_API_URL}`
    // const tansactionsURL = `${baseURL}/rest-api/clients-name-drop/`;
-   var cURL = `${baseURL}/rest-api/clients-name/?page=${nextpage}`;
-   var coachURL = `${baseURL}/rest-api/coachs`
+   // var cURL = `${baseURL}/rest-api/clients-name/?page=${nextpage}`;
+   // var coachURL = `${baseURL}/rest-api/coachs`
 
    // const { transactionStatus } = useAaxios(tansactionsURL, 'GET');
    // const { clientStatus } = useAaxios(cURL, 'GET');

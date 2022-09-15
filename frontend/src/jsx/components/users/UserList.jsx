@@ -14,6 +14,7 @@ import UserModal from "./UserModal"
 
 import Pagination from "./Pagination.js";
 import Users from "./Users";
+import useAuth from "../useAuth";
 const UserList = () => {
 
 const api = useAxios();
@@ -62,13 +63,21 @@ const groupsEnd = `${process.env.REACT_APP_API_URL}/rest-api/auth/groups/`
 
    const paginate = pageNumber => setCurrentPage(pageNumber);
   
+   const userAuthorization = `${process.env.REACT_APP_API_URL}/rest-api/auth/users/`
+
+   const userAuth = useAuth(userAuthorization, 'GET')
+
+   console.log("userAuth=========================>", useAuth(userAuthorization, 'GET'));
+
+
+
    return (
       <Fragment>
          <ToastContainer position='top-right' autoClose={5000} hideProgressBar={false} newestOnTop closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
          <div className="testimonial-one owl-right-nav owl-carousel owl-loaded owl-drag mb-4">
             <ShortCuts />
          </div>
-         {usersStatus == 200 && (
+         {userAuth && (
          <>
          <div className="form-head d-flex mb-4 mb-md-5 align-items-start">
             <div className="input-group search-area d-inline-flex">
