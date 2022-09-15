@@ -26,6 +26,8 @@ function SampleNextArrow(props) {
   );
 }
 
+
+
 const ShortCuts = () => {
   const settings = {
     slidesToShow: 7,
@@ -84,10 +86,35 @@ const ShortCuts = () => {
        return returned
     }
  }
+
+const [startDate, setStartDate] = useState(formatDate(new Date('2021-01-05')));
+const [endDate, setEndDate] = useState(formatDate(new Date()));
+
+ const [nextpage, setNextpage] = useState(1);
+ const dateDebut = formatDate(startDate)
+ const dateFin = formatDate(endDate)
+ 
  const api = useAxios();
- const clientAuthoprizationEnd = `${process.env.REACT_APP_API_URL}/rest-api/get_client_authorization/`
- const clientAuth = useAuth(clientAuthoprizationEnd, 'GET')
-console.log("clientAuth=================================================>", useAuth(clientAuthoprizationEnd, 'GET'));
+
+//  const clientAuthorizationEnd = `${process.env.REACT_APP_API_URL}/rest-api/clients-name/?page=${nextpage}`
+
+ const clientAuthorizationEnd = `${process.env.REACT_APP_API_URL}/rest-api/get_client_authorization/`
+ const transactionAuthorization = `${process.env.REACT_APP_API_URL}/rest-api/transactions/?page=${nextpage}&start_date=${dateDebut}&end_date=${dateFin}`;
+ const coachAuthorizationEnd = `${process.env.REACT_APP_API_URL}/rest-api/coachs/`
+ let personnelAuthorization = `${process.env.REACT_APP_API_URL}/rest-api/personnel/`
+
+ const clientAuth = useAuth(clientAuthorizationEnd, 'GET')
+ const coachAuth = useAuth(coachAuthorizationEnd, 'GET')
+ const persoAuth = useAuth(personnelAuthorization, 'GET')
+ const transactionAuth = useAuth(transactionAuthorization, 'GET')
+
+
+
+
+console.log("clientAuth=========================>", useAuth(clientAuthorizationEnd, 'GET'));
+console.log("transactionAuth=========================>", useAuth(transactionAuthorization, 'GET'));
+console.log("coachAuth=========================>", useAuth(coachAuthorizationEnd, 'GET'));
+
 
 //  const [clientAuth, setClientAuth] = useState(useAuth(clientAuthoprizationEnd, 'GET'), null)
 //  const getAuthorization = async (endpoint) => {
@@ -120,7 +147,7 @@ console.log("clientAuth=================================================>", useA
           </div>
         </div>
       </Link>
-      {clientAuth  &&
+      {transactionAuth  &&
         <Link to="/transactions">
           <div className="items">
             <div>
@@ -152,8 +179,8 @@ console.log("clientAuth=================================================>", useA
           </div>
         </Link>
       }
-      
-      <Link to="/coach">
+      {coachAuth &&
+        <Link to="/coach">
         <div className="items">
           <div>
             <img className="mb-3 ml-auto mr-auto" src={cochsImg}  />
@@ -162,15 +189,20 @@ console.log("clientAuth=================================================>", useA
           </div>
         </div>
       </Link>
-      <Link to="/personnel">
-        <div className="items">
-          <div>
-            <img className="mb-3 ml-auto mr-auto" src={stafImg}  />
-            <h6 className=" mb-0 text-center">Personnels </h6>
-            {/* <span className="fs-12">Gestion des coachs</span> */}
+      }
+      
+    {persoAuth &&
+          <Link to="/personnel">
+          <div className="items">
+            <div>
+              <img className="mb-3 ml-auto mr-auto" src={stafImg}  />
+              <h6 className=" mb-0 text-center">Personnels </h6>
+              {/* <span className="fs-12">Gestion des coachs</span> */}
+            </div>
           </div>
-        </div>
-      </Link>
+        </Link>
+    }
+
       <Link to="/presences">
         <div className="items">
           <div>
