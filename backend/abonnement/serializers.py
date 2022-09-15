@@ -7,7 +7,6 @@ from datetime import datetime, timedelta, date
 from salle_activite.serializers import ActivitySerialiser, SalleSerialiser
 from transaction.models import Paiement
 from client.models import Client
-import datetime
 from django.shortcuts import get_object_or_404
 
 class PaiementClientSerializer(serializers.ModelSerializer):
@@ -50,9 +49,9 @@ class AbonnementClientHistorySerializer(serializers.ModelSerializer):
     def get_left_minutes(self, obj):
         minutes = obj.presence_quantity
         time = divmod(minutes, 60)
-        print('en heures', time)
+        # print('en heures', time)
         time_string = "{}H: {}M".format(time[0], time[1])
-        print('en time_string', time_string)
+        # print('en time_string', time_string)
         return time_string
 
     def get_is_time_volume(self, obj):
@@ -157,10 +156,10 @@ class AbonnementClientSerialiser(serializers.ModelSerializer):
         else:
             return False
     def get_next_date(self, given_start_date, day):
-        today = datetime.date.today()
+        today = date.today()
         weekday = given_start_date.weekday()
         print('TODAY DE TODAY', day)
-        the_next_day = given_start_date + datetime.timedelta((day-weekday) % 7)
+        the_next_day = given_start_date + timedelta((day-weekday) % 7)
         return the_next_day
 
     def create(self, validated_data):
@@ -174,7 +173,7 @@ class AbonnementClientSerialiser(serializers.ModelSerializer):
         print('l-- selected_creneau ',selected_creneau)
         dates_array = []
         seances= type_ab.seances_quantity
-        calculated_end_date = start_date + datetime.timedelta(days=duree)
+        calculated_end_date = start_date + timedelta(days=duree)
 
         if type_ab.fixed_sessions():
             print('on the if')
@@ -185,12 +184,12 @@ class AbonnementClientSerialiser(serializers.ModelSerializer):
                 dates_array.append(next_date)
             print('la MAX : ', max(dates_array))
             maxed_date = max(dates_array)
-            calculated_end_date = maxed_date + datetime.timedelta(weeks=duree_semaine)
+            calculated_end_date = maxed_date + timedelta(weeks=duree_semaine)
         elif type_ab.time_volume():
             seances= type_ab.seances_quantity * 60
         else:
             print('on the else')
-            calculated_end_date = start_date + datetime.timedelta(days=duree)
+            calculated_end_date = start_date + timedelta(days=duree)
         print('la calculated_end_date : ', calculated_end_date)
         abc_instance = AbonnementClient.objects.create(client= client, start_date= start_date ,end_date= calculated_end_date, type_abonnement = type_ab, presence_quantity=seances, reste=type_ab.price)
         for cren in selected_creneau:
@@ -245,9 +244,9 @@ class AbonnementClientDetailSerializer(serializers.ModelSerializer):
     def get_left_minutes(self, obj):
         minutes = obj.presence_quantity
         time = divmod(minutes, 60)
-        print('en heures', time)
+        # print('en heures', time)
         time_string = "{}H: {}M".format(time[0], time[1])
-        print('en time_string', time_string)
+        # print('en time_string', time_string)
         return time_string
 
 class AbonnementSerialiser(serializers.ModelSerializer):   

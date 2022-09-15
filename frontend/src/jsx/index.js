@@ -84,6 +84,7 @@ import Tresorie from "./components/tresorie/Tresorie"
 /// Dashboard
 import Home from "./components/Dashboard/Home";
 import Configuration from './components/configuration/Configuration'
+import UpdateModal from "./components/users/UpdateModal";
 const Markup = () => {
   let path = window.location.pathname;
   path = path.split("/");
@@ -158,6 +159,9 @@ const Markup = () => {
     { url: "coach/create", component: CoachCreate },
     { url: "coach/:id", component: CoachDetail },
     { url: "coach/edit/:id", component: CoachEdit },
+
+    { url: "user/edit/:id", component: UpdateModal },
+
 
     /// Transactions CREATION
     // { url: "paiements/create", component: PaiementCreate },

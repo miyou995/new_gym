@@ -4,7 +4,7 @@ from django.shortcuts import render, get_object_or_404
 from rest_framework import generics
 from .models import Salle, Activity, Door
 from .serializers import SalleSerialiser, ActivitySerialiser, DoorSerializer
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser, DjangoModelPermissions
 from rest_framework.response import Response
 from rest_framework import status
 from django.db.models import Count
@@ -13,30 +13,54 @@ from rest_framework.viewsets import ViewSet, ModelViewSet
 from .tasks import start_linsten_1, start_linsten_2
 from .device import AccessControl
 
+class BaseModelPerm(DjangoModelPermissions):
+    def get_custom_perms(self, method, view):
+        app_name =  view.queryset.model._meta.app_label
+        if hasattr(view, 'extra_perms_map'):
+            return [app_name+"."+perms for perms in view.extra_perms_map.get(method, [])]
+        else:
+            return []
+
+    def has_permission(self, request, view):
+        perms = self.get_required_permissions(request.method, view.queryset.model)
+        perms.extend(self.get_custom_perms(request.method, view))
+        return ( request.user and request.user.has_perms(perms) )
 
 
 class DoorApiViewSet(ModelViewSet):
     serializer_class = DoorSerializer
     queryset = Door.objects.all()
-
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["salle_activite.change_door"]
+    }
 
 
 class SalleAPIView(generics.CreateAPIView):
     queryset = Salle.objects.all()
     serializer_class = SalleSerialiser
-
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["salle_activite.add_salle"]
+    }
 
 class SalleListAPIView(generics.ListAPIView):
     queryset = Salle.objects.all()
     # permission_classes = (IsAuthenticated,)
     serializer_class = SalleSerialiser
-
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["salle_activite.view_salle"]
+    }
 
 class SalleDetailAPIView(generics.RetrieveUpdateAPIView):
     queryset = Salle.objects.all()
     # permission_classes = (IsAuthenticated,)
     serializer_class = SalleSerialiser
-
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["salle_activite.xhange_salle"]
+    }
     def get_object(self):
         obj = get_object_or_404(Salle.objects.filter(id=self.kwargs["pk"]))
         print('Salle ... ', obj , obj.id)
@@ -46,12 +70,18 @@ class SalleDetailAPIView(generics.RetrieveUpdateAPIView):
 class SalleDestroyAPIView(generics.DestroyAPIView):
     queryset = Salle.objects.all()
     serializer_class = SalleSerialiser
-
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["salle_activite.delete_salle"]
+    }
 
 class ActivityAPIView(generics.CreateAPIView):
     queryset = Activity.objects.all()
     serializer_class = ActivitySerialiser
-
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["salle_activite.add_activity"]
+    }
     def post(self, request, format=None):
         print(request.data)
         serializer = ActivitySerialiser(data=request.data)
@@ -69,13 +99,19 @@ class ActivityListAPIView(generics.ListAPIView):
     queryset = Activity.objects.all()
     # permission_classes = (IsAuthenticated,)
     serializer_class = ActivitySerialiser
-
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["salle_activite.view_activity"]
+    }
 
 class ActivityDetailAPIView(generics.RetrieveUpdateAPIView):
     queryset = Activity.objects.all()
     # permission_classes = (IsAuthenticated,)
     serializer_class = ActivitySerialiser
-
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["salle_activite.change_activity"]
+    }
     def get_object(self):
         obj = get_object_or_404(Activity.objects.filter(id=self.kwargs["pk"]))
         print('ACTIVITé ', obj , obj.id)
@@ -85,7 +121,10 @@ class ActivityDetailAPIView(generics.RetrieveUpdateAPIView):
 class ActivityDestroyAPIView(generics.DestroyAPIView):
     queryset = Activity.objects.all()
     serializer_class = ActivitySerialiser
-
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["salle_activite.delete_activity"]
+    }
 
 @api_view(['GET'])
 def presences_by_salle(request):
@@ -125,3 +164,19 @@ def stop_listening(request):
     return Response( "hello")
 
     
+@api_view(['GET'])
+def get_salle_authorization(request):
+    user = request.user
+    if user.has_perm("salle_activite.view_salle"):
+        return Response(status=200)
+    else:
+        return Response(status=403)
+
+    
+@api_view(['GET'])
+def get_activite_authorization(request):
+    user = request.user
+    if user.has_perm("salle_activite.view_activite"):
+        return Response(status=200)
+    else:
+        return Response(status=403)

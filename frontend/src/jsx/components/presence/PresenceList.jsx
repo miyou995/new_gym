@@ -82,10 +82,15 @@ const PresenceList = () => {
    // const activities = useGetAPI(`${process.env.REACT_APP_API_URL}/rest-api/salle-activite/activite/`)
    let presenceCreateEND =  `${process.env.REACT_APP_API_URL}/rest-api/presence/auto-create`
    
+   const [salleStatus, setSalleStatus] = useState(null)
+   
    useEffect(() => {
       api.get(`${process.env.REACT_APP_API_URL}/rest-api/salle-activite/`).then( res=> {
          setSallesData(res.data)
-      }) 
+         setSalleStatus(res.status)
+      }).catch(err => {
+         setSalleStatus(err.response.status)
+      })
       api.get(`${process.env.REACT_APP_API_URL}/rest-api/salle-activite/activite/`).then( res=> {
          setActivities(res.data)
       }) 
@@ -114,14 +119,26 @@ const getCurrentDay = (PresneceDate) => {
       return 'Samedi'
    }
 } 
+const [presenceStatus, setPresenceStatus] = useState(null);
+
    useEffect(() => {
       const presenceDateDate = async () => {
          const dateDebut = formatDate(startDate)
          const dateFin = formatDate(endDate)
-         const result =  await api.get(`${process.env.REACT_APP_API_URL}/rest-api/presence/?page=${nextpage}&start_date=${dateDebut}&end_date=${dateFin}&abc__client_id=${searchValue}&creneau__activity__salle=${salleId}&hour=${startHour}&creneau__activity=${filterActivity}`)
-         console.log('cest un result ', result);
-         setPresenceData(result.data.results)
-         setPresencesCount(result.data.count)
+         // const result =  await api.get(`${process.env.REACT_APP_API_URL}/rest-api/presence/?page=${nextpage}&start_date=${dateDebut}&end_date=${dateFin}&abc__client_id=${searchValue}&creneau__activity__salle=${salleId}&hour=${startHour}&creneau__activity=${filterActivity}`)
+         // console.log('cest un result ', result);
+         // setPresenceData(result.data.results)
+         // setPresencesCount(result.data.count)
+         await api.get(`${process.env.REACT_APP_API_URL}/rest-api/presence/?page=${nextpage}&start_date=${dateDebut}&end_date=${dateFin}&abc__client_id=${searchValue}&creneau__activity__salle=${salleId}&hour=${startHour}&creneau__activity=${filterActivity}`)
+         .then(res => {
+            console.log('cest un result ', res);
+            setPresenceData(res.data.results)
+            setPresencesCount(res.data.count)
+            setPresenceStatus(res.status)
+         }).catch(err => {
+            console.log(err);
+            setPresenceStatus(err.response.status)
+         })
       }
       presenceDateDate()
    }, [startDate, endDate, clientId,nextpage, searchValue, client, presenceCreatedSuccess, presenceupdatedSuccess, salleId, editModal, presneceCreateModal, startHour, filterActivity]);
@@ -158,6 +175,8 @@ const HandleSubmit = (e) => {
          <div className="testimonial-one owl-right-nav owl-carousel owl-loaded owl-drag mb-4">
             <ShortCuts />
          </div> 
+         {presenceStatus == 200 && (
+         <>
          <div className="m-5 row">
             <div className='col- col-md-4'>
                <form onSubmit={HandleSubmit}>
@@ -342,6 +361,8 @@ const HandleSubmit = (e) => {
 
               </div>
          }
+         </>
+         )}
       </Fragment>
    );
 };
