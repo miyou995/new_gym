@@ -74,6 +74,10 @@ def stop_listening_1():
     device.get_login_info(ip='192.168.1.2', port=37777, username='admin', password='123456')
     result = device.login()
     result = device.logout()
+@task
+def start_face_door_1():
+    print('start_face_door_1') 
+
 
 # @shared_task
 # def stop_listening_2():
