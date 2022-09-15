@@ -3,14 +3,14 @@ from rest_framework import generics
 from .models import Creneau
 from salle_activite.models import Salle
 from .serializers import CreneauSerialiser, CreneauxSimpleSerialiser, CreneauClientSerialiser
-from rest_framework.permissions import AllowAny, IsAuthenticated, DjangoModelPermissions
+from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser, DjangoModelPermissions
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from abonnement.models import AbonnementClient
 
 class BaseModelPerm(DjangoModelPermissions):
     def get_custom_perms(self, method, view):
-        app_name = view.model._meta.app_label
+        app_name =  view.queryset.model._meta.app_label
         if hasattr(view, 'extra_perms_map'):
             return [app_name+"."+perms for perms in view.extra_perms_map.get(method, [])]
         else:
@@ -185,6 +185,15 @@ class CreneauAbcListAPIView(generics.ListAPIView):
         abonnement = self.request.query_params.get('ab', None)
         creneaux = Creneau.objects.filter(abonnements__id =abonnement)
         return creneaux
+
+
+@api_view(['GET'])
+def get_creneau_authorization(request):
+    user = request.user
+    if user.has_perm("creneau.view_creneau"):
+        return Response(status=200)
+    else:
+        return Response(status=403)
 
 # @api_view(['GET'])
 # def creneau_by_abonnee(request):

@@ -1,4 +1,4 @@
-import React from "react";
+import React,  { useState, useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 // Images
 import transactionImg from "../../images/profile/transaction.png";
 import creneauImg from "../../images/profile/creneau.png";
-import abonnementImg from "../../images/profile/abonnement.png";
+// import abonnementImg from "../../images/profile/abonnement.png";
 import clientsImg from "../../images/profile/clients.png";
 import cochsImg from "../../images/profile/coach.png";
 import presencesImg from "../../images/profile/presences.png";
@@ -15,7 +15,6 @@ import dashboardImg from "../../images/profile/dashboard.png";
 import confImg from "../../images/profile/gear.png";
 import stafImg from "../../images/profile/waiter.png";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 import useAxios from "./useAxios";
 
 function SampleNextArrow(props) {
@@ -85,45 +84,21 @@ const ShortCuts = () => {
        return returned
     }
  }
-
+const [clientAuth, setClientAuth] = useState(false)
  const api = useAxios();
- const [startDate, setStartDate] = useState(formatDate(new Date('2021-01-05')));
- const [endDate, setEndDate] = useState(formatDate(new Date()));
 
- const [uStatus, setUStatus] = useState(null);
- const [clientStatus, setClientStatus] = useState(null);
-
-
- const [nextpage, setNextpage] = useState(1);
-
-
-    const dateDebut = formatDate(startDate)
-    const dateFin = formatDate(endDate)
- 
-    api.get(`${process.env.REACT_APP_API_URL}/rest-api/transactions/?page=${nextpage}&start_date=${dateDebut}&end_date=${dateFin}`).then(res => {
-       console.log(res.status);
-       setUStatus(res.status);
-    }).catch(error => {
-       if (error.response) {
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-          setUStatus(error.response.status);
-       }
+ const clientAuthoprizationEnd = `${process.env.REACT_APP_API_URL}/rest-api/get_client_authorization/`
+  useEffect(() => {
+    api.get(clientAuthoprizationEnd).then(res => {
+      if (res.status == 200) {
+        setClientAuth(true)
+      }
+      console.log("RES ->", res);
     })
 
-    api.get(`${process.env.REACT_APP_API_URL}/rest-api/clients-name/?page=${nextpage}`).then(res => {
-      console.log(res.status);
-      setClientStatus(res.status);
-   }).catch(error => {
-      if (error.response) {
-         console.log(error.response.data);
-         console.log(error.response.status);
-         console.log(error.response.headers);
-         setClientStatus(error.response.status);
-      }
-   })
- 
+  }, [clientAuthoprizationEnd])
+
+
 
 
   return (
@@ -138,7 +113,7 @@ const ShortCuts = () => {
           </div>
         </div>
       </Link>
-      {uStatus === 200 ? (
+      {clientAuth  &&
         <Link to="/transactions">
           <div className="items">
             <div>
@@ -148,7 +123,7 @@ const ShortCuts = () => {
             </div>
           </div>
         </Link> 
-        ) : null } 
+      } 
      
 
       {/* <Link to="/Abonnements">
@@ -159,17 +134,17 @@ const ShortCuts = () => {
             </div>
          </div>
          </Link> */}
-      {clientStatus == 200 && (
-      <Link to="/client">
-        <div className="items">
-          <div>
-            <img className="mb-3 ml-auto mr-auto" src={clientsImg}  />
-            <h6 className=" mb-0 text-center">Clients</h6>
-            {/* <span className="fs-12">Gestion des clients</span> */}
+      {clientAuth  &&
+        <Link to="/client">
+          <div className="items">
+            <div>
+              <img className="mb-3 ml-auto mr-auto" src={clientsImg}  />
+              <h6 className=" mb-0 text-center">Clients</h6>
+              {/* <span className="fs-12">Gestion des clients</span> */}
+            </div>
           </div>
-        </div>
-      </Link>
-      )}
+        </Link>
+      }
       
       <Link to="/coach">
         <div className="items">

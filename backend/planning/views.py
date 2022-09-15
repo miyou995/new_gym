@@ -10,7 +10,7 @@ from .serializers import PlanningSerialiser
 
 class BaseModelPerm(DjangoModelPermissions):
     def get_custom_perms(self, method, view):
-        app_name = view.model._meta.app_label
+        app_name =  view.queryset.model._meta.app_label
         if hasattr(view, 'extra_perms_map'):
             return [app_name+"."+perms for perms in view.extra_perms_map.get(method, [])]
         else:
@@ -70,3 +70,12 @@ def default_planning(request):
     planning = Planning.custom_manager.default_planning()
     serializer = PlanningSerialiser(planning, many=False)
     return Response( {'default_planning': serializer.data}) 
+
+    
+@api_view(['GET'])
+def get_planning_authorization(request):
+    user = request.user
+    if user.has_perm("planning.view_planning"):
+        return Response(status=200)
+    else:
+        return Response(status=403)

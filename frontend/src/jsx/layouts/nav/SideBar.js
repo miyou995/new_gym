@@ -10,7 +10,7 @@ import PerfectScrollbar from "react-perfect-scrollbar";
 import MetisMenu from "metismenujs";
 import useAxios from "../../components/useAxios";
 import SbNavLinks from "./SbNavLinks";
-import useAaxios from "../../components/useAaxios";
+// import useAaxios from "../../components/useAaxios";
 ///
 // import drump from "../../../images/card/drump.png";
 
@@ -105,9 +105,10 @@ const [path,setPath] = useState("");
    var coachURL = `${baseURL}/rest-api/coachs`
 
    // const { transactionStatus } = useAaxios(tansactionsURL, 'GET');
-   const { clientStatus } = useAaxios(cURL, 'GET');
-   const { coachStatus } = useAaxios(coachURL, 'GET');
-
+   // const { clientStatus } = useAaxios(cURL, 'GET');
+   // const { coachStatus } = useAaxios(coachURL, 'GET');
+   const { clientStatus } = true;
+   const { coachStatus } = true;
 
   
 

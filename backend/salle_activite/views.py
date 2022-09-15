@@ -4,7 +4,7 @@ from django.shortcuts import render, get_object_or_404
 from rest_framework import generics
 from .models import Salle, Activity, Door
 from .serializers import SalleSerialiser, ActivitySerialiser, DoorSerializer
-from rest_framework.permissions import AllowAny, IsAuthenticated, DjangoModelPermissions
+from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser, DjangoModelPermissions
 from rest_framework.response import Response
 from rest_framework import status
 from django.db.models import Count
@@ -15,7 +15,7 @@ from .device import AccessControl
 
 class BaseModelPerm(DjangoModelPermissions):
     def get_custom_perms(self, method, view):
-        app_name = view.model._meta.app_label
+        app_name =  view.queryset.model._meta.app_label
         if hasattr(view, 'extra_perms_map'):
             return [app_name+"."+perms for perms in view.extra_perms_map.get(method, [])]
         else:
@@ -164,3 +164,19 @@ def stop_listening(request):
     return Response( "hello")
 
     
+@api_view(['GET'])
+def get_salle_authorization(request):
+    user = request.user
+    if user.has_perm("salle_activite.view_salle"):
+        return Response(status=200)
+    else:
+        return Response(status=403)
+
+    
+@api_view(['GET'])
+def get_activite_authorization(request):
+    user = request.user
+    if user.has_perm("salle_activite.view_activite"):
+        return Response(status=200)
+    else:
+        return Response(status=403)

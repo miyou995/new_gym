@@ -49,8 +49,7 @@ import useAxios from "./useAxios";
                 setPresenceStatus(response.status);
                 setTresorieStatus(response.status);
                 setUserStatus(response.status);
-
-
+                console.log('client status', clientStatus);
 
             } catch (error) {
                 setError(error.message);

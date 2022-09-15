@@ -2,11 +2,11 @@ from django.shortcuts import render, get_object_or_404
 from rest_framework import generics
 from .models import Assurance
 from .serializers import AssuranceSerialiser
-from rest_framework.permissions import AllowAny, IsAuthenticated, DjangoModelPermissions
+from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser, DjangoModelPermissions
 
 class BaseModelPerm(DjangoModelPermissions):
     def get_custom_perms(self, method, view):
-        app_name = view.model._meta.app_label
+        app_name =  view.queryset.model._meta.app_label
         if hasattr(view, 'extra_perms_map'):
             return [app_name+"."+perms for perms in view.extra_perms_map.get(method, [])]
         else:
