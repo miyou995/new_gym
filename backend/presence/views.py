@@ -9,7 +9,7 @@ from rest_framework import generics
 from rest_framework import pagination
 from rest_framework import filters
 from rest_framework.settings import perform_import
-from rest_framework.permissions import AllowAny, IsAuthenticated, DjangoModelPermissions
+from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser, DjangoModelPermissions
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
@@ -21,7 +21,7 @@ from datetime import date, timedelta, datetime
 
 class BaseModelPerm(DjangoModelPermissions):
     def get_custom_perms(self, method, view):
-        app_name = view.model._meta.app_label
+        app_name =  view.queryset.model._meta.app_label
         if hasattr(view, 'extra_perms_map'):
             return [app_name+"."+perms for perms in view.extra_perms_map.get(method, [])]
         else:
@@ -367,6 +367,7 @@ class PresenceClientDetailAPI(generics.ListAPIView):
     
 
 class PresenceClientIsInAPI(generics.ListAPIView):
+    queryset = Presence.objects.all()
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
         "GET": ["presence.view_presence"]
@@ -388,11 +389,23 @@ class PresenceClientAutoCreateAPI(generics.CreateAPIView):
     extra_perms_map = {
         "GET": ["presence.add_presencecoach"]
     }
-# class PresencesBySalle(generics.ListAPIView):
-#     def get_queryset(self):
-#         return presences
+
+
     
+@api_view(['GET'])
+def get_presence_authorization(request):
+    user = request.user
+    if user.has_perm("presence.view_presence"):
+        return Response(status=200)
+    else:
+        return Response(status=403)
 
-    # presences = Presence.objects.filter(creneau_activity_salle = Count('client'))
-
+    
+@api_view(['GET'])
+def get_presence_coach_authorization(request):
+    user = request.user
+    if user.has_perm("presence.view_presence_coach"):
+        return Response(status=200)
+    else:
+        return Response(status=403)
 

@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Sum
 from django.db.models import Q
-from rest_framework.permissions import AllowAny, IsAuthenticated, DjangoModelPermissions
+from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser, DjangoModelPermissions
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework import generics
 from rest_framework.response import Response
@@ -13,7 +13,7 @@ from .models import Abonnement,  AbonnementClient
 
 class BaseModelPerm(DjangoModelPermissions):
     def get_custom_perms(self, method, view):
-        app_name = view.model._meta.app_label
+        app_name =  view.queryset.model._meta.app_label
         if hasattr(view, 'extra_perms_map'):
             return [app_name+"."+perms for perms in view.extra_perms_map.get(method, [])]
         else:
@@ -347,3 +347,19 @@ def deactivate_abc_api_view(request, pk):
     print('-------------------------------------------------------')
     abc  = AbonnementClient.objects.get( id = pk).delete()
     return Response({'message' : "l'abonnement a été suprimer avec Success"})
+
+
+@api_view(['GET'])
+def get_abonnement_authorization(request):
+    user = request.user
+    if user.has_perm("abonnement.view_abonnement"):
+        return Response(status=200)
+    else:
+        return Response(status=403)
+@api_view(['GET'])
+def get_abonnementclient_authorization(request):
+    user = request.user
+    if user.has_perm("abonnement.view_abonnementclient"):
+        return Response(status=200)
+    else:
+        return Response(status=403)

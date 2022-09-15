@@ -49,9 +49,9 @@ class AbonnementClientHistorySerializer(serializers.ModelSerializer):
     def get_left_minutes(self, obj):
         minutes = obj.presence_quantity
         time = divmod(minutes, 60)
-        print('en heures', time)
+        # print('en heures', time)
         time_string = "{}H: {}M".format(time[0], time[1])
-        print('en time_string', time_string)
+        # print('en time_string', time_string)
         return time_string
 
     def get_is_time_volume(self, obj):
@@ -244,9 +244,9 @@ class AbonnementClientDetailSerializer(serializers.ModelSerializer):
     def get_left_minutes(self, obj):
         minutes = obj.presence_quantity
         time = divmod(minutes, 60)
-        print('en heures', time)
+        # print('en heures', time)
         time_string = "{}H: {}M".format(time[0], time[1])
-        print('en time_string', time_string)
+        # print('en time_string', time_string)
         return time_string
 
 class AbonnementSerialiser(serializers.ModelSerializer):   

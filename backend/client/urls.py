@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import ClientAPIView, ClientListAPIView, ClientDestroyAPIView, ClientDetailAPIView, PersonnelCreateAPIView, PersonnelListAPIView, PersonnelDetailAPIView, PersonnelDestroyAPIView ,CoachCreateAPIView ,CoachListAPIView ,CoachDetailAPIView ,CoachDestroyAPIView, MaladieCreateAPIView, MaladieViewSet, ClientNameViewAPI,  total_dettes, total_abonnes, ClientPresenceViewAPI, ClientNamesDropListAPIView, MaladieDetailViewAPI, GETClientDetailAPIView
+from .views import ClientAPIView, ClientListAPIView, ClientDestroyAPIView, ClientDetailAPIView, PersonnelCreateAPIView, PersonnelListAPIView, PersonnelDetailAPIView, PersonnelDestroyAPIView ,CoachCreateAPIView ,CoachListAPIView ,CoachDetailAPIView ,CoachDestroyAPIView, MaladieCreateAPIView, MaladieViewSet, ClientNameViewAPI,  total_dettes, total_abonnes, ClientPresenceViewAPI, ClientNamesDropListAPIView, MaladieDetailViewAPI, GETClientDetailAPIView, get_client_authorization
 from django.views.generic import TemplateView
 
 app_name = 'client'
@@ -35,6 +35,7 @@ urlpatterns = [
     path('maladies/', MaladieViewSet.as_view({'get':'list'}), name="maladie-create-list"),
     path('maladie/create/', MaladieCreateAPIView.as_view(), name="maladie-create"),
     path('maladie/<int:pk>', MaladieDetailViewAPI.as_view(), name="maladie-detail"),
+    path('get_client_authorization/', get_client_authorization, name="get_client_authorization"),
 ]
 
 

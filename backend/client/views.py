@@ -19,7 +19,7 @@ class StandardResultsSetPagination(pagination.PageNumberPagination):
 
 class BaseModelPerm(DjangoModelPermissions):
     def get_custom_perms(self, method, view):
-        app_name = view.model._meta.app_label
+        app_name =  view.queryset.model._meta.app_label
         if hasattr(view, 'extra_perms_map'):
             return [app_name+"."+perms for perms in view.extra_perms_map.get(method, [])]
         else:
@@ -260,13 +260,13 @@ class MaladieViewSet(viewsets.ViewSet):
 
 
 class ClientNameViewAPI(generics.ListAPIView):
+    queryset = Client.objects.all().order_by('-id')
     pagination_class = StandardResultsSetPagination
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
         "GET": ["client.view_client"]
     }
 
-    queryset = Client.objects.all().order_by('-id')
     serializer_class = ClientNameSerializer
     search_fields = [ '=id','=carte', '^last_name', '^first_name', '^phone']
     filter_backends = (filters.SearchFilter,)
@@ -310,3 +310,11 @@ def total_abonnes(request):
 #     return Response( { 'abonnees': total_abonnees})
 
 
+
+@api_view(['GET'])
+def get_client_authorization(request):
+    user = request.user
+    if user.has_perm("client.view_client"):
+        return Response(status=200)
+    else:
+        return Response(status=403)
