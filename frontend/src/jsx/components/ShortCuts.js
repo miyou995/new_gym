@@ -16,7 +16,7 @@ import confImg from "../../images/profile/gear.png";
 import stafImg from "../../images/profile/waiter.png";
 import { Link } from "react-router-dom";
 import useAxios from "./useAxios";
-
+import useAuth from "./useAuth"
 function SampleNextArrow(props) {
   const { onClick } = props;
   return (
@@ -84,22 +84,29 @@ const ShortCuts = () => {
        return returned
     }
  }
-const [clientAuth, setClientAuth] = useState(false)
  const api = useAxios();
-
  const clientAuthoprizationEnd = `${process.env.REACT_APP_API_URL}/rest-api/get_client_authorization/`
-  useEffect(() => {
-    api.get(clientAuthoprizationEnd).then(res => {
-      if (res.status == 200) {
-        setClientAuth(true)
-      }
-      console.log("RES ->", res);
-    })
+ const clientAuth = useAuth(clientAuthoprizationEnd, 'GET')
+console.log("clientAuth=================================================>", useAuth(clientAuthoprizationEnd, 'GET'));
 
-  }, [clientAuthoprizationEnd])
+//  const [clientAuth, setClientAuth] = useState(useAuth(clientAuthoprizationEnd, 'GET'), null)
+//  const getAuthorization = async (endpoint) => {
+//     await api.get(endpoint).then(res => {
+//       console.log("RES ->", res);
+//        if (res.status == 200) {
+//          return true
+//        }else{
+//          return false
+//        }
+//       })
+//   }
 
-
-
+//   const [clientAuth, setClientAuth] = useState(false) 
+//   // const clientAuth = getAuthorization(clientAuthoprizationEnd)
+//   useEffect(() => {
+//     setClientAuth(getAuthorization(clientAuthoprizationEnd)) 
+//   }, [])
+ 
 
   return (
     // <div className="d-flex justify-content-around text-center contacts-card">

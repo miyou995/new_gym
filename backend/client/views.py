@@ -315,6 +315,7 @@ def total_abonnes(request):
 def get_client_authorization(request):
     user = request.user
     if user.has_perm("client.view_client"):
+        print('HAS per')
         return Response(status=200)
     else:
         return Response(status=403)
