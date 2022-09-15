@@ -32738,3 +32738,718 @@ AttributeError: 'NoneType' object has no attribute 'model'
 2022-09-15 14:22:18,090 django.request WARNING  Forbidden: /rest-api/transactions/
 2022-09-15 14:22:43,915 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/assurance/views.py changed, reloading.
 2022-09-15 14:22:46,010 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-15 14:24:02,997 django.request WARNING  Forbidden: /rest-api/personnel/
+2022-09-15 14:24:03,010 django.request WARNING  Forbidden: /rest-api/clients-name/
+2022-09-15 14:24:03,191 django.request WARNING  Forbidden: /rest-api/transactions/
+2022-09-15 14:24:03,214 django.request WARNING  Forbidden: /rest-api/coachs/
+2022-09-15 14:24:03,480 django.request WARNING  Forbidden: /rest-api/get_client_authorization/
+2022-09-15 14:24:04,135 django.request WARNING  Forbidden: /rest-api/coachs/
+2022-09-15 14:24:04,191 django.request WARNING  Forbidden: /rest-api/transactions/
+2022-09-15 14:24:04,380 django.request WARNING  Forbidden: /rest-api/get_client_authorization/
+2022-09-15 14:24:04,896 django.request WARNING  Forbidden: /rest-api/get_client_authorization/
+2022-09-15 14:24:29,183 django.request WARNING  Forbidden: /rest-api/coachs/
+2022-09-15 14:24:29,331 django.request WARNING  Forbidden: /rest-api/transactions/
+2022-09-15 14:24:29,346 django.request WARNING  Forbidden: /rest-api/personnel/
+2022-09-15 14:24:29,384 django.request WARNING  Forbidden: /rest-api/transactions/paiement-by-client/
+2022-09-15 14:24:29,621 django.request WARNING  Forbidden: /rest-api/get_client_authorization/
+2022-09-15 14:24:30,022 django.request WARNING  Forbidden: /rest-api/presence/client/
+2022-09-15 14:24:30,117 django.request WARNING  Forbidden: /rest-api/clients/C0008/
+2022-09-15 14:24:30,282 django.request WARNING  Forbidden: /rest-api/abonnement-by-client-all/
+2022-09-15 14:24:30,306 django.request WARNING  Forbidden: /rest-api/creneau/by-client
+2022-09-15 14:24:30,383 django.request WARNING  Forbidden: /rest-api/abonnement-by-client/
+2022-09-15 14:24:30,515 django.request WARNING  Forbidden: /rest-api/coachs/
+2022-09-15 14:24:30,832 django.request WARNING  Forbidden: /rest-api/transactions/
+2022-09-15 14:24:30,834 django.request WARNING  Forbidden: /rest-api/transactions/paiement-by-client/
+2022-09-15 14:24:30,947 django.request WARNING  Forbidden: /rest-api/get_client_authorization/
+2022-09-15 14:24:56,710 django.request WARNING  Forbidden: /rest-api/personnel/
+2022-09-15 14:24:56,718 django.request WARNING  Forbidden: /rest-api/transactions/
+2022-09-15 14:24:56,924 django.request WARNING  Forbidden: /rest-api/coachs/
+2022-09-15 14:24:56,944 django.request WARNING  Forbidden: /rest-api/transactions/paiement-by-client/
+2022-09-15 14:24:57,248 django.request WARNING  Forbidden: /rest-api/get_client_authorization/
+2022-09-15 14:24:57,525 django.request WARNING  Forbidden: /rest-api/presence/client/
+2022-09-15 14:24:57,783 django.request WARNING  Forbidden: /rest-api/abonnement-by-client/
+2022-09-15 14:24:57,926 django.request WARNING  Forbidden: /rest-api/clients/creatze/
+2022-09-15 14:24:57,932 django.request WARNING  Forbidden: /rest-api/creneau/by-client
+2022-09-15 14:24:58,021 django.request WARNING  Forbidden: /rest-api/abonnement-by-client-all/
+2022-09-15 14:24:58,275 django.request WARNING  Forbidden: /rest-api/transactions/
+2022-09-15 14:24:58,484 django.request WARNING  Forbidden: /rest-api/coachs/
+2022-09-15 14:24:58,633 django.request WARNING  Forbidden: /rest-api/transactions/paiement-by-client/
+2022-09-15 14:24:58,741 django.request WARNING  Forbidden: /rest-api/get_client_authorization/
+2022-09-15 14:25:06,632 django.request WARNING  Forbidden: /rest-api/personnel/
+2022-09-15 14:25:06,777 django.request WARNING  Forbidden: /rest-api/coachs/
+2022-09-15 14:25:06,794 django.request WARNING  Forbidden: /rest-api/maladies/
+2022-09-15 14:25:06,811 django.request WARNING  Forbidden: /rest-api/transactions/
+2022-09-15 14:25:07,003 django.request WARNING  Forbidden: /rest-api/get_client_authorization/
+2022-09-15 14:25:07,422 django.request WARNING  Forbidden: /rest-api/coachs/
+2022-09-15 14:25:07,424 django.request WARNING  Forbidden: /rest-api/transactions/
+2022-09-15 14:25:07,616 django.request WARNING  Forbidden: /rest-api/get_client_authorization/
+2022-09-15 14:45:27,278 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 14:45:27,512 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 14:45:28,240 django.request WARNING  Forbidden: /rest-api/get_client_authorization/
+2022-09-15 14:45:29,063 django.request WARNING  Forbidden: /rest-api/transactions/
+2022-09-15 14:45:29,395 django.request WARNING  Forbidden: /rest-api/coachs/
+2022-09-15 14:45:29,416 django.request WARNING  Forbidden: /rest-api/personnel/
+2022-09-15 14:45:29,442 django.request WARNING  Forbidden: /rest-api/get_client_authorization/
+2022-09-15 14:45:30,194 django.request WARNING  Forbidden: /rest-api/transactions/trans-today/
+2022-09-15 14:45:30,249 django.request WARNING  Forbidden: /rest-api/presence/is-in/
+2022-09-15 14:45:30,607 django.request WARNING  Forbidden: /rest-api/transactions/
+2022-09-15 14:45:30,766 django.request WARNING  Forbidden: /rest-api/coachs/
+2022-09-15 14:45:30,908 django.request WARNING  Forbidden: /rest-api/personnel/
+2022-09-15 14:45:31,140 django.request WARNING  Forbidden: /rest-api/get_client_authorization/
+2022-09-15 14:45:31,288 django.request WARNING  Forbidden: /rest-api/transactions/
+2022-09-15 14:45:31,424 django.request WARNING  Forbidden: /rest-api/coachs/
+2022-09-15 14:45:31,672 django.request WARNING  Forbidden: /rest-api/get_client_authorization/
+2022-09-15 14:45:31,695 django.request WARNING  Forbidden: /rest-api/transactions/
+2022-09-15 14:52:23,889 django.request WARNING  Not Found: /
+2022-09-15 14:52:24,035 django.request WARNING  Not Found: /
+2022-09-15 14:52:24,190 django.request WARNING  Not Found: /
+2022-09-15 14:52:24,350 django.request WARNING  Not Found: /
+2022-09-15 14:52:24,479 django.request WARNING  Not Found: /
+2022-09-15 14:52:24,669 django.request WARNING  Not Found: /
+2022-09-15 14:52:24,854 django.request WARNING  Not Found: /
+2022-09-15 14:52:25,959 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 14:52:26,049 django.request WARNING  Not Found: /
+2022-09-15 14:52:26,333 django.request WARNING  Not Found: /
+2022-09-15 14:52:26,766 django.request WARNING  Not Found: /
+2022-09-15 14:52:26,834 django.request WARNING  Not Found: /
+2022-09-15 14:52:27,054 django.request WARNING  Not Found: /
+2022-09-15 14:52:27,455 django.request WARNING  Not Found: /
+2022-09-15 14:52:28,429 django.request WARNING  Not Found: /
+2022-09-15 14:52:28,967 django.request WARNING  Not Found: /
+2022-09-15 14:52:29,087 django.request WARNING  Not Found: /
+2022-09-15 14:52:29,193 django.request WARNING  Not Found: /
+2022-09-15 14:52:29,290 django.request WARNING  Not Found: /
+2022-09-15 14:52:29,393 django.request WARNING  Not Found: /
+2022-09-15 14:52:29,526 django.request WARNING  Forbidden: /rest-api/transactions/trans-today/
+2022-09-15 14:52:29,594 django.request WARNING  Not Found: /
+2022-09-15 14:52:29,815 django.request WARNING  Forbidden: /rest-api/presence/is-in/
+2022-09-15 14:52:30,937 django.request WARNING  Not Found: /
+2022-09-15 14:52:30,961 django.request WARNING  Not Found: /
+2022-09-15 14:52:30,963 django.request WARNING  Not Found: /
+2022-09-15 14:52:31,018 django.request WARNING  Not Found: /
+2022-09-15 14:52:31,024 django.request WARNING  Not Found: /
+2022-09-15 14:52:31,027 django.request WARNING  Not Found: /
+2022-09-15 14:52:31,151 django.request WARNING  Not Found: /
+2022-09-15 14:52:31,810 django.request WARNING  Forbidden: /rest-api/transactions/trans-today/
+2022-09-15 14:52:32,311 django.request WARNING  Forbidden: /rest-api/presence/is-in/
+2022-09-15 14:52:48,920 django.request WARNING  Not Found: /
+2022-09-15 14:52:49,063 django.request WARNING  Not Found: /
+2022-09-15 14:52:49,166 django.request WARNING  Not Found: /
+2022-09-15 14:52:49,310 django.request WARNING  Not Found: /
+2022-09-15 14:52:49,388 django.request WARNING  Not Found: /
+2022-09-15 14:52:49,471 django.request WARNING  Not Found: /
+2022-09-15 14:52:49,557 django.request WARNING  Not Found: /
+2022-09-15 14:52:49,798 django.request WARNING  Forbidden: /rest-api/salle-activite/activite/
+2022-09-15 14:52:49,800 django.request WARNING  Forbidden: /rest-api/salle-activite/
+2022-09-15 14:52:49,831 django.request WARNING  Forbidden: /rest-api/presence/
+2022-09-15 14:53:01,504 django.request WARNING  Not Found: /
+2022-09-15 14:53:02,293 django.request WARNING  Forbidden: /rest-api/abc-by-creneau
+2022-09-15 14:53:02,295 django.request WARNING  Forbidden: /rest-api/salle-activite/activite/
+2022-09-15 14:53:02,297 django.request WARNING  Forbidden: /rest-api/salle-activite/
+2022-09-15 14:53:02,453 django.request WARNING  Forbidden: /rest-api/coachs/
+2022-09-15 14:53:02,579 django.request WARNING  Not Found: /
+2022-09-15 14:53:02,720 django.request WARNING  Not Found: /
+2022-09-15 14:53:02,842 django.request WARNING  Not Found: /
+2022-09-15 14:53:02,940 django.request WARNING  Not Found: /
+2022-09-15 14:53:03,042 django.request WARNING  Not Found: /
+2022-09-15 14:53:03,148 django.request WARNING  Not Found: /
+2022-09-15 14:53:03,546 django.request WARNING  Forbidden: /rest-api/creneau/by-salle-planning
+2022-09-15 14:53:03,866 django.request WARNING  Forbidden: /rest-api/creneau/by-salle-planning
+2022-09-15 14:53:04,185 django.request WARNING  Forbidden: /rest-api/creneau/by-salle-planning
+2022-09-15 14:53:06,509 django.request WARNING  Not Found: /
+2022-09-15 14:53:07,005 django.request WARNING  Not Found: /
+2022-09-15 14:53:07,129 django.request WARNING  Not Found: /
+2022-09-15 14:53:07,252 django.request WARNING  Not Found: /
+2022-09-15 14:53:07,455 django.request WARNING  Not Found: /
+2022-09-15 14:53:07,527 django.request WARNING  Forbidden: /rest-api/salle-activite/
+2022-09-15 14:53:07,530 django.request WARNING  Forbidden: /rest-api/maladies/
+2022-09-15 14:53:07,642 django.request WARNING  Forbidden: /rest-api/salle-activite/activite/
+2022-09-15 14:53:07,668 django.request WARNING  Forbidden: /rest-api/abonnement/
+2022-09-15 14:53:07,705 django.request WARNING  Not Found: /
+2022-09-15 14:53:07,796 django.request WARNING  Not Found: /
+2022-09-15 14:53:07,870 django.request WARNING  Forbidden: /rest-api/salle-activite/door/
+2022-09-15 14:53:08,125 django.request WARNING  Forbidden: /rest-api/salle-activite/
+2022-09-15 14:53:15,615 django.request WARNING  Not Found: /
+2022-09-15 14:53:16,115 django.request WARNING  Not Found: /
+2022-09-15 14:53:16,282 django.request WARNING  Not Found: /
+2022-09-15 14:53:16,409 django.request WARNING  Not Found: /
+2022-09-15 14:53:16,517 django.request WARNING  Not Found: /
+2022-09-15 14:53:16,657 django.request WARNING  Forbidden: /rest-api/transactions/trans-today/
+2022-09-15 14:53:16,675 django.request WARNING  Not Found: /
+2022-09-15 14:53:16,888 django.request WARNING  Not Found: /
+2022-09-15 14:53:16,966 django.request WARNING  Forbidden: /rest-api/presence/is-in/
+2022-09-15 14:53:32,459 django.request WARNING  Not Found: /
+2022-09-15 14:53:33,121 django.request WARNING  Forbidden: /rest-api/salle-activite/activite/
+2022-09-15 14:53:33,217 django.request WARNING  Forbidden: /rest-api/abc-by-creneau
+2022-09-15 14:53:33,361 django.request WARNING  Forbidden: /rest-api/salle-activite/
+2022-09-15 14:53:33,380 django.request WARNING  Forbidden: /rest-api/coachs/
+2022-09-15 14:53:33,423 django.request WARNING  Not Found: /
+2022-09-15 14:53:33,523 django.request WARNING  Not Found: /
+2022-09-15 14:53:33,617 django.request WARNING  Not Found: /
+2022-09-15 14:53:33,705 django.request WARNING  Not Found: /
+2022-09-15 14:53:33,789 django.request WARNING  Not Found: /
+2022-09-15 14:53:33,886 django.request WARNING  Not Found: /
+2022-09-15 14:53:34,433 django.request WARNING  Forbidden: /rest-api/creneau/by-salle-planning
+2022-09-15 14:53:34,817 django.request WARNING  Forbidden: /rest-api/creneau/by-salle-planning
+2022-09-15 14:53:34,890 django.request WARNING  Forbidden: /rest-api/creneau/by-salle-planning
+2022-09-15 14:53:35,075 django.request WARNING  Forbidden: /rest-api/creneau/by-salle-planning
+2022-09-15 14:53:49,595 django.request WARNING  Forbidden: /rest-api/creneau/by-salle-planning
+2022-09-15 14:54:09,870 django.request WARNING  Forbidden: /rest-api/creneau/by-salle-planning
+2022-09-15 14:54:10,906 django.request WARNING  Forbidden: /rest-api/creneau/by-salle-planning
+2022-09-15 14:54:15,321 django.request WARNING  Forbidden: /rest-api/creneau/by-salle-planning
+2022-09-15 14:54:26,668 django.request WARNING  Forbidden: /rest-api/creneau/by-salle-planning
+2022-09-15 14:54:32,404 django.request WARNING  Forbidden: /rest-api/creneau/by-salle-planning
+2022-09-15 14:54:55,234 django.request WARNING  Forbidden: /rest-api/creneau/by-salle-planning
+2022-09-15 14:54:59,735 django.request WARNING  Forbidden: /rest-api/creneau/by-salle-planning
+2022-09-15 14:55:12,834 django.request WARNING  Not Found: /
+2022-09-15 14:55:13,657 django.request WARNING  Forbidden: /rest-api/coachs/
+2022-09-15 14:55:13,729 django.request WARNING  Forbidden: /rest-api/abc-by-creneau
+2022-09-15 14:55:13,879 django.request WARNING  Forbidden: /rest-api/salle-activite/activite/
+2022-09-15 14:55:13,944 django.request WARNING  Not Found: /
+2022-09-15 14:55:14,120 django.request WARNING  Forbidden: /rest-api/salle-activite/
+2022-09-15 14:55:14,154 django.request WARNING  Not Found: /
+2022-09-15 14:55:14,263 django.request WARNING  Not Found: /
+2022-09-15 14:55:14,420 django.request WARNING  Not Found: /
+2022-09-15 14:55:14,633 django.request WARNING  Not Found: /
+2022-09-15 14:55:14,745 django.request WARNING  Not Found: /
+2022-09-15 14:55:15,060 django.request WARNING  Forbidden: /rest-api/creneau/by-salle-planning
+2022-09-15 14:55:15,603 django.request WARNING  Forbidden: /rest-api/creneau/by-salle-planning
+2022-09-15 14:55:15,710 django.request WARNING  Forbidden: /rest-api/creneau/by-salle-planning
+2022-09-15 14:55:29,391 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 14:55:29,672 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 14:55:29,947 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 14:55:29,990 django.request WARNING  Not Found: /
+2022-09-15 14:55:30,076 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 14:55:30,118 django.request WARNING  Not Found: /
+2022-09-15 14:55:30,208 django.request WARNING  Not Found: /
+2022-09-15 14:55:30,637 django.request WARNING  Not Found: /
+2022-09-15 14:55:30,736 django.request WARNING  Not Found: /
+2022-09-15 14:55:30,827 django.request WARNING  Not Found: /
+2022-09-15 14:55:48,767 django.request WARNING  Not Found: /
+2022-09-15 14:55:48,950 django.request WARNING  Not Found: /
+2022-09-15 14:55:49,039 django.request WARNING  Not Found: /
+2022-09-15 14:55:49,129 django.request WARNING  Not Found: /
+2022-09-15 14:55:49,212 django.request WARNING  Not Found: /
+2022-09-15 14:55:49,300 django.request WARNING  Not Found: /
+2022-09-15 14:55:49,404 django.request WARNING  Not Found: /
+2022-09-15 14:56:29,051 django.request WARNING  Not Found: /
+2022-09-15 14:56:29,686 django.request WARNING  Not Found: /
+2022-09-15 14:56:29,809 django.request WARNING  Not Found: /
+2022-09-15 14:56:29,926 django.request WARNING  Not Found: /
+2022-09-15 14:56:30,102 django.request WARNING  Not Found: /
+2022-09-15 14:56:30,247 django.request WARNING  Forbidden: /rest-api/salle-activite/door/
+2022-09-15 14:56:30,257 django.request WARNING  Forbidden: /rest-api/salle-activite/
+2022-09-15 14:56:30,352 django.request WARNING  Forbidden: /rest-api/maladies/
+2022-09-15 14:56:30,371 django.request WARNING  Forbidden: /rest-api/salle-activite/activite/
+2022-09-15 14:56:30,404 django.request WARNING  Not Found: /
+2022-09-15 14:56:30,641 django.request WARNING  Not Found: /
+2022-09-15 14:56:30,758 django.request WARNING  Forbidden: /rest-api/abonnement/
+2022-09-15 14:56:31,035 django.request WARNING  Forbidden: /rest-api/salle-activite/
+2022-09-15 14:56:34,570 django.request WARNING  Forbidden: /rest-api/salle-activite/
+2022-09-15 14:56:35,558 django.request WARNING  Forbidden: /rest-api/salle-activite/
+2022-09-15 14:56:49,103 django.request WARNING  Forbidden: /rest-api/abonnement/
+2022-09-15 14:57:00,938 django.request WARNING  Forbidden: /rest-api/abonnement/
+2022-09-15 14:57:30,936 django.request WARNING  Forbidden: /rest-api/abonnement/
+2022-09-15 14:58:23,606 django.request WARNING  Forbidden: /rest-api/abonnement/
+2022-09-15 14:58:25,009 django.request WARNING  Forbidden: /rest-api/abonnement/
+2022-09-15 14:58:34,367 django.request WARNING  Forbidden: /rest-api/abonnement/
+2022-09-15 14:58:57,235 django.request WARNING  Forbidden: /rest-api/salle-activite/
+2022-09-15 14:58:59,842 django.request WARNING  Forbidden: /rest-api/salle-activite/
+2022-09-15 14:59:01,730 django.request WARNING  Not Found: /
+2022-09-15 14:59:02,341 django.request WARNING  Forbidden: /rest-api/salle-activite/
+2022-09-15 14:59:02,376 django.request WARNING  Forbidden: /rest-api/abc-by-creneau
+2022-09-15 14:59:02,570 django.request WARNING  Forbidden: /rest-api/salle-activite/activite/
+2022-09-15 14:59:02,593 django.request WARNING  Forbidden: /rest-api/coachs/
+2022-09-15 14:59:02,640 django.request WARNING  Not Found: /
+2022-09-15 14:59:02,728 django.request WARNING  Not Found: /
+2022-09-15 14:59:02,819 django.request WARNING  Not Found: /
+2022-09-15 14:59:02,975 django.request WARNING  Not Found: /
+2022-09-15 14:59:03,068 django.request WARNING  Not Found: /
+2022-09-15 14:59:03,161 django.request WARNING  Not Found: /
+2022-09-15 14:59:03,567 django.request WARNING  Forbidden: /rest-api/creneau/by-salle-planning
+2022-09-15 14:59:03,918 django.request WARNING  Forbidden: /rest-api/creneau/by-salle-planning
+2022-09-15 14:59:03,963 django.request WARNING  Forbidden: /rest-api/creneau/by-salle-planning
+2022-09-15 14:59:15,702 django.request WARNING  Not Found: /
+2022-09-15 14:59:16,278 django.request WARNING  Not Found: /
+2022-09-15 14:59:16,456 django.request WARNING  Not Found: /
+2022-09-15 14:59:16,656 django.request WARNING  Not Found: /
+2022-09-15 14:59:16,719 django.request WARNING  Forbidden: /rest-api/maladies/
+2022-09-15 14:59:16,788 django.request WARNING  Not Found: /
+2022-09-15 14:59:16,908 django.request WARNING  Forbidden: /rest-api/salle-activite/activite/
+2022-09-15 14:59:17,005 django.request WARNING  Forbidden: /rest-api/salle-activite/door/
+2022-09-15 14:59:17,036 django.request WARNING  Not Found: /
+2022-09-15 14:59:17,040 django.request WARNING  Forbidden: /rest-api/salle-activite/
+2022-09-15 14:59:17,120 django.request WARNING  Not Found: /
+2022-09-15 14:59:17,203 django.request WARNING  Forbidden: /rest-api/abonnement/
+2022-09-15 14:59:17,488 django.request WARNING  Forbidden: /rest-api/salle-activite/
+2022-09-15 14:59:23,769 django.request WARNING  Not Found: /
+2022-09-15 14:59:24,444 django.request WARNING  Forbidden: /rest-api/salle-activite/activite/
+2022-09-15 14:59:24,450 django.request WARNING  Forbidden: /rest-api/abc-by-creneau
+2022-09-15 14:59:24,484 django.request WARNING  Forbidden: /rest-api/coachs/
+2022-09-15 14:59:24,491 django.request WARNING  Forbidden: /rest-api/salle-activite/
+2022-09-15 14:59:24,583 django.request WARNING  Not Found: /
+2022-09-15 14:59:24,670 django.request WARNING  Not Found: /
+2022-09-15 14:59:24,766 django.request WARNING  Not Found: /
+2022-09-15 14:59:24,851 django.request WARNING  Not Found: /
+2022-09-15 14:59:24,939 django.request WARNING  Not Found: /
+2022-09-15 14:59:25,043 django.request WARNING  Not Found: /
+2022-09-15 14:59:25,385 django.request WARNING  Forbidden: /rest-api/creneau/by-salle-planning
+2022-09-15 14:59:25,727 django.request WARNING  Forbidden: /rest-api/creneau/by-salle-planning
+2022-09-15 14:59:25,805 django.request WARNING  Forbidden: /rest-api/creneau/by-salle-planning
+2022-09-15 14:59:43,308 django.request WARNING  Forbidden: /rest-api/creneau/by-salle-planning
+2022-09-15 14:59:47,325 django.request WARNING  Forbidden: /rest-api/creneau/by-salle-planning
+2022-09-15 14:59:55,907 django.request WARNING  Not Found: /
+2022-09-15 14:59:56,410 django.request WARNING  Not Found: /
+2022-09-15 14:59:56,525 django.request WARNING  Not Found: /
+2022-09-15 14:59:56,633 django.request WARNING  Not Found: /
+2022-09-15 14:59:56,767 django.request WARNING  Not Found: /
+2022-09-15 14:59:56,931 django.request WARNING  Forbidden: /rest-api/salle-activite/
+2022-09-15 14:59:56,935 django.request WARNING  Forbidden: /rest-api/salle-activite/activite/
+2022-09-15 14:59:57,062 django.request WARNING  Forbidden: /rest-api/maladies/
+2022-09-15 14:59:57,082 django.request WARNING  Forbidden: /rest-api/salle-activite/door/
+2022-09-15 14:59:57,100 django.request WARNING  Not Found: /
+2022-09-15 14:59:57,178 django.request WARNING  Not Found: /
+2022-09-15 14:59:57,247 django.request WARNING  Forbidden: /rest-api/abonnement/
+2022-09-15 14:59:57,557 django.request WARNING  Forbidden: /rest-api/salle-activite/
+2022-09-15 15:00:24,290 django.request WARNING  Not Found: /
+2022-09-15 15:00:24,897 django.request WARNING  Forbidden: /rest-api/salle-activite/activite/
+2022-09-15 15:00:24,898 django.request WARNING  Forbidden: /rest-api/coachs/
+2022-09-15 15:00:24,991 django.request WARNING  Forbidden: /rest-api/abc-by-creneau
+2022-09-15 15:00:25,068 django.request WARNING  Forbidden: /rest-api/salle-activite/
+2022-09-15 15:00:25,072 django.request WARNING  Not Found: /
+2022-09-15 15:00:25,270 django.request WARNING  Not Found: /
+2022-09-15 15:00:25,372 django.request WARNING  Not Found: /
+2022-09-15 15:00:25,468 django.request WARNING  Not Found: /
+2022-09-15 15:00:25,565 django.request WARNING  Not Found: /
+2022-09-15 15:00:25,648 django.request WARNING  Not Found: /
+2022-09-15 15:00:25,975 django.request WARNING  Forbidden: /rest-api/creneau/by-salle-planning
+2022-09-15 15:00:26,390 django.request WARNING  Forbidden: /rest-api/creneau/by-salle-planning
+2022-09-15 15:00:26,456 django.request WARNING  Forbidden: /rest-api/creneau/by-salle-planning
+2022-09-15 15:00:26,538 django.request WARNING  Forbidden: /rest-api/creneau/by-salle-planning
+2022-09-15 15:01:02,987 django.request WARNING  Forbidden: /rest-api/creneau/by-salle-planning
+2022-09-15 15:01:03,850 django.request WARNING  Not Found: /
+2022-09-15 15:01:04,265 django.request WARNING  Not Found: /
+2022-09-15 15:01:04,354 django.request WARNING  Not Found: /
+2022-09-15 15:01:04,445 django.request WARNING  Not Found: /
+2022-09-15 15:01:04,570 django.request WARNING  Not Found: /
+2022-09-15 15:01:04,607 django.request WARNING  Forbidden: /rest-api/maladies/
+2022-09-15 15:01:04,711 django.request WARNING  Forbidden: /rest-api/salle-activite/door/
+2022-09-15 15:01:04,721 django.request WARNING  Forbidden: /rest-api/salle-activite/activite/
+2022-09-15 15:01:04,731 django.request WARNING  Forbidden: /rest-api/salle-activite/
+2022-09-15 15:01:04,762 django.request WARNING  Not Found: /
+2022-09-15 15:01:04,825 django.request WARNING  Not Found: /
+2022-09-15 15:01:04,884 django.request WARNING  Forbidden: /rest-api/abonnement/
+2022-09-15 15:01:05,128 django.request WARNING  Forbidden: /rest-api/salle-activite/
+2022-09-15 15:01:06,133 django.request WARNING  Forbidden: /rest-api/salle-activite/activite/
+2022-09-15 15:01:08,273 django.request WARNING  Forbidden: /rest-api/salle-activite/activite/
+2022-09-15 15:01:09,902 django.request WARNING  Not Found: /
+2022-09-15 15:01:10,486 django.request WARNING  Forbidden: /rest-api/coachs/
+2022-09-15 15:01:10,508 django.request WARNING  Forbidden: /rest-api/salle-activite/
+2022-09-15 15:01:10,602 django.request WARNING  Forbidden: /rest-api/abc-by-creneau
+2022-09-15 15:01:10,620 django.request WARNING  Forbidden: /rest-api/salle-activite/activite/
+2022-09-15 15:01:10,651 django.request WARNING  Not Found: /
+2022-09-15 15:01:10,726 django.request WARNING  Not Found: /
+2022-09-15 15:01:10,801 django.request WARNING  Not Found: /
+2022-09-15 15:01:10,885 django.request WARNING  Not Found: /
+2022-09-15 15:01:10,968 django.request WARNING  Not Found: /
+2022-09-15 15:01:11,045 django.request WARNING  Not Found: /
+2022-09-15 15:01:11,379 django.request WARNING  Forbidden: /rest-api/creneau/by-salle-planning
+2022-09-15 15:01:11,669 django.request WARNING  Forbidden: /rest-api/creneau/by-salle-planning
+2022-09-15 15:01:11,774 django.request WARNING  Forbidden: /rest-api/creneau/by-salle-planning
+2022-09-15 15:01:43,296 django.request WARNING  Not Found: /
+2022-09-15 15:01:43,731 django.request WARNING  Not Found: /
+2022-09-15 15:01:43,827 django.request WARNING  Not Found: /
+2022-09-15 15:01:43,923 django.request WARNING  Not Found: /
+2022-09-15 15:01:44,031 django.request WARNING  Not Found: /
+2022-09-15 15:01:44,262 django.request WARNING  Forbidden: /rest-api/maladies/
+2022-09-15 15:01:44,299 django.request WARNING  Forbidden: /rest-api/salle-activite/door/
+2022-09-15 15:01:44,324 django.request WARNING  Forbidden: /rest-api/salle-activite/activite/
+2022-09-15 15:01:44,338 django.request WARNING  Forbidden: /rest-api/salle-activite/
+2022-09-15 15:01:44,362 django.request WARNING  Not Found: /
+2022-09-15 15:01:44,460 django.request WARNING  Not Found: /
+2022-09-15 15:01:44,569 django.request WARNING  Forbidden: /rest-api/abonnement/
+2022-09-15 15:01:44,803 django.request WARNING  Forbidden: /rest-api/salle-activite/
+2022-09-15 15:01:45,539 django.request WARNING  Forbidden: /rest-api/salle-activite/
+2022-09-15 15:01:48,104 django.request WARNING  Forbidden: /rest-api/salle-activite/
+2022-09-15 15:01:49,622 django.request WARNING  Forbidden: /rest-api/salle-activite/door/
+2022-09-15 15:01:57,274 django.request WARNING  Forbidden: /rest-api/salle-activite/door/
+2022-09-15 15:02:06,903 django.request WARNING  Forbidden: /rest-api/salle-activite/door/
+2022-09-15 15:02:28,579 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:02:28,793 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:02:29,149 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:02:29,289 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:02:29,564 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:02:29,666 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:02:29,741 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:02:29,844 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:02:30,012 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:02:30,072 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:02:30,127 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:02:30,152 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:02:30,286 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:02:30,480 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:02:30,534 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:02:30,596 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:02:30,623 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:02:30,741 django.request WARNING  Not Found: /
+2022-09-15 15:02:30,842 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:02:30,888 django.request WARNING  Not Found: /
+2022-09-15 15:02:31,003 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:02:31,024 django.request WARNING  Not Found: /
+2022-09-15 15:02:31,085 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:02:31,119 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:02:31,146 django.request WARNING  Not Found: /
+2022-09-15 15:02:31,198 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:02:31,226 django.request WARNING  Not Found: /
+2022-09-15 15:02:31,277 django.request WARNING  Not Found: /
+2022-09-15 15:02:36,687 django.request WARNING  Forbidden: /rest-api/salle-activite/door/
+2022-09-15 15:02:44,181 django.request WARNING  Not Found: /
+2022-09-15 15:02:44,617 django.request WARNING  Not Found: /
+2022-09-15 15:02:44,721 django.request WARNING  Not Found: /
+2022-09-15 15:02:44,797 django.request WARNING  Not Found: /
+2022-09-15 15:02:44,866 django.request WARNING  Not Found: /
+2022-09-15 15:02:44,948 django.request WARNING  Not Found: /
+2022-09-15 15:02:45,036 django.request WARNING  Not Found: /
+2022-09-15 15:02:49,298 django.request WARNING  Not Found: /
+2022-09-15 15:02:49,911 django.request WARNING  Not Found: /
+2022-09-15 15:02:50,017 django.request WARNING  Not Found: /
+2022-09-15 15:02:50,118 django.request WARNING  Not Found: /
+2022-09-15 15:02:50,217 django.request WARNING  Not Found: /
+2022-09-15 15:02:50,316 django.request WARNING  Not Found: /
+2022-09-15 15:02:50,412 django.request WARNING  Not Found: /
+2022-09-15 15:03:54,807 django.request WARNING  Not Found: /
+2022-09-15 15:03:55,473 django.request WARNING  Not Found: /
+2022-09-15 15:03:55,571 django.request WARNING  Not Found: /
+2022-09-15 15:03:55,695 django.request WARNING  Not Found: /
+2022-09-15 15:03:55,823 django.request WARNING  Not Found: /
+2022-09-15 15:03:55,931 django.request WARNING  Not Found: /
+2022-09-15 15:03:56,047 django.request WARNING  Not Found: /
+2022-09-15 15:04:38,608 django.request WARNING  Not Found: /
+2022-09-15 15:04:39,111 django.request WARNING  Not Found: /
+2022-09-15 15:04:39,291 django.request WARNING  Not Found: /
+2022-09-15 15:04:39,395 django.request WARNING  Not Found: /
+2022-09-15 15:04:39,558 django.request WARNING  Not Found: /
+2022-09-15 15:04:39,715 django.request WARNING  Not Found: /
+2022-09-15 15:04:39,955 django.request WARNING  Not Found: /
+2022-09-15 15:05:01,351 django.request WARNING  Not Found: /
+2022-09-15 15:05:02,364 django.request WARNING  Not Found: /
+2022-09-15 15:05:02,547 django.request WARNING  Not Found: /
+2022-09-15 15:05:02,727 django.request WARNING  Not Found: /
+2022-09-15 15:05:02,853 django.request WARNING  Not Found: /
+2022-09-15 15:05:02,958 django.request WARNING  Not Found: /
+2022-09-15 15:05:03,088 django.request WARNING  Not Found: /
+2022-09-15 15:05:18,969 django.request WARNING  Not Found: /
+2022-09-15 15:05:19,121 django.request WARNING  Not Found: /
+2022-09-15 15:05:19,205 django.request WARNING  Not Found: /
+2022-09-15 15:05:19,345 django.request WARNING  Not Found: /
+2022-09-15 15:05:19,438 django.request WARNING  Not Found: /
+2022-09-15 15:05:19,523 django.request WARNING  Not Found: /
+2022-09-15 15:05:19,622 django.request WARNING  Not Found: /
+2022-09-15 15:05:25,444 django.request WARNING  Not Found: /
+2022-09-15 15:05:26,323 django.request WARNING  Not Found: /
+2022-09-15 15:05:26,504 django.request WARNING  Not Found: /
+2022-09-15 15:05:26,820 django.request WARNING  Not Found: /
+2022-09-15 15:05:26,946 django.request WARNING  Not Found: /
+2022-09-15 15:05:27,083 django.request WARNING  Not Found: /
+2022-09-15 15:05:27,250 django.request WARNING  Not Found: /
+2022-09-15 15:05:30,144 django.request WARNING  Not Found: /
+2022-09-15 15:05:30,247 django.request WARNING  Not Found: /
+2022-09-15 15:05:30,405 django.request WARNING  Not Found: /
+2022-09-15 15:05:30,502 django.request WARNING  Not Found: /
+2022-09-15 15:05:30,592 django.request WARNING  Not Found: /
+2022-09-15 15:05:30,685 django.request WARNING  Not Found: /
+2022-09-15 15:05:30,774 django.request WARNING  Not Found: /
+2022-09-15 15:06:52,067 django.request WARNING  Not Found: /
+2022-09-15 15:06:52,610 django.request WARNING  Not Found: /
+2022-09-15 15:06:52,755 django.request WARNING  Not Found: /
+2022-09-15 15:06:52,845 django.request WARNING  Not Found: /
+2022-09-15 15:06:52,932 django.request WARNING  Not Found: /
+2022-09-15 15:06:53,085 django.request WARNING  Not Found: /
+2022-09-15 15:06:53,187 django.request WARNING  Not Found: /
+2022-09-15 15:07:04,616 django.request WARNING  Not Found: /
+2022-09-15 15:07:04,787 django.request WARNING  Not Found: /
+2022-09-15 15:07:04,872 django.request WARNING  Not Found: /
+2022-09-15 15:07:04,948 django.request WARNING  Not Found: /
+2022-09-15 15:07:05,025 django.request WARNING  Not Found: /
+2022-09-15 15:07:05,106 django.request WARNING  Not Found: /
+2022-09-15 15:07:05,177 django.request WARNING  Not Found: /
+2022-09-15 15:07:05,619 django.request WARNING  Not Found: /
+2022-09-15 15:07:05,708 django.request WARNING  Not Found: /
+2022-09-15 15:07:05,812 django.request WARNING  Not Found: /
+2022-09-15 15:07:05,991 django.request WARNING  Not Found: /
+2022-09-15 15:07:06,082 django.request WARNING  Not Found: /
+2022-09-15 15:07:06,167 django.request WARNING  Not Found: /
+2022-09-15 15:07:06,249 django.request WARNING  Not Found: /
+2022-09-15 15:07:06,337 django.request WARNING  Not Found: /
+2022-09-15 15:07:06,425 django.request WARNING  Not Found: /
+2022-09-15 15:07:08,102 django.request WARNING  Not Found: /
+2022-09-15 15:07:09,048 django.request WARNING  Not Found: /
+2022-09-15 15:07:09,154 django.request WARNING  Not Found: /
+2022-09-15 15:07:09,258 django.request WARNING  Not Found: /
+2022-09-15 15:07:09,466 django.request WARNING  Not Found: /
+2022-09-15 15:07:09,670 django.request WARNING  Not Found: /
+2022-09-15 15:07:09,764 django.request WARNING  Not Found: /
+2022-09-15 15:07:12,168 django.request WARNING  Not Found: /rest-api/abonnement-client-history/
+2022-09-15 15:07:30,201 django.request WARNING  Not Found: /
+2022-09-15 15:07:30,804 django.request WARNING  Not Found: /
+2022-09-15 15:07:30,963 django.request WARNING  Not Found: /
+2022-09-15 15:07:31,073 django.request WARNING  Not Found: /
+2022-09-15 15:07:31,166 django.request WARNING  Not Found: /
+2022-09-15 15:07:31,402 django.request WARNING  Not Found: /
+2022-09-15 15:07:31,503 django.request WARNING  Not Found: /
+2022-09-15 15:07:46,314 django.request WARNING  Not Found: /
+2022-09-15 15:07:46,602 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:07:46,606 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:07:46,716 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:07:46,781 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:07:46,829 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:07:46,847 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:07:46,944 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:07:48,039 django.request WARNING  Not Found: /
+2022-09-15 15:07:48,765 django.request WARNING  Not Found: /
+2022-09-15 15:07:48,992 django.request WARNING  Not Found: /
+2022-09-15 15:07:49,187 django.request WARNING  Not Found: /
+2022-09-15 15:07:49,353 django.request WARNING  Not Found: /
+2022-09-15 15:07:49,506 django.request WARNING  Not Found: /
+2022-09-15 15:07:49,679 django.request WARNING  Not Found: /
+2022-09-15 15:07:49,981 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:07:50,110 django.request WARNING  Not Found: /
+2022-09-15 15:07:50,495 django.request WARNING  Not Found: /
+2022-09-15 15:07:50,911 django.request WARNING  Not Found: /
+2022-09-15 15:07:51,509 django.request WARNING  Not Found: /
+2022-09-15 15:07:51,851 django.request WARNING  Not Found: /
+2022-09-15 15:07:52,068 django.request WARNING  Not Found: /
+2022-09-15 15:08:01,268 django.request WARNING  Not Found: /
+2022-09-15 15:08:01,340 django.request WARNING  Not Found: /
+2022-09-15 15:08:01,410 django.request WARNING  Not Found: /
+2022-09-15 15:08:01,487 django.request WARNING  Not Found: /
+2022-09-15 15:08:01,611 django.request WARNING  Not Found: /
+2022-09-15 15:08:01,678 django.request WARNING  Not Found: /
+2022-09-15 15:08:01,746 django.request WARNING  Not Found: /
+2022-09-15 15:08:01,812 django.request WARNING  Not Found: /
+2022-09-15 15:08:23,645 django.request WARNING  Not Found: /
+2022-09-15 15:08:24,202 django.request WARNING  Not Found: /
+2022-09-15 15:08:24,400 django.request WARNING  Not Found: /
+2022-09-15 15:08:24,527 django.request WARNING  Not Found: /
+2022-09-15 15:08:24,654 django.request WARNING  Not Found: /
+2022-09-15 15:08:24,920 django.request WARNING  Not Found: /
+2022-09-15 15:08:25,159 django.request WARNING  Not Found: /
+2022-09-15 15:09:50,967 django.request WARNING  Not Found: /
+2022-09-15 15:09:51,051 django.request WARNING  Not Found: /
+2022-09-15 15:09:51,241 django.request WARNING  Not Found: /
+2022-09-15 15:09:51,307 django.request WARNING  Not Found: /
+2022-09-15 15:09:51,412 django.request WARNING  Not Found: /
+2022-09-15 15:09:51,598 django.request WARNING  Not Found: /
+2022-09-15 15:09:51,677 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:09:51,784 django.request WARNING  Not Found: /
+2022-09-15 15:09:51,880 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:09:51,889 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:09:52,022 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:09:52,027 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:09:52,092 django.request WARNING  Not Found: /
+2022-09-15 15:09:52,094 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:09:52,159 django.request WARNING  Not Found: /
+2022-09-15 15:09:52,256 django.request WARNING  Not Found: /
+2022-09-15 15:09:52,307 django.request WARNING  Not Found: /
+2022-09-15 15:09:52,363 django.request WARNING  Not Found: /
+2022-09-15 15:09:52,393 django.request WARNING  Not Found: /
+2022-09-15 15:09:52,459 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:09:52,496 django.request WARNING  Not Found: /
+2022-09-15 15:09:56,842 django.request WARNING  Not Found: /
+2022-09-15 15:09:57,382 django.request WARNING  Not Found: /
+2022-09-15 15:09:57,500 django.request WARNING  Not Found: /
+2022-09-15 15:09:57,615 django.request WARNING  Not Found: /
+2022-09-15 15:09:57,810 django.request WARNING  Not Found: /
+2022-09-15 15:09:58,000 django.request WARNING  Not Found: /
+2022-09-15 15:09:58,173 django.request WARNING  Not Found: /
+2022-09-15 15:10:23,217 django.request WARNING  Not Found: /
+2022-09-15 15:10:23,409 django.request WARNING  Not Found: /
+2022-09-15 15:10:23,592 django.request WARNING  Not Found: /
+2022-09-15 15:10:23,749 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:10:23,830 django.request WARNING  Not Found: /
+2022-09-15 15:10:23,960 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:10:23,997 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:10:24,014 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:10:24,062 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:10:24,080 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:10:24,105 django.request WARNING  Not Found: /
+2022-09-15 15:10:24,171 django.request WARNING  Not Found: /
+2022-09-15 15:10:24,306 django.request WARNING  Not Found: /
+2022-09-15 15:10:24,327 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:10:26,727 django.request WARNING  Not Found: /
+2022-09-15 15:10:27,260 django.request WARNING  Not Found: /
+2022-09-15 15:10:27,369 django.request WARNING  Not Found: /
+2022-09-15 15:10:27,529 django.request WARNING  Not Found: /
+2022-09-15 15:10:27,664 django.request WARNING  Not Found: /
+2022-09-15 15:10:27,800 django.request WARNING  Not Found: /
+2022-09-15 15:10:28,094 django.request WARNING  Not Found: /
+2022-09-15 15:11:17,002 django.request WARNING  Not Found: /
+2022-09-15 15:11:17,236 django.request WARNING  Not Found: /
+2022-09-15 15:11:17,264 django.request WARNING  Not Found: /
+2022-09-15 15:11:17,472 django.request WARNING  Not Found: /
+2022-09-15 15:11:17,574 django.request WARNING  Not Found: /
+2022-09-15 15:11:17,706 django.request WARNING  Not Found: /
+2022-09-15 15:11:17,727 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:11:17,768 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:11:17,854 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:11:17,877 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:11:17,925 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:11:17,974 django.request WARNING  Not Found: /
+2022-09-15 15:11:17,990 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:11:18,087 django.request WARNING  Not Found: /
+2022-09-15 15:11:18,158 django.request WARNING  Not Found: /
+2022-09-15 15:11:18,198 django.request WARNING  Not Found: /
+2022-09-15 15:11:18,264 django.request WARNING  Not Found: /
+2022-09-15 15:11:18,290 django.request WARNING  Not Found: /
+2022-09-15 15:11:18,385 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:11:18,389 django.request WARNING  Not Found: /
+2022-09-15 15:11:18,449 django.request WARNING  Not Found: /
+2022-09-15 15:11:27,341 django.request WARNING  Not Found: /
+2022-09-15 15:11:27,392 django.request WARNING  Not Found: /
+2022-09-15 15:11:27,446 django.request WARNING  Not Found: /
+2022-09-15 15:11:27,497 django.request WARNING  Not Found: /
+2022-09-15 15:11:27,548 django.request WARNING  Not Found: /
+2022-09-15 15:11:27,606 django.request WARNING  Not Found: /
+2022-09-15 15:11:27,661 django.request WARNING  Not Found: /
+2022-09-15 15:11:28,144 django.request WARNING  Not Found: /
+2022-09-15 15:11:28,249 django.request WARNING  Not Found: /
+2022-09-15 15:11:28,369 django.request WARNING  Not Found: /
+2022-09-15 15:11:28,502 django.request WARNING  Not Found: /
+2022-09-15 15:11:28,504 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:11:28,517 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:11:28,612 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:11:28,627 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:11:28,629 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:11:28,632 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:11:28,669 django.request WARNING  Not Found: /
+2022-09-15 15:11:28,732 django.request WARNING  Not Found: /
+2022-09-15 15:11:28,804 django.request WARNING  Not Found: /
+2022-09-15 15:11:28,865 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:11:47,513 django.request WARNING  Not Found: /
+2022-09-15 15:11:47,656 django.request WARNING  Not Found: /
+2022-09-15 15:11:47,822 django.request WARNING  Not Found: /
+2022-09-15 15:11:47,921 django.request WARNING  Not Found: /
+2022-09-15 15:11:48,510 django.request WARNING  Not Found: /
+2022-09-15 15:11:48,683 django.request WARNING  Not Found: /
+2022-09-15 15:11:48,966 django.request WARNING  Not Found: /
+2022-09-15 15:11:49,162 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:11:49,272 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:11:49,457 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:11:49,515 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:11:49,591 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:11:49,596 django.request WARNING  Not Found: /
+2022-09-15 15:11:49,600 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:11:49,777 django.request WARNING  Not Found: /
+2022-09-15 15:11:49,871 django.request WARNING  Not Found: /
+2022-09-15 15:11:50,095 django.request WARNING  Not Found: /
+2022-09-15 15:11:51,050 django.request WARNING  Not Found: /
+2022-09-15 15:11:51,201 django.request WARNING  Not Found: /
+2022-09-15 15:11:51,444 django.request WARNING  Not Found: /
+2022-09-15 15:11:51,702 django.request WARNING  Not Found: /
+2022-09-15 15:11:51,903 django.request WARNING  Not Found: /
+2022-09-15 15:12:56,826 django.request WARNING  Not Found: /
+2022-09-15 15:12:56,928 django.request WARNING  Not Found: /
+2022-09-15 15:12:57,046 django.request WARNING  Not Found: /
+2022-09-15 15:12:57,239 django.request WARNING  Not Found: /
+2022-09-15 15:12:57,296 django.request WARNING  Not Found: /
+2022-09-15 15:12:57,437 django.request WARNING  Not Found: /
+2022-09-15 15:12:57,597 django.request WARNING  Not Found: /
+2022-09-15 15:12:57,718 django.request WARNING  Not Found: /
+2022-09-15 15:12:57,825 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:12:57,830 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:12:57,845 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:12:57,848 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:12:57,956 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:12:57,977 django.request WARNING  Not Found: /
+2022-09-15 15:12:58,049 django.request WARNING  Not Found: /
+2022-09-15 15:12:58,098 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:12:58,118 django.request WARNING  Not Found: /
+2022-09-15 15:12:58,149 django.request WARNING  Not Found: /
+2022-09-15 15:13:02,560 django.request WARNING  Not Found: /
+2022-09-15 15:13:02,628 django.request WARNING  Not Found: /
+2022-09-15 15:13:02,704 django.request WARNING  Not Found: /
+2022-09-15 15:13:02,769 django.request WARNING  Not Found: /
+2022-09-15 15:13:02,825 django.request WARNING  Not Found: /
+2022-09-15 15:13:02,890 django.request WARNING  Not Found: /
+2022-09-15 15:13:03,186 django.request WARNING  Not Found: /
+2022-09-15 15:13:03,308 django.request WARNING  Not Found: /
+2022-09-15 15:13:03,429 django.request WARNING  Not Found: /
+2022-09-15 15:13:03,659 django.request WARNING  Not Found: /
+2022-09-15 15:13:03,729 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:13:03,761 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:13:03,783 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:13:03,786 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:13:03,810 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:13:03,825 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:13:03,852 django.request WARNING  Not Found: /
+2022-09-15 15:13:03,905 django.request WARNING  Not Found: /
+2022-09-15 15:13:06,293 django.request WARNING  Not Found: /
+2022-09-15 15:13:06,350 django.request WARNING  Not Found: /
+2022-09-15 15:13:06,422 django.request WARNING  Not Found: /
+2022-09-15 15:13:06,493 django.request WARNING  Not Found: /
+2022-09-15 15:13:06,561 django.request WARNING  Not Found: /
+2022-09-15 15:13:06,624 django.request WARNING  Not Found: /
+2022-09-15 15:13:07,140 django.request WARNING  Not Found: /
+2022-09-15 15:13:07,258 django.request WARNING  Not Found: /
+2022-09-15 15:13:07,367 django.request WARNING  Not Found: /
+2022-09-15 15:13:07,522 django.request WARNING  Not Found: /
+2022-09-15 15:13:07,569 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:13:07,604 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:13:07,620 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:13:07,641 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:13:07,646 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:13:07,649 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:13:07,687 django.request WARNING  Not Found: /
+2022-09-15 15:13:07,759 django.request WARNING  Not Found: /
+2022-09-15 15:13:31,498 django.request WARNING  Not Found: /rest-api/get_coach_authorization/
+2022-09-15 15:13:31,501 django.request WARNING  Not Found: /rest-api/get_transaction_authorization/
+2022-09-15 15:13:31,559 django.request WARNING  Not Found: /rest-api/get_transaction_authorization/
+2022-09-15 15:13:31,590 django.request WARNING  Not Found: /rest-api/get_coach_authorization/
+2022-09-15 15:13:31,837 django.request WARNING  Not Found: /rest-api/get_transaction_authorization/
+2022-09-15 15:13:31,844 django.request WARNING  Not Found: /rest-api/get_coach_authorization/
+2022-09-15 15:13:32,077 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:13:32,102 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:13:32,210 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:13:32,357 django.request WARNING  Not Found: /rest-api/get_coach_authorization/
+2022-09-15 15:13:32,435 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:13:32,439 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:13:32,464 django.request WARNING  Not Found: /rest-api/get_transaction_authorization/
+2022-09-15 15:13:32,650 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:13:32,916 django.request WARNING  Forbidden: /rest-api/get_client_authorization/
+2022-09-15 15:13:33,283 django.request WARNING  Forbidden: /rest-api/get_client_authorization/
+2022-09-15 15:14:11,701 django.request WARNING  Not Found: /rest-api/get_transaction_authorization/
+2022-09-15 15:14:11,703 django.request WARNING  Not Found: /rest-api/get_coach_authorization/
+2022-09-15 15:14:11,883 django.request WARNING  Not Found: /rest-api/get_transaction_authorization/
+2022-09-15 15:14:11,885 django.request WARNING  Not Found: /rest-api/get_coach_authorization/
+2022-09-15 15:14:12,317 django.request WARNING  Not Found: /rest-api/get_coach_authorization/
+2022-09-15 15:14:12,322 django.request WARNING  Not Found: /rest-api/get_transaction_authorization/
+2022-09-15 15:14:12,614 django.request WARNING  Not Found: /rest-api/get_coach_authorization/
+2022-09-15 15:14:12,616 django.request WARNING  Not Found: /rest-api/get_transaction_authorization/
+2022-09-15 15:14:12,866 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:14:12,870 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:14:12,872 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:14:12,911 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:14:12,941 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:14:12,960 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 15:14:13,355 django.request WARNING  Forbidden: /rest-api/get_client_authorization/
+2022-09-15 15:14:13,714 django.request WARNING  Forbidden: /rest-api/get_client_authorization/
+2022-09-15 15:14:35,317 django.request WARNING  Not Found: /rest-api/get_coach_authorization/
+2022-09-15 15:14:35,320 django.request WARNING  Not Found: /rest-api/get_transaction_authorization/
+2022-09-15 15:14:36,080 django.request WARNING  Not Found: /rest-api/get_coach_authorization/
+2022-09-15 15:14:36,303 django.request WARNING  Not Found: /rest-api/get_transaction_authorization/
+2022-09-15 15:14:45,128 django.request WARNING  Not Found: /rest-api/get_coach_authorization/
+2022-09-15 15:14:45,130 django.request WARNING  Not Found: /rest-api/get_transaction_authorization/
+2022-09-15 15:14:45,321 django.request WARNING  Not Found: /rest-api/get_transaction_authorization/
+2022-09-15 15:14:45,323 django.request WARNING  Not Found: /rest-api/get_coach_authorization/
+2022-09-15 15:15:27,072 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-15 15:15:29,807 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-15 15:15:37,127 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-15 15:15:39,087 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-15 15:15:45,579 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-15 15:15:47,454 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-15 15:15:52,498 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/urls.py changed, reloading.
+2022-09-15 15:15:54,572 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-15 15:16:01,125 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/urls.py changed, reloading.
+2022-09-15 15:16:03,240 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-15 15:16:04,623 django.request WARNING  Not Found: /rest-api/get_transaction_authorization/
+2022-09-15 15:16:04,749 django.request WARNING  Not Found: /rest-api/get_transaction_authorization/
