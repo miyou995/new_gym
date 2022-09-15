@@ -312,13 +312,18 @@ def total_abonnes(request):
 #     return Response( { 'abonnees': total_abonnees})
 
 #sdvdsvsddsv
-from django.contrib.auth.models import Permission
 @api_view(['GET'])
 def get_client_authorization(request):
     user = request.user
-    perm_tuple = [(x.id, x.codename) for x in Permission.objects.filter(user=user)]
-    print('USER PERMSSSSSS=>', perm_tuple)
     if user.has_perm("client.view_client"):
+        return Response(status=200)
+    else:
+        return Response(status=403)
+
+@api_view(['GET'])
+def get_coach_authorization(request):
+    user = request.user
+    if user.has_perm("client.view_coach"):
         return Response(status=200)
     else:
         return Response(status=403)

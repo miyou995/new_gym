@@ -30,7 +30,7 @@ function SampleNextArrow(props) {
 
 const ShortCuts = () => {
   const settings = {
-    slidesToShow: 7,
+    slidesToShow: 5,
     slidesToScroll: 1,
     dots: false,
     autoplay: false,
@@ -77,35 +77,19 @@ const ShortCuts = () => {
     ],
   };
 
-  const formatDate = (date) => {
-    try {
-       const returned = new Date(date).toISOString().slice(0, 10)
-       return returned
-    } catch (error) {
-       const returned = new Date().toISOString().slice(0, 10)
-       return returned
-    }
- }
 
-const [startDate, setStartDate] = useState(formatDate(new Date('2021-01-05')));
-const [endDate, setEndDate] = useState(formatDate(new Date()));
 
- const [nextpage, setNextpage] = useState(1);
- const dateDebut = formatDate(startDate)
- const dateFin = formatDate(endDate)
- 
- const api = useAxios();
 
 //  const clientAuthorizationEnd = `${process.env.REACT_APP_API_URL}/rest-api/clients-name/?page=${nextpage}`
 
  const clientAuthorizationEnd = `${process.env.REACT_APP_API_URL}/rest-api/get_client_authorization/`
- const transactionAuthorization = `${process.env.REACT_APP_API_URL}/rest-api/transactions/?page=${nextpage}&start_date=${dateDebut}&end_date=${dateFin}`;
- const coachAuthorizationEnd = `${process.env.REACT_APP_API_URL}/rest-api/coachs/`
- let personnelAuthorization = `${process.env.REACT_APP_API_URL}/rest-api/personnel/`
+ const transactionAuthorization = `${process.env.REACT_APP_API_URL}/rest-api/get_transaction_authorization/`;
+ const coachAuthorizationEnd = `${process.env.REACT_APP_API_URL}/rest-api/get_coach_authorization/`
+//  let personnelAuthorization = `${process.env.REACT_APP_API_URL}/rest-api/personnel/`
 
  const clientAuth = useAuth(clientAuthorizationEnd, 'GET')
  const coachAuth = useAuth(coachAuthorizationEnd, 'GET')
- const persoAuth = useAuth(personnelAuthorization, 'GET')
+//  const persoAuth = useAuth(personnelAuthorization, 'GET')
  const transactionAuth = useAuth(transactionAuthorization, 'GET')
 
 
@@ -191,7 +175,6 @@ console.log("coachAuth=========================>", useAuth(coachAuthorizationEnd
       </Link>
       }
       
-    {persoAuth &&
           <Link to="/personnel">
           <div className="items">
             <div>
@@ -201,7 +184,6 @@ console.log("coachAuth=========================>", useAuth(coachAuthorizationEnd
             </div>
           </div>
         </Link>
-    }
 
       <Link to="/presences">
         <div className="items">
