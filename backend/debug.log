@@ -32562,3 +32562,179 @@ AttributeError: 'NoneType' object has no attribute 'model'
 2022-09-15 11:44:20,498 django.request WARNING  Forbidden: /rest-api/coachs/
 2022-09-15 11:44:20,567 django.request WARNING  Forbidden: /rest-api/coachs/
 2022-09-15 11:50:29,351 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-15 14:06:40,715 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-15 14:06:54,481 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 14:06:54,671 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 14:06:55,119 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 14:06:55,677 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 14:06:55,695 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 14:06:55,748 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 14:06:55,961 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 14:06:56,118 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 14:08:57,264 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 14:08:57,521 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 14:08:57,792 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 14:08:57,970 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 14:08:58,150 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 14:08:58,355 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 14:08:58,453 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 14:08:58,691 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 14:08:59,287 django.request WARNING  Forbidden: /rest-api/coachs/
+2022-09-15 14:08:59,386 django.request WARNING  Forbidden: /rest-api/personnel/
+2022-09-15 14:08:59,862 django.request WARNING  Forbidden: /rest-api/get_client_authorization/
+2022-09-15 14:08:59,870 django.request WARNING  Forbidden: /rest-api/coachs/
+2022-09-15 14:09:11,434 django.request WARNING  Forbidden: /rest-api/get_client_authorization/
+2022-09-15 14:09:11,552 django.request WARNING  Forbidden: /rest-api/coachs/
+2022-09-15 14:09:11,749 django.request WARNING  Forbidden: /rest-api/personnel/
+2022-09-15 14:09:12,010 django.request WARNING  Forbidden: /rest-api/transactions/
+2022-09-15 14:09:12,877 django.request WARNING  Forbidden: /rest-api/presence/is-in/
+2022-09-15 14:09:12,918 django.request WARNING  Forbidden: /rest-api/transactions/trans-today/
+2022-09-15 14:09:13,060 django.request WARNING  Forbidden: /rest-api/get_client_authorization/
+2022-09-15 14:09:13,228 django.request WARNING  Forbidden: /rest-api/coachs/
+2022-09-15 14:09:13,335 django.request WARNING  Forbidden: /rest-api/transactions/
+2022-09-15 14:09:39,630 django.request WARNING  Not Found: /fr/admin
+2022-09-15 14:10:14,422 django.request WARNING  Forbidden: /rest-api/coachs/
+2022-09-15 14:10:14,460 django.request WARNING  Forbidden: /rest-api/personnel/
+2022-09-15 14:10:14,633 django.request WARNING  Forbidden: /rest-api/transactions/
+2022-09-15 14:10:15,351 django.request WARNING  Forbidden: /rest-api/coachs/
+2022-09-15 14:10:15,430 django.request WARNING  Forbidden: /rest-api/transactions/
+2022-09-15 14:10:15,566 django.request WARNING  Forbidden: /rest-api/transactions/trans-today/
+2022-09-15 14:10:15,969 django.request WARNING  Forbidden: /rest-api/presence/is-in/
+2022-09-15 14:11:08,932 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-15 14:11:10,977 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-15 14:11:23,982 django.request WARNING  Forbidden: /rest-api/coachs/
+2022-09-15 14:11:23,990 django.request WARNING  Forbidden: /rest-api/coachs/
+2022-09-15 14:11:24,047 django.request WARNING  Forbidden: /rest-api/transactions/
+2022-09-15 14:11:24,207 django.request WARNING  Forbidden: /rest-api/personnel/
+2022-09-15 14:11:25,091 django.request WARNING  Forbidden: /rest-api/transactions/
+2022-09-15 14:11:25,217 django.request WARNING  Forbidden: /rest-api/transactions/trans-today/
+2022-09-15 14:11:25,507 django.request WARNING  Forbidden: /rest-api/presence/is-in/
+2022-09-15 14:11:31,468 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-15 14:11:33,536 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-15 14:11:35,864 django.request WARNING  Forbidden: /rest-api/coachs/
+2022-09-15 14:11:35,909 django.request WARNING  Forbidden: /rest-api/transactions/
+2022-09-15 14:11:35,948 django.request WARNING  Forbidden: /rest-api/personnel/
+2022-09-15 14:11:36,825 django.request WARNING  Forbidden: /rest-api/transactions/trans-today/
+2022-09-15 14:11:36,918 django.request WARNING  Forbidden: /rest-api/presence/is-in/
+2022-09-15 14:11:37,352 django.request WARNING  Forbidden: /rest-api/coachs/
+2022-09-15 14:11:37,455 django.request WARNING  Forbidden: /rest-api/transactions/
+2022-09-15 14:11:45,034 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-15 14:11:47,188 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-15 14:11:49,169 django.request WARNING  Forbidden: /rest-api/coachs/
+2022-09-15 14:11:49,236 django.request WARNING  Forbidden: /rest-api/transactions/
+2022-09-15 14:11:49,276 django.request WARNING  Forbidden: /rest-api/personnel/
+2022-09-15 14:11:50,298 django.request WARNING  Forbidden: /rest-api/transactions/trans-today/
+2022-09-15 14:11:50,328 django.request WARNING  Forbidden: /rest-api/presence/is-in/
+2022-09-15 14:11:50,500 django.request WARNING  Forbidden: /rest-api/coachs/
+2022-09-15 14:11:50,831 django.request WARNING  Forbidden: /rest-api/transactions/
+2022-09-15 14:12:00,460 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-15 14:12:02,712 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-15 14:12:04,798 django.request WARNING  Forbidden: /rest-api/transactions/
+2022-09-15 14:12:04,920 django.request WARNING  Forbidden: /rest-api/personnel/
+2022-09-15 14:12:05,000 django.request WARNING  Forbidden: /rest-api/coachs/
+2022-09-15 14:12:05,823 django.request WARNING  Forbidden: /rest-api/transactions/trans-today/
+2022-09-15 14:12:05,947 django.request WARNING  Forbidden: /rest-api/presence/is-in/
+2022-09-15 14:12:06,083 django.request WARNING  Forbidden: /rest-api/transactions/
+2022-09-15 14:12:06,389 django.request WARNING  Forbidden: /rest-api/coachs/
+2022-09-15 14:12:34,724 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-15 14:12:36,883 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-15 14:13:23,105 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-15 14:13:25,142 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-15 14:13:29,896 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-15 14:13:32,053 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-15 14:13:52,470 django.request WARNING  Forbidden: /rest-api/transactions/
+2022-09-15 14:13:52,501 django.request WARNING  Forbidden: /rest-api/personnel/
+2022-09-15 14:13:52,631 django.request WARNING  Forbidden: /rest-api/coachs/
+2022-09-15 14:13:52,776 django.request WARNING  Forbidden: /rest-api/transactions/
+2022-09-15 14:13:53,970 django.request WARNING  Forbidden: /rest-api/transactions/trans-today/
+2022-09-15 14:13:54,130 django.request WARNING  Forbidden: /rest-api/coachs/
+2022-09-15 14:13:54,432 django.request WARNING  Forbidden: /rest-api/presence/is-in/
+2022-09-15 14:14:46,982 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-15 14:14:49,372 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-15 14:14:51,638 django.request WARNING  Forbidden: /rest-api/transactions/
+2022-09-15 14:14:51,642 django.request WARNING  Forbidden: /rest-api/personnel/
+2022-09-15 14:14:51,710 django.request WARNING  Forbidden: /rest-api/coachs/
+2022-09-15 14:14:52,607 django.request WARNING  Forbidden: /rest-api/transactions/trans-today/
+2022-09-15 14:14:52,752 django.request WARNING  Forbidden: /rest-api/presence/is-in/
+2022-09-15 14:14:52,890 django.request WARNING  Forbidden: /rest-api/transactions/
+2022-09-15 14:14:53,078 django.request WARNING  Forbidden: /rest-api/coachs/
+2022-09-15 14:15:33,056 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-15 14:15:35,242 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-15 14:15:59,466 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-15 14:16:01,266 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-15 14:16:11,602 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/apps.py changed, reloading.
+2022-09-15 14:16:13,643 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-15 14:16:37,054 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-15 14:16:38,825 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-15 14:16:43,267 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/apps.py changed, reloading.
+2022-09-15 14:16:45,160 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-15 14:16:59,137 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-15 14:17:01,205 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-15 14:17:06,128 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-15 14:17:08,106 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-15 14:17:11,452 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-15 14:17:13,615 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-15 14:17:17,049 django.request WARNING  Forbidden: /rest-api/coachs/
+2022-09-15 14:17:17,101 django.request WARNING  Forbidden: /rest-api/personnel/
+2022-09-15 14:17:17,134 django.request WARNING  Forbidden: /rest-api/transactions/
+2022-09-15 14:17:18,378 django.request WARNING  Forbidden: /rest-api/presence/is-in/
+2022-09-15 14:17:18,573 django.request WARNING  Forbidden: /rest-api/transactions/trans-today/
+2022-09-15 14:17:18,766 django.request WARNING  Forbidden: /rest-api/coachs/
+2022-09-15 14:17:19,024 django.request WARNING  Forbidden: /rest-api/transactions/
+2022-09-15 14:17:24,235 django.request WARNING  Forbidden: /rest-api/coachs/
+2022-09-15 14:17:24,311 django.request WARNING  Forbidden: /rest-api/transactions/
+2022-09-15 14:17:24,409 django.request WARNING  Forbidden: /rest-api/personnel/
+2022-09-15 14:17:25,606 django.request WARNING  Forbidden: /rest-api/presence/is-in/
+2022-09-15 14:17:25,608 django.request WARNING  Forbidden: /rest-api/transactions/trans-today/
+2022-09-15 14:17:25,788 django.request WARNING  Forbidden: /rest-api/coachs/
+2022-09-15 14:17:25,982 django.request WARNING  Forbidden: /rest-api/transactions/
+2022-09-15 14:17:33,288 django.request WARNING  Forbidden: /rest-api/transactions/
+2022-09-15 14:17:33,359 django.request WARNING  Forbidden: /rest-api/coachs/
+2022-09-15 14:17:33,505 django.request WARNING  Forbidden: /rest-api/personnel/
+2022-09-15 14:17:34,594 django.request WARNING  Forbidden: /rest-api/presence/is-in/
+2022-09-15 14:17:34,678 django.request WARNING  Forbidden: /rest-api/transactions/trans-today/
+2022-09-15 14:17:34,825 django.request WARNING  Forbidden: /rest-api/transactions/
+2022-09-15 14:17:35,028 django.request WARNING  Forbidden: /rest-api/coachs/
+2022-09-15 14:18:00,341 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-15 14:18:02,222 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-15 14:18:45,195 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 14:18:45,480 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 14:18:45,969 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 14:18:46,097 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 14:18:46,118 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 14:18:46,473 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 14:18:46,559 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 14:18:46,739 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 14:19:27,174 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 14:19:27,491 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 14:19:27,729 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 14:19:27,915 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 14:19:28,109 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 14:19:28,270 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 14:19:28,389 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 14:19:28,498 django.request WARNING  Unauthorized: /api/token/refresh/
+2022-09-15 14:19:29,280 django.request WARNING  Forbidden: /rest-api/transactions/
+2022-09-15 14:19:29,297 django.request WARNING  Forbidden: /rest-api/coachs/
+2022-09-15 14:19:29,417 django.request WARNING  Forbidden: /rest-api/personnel/
+2022-09-15 14:19:29,913 django.request WARNING  Forbidden: /rest-api/transactions/
+2022-09-15 14:19:32,447 django.request WARNING  Forbidden: /rest-api/personnel/
+2022-09-15 14:19:32,528 django.request WARNING  Forbidden: /rest-api/coachs/
+2022-09-15 14:19:32,611 django.request WARNING  Forbidden: /rest-api/transactions/
+2022-09-15 14:19:32,679 django.request WARNING  Forbidden: /rest-api/clients-name/
+2022-09-15 14:19:33,192 django.request WARNING  Forbidden: /rest-api/coachs/
+2022-09-15 14:19:33,255 django.request WARNING  Forbidden: /rest-api/transactions/
+2022-09-15 14:21:24,607 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-15 14:21:26,815 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-15 14:21:31,544 django.request WARNING  Forbidden: /rest-api/coachs/
+2022-09-15 14:21:31,546 django.request WARNING  Forbidden: /rest-api/transactions/
+2022-09-15 14:21:31,548 django.request WARNING  Forbidden: /rest-api/clients-name/
+2022-09-15 14:21:31,589 django.request WARNING  Forbidden: /rest-api/personnel/
+2022-09-15 14:21:32,343 django.request WARNING  Forbidden: /rest-api/coachs/
+2022-09-15 14:21:32,368 django.request WARNING  Forbidden: /rest-api/transactions/
+2022-09-15 14:22:05,180 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py changed, reloading.
+2022-09-15 14:22:07,344 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-09-15 14:22:17,240 django.request WARNING  Forbidden: /rest-api/personnel/
+2022-09-15 14:22:17,282 django.request WARNING  Forbidden: /rest-api/transactions/
+2022-09-15 14:22:18,090 django.request WARNING  Forbidden: /rest-api/transactions/
+2022-09-15 14:22:43,915 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/assurance/views.py changed, reloading.
+2022-09-15 14:22:46,010 django.utils.autoreload INFO     Watching for file changes with StatReloader

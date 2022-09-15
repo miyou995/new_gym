@@ -33,7 +33,7 @@ class BaseModelPerm(DjangoModelPermissions):
     def get_custom_perms(self, method, view):
         app_name =  view.queryset.model._meta.app_label
         if hasattr(view, 'extra_perms_map'):
-            return [app_name+"."+perms for perms in view.extra_perms_map.get(method, [])]
+            return [perms for perms in view.extra_perms_map.get(method, [])]
         else:
             return []
 

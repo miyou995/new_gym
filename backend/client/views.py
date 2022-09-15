@@ -21,13 +21,16 @@ class BaseModelPerm(DjangoModelPermissions):
     def get_custom_perms(self, method, view):
         app_name =  view.queryset.model._meta.app_label
         if hasattr(view, 'extra_perms_map'):
-            return [app_name+"."+perms for perms in view.extra_perms_map.get(method, [])]
+            print('IM HEEERE')
+            return [perms for perms in view.extra_perms_map.get(method, [])]
         else:
             return []
 
     def has_permission(self, request, view):
         perms = self.get_required_permissions(request.method, view.queryset.model)
         perms.extend(self.get_custom_perms(request.method, view))
+        print('IM has_permission', perms)
+
         return ( request.user and request.user.has_perms(perms) )
 
 
@@ -211,7 +214,6 @@ class CoachListAPIView(generics.ListAPIView):
         "GET": ["client.view_coach"]
     }
 
-
 class CoachDetailAPIView(generics.RetrieveUpdateAPIView):
     queryset = Coach.objects.all()
     # permission_classes = (IsAuthenticated,)
@@ -310,12 +312,13 @@ def total_abonnes(request):
 #     return Response( { 'abonnees': total_abonnees})
 
 #sdvdsvsddsv
-
+from django.contrib.auth.models import Permission
 @api_view(['GET'])
 def get_client_authorization(request):
     user = request.user
+    perm_tuple = [(x.id, x.codename) for x in Permission.objects.filter(user=user)]
+    print('USER PERMSSSSSS=>', perm_tuple)
     if user.has_perm("client.view_client"):
-        print('HAS per')
         return Response(status=200)
     else:
         return Response(status=403)
