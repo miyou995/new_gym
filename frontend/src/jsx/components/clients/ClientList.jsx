@@ -56,6 +56,22 @@ useEffect(() =>  {
       })}
 }, [nextpage, searchValue]);
 
+const [clientStatus, setClientStatus] = useState(null);
+
+
+api.get(endpoint).then(res => {
+  console.log(res.status);
+  setClientStatus(res.status);
+}).catch(error => {
+  if (error.response) {
+     console.log(error.response.data);
+     console.log(error.response.status);
+     console.log(error.response.headers);
+     setClientStatus(error.response.status);
+  }
+})
+
+
 
 console.log('le searchValue des searchValue est ', searchValue);
 
@@ -70,6 +86,8 @@ console.log('le searchValue des searchValue est ', searchValue);
          <div className="testimonial-one owl-right-nav owl-carousel owl-loaded owl-drag mb-4">
             <ShortCuts />
          </div>
+         {clientStatus == 200 && (
+         <>
          {/* <PageTitle activeMenu="Liste" motherMenu="Abonnées" /> */}
          <div className="form-head d-flex mb-4 mb-md-5 align-items-start">
             <div className="input-group search-area d-inline-flex">
@@ -191,6 +209,8 @@ console.log('le searchValue des searchValue est ', searchValue);
 
               </div>
          }
+         </>
+         )}
       </Fragment>
    );
 };

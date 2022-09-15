@@ -3,40 +3,73 @@ from rest_framework import generics
 from .models import Creneau
 from salle_activite.models import Salle
 from .serializers import CreneauSerialiser, CreneauxSimpleSerialiser, CreneauClientSerialiser
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser, DjangoModelPermissions
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from abonnement.models import AbonnementClient
+
+class BaseModelPerm(DjangoModelPermissions):
+    def get_custom_perms(self, method, view):
+        app_name =  view.queryset.model._meta.app_label
+        if hasattr(view, 'extra_perms_map'):
+            return [app_name+"."+perms for perms in view.extra_perms_map.get(method, [])]
+        else:
+            return []
+
+    def has_permission(self, request, view):
+        perms = self.get_required_permissions(request.method, view.queryset.model)
+        perms.extend(self.get_custom_perms(request.method, view))
+        return ( request.user and request.user.has_perms(perms) )
 
 
 class CreneauAPIView(generics.CreateAPIView):
     queryset = Creneau.objects.all()
     serializer_class = CreneauSerialiser
-
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["creneau.add_creneau"]
+    }
 
 class CreneauListAPIView(generics.ListAPIView):
     serializer_class = CreneauSerialiser
     # permission_classes = (IsAuthenticated,)
     queryset = Creneau.objects.all()
-
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["creneau.view_creneau"]
+    }
 class CreneauActivityListAPIView(generics.ListAPIView):
+    queryset = Creneau.objects.all()
     serializer_class = CreneauSerialiser
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["creneau.view_creneau"]
+    }
     def get_queryset(self):
         par = self.request.query_params.get('day', None)
         activ = self.request.query_params.get('act', None)
         return Creneau.objects.filter(day=par, activity=activ)
 
+
 class CreneauPerSalleListAPIView(generics.ListAPIView):
+    queryset = Creneau.objects.all()
     serializer_class = CreneauSerialiser
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["creneau.view_creneau"]
+    }
     def get_queryset(self):
         salle = self.request.query_params.get('salle', None)
         return Creneau.objects.filter(activity__salle=salle)
 
 class CreneauBySalleAndPlanningListAPIView(generics.ListAPIView):
+    queryset = Creneau.objects.all()
     serializer_class = CreneauSerialiser
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["creneau.view_creneau"]
+    }
+
     def get_queryset(self):
         salle = self.request.query_params.get('sa', None)
         planning = self.request.query_params.get('pl', None)
@@ -52,9 +85,14 @@ class CreneauBySalleAndPlanningListAPIView(generics.ListAPIView):
     #     creneaux= Creneau.objects.filter(day=jour)
     #     return creneaux
         
-class CreneauByAbndPlanListAPIView(generics.ListAPIView):
+class CreneauByAbndPlanListAPIView(generics.ListAPIView):    
+    queryset = Creneau.objects.all()
     serializer_class = CreneauSerialiser
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["creneau.view_creneau"]
+    }
+
     def get_queryset(self):
         planning = self.request.query_params.get('pl', None)
         type_ab = self.request.query_params.get('ab', None)
@@ -65,7 +103,11 @@ class CreneauByAbndPlanListAPIView(generics.ListAPIView):
 
 class CreneauDetailAPIView(generics.RetrieveUpdateAPIView):
     queryset = Creneau.objects.all()
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["creneau.change_creneau"]
+    }
+
     serializer_class = CreneauSerialiser
     def get_object(self):
         obj = get_object_or_404(Creneau.objects.filter(id=self.kwargs["pk"]))
@@ -79,10 +121,19 @@ class CreneauDetailAPIView(generics.RetrieveUpdateAPIView):
 class CreneauDestroyAPIView(generics.DestroyAPIView):
     queryset = Creneau.objects.all()
     serializer_class = CreneauSerialiser
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["creneau.delete_creneau"]
+    }
 
     
 class CreneauByAbonnement(generics.ListAPIView):
+    queryset = Creneau.objects.all()
     serializer_class = CreneauxSimpleSerialiser
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["creneau.delete_creneau"]
+    }
     def get_queryset(self):
         abonnement = self.request.query_params.get('ab', None)
         creneaux = Creneau.objects.filter(activity__salle__abonnements__id = abonnement)
@@ -92,8 +143,13 @@ class CreneauByAbonnement(generics.ListAPIView):
 
 
 class CreneauClientListAPIView(generics.ListAPIView):
+    queryset = Creneau.objects.all()
     serializer_class = CreneauClientSerialiser
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["creneau.view_creneau"]
+    }
+
     def get_queryset(self):
         client = self.request.query_params.get('cl', None)
         print('cliiiientr', client)
@@ -104,8 +160,13 @@ class CreneauClientListAPIView(generics.ListAPIView):
         return creneaux
 
 class CreneauCoachListAPIView(generics.ListAPIView):
+    queryset = Creneau.objects.all()
     serializer_class = CreneauClientSerialiser
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["creneau.view_creneau"]
+    }
+
     def get_queryset(self):
         coach = self.request.query_params.get('cl', None)
         print('cliiiientr', coach)
@@ -113,12 +174,26 @@ class CreneauCoachListAPIView(generics.ListAPIView):
         return creneaux
 
 class CreneauAbcListAPIView(generics.ListAPIView):
+    queryset = Creneau.objects.all()
     serializer_class = CreneauClientSerialiser
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["creneau.view_creneau"]
+    }
+
     def get_queryset(self):
         abonnement = self.request.query_params.get('ab', None)
         creneaux = Creneau.objects.filter(abonnements__id =abonnement)
         return creneaux
+
+
+@api_view(['GET'])
+def get_creneau_authorization(request):
+    user = request.user
+    if user.has_perm("creneau.view_creneau"):
+        return Response(status=200)
+    else:
+        return Response(status=403)
 
 # @api_view(['GET'])
 # def creneau_by_abonnee(request):

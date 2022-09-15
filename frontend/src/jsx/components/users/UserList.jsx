@@ -8,9 +8,14 @@ import { ToastContainer, toast } from 'react-toastify'
 import { Link } from "react-router-dom";
 import useAxios from "../useAxios";
 import UserModal from "./UserModal"
+// import EditForm from "./EditForm";
+// import UpdateIcon from '@material-ui/icons/Update';
+// import DeleteIcon from '@material-ui/icons/Delete';
 
-
+import Pagination from "./Pagination.js";
+import Users from "./Users";
 const UserList = () => {
+
 const api = useAxios();
 const [usersData, setUsersData] = useState([]);
 const [userModal, setUserModal] = useState(false);
@@ -20,19 +25,25 @@ const [selectedUser, setSelectedUser] = useState("");
 
 const [userGroup, setUserGroup] = useState([]);
 const [groups, setGroups] = useState([]);
+const [usersStatus, setUsersStatus] = useState(null);
+
 const groupsEnd = `${process.env.REACT_APP_API_URL}/rest-api/auth/groups/`
+
    useEffect( () =>  {
       api.get(`${process.env.REACT_APP_API_URL}/rest-api/auth/users`).then( res => {
          console.log('result ', res);
          setUsersData(res.data)
+         setUsersStatus(res.status)
       }).catch( err => {
          console.log('IRRROR', err);
+         setUsersStatus(err.response.status)
       })
       api.get(groupsEnd).then( res => {
          setGroups(res.data)
          console.log("MY GROUSP ", res.data);
      })
-   }, []);
+   }, [userModal]);
+
    const setSelectedGroup = (groups, groupId ) => {
       for (let i = 0; i < groups.length; i++) {
           if (groupId == groups[i].id){
@@ -40,12 +51,25 @@ const groupsEnd = `${process.env.REACT_APP_API_URL}/rest-api/auth/groups/`
           }            
       }
   }
+   // const [users, setUsers] = useState([]);
+   const [loading, setLoading] = useState(false);
+   const [currentPage, setCurrentPage] = useState(1);
+   const [UserPerPage] = useState(4);
+
+  const indexOfLastUser = currentPage * UserPerPage;
+  const indexOfFirstUser = indexOfLastUser - UserPerPage;
+  const currentUsers = usersData.slice(indexOfFirstUser, indexOfLastUser);
+
+   const paginate = pageNumber => setCurrentPage(pageNumber);
+  
    return (
       <Fragment>
          <ToastContainer position='top-right' autoClose={5000} hideProgressBar={false} newestOnTop closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
          <div className="testimonial-one owl-right-nav owl-carousel owl-loaded owl-drag mb-4">
             <ShortCuts />
          </div>
+         {usersStatus == 200 && (
+         <>
          <div className="form-head d-flex mb-4 mb-md-5 align-items-start">
             <div className="input-group search-area d-inline-flex">
             </div>
@@ -87,41 +111,38 @@ const groupsEnd = `${process.env.REACT_APP_API_URL}/rest-api/auth/groups/`
                               </tr>
                            </thead>
                            <tbody id="customers">
-                           {usersData.map(user => (
-                              <tr role="row" key={user.id} className="btn-reveal-trigger presences cursor-abonnement" onClick={e => {
-                                 setUserId(user.id)
-                                 setSelectedUser(user)
-                                 setUserGroup(user.groups)
-                                 setUserModal(true)
-                                 console.log('user data-> ', user);
-                                 console.log("user group", userGroup);
-                              }}>
-                                 <td className=" pl-5"> { user.id } </td>
-                                 <td className="customer_shop_single">
-                                    <div className="media d-flex align-items-center">
-                                       <div className="media-body">
-                                          <h5 className="mb-0 fs--1">
-                                             {user.email}
-                                          </h5>
-                                       </div>
-                                    </div>
-                                 </td>
-                              </tr>
-                           ))}
+                              <Users usersData={currentUsers} setUserId={setUserId} setSelectedUser={setSelectedUser}
+                              setUserGroup={setUserGroup} userGroup={userGroup} loading={loading}/>
                            </tbody>
                         </table>
+                        <Pagination
+                           UserPerPage={UserPerPage}
+                           totalUsers={usersData.length}
+                           paginate={paginate}
+                        />
+ 
+                        
                      </div>
                   </div>
                </div>
             </div>
          </div>
-         < UserModal show={userModal} onShowShange={setUserModal}  userData={{
+         { userModal == true && 
+         <UserModal show={userModal} onShowShange={setUserModal}  userData={{
             userId : userId,
             selectedUser : setSelectedUser,
             userGroup: userGroup,
             groups : groups
             // userGroop : userGroop,
-            }} />
+            }}
+           />
+         }
+
+            {/* <EditForm show={userModal} onShowShange={setUserModal} userData={{
+               userId: userId,
+            }} /> */}
+         </>
+         )}
       </Fragment>
    );
 };

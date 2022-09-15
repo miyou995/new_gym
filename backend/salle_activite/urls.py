@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import SalleAPIView, SalleListAPIView, SalleDetailAPIView, SalleDestroyAPIView, ActivityAPIView, ActivityListAPIView, ActivityDetailAPIView, ActivityDestroyAPIView, presences_by_salle, default_salle, start_listening, DoorApiViewSet, stop_listening
+from .views import SalleAPIView, SalleListAPIView, SalleDetailAPIView, SalleDestroyAPIView, ActivityAPIView, ActivityListAPIView, ActivityDetailAPIView, ActivityDestroyAPIView, presences_by_salle, default_salle, start_listening, DoorApiViewSet, stop_listening, get_salle_authorization, get_activite_authorization
 from rest_framework import routers
 
 app_name = 'salle-activite'
@@ -23,6 +23,8 @@ urlpatterns = [
     path('activite/delete/<int:pk>/', ActivityDestroyAPIView.as_view(), name="activite-delete"),
     path('start_listening/', start_listening, name="start_listening"),
     path('stop_listening/', stop_listening, name="stop_listening"),
+    path('get_salle_authorization/', get_salle_authorization, name="get_salle_authorization"),
+    path('get_activite_authorization/', get_activite_authorization, name="get_activite_authorization"),
 ]
 
 

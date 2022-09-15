@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import PresenceListAPIView, PresenceDetailAPIView, PresenceDestroyAPIView, PresenceEditAPIView,PresenceCoachCreateAPI,PresenceCoachListAPI,PresenceCoachDetailUpdateAPI,PresenceCoachDestroyAPI, PresenceCoachEditAPIView, PresenceClientDetailAPI, PresenceByCoachListAPI, PresenceClientIsInAPI, PresencePostAPIView, PresenceClientAutoCreateAPI, AllPresenceListAPIView, PresenceHistoryListAPIView, PresenceManualEditAPIView
+from .views import PresenceListAPIView, PresenceDetailAPIView, PresenceDestroyAPIView, PresenceEditAPIView,PresenceCoachCreateAPI,PresenceCoachListAPI,PresenceCoachDetailUpdateAPI,PresenceCoachDestroyAPI, PresenceCoachEditAPIView, PresenceClientDetailAPI, PresenceByCoachListAPI, PresenceClientIsInAPI, PresencePostAPIView, PresenceClientAutoCreateAPI, AllPresenceListAPIView, PresenceHistoryListAPIView, PresenceManualEditAPIView, get_presence_authorization, get_presence_coach_authorization
 
 
 app_name = 'presence'
@@ -33,6 +33,8 @@ urlpatterns = [
 
     # path('create', PresenceAPIView.as_view(),  name="presence-create"),
     path('delete/<int:pk>/', PresenceDestroyAPIView.as_view(), name="presence-delete"),
+    path('get_presence_authorization/', get_presence_authorization, name="get_presence_authorization"),
+    path('get_presence_coach_authorization/', get_presence_coach_authorization, name="get_presence_coach_authorization"),
 
 ]
 

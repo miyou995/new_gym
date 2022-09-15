@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import CreneauAPIView, CreneauPerSalleListAPIView, CreneauListAPIView, CreneauDetailAPIView, CreneauDestroyAPIView, CreneauActivityListAPIView, CreneauByAbonnement, CreneauClientListAPIView, CreneauCoachListAPIView, CreneauBySalleAndPlanningListAPIView, CreneauAbcListAPIView, CreneauByAbndPlanListAPIView
+from .views import CreneauAPIView, CreneauPerSalleListAPIView, CreneauListAPIView, CreneauDetailAPIView, CreneauDestroyAPIView, CreneauActivityListAPIView, CreneauByAbonnement, CreneauClientListAPIView, CreneauCoachListAPIView, CreneauBySalleAndPlanningListAPIView, CreneauAbcListAPIView, CreneauByAbndPlanListAPIView, get_creneau_authorization
 
 
 app_name = 'creneau'
@@ -18,6 +18,7 @@ urlpatterns = [
     path('<int:pk>/', CreneauDetailAPIView.as_view(),  name="creneau-detail"),
     path('delete/<int:pk>/', CreneauDestroyAPIView.as_view(), name="creneau-delete"),
     path('range/<int:pk>/', CreneauDestroyAPIView.as_view(), name="creneau-delete"),
+    path('get_creneau_authorization/', get_creneau_authorization, name="get_creneau_authorization"),
 ]   
 
 
