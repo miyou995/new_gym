@@ -10,6 +10,7 @@ import ShortCuts from "../ShortCuts";
 import avartar5 from "../../../images/avatar/5.png";
 import avartar1 from "../../../images/avatar/1.png";
 import { Link } from "react-router-dom";
+import useAuth from "../useAuth";
 
 
 function refreshPage() {
@@ -49,9 +50,9 @@ const PersonnelList = () => {
    useEffect(() => {
       api.get(endpoint).then((res) => {
          setSavedPersonnel(res.data)
-         setPersonnelStatus(res.status)
+         // setPersonnelStatus(res.status)
       }).catch(err => {
-         setPersonnelStatus(err.response.status)
+         // setPersonnelStatus(err.response.status)
       })
     }, []);
    useEffect(() => {
@@ -60,13 +61,15 @@ const PersonnelList = () => {
    }, [savedPersonnel]);
    // console.log('els clieeents', savedClients);
 
+ const personnelAuth = useAuth(endpoint, 'GET')
+
 
    return (
       <Fragment>
                <div className="testimonial-one owl-right-nav owl-carousel owl-loaded owl-drag mb-4">
         <ShortCuts />
       </div>
-      {personnelStatus == 200 && (
+      {personnelAuth && (
         <>
          <Search name= 'Employé' lien= "/personnel/create"/>
          <div className="row">
