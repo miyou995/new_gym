@@ -202,7 +202,8 @@ const getDay = (days,creneauDay) => {
              <div className="col-4">
              <Autocomplete
                   options={plannings}
-                  getOptionLabel={(option) => option.name || ''}
+                  getOptionLabel={(option) => option.name}
+                  value={defaultPlanning}
                   onChange={((event, value) =>  {
                     if (value) {
                       setPlanningId(value.id)
@@ -216,6 +217,7 @@ const getDay = (days,creneauDay) => {
              <Autocomplete
                     options={salles}
                     getOptionLabel={(option) => option.name || ''}
+                    value={defaultSalle}
                     onChange={((event, value) =>  {
                     if (value) {
                       setSalleId(value.id)
