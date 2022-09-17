@@ -10,6 +10,8 @@ import avartar1 from "../../../images/avatar/1.png";
 import { Link } from "react-router-dom";
 
 import ShortCuts from "../ShortCuts";
+import useAuth from "../useAuth";
+import Error403 from "../../pages/Error403";
 
 
 
@@ -44,6 +46,7 @@ const Drop = (props) => {
 const CoachList = () => {
   const api = useAxios();
 
+   const coachAuthorizationEnd = `${process.env.REACT_APP_API_URL}/rest-api/get_coach_authorization/`
    let endpoint = `${process.env.REACT_APP_API_URL}/rest-api/coachs/`
 
    
@@ -67,17 +70,20 @@ const CoachList = () => {
    }, [endpoint]);
    // console.log('els clieeents', savedClients);
 
+   const [coachAuth, loading] = useAuth(coachAuthorizationEnd, 'GET')
 
 
    return (
       <Fragment>
+         {loading &&
+         <>
+         {coachAuth ? (
+            <>
          {/* <PageTitle activeMenu="Liste" motherMenu="Abonnées" /> */}
          <div className="testimonial-one owl-right-nav owl-carousel owl-loaded owl-drag mb-4">
-        <ShortCuts />
-      </div>
+            <ShortCuts />
+         </div>
 
-      {coachStatus == 200 && (
-      <>
          <Search name= 'Ajouter Coach' lien= "/coach/create"/>
 
          <div className="row">
@@ -138,7 +144,9 @@ const CoachList = () => {
             </div>
          </div>
       </>
-      )}
+      ) : <Error403 />}
+         </>
+      }
       </Fragment>
    );
 };

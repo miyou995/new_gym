@@ -189,7 +189,11 @@ import useAxios from "../useAxios";
 
 import { useHistory } from "react-router-dom";
 import ShortCuts from "../ShortCuts";
-
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import { TextField } from "@material-ui/core";
+import './css.css'
+import { notifyError, notifySuccess } from "../Alert";
+import { ToastContainer } from "react-toastify";
 
 
 const UpdateModal = (props) => {
@@ -206,6 +210,7 @@ const UpdateModal = (props) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [re_password, setRePassword] = useState("");
+    const [userGroup, setUserGroup] = useState([]);
 
 
 
@@ -216,28 +221,36 @@ const UpdateModal = (props) => {
             setEmail(res.data.email)
             setPassword(res.data.password)
             setRePassword(res.data.re_password)
+            setUserGroup(res.data.groups)
+            console.log(res.data)
         })
     }, []);
 
-    const HandleSubmit = async e => {
+    const HandleSubmit = async (e) => {
         e.preventDefault();
         const EditedUser = {
-            last_name: lastName,
-            first_name: firstName,
             email: email,
+            first_name: firstName,
+            last_name: lastName,
             password: password,
             repassword: re_password,
-        }
-        api.put(userURI, EditedUser).then(() => {
-            history.push("/users")
-        })
+            group: userGroup,
+   
+        };
+        api.put(userURI, EditedUser).then(res => {
+            history.push("/users");
+            notifySuccess('utilisateur modifier avec succés')
 
-    }
+        }).catch(err => {
+            notifyError("Erreur lors de la modification de l'utilisateur")
+        })
+    };
+
 
     const [u, setU] = useState(404);
     const [userEditStatus, setUserEditStatus] = useState(null);
 
-    const aa = api.get(`${process.env.REACT_APP_API_URL}/rest-api/auth/users/${currentUserId}/`)
+    api.get(`${process.env.REACT_APP_API_URL}/rest-api/auth/users/${currentUserId}/`)
         .then(res => {
             setU(res.status);
             setUserEditStatus(res.status);
@@ -252,11 +265,9 @@ const UpdateModal = (props) => {
             }
             setUserEditStatus(err.response.status)
             console.log(err)
-            // history.push('/users')
         })
 
 
-        // if (status === 200)
 
 
 
@@ -266,43 +277,60 @@ const UpdateModal = (props) => {
                 <ShortCuts />
             </div>
             {userEditStatus == 200 && (
-                <div className="card">
-        <div className="card-header">
-            <h4 className="card-title">Modifier Utilisateur</h4>
-        </div>
-        <div className="card-body">
-            <div className="basic-form">
-                <form onSubmit={HandleSubmit}>
-                    <div className="form-row">
-                        <div className="form-group col-md-6">
-                            <label>Nom </label>
-                            <input type="text" name="last_name" className="form-control" value={lastName} placeholder="Nom du client" onChange={e => setLastName(e.target.value)} />
-                        </div>
-                        <div className="form-group col-md-6">
-                            <label>Prénom</label>
-                            <input type="text" name="first_name" className="form-control" value={firstName} placeholder="Prénom du client" onChange={e => setFirstName(e.target.value)} />
-                        </div>
-                        <div className="form-group col-md-6">
-                            <label>Email </label>
-                            <input type="email" name="email" className="form-control" value={email} placeholder="Email" onChange={e => setEmail(e.target.value)} />
-                        </div>
-                        {/* <div className="form-group col-md-4">
-              <label>état</label>
-              <select  defaultValue={"option"} name="state" className="form-control"value={etat} onChange={e => setEtat(e.target.value)}>
-                <option value="option" disabled>Cliquez pour choisir</option>
-                <option value="A" >Active</option>
-                <option value="N" >Non active</option>
-                <option value="S" >Suspendue</option>
-              </select>
-            </div> */}
+            <>
+                <ToastContainer position='top-right' autoClose={5000} hideProgressBar={false} newestOnTop closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
+                    <div className="card">
+                                <div className="card-header">
+                                    <h4 className="card-title">Modifier Utilisateur</h4>
+                                </div>
+                                <div className="card-body">
+                                    <div className="basic-form">
+                                        <form onSubmit={HandleSubmit}>
+                                            <div className="form-row">
+                                                <div className="form-group col-md-6">
+                                                    <label>Nom </label>
+                                                    <input type="text" name="last_name" className="form-control" value={lastName} placeholder="Nom du client" onChange={e => setLastName(e.target.value)} />
+                                                </div>
+                                                <div className="form-group col-md-6">
+                                                    <label>Prénom</label>
+                                                    <input type="text" name="first_name" className="form-control" value={firstName} placeholder="Prénom du client" onChange={e => setFirstName(e.target.value)} />
+                                                </div>
+                                                <div className="form-group col-md-12">
+                                                    <label>Email </label>
+                                                    <input type="email" name="email" className="form-control" value={email} placeholder="Email" onChange={e => setEmail(e.target.value)} />
+                                                </div>
+                                                <div className="form-group col-md-6">
+                                                    <label>Password </label>
+                                                    <input type="password" name="password" className="form-control" value={password} placeholder="Password" onChange={e => setPassword(e.target.value)} />
+                                                </div>
+                                                <div className="form-group col-md-6">
+                                                    <label>Re-Password </label>
+                                                    <input type="password" name="repassword" className="form-control" value={re_password} placeholder="Password" onChange={e => setRePassword(e.target.value)} />
+                                                </div>
+                                                <div className="form-group col-md-4">
+                                                    <label>Role(s)</label>
+                                                    <Autocomplete
+                                                        style={{ backgroundColor: '#fff' }}
+                                                        onChange={(event, value) => {
+                                                            setUserGroup(value.id);
+                                                        }}
+                                                        className="autocomplete"
+                                                        //   defaultValue={}
+                                                        options={userGroup}
+                                                        getOptionLabel={(option) => (option['name'])}
+                                                        renderInput={(params) => (<TextField {...params} className="p-0 m-0 h-0" name="group" label="" variant="outlined" fullWidth />)}
+                                                    />
+                                                </div>
+                                            </div>
+                                            <button type="submit" className="float-right btn btn-primary">
+                                                Confirmer la modification
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
                     </div>
-                    <button type="submit" className="btn btn-primary">
-                        Confirmer la modification
-                    </button>
-                </form>
-            </div>
-        </div>
-                </div>
+            </>
+
             )}
     
         </div>

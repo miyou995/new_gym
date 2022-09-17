@@ -131,8 +131,13 @@ const getSelectedMaladies = ( ) => {
           console.log('THE NEW CLIENT ', err.response)
         });
     }
+
+  // let endpoint = `${process.env.REACT_APP_API_URL}/rest-api/clients/create`
+
+  // const [clientAuth, loading] = useAuth(endpoint, 'POST')
+
   return (
-        <div className="">
+      <div className="">
          <ToastContainer position='top-right' autoClose={5000} hideProgressBar={false} newestOnTop closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
           <div className="testimonial-one owl-right-nav owl-carousel owl-loaded owl-drag mb-4">
         <ShortCuts />

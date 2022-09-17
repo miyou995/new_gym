@@ -9,6 +9,7 @@ import PerfectScrollbar from "react-perfect-scrollbar";
 /// Menu
 import MetisMenu from "metismenujs";
 import useAxios from "../../components/useAxios";
+import useAuth from "../../components/useAuth"
 import SbNavLinks from "./SbNavLinks";
 // import useAaxios from "../../components/useAaxios";
 ///
@@ -98,7 +99,7 @@ const [path,setPath] = useState("");
    // })
 
    // const [TransactionsStatus, setTransactionStatus] = useState()
-   const [nextpage, setNextpage] = useState(1);
+
    const baseURL = `${process.env.REACT_APP_API_URL}`
    // const tansactionsURL = `${baseURL}/rest-api/clients-name-drop/`;
    // var cURL = `${baseURL}/rest-api/clients-name/?page=${nextpage}`;
@@ -107,10 +108,22 @@ const [path,setPath] = useState("");
    // const { transactionStatus } = useAaxios(tansactionsURL, 'GET');
    // const { clientStatus } = useAaxios(cURL, 'GET');
    // const { coachStatus } = useAaxios(coachURL, 'GET');
-   const { clientStatus } = true;
-   const { coachStatus } = true;
 
-  
+   // const { clientStatus } = true;
+   // const { coachStatus } = true;
+
+   const clientAuthorizationEnd = `${baseURL}/rest-api/get_client_authorization/`
+   const transactionAuthorization = `${baseURL}/rest-api/get_transaction_authorization/`;
+   const coachAuthorizationEnd = `${baseURL}/rest-api/get_coach_authorization/`
+   let personnelAuthorization = `${baseURL}/rest-api/personnel/`
+   let presenceAuthorization = `${baseURL}/rest-api/presence/`
+
+
+   const [clientAuth] = useAuth(clientAuthorizationEnd, 'GET')
+   const [coachAuth] = useAuth(coachAuthorizationEnd, 'GET')
+   const [transactionAuth] = useAuth(transactionAuthorization, 'GET')
+   const [persoAuth] = useAuth(personnelAuthorization, 'GET')
+   const [presenceAuth] = useAuth(presenceAuthorization, 'GET')
 
 
       return (
@@ -118,18 +131,22 @@ const [path,setPath] = useState("");
             <PerfectScrollbar className="deznav-scroll">
                <MM className="metismenu" id="menu">
                   {/* <SbNavLinks LinkName="" Icon="flaticon-381-home" Name="Tableau de bord" /> */}
-                  {clientStatus == 200 && (
+                  {clientAuth && (
                      <SbNavLinks LinkName="/client" Icon="flaticon-381-user-9" Name="Abonnées" />
                   )}
-                  {/* {transactionStatus === 200 && ( */}
+                  {transactionAuth  && (
                      <SbNavLinks LinkName="/transactions" Icon="flaticon-381-controls" Name="Transactions" />
-                  {/* )} */}
+                  )}
                   <SbNavLinks LinkName="/creneaux" Icon="flaticon-381-calendar" Name="Creneaux" />
-                  <SbNavLinks LinkName="/presences" Icon="flaticon-381-blueprint" Name="Présences" />
-                  {coachStatus == 200 && (
+                  {presenceAuth &&
+                     <SbNavLinks LinkName="/presences" Icon="flaticon-381-blueprint" Name="Présences" />
+                  }
+                  {coachAuth && (
                      <SbNavLinks LinkName="/coach" Icon="flaticon-381-user-1" Name="Coachs" />
                   )}
-                  <SbNavLinks LinkName="/personnel" Icon="flaticon-381-user-4" Name="Personnel" />
+                  {persoAuth && 
+                     <SbNavLinks LinkName="/personnel" Icon="flaticon-381-user-4" Name="Personnel" />
+                  }
                   <SbNavLinks LinkName="/configuration" Icon="flaticon-381-settings" Name="configuration" />
                   <SbNavLinks LinkName="/users" Icon="flaticon-381-user-1" Name="Utilisateurs " />
                   <SbNavLinks LinkName="/history-abc" Icon="flaticon-381-bookmark-1" Name="History " />

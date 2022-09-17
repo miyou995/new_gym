@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import ShortCuts from "../ShortCuts";
 import useAuth from "../useAuth";
 import { setDate } from "date-fns";
-
+import Error403 from "../../pages/Error403"
 
 
 export const ClientContext = React.createContext()
@@ -60,27 +60,12 @@ useEffect(() =>  {
       })}
 }, [nextpage, searchValue]);
 
-// const [clientStatus, setClientStatus] = useState(null);
+// const loading = true
 
-const clientAuth = useAuth(clientAuthorizationEnd, 'GET')
+const [clientAuth, loading] = useAuth(clientAuthorizationEnd, 'GET')
 
 
-// if(clientAuth)
-// api.get(endpoint).then(res => {
-//   console.log(res.status);
-//   setClientStatus(res.status);
-  
-// }).catch(error => {
-//   if (error.response) {
-//      console.log(error.response.data);
-//      console.log(error.response.status);
-//      console.log(error.response.headers);
-//      setClientStatus(error.response.status);
 
-//   }
-// })
-
-// console.log("clientStatus ==>", clientStatus)
 
 
 console.log('le searchValue des searchValue est ', searchValue);
@@ -93,134 +78,141 @@ console.log('le searchValue des searchValue est ', searchValue);
 
  return (
       <Fragment>
-         <div className="testimonial-one owl-right-nav owl-carousel owl-loaded owl-drag mb-4">
-            <ShortCuts />
-         </div>
-         {clientAuth && (
-         <>
-         {/* <PageTitle activeMenu="Liste" motherMenu="Abonnées" /> */}
-         <div className="form-head d-flex mb-4 mb-md-5 align-items-start">
-            <div className="input-group search-area d-inline-flex">
-               <div className="input-group-append">
-                  <span className="input-group-text">
-                     <i className="flaticon-381-search-2"/>
-                  </span>
-               </div>
-               <input id="searchClient" type="text" className="form-control" placeholder="rechercher un client" value={searchValue} onChange={e => setSearchValue(e.target.value)}/>
-            </div>
-               {/* <div className="input-group search-area d-inline-flex ml-3">
+      {loading &&
+      <>
+          {clientAuth ? (
+                <>
+                   <div className="testimonial-one owl-right-nav owl-carousel owl-loaded owl-drag mb-4">
+                      <ShortCuts />
+                   </div>
+
+                   {/* <PageTitle activeMenu="Liste" motherMenu="Abonnées" /> */}
+                   <div className="form-head d-flex mb-4 mb-md-5 align-items-start">
+                      <div className="input-group search-area d-inline-flex">
+                         <div className="input-group-append">
+                            <span className="input-group-text">
+                               <i className="flaticon-381-search-2" />
+                            </span>
+                         </div>
+                         <input id="searchClient" type="text" className="form-control" placeholder="rechercher un client" value={searchValue} onChange={e => setSearchValue(e.target.value)} />
+                      </div>
+                      {/* <div className="input-group search-area d-inline-flex ml-3">
                   <input type="date" name="birth_date" value={startDate} className="form-control"  onChange={e => setStartDate(e.target.value)}/>
                </div>
                <div className="input-group search-area d-inline-flex ml-3">
                   <input type="date" name="birth_date" value={endDate} className="form-control"  onChange={e => setEndDate(e.target.value)}/>
                </div> */}
-            <Link to="/client/create" className="btn btn-primary ml-auto">Ajouter un abonné</Link>
-         </div>
+                      <Link to="/client/create" className="btn btn-primary ml-auto">Ajouter un abonné</Link>
+                   </div>
 
-         <div className="row">
-            <div className="col-lg-12">
-               <div className="card">
-                  <div className="card-body">
-                     <div className="table-responsive">
-                        <table className="table mb-0 table-striped">
-                           <thead>
-                              <tr>
-                                 <th className="customer_shop"> ID </th>
-                                 <th>Nom</th>
-                                 <th>Prénom</th>
-                                 <th>Téléphone</th>
-                                 <th className="pl-5 width200"> Addresse </th>
-                                 <th>Adhesion</th>
-                                 <th>Dettes</th>
-                              </tr>
-                           </thead>
-                           <tbody id="customers">
-                           {clientData.map(client => (
-                              <tr role="row" key={client.id} className="btn-reveal-trigger">
-                                 <td className="customer_shop_single"> {client.id} </td>
-                                 <td className="py-3">
-                                    <Link to={`/client/${client.id}`}>
-                                       <div className="media d-flex align-items-center">
-                                          <div className="avatar avatar-xl mr-2">
-                                             <div className="">
-                                                <img className="rounded-circle img-fluid" src={avartar5} width="30" alt="" />
-                                             </div>
-                                          </div>
-                                          <div className="media-body">
-                                             <h5 className="mb-0 fs--1">
-                                             {capitalizeFirstLetter(client.last_name)}
-                                             </h5>
-                                          </div>
-                                       </div>
-                                    </Link>
-                                 </td>
-                                 <td className="py-2">
-                                    {capitalizeFirstLetter(client.first_name)}
-                                 </td>
-                                 <td className="py-2">
-                                    <a href="tel:{client.phone}">{client.phone}</a>
-                                 </td>
-                                 <td className="py-2 pl-5 wspace-no"> {client.adress} </td>
-                                 <td className="py-2">{client.date_added}</td>
-                                 <td className="py-2  text-danger">{client.dettes.reste__sum}</td>
-                              </tr>
-                              ))}
-                              </tbody>
-                        </table>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-         {
-            !searchBarActivated &&
+                   <div className="row">
+                      <div className="col-lg-12">
+                         <div className="card">
+                            <div className="card-body">
+                               <div className="table-responsive">
+                                  <table className="table mb-0 table-striped">
+                                     <thead>
+                                        <tr>
+                                           <th className="customer_shop"> ID </th>
+                                           <th>Nom</th>
+                                           <th>Prénom</th>
+                                           <th>Téléphone</th>
+                                           <th className="pl-5 width200"> Addresse </th>
+                                           <th>Adhesion</th>
+                                           <th>Dettes</th>
+                                        </tr>
+                                     </thead>
+                                     <tbody id="customers">
+                                        {clientData.map(client => (
+                                           <tr role="row" key={client.id} className="btn-reveal-trigger">
+                                              <td className="customer_shop_single"> {client.id} </td>
+                                              <td className="py-3">
+                                                 <Link to={`/client/${client.id}`}>
+                                                    <div className="media d-flex align-items-center">
+                                                       <div className="avatar avatar-xl mr-2">
+                                                          <div className="">
+                                                             <img className="rounded-circle img-fluid" src={avartar5} width="30" alt="" />
+                                                          </div>
+                                                       </div>
+                                                       <div className="media-body">
+                                                          <h5 className="mb-0 fs--1">
+                                                             {capitalizeFirstLetter(client.last_name)}
+                                                          </h5>
+                                                       </div>
+                                                    </div>
+                                                 </Link>
+                                              </td>
+                                              <td className="py-2">
+                                                 {capitalizeFirstLetter(client.first_name)}
+                                              </td>
+                                              <td className="py-2">
+                                                 <a href="tel:{client.phone}">{client.phone}</a>
+                                              </td>
+                                              <td className="py-2 pl-5 wspace-no"> {client.adress} </td>
+                                              <td className="py-2">{client.date_added}</td>
+                                              <td className="py-2  text-danger">{client.dettes.reste__sum}</td>
+                                           </tr>
+                                        ))}
+                                     </tbody>
+                                  </table>
+                               </div>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                   {
+                      !searchBarActivated &&
 
-            <div className='d-flex text-center justify-content-end'>
+                      <div className='d-flex text-center justify-content-end'>
 
-                <div className='dataTables_info text-black' id='example5_info '>
-                  {/* Showing {activePag.current * sort + 1} to{' '}
+                         <div className='dataTables_info text-black' id='example5_info '>
+                            {/* Showing {activePag.current * sort + 1} to{' '}
                   {data.length > (activePag.current + 1) * sort
                     ? (activePag.current + 1) * sort
                     : data.length}{' '}
                   of {data.length} entries{' '} */}
-                </div>
-                <div
-                  className='dataTables_paginate paging_simple_numbers'
-                  id='example5_paginate'
-                >
-                  <Button
-                    onClick={() =>
-                     nextpage > 0 && setNextpage(nextpage - 1)
+                         </div>
+                         <div
+                            className='dataTables_paginate paging_simple_numbers'
+                            id='example5_paginate'
+                         >
+                            <Button
+                               onClick={() =>
+                                  nextpage > 0 && setNextpage(nextpage - 1)
 
-                  }
-                  style={{width: '100px', border: 'none', height:'48px', color:'#ffffff',textAlign: 'left', fontSize:'15px', paddingLeft:'8px'}}>
-                    Précédent
-                  </Button>
-                  <span>
-                      <input
-                        to='/transactions'
-                        type='number'
-                        className='paginate_button_client  '
-                        onChange={e => setNextpage(e.target.value)}
-                      value={nextpage}
-                      style={{width: '100px', border: 'none', height:'99%', textAlign: 'center', fontSize:'15px'}}
-                      />
-                  </span>
-                  <Button
-                  style={{width: '100px', border: 'none', height:'48px', color:'#ffffff',textAlign: 'center', fontSize:'15px', padding:'2px'}}
+                               }
+                               style={{ width: '100px', border: 'none', height: '48px', color: '#ffffff', textAlign: 'left', fontSize: '15px', paddingLeft: '8px' }}>
+                               Précédent
+                            </Button>
+                            <span>
+                               <input
+                                  to='/transactions'
+                                  type='number'
+                                  className='paginate_button_client  '
+                                  onChange={e => setNextpage(e.target.value)}
+                                  value={nextpage}
+                                  style={{ width: '100px', border: 'none', height: '99%', textAlign: 'center', fontSize: '15px' }}
+                               />
+                            </span>
+                            <Button
+                               style={{ width: '100px', border: 'none', height: '48px', color: '#ffffff', textAlign: 'center', fontSize: '15px', padding: '2px' }}
 
-                    onClick={() =>
-                     nextpage > 0 && setNextpage(nextpage + 1)
-                    }
-                  >
-                    Suivant
-                  </Button>
-                </div>
+                               onClick={() =>
+                                  nextpage > 0 && setNextpage(nextpage + 1)
+                               }
+                            >
+                               Suivant
+                            </Button>
+                         </div>
 
-              </div>
-         }
-         </>
-         )}
+                      </div>
+                   }
+                </>
+             ) : <Error403 />
+             }
+      </> 
+      }
+
 
       </Fragment>
    );

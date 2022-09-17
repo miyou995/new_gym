@@ -14,6 +14,8 @@ import PresenceEditModal from './PresenceEditModal'
 import PresenceCreateModal from './PresenceCreateModal'
 import TextField from '@material-ui/core/TextField';
 import useAxios from "../useAxios";
+import useAuth from "../useAuth";
+import Error403 from "../../pages/Error403";
 // import axiosInstance from "../../axiosApi";
 
 export const ClientContext = React.createContext()
@@ -121,15 +123,18 @@ const getCurrentDay = (PresneceDate) => {
 } 
 const [presenceStatus, setPresenceStatus] = useState(null);
 
+   
    useEffect(() => {
       const presenceDateDate = async () => {
          const dateDebut = formatDate(startDate)
          const dateFin = formatDate(endDate)
+         const endpoint = `${process.env.REACT_APP_API_URL}/rest-api/presence/?page=${nextpage}&start_date=${dateDebut}&end_date=${dateFin}&abc__client_id=${searchValue}&creneau__activity__salle=${salleId}&hour=${startHour}&creneau__activity=${filterActivity}`
+
          // const result =  await api.get(`${process.env.REACT_APP_API_URL}/rest-api/presence/?page=${nextpage}&start_date=${dateDebut}&end_date=${dateFin}&abc__client_id=${searchValue}&creneau__activity__salle=${salleId}&hour=${startHour}&creneau__activity=${filterActivity}`)
          // console.log('cest un result ', result);
          // setPresenceData(result.data.results)
          // setPresencesCount(result.data.count)
-         await api.get(`${process.env.REACT_APP_API_URL}/rest-api/presence/?page=${nextpage}&start_date=${dateDebut}&end_date=${dateFin}&abc__client_id=${searchValue}&creneau__activity__salle=${salleId}&hour=${startHour}&creneau__activity=${filterActivity}`)
+         await api.get(endpoint)
          .then(res => {
             console.log('cest un result ', res);
             setPresenceData(res.data.results)
@@ -166,17 +171,24 @@ const HandleSubmit = (e) => {
       notifyError("Cet ID n'existe pas dans nos fichier")
    })
 }
+const presenceAuthorization = `${process.env.REACT_APP_API_URL}/rest-api/presence/`
+
+const [presenceAuth, loading] = useAuth(presenceAuthorization, 'GET')
+
 
    return (
       <Fragment>
+      { loading &&
+         <>
+         {presenceAuth ? (
+         <>
          <Link target="_blank" to={`/client/${clientId}`} >
             <ToastContainer position='top-right' autoClose={5000} hideProgressBar={false} newestOnTop closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
          </Link>
          <div className="testimonial-one owl-right-nav owl-carousel owl-loaded owl-drag mb-4">
             <ShortCuts />
          </div> 
-         {presenceStatus == 200 && (
-         <>
+
          <div className="m-5 row">
             <div className='col- col-md-4'>
                <form onSubmit={HandleSubmit}>
@@ -362,7 +374,9 @@ const HandleSubmit = (e) => {
               </div>
          }
          </>
-         )}
+         ) : <Error403 />}
+      </>
+      }
       </Fragment>
    );
 };

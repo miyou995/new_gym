@@ -214,7 +214,8 @@ const Markup = () => {
             !pagePath ? "content-body" : ""
           }`}
         >
-          <div className={`${!pagePath ? "container-fluid" : ""}`}style={{ minHeight: window.screen.height - 60 }}>
+            {/* style={{ minHeight: window.screen.height - 60 }} */}
+          <div className={`${!pagePath ? "container-fluid" : ""}`}>
             <Switch>
               <Route exact component={Login} path="/login" />
               {routes.map((data, i) => (
