@@ -22,7 +22,7 @@ class AssuranceAPIView(generics.CreateAPIView):
     serializer_class = AssuranceSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["assurance.add_assurance"]
+        "POST": ["assurance.add_assurance"]
     }
 
 
@@ -41,7 +41,9 @@ class AssuranceDetailAPIView(generics.RetrieveUpdateAPIView):
     serializer_class = AssuranceSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["assurance.change_assurance"]
+        "GET": ["assurance.change_assurance"],
+        "PUT": ["assurance.change_assurance"],
+        "PATCH": ["assurance.change_assurance"],
     }
     def get_object(self):
         obj = get_object_or_404(Assurance.objects.filter(id=self.kwargs["pk"]))
@@ -54,5 +56,6 @@ class AssuranceDestroyAPIView(generics.DestroyAPIView):
     serializer_class = AssuranceSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["assurance.delete_assurance"]
+        "DELETE": ["assurance.delete_assurance"],
+        "POST": ["assurance.delete_assurance"],
     }

@@ -171,6 +171,8 @@ class Client(models.Model):
         return False
 
     def save(self, *args, **kwargs):
+        if self.picture:
+            pass # register to both face machines
         if not self.id:
             try :
                 # print('clientsd==> ', timezone.now())

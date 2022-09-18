@@ -48,7 +48,7 @@ class PaiementAPIView(generics.CreateAPIView):
     serializer_class = PaiementPostSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["transaction.add_paiement"]
+        "POST": ["transaction.add_paiement"]
     }
 
 class PaiementListAPIView(generics.ListAPIView):
@@ -79,7 +79,9 @@ class PaiementDetailAPIView(generics.RetrieveUpdateAPIView):
     serializer_class = PaiementPostSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["transaction.change_paiement"]
+        "GET": ["transaction.view_paiement"],
+        "PUT": ["transaction.change_paiement"],
+        "PATCH": ["transaction.change_paiement"],
     }
     def get_object(self): 
         obj = get_object_or_404(Paiement.objects.filter(id=self.kwargs["pk"]))
@@ -91,7 +93,8 @@ class PaiementDestroyAPIView(generics.DestroyAPIView):
     serializer_class = PaiementSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["transaction.delete_paiement"]
+        "POST": ["transaction.delete_paiement"],
+        "DELETE": ["transaction.delete_paiement"],
     }
 # fin des paiement 
 
@@ -101,7 +104,7 @@ class AutreAPIView(generics.CreateAPIView):
     serializer_class = AutreSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["transaction.add_autre"]
+        "POST": ["transaction.add_autre"]
     }
 
 class AutreListAPIView(generics.ListAPIView):
@@ -119,7 +122,9 @@ class AutreDetailAPIView(generics.RetrieveUpdateAPIView):
     serializer_class = AutreSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["transaction.change_autre"]
+        "GET": ["transaction.view_autre"],
+        "PUT": ["transaction.change_autre"],
+        "PATCH": ["transaction.change_autre"],
     }
     def get_object(self):
         obj = get_object_or_404(Autre.objects.filter(id=self.kwargs["pk"]))
@@ -131,7 +136,8 @@ class AutreDestroyAPIView(generics.DestroyAPIView):
     serializer_class = AutreSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["transaction.delete_autre"]
+        "POST": ["transaction.delete_autre"],
+        "DELETE": ["transaction.delete_autre"],
     }
 # FIN AUTRE#########
 
@@ -140,7 +146,7 @@ class AssuranceAPIView(generics.CreateAPIView):
     serializer_class = AssurancePostSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["transaction.add_assurancetransaction"]
+        "POST": ["transaction.add_assurancetransaction"]
     }
 
 class AssuranceListAPIView(generics.ListAPIView):
@@ -158,8 +164,11 @@ class AssuranceDetailAPIView(generics.RetrieveUpdateAPIView):
     serializer_class = AssurancePostSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["transaction.change_assurancetransaction"]
+        "GET": ["transaction.view_assurancetransaction"],
+        "PUT": ["transaction.change_assurancetransaction"],
+        "PATCH": ["transaction.change_assurancetransaction"],
     }
+
     def get_object(self):
         obj = get_object_or_404(AssuranceTransaction.objects.filter(id=self.kwargs["pk"]))
         return obj
@@ -170,7 +179,8 @@ class AssuranceDestroyAPIView(generics.DestroyAPIView):
     serializer_class = AssuranceSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["transaction.delete_assurancetransaction"]
+        "POST": ["transaction.delete_assurancetransaction"],
+        "DELETE": ["transaction.delete_assurancetransaction"],
     }
 # FIN ASSURANCE#########
 
@@ -179,7 +189,7 @@ class RemunerationAPIView(generics.CreateAPIView):
     serializer_class = RemunerationPostSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["transaction.add_remuneration"]
+        "POST": ["transaction.add_remuneration"]
     }
 
 class RemunerationListAPIView(generics.ListAPIView):
@@ -197,7 +207,9 @@ class RemunerationDetailAPIView(generics.RetrieveUpdateAPIView):
     serializer_class = RemunerationPostSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["transaction.change_remuneration"]
+        "GET": ["transaction.view_remuneration"],
+        "PUT": ["transaction.change_remuneration"],
+        "PATCH": ["transaction.change_remuneration"],
     }
     def get_object(self):
         obj = get_object_or_404(Remuneration.objects.filter(id=self.kwargs["pk"]))
@@ -221,7 +233,8 @@ class RemunerationDestroyAPIView(generics.DestroyAPIView):
     serializer_class = RemunerationSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["transaction.delete_remuneration"]
+        "POST": ["transaction.delete_remuneration"],
+        "DELETE": ["transaction.delete_remuneration"],
     }
 
 # FIN ASSURANCE#########
@@ -230,7 +243,7 @@ class RemunerationProfAPIView(generics.CreateAPIView):
     serializer_class = RemunerationProfPostSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["transaction.add_remunerationprof"]
+        "POST": ["transaction.add_remunerationprof"]
     }
 
 
@@ -246,7 +259,9 @@ class RemunerationProfDetailAPIView(generics.RetrieveUpdateAPIView):
     queryset = RemunerationProf.objects.all()
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["transaction.change_remunerationprof"]
+        "GET": ["transaction.view_remunerationprof"],
+        "PUT": ["transaction.change_remunerationprof"],
+        "PATCH": ["transaction.change_remunerationprof"],
     }
     serializer_class = RemunerationProfPostSerialiser
     def get_object(self):
@@ -259,7 +274,8 @@ class RemunerationProfDestroyAPIView(generics.DestroyAPIView):
     serializer_class = RemunerationProfSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["transaction.delete_remunerationprof"]
+        "POST": ["transaction.delete_remunerationprof"],
+        "PATCH": ["transaction.delete_remunerationprof"],
     }
 
 
@@ -357,7 +373,9 @@ class TransactionDetailAPIView(generics.RetrieveUpdateAPIView):
     queryset = Transaction.objects.all()
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["transaction.change_transaction"]
+        "GET": ["transaction.view_transaction"],
+        "PUT": ["transaction.change_transaction"],
+        "PATCH": ["transaction.change_transaction"],
     }
     serializer_class = TransactionSerialiser
 
@@ -403,10 +421,10 @@ class MyModelViewSet(generics.ListAPIView):
         """
     model = Abonnement
     serializer_class = AbonnementTestSerializer
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "GET": ["transaction.view_client"]
-    }
+    # permission_classes = (IsAdminUser,BaseModelPerm)
+    # extra_perms_map = {
+    #     "GET": ["transaction.view_client"]
+    # }
     def list(self, request):
         queryset = self.get_queryset()
         serializer = AbonnementTestSerializer(list(queryset), many=True)

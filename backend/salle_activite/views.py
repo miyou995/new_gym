@@ -32,7 +32,11 @@ class DoorApiViewSet(ModelViewSet):
     queryset = Door.objects.all()
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["salle_activite.change_door"]
+        "GET": ["salle_activite.view_door"],
+        "POST": ["salle_activite.add_door"],
+        "PUT": ["salle_activite.change_door"],
+        "PATCH": ["salle_activite.change_door"],
+        "DELETE": ["salle_activite.delete_door"],
     }
 
 
@@ -41,7 +45,7 @@ class SalleAPIView(generics.CreateAPIView):
     serializer_class = SalleSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["salle_activite.add_salle"]
+        "POST": ["salle_activite.add_salle"]
     }
 
 class SalleListAPIView(generics.ListAPIView):
@@ -59,7 +63,9 @@ class SalleDetailAPIView(generics.RetrieveUpdateAPIView):
     serializer_class = SalleSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["salle_activite.xhange_salle"]
+        "GET": ["salle_activite.view_salle"],
+        "PUT": ["salle_activite.change_salle"],
+        "PATCH": ["salle_activite.change_salle"],
     }
     def get_object(self):
         obj = get_object_or_404(Salle.objects.filter(id=self.kwargs["pk"]))
@@ -72,7 +78,8 @@ class SalleDestroyAPIView(generics.DestroyAPIView):
     serializer_class = SalleSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["salle_activite.delete_salle"]
+        "POST": ["salle_activite.delete_salle"],
+        "DELETE": ["salle_activite.delete_salle"]
     }
 
 class ActivityAPIView(generics.CreateAPIView):
@@ -80,7 +87,7 @@ class ActivityAPIView(generics.CreateAPIView):
     serializer_class = ActivitySerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["salle_activite.add_activity"]
+        "POST": ["salle_activite.add_activity"]
     }
     def post(self, request, format=None):
         print(request.data)
@@ -110,7 +117,9 @@ class ActivityDetailAPIView(generics.RetrieveUpdateAPIView):
     serializer_class = ActivitySerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["salle_activite.change_activity"]
+        "GET": ["salle_activite.view_activity"],
+        "PUT": ["salle_activite.change_activity"],
+        "PATCH": ["salle_activite.change_activity"],
     }
     def get_object(self):
         obj = get_object_or_404(Activity.objects.filter(id=self.kwargs["pk"]))
@@ -123,7 +132,8 @@ class ActivityDestroyAPIView(generics.DestroyAPIView):
     serializer_class = ActivitySerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["salle_activite.delete_activity"]
+        "POST": ["salle_activite.delete_activity"],
+        "DELETE": ["salle_activite.delete_activity"],
     }
 
 @api_view(['GET'])
@@ -146,6 +156,7 @@ def start_listening(request):
     # start_linsten_2.delay()
     print(' AFTER delay')
     return Response( "hello")
+
 
     
 @api_view(['GET'])

@@ -8,6 +8,7 @@ from NetSDK.NetSDK import NetClient
 from NetSDK.SDK_Callback import *
 from NetSDK.SDK_Enum import *
 from NetSDK.SDK_Struct import *
+from client.models import Client
 
 global my_demo
 
@@ -83,7 +84,6 @@ class FaceControl:
             if self.playID:
                 self.sdk.StopRealPlayEx(self.playID)
                 self.playID = 0
-
             if self.alarmEvent:
                 self.sdk.StopListen(self.loginID)
                 self.alarmEvent = 0
@@ -100,6 +100,20 @@ class FaceControl:
     def ReConnectCallBack(self, lLoginID, pchDVRIP, nDVRPort, dwUser):
         print("Device-OnLine")
 
+    def card_infos(self, face_id, door_ip):
+        dictio = {'id' : face_id, 'door' : door_ip}
+        has_perm = False
+        # card = card_n.decode("utf-8")
+        client  = Client.objects.get(id=id)
+        try:
+            if client:
+                has_perm = client.has_permission(door_ip)
+        except:
+            print('client doesnt exist or doesnt have permission to get in')
+            return has_perm
+        print(' la has_perm has_perm>>>>> ', has_perm)
+        return has_perm
+
     def AnalyzerDataCallBack(self, lAnalyzerHandle, dwAlarmType, pAlarmInfo, pBuffer, dwBufSize, dwUser, nSequence, reserved):
         if self.lAnalyzerHandle == lAnalyzerHandle:
             print("AnalyzerDataCallBack!! lAnalyzerHandle:%s" % lAnalyzerHandle)
@@ -109,31 +123,19 @@ class FaceControl:
                 pic_buf = cast(pBuffer, POINTER(c_ubyte * dwBufSize)).contents
                 with open('./picture.jpg', 'wb+') as f:
                     f.write(pic_buf)
-                try:
-                    p_buffer = cast(pAlarmInfo, POINTER(DEV_EVENT_ACCESS_CTL_INFO)).contents
-                    print("p_buffer szUserID:", p_buffer.szUserID)
-                    print("p_buffer szCardNo:", p_buffer.szCardNo)
-                except:
-                    print(' p_buffer error')
-                try:
-                    user_info = cast(pBuffer, POINTER(DEV_EVENT_ACCESS_CTL_INFO)).contents
-                    print("user_info szUserID:", user_info.szCardNo)
-                except:
-                    print('pbuf not found')
-                    pass
-
-
-
-
-
-
-
+                p_buffer = cast(pAlarmInfo, POINTER(DEV_EVENT_ACCESS_CTL_INFO)).contents
+                print("p_buffer szUserID:", p_buffer.szUserID)
+                print("p_buffer szCardNo:", p_buffer.szCardNo)
+                user_id = p_buffer.szUserID
+                door = self.ip
+                user_data = self.card_infos(user_id,door)
+                if user_data : 
+                    self.open_door()
+                print('user_data => ', user_data)
 
 
     def MessCallBackEx1(self, lCommand, lLoginID, pBuf, dwBufLen, pchDVRIP, nDVRPort, bAlarmAckFlag, nEventID, dwUser):
         if (lLoginID != self.loginID):
-        
-
             return
         if (lCommand == SDK_ALARM_TYPE.ALARM_ACCESS_CTL_EVENT):
             print("ALARM_ACCESS_CTL_EVENT")  # 门禁事件; Access control event
@@ -178,7 +180,8 @@ class FaceControl:
             print("RealLoadPictureEx operate fail. " + self.sdk.GetLastErrorMessage())
             return False
         return True
-
+    def register_new_user(self):
+        pass
     def start_operate(self):
         card_info = NET_RECORDSET_ACCESS_CTL_CARD()
         card_info.dwSize = sizeof(NET_RECORDSET_ACCESS_CTL_CARD)
@@ -308,7 +311,6 @@ class FaceControl:
         if self.alarmEvent == 0:
             # 设置报警回调函数 set alarm callback
             self.sdk.SetDVRMessCallBackEx1(self.m_MessCallBackEx1, 0)
-
             result = self.sdk.StartListenEx(self.loginID)
             if result:
                 print("StartListenEx operate succeed.")
@@ -345,7 +347,6 @@ class FaceControl:
         return True
 
     def user_operate(self):
-        # add user
         stuInParam = NET_IN_ACCESS_USER_SERVICE_INSERT()
         stuInParam.dwSize = sizeof(NET_IN_ACCESS_USER_SERVICE_INSERT)
         stuInParam.nInfoNum = 1
@@ -357,7 +358,6 @@ class FaceControl:
         record_info.szCitizenIDNo = b'123456789999'
         record_info.szPsw = b'admin'
         stuInParam.pUserInfo = cast(pointer(record_info), POINTER(NET_ACCESS_USER_INFO))
-
         stuOutParam = NET_OUT_ACCESS_USER_SERVICE_INSERT()
         stuOutParam.dwSize = sizeof(NET_OUT_ACCESS_USER_SERVICE_INSERT)
         stuOutParam.nMaxRetNum = 1
@@ -367,7 +367,6 @@ class FaceControl:
             code = 0
             codes.append(code)
         stuOutParam.pFailCode = cast((C_ENUM * stuOutParam.nMaxRetNum)(*codes), POINTER(C_ENUM))
-
         type = EM_A_NET_EM_ACCESS_CTL_USER_SERVICE.NET_EM_ACCESS_CTL_USER_SERVICE_INSERT
         result = self.sdk.OperateAccessUserService(self.loginID, type, stuInParam, stuOutParam, 5000)
         if result:
@@ -376,8 +375,6 @@ class FaceControl:
             print("OperateAccessUserService operate fail. " + self.sdk.GetLastErrorMessage())
             return False
         print("insert face image")
-
-        # insert face image
         stuInParam = NET_IN_ACCESS_FACE_SERVICE_INSERT()
         stuInParam.dwSize = sizeof(NET_IN_ACCESS_FACE_SERVICE_INSERT)
         stuInParam.nFaceInfoNum = 1
@@ -396,9 +393,6 @@ class FaceControl:
             record_info.nInFacePhotoLen[0] = len(face_buf)
             record_info.nOutFacePhotoLen[0] = len(face_buf)
             record_info.pFacePhoto[0] = cast(c_char_p(face_buf), c_void_p)
-
-
-
 
         record_infos = []
         record_infos.append(record_info)

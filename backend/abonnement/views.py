@@ -82,7 +82,9 @@ class AbonnementClientDetailAPIView(generics.RetrieveUpdateAPIView):
     serializer_class = AbonnementClientDetailUpdateSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["abonnement.view_abonnementclient"]
+        "GET": ["abonnement.view_abonnementclient"],
+        "PUT": ["abonnement.change_abonnementclient"],
+        "PATCH": ["abonnement.change_abonnementclient"],
     }
 
     def get_object(self):
@@ -97,7 +99,7 @@ class AbonnementClientDestroyAPIView(generics.DestroyAPIView):
     serializer_class = AbonnementClientAllSerializer
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["abonnement.delete_abonnementclient"]
+        "DELETE": ["abonnement.delete_abonnementclient"]
     }
 
 
@@ -109,7 +111,7 @@ class AbonnementAPIView(generics.CreateAPIView):
     serializer_class = AbonnementSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["abonnement.add_abonnementclient"]
+        "POST": ["abonnement.add_abonnementclient"]
     }
 
 class AbonnementListAPIView(generics.ListAPIView):
@@ -126,7 +128,10 @@ class AbonnementDetailAPIView(generics.RetrieveUpdateAPIView):
     serializer_class = AbonnementSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["abonnement.change_abonnementclient"]
+        "GET": ["abonnement.change_abonnementclient"],
+        "PUT": ["abonnement.change_abonnementclient"],
+        "PATCH": ["abonnement.change_abonnementclient"],
+
     }
     def get_object(self):
         obj = get_object_or_404(Abonnement.objects.filter(id=self.kwargs["pk"]))
@@ -138,13 +143,19 @@ class AbonnementDestroyAPIView(generics.DestroyAPIView):
     serializer_class = AbonnementSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["abonnement.delete_abonnementclient"]
+        "DELETE": ["abonnement.delete_abonnementclient"]
     }
 
 
 class DeactivateAbcView(generics.RetrieveUpdateDestroyAPIView):
     queryset = AbonnementClient.objects.all()
     serializer_class = AbonnementClientRenewSerializer
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["abonnement.change_abonnementclient"],
+        "PUT": ["abonnement.change_abonnementclient"],
+        "PATCH": ["abonnement.change_abonnementclient"],
+    }
 
 # class DeactivateAbcView(APIView):
 #     def get(self, request, pk, format=None):
@@ -159,7 +170,10 @@ class RenewABCView(APIView):
 
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["abonnement.change_abonnementclient"]
+        "GET": ["abonnement.change_abonnementclient"],
+        "POST": ["abonnement.change_abonnementclient"],
+        "PUT": ["abonnement.change_abonnementclient"],
+        "PATCH": ["abonnement.change_abonnementclient"],
     }
     def get_object(self, pk):
         try:
