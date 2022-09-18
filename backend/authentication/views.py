@@ -4,7 +4,8 @@ from rest_framework import generics, viewsets, status, permissions
 from django.conf import settings
 from authentication.models import User
 from django.contrib.auth.models import Group 
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser, DjangoModelPermissions
+
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .serializers import RegisterSerializer, ChangePasswordSerializer, UpdateUserSerializer, ReadUsersView, ObtainTokenSerializer, GroupSerializer
@@ -17,9 +18,27 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.views import TokenObtainPairView
 # @method_decorator(ensure_csrf_cookie, name='dispatch')
 
+class BaseModelPerm(DjangoModelPermissions):
+    def get_custom_perms(self, method, view):
+        app_name =  view.queryset.model._meta.app_label
+        if hasattr(view, 'extra_perms_map'):
+            return [perms for perms in view.extra_perms_map.get(method, [])]
+        else:
+            return []
+
+    def has_permission(self, request, view):
+        perms = self.get_required_permissions(request.method, view.queryset.model)
+        perms.extend(self.get_custom_perms(request.method, view))
+        return ( request.user and request.user.has_perms(perms) )
+
+
 class SignUpView(APIView):
-    permission_classes = (AllowAny,)
+    queryset = User.objects.all()
     serializer_class = RegisterSerializer
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "POST": ["abonnement.add_user"]
+    }
 
     def post(self, request, format=None):
         data = self.request.data
@@ -101,7 +120,10 @@ class LoginView(TokenObtainPairView):
 class GetUsersView(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = ReadUsersView
-
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["abonnement.view_user"]
+    }
 # class DeleteUserView(APIView):
 #     def delete(self, request, format=None):
 #         user = self.request.user
@@ -117,6 +139,11 @@ class GetUsersView(generics.ListAPIView):
 class DeleteUserView(generics.RetrieveAPIView):
     serializer_class = ReadUsersView
     queryset = User.objects.all()
+    extra_perms_map = {
+        "GET": ["abonnement.view_user"],
+        "PUT": ["abonnement.view_user"],
+        "PATCH": ["abonnement.view_user"],
+    }
     # permission_classes = (IsAuthenticated,)
     # def get(self, request, pk, format=None):
     #     print('THE PK', pk)
@@ -147,13 +174,13 @@ class DeleteUserView(generics.RetrieveAPIView):
 
 class ChangePasswordView(generics.UpdateAPIView):
     queryset = User.objects.all()
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAdminUser,)
     serializer_class = ChangePasswordSerializer
 
 
 class UpdateProfileView(generics.UpdateAPIView):
     queryset = User.objects.all()
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAdminUser,)
     serializer_class = UpdateUserSerializer
 
 
@@ -188,7 +215,7 @@ class UpdateProfileView(generics.UpdateAPIView):
 
 class GetGroupsView(generics.ListAPIView):
     queryset = Group.objects.all()
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAdminUser,)
     serializer_class = GroupSerializer
 
 
@@ -196,6 +223,13 @@ class UserDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     permission_classes = (IsAuthenticated,)
     serializer_class = ReadUsersView
+    extra_perms_map = {
+        "GET": ["abonnement.add_user"],
+        "POST": ["abonnement.add_user"],
+        "PUT": ["abonnement.change_user"],
+        "PATCH": ["abonnement.change_user"],
+        "PATCH": ["abonnement.delete_user"],
+    }
 
     def get_object(self):
         obj = get_object_or_404(User.objects.filter(id=self.kwargs["pk"]))

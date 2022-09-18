@@ -27,7 +27,7 @@ class CreneauAPIView(generics.CreateAPIView):
     serializer_class = CreneauSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["creneau.add_creneau"]
+        "POST": ["creneau.add_creneau"]
     }
 
 class CreneauListAPIView(generics.ListAPIView):
@@ -105,7 +105,9 @@ class CreneauDetailAPIView(generics.RetrieveUpdateAPIView):
     queryset = Creneau.objects.all()
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["creneau.change_creneau"]
+        "GET": ["creneau.view_creneau"],
+        "PUT": ["creneau.change_creneau"],
+        "PATCH": ["creneau.change_creneau"],
     }
 
     serializer_class = CreneauSerialiser
@@ -123,7 +125,8 @@ class CreneauDestroyAPIView(generics.DestroyAPIView):
     serializer_class = CreneauSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["creneau.delete_creneau"]
+        "POST": ["creneau.delete_creneau"],
+        "DELETE": ["creneau.delete_creneau"],
     }
 
     

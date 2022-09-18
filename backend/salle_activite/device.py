@@ -110,35 +110,19 @@ class AccessControl:
         card = card_n.decode("utf-8")
         print(' la carte est ', card)
         print(' la carte type ', type(card))
-        client  = Client.objects.get(hex_card=card)
         try:
-
-            if client :
-                has_perm = client.has_permission(door_ip)
+            client=  Client.objects.get(hex_card=card)
+            if client.has_permission(door_ip) :
+                print('client.has_permission(door_ip)', client.has_permission(door_ip))
+                return True
+            else: 
+                return False
+                # has_perm = client.has_permission(door_ip)
         except:
             print('client doesnt exist or doesnt have permission to get in')
-            return has_perm
+            return False
         print(' la has_perm has_perm>>>>> ', has_perm)
         return has_perm
-            # if has_perm :
-            #     return True
-            # else:  
-            #     return False
-   
-            # self.open_door()
-    #check from db if this card has access 
-            # self.get_login_info(ip='192.168.1.2', port=37777, username='admin', password='123456')
-            # login_result = self.login()
-            # if login_result:
-            #     print(' yes')
-      
-            #     self.open_door()
-            # else:
-            #     print('NOOOO')
-
-
-
-
 
     def messCallBackEx1(self, lCommand, lLoginID, pBuf, dwBufLen, pchDVRIP, nDVRPort, bAlarmAckFlag, nEventID, dwUser):
         # print('rani SELF lLoginID' , self.loginID)
