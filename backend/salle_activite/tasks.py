@@ -1,10 +1,10 @@
-from celery import task
+from celery import shared_task
 from .device import AccessControl
 from .models import Door
 from celery.signals import celeryd_init
 import time
 
-@task
+@shared_task
 def start_linsten_1():
     print('CALLED') 
     device = AccessControl()
@@ -45,7 +45,7 @@ def start_linsten_1():
     #     device_2_2.alarm_listen()
 
 
-@task
+@shared_task
 def start_linsten_2():
     print('CALLED') 
     device_2 = AccessControl()
@@ -63,10 +63,10 @@ def start_linsten_2():
     #     device_2.logout()
     #     device_2.login()
     #     print('DONEEEEEE')
-# i want to run this task automaticly 
+# i want to run this shared_task automaticly 
 # not from the frontend
 
-@task
+@shared_task
 def stop_listening_1():
     print('CALLED') 
     device = AccessControl()
@@ -79,7 +79,7 @@ def start_face_door_1():
     print('start_face_door_1') 
 
 
-# @task
+# @shared_task
 # def stop_listening_2():
 #     print('CALLED') 
 #     device_2 = AccessControl()
@@ -92,7 +92,7 @@ def start_face_door_1():
 
 
 
-# @task
+# @shared_task
 # def open_door2():
 #     # premission ckeck
 #     print('CALLED')

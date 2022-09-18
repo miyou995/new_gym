@@ -1,28 +1,38 @@
-import datetime
+import sys
 from django.http import request
 from django.shortcuts import render, get_object_or_404
-from rest_framework import generics
-from rest_framework.settings import perform_import
-from .models import Presence, PresenceCoach
-from .serializers import PresenceSerialiser,  PresenceEditSerialiser, PresenceCoachSerializer, PresenceClientSerialiser, PresencePostSerialiser, PresenceAutoSerialiser, PresenceHistorySerialiser, PresenceManualEditSerialiser
-from rest_framework.permissions import AllowAny, IsAuthenticated
 from django.db.models import Q
-
-# from client.models import Client # a supprimer apres les tests
-# from abonnement.models import AbonnementClient
-# from datetime import date 
-# from rest_framework import status
+from django.db.models import Count
+# from rest_framework.response import Response 
+from django.db.models import Sum
+from rest_framework import generics
 from rest_framework import pagination
 from rest_framework import filters
+from rest_framework.settings import perform_import
+from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser, DjangoModelPermissions
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from django.db.models import Count
 from django_filters.rest_framework import DjangoFilterBackend
-# from rest_framework.response import Response 
-import sys
-from django.db.models import Sum
+
+from .models import Presence, PresenceCoach
+from .serializers import PresenceSerialiser,  PresenceEditSerialiser, PresenceCoachSerializer, PresenceClientSerialiser, PresencePostSerialiser, PresenceAutoSerialiser, PresenceHistorySerialiser, PresenceManualEditSerialiser
 
 from datetime import date, timedelta, datetime
+
+class BaseModelPerm(DjangoModelPermissions):
+    def get_custom_perms(self, method, view):
+        app_name =  view.queryset.model._meta.app_label
+        if hasattr(view, 'extra_perms_map'):
+            return [perms for perms in view.extra_perms_map.get(method, [])]
+        else:
+            return []
+
+    def has_permission(self, request, view):
+        perms = self.get_required_permissions(request.method, view.queryset.model)
+        perms.extend(self.get_custom_perms(request.method, view))
+        return ( request.user and request.user.has_perms(perms) )
+
+
 
 class StandardResultsSetPagination(pagination.PageNumberPagination):
     page_size = 20
@@ -36,7 +46,10 @@ class StandardResultsSetPagination(pagination.PageNumberPagination):
 class PresencePostAPIView(generics.CreateAPIView):
     queryset = Presence.objects.all()
     serializer_class = PresencePostSerialiser
-
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["presence.add_presence"]
+    }
     # def create(self, request, format =''):
     #     serializer = self.get_serializer(data=request.data)
     #     presence = serializer.instance
@@ -66,11 +79,10 @@ class PresenceHistoryListAPIView(generics.ListAPIView):
     # print('queryset', queryset.count())
     # permission_classes = (IsAuthenticated,)
     serializer_class = PresenceHistorySerialiser
-    # def get_queryset(self):
-    #     queryset = get_filtered_abc_history(self.request)['qs']
-    #     print('queryset', queryset.count())
-    #     print('queryset', queryset)                                                                                     
-    #     return queryset
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["presence.view_presence"]
+    }
 
 class AllPresenceListAPIView(generics.ListAPIView):
     queryset = Presence.objects.all()
@@ -82,7 +94,10 @@ class AllPresenceListAPIView(generics.ListAPIView):
     # filter_backends = (filters.SearchFilter,)
 
     serializer_class = PresenceSerialiser
-
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["presence.view_presence"]
+    }
 
 
 
@@ -90,13 +105,16 @@ class AllPresenceListAPIView(generics.ListAPIView):
 
     
 class PresenceListAPIView(generics.ListAPIView):
-    # queryset = Presence.objects.all()
+    queryset = Presence.objects.all()
     # permission_classes = (IsAuthenticated,)
     serializer_class = PresenceSerialiser
     pagination_class = StandardResultsSetPagination
     filter_backends = [DjangoFilterBackend]
     # filter_backends = (filters.SearchFilter,)
-
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["presence.view_presence"]
+    }
     filterset_fields = ['creneau__activity', 'abc__client_id', 'creneau__activity__salle']
 
     def get_queryset(self):
@@ -208,7 +226,10 @@ class PresenceDetailAPIView(generics.RetrieveUpdateAPIView):
     queryset = Presence.objects.all()
     # permission_classes = (IsAuthenticated,)
     serializer_class = PresenceSerialiser
-
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["presence.change_presence"]
+    }
     # def get_object(self):
     #     obj = get_object_or_404(Presence.objects.filter(id=self.kwargs["pk"]))
     #     creneaux = Presence.presence_manager.get_presence(30)
@@ -223,7 +244,10 @@ class PresenceDetailAPIView(generics.RetrieveUpdateAPIView):
 
 class PresenceEditAPIView(generics.RetrieveUpdateAPIView):
     queryset = Presence.objects.all()
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["presence.change_presence"]
+    }
     serializer_class = PresenceManualEditSerialiser
     def get_object(self):
         obj = get_object_or_404(Presence, id=self.kwargs["pk"])
@@ -232,7 +256,10 @@ class PresenceEditAPIView(generics.RetrieveUpdateAPIView):
 
 class PresenceManualEditAPIView(generics.RetrieveUpdateAPIView):
     queryset = Presence.objects.all()
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["presence.change_presence"]
+    }
     serializer_class = PresencePostSerialiser
     def get_object(self):
         obj = get_object_or_404(Presence, id=self.kwargs["pk"])
@@ -243,18 +270,33 @@ class PresenceManualEditAPIView(generics.RetrieveUpdateAPIView):
 class PresenceDestroyAPIView(generics.DestroyAPIView):
     queryset = Presence.objects.all()
     serializer_class = PresenceSerialiser
-
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["presence.delete_presence"]
+    }
 
 class PresenceCoachCreateAPI(generics.CreateAPIView):
     queryset = PresenceCoach.objects.all()
     serializer_class = PresenceCoachSerializer
-
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["presence.add_presencecoach"]
+    }
 class PresenceCoachListAPI(generics.ListAPIView):
     queryset = PresenceCoach.objects.all()
     serializer_class = PresenceCoachSerializer
-
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["presence.view_presencecoach"]
+    }
 class PresenceByCoachListAPI(generics.ListAPIView):
+    queryset = PresenceCoach.objects.all()
+
     serializer_class = PresenceCoachSerializer
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["presence.view_presencecoach"]
+    }
     def get_queryset(self):
         
         coach = self.request.query_params.get('cl', None)
@@ -267,7 +309,10 @@ class PresenceByCoachListAPI(generics.ListAPIView):
 class PresenceCoachDetailUpdateAPI(generics.RetrieveUpdateAPIView):
     queryset = PresenceCoach.objects.all()
     serializer_class = PresenceCoachSerializer
-
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["presence.change_presencecoach"]
+    }
     def get_object(self):
         obj = get_object_or_404(PresenceCoach.objects.filter(id=self.kwargs["pk"]))
         return obj
@@ -276,12 +321,18 @@ class PresenceCoachDetailUpdateAPI(generics.RetrieveUpdateAPIView):
 class PresenceCoachDestroyAPI(generics.DestroyAPIView):
     queryset = PresenceCoach.objects.all()
     serializer_class = PresenceCoachSerializer
-
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["presence.delete_presencecoach"]
+    }
 
     
 class PresenceCoachEditAPIView(generics.RetrieveUpdateAPIView):
     queryset = Presence.objects.all()
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["presence.change_presence"]
+    }
     serializer_class = PresenceEditSerialiser
     def get_object(self):
         obj = get_object_or_404(PresenceCoach.objects.filter(id=self.kwargs["pk"]))
@@ -298,9 +349,12 @@ class PresenceCoachEditAPIView(generics.RetrieveUpdateAPIView):
         return obj
 
 class PresenceClientDetailAPI(generics.ListAPIView):
-    # queryset = PresenceCoach.objects.all()
+    queryset = Presence.objects.all()
     pagination_class = StandardResultsSetPagination
-
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["presence.view_presence"]
+    }
     serializer_class = PresenceClientSerialiser
     def get_queryset(self):
         client = self.request.query_params.get('cl', None)
@@ -313,7 +367,11 @@ class PresenceClientDetailAPI(generics.ListAPIView):
     
 
 class PresenceClientIsInAPI(generics.ListAPIView):
-    # queryset = PresenceCoach.objects.all()
+    queryset = Presence.objects.all()
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["presence.view_presence"]
+    }
     serializer_class = PresenceClientSerialiser
     def get_queryset(self):
         # client = self.request.query_params.filter('cl', None)
@@ -327,12 +385,27 @@ class PresenceClientIsInAPI(generics.ListAPIView):
 class PresenceClientAutoCreateAPI(generics.CreateAPIView):
     queryset = PresenceCoach.objects.all()
     serializer_class = PresenceAutoSerialiser
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["presence.add_presencecoach"]
+    }
 
-# class PresencesBySalle(generics.ListAPIView):
-#     def get_queryset(self):
-#         return presences
+
     
+@api_view(['GET'])
+def get_presence_authorization(request):
+    user = request.user
+    if user.has_perm("presence.view_presence"):
+        return Response(status=200)
+    else:
+        return Response(status=403)
 
-    # presences = Presence.objects.filter(creneau_activity_salle = Count('client'))
-
+    
+@api_view(['GET'])
+def get_presence_coach_authorization(request):
+    user = request.user
+    if user.has_perm("presence.view_presence_coach"):
+        return Response(status=200)
+    else:
+        return Response(status=403)
 

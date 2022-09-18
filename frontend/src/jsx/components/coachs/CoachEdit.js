@@ -4,6 +4,8 @@ import useAxios from "../useAxios";
  
 import {  useHistory } from "react-router-dom";
 import ShortCuts from "../ShortCuts";
+import { notifyError, notifySuccess } from "../Alert";
+import { ToastContainer } from "react-toastify";
 
  
 
@@ -50,32 +52,37 @@ const CoachEdit = (props) => {
   const HandleSubmit = async e => {
       e.preventDefault();
       const EditedPersonnel = {
-        civility :civility,
-        last_name :lastName,
-        first_name :firstName,
-        adress :adress,
-        phone :phone,
-        email :email,
-        nationality :nationality,
-        birth_date :birthDate,
+        civility: civility,
+        last_name: lastName,
+        first_name: firstName,
+        adress: adress,
+        phone: phone,
+        email: email,
+        nationality: nationality,
+        birth_date: birthDate,
         color: color,
 
-        blood :blood,
-        note :note,
-        pay_per_hour : paye
+        blood: blood,
+        note: note,
+        pay_per_hour: paye
 
       }
       api.put(coachURI, EditedPersonnel).then(()=> {
         history.push("/coach")
+        notifySuccess('coach modifier avec succés')
+
+      }).catch (() => {
+        notifyError("Erreur lors de la modification du coach")
       })
 
   }
   return (
         <div className="">
           <div className="testimonial-one owl-right-nav owl-carousel owl-loaded owl-drag mb-4">
-        <ShortCuts />
+          <ShortCuts />
       </div>
-          <div className="card">
+      <ToastContainer position='top-right' autoClose={5000} hideProgressBar={false} newestOnTop closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
+        <div className="card">
             <div className="card-header">
               <h4 className="card-title">Profile Abonné</h4>
             </div>
@@ -85,11 +92,11 @@ const CoachEdit = (props) => {
                   <div className="form-row">
                     <div className="form-group col-md-6">
                       <label>Nom </label>
-                      <input type="text" name="last_name" className="form-control"value={lastName} placeholder="Nom du client" onChange={e => setLastName(e.target.value)}/>
+                      <input type="text" name="last_name" className="form-control" value={lastName} placeholder="Nom du client" onChange={e => setLastName(e.target.value)}/>
                     </div>
                     <div className="form-group col-md-6">
                       <label>Prénom</label>
-                      <input  type="text" name="first_name"  className="form-control" value={firstName} placeholder="Prénom du client"onChange={e => setFirstName(e.target.value)}/>
+                      <input  type="text" name="first_name"  className="form-control" value={firstName} placeholder="Prénom du client" onChange={e => setFirstName(e.target.value)}/>
                     </div>
                     <div className="form-group col-md-6">
                       <label>Email </label>
@@ -98,19 +105,19 @@ const CoachEdit = (props) => {
 
                     <div className="form-group col-md-6">
                       <label>Adresse</label>
-                      <input type="text"name="adress" className="form-control"value={adress} onChange={e => setAdress(e.target.value)}/>
+                      <input type="text"name="adress" className="form-control" value={adress} onChange={e => setAdress(e.target.value)}/>
                     </div>
                     <div className="form-group col-md-6">
                       <label>Date de naissance </label>
-                      <input type="date" name="birth_date" max="2099-01-01" className="form-control" value={birthDate}onChange={e => setBirthDate(e.target.value)}/>
+                      <input type="date" name="birth_date" max="2099-01-01" className="form-control" value={birthDate} onChange={e => setBirthDate(e.target.value)}/>
                     </div>
                     <div className="form-group col-md-6">
                       <label>Nationalité</label>
-                      <input type="text" name="nationality" className="form-control"value={nationality} onChange={e => setNationality(e.target.value)} />
+                      <input type="text" name="nationality" className="form-control" value={nationality} onChange={e => setNationality(e.target.value)} />
                     </div>
                     <div className="form-group col-md-6">
                       <label>Téléphone</label>
-                      <input type="text" name="phone" className="form-control" value={phone}onChange={e => setPhone(e.target.value)} />
+                      <input type="text" name="phone" className="form-control" value={phone} onChange={e => setPhone(e.target.value)} />
                     </div>
                   </div>
                   <div className="form-row">
@@ -123,7 +130,7 @@ const CoachEdit = (props) => {
                     <div className="form-group col-md-4">
                       <label>Civilité</label>
                       <select  defaultValue={"option"} name="civility"  className="form-control" value={civility}onChange={e => setCivility(e.target.value)}>
-                      <option value="option" disabled>Cliquez pour choisir</option>
+                        <option value="option" disabled>Cliquez pour choisir</option>
                         <option value="MLL" >Mlle</option>
                         <option value="MME" >Mme</option>
                         <option value="MR" >Mr</option>
@@ -132,7 +139,7 @@ const CoachEdit = (props) => {
                     <div className="form-group col-md-4">
                       <label>Groupe sanguin</label>
                       <select defaultValue={"option"} name="blood" className="form-control"value={blood} onChange={e => setBlood(e.target.value)}>
-                      <option value="option" disabled>Cliquez pour choisir</option>
+                        <option value="option" disabled>Cliquez pour choisir</option>
                         <option value='A-' >A-</option>
                         <option value='A+' >A+</option>
                         <option value='B-' >B-</option>
@@ -172,8 +179,8 @@ const CoachEdit = (props) => {
                 </form>
               </div>
             </div>
-          </div>
         </div>
+      </div>
       
   )
 }

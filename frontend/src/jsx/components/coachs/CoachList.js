@@ -10,6 +10,8 @@ import avartar1 from "../../../images/avatar/1.png";
 import { Link } from "react-router-dom";
 
 import ShortCuts from "../ShortCuts";
+import useAuth from "../useAuth";
+import Error403 from "../../pages/Error403";
 
 
 
@@ -44,27 +46,45 @@ const Drop = (props) => {
 const CoachList = () => {
   const api = useAxios();
 
+   const coachAuthorizationEnd = `${process.env.REACT_APP_API_URL}/rest-api/get_coach_authorization/`
    let endpoint = `${process.env.REACT_APP_API_URL}/rest-api/coachs/`
 
+   
    const [coachData, setCoachData] = useState([]);
+   const [coachStatus, setCoachStatus] = useState(null);
    // const savedCoachs = api.get(endpoint)
    
    useEffect(() => {
       api.get(endpoint).then( res=> {
          setCoachData(res.data)
-      }) 
+         setCoachStatus(res.status);
+
+      }).catch(err => {
+         if (err.response) {
+            console.log(err.response.data);
+            console.log(err.response.status);
+            console.log(err.response.headers);
+            setCoachStatus(err.response.status);
+      }})
       // const coachs = savedCoachs
    }, [endpoint]);
    // console.log('els clieeents', savedClients);
 
+   const [coachAuth, loading] = useAuth(coachAuthorizationEnd, 'GET')
+
 
    return (
       <Fragment>
+         {loading &&
+         <>
+         {coachAuth ? (
+            <>
          {/* <PageTitle activeMenu="Liste" motherMenu="Abonnées" /> */}
          <div className="testimonial-one owl-right-nav owl-carousel owl-loaded owl-drag mb-4">
-        <ShortCuts />
-      </div>
-            <Search name= 'Ajouter Coach' lien= "/coach/create"/>
+            <ShortCuts />
+         </div>
+
+         <Search name= 'Ajouter Coach' lien= "/coach/create"/>
 
          <div className="row">
             <div className="col-lg-12">
@@ -123,6 +143,10 @@ const CoachList = () => {
                </div>
             </div>
          </div>
+      </>
+      ) : <Error403 />}
+         </>
+      }
       </Fragment>
    );
 };
