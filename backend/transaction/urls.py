@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import PaiementAPIView, PaiementListAPIView, PaiementDetailAPIView, PaiementDestroyAPIView, AutreAPIView, AutreListAPIView, AutreDetailAPIView, AutreDestroyAPIView, AssuranceAPIView, AssuranceListAPIView, AssuranceDetailAPIView, AssuranceDestroyAPIView, RemunerationAPIView, RemunerationListAPIView, RemunerationDetailAPIView, RemunerationDestroyAPIView, RemunerationProfAPIView, RemunerationProfListAPIView, RemunerationProfDetailAPIView, RemunerationProfDestroyAPIView, TransactionListAPIView, TransactionDetailAPIView, PaiementCoachListAPIView, total_charges, chiffre_affaire,  TransToday, PaiementClientListAPIView, ca_by_salle, ca_by_ab, MyModelViewSet, ca_by_date, PaiementEmployeListAPIView, PaiementHistoryListAPIView
+from .views import PaiementAPIView, PaiementListAPIView, PaiementDetailAPIView, PaiementDestroyAPIView, AutreAPIView, AutreListAPIView, AutreDetailAPIView, AutreDestroyAPIView, AssuranceAPIView, AssuranceListAPIView, AssuranceDetailAPIView, AssuranceDestroyAPIView, RemunerationAPIView, RemunerationListAPIView, RemunerationDetailAPIView, RemunerationDestroyAPIView, RemunerationProfAPIView, RemunerationProfListAPIView, RemunerationProfDetailAPIView, RemunerationProfDestroyAPIView, TransactionListAPIView, TransactionDetailAPIView, PaiementCoachListAPIView, total_charges, chiffre_affaire,  TransToday, PaiementClientListAPIView, ca_by_salle, ca_by_ab, MyModelViewSet, ca_by_date, PaiementEmployeListAPIView, PaiementHistoryListAPIView, get_transaction_authorization
 # RemunerationEmployeListAPIView, RemunerationEmployeDetailAPIView, RemunerationEmployeAPIView, PaiementEmployeListAPIView
 
 app_name = 'transactions'
@@ -35,6 +35,7 @@ urlpatterns = [
     path('remunerationProf-by-coach/', PaiementEmployeListAPIView.as_view(),  name="remunerationProf-create"),
     path('remuneration/<int:pk>/', RemunerationDetailAPIView.as_view(), name="remuneration-delete"),
     path('remuneration/delete/<int:pk>/', RemunerationDestroyAPIView.as_view(), name="remuneration-delete"),
+    path('get_transaction_authorization/', get_transaction_authorization, name="get_transaction_authorization"),
 
 
     # path('remunerationProf/', RemunerationEmployeListAPIView.as_view(),  name="remunerationEmploye"),
