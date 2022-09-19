@@ -1,5 +1,6 @@
 from celery import shared_task
 from .device import AccessControl
+from .face import FaceControl
 from .models import Door
 from celery.signals import celeryd_init
 import time
@@ -9,7 +10,7 @@ def start_linsten_1():
     print('CALLED') 
     device = AccessControl()
     print(' the instance start_linsten_1', device)
-    device.get_login_info(ip='192.168.1.230', port=37777, username='admin', password='123456')
+    device.get_login_info(ip='192.168.1.2', port=37777, username='admin', password='123456')
     result = device.login()
     device.alarm_listen()
     if result:
@@ -55,6 +56,7 @@ def start_linsten_2():
     device_2.alarm_listen()
     if result:
         device_2.alarm_listen()
+        
     #     # card= device_2.card_infos
     #     # print(' card', card)
     #     # if message:
@@ -74,7 +76,27 @@ def stop_listening_1():
     device.get_login_info(ip='192.168.1.2', port=37777, username='admin', password='123456')
     result = device.login()
     result = device.logout()
-@task
+
+
+@shared_task
+def register_user(client):
+    print('CALLED') 
+    face1 = FaceControl()
+    face2 = FaceControl()
+    print(' the instance face1', face1)
+    print(' the instance face2', face2)
+    face1.get_login_info(ip='192.168.1.2', port=37777, username='admin', password='123456')
+    face2.get_login_info(ip='192.168.1.2', port=37777, username='admin', password='123456')
+    result = face1.login()
+    result = face2.login()
+    face1.register_new_user(client)
+    face2.register_new_user(client)
+    if result : 
+        print('YEs,', result)
+    # result = device.logout()
+
+
+@shared_task
 def start_face_door_1():
     print('start_face_door_1') 
 
