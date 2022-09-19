@@ -79,8 +79,6 @@ const ShortCuts = () => {
 
 
 
-
-
  const clientAuthorizationEnd = `${process.env.REACT_APP_API_URL}/rest-api/get_client_authorization/`
  const transactionAuthorization = `${process.env.REACT_APP_API_URL}/rest-api/get_transaction_authorization/`;
  const coachAuthorizationEnd = `${process.env.REACT_APP_API_URL}/rest-api/get_coach_authorization/`
