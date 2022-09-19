@@ -56,6 +56,7 @@ def start_linsten_2():
     device_2.alarm_listen()
     if result:
         device_2.alarm_listen()
+        
     #     # card= device_2.card_infos
     #     # print(' card', card)
     #     # if message:
@@ -93,6 +94,7 @@ def register_user(client):
     if result : 
         print('YEs,', result)
     # result = device.logout()
+
 
 @shared_task
 def start_face_door_1():
