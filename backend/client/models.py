@@ -10,6 +10,7 @@ from django.db.models.signals import post_save, pre_save
 from abonnement.models import AbonnementClient
 from presence.models import Presence
 from datetime import datetime, timedelta
+from django.db import transaction
 
 
 # Create your models here.
@@ -91,16 +92,17 @@ class Client(models.Model):
     birth_date  = models.DateField(max_length=50, verbose_name='Date de naissance', blank=True, null=True)
     blood       = models.CharField(choices=BLOOD_CHOICES , max_length=3, verbose_name='Groupe sanguin')
     date_added  = models.DateField(auto_now_add=True)
-    created      = models.DateTimeField(verbose_name='Date de Création',  auto_now_add=True)
+    created     = models.DateTimeField(verbose_name='Date de Création',  auto_now_add=True)
     profession  = models.CharField(max_length=50, blank=True, null=True)
-    updated      = models.DateTimeField(verbose_name='Date de dernière mise à jour',  auto_now=True)
-    # date_added  = models.DateTimeField(auto_now_add=True, verbose_name='Date d\'inscription')
-    # state       = models.CharField(choices=STATE_CHOICES , max_length=3, verbose_name='Etat', blank=True, null=True)
+    updated     = models.DateTimeField(verbose_name='Date de dernière mise à jour',  auto_now=True)
     note        = models.TextField(blank=True, null=True)
     dette       = models.DecimalField(max_digits=10, decimal_places=0, blank=True, null=True,default=0)
+    is_on_salle = models.BooleanField(default=True)
+    maladies    = models.ManyToManyField(Maladie)
+    # date_added  = models.DateTimeField(auto_now_add=True, verbose_name='Date d\'inscription')
+    # state       = models.CharField(choices=STATE_CHOICES , max_length=3, verbose_name='Etat', blank=True, null=True)
     dette_assurance      = models.DecimalField(max_digits=10, decimal_places=0, blank=True, null=True,default=0)
     fin_assurance       = models.DateField(max_length=50, null=True, blank=True)
-    maladies    = models.ManyToManyField(Maladie)
     objects     = models.Manager()
     abonnement_manager = AbonnementManager()
     history = HistoricalRecords()
@@ -115,16 +117,10 @@ class Client(models.Model):
 
     def get_absolute_url(self):
         return reverse("client:client-detail", args={"slug": self.slug})
-    
-    def is_on_salle(self):
-        # presences = Client.objects.prefetch_related('abonnement_client__presences', is_in_salle=True).filter(id=self.pk)
-        # presences = Client.objects.filter(abonnement_client__presences_abc__is_in_salle=True, id=self.pk ).distinct()
-        if True:
-        # if presences:
-            return True
-        else: 
-            print('not inb salle presences ---------------------->', presences)
-            return False
+
+
+    def init_presence(self):
+        pass
     def has_permission(self, door_ip):
         FTM = '%H:%M:%S'
         current_time = datetime.now().strftime("%H:%M:%S")
@@ -157,12 +153,18 @@ class Client(models.Model):
             print('l \'abonnement du client est le :>>>>>>>>>>', abonnement)
             # is_valid = AbonnementClient.validity.is_valid(abonnement.id)
             if abonnement.is_time_volume() and abonnement.presence_quantity > 30:
-                presence = Presence.objects.create(abc= abonnement, creneau= cren_ref, is_in_list=True, hour_entree=current_time, is_in_salle=True)
-                return presence
+                with transaction.atomic():
+                    presence = Presence.objects.create(abc= abonnement, creneau= cren_ref, is_in_list=True, hour_entree=current_time, is_in_salle=True)
+                    self.is_on_salle=True
+                    self.save()
+                    return presence
 
             if abonnement.presence_quantity > -2:
             # AbonnementClient.validity.is_valid(obj.id)
-                presence = Presence.objects.create(abc= abonnement, creneau= cren_ref, is_in_list=True, hour_entree=current_time, is_in_salle=True)
+                with transaction.atomic():
+                    presence = Presence.objects.create(abc= abonnement, creneau= cren_ref, is_in_list=True, hour_entree=current_time, is_in_salle=True)
+                    self.is_on_salle=True
+                    self.save()
                 if abonnement.is_fixed_sessions() or abonnement.is_free_sessions():
                     abonnement.presence_quantity -= 1
                 abonnement.save()
@@ -188,6 +190,7 @@ class Client(models.Model):
             except:
                 self.id = "C0001"
         if self.carte:
+
             # old_carte = self.carte
             # print('old_carte', old_carte) 
             int_carte = int(self.carte)
