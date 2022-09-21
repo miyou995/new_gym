@@ -8,7 +8,7 @@ from django.utils import timezone
 from django.http import HttpResponse
 from rest_framework.response import Response
 from django.db.models import Sum
-
+from django.db.models import Q
 now = datetime.now()
 print(now, type(now))
 
@@ -38,6 +38,7 @@ class PresencePostSerialiser(serializers.ModelSerializer):
     class Meta:
         model = Presence
         fields= ('id','creneau', 'hour_entree', 'hour_sortie', 'note', 'abc', 'date')
+
     def create(self, validated_data):
         print('la premeire des choses ====>', validated_data)
         abc = validated_data['abc']
@@ -45,22 +46,26 @@ class PresencePostSerialiser(serializers.ModelSerializer):
         presence_date = validated_data['date']
         # print('CLIENT ID => ', client.id)
         # client_id = client.id
-        client = Client.objects.get(abonnement_client__id = abc)
+        client = Client.objects.get(abonnement_client__id=abc)
         # abonnement = AbonnementClient.objects.get(id=abc)
         # print('l \'abonnement du client est le :>>>>>>>>>>', abonnement)
         current_time = now.strftime("%H:%M:%S")
         he = current_time
         hour_in = validated_data['hour_entree']
         # prenseces = abon.presence_quantity 
-
         try:
+            # THIS IS A SORTIE
             hour_out = validated_data['hour_sortie']
             presence = Presence.objects.create(abc= abc, creneau= creneau, hour_entree=hour_in , hour_sortie=hour_out,is_in_list=True, is_in_salle=False, date=presence_date)
-            client.is_on_salle=True
+            client.init_presence(dict(abc= abc, creneau= creneau, hour_in=hour_in , hour_sortie=hour_out,is_in_list=True, is_in_salle=False, date=presence_date))
+            client.is_on_salle=False
             abc.presence_quantity -= 1 
         except :
+            # THIS IS A ENTREE
+
             presence = Presence.objects.create(abc= abc, creneau= creneau, hour_entree=hour_in , is_in_list=True, is_in_salle=True, date=presence_date)
             abc.presence_quantity -= 1
+            client.is_on_salle=True
         return presence
        
     # def create(self, validated_data):
@@ -82,7 +87,7 @@ class PresencePostSerialiser(serializers.ModelSerializer):
     #     except :
     #         presence = Presence.objects.create(abc= selected_abonnement, creneau= creneau, hour_entree=hour_in , is_in_list=True, is_in_salle=True, date=presence_date)
     #     selected_abonnement.presence_quantity -= 1 
-    #     selected_abonnement.save()
+    #     selected_abonnement.save() 
     #     print('presendvffdsbvfdsbvces ', selected_abonnement.presence_quantity)
     #     return presence
 
@@ -101,9 +106,11 @@ class PresenceAutoSerialiser(serializers.ModelSerializer):
         current_time = datetime.now().strftime("%H:%M:%S")
         cd_client = validated_data['abc']['client']
         try:
-            client = Client.objects.get(id=cd_client)
+            client = Client.objects.get(Q(id=cd_client) | Q(carte=cd_client  ))
         except:
-            client = Client.objects.get(carte=cd_client)
+            card = cd_client.decode("utf-8")
+            client = Client.objects.get(hex_card=card)
+        client.has_permission()
         creneaux = Creneau.range.get_creneaux_of_day().filter(abonnements__client=client)
         # print('Les creneaux of client=====>',Creneau.objects.filter(abonnements__client=client))
         print('Les creneaux du Today client=====>', creneaux)

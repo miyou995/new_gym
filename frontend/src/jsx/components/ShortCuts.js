@@ -30,8 +30,8 @@ function SampleNextArrow(props) {
 
 const ShortCuts = () => {
   const settings = {
-    slidesToShow: 5,
-    slidesToScroll: 1,
+    // slidesToShow: 5,
+    // slidesToScroll: 1,
     dots: false,
     autoplay: false,
     // autoplaySpeed: 2000,
@@ -43,38 +43,38 @@ const ShortCuts = () => {
     speed: 100,
     accessibility: false,
     nextArrow: <SampleNextArrow />,
-    responsive: [
-      {
-        breakpoint: 1200,
-        settings: {
-          slidesToShow: 7,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 991,
-        settings: {
-          slidesToShow: 5,
-          slidesToScroll: 1,
-          centerPadding: 0,
-          centerMode: false,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 360,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-    ],
+    // responsive: [
+    //   {
+    //     breakpoint: 1200,
+    //     settings: {
+    //       slidesToShow: 7,
+    //       slidesToScroll: 1,
+    //     },
+    //   },
+    //   {
+    //     breakpoint: 991,
+    //     settings: {
+    //       slidesToShow: 5,
+    //       slidesToScroll: 1,
+    //       centerPadding: 0,
+    //       centerMode: false,
+    //     },
+    //   },
+    //   {
+    //     breakpoint: 600,
+    //     settings: {
+    //       slidesToShow: 3,
+    //       slidesToScroll: 1,
+    //     },
+    //   },
+    //   {
+    //     breakpoint: 360,
+    //     settings: {
+    //       slidesToShow: 2,
+    //       slidesToScroll: 1,
+    //     },
+    //   },
+    // ],
   };
 
 

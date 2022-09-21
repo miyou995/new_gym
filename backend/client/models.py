@@ -11,7 +11,7 @@ from abonnement.models import AbonnementClient
 from presence.models import Presence
 from datetime import datetime, timedelta
 from django.db import transaction
-
+from django.utils import timezone
 
 # Create your models here.
 class AbonnementManager(models.Manager):
@@ -119,16 +119,63 @@ class Client(models.Model):
         return reverse("client:client-detail", args={"slug": self.slug})
 
 
-    def init_presence(self):
-        pass
-    def has_permission(self, door_ip):
+
+    def init_presence(self, *args, **kwargs):
+        # creneau     = kwargs["creneau"]
+        # abc         = kwargs["abc"]
+        # hour_in     = kwargs["hour_in"]
+        # hour_out    = kwargs["hour_out"]
+        # is_in_list  = kwargs["is_in_list"]
+        # date        = kwargs["date"]
+        presence = Presence.objects.create(**kwargs)
+        return presence
+
+    # def select_abc(self, abonnements):
+    #     # abcs = 
+    #     for ab in abonnements: # si il y'a plusieurs abonnement on previlegie les abonnement normal vu qu'il ne sont pas recuperable
+    #         # print("abonnement dans la bouvcle", ab.type_abonnement.free_sessions)
+    #         if ab.is_valid():
+    #             if ab.is_fixed_sessions():
+    #                 return ab
+    #             if not ab.type_abonnement.free_sessions:
+    #                 # if AbonnementClient.validity.is_valid(ab.id):
+    #                 return ab
+    #             else:
+    #                 print('je suis laaaa')
+    #                 return ab
+
+
+    #A VERIFIEEEEEEER
+    def init_output(self):
+        presence = Presence.objects.filter(abc__client=self, is_in_salle=True).last()
+        if not presence:
+            return False
+        presence.hour_sortie = timezone.now()
+        # update abc
+        presence.save(commit=False)
+        abc = presence.abc
+        if abc.is_time_volume():
+            ecart = presence.hour_sortie - presence.hour_entree 
+            abc.presence_quantity -= ecart 
+            # ecart = abs(datetime.strptime(str(hour_start), FTM) - datetime.strptime(current_time, FTM))
+        else:
+            abc.presence_quantity -= 1
+        abc.save()
+        presence.save()
+        return True
+
+
+    def has_permission(self, door_ip=None):
         FTM = '%H:%M:%S'
+        if self.is_on_salle :
+            sortie = self.init_output()
+            self.is_on_salle = False
+            self.save()
+            return sortie
         current_time = datetime.now().strftime("%H:%M:%S")
         creneaux = Creneau.range.get_creneaux_of_day().filter(abonnements__client=self, activity__salle__door__ip_adress= door_ip)
         print('les creneau permis', creneaux)
-        if self.is_on_salle :
-            return True
-        if len(creneaux) :
+        if creneaux.count() > 1 :
             dur_ref_time_format = abs(datetime.strptime(str(creneaux[0].hour_start), FTM) - datetime.strptime(current_time, FTM))
             dur_ref= timedelta.total_seconds(dur_ref_time_format) 
             cren_ref = creneaux[0]
@@ -140,15 +187,19 @@ class Client(models.Model):
                 if dur_ref > duree_seconde:
                     dur_ref = duree_seconde
                     cren_ref = cr
-            abon_list = AbonnementClient.objects.filter(client = self,creneaux = cren_ref, archiver = False )
-            for ab in abon_list: # si il y'a plusieurs abonnement on previlegie les abonnement normal vu qu'il ne sont pas recuperable
-                # print("abonnement dans la bouvcle", ab.type_abonnement.free_sessions)
-                if not ab.type_abonnement.free_sessions:
-                    # if AbonnementClient.validity.is_valid(ab.id):
-                    abonnement = ab
-                else:
-                    print('je suis laaaa')
-                    abonnement = ab
+
+            clients_abc = AbonnementClient.objects.filter(client = self, creneaux = cren_ref, archiver=False )
+            actives_abonnements = clients_abc.subscription.active_subscription()
+            clients_fixed_times_abcs = actives_abonnements.fixed_sessions().valid_presences() 
+            if clients_fixed_times_abcs.count():
+                abonnement = clients_fixed_times_abcs.first()
+            else:
+                clients_time_volume_abcs = actives_abonnements.valid_time()
+                client_s_valid_presences_abc = actives_abonnements.valid_presences()
+                abcs = clients_fixed_times_abcs.union(clients_time_volume_abcs, client_s_valid_presences_abc)
+                abonnement = abcs.first()
+            # abonnement = self.select_abc(abonlist)
+
             # abonnement = abon_list.first()
             print('l \'abonnement du client est le :>>>>>>>>>>', abonnement)
             # is_valid = AbonnementClient.validity.is_valid(abonnement.id)
@@ -158,18 +209,18 @@ class Client(models.Model):
                     self.is_on_salle=True
                     self.save()
                     return presence
-
-            if abonnement.presence_quantity > -2:
-            # AbonnementClient.validity.is_valid(obj.id)
-                with transaction.atomic():
-                    presence = Presence.objects.create(abc= abonnement, creneau= cren_ref, is_in_list=True, hour_entree=current_time, is_in_salle=True)
-                    self.is_on_salle=True
-                    self.save()
-                if abonnement.is_fixed_sessions() or abonnement.is_free_sessions():
-                    abonnement.presence_quantity -= 1
-                abonnement.save()
-                return presence
-            return True
+            else: 
+                if abonnement.presence_quantity > 0:
+                # AbonnementClient.validity.is_valid(obj.id)
+                    with transaction.atomic():
+                        presence = Presence.objects.create(abc= abonnement, creneau= cren_ref, is_in_list=True, hour_entree=current_time, is_in_salle=True)
+                        self.is_on_salle=True
+                        self.save()
+                    if abonnement.is_fixed_sessions() or abonnement.is_free_sessions():
+                        abonnement.presence_quantity -= 1
+                    abonnement.save()
+                    return presence # why is this retunrning presence not True 
+                return True
         return False
 
     def save(self, *args, **kwargs):
