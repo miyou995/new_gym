@@ -30,8 +30,8 @@ function SampleNextArrow(props) {
 
 const ShortCuts = () => {
   const settings = {
-    // slidesToShow: 5,
-    // slidesToScroll: 1,
+    slidesToShow: 5,
+    slidesToScroll: 1,
     dots: false,
     autoplay: false,
     // autoplaySpeed: 2000,
@@ -43,44 +43,44 @@ const ShortCuts = () => {
     speed: 100,
     accessibility: false,
     nextArrow: <SampleNextArrow />,
-    // responsive: [
-    //   {
-    //     breakpoint: 1200,
-    //     settings: {
-    //       slidesToShow: 7,
-    //       slidesToScroll: 1,
-    //     },
-    //   },
-    //   {
-    //     breakpoint: 991,
-    //     settings: {
-    //       slidesToShow: 5,
-    //       slidesToScroll: 1,
-    //       centerPadding: 0,
-    //       centerMode: false,
-    //     },
-    //   },
-    //   {
-    //     breakpoint: 600,
-    //     settings: {
-    //       slidesToShow: 3,
-    //       slidesToScroll: 1,
-    //     },
-    //   },
-    //   {
-    //     breakpoint: 360,
-    //     settings: {
-    //       slidesToShow: 2,
-    //       slidesToScroll: 1,
-    //     },
-    //   },
-    // ],
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 7,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 991,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 1,
+          centerPadding: 0,
+          centerMode: false,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 360,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
 
 
  const clientAuthorizationEnd = `${process.env.REACT_APP_API_URL}/rest-api/get_client_authorization/`
- const transactionAuthorization = `${process.env.REACT_APP_API_URL}/rest-api/get_transaction_authorization/`;
+ const transactionAuthorization = `${process.env.REACT_APP_API_URL}/rest-api/transactions/get_transaction_authorization/`;
  const coachAuthorizationEnd = `${process.env.REACT_APP_API_URL}/rest-api/get_coach_authorization/`
  let personnelAuthorization = `${process.env.REACT_APP_API_URL}/rest-api/personnel/`
  let presenceAuthorization = `${process.env.REACT_APP_API_URL}/rest-api/presence/`
@@ -97,9 +97,9 @@ const ShortCuts = () => {
 
 
 
-console.log("clientAuth=========================>", useAuth(clientAuthorizationEnd, 'GET'));
-console.log("transactionAuth=========================>", useAuth(transactionAuthorization, 'GET'));
-console.log("coachAuth=========================>", useAuth(coachAuthorizationEnd, 'GET'));
+// console.log("clientAuth=========================>", useAuth(clientAuthorizationEnd, 'GET'));
+// console.log("transactionAuth=========================>", useAuth(transactionAuthorization, 'GET'));
+// console.log("coachAuth=========================>", useAuth(coachAuthorizationEnd, 'GET'));
 
 
 //  const [clientAuth, setClientAuth] = useState(useAuth(clientAuthoprizationEnd, 'GET'), null)

@@ -157,71 +157,166 @@ class Client(models.Model):
         if abc.is_time_volume():
             ecart = presence.hour_sortie - presence.hour_entree 
             abc.presence_quantity -= ecart 
+            abc.save()
             # ecart = abs(datetime.strptime(str(hour_start), FTM) - datetime.strptime(current_time, FTM))
-        else:
-            abc.presence_quantity -= 1
-        abc.save()
+        # else:
+        #     abc.presence_quantity -= 1
         presence.save()
         return True
-
 
     def has_permission(self, door_ip=None):
         FTM = '%H:%M:%S'
         if self.is_on_salle :
             sortie = self.init_output()
-            self.is_on_salle = False
+            self.is_on_salle = False 
             self.save()
             return sortie
+        salle = Salle.objects.get(door__ip_adress=door_ip)
         current_time = datetime.now().strftime("%H:%M:%S")
-        creneaux = Creneau.range.get_creneaux_of_day().filter(abonnements__client=self, activity__salle__door__ip_adress= door_ip)
-        print('les creneau permis', creneaux)
-        if creneaux.count() > 1 :
-            dur_ref_time_format = abs(datetime.strptime(str(creneaux[0].hour_start), FTM) - datetime.strptime(current_time, FTM))
-            dur_ref= timedelta.total_seconds(dur_ref_time_format) 
-            cren_ref = creneaux[0]
-            for cr in creneaux:
-                start = str(cr.hour_start)
-                print('heure de début', start)
-                temps = abs(datetime.strptime(start, FTM) - datetime.strptime(current_time, FTM))
-                duree_seconde = timedelta.total_seconds(temps) 
-                if dur_ref > duree_seconde:
-                    dur_ref = duree_seconde
-                    cren_ref = cr
+        abonnement_client = AbonnementClient.subscription.active_subscription(client=self, type_abonnement_client__salles=salle).first()
+        if abonnement_client.is_time_volume() and abonnement_client.is_valid():
+            with transaction.atomic():
+                presence = Presence.objects.create(abc= abonnement_client, is_in_list=True, hour_entree=current_time, is_in_salle=True)
+                self.is_on_salle=True
+                self.save()
+                return True
+        elif not abonnement_client.is_time_volume() and abonnement_client.is_valid():
+            creneaux = Creneau.range.get_creneaux_of_day().filter(abonnements=abonnement_client)
+            if creneaux.count() > 1 :
+                dur_ref_time_format = abs(datetime.strptime(str(creneaux[0].hour_start), FTM) - datetime.strptime(current_time, FTM)) #nous avons besoin d'un crenaux Reference pour le comparé au autres
+                dur_ref= timedelta.total_seconds(dur_ref_time_format) 
+                cren_ref = creneaux.first()
+                for cr in creneaux:
+                    start = str(cr.hour_start)
+                    print('heure de début', start)
+                    temps = abs(datetime.strptime(start, FTM) - datetime.strptime(current_time, FTM))
+                    duree_seconde = timedelta.total_seconds(temps) 
+                    if dur_ref > duree_seconde:
+                        dur_ref = duree_seconde
+                        cren_ref = cr
+            with transaction.atomic():
+                presence = Presence.objects.create(abc= abonnement_client,  creneau= cren_ref, is_in_list=True, hour_entree=current_time, is_in_salle=True)
+                self.is_on_salle=True
+                abonnement_client.presence_quantity -= 1
+                abonnement_client.save()
+                self.save()
+                return True
+        else:
+            print('XWHATS THE CASE')
+            return False
 
-            clients_abc = AbonnementClient.objects.filter(client = self, creneaux = cren_ref, archiver=False )
-            actives_abonnements = clients_abc.subscription.active_subscription()
-            clients_fixed_times_abcs = actives_abonnements.fixed_sessions().valid_presences() 
-            if clients_fixed_times_abcs.count():
-                abonnement = clients_fixed_times_abcs.first()
-            else:
-                clients_time_volume_abcs = actives_abonnements.valid_time()
-                client_s_valid_presences_abc = actives_abonnements.valid_presences()
-                abcs = clients_fixed_times_abcs.union(clients_time_volume_abcs, client_s_valid_presences_abc)
-                abonnement = abcs.first()
-            # abonnement = self.select_abc(abonlist)
+
+
+
+
+
+
+
+        # print('les creneau permis', creneaux)
+        # if creneaux.count() > 1 :
+        #     # dur_ref_time_format = abs(datetime.strptime(str(creneaux[0].hour_start), FTM) - datetime.strptime(current_time, FTM))
+        #     dur_ref= timedelta.total_seconds(dur_ref_time_format) 
+        #     cren_ref = creneaux.first()
+        #     for cr in creneaux:
+        #         start = str(cr.hour_start)
+        #         print('heure de début', start)
+        #         temps = abs(datetime.strptime(start, FTM) - datetime.strptime(current_time, FTM))
+        #         duree_seconde = timedelta.total_seconds(temps) 
+        #         if dur_ref > duree_seconde:
+        #             dur_ref = duree_seconde
+        #             cren_ref = cr
+
+            # clients_abc = AbonnementClient.objects.filter(client = self, creneaux = cren_ref, archiver=False )
+            # actives_abonnements = clients_abc.subscription.active_subscription()
+            # clients_fixed_times_abcs = actives_abonnements.fixed_sessions().valid_presences() 
+            # if clients_fixed_times_abcs.count():
+            #     abonnement = clients_fixed_times_abcs.first()
+            # else:
+            #     clients_time_volume_abcs = actives_abonnements.valid_time()
+            #     client_s_valid_presences_abc = actives_abonnements.valid_presences()
+            #     abcs = clients_fixed_times_abcs.union(clients_time_volume_abcs, client_s_valid_presences_abc)
+            #     abonnement = abcs.first()
+            # # abonnement = self.select_abc(abonlist)
 
             # abonnement = abon_list.first()
-            print('l \'abonnement du client est le :>>>>>>>>>>', abonnement)
+            # print('l \'abonnement du client est le :>>>>>>>>>>', abonnement)
             # is_valid = AbonnementClient.validity.is_valid(abonnement.id)
-            if abonnement.is_time_volume() and abonnement.presence_quantity > 30:
-                with transaction.atomic():
-                    presence = Presence.objects.create(abc= abonnement, creneau= cren_ref, is_in_list=True, hour_entree=current_time, is_in_salle=True)
-                    self.is_on_salle=True
-                    self.save()
-                    return presence
-            else: 
-                if abonnement.presence_quantity > 0:
-                # AbonnementClient.validity.is_valid(obj.id)
-                    with transaction.atomic():
-                        presence = Presence.objects.create(abc= abonnement, creneau= cren_ref, is_in_list=True, hour_entree=current_time, is_in_salle=True)
-                        self.is_on_salle=True
-                        self.save()
-                    if abonnement.is_fixed_sessions() or abonnement.is_free_sessions():
-                        abonnement.presence_quantity -= 1
-                    abonnement.save()
-                    return presence # why is this retunrning presence not True 
-                return True
-        return False
+        #     if abonnement.is_time_volume() and abonnement.presence_quantity > 30:
+        #         with transaction.atomic():
+        #             presence = Presence.objects.create(abc= abonnement, creneau= cren_ref, is_in_list=True, hour_entree=current_time, is_in_salle=True)
+        #             self.is_on_salle=True
+        #             self.save()
+        #             return presence
+        #     else: 
+        #         if abonnement.presence_quantity > 0:
+        #         # AbonnementClient.validity.is_valid(obj.id)
+        #             with transaction.atomic():
+        #                 presence = Presence.objects.create(abc= abonnement, creneau= cren_ref, is_in_list=True, hour_entree=current_time, is_in_salle=True)
+        #                 self.is_on_salle=True
+        #                 self.save()
+        #             if abonnement.is_fixed_sessions() or abonnement.is_free_sessions():
+        #                 abonnement.presence_quantity -= 1
+        #             abonnement.save()
+        #             return presence # why is this retunrning presence not True 
+        #         return True
+        # return False
+    # def has_permission(self, door_ip=None):
+    #     FTM = '%H:%M:%S'
+    #     if self.is_on_salle :
+    #         sortie = self.init_output()
+    #         self.is_on_salle = False
+    #         self.save()
+    #         return sortie
+    #     current_time = datetime.now().strftime("%H:%M:%S")
+    #     creneaux = Creneau.range.get_creneaux_of_day().filter(abonnements__client=self, activity__salle__door__ip_adress= door_ip)
+    #     print('les creneau permis', creneaux)
+    #     if creneaux.count() > 1 :
+    #         dur_ref_time_format = abs(datetime.strptime(str(creneaux[0].hour_start), FTM) - datetime.strptime(current_time, FTM))
+    #         dur_ref= timedelta.total_seconds(dur_ref_time_format) 
+    #         cren_ref = creneaux[0]
+    #         for cr in creneaux:
+    #             start = str(cr.hour_start)
+    #             print('heure de début', start)
+    #             temps = abs(datetime.strptime(start, FTM) - datetime.strptime(current_time, FTM))
+    #             duree_seconde = timedelta.total_seconds(temps) 
+    #             if dur_ref > duree_seconde:
+    #                 dur_ref = duree_seconde
+    #                 cren_ref = cr
+
+    #         clients_abc = AbonnementClient.objects.filter(client = self, creneaux = cren_ref, archiver=False )
+    #         actives_abonnements = clients_abc.subscription.active_subscription()
+    #         clients_fixed_times_abcs = actives_abonnements.fixed_sessions().valid_presences() 
+    #         if clients_fixed_times_abcs.count():
+    #             abonnement = clients_fixed_times_abcs.first()
+    #         else:
+    #             clients_time_volume_abcs = actives_abonnements.valid_time()
+    #             client_s_valid_presences_abc = actives_abonnements.valid_presences()
+    #             abcs = clients_fixed_times_abcs.union(clients_time_volume_abcs, client_s_valid_presences_abc)
+    #             abonnement = abcs.first()
+    #         # abonnement = self.select_abc(abonlist)
+
+    #         # abonnement = abon_list.first()
+    #         print('l \'abonnement du client est le :>>>>>>>>>>', abonnement)
+    #         # is_valid = AbonnementClient.validity.is_valid(abonnement.id)
+    #         if abonnement.is_time_volume() and abonnement.presence_quantity > 30:
+    #             with transaction.atomic():
+    #                 presence = Presence.objects.create(abc= abonnement, creneau= cren_ref, is_in_list=True, hour_entree=current_time, is_in_salle=True)
+    #                 self.is_on_salle=True
+    #                 self.save()
+    #                 return presence
+    #         else: 
+    #             if abonnement.presence_quantity > 0:
+    #             # AbonnementClient.validity.is_valid(obj.id)
+    #                 with transaction.atomic():
+    #                     presence = Presence.objects.create(abc= abonnement, creneau= cren_ref, is_in_list=True, hour_entree=current_time, is_in_salle=True)
+    #                     self.is_on_salle=True
+    #                     self.save()
+    #                 if abonnement.is_fixed_sessions() or abonnement.is_free_sessions():
+    #                     abonnement.presence_quantity -= 1
+    #                 abonnement.save()
+    #                 return presence # why is this retunrning presence not True 
+    #             return True
+    #     return False
 
     def save(self, *args, **kwargs):
         if self.picture:
@@ -241,7 +336,6 @@ class Client(models.Model):
             except:
                 self.id = "C0001"
         if self.carte:
-
             # old_carte = self.carte
             # print('old_carte', old_carte) 
             int_carte = int(self.carte)

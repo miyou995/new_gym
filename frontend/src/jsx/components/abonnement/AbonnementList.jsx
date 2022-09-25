@@ -98,7 +98,7 @@ const PresenceList = () => {
                                     </Link>
                                  </td>
                                  <td className="py-2">{abonnement.price}</td>
-                                 <td className="py-2">{abonnement.number_of_days}</td>
+                                 <td className="py-2">{abonnement.length}</td>
                                  <td className="py-2 pl-5 wspace-no"> {abonnement.seances_quantity} </td>
                                  <td className="py-2">{abonnement.activity_name}</td>
                                  <td className="py-2">{abonnement.clients_number}</td>

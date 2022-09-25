@@ -82,7 +82,7 @@ const [startDate, setStartDate] = useState(formatDate(new Date('2021-01-05')));
    const dateDebut = formatDate(startDate)
    const dateFin = formatDate(endDate)
    
-   const transactionAuth = `${process.env.REACT_APP_API_URL}/rest-api/get_transaction_authorization/`
+   const transactionAuth = `${process.env.REACT_APP_API_URL}/rest-api/transaction/get_transaction_authorization/`
 
    useEffect(() =>  {
       // api.get(`${process.env.REACT_APP_API_URL}/rest-api/presence/?start_date=${startDate}&end_date=${endDate}`).then(res => {
@@ -155,13 +155,9 @@ const [startDate, setStartDate] = useState(formatDate(new Date('2021-01-05')));
          <ToastContainer position='top-right' autoClose={5000} hideProgressBar={false} newestOnTop closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
          {loading && 
          <>
-            {trAuth ? (
-               <>
                   <div className="testimonial-one owl-right-nav owl-carousel owl-loaded owl-drag mb-4">
                      <ShortCuts />
                   </div>
-
-
                   {/* <Search name= 'Abonnée' lien= "/client/create"/> */}
                   <div className="row d-flex justify-content-arround mb-3">
                      <div className="btn btn-success ml-auto" onClick={e => setPaiementModal(true)}>
@@ -301,8 +297,6 @@ const [startDate, setStartDate] = useState(formatDate(new Date('2021-01-05')));
 
                   </div>
 
-               </>
-            ) : <Error403 />}
          </>
          }
 

@@ -113,7 +113,7 @@ const [path,setPath] = useState("");
    // const { coachStatus } = true;
 
    const clientAuthorizationEnd = `${baseURL}/rest-api/get_client_authorization/`
-   const transactionAuthorization = `${baseURL}/rest-api/get_transaction_authorization/`;
+   const transactionAuthorization = `${baseURL}/rest-api/transactions/get_transaction_authorization/`;
    const coachAuthorizationEnd = `${baseURL}/rest-api/get_coach_authorization/`
    let personnelAuthorization = `${baseURL}/rest-api/personnel/`
    let presenceAuthorization = `${baseURL}/rest-api/presence/`

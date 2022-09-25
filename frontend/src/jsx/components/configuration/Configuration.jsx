@@ -120,10 +120,9 @@ const Configuration = (props) => {
             setDoors(res.data)
         })
     }, [doorModal]);
-    // useEffect(() => {
-    //     setDureeInd(DureeAb.findIndex(x => x.jours === Number(abDuree)))
-    //     console.log('dureee de labonnement', DureeAb.findIndex(x => x.jours === Number(abDuree)));
-    //  }, [abDuree, abonnementCreateModal]);
+    useEffect(() => {
+        console.log('dureee de labonnement', DureeAb.findIndex(x => x.jours === Number(abDuree)));
+     }, [abDuree, abonnementCreateModal]);
 
     // const salllesActivities = useGetAPI(salleActivitiesEND)
     const [plannings, setPlannings] = useState([]);
@@ -454,9 +453,9 @@ const Configuration = (props) => {
                                                 setAbonnementEditModal(true)
                                                 setAbonnementId(abonnement.id)
                                                 setSelectedActivities(getAbonnementsActitivties(abonnement.salles))
-                                                setAbDuree(abonnement.number_of_days)
+                                                setAbDuree(abonnement.length)
                                                 setTypeOf(abonnement.type_of)
-                                                await setDureeInd(getDureeIndex(abonnement.number_of_days))
+                                                setDureeInd(getDureeIndex(abonnement.length))
                                             }}>
                                                 <td className="text-left">{abonnement.name}</td>
                                                 <td>{abonnement.seances_quantity}</td>
