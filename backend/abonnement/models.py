@@ -20,12 +20,12 @@ class SubscriptionQuerySet(models.QuerySet):
         return self.exclude(type_abonnement__type_of=="SF")
     def active_subscription(self):
         today = date.today()
-        return self.filter(end_date__gte=today)
+        return self.filter(end_date__gte=today, archiver=False)
 
     def valid_presences(self, limite_presence=0):
-        return self.exclude(type_abonnement__type_of == "VH").filter(seances_quantity__gte=limite_presence)
+        return self.exclude(type_abonnement__type_of == "VH").filter(seances_quantity__gte=limite_presence, archiver=False)
     def valid_time(self, hlimit=30):
-        return self.filter(Q(type_abonnement__type_of == "VH") & Q(seances_quantity__gte=hlimit))  
+        return self.filter(Q(type_abonnement__type_of == "VH") & Q(seances_quantity__gte=hlimit) & Q(archiver=False))  
 
 class SubscriptionManager(models.Manager):
     def get_queryset(self):

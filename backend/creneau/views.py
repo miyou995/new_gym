@@ -173,7 +173,7 @@ class CreneauCoachListAPIView(generics.ListAPIView):
     def get_queryset(self):
         coach = self.request.query_params.get('cl', None)
         print('cliiiientr', coach)
-        creneaux = Creneau.objects.filter(coach=coach)
+        creneaux = Creneau.objects.filter(coach=coach).distinct()
         return creneaux
 
 class CreneauAbcListAPIView(generics.ListAPIView):

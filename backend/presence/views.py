@@ -307,7 +307,7 @@ class PresenceByCoachListAPI(generics.ListAPIView):
         
         coach = self.request.query_params.get('cl', None)
         print('cliiiientr', coach)
-        presences = PresenceCoach.objects.filter(coach=coach)
+        presences = PresenceCoach.objects.filter(coach=coach).distinct()
         return presences
 
 

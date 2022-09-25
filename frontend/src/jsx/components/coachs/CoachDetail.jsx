@@ -32,7 +32,7 @@ const CoachDetail = (props) => {
   const [lastPresence, setLastPresence] = useState('')
   const presenceCreateEND = `${process.env.REACT_APP_API_URL}/rest-api/presence/coachs/create`
   const presenceUpdateEND = `${process.env.REACT_APP_API_URL}/rest-api/presence/coachs/${lastPresence}/`
-  const transactionClientEND = `${process.env.REACT_APP_API_URL}/rest-api/transactions/remunerationProf-by-coach/?cl=${coachID}`
+  const transactionCoachEND = `${process.env.REACT_APP_API_URL}/rest-api/transactions/remunerationProf-by-coach/?cl=${coachID}`
   const creneauCoachEND = `${process.env.REACT_APP_API_URL}/rest-api/creneau/by-coach?cl=${coachID}`
 const presencesCoachEND = `${process.env.REACT_APP_API_URL}/rest-api/presence/by-coachs/?cl=${coachID}`
 const coachDetailEnd = `${process.env.REACT_APP_API_URL}/rest-api/coachs/${coachID}/`
@@ -107,10 +107,10 @@ const coachDetailEnd = `${process.env.REACT_APP_API_URL}/rest-api/coachs/${coach
     //  const clientId = props.match.params.id;
      const fetchData = async () => {
         try {
-           const res = await api.get(transactionClientEND);
+           const res = await api.get(transactionCoachEND);
+           console.log('transCoach ====+W> RES', res);
            setTransCoach(res.data)
  
-            console.log('ghirrrr =creneauxClient', transCoach);
         } catch (error) {
            console.log(error, 'erreur presneces');
         }

@@ -190,7 +190,7 @@ const [presenceAuth, loading] = useAuth(presenceAuthorization, 'GET')
          </div> 
 
          <div className="m-5 row">
-            <div className='col- col-md-4'>
+            {/* <div className='col- col-md-4'>
                <form onSubmit={HandleSubmit}>
                   <div className='row'>
                      <div className="col-6">
@@ -202,7 +202,7 @@ const [presenceAuth, loading] = useAuth(presenceAuthorization, 'GET')
                      </div>
                   </div>
                </form>
-            </div>
+            </div> */}
             <div className="col-md-2 mt-auto">
                <Button  variant="primary" type="submit" onClick={e => setPresneceCreateModal(true)}> Présence Manuelle</Button>
             </div>

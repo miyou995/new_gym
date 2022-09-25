@@ -160,17 +160,13 @@ console.log('le searchValue des searchValue est ', searchValue);
                          </div>
                       </div>
                    </div>
-                   {
+                   {/* {
                       !searchBarActivated &&
 
                       <div className='d-flex text-center justify-content-end'>
 
                          <div className='dataTables_info text-black' id='example5_info '>
-                            {/* Showing {activePag.current * sort + 1} to{' '}
-                  {data.length > (activePag.current + 1) * sort
-                    ? (activePag.current + 1) * sort
-                    : data.length}{' '}
-                  of {data.length} entries{' '} */}
+             
                          </div>
                          <div
                             className='dataTables_paginate paging_simple_numbers'
@@ -206,7 +202,7 @@ console.log('le searchValue des searchValue est ', searchValue);
                          </div>
 
                       </div>
-                   }
+                   } */}
                 </>
              ) : <Error403 />
              }

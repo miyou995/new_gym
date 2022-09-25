@@ -46,7 +46,7 @@ class PresencePostSerialiser(serializers.ModelSerializer):
         presence_date = validated_data['date']
         # print('CLIENT ID => ', client.id)
         # client_id = client.id
-        client = Client.objects.get(abonnement_client__id=abc)
+        client = Client.objects.get(abonnement_client=abc)
         # abonnement = AbonnementClient.objects.get(id=abc)
         # print('l \'abonnement du client est le :>>>>>>>>>>', abonnement)
         current_time = now.strftime("%H:%M:%S")

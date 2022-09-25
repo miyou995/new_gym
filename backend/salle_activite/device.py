@@ -102,14 +102,13 @@ class AccessControl:
                 with open('./picture.jpg', 'wb+') as f:
                     f.write(pic_buf)
 
-    def card_infos(self, card_n, door_ip):
-        dictio = {'card' : card_n, 'door' : door_ip}
-        print("dictioooo",dictio)
+    def get_authorization(self, card_n, door_ip):
+        # dictio = {'card' : card_n, 'door' : door_ip}
+        # print("dictioooo",dictio)
         has_perm = False
         # if card_n:
         card = card_n.decode("utf-8")
         print(' la carte est ', card)
-        print(' la carte type ', type(card))
         try:
             client=  Client.objects.get(hex_card=card)
             if client.has_permission(door_ip) :
@@ -130,17 +129,14 @@ class AccessControl:
         if (lLoginID != self.loginID):
             print('le code et la clé sont different')
             return
-
             # return
         if (lCommand == SDK_ALARM_TYPE.ALARM_ACCESS_CTL_EVENT):
             print("ALARM_ACCESS_CTL_EVENT")  # 门禁事件; Access control event
             alarm_info = cast(pBuf, POINTER(NET_A_ALARM_ACCESS_CTL_EVENT_INFO)).contents
             card_n = alarm_info.szCardNo
             door = self.ip
-            # print(' the door one door', door)
-            # print(' the door one nDoor', alarm_info.nPort)
-            client = self.card_infos(card_n,door)
-
+            client = self.get_authorization(card_n,door)
+            print('get_authorization => ', client)
             if client : 
                 self.open_door()
                 client.init_presence()
@@ -148,7 +144,8 @@ class AccessControl:
                 # self.logout()
                 # self.login()
                 # self.alarm_listen()
-            print('card_infos => ', card_infos)
+            print('get_authorization => ', client)
+        return 
 
     def alarm_listen(self):
         if self.alarmEvent == 0:

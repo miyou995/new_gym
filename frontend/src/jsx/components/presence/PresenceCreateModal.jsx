@@ -197,6 +197,11 @@ const PresenceCreateModal = ({show, onShowShange, presenceData}) => {
     //   //  tdClass = 'hett-test'
     //   }
     // }
+    
+    const changingStyle = (id) => {
+      if (creneaux.indexOf(id) !== -1) {
+       return true
+      }}
 
     const handleSubmit = async e => {
       e.preventDefault();

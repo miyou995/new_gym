@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404
 from rest_framework import generics, serializers
 from .models import Paiement, Autre, AssuranceTransaction, Remuneration, RemunerationProf, Transaction
 import json
+from client.models import  Coach
+
 from .serializers import PaiementSerialiser, AutreSerialiser, AssuranceSerialiser, RemunerationSerialiser, RemunerationProfSerialiser, TransactionSerialiser, RemunerationProfPostSerialiser,PaiementPostSerialiser, AssurancePostSerialiser, RemunerationPostSerialiser, PaiementFiltersSerialiser, PaiementHistorySerialiser
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser, DjangoModelPermissions
 from drf_multiple_model.views import FlatMultipleModelAPIView, ObjectMultipleModelAPIView
@@ -224,9 +226,9 @@ class PaiementEmployeListAPIView(generics.ListAPIView):
     }
     def get_queryset(self):
         employe_id = self.request.query_params.get('em', None)
-        print('cliiiientr', employe_id)
-        creneaux = Remuneration.objects.filter(nom_id=employe_id)
-        return creneaux
+        transactions = Remuneration.objects.filter(nom__id=employe_id)
+        print('cliiiientr transactions', transactions)
+        return transactions
 
 class RemunerationDestroyAPIView(generics.DestroyAPIView):
     queryset = Remuneration.objects.all()
@@ -384,17 +386,19 @@ class TransactionDetailAPIView(generics.RetrieveUpdateAPIView):
         return obj
     
 class PaiementCoachListAPIView(generics.ListAPIView):
-    quertset = RemunerationProf.objects.all()
+    queryset = RemunerationProf.objects.all()
     serializer_class = RemunerationProfPostSerialiser
     permission_classes = (IsAdminUser, BaseModelPerm)
     extra_perms_map = {
         "GET": ["transaction.view_remunerationprof"]
     }
     def get_queryset(self):
-        coach = self.request.query_params.get('cl', None)
+        coach_id = self.request.query_params.get('cl', None)
+        coach = get_object_or_404(Coach, id=coach_id)
         print('cliiiientr', coach)
-        creneaux = RemunerationProf.objects.filter(coach=coach)
-        return creneaux
+        transactions = RemunerationProf.objects.filter(coach=coach)
+        print(' TRansaction coach -------------------------->', transactions)
+        return transactions
 
 @api_view(['GET'])
 def total_charges(request):
