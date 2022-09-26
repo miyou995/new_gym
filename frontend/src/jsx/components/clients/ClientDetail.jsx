@@ -360,14 +360,14 @@ useEffect(() => {
               </Card.Title>
             </Card.Header>
             <Card.Body>
-              <h6 className='text-primary' style={{fontSize: '0.9rem'}}>Civilité: <a className="item text-light"> {client.civility_display}</a> </h6>
-              <h6 className='text-primary' style={{fontSize: '0.9rem'}}>Téléphone:                  <span className="item text-light"><a href={`tel:${client.phone}`}> {client.phone}</a></span></h6>
-              <h6 className='text-primary' style={{fontSize: '0.9rem'}}>email:                      <span className="item text-light"><a href={`mailto:${client.email}`}> {client.email}</a></span></h6>
+              <h6 className='text-primary' style={{fontSize: '0.9rem'}}>Civilité: <a className="item text-dark"> {client.civility_display}</a> </h6>
+              <h6 className='text-primary' style={{fontSize: '0.9rem'}}>Téléphone:                  <span className="item text-dark"><a href={`tel:${client.phone}`}> {client.phone}</a></span></h6>
+              <h6 className='text-primary' style={{fontSize: '0.9rem'}}>email:                      <span className="item text-dark"><a href={`mailto:${client.email}`}> {client.email}</a></span></h6>
               <h6 className='text-primary' style={{fontSize: '0.9rem'}}>Groupe sanguin:&nbsp;&nbsp; <span className="badge badge-danger light">{client.blood}</span> </h6>
-              <h6 className='text-primary' style={{fontSize: '0.9rem'}}>Nationalité:                <span className="item text-light">{client.nationality}</span> </h6>
-              <h6 className='text-primary' style={{fontSize: '0.9rem'}}>Date de naissance:          <span className="item text-light">{client.birth_date}</span> </h6>
-              <h6 className='text-primary' style={{fontSize: '0.9rem'}}>Age:                        <span className="item text-light">{client.age}</span> </h6>
-              <h6 className='text-primary' style={{fontSize: '0.9rem'}}>Profession :                <span className="item text-light">{client.profession}</span> </h6>
+              <h6 className='text-primary' style={{fontSize: '0.9rem'}}>Nationalité:                <span className="item text-dark">{client.nationality}</span> </h6>
+              <h6 className='text-primary' style={{fontSize: '0.9rem'}}>Date de naissance:          <span className="item text-dark">{client.birth_date}</span> </h6>
+              <h6 className='text-primary' style={{fontSize: '0.9rem'}}>Age:                        <span className="item text-dark">{client.age}</span> </h6>
+              <h6 className='text-primary' style={{fontSize: '0.9rem'}}>Profession :                <span className="item text-dark">{client.profession}</span> </h6>
               <h5 className='text-primary' style={{fontSize: '0.9rem'}}>Maladies:</h5>
               <ul>
                 {client.maladie_name && client.maladie_name.map(maladie =>(

@@ -12,7 +12,7 @@ const useAxios = () => {
     
   const axiosInstance = axios.create({
     baseURL,
-    timeout: 15000,
+    timeout: 19000,
     headers: { Authorization: `JWT ${authTokens?.access}` }
   });
 
@@ -24,15 +24,30 @@ const useAxios = () => {
 
     const response = await axios.post(`${baseURL}/api/token/refresh/`, {
       refresh: authTokens.refresh
-    });
+    }).then(res => {
+        localStorage.setItem("authTokens", JSON.stringify(response.data));
 
-    localStorage.setItem("authTokens", JSON.stringify(response.data));
+        setAuthTokens(response.data);
+        setUser(jwt_decode(response.data.access));
+    
+        req.headers.Authorization = `JWT ${response.data.access}`;
+        return req;
+        // console.log('RESSSS',res);
+      }).catch( err => {
+        window.location ="/login";
+      });
 
-    setAuthTokens(response.data);
-    setUser(jwt_decode(response.data.access));
 
-    req.headers.Authorization = `JWT ${response.data.access}`;
-    return req;
+
+    // const response = await axios.post(`${baseURL}/api/token/refresh/`).then(res => {
+    //   refresh: authTokens.refresh
+    // }).catch( err => {
+    //   console.log('errooooor', err);
+    // });
+
+
+
+
   });
 
   return axiosInstance;

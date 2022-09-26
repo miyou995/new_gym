@@ -4,12 +4,18 @@ from django.db.models import Q
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser, DjangoModelPermissions
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework import generics
+from rest_framework import pagination
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from datetime import timedelta, date
 from .serializers import AbonnementClientSerialiser, AbonnementSerialiser, AbonnementClientDetailUpdateSerialiser, AbonnementClientDetailSerializer, AbonnementClientTransactionsSerializer, ABCCreneauSerializer, AbonnementClientRenewSerializer, AbonnementClientAllSerializer, AbonnementClientHistorySerializer
 from client.models import Client
 from .models import Abonnement,  AbonnementClient
+
+class StandardResultsSetPagination(pagination.PageNumberPagination):
+    page_size = 20
+    page_size_query_param = 'page_size'
+    max_page_size = 100
 
 class BaseModelPerm(DjangoModelPermissions):
     def get_custom_perms(self, method, view):
@@ -51,6 +57,7 @@ def get_filtered_abc_history(request):
 
     if is_valid_queryparam(usr):
         qs = qs.filter(history_user=usr).distinct()
+    print('HEE JEFEE')
     return {'qs': qs}
 
 class AbonnementClientCreateAPIView(generics.CreateAPIView):
@@ -68,6 +75,7 @@ class AbonnementClientRenewAPIView(generics.CreateAPIView):
     extra_perms_map = {
         "POST": ["abonnement.view_abonnementclient"]
     }
+    
 class AbonnementClientListAPIView(generics.ListAPIView):
     queryset = AbonnementClient.objects.filter(archiver=False)
     # permission_classes = (IsAuthenticated,)
@@ -244,6 +252,8 @@ class AbonnementClientHistoryListAPIView(generics.ListAPIView):
     queryset = AbonnementClient.history.all()
     # print('queryset', queryset.count())
     # permission_classes = (IsAuthenticated,)
+    pagination_class = StandardResultsSetPagination
+
     serializer_class = AbonnementClientHistorySerializer
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
@@ -251,9 +261,9 @@ class AbonnementClientHistoryListAPIView(generics.ListAPIView):
     }
     def get_queryset(self):
         queryset = get_filtered_abc_history(self.request)['qs']
-        print('queryset', queryset.count())
-        print('queryset', queryset)                                                                                     
-        return queryset
+
+        print('queryset HISTOYYYYYYYYYYYYYYYYYYYYYYYY', queryset)
+        return queryset[:30]
 
 class AbonnementClientAllDetailListApi(generics.ListAPIView):
     queryset = AbonnementClient.objects.all()
@@ -275,6 +285,7 @@ class AbonnementClientAllDetailListApi(generics.ListAPIView):
 
 class AbonnementClientActifsDetailListApi(generics.ListAPIView):
     queryset = AbonnementClient.objects.all()
+    # pagination_class = StandardResultsSetPagination
 
     serializer_class = AbonnementClientDetailSerializer 
     permission_classes = (IsAdminUser,BaseModelPerm)

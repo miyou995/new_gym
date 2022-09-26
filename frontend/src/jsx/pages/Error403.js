@@ -13,10 +13,10 @@ const Error403 = () => {
                         <i className="fa fa-times-circle text-danger" />{" "}
                         Forbidden Error!
                      </h4>
-                     <p>You do not have permission to view this resource.</p>
+                     <p>Vous n'avez pas le droit de visiter cette page.</p>
                      <div>
                         <Link className="btn btn-primary" to="/">
-                           Back to Home
+                           Retourner A l'accueil
                         </Link>
                      </div>
                   </div>

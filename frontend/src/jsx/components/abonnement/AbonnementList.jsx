@@ -60,7 +60,7 @@ const PresenceList = () => {
           <div className="testimonial-one owl-right-nav owl-carousel owl-loaded owl-drag mb-4">
             <ShortCuts />
          </div>
-            <Search name= 'Abonnée' lien= "/abonnements/create"/>
+            <Search name= 'Abonnée' lien= "/abonnements/create" displayInput="yes" placeholder="Rechercher un Adhérant"/>
 
          <div className="row">
             <div className="col-lg-12">
@@ -98,7 +98,7 @@ const PresenceList = () => {
                                     </Link>
                                  </td>
                                  <td className="py-2">{abonnement.price}</td>
-                                 <td className="py-2">{abonnement.number_of_days}</td>
+                                 <td className="py-2">{abonnement.length}</td>
                                  <td className="py-2 pl-5 wspace-no"> {abonnement.seances_quantity} </td>
                                  <td className="py-2">{abonnement.activity_name}</td>
                                  <td className="py-2">{abonnement.clients_number}</td>

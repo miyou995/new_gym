@@ -75,7 +75,7 @@ const PersonnelList = () => {
             <ShortCuts />
          </div>
 
-         <Search name= 'Employé' lien= "/personnel/create"/>
+         <Search name= 'Employé' lien= "/personnel/create" placeholder="Rechercher un employé"/>
          <div className="row">
             <div className="col-lg-12">
                <div className="card">

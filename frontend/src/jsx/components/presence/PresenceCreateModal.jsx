@@ -56,7 +56,7 @@ const PresenceCreateModal = ({show, onShowShange, presenceData}) => {
   const [salle, setSalle] = useState('')
   const [selectedSalle, setSelectedSalle] = useState(0)
   const [selectedPlanning, setSelectedPlanning] = useState('')
-  const [presenceDate, setPresenceDate] = useState(formatDate(new Date('2000-01-01')))
+  const [presenceDate, setPresenceDate] = useState(formatDate(new Date()))
 
 
   let clientsEND = `${process.env.REACT_APP_API_URL}/rest-api/clients-presence/`
@@ -197,6 +197,11 @@ const PresenceCreateModal = ({show, onShowShange, presenceData}) => {
     //   //  tdClass = 'hett-test'
     //   }
     // }
+    
+    const changingStyle = (id) => {
+      if (creneaux.indexOf(id) !== -1) {
+       return true
+      }}
 
     const handleSubmit = async e => {
       e.preventDefault();
@@ -291,7 +296,8 @@ return (
                   <TextField type="text" value={note} label="Note" variant="outlined" onChange={e=> setNote(e.currentTarget.value)} fullWidth />
               </div>
               <div className="form-group col-6">
-                  <input type="date" className="form-control" value={presenceDate} label="Note" variant="outlined" onChange={e=> setPresenceDate(e.currentTarget.value)} fullWidth />
+                  {/* <input type="date" className="form-control" value={presenceDate} label="Note" variant="outlined" onChange={e=> setPresenceDate(e.currentTarget.value)} fullWidth /> */}
+                  <TextField type="date" className="form-control" value={presenceDate} label="Date" variant="outlined" onChange={e=> setPresenceDate(e.currentTarget.value)} fullWidth />
               </div>
           </div>
 

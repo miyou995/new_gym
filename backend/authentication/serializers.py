@@ -122,9 +122,11 @@ class UpdateUserSerializer(serializers.ModelSerializer):
 
  
 class ReadUsersView(serializers.ModelSerializer):
+    # client = serializers.CharField(source = "abc.client")
+
     class Meta:
         model = User
-        fields = ('id', 'email', 'groups','first_name', 'last_name',)
+        fields = ('id', 'email', 'groups','get_first_group','first_name', 'last_name',)
         # read_only_fields = 'username'
 class GroupSerializer(serializers.ModelSerializer):
     class Meta:

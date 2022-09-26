@@ -41,7 +41,7 @@ const AbonnementEdit = (props) => {
       setSelectedActivities(res.data.activity)//fzefzefezfezf
       setAbName(res.data.name)
       setabPrice(res.data.price)
-      setAbNumDays(res.data.number_of_days)
+      setAbNumDays(res.data.length)
       setAbSeancesQuantity(res.data.seances_quantity)
       setAbActivityName(res.data.activity_name)
       setAbNumClients(res.data.clients_number)
@@ -126,7 +126,7 @@ const handleCheckbox = (event) => {
       const newAbonnement = {
         name:abName,
         price:abPrice,
-        number_of_days:abNumDays,
+        length:abNumDays,
         activity:selectedActivities,
         seances_quantity:abSeancesQuantity,
       }

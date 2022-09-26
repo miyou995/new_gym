@@ -63,9 +63,9 @@ const HistoryList = () => {
 
    const [searchValue, setSearchValue] = useState('')
    const [searchBarActivated, setSearchBarActivated] = useState(false)
-   const [presenceData, setPresenceData] = useState([]);
-   const [presencesCount, setPresencesCount] = useState('')
-   const [startDate, setStartDate] = useState(formatDate(new Date('2000-01-01')));
+   // const [presenceData, setPresenceData] = useState([]);
+   // const [presencesCount, setPresencesCount] = useState('')
+   const [startDate, setStartDate] = useState(formatDate(new Date('2022-01-01')));
    const [endDate, setEndDate] = useState(formatDate(new Date()));
    let usersEnd =  `${process.env.REACT_APP_API_URL}/rest-api/auth/users`
 
@@ -88,8 +88,9 @@ useEffect(() => {
 
 useEffect(() => {
    api.get(`${process.env.REACT_APP_API_URL}/rest-api/abonnement-client-history?cl=${searchValue}&abc=${abcId}&start=${startDate}&end=${endDate}&usr=${userId}`).then(res => {
-      setAbcsData(res.data)
-      console.log('setAbcsData', res.data);
+      console.log('THE RESULT', res);
+      setAbcsData(res.data.results)
+      console.log('THE DATA setAbcsData', abcsData);
    })
 }, [abcId, endDate, searchValue, startDate, userId])
 
