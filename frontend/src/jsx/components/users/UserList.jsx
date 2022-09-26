@@ -3,20 +3,11 @@ import PageTitle from "../../layouts/PageTitle";
 import { Dropdown, Button } from "react-bootstrap";
 import ShortCuts from "../ShortCuts";
 import { ToastContainer, toast } from 'react-toastify'
-// import DetteCreateModal from './DetteCreateModal';
-/// images 
 import { Link } from "react-router-dom";
 import useAxios from "../useAxios";
-import UserModal from "./UserModal"
-// import EditForm from "./EditForm";
-// import UpdateIcon from '@material-ui/icons/Update';
-// import DeleteIcon from '@material-ui/icons/Delete';
-
-import Pagination from "./Pagination.js";
-import Users from "./Users";
 import useAuth from "../useAuth";
-const UserList = () => {
 
+const UserList = () => {
 const api = useAxios();
 const [usersData, setUsersData] = useState([]);
 const [userModal, setUserModal] = useState(false);
@@ -26,24 +17,24 @@ const [selectedUser, setSelectedUser] = useState("");
 
 const [userGroup, setUserGroup] = useState([]);
 const [groups, setGroups] = useState([]);
-const [usersStatus, setUsersStatus] = useState(null);
-
+// const [usersStatus, setUsersStatus] = useState(null);
+const usersEnd= `${process.env.REACT_APP_API_URL}/rest-api/auth/users`
 const groupsEnd = `${process.env.REACT_APP_API_URL}/rest-api/auth/groups/`
-
-   useEffect( () =>  {
-      api.get(`${process.env.REACT_APP_API_URL}/rest-api/auth/users`).then( res => {
-         console.log('result ', res);
-         setUsersData(res.data)
-         setUsersStatus(res.status)
-      }).catch( err => {
-         console.log('IRRROR', err);
-         setUsersStatus(err.response.status)
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      useEffect(  () =>  {
+          api.get(usersEnd).then( res => {
+            console.log('result ', res);
+            setUsersData(res.data.results)
+            // setUsersStatus(res.status)
+         }).catch( err => {
+            console.log('IRRROR', err);
+            // setUsersStatus(err.response.status)
+         })
+         api.get(groupsEnd).then( res => {
+            setGroups(res.data)
+            console.log("MY GROUSP ", res.data);
       })
-      api.get(groupsEnd).then( res => {
-         setGroups(res.data)
-         console.log("MY GROUSP ", res.data);
-     })
-   }, [userModal]);
+      }, [usersEnd, groupsEnd]);
 
    const setSelectedGroup = (groups, groupId ) => {
       for (let i = 0; i < groups.length; i++) {
@@ -52,23 +43,11 @@ const groupsEnd = `${process.env.REACT_APP_API_URL}/rest-api/auth/groups/`
           }            
       }
   }
-   // const [users, setUsers] = useState([]);
-   const [loading, setLoading] = useState(false);
-   const [currentPage, setCurrentPage] = useState(1);
-   const [UserPerPage] = useState(4);
-
-  const indexOfLastUser = currentPage * UserPerPage;
-  const indexOfFirstUser = indexOfLastUser - UserPerPage;
-  const currentUsers = usersData.slice(indexOfFirstUser, indexOfLastUser);
-
-   const paginate = pageNumber => setCurrentPage(pageNumber);
-  
    const userAuthorization = `${process.env.REACT_APP_API_URL}/rest-api/auth/users/`
 
    const userAuth = useAuth(userAuthorization, 'GET')
 
    console.log("userAuth=========================>", useAuth(userAuthorization, 'GET'));
-
 
 
    return (
@@ -83,31 +62,8 @@ const groupsEnd = `${process.env.REACT_APP_API_URL}/rest-api/auth/groups/`
             <div className="input-group search-area d-inline-flex">
             </div>
                <Button onClick={e => { setUserModal(true)}}>Ajouter</Button>
-            {/* <Link to="/users/create" className="btn btn-primary ml-auto">Ajouter un utilisateur</Link> */}
          </div>
-            {/* <Search name= 'Abonnée' lien= "/client/create"/> */}
-            {/* <div className="row d-flex justify-content-arround mb-3">
-                  <div className="btn btn-success ml-auto" onClick={e => setPaiementModal(true) }>
-                     + Paiement 
-                  </div>
-                  <div className="btn btn-danger ml-auto" onClick={e => setRemunerationPersonnelModal(true) }>
-                  + Remunération Personnel 
-                  </div>
-                  <div className="btn btn-info ml-auto" onClick={e => setRemunerationCoachModal(true) }>
-                  + Remunération Coach
-                  </div>
-                  <div className="btn btn-primary ml-auto" onClick={e => setAutreModal(true) }>
-                  + Autre Transaction
-                  </div>
-                <div className="col-md-2">
-                      <input type="date" name="birth_date" value={startDate} className="form-control"  onChange={e => setStartDate(e.target.value)}/>
-               </div>
-               <div className=" col-md-2">
-                     <input type="date" name="birth_date" value={endDate} className="form-control"  onChange={e => setEndDate(e.target.value)}/>
-               </div>
-            </div> */}
-
-         <div className="row">
+            <div className="row">
             <div className="col-lg-12">
                <div className="card">
                   <div className="card-body" style={{padding: '5px'}}>
@@ -115,41 +71,37 @@ const groupsEnd = `${process.env.REACT_APP_API_URL}/rest-api/auth/groups/`
                         <table className="table mb-0 table-striped">
                            <thead>
                               <tr>
-                                 <th>ID</th>
-                                 <th>Email</th>
+                                 <th className="customer_shop">ID Utilisateur </th>
+                                 <th> Email</th>
+                                 <th> Nom </th>
+                                 <th> Prénom </th>
+                                 <th className="pl-5 width200">Role </th>
+                                 <th className='text-right'>Actif </th>
                               </tr>
                            </thead>
                            <tbody id="customers">
-                              <Users usersData={currentUsers} setUserId={setUserId} setSelectedUser={setSelectedUser}
-                              setUserGroup={setUserGroup} userGroup={userGroup} loading={loading}/>
-                           </tbody>
+                              {usersData.map(user => (
+                                 <tr role="row presences" key={user.id} className="btn-reveal-trigger cursor-abonnement presences p-0">
+                                    <td className="customer_shop_single"> {user.id} </td>
+                                    <td className="customer_shop_single"> 
+                                       <Link to={`/user/${user.id}`}>{user.email}</Link>
+                                    </td>
+                                    <td >{user.first_name}</td>
+                                    <td >{user.last_name }</td>
+                                    <td className=" text-left">{user.get_first_group}</td>
+                                    <td className=" text-right text-danger">{user.is_active}</td>
+                                 </tr>
+                              ))}
+                              </tbody>
                         </table>
-                        <Pagination
-                           UserPerPage={UserPerPage}
-                           totalUsers={usersData.length}
-                           paginate={paginate}
-                        />
- 
-                        
                      </div>
                   </div>
                </div>
             </div>
+            {/* <PresenceEditModal show={editModal} onShowShange={setEditModal} presenceData={{presenceId:presenceId, client:client, hourIn:hourIn, hourOut: hourOut, creneau:creneau, note:note, clientId:clientId, date:date, activity:activity}}/>
+            <PresenceCreateModal show={presneceCreateModal} onShowShange={setPresneceCreateModal} /> */}
          </div>
-         { userModal == true && 
-         <UserModal show={userModal} onShowShange={setUserModal}  userData={{
-            userId : userId,
-            selectedUser : setSelectedUser,
-            userGroup: userGroup,
-            groups : groups
-            // userGroop : userGroop,
-            }}
-           />
-         }
-
-            {/* <EditForm show={userModal} onShowShange={setUserModal} userData={{
-               userId: userId,
-            }} /> */}
+        
          </>
          )}
       </Fragment>

@@ -20,31 +20,32 @@ function refreshPage() {
    window.location.reload(false);
  }
 
-const Drop = (props) => {
-   return <Dropdown>
-            <Dropdown.Toggle variant="" className="table-dropdown i-false">
-               <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                  <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-                     <rect x="0" y="0" width="24" height="24"></rect>
-                     <circle fill="#000000" cx="5" cy="12" r="2"></circle>
-                     <circle fill="#000000" cx="12" cy="12" r="2"></circle>
-                     <circle fill="#000000" cx="19" cy="12" r="2"></circle>
-                  </g>
-               </svg>
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-               <Dropdown.Item href={`/coach/edit/${props.id}`}>Modifier</Dropdown.Item>
-               <Dropdown.Item type='button' className="text-danger" onClick={ async () => {
-                    await useAxios.delete(`${process.env.REACT_APP_API_URL}/rest-api/coachs/delete/${props.id}`)
-                    refreshPage()
-                    }}>
-                   Supprimer
-                </Dropdown.Item>
-            </Dropdown.Menu>
-         </Dropdown>
-};
-const CoachList = () => {
-  const api = useAxios();
+ const CoachList = () => {
+    const api = useAxios();
+    const Drop = (props) => {
+       return <Dropdown>
+                <Dropdown.Toggle variant="" className="table-dropdown i-false">
+                   <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                      <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+                         <rect x="0" y="0" width="24" height="24"></rect>
+                         <circle fill="#000000" cx="5" cy="12" r="2"></circle>
+                         <circle fill="#000000" cx="12" cy="12" r="2"></circle>
+                         <circle fill="#000000" cx="19" cy="12" r="2"></circle>
+                      </g>
+                   </svg>
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                   <Dropdown.Item href={`/coach/edit/${props.id}`}>Modifier</Dropdown.Item>
+                   <Dropdown.Item type='button' className="text-danger" onClick={ () => {
+                         api.delete(`${process.env.REACT_APP_API_URL}/rest-api/coachs/delete/${props.id}`).then(res=> {
+                            refreshPage()
+                         })
+                        }}>
+                       Supprimer
+                    </Dropdown.Item>
+                </Dropdown.Menu>
+             </Dropdown>
+    };
 
    const coachAuthorizationEnd = `${process.env.REACT_APP_API_URL}/rest-api/get_coach_authorization/`
    let endpoint = `${process.env.REACT_APP_API_URL}/rest-api/coachs/`
@@ -84,7 +85,7 @@ const CoachList = () => {
             <ShortCuts />
          </div>
 
-         <Search name= 'Ajouter Coach' lien= "/coach/create"/>
+         <Search name= 'Ajouter Coach' lien= "/coach/create" placeHolder="Rechercher un coach"/>
 
          <div className="row">
             <div className="col-lg-12">

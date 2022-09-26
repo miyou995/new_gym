@@ -29,7 +29,7 @@ class StandardResultsSetPagination(pagination.PageNumberPagination):
 
 
 class LimitPagination(MultipleModelLimitOffsetPagination):
-    default_limit = 20
+    default_limit = 10
 
 class BaseModelPerm(DjangoModelPermissions):
     def get_custom_perms(self, method, view):
@@ -281,10 +281,9 @@ class RemunerationProfDestroyAPIView(generics.DestroyAPIView):
     }
 
 
-
 class TransactionListAPIView(FlatMultipleModelAPIView):
     queryset = Transaction.objects.all()
-    sorting_fields = ['-last_modified']
+    sorting_fields = ['-date_creation']
     filter_backends = (filters.SearchFilter,)
     flat = True
     pagination_class = LimitPagination
@@ -298,27 +297,27 @@ class TransactionListAPIView(FlatMultipleModelAPIView):
         end_date = self.request.query_params.get('end_date', None)
         querylist = (
             {
-                'queryset': Paiement.objects.filter(date_creation__range=[start_date, end_date]).order_by('-last_modified'),
+                'queryset': Paiement.objects.filter(date_creation__range=[start_date, end_date]).order_by('-date_creation'),
                 'serializer_class': PaiementSerialiser,
                 'label': 'paiement',
             },
             {
-                'queryset': Remuneration.objects.filter(date_creation__range=[start_date, end_date]).order_by('-last_modified'),
+                'queryset': Remuneration.objects.filter(date_creation__range=[start_date, end_date]).order_by('-date_creation'),
                 'serializer_class': RemunerationSerialiser,# il ya un problem
                 'label': 'remuneration',
             },
             {
-                'queryset': Autre.objects.filter(date_creation__range=[start_date, end_date]).order_by('-last_modified'),
+                'queryset': Autre.objects.filter(date_creation__range=[start_date, end_date]).order_by('-date_creation'),
                 'serializer_class': AutreSerialiser,
                 'label': 'autre',
             },
             {
-                'queryset': RemunerationProf.objects.filter(date_creation__range=[start_date, end_date]).order_by('-last_modified'),
+                'queryset': RemunerationProf.objects.filter(date_creation__range=[start_date, end_date]).order_by('-date_creation'),
                 'serializer_class': RemunerationProfSerialiser,
                 'label': 'remunerationProf',
             },
             {
-                'queryset': AssuranceTransaction.objects.filter(date_creation__range=[start_date, end_date]).order_by('-last_modified'),
+                'queryset': AssuranceTransaction.objects.filter(date_creation__range=[start_date, end_date]).order_by('-date_creation'),
                 'serializer_class': AssuranceSerialiser,
                 'label': 'assurance',
             },
@@ -327,30 +326,30 @@ class TransactionListAPIView(FlatMultipleModelAPIView):
 
 
 # class TransactionListAPIView(FlatMultipleModelAPIView):
-#     sorting_fields = ['-last_modified']
+#     sorting_fields = ['-date_creation']
 #     querylist = [
 #         {
-#             'queryset': Paiement.objects.all().order_by('-last_modified'),
+#             'queryset': Paiement.objects.all().order_by('-date_creation'),
 #             'serializer_class': PaiementSerialiser,
 #             'label': 'paiement',
 #         },
 #         {
-#             'queryset': Remuneration.objects.all().order_by('-last_modified'),
+#             'queryset': Remuneration.objects.all().order_by('-date_creation'),
 #             'serializer_class': RemunerationSerialiser,# il ya un problem
 #             'label': 'remuneration',
 #         },
 #         {
-#             'queryset': Autre.objects.all().order_by('-last_modified'),
+#             'queryset': Autre.objects.all().order_by('-date_creation'),
 #             'serializer_class': AutreSerialiser,
 #             'label': 'autre',
 #         },
 #         {
-#             'queryset': RemunerationProf.objects.all().order_by('-last_modified'),
+#             'queryset': RemunerationProf.objects.all().order_by('-date_creation'),
 #             'serializer_class': RemunerationProfSerialiser,
 #             'label': 'remunerationProf',
 #         },
 #         {
-#             'queryset': AssuranceTransaction.objects.all().order_by('-last_modified'),
+#             'queryset': AssuranceTransaction.objects.all().order_by('-date_creation'),
 #             'serializer_class': AssuranceSerialiser,
 #             'label': 'assurance',
 #         },
@@ -526,34 +525,34 @@ def chiffre_affaire(request):
 class TransToday(FlatMultipleModelAPIView):
     queryset = Transaction.objects.all()
     today = date.today()
-    sorting_fields = ['-last_modified']
+    sorting_fields = ['-date_creation']
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
         "GET": ["transaction.view_transaction"]
     }
     querylist = [
         {
-            'queryset': Paiement.objects.filter(date_creation = today).order_by('-last_modified'),
+            'queryset': Paiement.objects.filter(date_creation = today).order_by('-date_creation'),
             'serializer_class': PaiementSerialiser,
             'label': 'paiement',
         },
         {
-            'queryset': Remuneration.objects.filter(date_creation = today).order_by('-last_modified'),
+            'queryset': Remuneration.objects.filter(date_creation = today).order_by('-date_creation'),
             'serializer_class': RemunerationSerialiser,
             'label': 'remuneration',
         },
         {
-            'queryset': Autre.objects.filter(date_creation = today).order_by('-last_modified'),
+            'queryset': Autre.objects.filter(date_creation = today).order_by('-date_creation'),
             'serializer_class': AutreSerialiser,
             'label': 'autre',
         },
         {
-            'queryset': RemunerationProf.objects.filter(date_creation = today).order_by('-last_modified'),
+            'queryset': RemunerationProf.objects.filter(date_creation = today).order_by('-date_creation'),
             'serializer_class': RemunerationProfSerialiser,
             'label': 'remunerationProf',
         },
         {
-            'queryset': AssuranceTransaction.objects.filter(date_creation = today).order_by('-last_modified'),
+            'queryset': AssuranceTransaction.objects.filter(date_creation = today).order_by('-date_creation'),
             'serializer_class': AssuranceSerialiser,
             'label': 'assurance',
         },

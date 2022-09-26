@@ -52,20 +52,25 @@ class PresencePostSerialiser(serializers.ModelSerializer):
         current_time = now.strftime("%H:%M:%S")
         he = current_time
         hour_in = validated_data['hour_entree']
+        hour_out = validated_data['hour_sortie']
+        presence = Presence.objects.create(abc= abc, creneau= creneau, hour_entree=hour_in , hour_sortie=hour_out,is_in_list=True, is_in_salle=False, date=presence_date)
+        # client.init_presence(dict(abc= abc, creneau= creneau, hour_in=hour_in , hour_sortie=hour_out,is_in_list=True, is_in_salle=False, date=presence_date))
+        client.is_on_salle=False
+        abc.presence_quantity -= 1 
         # prenseces = abon.presence_quantity 
-        try:
-            # THIS IS A SORTIE
-            hour_out = validated_data['hour_sortie']
-            presence = Presence.objects.create(abc= abc, creneau= creneau, hour_entree=hour_in , hour_sortie=hour_out,is_in_list=True, is_in_salle=False, date=presence_date)
-            client.init_presence(dict(abc= abc, creneau= creneau, hour_in=hour_in , hour_sortie=hour_out,is_in_list=True, is_in_salle=False, date=presence_date))
-            client.is_on_salle=False
-            abc.presence_quantity -= 1 
-        except :
-            # THIS IS A ENTREE
+        # try:
+        #     # THIS IS A SORTIE
+        #     hour_out = validated_data['hour_sortie']
+        #     presence = Presence.objects.create(abc= abc, creneau= creneau, hour_entree=hour_in , hour_sortie=hour_out,is_in_list=True, is_in_salle=False, date=presence_date)
+        #     client.init_presence(dict(abc= abc, creneau= creneau, hour_in=hour_in , hour_sortie=hour_out,is_in_list=True, is_in_salle=False, date=presence_date))
+        #     client.is_on_salle=False
+        #     abc.presence_quantity -= 1 
+        # except :
+        #     # THIS IS A ENTREE
 
-            presence = Presence.objects.create(abc= abc, creneau= creneau, hour_entree=hour_in , is_in_list=True, is_in_salle=True, date=presence_date)
-            abc.presence_quantity -= 1
-            client.is_on_salle=True
+        #     presence = Presence.objects.create(abc= abc, creneau= creneau, hour_entree=hour_in , is_in_list=True, is_in_salle=True, date=presence_date)
+        #     abc.presence_quantity -= 1
+        #     client.is_on_salle=True
         return presence
        
     # def create(self, validated_data):

@@ -24,7 +24,7 @@ import PlanningEditModal from './PlanningEditModal'
 import AbonnementListModal from './AbonnementListModal'
 import MaladieCreateModal from './MaladieCreateModal'
 import MaladieEditModal from './MaladieEditModal'
-import DoorModal from './DoorModal'
+// import DoorModal from './DoorModal'
 const Configuration = (props) => {
   const api = useAxios();
   const abonnementsListEND = `${process.env.REACT_APP_API_URL}/rest-api/abonnement/`
@@ -52,7 +52,7 @@ const Configuration = (props) => {
     const [ activityEditModal, setActivityEditModal] = useState(false)
     const [ maladieCreateModal, setMaladieCreateModal] = useState(false)
     const [ maladieEditModal, setMaladieEditModal] = useState(false)
-    const [ doorModal, setDoorModal] = useState(false)
+    // const [ doorModal, setDoorModal] = useState(false)
 
     const [abonnementId, setAbonnementId] = useState('')
     const [activityId, setActivityId] = useState('')
@@ -115,11 +115,11 @@ const Configuration = (props) => {
         })
     }, [salleActiviteCreateModal, salleActivitiesEND, salleActiviteEditModal]);
 
-    useEffect(() => {
-        api.get(doorsEnd).then(res =>{
-            setDoors(res.data)
-        })
-    }, [doorModal]);
+    // useEffect(() => {
+    //     api.get(doorsEnd).then(res =>{
+    //         setDoors(res.data)
+    //     })
+    // }, [doorModal]);
     useEffect(() => {
         console.log('dureee de labonnement', DureeAb.findIndex(x => x.jours === Number(abDuree)));
      }, [abDuree, abonnementCreateModal]);
@@ -388,7 +388,7 @@ const Configuration = (props) => {
                 </div>
                 {/* FIN MALADIES */}
                  {/* DEBUT portes */}
-                 <div className="col-xl-4 col-lg-4">
+                 {/* <div className="col-xl-4 col-lg-4">
                     <div className="card">
                         <div className="card-header">
                             <h4 className="card-title">Portes</h4>
@@ -427,7 +427,7 @@ const Configuration = (props) => {
                             </PerfectScrollbar>
                         </div>
                     </div>
-                </div>
+                </div> */}
                 {/* FIN portes */}
                 <div className=" col-lg-6 config-tableaux">
                     <div className="card">
@@ -521,20 +521,18 @@ const Configuration = (props) => {
             maladieId : maladieId,
             maladieName : maladieName
         }} />
-        <DoorModal  show={doorModal} onShowShange={setDoorModal} doorData={{
+        {/* <DoorModal  show={doorModal} onShowShange={setDoorModal} doorData={{
             doorId : doorId,
             doorIp : doorIp,
             doorUsername: doorUsername,
             doorPassword: doorPassword
-        }} />
+        }} /> */}
         <PlanningEditModal  show={planningEditModal} onShowShange={setPlanningEditModal} planningData={{
             planId : planId,
             planName :planName,
             isDefaultPlanning: isDefaultPlanning,
         }}  />
         < AbonnementListModal  show={abonnementListModal} onShowShange={setAbonnementListModal} abonnementData={TestFunc} />
-        
-
         < SalleActiviteEditModal  show={salleActiviteEditModal} onShowShange={setSalleActiviteEditModal}  salleData={{
             salleId : salleId,
             salleName : salleName,

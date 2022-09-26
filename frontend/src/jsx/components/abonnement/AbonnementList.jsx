@@ -60,7 +60,7 @@ const PresenceList = () => {
           <div className="testimonial-one owl-right-nav owl-carousel owl-loaded owl-drag mb-4">
             <ShortCuts />
          </div>
-            <Search name= 'Abonnée' lien= "/abonnements/create"/>
+            <Search name= 'Abonnée' lien= "/abonnements/create" displayInput="yes" placeholder="Rechercher un Adhérant"/>
 
          <div className="row">
             <div className="col-lg-12">
