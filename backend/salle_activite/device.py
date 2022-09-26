@@ -112,7 +112,7 @@ class AccessControl:
         try:
             client=  Client.objects.get(hex_card=card)
             if client.has_permission(door_ip) :
-                print('client.has_permission(door_ip)', client.has_permission(door_ip))
+                print('le client la la permission dentree ')
                 return True
             else: 
                 return False
@@ -120,7 +120,7 @@ class AccessControl:
         except:
             print('client doesnt exist or doesnt have permission to get in')
             return False
-        print(' la has_perm has_perm>>>>> ', has_perm)
+        # print(' la has_perm has_perm>>>>> ', has_perm)
         return client
 
     def messCallBackEx1(self, lCommand, lLoginID, pBuf, dwBufLen, pchDVRIP, nDVRPort, bAlarmAckFlag, nEventID, dwUser):
@@ -139,7 +139,7 @@ class AccessControl:
             print('get_authorization => ', client)
             if client : 
                 self.open_door()
-                client.init_presence()
+                # client.init_presence()
 
                 # self.logout()
                 # self.login()

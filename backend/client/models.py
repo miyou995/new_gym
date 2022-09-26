@@ -120,15 +120,7 @@ class Client(models.Model):
 
 
 
-    def init_presence(self, *args, **kwargs):
-        # creneau     = kwargs["creneau"]
-        # abc         = kwargs["abc"]
-        # hour_in     = kwargs["hour_in"]
-        # hour_out    = kwargs["hour_out"]
-        # is_in_list  = kwargs["is_in_list"]
-        # date        = kwargs["date"]
-        presence = Presence.objects.create(**kwargs)
-        return presence
+
 
     # def select_abc(self, abonnements):
     #     # abcs = 
@@ -144,6 +136,15 @@ class Client(models.Model):
     #                 print('je suis laaaa')
     #                 return ab
 
+    # def init_presence(self, *args, **kwargs):
+    #     # creneau     = kwargs["creneau"]
+    #     # abc         = kwargs["abc"]
+    #     # hour_in     = kwargs["hour_in"]
+    #     # hour_out    = kwargs["hour_out"]
+    #     # is_in_list  = kwargs["is_in_list"]
+    #     # date        = kwargs["date"]
+    #     presence = Presence.objects.create(**kwargs)
+        # return presence
 
     #A VERIFIEEEEEEER
     def init_output(self):
@@ -174,14 +175,14 @@ class Client(models.Model):
         salle = Salle.objects.get(door__ip_adress=door_ip)
         current_time = datetime.now().strftime("%H:%M:%S")
         abonnement_client = AbonnementClient.subscription.active_subscription(client=self, type_abonnement_client__salles=salle).first()
+        creneaux = Creneau.range.get_creneaux_of_day().filter(abonnements=abonnement_client)
         if abonnement_client.is_time_volume() and abonnement_client.is_valid():
             with transaction.atomic():
-                presence = Presence.objects.create(abc= abonnement_client, is_in_list=True, hour_entree=current_time, is_in_salle=True)
+                presence = Presence.objects.create(abc= abonnement_client, creneaux=creneaux.first(),is_in_list=True, hour_entree=current_time, is_in_salle=True)
                 self.is_on_salle=True
                 self.save()
                 return True
         elif not abonnement_client.is_time_volume() and abonnement_client.is_valid():
-            creneaux = Creneau.range.get_creneaux_of_day().filter(abonnements=abonnement_client)
             if creneaux.count() > 1 :
                 dur_ref_time_format = abs(datetime.strptime(str(creneaux[0].hour_start), FTM) - datetime.strptime(current_time, FTM)) #nous avons besoin d'un crenaux Reference pour le comparé au autres
                 dur_ref= timedelta.total_seconds(dur_ref_time_format) 

@@ -9,12 +9,11 @@ const Pagination = ({ UserPerPage, totalUsers, paginate }) => {
     }
     
     const [activeLink, setActiveLink] = useState(null);
-
     const [activeId, setActiveId] = useState(1);
-
     const handleClick = (id) => {
         setActiveLink(id);
     };
+
     return (
         <nav>
             <ul className='pagination d-flex mt-2 border-0' style={{display: "flex", justifyContent: "flex-end", cursor: "pointer"}}>

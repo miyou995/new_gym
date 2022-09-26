@@ -117,6 +117,8 @@ const Markup = () => {
     // trésorie
     { url: "tresorie", component: Tresorie },
     { url: "users", component: UserList },
+    { url: "users/:id", component: UpdateModal },
+
     // Transactions
     // { url: "transaction", component: CoinDetails },
     // clients
@@ -160,7 +162,6 @@ const Markup = () => {
     { url: "coach/:id", component: CoachDetail },
     { url: "coach/edit/:id", component: CoachEdit },
 
-    { url: "user/edit/:id", component: UpdateModal },
 
 
     /// Transactions CREATION

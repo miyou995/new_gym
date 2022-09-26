@@ -41,7 +41,6 @@ class ClientAPIView(generics.CreateAPIView):
     extra_perms_map = {
         "POST": ["client.add_client"]
     }
-
     # def perform_create(self, serializer):
     #     queryset = SignupRequest.objects.filter(user=self.request.user)
     #     if queryset.exists():
