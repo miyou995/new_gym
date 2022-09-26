@@ -158,8 +158,7 @@ const ABCCreateModal = ({show, onShowShange, clientData}) => {
     const changingStyle = (id) => {
       if (creneaux.indexOf(id) !== -1) {
        return true
-      }
-    }
+      }}
     function getDayIndex(day){ // this function returns the index of the currente day in the list of days
       switch (day) {
         case 'SA':
@@ -276,7 +275,7 @@ return (
                       onChange={(event, value) => 
                         {try {
                           setSelectAbonnement(value.id)
-                          setDureeAbonnement(value.number_of_days)
+                          setDureeAbonnement(value.length)
                           setPaiementCochage(value.systeme_cochage)
                           setShowCreneau(true)
                         } catch (error) {

@@ -5,6 +5,7 @@ from django.conf import settings
 from authentication.models import User
 from django.contrib.auth.models import Group 
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser, DjangoModelPermissions
+from rest_framework import pagination
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -17,6 +18,11 @@ from rest_framework_simplejwt.tokens import RefreshToken
 # @method_decorator(csrf_protect, name='dispatch')
 from rest_framework_simplejwt.views import TokenObtainPairView
 # @method_decorator(ensure_csrf_cookie, name='dispatch')
+
+class StandardResultsSetPagination(pagination.PageNumberPagination):
+    page_size = 20
+    page_size_query_param = 'page_size'
+    max_page_size = 100
 
 class BaseModelPerm(DjangoModelPermissions):
     def get_custom_perms(self, method, view):
@@ -120,6 +126,8 @@ class LoginView(TokenObtainPairView):
 class GetUsersView(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = ReadUsersView
+    pagination_class = StandardResultsSetPagination
+
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
         "GET": ["abonnement.view_user"]

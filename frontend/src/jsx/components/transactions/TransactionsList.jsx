@@ -38,81 +38,70 @@ const TransactionList = () => {
       }
    }
    
-const [startDate, setStartDate] = useState(formatDate(new Date('2021-01-05')));
+   const [startDate, setStartDate] = useState(formatDate(new Date('2021-01-05')));
    const [endDate, setEndDate] = useState(formatDate(new Date()));
+
    const [paiementModal, setPaiementModal] = useState(false);
    const [autreModal, setAutreModal] = useState(false);
    const [remunerationCoachModal, setRemunerationCoachModal] = useState(false);
    const [remunerationPersonnelModal, setRemunerationPersonnelModal] = useState(false);
-   const [detteModal, setDetteModal] = useState(false);
-   // const [modal, setModal] = useState(false);
-   const [presenceData, setPresenceData] = useState([]);
+
    const [searchValue, setSearchValue] = useState('')
    const [transData, setTransData] = useState([]);
-   // const savedTransactions = (endpoint)
-   // console.log('els clieeents', savedTransactions);
+
    const capitalizeFirstLetter = (word) => {
       if (word)
           return word.charAt(0).toUpperCase() + word.slice(1);
       return '';
    };
 
-   // useEffect(() =>  {
-   //    const dateDebut = formatDate(startDate)
-   //    const dateFin = formatDate(endDate)
-   //    if (searchValue !== '') {
-   //       api.get(`${process.env.REACT_APP_API_URL}/rest-api/transactions/?start_date=${dateDebut}&end_date=${dateFin}&search=${searchValue}`).then(res => {
-   //          setTransData(res.data)
-   //          console.log('le resultat des clients est ', res.data);
-   //       })
-   //    }else {
 
-   //       api.get(`${process.env.REACT_APP_API_URL}/rest-api/transactions/?start_date=${dateDebut}&end_date=${dateFin}&search=${searchValue}`).then(res => {
-   //          setTransData(res.data)
-   //          console.log('le resultat des clients est ', res.data);
-   //       })}
-   // }, [searchValue]);
 
    const [uStatus, setUStatus] = useState(null);
 
    const [nextpage, setNextpage] = useState(1);
+   
+   const [requestedUrl, setRequestedUrl] = useState(null);
+   const [nextUrl, setNextUrl] = useState("");
+   const [previusUrl, setPreviusUrl] = useState("");
 
    const history = useHistory();
 
    const dateDebut = formatDate(startDate)
    const dateFin = formatDate(endDate)
    
-   const transactionAuth = `${process.env.REACT_APP_API_URL}/rest-api/get_transaction_authorization/`
-
+   const transactionAuthEnd = `${process.env.REACT_APP_API_URL}/rest-api/transactions/get_transaction_authorization/`
    useEffect(() =>  {
-      // api.get(`${process.env.REACT_APP_API_URL}/rest-api/presence/?start_date=${startDate}&end_date=${endDate}`).then(res => {
-      //    setStartDate(res.data.results)
-      //    setEndDate(res.data.results)
-      //    console.log('le resultat des clients est ', res.data);
-      // })
+      const dateDebut = formatDate(startDate)
+      const dateFin = formatDate(endDate)
+      api.get(`${process.env.REACT_APP_API_URL}/rest-api/transactions/?start_date=${dateDebut}&end_date=${dateFin}&search=${searchValue}&offset=${nextpage}`).then(res => {
+         console.log('le resultat des clients est ', res);
+         setTransData(res.data.results)
+         setNextUrl(res.data.next)
+         setPreviusUrl(res.data.previous)
+         console.log('le setNextUrl des clients est ', nextUrl);
+         console.log('le setPreviusUrl des clients est ', previusUrl);
 
-    
-
-      api.get(transactionAuth).then( res => {
-         // setUStatus(res.status);
-         console.log(res.status);
-         console.log('result ', res);
-         setUStatus(res.status);
-
-         // setTransData(res.data.results);
-         // console.log(res.status)
-         // return res.status < 400;
-      }).catch((error) => {
-         if (error.response) {
-            console.log(error.response.data);
-            console.log(error.response.status);
-            console.log(error.response.headers);
-            setUStatus(error.response.status);
-
-
-      }
-   })
-
+      })
+      // if (searchValue !== '') {
+      // }else {
+      //    api.get(`${process.env.REACT_APP_API_URL}/rest-api/transactions/?start_date=${dateDebut}&end_date=${dateFin}&search=${searchValue}`).then(res => {
+      //       setTransData(res.data)
+      //       console.log('le resultat des clients est ', res);
+      //    })}
+   }, [searchValue, dateDebut, dateFin]);
+      useEffect(() =>  {
+         if (requestedUrl) {
+            api.get(requestedUrl).then(res => {
+               console.log('le resultat des clients est ', res);
+               setTransData(res.data.results)
+               setNextUrl(res.data.next)
+               setPreviusUrl(res.data.previous)
+               console.log('le setNextUrl des 212222222222222t ', nextUrl);
+               console.log('le setPreviusUrl des 212222222222222t ', previusUrl);
+            })
+         }
+      }, [requestedUrl]);
    
    // !!! rahi : if clientAuth == true , il n'affiche pas la listes des client car la listes des client endpoint is diffrent -- clientList.jsx
    // f admin meme ki ndir permissions,  f Network y'affichili bli i dont have access ( error 403 )
@@ -141,11 +130,12 @@ const [startDate, setStartDate] = useState(formatDate(new Date('2021-01-05')));
    //       console.log('le resultat des clients est ', res.data);
    //    })}
    // presenceDateDate()
-   }, [startDate, endDate,nextpage,paiementModal,remunerationCoachModal,remunerationPersonnelModal,autreModal]);
+   // }, [startDate, endDate,nextpage,paiementModal,remunerationCoachModal,remunerationPersonnelModal,autreModal]);
 
    // const endpoint = `${process.env.REACT_APP_API_URL}/rest-api/transactions/?start_date=${dateDebut}&end_date=${dateFin}&search=${searchValue}`
+   const [transactionAuth] = useAuth(transactionAuthEnd, 'GET')
 
-   const [trAuth, loading] = useAuth(transactionAuth, 'GET')
+   const [trAuth, loading] = useAuth(transactionAuthEnd, 'GET')
 
 
    console.log("trAuth ===> ", trAuth);
@@ -153,15 +143,10 @@ const [startDate, setStartDate] = useState(formatDate(new Date('2021-01-05')));
    return (
       <Fragment>
          <ToastContainer position='top-right' autoClose={5000} hideProgressBar={false} newestOnTop closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
-         {loading && 
          <>
-            {trAuth ? (
-               <>
                   <div className="testimonial-one owl-right-nav owl-carousel owl-loaded owl-drag mb-4">
                      <ShortCuts />
                   </div>
-
-
                   {/* <Search name= 'Abonnée' lien= "/client/create"/> */}
                   <div className="row d-flex justify-content-arround mb-3">
                      <div className="btn btn-success ml-auto" onClick={e => setPaiementModal(true)}>
@@ -272,28 +257,26 @@ const [startDate, setStartDate] = useState(formatDate(new Date('2021-01-05')));
 
                      </div>
                      <div className='dataTables_paginate paging_simple_numbers' id='example5_paginate' >
-                        <Button
-                           onClick={() =>
-                              nextpage > 0 && setNextpage(nextpage - 1)
-                           }
-                           style={{ width: '100px', border: 'none', height: '48px', color: '#ffffff', textAlign: 'left', fontSize: '15px', paddingLeft: '8px' }}>
-                           Précédent
-                        </Button>
-                        <span>
-                           <input
-                              to='/transactions'
-                              type='number'
-                              className='paginate_button_client  '
-                              onChange={e => setNextpage(e.target.value)}
-                              value={nextpage}
-                              style={{ width: '100px', border: 'none', height: '99%', textAlign: 'center', fontSize: '15px' }}
-                           />
-                        </span>
+                        {
+                           previusUrl && 
+                           <Button
+                              onClick={() => {
+                                 if( nextpage > 1 ) {
+                                    setRequestedUrl(previusUrl)
+                                    nextpage > 0 && setNextpage(nextpage - 1)
+                                 }
+                              }}
+                              style={{ width: '100px', border: 'none', height: '48px', color: '#ffffff', textAlign: 'left', fontSize: '15px', paddingLeft: '8px' }}>
+                              Précédent
+                           </Button>
+                        }
+                        <span className="m-3" >{nextpage}</span>
                         <Button
                            style={{ width: '100px', border: 'none', height: '48px', color: '#ffffff', textAlign: 'center', fontSize: '15px', padding: '2px' }}
-                           onClick={() =>
+                           onClick={() => {
+                              setRequestedUrl(nextUrl)
                               nextpage > 0 && setNextpage(nextpage + 1)
-                           }
+                           }}
                         >
                            Suivant
                         </Button>
@@ -301,10 +284,7 @@ const [startDate, setStartDate] = useState(formatDate(new Date('2021-01-05')));
 
                   </div>
 
-               </>
-            ) : <Error403 />}
          </>
-         }
 
 
       </Fragment>

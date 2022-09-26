@@ -72,7 +72,7 @@ const Home = () => {
       // api.get(coachsEND).then((res) => {
       //    setCoachData(res.data)
       // })
-   }, []);
+   }, [dettesAND, chargesAND, ttcAND, clientCount, transactionsTodayEND, presencesTodayEND]);
    useEffect(() => {
       api.get(presencesParSalleEnd).then( res => {
          setSalle(res.data.presences)

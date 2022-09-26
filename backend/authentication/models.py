@@ -60,4 +60,8 @@ class User(AbstractUser):
     @property
     def is_content_creator(self):
         return self.is_active and (self.is_superuser or self.is_staff and self.groups.filter(name="Content_creator").exists())
-
+    
+    @property
+    def get_first_group(self):
+        if self.groups.first() :
+            return self.groups.first().name

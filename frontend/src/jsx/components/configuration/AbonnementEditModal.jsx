@@ -70,7 +70,7 @@ useEffect(() => {
     api.get(abonnementEditEND).then(res => {
       setName(res.data.name)
       setPrice(res.data.price)
-      setNumberOfDays(res.data.number_of_days)
+      setNumberOfDays(res.data.length)
       setSeancesQuantity(res.data.seances_quantity)
       setSystemeCochage(res.data.systeme_cochage)
       setAbnIndex(abonnementData['dureeInd'])

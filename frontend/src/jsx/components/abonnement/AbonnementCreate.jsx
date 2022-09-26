@@ -36,7 +36,7 @@ const AbonnementCreate = (props) => {
   //     setAbActivity(res.data.activity)
   //     setAbName(res.data.name)
   //     setabPrice(res.data.price)
-  //     setAbNumDays(res.data.number_of_days)
+  //     setAbNumDays(res.data.length)
   //     setAbSeancesQuantity(res.data.seances_quantity)
   //     setAbActivityName(res.data.activity_name)
   //     setAbNumClients(res.data.clients_number)
@@ -90,7 +90,7 @@ const handleCheckbox = (event) => {
     activity:selectedActivities,
     name:abName,
     price:abPrice,
-    number_of_days:abNumDays,
+    length:abNumDays,
     seances_quantity:abSeancesQuantity,
   }
     api.post(endpoint, newAbonnement).then( () => {

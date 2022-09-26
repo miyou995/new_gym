@@ -92,7 +92,7 @@ console.log('user=> ', user);
     loginUser,
     logoutUser
   };
-console.log('USERRRR', user);
+// console.log('USERRRR', user);
 useEffect(() => {
   if (authTokens) {
     setUser(jwt_decode(authTokens.access));

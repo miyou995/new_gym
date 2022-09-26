@@ -21,7 +21,6 @@ class BaseModelPerm(DjangoModelPermissions):
     def get_custom_perms(self, method, view):
         app_name =  view.queryset.model._meta.app_label
         if hasattr(view, 'extra_perms_map'):
-            print('IM HEEERE')
             return [perms for perms in view.extra_perms_map.get(method, [])]
         else:
             return []
@@ -42,7 +41,6 @@ class ClientAPIView(generics.CreateAPIView):
     extra_perms_map = {
         "POST": ["client.add_client"]
     }
-
     # def perform_create(self, serializer):
     #     queryset = SignupRequest.objects.filter(user=self.request.user)
     #     if queryset.exists():
@@ -120,12 +118,13 @@ class ClientDetailAPIView(generics.RetrieveUpdateAPIView):
 
     def get_object(self):
 
-        obj = get_object_or_404(Client.objects.filter(id=self.kwargs["pk"]))
+        obj = get_object_or_404(Client, id=self.kwargs["pk"])
         return obj
     def get(self , request, *args, **kwargs):
         # try:
-        obj = get_object_or_404(Client.objects.filter(id=self.kwargs["pk"]))
-        obj.is_on_salle()
+        obj = get_object_or_404(Client, id=self.kwargs["pk"])
+
+        # obj.is_on_salle()
         ax = self.serializer_class(obj)
         return Response(ax.data)
         # except:
@@ -143,10 +142,10 @@ class ClientDestroyAPIView(generics.DestroyAPIView):
         "POST": ["client.delete_client"],
         "DELETE": ["client.delete_client"],
     }
-    def destroy(self, request, *args, **kwargs):
-        instance = self.get_object()
-        self.perform_destroy(instance)
-        return Response(status=status.HTTP_204_NO_CONTENT)
+    # def destroy(self, request, *args, **kwargs):
+    #     instance = self.get_object()
+    #     self.perform_destroy(instance)
+    #     return Response(status=status.HTTP_204_NO_CONTENT)
 ################################################
 #################  PERSONNEL  ##################
 ################################################

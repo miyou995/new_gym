@@ -41,10 +41,11 @@ useEffect(() => {
       setAbonnements(res.data)
       // setName(res.data.name)
       // setPrice(res.data.price)
-      // setNumberOfDays(res.data.number_of_days)
+      // setNumberOfDays(res.data.length)
       console.log('fedfef', res.data);
     })
   }
+  
 }, [show]);
 
 // const openCloseModal = useCallback( (abID) => {} ,[onShowShange])
@@ -109,7 +110,7 @@ return (
                   } >
                       <td className="text-left">{abonnement.name}</td>
                       <td>{abonnement.seances_quantity}</td>
-                      <td >{abonnement.number_of_days}</td>
+                      <td >{abonnement.length}</td>
                       <td className="text-right">{abonnement.salles.length}</td>
                       <td className="text-right">{abonnement.clients_number}</td>
                   </tr>
