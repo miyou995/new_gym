@@ -69,11 +69,11 @@ const abonnementDeleteEND = `${process.env.REACT_APP_API_URL}/rest-api/abonnemen
       setPresences(abonnementData['abonClientpresences'])
       setReste(abonnementData['abonClientReste'])
       setTypeName(abonnementData['abonClientTypeName'])
-      // console.log('vdfbvfknb', abonId);
+      // //console.log('vdfbvfknb', abonId);
       setSeleCreneau(abonnementData['abonnementClientCreneaux'])
         api.get(abcDetailEND).then(res => {
           setAbc(res.data)
-          console.log('-------------------',abc)
+          //console.log('-------------------',abc)
         })
       }
     }, [show, renouvler]);
@@ -85,7 +85,7 @@ const abonnementDeleteEND = `${process.env.REACT_APP_API_URL}/rest-api/abonnemen
     let result6=[]
     let result7=[]
     useEffect(() => {
-      // console.log('selected salle', typeof selectedSalle );
+      // //console.log('selected salle', typeof selectedSalle );
       if (type !== '' ) {
         api.get(creneauPerAbonnementEND).then(res =>{
           res.data.forEach((req) => {

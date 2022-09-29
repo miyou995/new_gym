@@ -76,8 +76,8 @@ const Calendar = () => {
   const [jour, setJour] = useState("")
   
   const [clients, setClients] = useState([])
-// console.log('la sallels salles', salles);
-// console.log('la sallels id', salle);
+// //console.log('la sallels salles', salles);
+// //console.log('la sallels id', salle);
     let result1=[]
     let result2=[]
     let result3=[]
@@ -113,10 +113,10 @@ useEffect(() => {
   const FetchData = () => {
       api.get(`${process.env.REACT_APP_API_URL}/rest-api/creneau/by-salle-planning?sa=${salleId}&pl=${planningId}`)
     .then(function (response) {
-      console.log('les creneaux ', response.data);
+      //console.log('les creneaux ', response.data);
       response.data.forEach((req) => {
       if (req.day === "SA") {
-          console.log('req.day', req.day);
+          //console.log('req.day', req.day);
           result1.push(req);
           }else if(req.day === "DI"){
             result2.push(req);
@@ -144,7 +144,7 @@ useEffect(() => {
   FetchData();
 }, [modal, modalCreate,salleId, planningId]);
 
-  console.log('selected  creneaux', selectedCreneau);
+  //console.log('selected  creneaux', selectedCreneau);
 
 
 const handleSelectedCreneau = (day) => {
@@ -163,7 +163,7 @@ const handleSelectedCreneau = (day) => {
   setModal(true) 
   setCreneauName(day.name)
   setCreneauColor(day.color)
-  console.log('creneau ', day);
+  //console.log('creneau ', day);
 }
 
  const getActivity = (acti,creneauActi) => {
@@ -176,7 +176,7 @@ const handleSelectedCreneau = (day) => {
 const getDay = (days,creneauDay) => {
   for (let i = 0; i < days.length; i++) {
     if (creneauDay == days[i].day){
-      console.log('the day is :', creneauDay);
+      //console.log('the day is :', creneauDay);
        return i
       }            
   }
@@ -202,7 +202,7 @@ const getDay = (days,creneauDay) => {
              <div className="col-4">
              <Autocomplete
                   options={plannings}
-                  getOptionLabel={(option) => option.name}
+                  getOptionLabel={(option) => option['name']?option['name']:''}
                   value={defaultPlanning}
                   onChange={((event, value) =>  {
                     if (value) {
@@ -216,7 +216,7 @@ const getDay = (days,creneauDay) => {
              <div className="col-4">
              <Autocomplete
                     options={salles}
-                    getOptionLabel={(option) => option.name || ''}
+                    getOptionLabel={(option) => option['name']?option['name']:''}
                     value={defaultSalle}
                     onChange={((event, value) =>  {
                     if (value) {

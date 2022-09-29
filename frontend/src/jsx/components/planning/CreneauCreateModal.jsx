@@ -12,7 +12,10 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import useForm from 'react-hook-form';
 const PaiementCreateModal = ({show, onShowShange, creneauData}) => {
   const api = useAxios();
-  const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+  const handleShow = useCallback( () => {
+    onShowShange(false)
+    setActiveButton(true)
+  }, [onShowShange])
     const creneauCreateEND = `${process.env.REACT_APP_API_URL}/rest-api/creneau/create/`
 
     const [newActivity, setNewActivity] = useState("")
@@ -29,7 +32,8 @@ const PaiementCreateModal = ({show, onShowShange, creneauData}) => {
     const [removeColor, setRemoveColor ] = useState(true)
     const [color, setColor] = useState("")
     const [name,setName] = useState("")
-
+    const [activeButton,setActiveButton] = useState(true)
+    
 
     const days = creneauData['days']
     const activities = creneauData['activities']  
@@ -58,7 +62,7 @@ const PaiementCreateModal = ({show, onShowShange, creneauData}) => {
           setNewPlanningError(true)
         }
     //  setErrors({errors: errors});
-     console.log('IS THE FORM VALID ======?', formIsValid);
+     //console.log('IS THE FORM VALID ======?', formIsValid);
      return formIsValid;
  }
 
@@ -80,8 +84,10 @@ const handleSubmit = e => {
     }
     console.log(" =================> new Creneau ", newCreneau);
     api.post(creneauCreateEND, newCreneau).then( res => {
+      setActiveButton(false)
       notifySuccess('Créneau creer avec succés')
           handleShow()
+
       }).catch(err => {
           notifyError("Erreur lors de la création du créneau")
       })
@@ -241,7 +247,7 @@ return (
                                        checked={removeColor}
                                        onChange={e=> {
                                           setRemoveColor(!removeColor)
-                                          console.log('target value', e.target.value);
+                                          //console.log('target value', e.target.value);
                                        }}
 
                                        name="checkedB"
@@ -253,10 +259,16 @@ return (
                                                    
                            </div>
         </div>
-        <Button onClick={handleShow}variant="danger light"className='m-2'>
+        <Button onClick={handleShow} variant="danger light"className='m-2'>
             Fermer
         </Button>
-        <Button variant="primary" type="submit">Sauvgarder</Button>
+        { 
+          activeButton 
+          ?
+            <Button variant="primary"  type="submit" >Sauvgarder</Button>
+          :
+            <Button variant="primary" >Sauvgarder</Button>
+        }
         </form>
      </Modal.Body>
     </Modal>

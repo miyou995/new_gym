@@ -75,7 +75,7 @@ const PresenceCreateModal = ({show, onShowShange, presenceData}) => {
     //          const res = await api.get(creneauClientEND);
     //          setCreneauxClient(res.data)
    
-    //           console.log('ghirrrr =creneauxClient', creneauxClient);
+    //           //console.log('ghirrrr =creneauxClient', creneauxClient);
     //       } catch (error) {
     //          console.log(error, 'erreur presneces');
     //       }
@@ -89,7 +89,7 @@ const PresenceCreateModal = ({show, onShowShange, presenceData}) => {
           setAbonnementsClient(response.data) ;
           console.log(response.data);
         }).catch(errors => {
-           console.log('erreurs lines 67', errors);
+           //console.log('erreurs lines 67', errors);
          })
       }
    }, [client]); 
@@ -99,7 +99,7 @@ const PresenceCreateModal = ({show, onShowShange, presenceData}) => {
          api.get(planningsEnd).then(responses => {
           setPlannings(responses.data) ;
         }).catch(errors => {
-           console.log('erreurs lines 67', errors);
+           //console.log('erreurs lines 67', errors);
          })
        }
      }
@@ -111,7 +111,7 @@ const PresenceCreateModal = ({show, onShowShange, presenceData}) => {
       await api.get(clientsEND).then(responses => {
         setClients(responses.data) ;
       }).catch(errors => {
-         console.log('erreurs lines 67', errors);
+         //console.log('erreurs lines 67', errors);
        })
      }
    }
@@ -124,7 +124,7 @@ const PresenceCreateModal = ({show, onShowShange, presenceData}) => {
   //       await api.get(abonnementEND).then(responses => {
   //         setAbonnements(responses.data) ;
   //       }).catch(errors => {
-  //          console.log('erreurs lines 83', errors);
+  //          //console.log('erreurs lines 83', errors);
   //        })
   //      }
   //    }
@@ -138,7 +138,7 @@ const PresenceCreateModal = ({show, onShowShange, presenceData}) => {
          api.get(sallesEnd).then(responses => {
           setSalles(responses.data) ;
         }).catch(errors => {
-           console.log('erreurs lines 98', errors);
+           //console.log('erreurs lines 98', errors);
          })
        }
      }
@@ -155,13 +155,13 @@ const PresenceCreateModal = ({show, onShowShange, presenceData}) => {
    let result6=[]
    let result7=[]
     useEffect(() => {
-      // console.log('selected salle', typeof selectedSalle );
+      // //console.log('selected salle', typeof selectedSalle );
       if (selectedAbonnement !== '' ) {
         api.get(creneauClientEND).then(res =>{
-          console.log('creneaux end', res.data);
+          //console.log('creneaux end', res.data);
           res.data.forEach((req) => {
           if (req.day == "SA") {
-            console.log('req.day', res.data);
+            //console.log('req.day', res.data);
             result1.push(req);
           }else if(req.day== "DI"){
             result2.push(req);
@@ -191,7 +191,7 @@ const PresenceCreateModal = ({show, onShowShange, presenceData}) => {
 
     // const changingStyle = (id) => {
     //   // const creneau = e.currentTarget.id
-    //   // console.log('the creneay ??? ', creneau);
+    //   // //console.log('the creneay ??? ', creneau);
     //   if (creneaux.indexOf(id) !== -1) {
     //    return true
     //   //  tdClass = 'hett-test'
@@ -222,10 +222,11 @@ const PresenceCreateModal = ({show, onShowShange, presenceData}) => {
         notifySuccess('Presence Manuelle enregistré')
         handleShow()
       }).catch( err => {
+        console.log('ERRR', err);
         notifyError("erreur de creation de présence, veuillez vérifier les informations manquantes")
       })
     }
-    // console.log('creneaux detail', activities);
+    // //console.log('creneaux detail', activities);
 return ( 
     <Modal className="fade bd-example-modal-lg" size="xl"onHide={handleShow} show={show}>
     <Modal.Header>

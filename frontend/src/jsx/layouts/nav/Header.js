@@ -41,17 +41,19 @@ const Header = ({ textTab, onNote, toggle, onProfile, onNotification, onClick })
     let endpoint = `${process.env.REACT_APP_API_URL}/rest-api/auth/logout/blacklist`
     // const authToken = localStorage.getItem('authTokens')
     const authToken =  JSON.parse(localStorage.getItem("authTokens"))
-    console.log('authToken', jwt_decode(localStorage.getItem("authTokens")));
-    // console.log('refresh 2 ', authToken.refresh);
-    console.log('refresh',  JSON.parse(localStorage.getItem("authTokens")).refresh);
+    //console.log('authToken', jwt_decode(localStorage.getItem("authTokens")));
+    // //console.log('refresh 2 ', authToken.refresh);
+    //console.log('refresh',  JSON.parse(localStorage.getItem("authTokens")).refresh);
     axios.post(endpoint, {refresh :authToken.refresh}).then( () => {
       console.log(authToken.refresh);
       localStorage.removeItem('authTokens');
       // axiosInstance.defaults.headers['Authorization'] = null;
-      history.push('/login');
+      window.location = "/login";
+
+
     }).catch(err => {
       notifyError(err.error)
-      console.log('err =>', err);
+      //console.log('err =>', err);
     })
   }
 

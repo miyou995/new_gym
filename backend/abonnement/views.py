@@ -11,9 +11,10 @@ from datetime import timedelta, date
 from .serializers import AbonnementClientSerialiser, AbonnementSerialiser, AbonnementClientDetailUpdateSerialiser, AbonnementClientDetailSerializer, AbonnementClientTransactionsSerializer, ABCCreneauSerializer, AbonnementClientRenewSerializer, AbonnementClientAllSerializer, AbonnementClientHistorySerializer
 from client.models import Client
 from .models import Abonnement,  AbonnementClient
+from django.db.models import Prefetch
 
 class StandardResultsSetPagination(pagination.PageNumberPagination):
-    page_size = 20
+    page_size = 15
     page_size_query_param = 'page_size'
     max_page_size = 100
 
@@ -34,18 +35,20 @@ def is_valid_queryparam(param):
     return param != '' and param is not None
 
 def get_filtered_abc_history(request):
-    qs = AbonnementClient.history.all()
+    qs = AbonnementClient.history.select_related('type_abonnement', 'client', 'history_user')
+    # qs  =  AbonnementClient.history.select_related(Prefetch('abonnements', queryset=qs))
+    # qs = qs.prefetch_related('creneaux')
     start_from = request.query_params.get('start', None)
     end_from = request.query_params.get('end', None)
     usr = request.query_params.get('usr', None)
     cl = request.query_params.get('cl', None)
     abc = request.query_params.get('abc', None)
     if is_valid_queryparam(start_from):
-        qs = qs.filter(history_date__gte=start_from).distinct()
+        qs = qs.filter(history_date__gte=start_from).select_related('type_abonnement', 'client', 'history_user')
     if is_valid_queryparam(end_from):
-        qs = qs.filter(history_date__lte=end_from).distinct()
+        qs = qs.filter(history_date__lte=end_from).select_related('type_abonnement', 'client', 'history_user')
     if is_valid_queryparam(abc):
-        qs = qs.filter(id=abc).distinct()  
+        qs = qs.filter(id=abc).select_related('type_abonnement', 'client', 'history_user')  
     if is_valid_queryparam(cl):
         try:
             client = Client.objects.get(id=cl) 
@@ -53,11 +56,10 @@ def get_filtered_abc_history(request):
             client =  get_object_or_404(Client, carte=cl)
         # client = Q( Client.objects.get(id=cl) | Client.objects.get(carte=cl) )
         if client:
-            qs = qs.filter(client=client).distinct()
+            qs = qs.filter(client=client).select_related('type_abonnement', 'client', 'history_user')
 
     if is_valid_queryparam(usr):
-        qs = qs.filter(history_user=usr).distinct()
-    print('HEE JEFEE')
+        qs = qs.filter(history_user=usr).select_related('type_abonnement', 'client', 'history_user')
     return {'qs': qs}
 
 class AbonnementClientCreateAPIView(generics.CreateAPIView):
@@ -249,7 +251,7 @@ class RenewABCView(APIView):
 #     return Response({'new date' : abc.end_date, 'seances': abc.presence_quantity})
 
 class AbonnementClientHistoryListAPIView(generics.ListAPIView):
-    queryset = AbonnementClient.history.all()
+    queryset = AbonnementClient.history.select_related('type_abonnement', 'client', 'history_user')
     # print('queryset', queryset.count())
     # permission_classes = (IsAuthenticated,)
     pagination_class = StandardResultsSetPagination
@@ -263,7 +265,7 @@ class AbonnementClientHistoryListAPIView(generics.ListAPIView):
         queryset = get_filtered_abc_history(self.request)['qs']
 
         print('queryset HISTOYYYYYYYYYYYYYYYYYYYYYYYY', queryset)
-        return queryset[:30]
+        return queryset
 
 class AbonnementClientAllDetailListApi(generics.ListAPIView):
     queryset = AbonnementClient.objects.all()

@@ -81,8 +81,8 @@ const CreneauCreateModal = ({show, onShowShange, creneauData}) => {
         } else {
            setRemoveColor(!removeColor)
         }
-        console.log('la couleur du creneau getted creneauName=>',creneauName);
-        console.log('la couleur du creneau getted setName=>',name);
+        //console.log('la couleur du creneau getted creneauName=>',creneauName);
+        //console.log('la couleur du creneau getted setName=>',name);
       }
     }, [creneauData['creneauId']])
 
@@ -96,7 +96,7 @@ const CreneauCreateModal = ({show, onShowShange, creneauData}) => {
     useEffect(() => {
       api.get(creneauDetailEnd).then(res => {
          setAbc(res.data)
-         console.log('les abc dee ce creneau sotn ', res.data);
+         //console.log('les abc dee ce creneau sotn ', res.data);
       })
     }, [creneauData['creneauId']]);
 
@@ -120,7 +120,7 @@ const CreneauCreateModal = ({show, onShowShange, creneauData}) => {
         }
 
     //  setErrors({errors: errors});
-   //   console.log('IS THE FORM VALID ======?', formIsValid);
+   //   //console.log('IS THE FORM VALID ======?', formIsValid);
      return formIsValid;
  }
     const handleSubmit = e => {
@@ -350,7 +350,7 @@ return (
                                        checked={removeColor}
                                        onChange={e=> {
                                           setRemoveColor(!removeColor)
-                                          console.log('target value', e.target.value);
+                                          //console.log('target value', e.target.value);
                                        }}
 
                                        name="checkedB"

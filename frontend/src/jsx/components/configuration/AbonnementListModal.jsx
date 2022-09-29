@@ -42,7 +42,7 @@ useEffect(() => {
       // setName(res.data.name)
       // setPrice(res.data.price)
       // setNumberOfDays(res.data.length)
-      console.log('fedfef', res.data);
+      //console.log('fedfef', res.data);
     })
   }
   

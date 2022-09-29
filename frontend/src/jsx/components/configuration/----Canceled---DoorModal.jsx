@@ -25,7 +25,7 @@ const DoorModal = ({show, onShowShange, doorData}) => {
         setDoorIp(doorData['doorIp'])
         setDoorUsername(doorData['doorUsername'])
         setDoorPassword(doorData['doorPassword'])
-        console.log('id de la porte ',doorId , 'new one ',doorData['doorId']  );
+        //console.log('id de la porte ',doorId , 'new one ',doorData['doorId']  );
       }
     }, [doorData['doorId'], show]);
     const HandleSubmit = e => {
@@ -44,7 +44,7 @@ const DoorModal = ({show, onShowShange, doorData}) => {
                 }).catch(err => {
                     notifyError("Erreur lors de la modification de la porte")
                 })
-                console.log(' door data', doorData);
+                //console.log(' door data', doorData);
         }else {
             api.post(postDoorEnd, doorData).then( res => {
                 notifySuccess('Porte Créer avec succés')
@@ -52,7 +52,7 @@ const DoorModal = ({show, onShowShange, doorData}) => {
                 }).catch(err => {
                     notifyError("Erreur lors de la modification de la porte")
                 })
-                console.log('post door data', doorData);
+                //console.log('post door data', doorData);
 
         }
       }

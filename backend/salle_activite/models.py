@@ -15,6 +15,7 @@ class Door(models.Model):
     def __str__(self):
         return self.ip_adress
 
+
 class Salle(models.Model):
     name = models.CharField(max_length=50, verbose_name="nom de la salle d'activité")
     door = models.ForeignKey(Door, on_delete=models.CASCADE, related_name='salles', blank=True, null=True)
@@ -29,11 +30,13 @@ class Salle(models.Model):
     @property
     def get_door(self):
         return self.door.ip_adress
+
     def save(self, *args, **kwargs):
         if self.is_default:
             self.is_default = True
             update_default = Salle.objects.all().exclude(id=self.id).update(is_default=False)
         super(Salle, self).save(*args, **kwargs)
+
 
 class Activity(models.Model):
     name    = models.CharField( max_length=150, verbose_name="nom d'activité")

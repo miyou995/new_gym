@@ -19,7 +19,7 @@ const HandleClient = () => {
             const result = await api.get(`${process.env.REACT_APP_API_URL}/rest-api/creneau/`)
 
             setCreneaux(result.data)
-          //   console.log('cest le resultat data',result.data);
+          //   //console.log('cest le resultat data',result.data);
          } catch (error) {
             alert(error);
             console.log(error);
@@ -60,7 +60,7 @@ const [savedClients, setSavedClients] = useState([]);
 
   useEffect(()=>{
       dispatcher({type: "get", payload: savedClients})
-      console.log('savedClients:', savedClients);
+      //console.log('savedClients:', savedClients);
     },[savedClients]) 
 
   const handleSubmit = async e => {
@@ -84,13 +84,13 @@ const [savedClients, setSavedClients] = useState([]);
         dette :Number(dette),
         creneau :Number(creneau),
       }
-      console.log('the new planning',newClient );
+      //console.log('the new planning',newClient );
       await api.post(endpoint, newClient)
 
       dispatcher({type:'add', payload:newClient})
 
-      console.log('le ID dCreneau est ', creneau);
-      console.log('le format json envoyé ==========>',newClient);
+      //console.log('le ID dCreneau est ', creneau);
+      //console.log('le format json envoyé ==========>',newClient);
       setLastName("")
       setCreneau("")
   }
