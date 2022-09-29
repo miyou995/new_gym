@@ -3,7 +3,7 @@ import { Dropdown, Tab, Nav, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
- 
+import DoorModal from './DoorModal'
 import ShortCuts from "../ShortCuts";
 
 import { ToastContainer } from 'react-toastify'
@@ -35,7 +35,7 @@ const Configuration = (props) => {
     const planningsEND = `${process.env.REACT_APP_API_URL}/rest-api/planning/`
     const startListenEND = `${process.env.REACT_APP_API_URL}/rest-api/salle-activite/start_listening`
     const stopListenEND = `${process.env.REACT_APP_API_URL}/rest-api/salle-activite/stop_listening`
-    
+    const [ doorModal, setDoorModal] = useState(false)
     const [ abonnements , setAbonnements] =useState([])
     const [ maladies , setMaladies] =useState([])
     const [ doors , setDoors] =useState([])
@@ -99,7 +99,7 @@ const Configuration = (props) => {
     useEffect(() => {
         api.get(maladiesEnd).then(res =>{
             setMaladies(res.data)
-            console.log('Maladies', res.data);
+            //console.log('Maladies', res.data);
         })
     }, [maladieCreateModal, maladieEditModal, maladiesEnd]);
 
@@ -115,13 +115,13 @@ const Configuration = (props) => {
         })
     }, [salleActiviteCreateModal, salleActivitiesEND, salleActiviteEditModal]);
 
-    // useEffect(() => {
-    //     api.get(doorsEnd).then(res =>{
-    //         setDoors(res.data)
-    //     })
-    // }, [doorModal]);
     useEffect(() => {
-        console.log('dureee de labonnement', DureeAb.findIndex(x => x.jours === Number(abDuree)));
+        api.get(doorsEnd).then(res =>{
+            setDoors(res.data)
+        })
+    }, [doorModal]);
+    useEffect(() => {
+        //console.log('dureee de labonnement', DureeAb.findIndex(x => x.jours === Number(abDuree)));
      }, [abDuree, abonnementCreateModal]);
 
     // const salllesActivities = useGetAPI(salleActivitiesEND)
@@ -129,7 +129,7 @@ const Configuration = (props) => {
     useEffect(() => {
     api.get(planningsEND).then(res => {
         setPlannings(res.data)
-        console.log('plannings', res.data);
+        //console.log('plannings', res.data);
     })
     }, [planningEditModal, planningCreateModal, planningsEND]);
 
@@ -144,7 +144,7 @@ const Configuration = (props) => {
         for (let i = 0; i < actiAbon.length; i++) {
           const acti = actiAbon[i];
           const index = provActiId.indexOf(acti) 
-          // console.log('indexes', indexes);
+          // //console.log('indexes', indexes);
           indexesList.push(salllesActivities[index])
         }
         return indexesList    
@@ -184,7 +184,7 @@ const Configuration = (props) => {
     const getFkIndex = (list,selctedItem) => {
         for (let i = 0; i < list.length; i++) {
           if (selctedItem === list[i].id){
-              console.log('the activiti salle ID',i);
+              //console.log('the activiti salle ID',i);
              return i
             }            
         }
@@ -202,7 +202,7 @@ const Configuration = (props) => {
 
     const getDureeIndex = (duree) => {
         const laDuree =DureeAb.findIndex(x => x.jours === duree)
-        console.log('selected duree', duree);
+        //console.log('selected duree', duree);
         return laDuree
     }
     useEffect(() => {
@@ -211,14 +211,14 @@ const Configuration = (props) => {
             try {
                const res = await api.get(abonnementsListEND);
                setAbonnements(res.data)
-                console.log('ghirrrr =creneauxClient', abonnements);
+                //console.log('ghirrrr =creneauxClient', abonnements);
             } catch (error) {
                console.log(error, 'erreur presneces');
             }
          }
          fetchData();
       }, [props.match.params.id, abonnementEditModal, abonnementCreateModal] );
-      console.log('selected activities', selectedActivities);
+      //console.log('selected activities', selectedActivities);
    return (
       <Fragment>
          <>
@@ -388,7 +388,7 @@ const Configuration = (props) => {
                 </div>
                 {/* FIN MALADIES */}
                  {/* DEBUT portes */}
-                 {/* <div className="col-xl-4 col-lg-4">
+                 <div className="col-xl-4 col-lg-4">
                     <div className="card">
                         <div className="card-header">
                             <h4 className="card-title">Portes</h4>
@@ -427,7 +427,7 @@ const Configuration = (props) => {
                             </PerfectScrollbar>
                         </div>
                     </div>
-                </div> */}
+                </div> 
                 {/* FIN portes */}
                 <div className=" col-lg-6 config-tableaux">
                     <div className="card">
@@ -473,7 +473,7 @@ const Configuration = (props) => {
             </div>
         <div className="row">
             
-        {/* <div className="col-xl-6 col-lg-12">
+                {/* <div className="col-xl-6 col-lg-12">
                     <div className="card">
                         <div className="card-header">
                             <h4 className="card-title">Activités</h4>
@@ -499,7 +499,6 @@ const Configuration = (props) => {
                         </div>
                     </div>
                 </div> */}
-                
         </div>
         <AbonnementCreateModal show={abonnementCreateModal} onShowShange={setAbonnementCreateModal} abonnementData={{abonnementId: abonnementId}} />
         <ActivityCreateModal show={activityCreateModal} onShowShange={setActivityCreateModal} activityData={{
@@ -521,12 +520,12 @@ const Configuration = (props) => {
             maladieId : maladieId,
             maladieName : maladieName
         }} />
-        {/* <DoorModal  show={doorModal} onShowShange={setDoorModal} doorData={{
+         <DoorModal  show={doorModal} onShowShange={setDoorModal} doorData={{
             doorId : doorId,
             doorIp : doorIp,
             doorUsername: doorUsername,
             doorPassword: doorPassword
-        }} /> */}
+        }} /> 
         <PlanningEditModal  show={planningEditModal} onShowShange={setPlanningEditModal} planningData={{
             planId : planId,
             planName :planName,

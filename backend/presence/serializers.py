@@ -56,7 +56,11 @@ class PresencePostSerialiser(serializers.ModelSerializer):
         presence = Presence.objects.create(abc= abc, creneau= creneau, hour_entree=hour_in , hour_sortie=hour_out,is_in_list=True, is_in_salle=False, date=presence_date)
         # client.init_presence(dict(abc= abc, creneau= creneau, hour_in=hour_in , hour_sortie=hour_out,is_in_list=True, is_in_salle=False, date=presence_date))
         client.is_on_salle=False
-        abc.presence_quantity -= 1 
+        ecart = presence.get_time_difference()
+        
+        abc.presence_quantity -= ecart
+
+        abc.save() 
         # prenseces = abon.presence_quantity 
         # try:
         #     # THIS IS A SORTIE
@@ -104,7 +108,7 @@ class PresenceAutoSerialiser(serializers.ModelSerializer):
         model = Presence
         read_only_fields = ('creneau', 'is_in_list', 'hour_entree', 'hour_sortie', 'is_in_salle')
         fields= ('client',)
-    
+        
 
     def create(self, validated_data):
         FTM = '%H:%M:%S'

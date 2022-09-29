@@ -69,7 +69,7 @@ function refreshPage() {
       }})
       // const coachs = savedCoachs
    }, [endpoint]);
-   // console.log('els clieeents', savedClients);
+   // //console.log('els clieeents', savedClients);
 
    const [coachAuth, loading] = useAuth(coachAuthorizationEnd, 'GET')
 

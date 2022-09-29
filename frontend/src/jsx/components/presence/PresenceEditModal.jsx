@@ -41,10 +41,10 @@ const PresenceEditModal = ({show, onShowShange, presenceData}) => {
          setHourOut2(hourOut)
          setNote(notes)
          setPresenceDate(presenceData['date'])
-           console.log('THE NEW CLIENT ONEEE ');
+           //console.log('THE NEW CLIENT ONEEE ');
       }
-        console.log('rani hab naafer creneau DATAAA============>', note,
-        hourOut);
+        //console.log('rani hab naafer creneau DATAAA============>', note,
+      //   hourOut);
     }, [presenceData['presenceId']])
 
 

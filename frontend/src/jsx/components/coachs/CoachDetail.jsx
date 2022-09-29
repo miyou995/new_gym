@@ -34,8 +34,8 @@ const CoachDetail = (props) => {
   const presenceUpdateEND = `${process.env.REACT_APP_API_URL}/rest-api/presence/coachs/${lastPresence}/`
   const transactionCoachEND = `${process.env.REACT_APP_API_URL}/rest-api/transactions/remunerationProf-by-coach/?cl=${coachID}`
   const creneauCoachEND = `${process.env.REACT_APP_API_URL}/rest-api/creneau/by-coach?cl=${coachID}`
-const presencesCoachEND = `${process.env.REACT_APP_API_URL}/rest-api/presence/by-coachs/?cl=${coachID}`
-const coachDetailEnd = `${process.env.REACT_APP_API_URL}/rest-api/coachs/${coachID}/`
+  const presencesCoachEND = `${process.env.REACT_APP_API_URL}/rest-api/presence/by-coachs/?cl=${coachID}`
+  const coachDetailEnd = `${process.env.REACT_APP_API_URL}/rest-api/coachs/${coachID}/`
   
 
   // const [error, setError] = useState(false)
@@ -108,7 +108,7 @@ const coachDetailEnd = `${process.env.REACT_APP_API_URL}/rest-api/coachs/${coach
      const fetchData = async () => {
         try {
            const res = await api.get(transactionCoachEND);
-           console.log('transCoach ====+W> RES', res);
+           //console.log('transCoach ====+W> RES', res);
            setTransCoach(res.data)
  
         } catch (error) {

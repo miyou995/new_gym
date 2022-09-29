@@ -34,7 +34,7 @@ const RemunerationCoachModal = ({show, onShowShange, transactionData}) => {
   //  const abonnements = useGetAPI(abonnementTypeEnd)
    //  useEffect(() => {
          // setPeople(clients)
-      //   console.log('THE NEW CLIENT ONEEE ', res.data);
+      //   //console.log('THE NEW CLIENT ONEEE ', res.data);
 
       //   setCreneauDetail(res.data)
       //   console.log(res.data);

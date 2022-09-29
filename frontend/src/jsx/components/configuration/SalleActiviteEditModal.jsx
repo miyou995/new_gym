@@ -28,8 +28,8 @@ const SalleActiviteEditModal = ({show, onShowShange, salleData}) => {
     const [door, setDoor] = useState([])
 
 
-    console.log('doors doors', doors);
-    console.log('selected DOOR', salleData['doorId']);
+    //console.log('doors doors', doors);
+    //console.log('selected DOOR', salleData['doorId']);
 
     useEffect(() => {
     if (show == true) {
@@ -95,7 +95,7 @@ return (
                             checked={is_default}
                             onChange={e=> {
                             setDefault(!is_default)
-                                console.log('target value', e.target.value);
+                                //console.log('target value', e.target.value);
                             }}
                             name="checkedB"
                             color="primary"

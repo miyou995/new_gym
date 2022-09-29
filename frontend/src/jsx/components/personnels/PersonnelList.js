@@ -60,7 +60,7 @@ const PersonnelList = () => {
       const personnels = savedPersonnel
       setPersonnelData(personnels)
    }, [savedPersonnel]);
-   // console.log('els clieeents', savedClients);
+   // //console.log('els clieeents', savedClients);
 
  const [personnelAuth, loading] = useAuth(endpoint, 'GET')
 
@@ -90,7 +90,7 @@ const PersonnelList = () => {
                                  <th>Téléphone</th>
                                  <th className="pl-5 width200"> Addresse </th>
                                  <th>Adhesion</th>
-                                 <th></th>
+                                 {/* <th></th> */}
                               </tr>
                            </thead>
                            <tbody id="customers">
@@ -121,9 +121,9 @@ const PersonnelList = () => {
                                  </td>
                                  <td className="py-2 pl-5 wspace-no"> {pers.adress} </td>
                                  <td className="py-2">30/03/2018</td>
-                                 <td className="py-2 text-right">
+                                 {/* <td className="py-2 text-right">
                                     <Drop id={pers.id}/>
-                                 </td>
+                                 </td> */}
                               </tr>
                               ))}
                               </tbody>

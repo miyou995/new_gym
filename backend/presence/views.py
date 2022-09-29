@@ -76,6 +76,7 @@ class PresencePostAPIView(generics.CreateAPIView):
 
 class PresenceHistoryListAPIView(generics.ListAPIView):
     queryset = Presence.history.all()
+    pagination_class = StandardResultsSetPagination
     # print('queryset', queryset.count())
     # permission_classes = (IsAuthenticated,)
     serializer_class = PresenceHistorySerialiser
@@ -101,9 +102,7 @@ class AllPresenceListAPIView(generics.ListAPIView):
 
 
 
-
-
-    
+     
 class PresenceListAPIView(generics.ListAPIView):
     queryset = Presence.objects.all()
     # permission_classes = (IsAuthenticated,)
@@ -119,7 +118,7 @@ class PresenceListAPIView(generics.ListAPIView):
 
     def get_queryset(self):
         FTM = '%H:%M'
-        queryset = Presence.objects.all()
+        queryset = Presence.objects.select_related('creneau', 'creneau', 'abc__client' , 'creneau__activity__salle')
         start_date = self.request.query_params.get('start_date', None)
         end_date = self.request.query_params.get('end_date', None)
         hour = self.request.query_params.get('hour', None) 
@@ -135,11 +134,11 @@ class PresenceListAPIView(generics.ListAPIView):
             end_time = i_end_time.time()
         try:
             print('ONE²')
-            queryset = Presence.objects.filter(date__range=[start_date, end_date], creneau__hour_start__range=[start_time, end_time])
+            queryset = queryset.filter(date__range=[start_date, end_date], creneau__hour_start__range=[start_time, end_time])
             return queryset.order_by('-id')
         except:
             print('deuxeme')
-            queryset = Presence.objects.filter(date__range=[start_date, end_date])
+            queryset = queryset.filter(date__range=[start_date, end_date])
             return queryset.order_by('-id')
         else:
             print('FINLMENT')

@@ -84,7 +84,7 @@ import Tresorie from "./components/tresorie/Tresorie"
 /// Dashboard
 import Home from "./components/Dashboard/Home";
 import Configuration from './components/configuration/Configuration'
-import UpdateModal from "./components/users/UpdateModal";
+import UserDetail from "./components/users/UserDetail";
 const Markup = () => {
   let path = window.location.pathname;
   path = path.split("/");
@@ -117,7 +117,7 @@ const Markup = () => {
     // trésorie
     { url: "tresorie", component: Tresorie },
     { url: "users", component: UserList },
-    { url: "users/:id", component: UpdateModal },
+    { url: "users/:id", component: UserDetail },
 
     // Transactions
     // { url: "transaction", component: CoinDetails },

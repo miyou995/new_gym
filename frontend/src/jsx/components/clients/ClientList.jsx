@@ -24,7 +24,6 @@ function refreshPage() {
 
 const ClientList = () => {
    const api = useAxios();
-
    const formatDate = (date) => {
       try {
          const returned = new Date(date).toISOString().slice(0, 10)
@@ -51,12 +50,12 @@ useEffect(() =>  {
    if (searchValue !== '') {
       api.get(searchEndpoint).then(res => {
          setclientData(res.data.results)
-         console.log('le resultat des clients est ', res.data);
+         //console.log('le resultat des clients est ', res.data);
       })
    }else {
       api.get(endpoint).then(res => {
          setclientData(res.data.results)
-         console.log('le resultat des clients est ', res.data);
+         //console.log('le resultat des clients est ', res.data);
       })}
 }, [nextpage, searchValue]);
 
@@ -68,7 +67,7 @@ const [clientAuth, loading] = useAuth(clientAuthorizationEnd, 'GET')
 
 
 
-console.log('le searchValue des searchValue est ', searchValue);
+//console.log('le searchValue des searchValue est ', searchValue);
 
    const capitalizeFirstLetter = (word) => {
       if (word)

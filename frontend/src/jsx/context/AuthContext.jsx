@@ -20,11 +20,11 @@ export const AuthProvider = ({ children }) => {
       : null
   );
   const [loading, setLoading] = useState(true);
-console.log('user=> ', user);
+  //console.log('user=> ', user);
   const history = useHistory();
 //   console.log("test get user ", localStorage.getItem("access_token"))
 
-  const getTokenEnd = `${process.env.REACT_APP_API_URL}/rest-api/auth/api/token/`
+  const getTokenEnd = `${process.env.REACT_APP_API_URL}/rest-api/auth/login/`
   const registerEnd = `${process.env.REACT_APP_API_URL}/rest-api/auth/register/`
 
 
@@ -43,16 +43,14 @@ console.log('user=> ', user);
     const data = await response.json();
 
     if (response.status === 200) {
-      console.log("DATAAAAAAAAAA", response);
       setAuthTokens(data);
-      // setUser(jwt_decode(data.access));
+      setUser(jwt_decode(data.access));
       localStorage.setItem("authTokens", JSON.stringify(data));
-      // history.push("/");
       window.location ="/";
     } else {
-      console.log(response);
+      // console.log(response);
       notifyError('Veuillez vérifier vos informations de connection')
-      alert("Something went wrong!");
+      // alert("Ohhh went wrong!");
     }
   };
   
@@ -69,30 +67,29 @@ console.log('user=> ', user);
       })
     });
     if (response.status === 201) {
-      history.push("/login");
+      window.location ="/login";
     } else {
       notifyError('Veuillez vérifier vos informations de connection')
-      alert("Something went wrong!");
+      // alert("Something went wrong!");
     }
   };
-
   const logoutUser = () => {
     setAuthTokens(null);
     setUser(null);
     localStorage.removeItem("authTokens");
-    history.push("/login");
+    window.location ="/login";
   };
 
   const contextData = {
-    user,
-    setUser,
-    authTokens,
-    setAuthTokens,
-    registerUser,
-    loginUser,
-    logoutUser
+    user:user,
+    authTokens:authTokens,
+    setAuthTokens:setAuthTokens,
+    setUser:setUser,
+    loginUser:loginUser,
+    logoutUser:logoutUser,
+    registerUser:registerUser,
   };
-// console.log('USERRRR', user);
+// //console.log('USERRRR', user);
 useEffect(() => {
   if (authTokens) {
     setUser(jwt_decode(authTokens.access));

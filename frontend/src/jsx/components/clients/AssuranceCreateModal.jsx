@@ -18,7 +18,7 @@ const AssuranceCreateModal = ({show, onShowShange, clientData}) => {
     
     // const clients = useGetAPI(clientEnd)
     // const assurance = useGetAPI(assuranceEnd)
-    // console.log('les clients ', clients);
+    // //console.log('les clients ', clients);
     // const history = useHistory();
     const [amount, setAmount] = useState("");
     const [notes, setNotes] = useState("");
@@ -26,7 +26,7 @@ const AssuranceCreateModal = ({show, onShowShange, clientData}) => {
     // const [client, setClient] = useState("");
    //  useEffect(() => {
          // setPeople(clients)
-      //   console.log('THE NEW CLIENT ONEEE ', res.data);
+      //   //console.log('THE NEW CLIENT ONEEE ', res.data);
 
       //   setCreneauDetail(res.data)
       //   console.log(res.data);
@@ -54,7 +54,7 @@ const AssuranceCreateModal = ({show, onShowShange, clientData}) => {
         // history.push("/client")
         refreshPage()
         // handleShow()
-        // console.log('THE NEW CLIENT ', newTransaction);
+        // //console.log('THE NEW CLIENT ', newTransaction);
     }
 return ( 
     <Modal className="fade bd-example-modal-lg" size="lg" onHide={handleShow} show={show}>

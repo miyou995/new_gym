@@ -63,7 +63,7 @@ const PresenceList = () => {
    //    return word.charAt(0).toUpperCase() + word.slice(1);
    //    return '';
    // };
-   // console.log('le clieeeeen RFID', client);
+   // //console.log('le clieeeeen RFID', client);
 // 
 
    const formatDate = (date) => {
@@ -131,12 +131,12 @@ const [presenceStatus, setPresenceStatus] = useState(null);
          const endpoint = `${process.env.REACT_APP_API_URL}/rest-api/presence/?page=${nextpage}&start_date=${dateDebut}&end_date=${dateFin}&abc__client_id=${searchValue}&creneau__activity__salle=${salleId}&hour=${startHour}&creneau__activity=${filterActivity}`
 
          // const result =  await api.get(`${process.env.REACT_APP_API_URL}/rest-api/presence/?page=${nextpage}&start_date=${dateDebut}&end_date=${dateFin}&abc__client_id=${searchValue}&creneau__activity__salle=${salleId}&hour=${startHour}&creneau__activity=${filterActivity}`)
-         // console.log('cest un result ', result);
+         // //console.log('cest un result ', result);
          // setPresenceData(result.data.results)
          // setPresencesCount(result.data.count)
          await api.get(endpoint)
          .then(res => {
-            console.log('cest un result ', res);
+            //console.log('cest un result ', res);
             setPresenceData(res.data.results)
             setPresencesCount(res.data.count)
             setPresenceStatus(res.status)

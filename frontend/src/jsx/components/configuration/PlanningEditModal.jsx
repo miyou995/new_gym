@@ -23,7 +23,7 @@ const PlanningEditModal = ({show, onShowShange, planningData}) => {
             name : planName,
             is_default : is_default
         }
-        console.log('the form', planningForm);
+        //console.log('the form', planningForm);
         await api.put(planningEditEnd, planningForm).then( res => {
             notifySuccess('Planning modifier avec succés')
                 handleShow()
@@ -65,7 +65,7 @@ return (
                         checked={is_default}
                         onChange={e=> {
                         setDefault(!is_default)
-                            console.log('target value', e.target.value);
+                            //console.log('target value', e.target.value);
                         }}
 
                         name="checkedB"
