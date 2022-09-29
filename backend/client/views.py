@@ -51,7 +51,7 @@ class ClientAPIView(generics.CreateAPIView):
 
 class ClientListAPIView(AutoPrefetchViewSetMixin, generics.ListAPIView):
     pagination_class = StandardResultsSetPagination
-    queryset = Client.objects.all()
+    queryset = Client.objects.prefetch_related('abonnement_client', 'abonnement_client__creneaux', 'maladies')
     # permission_classes = (IsAuthenticated,)
     serializer_class = ClientSerialiser
     # lookup_field = 'slug'
@@ -184,7 +184,7 @@ class PersonnelDetailAPIView(generics.RetrieveUpdateAPIView):
     }
 
     def get_object(self):
-        obj = get_object_or_404(Personnel.objects.filter(id=self.kwargs["pk"]))
+        obj = get_object_or_404(Personnel, id=self.kwargs["pk"])
         return obj
     
 
@@ -344,5 +344,14 @@ def get_coach_authorization(request):
         return Response(status=200)
     else:
         return Response(status=403)
+
+@api_view(['GET'])
+def get_personnel_authorization(request):
+    user = request.user
+    if user.has_perm("client.view_personnel"):
+        return Response(status=200)
+    else:
+        return Response(status=403)
+
 
 

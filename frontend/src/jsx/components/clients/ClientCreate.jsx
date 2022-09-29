@@ -45,7 +45,7 @@ const CreateClient = () => {
     const maladie = event.target.name
     if ( event.target.checked){
       setSelectedMaladies(checkedMaladies => [...checkedMaladies, Number(maladie)])
-      console.log('maladiieiieiis=======>', selectedMaladies);
+      //console.log('maladiieiieiis=======>', selectedMaladies);
     }else {
       for ( var i = 0 ; i < selectedMaladies.length; i++){
         if (selectedMaladies[i] === Number(maladie)){
@@ -53,7 +53,7 @@ const CreateClient = () => {
         } 
       }
       selectedMaladies.splice(Number(maladie) , 1)
-      console.log('unchecked=======>', selectedMaladies);
+      //console.log('unchecked=======>', selectedMaladies);
   }
 }
 
@@ -71,8 +71,8 @@ const handleImage = (e) => {
       image: e.target.files,
       });
     // setPicture(e.target.files[0])
-      console.log('e.target.files',e.target.files);
-      console.log('e.target.name', e.target.name);
+      //console.log('e.target.files',e.target.files);
+      //console.log('e.target.name', e.target.name);
   // }
 };
 const getSelectedMaladies = ( ) => {
@@ -87,14 +87,14 @@ const getSelectedMaladies = ( ) => {
     getSelectedMaladies()
       // console.log("setSelectedMaladie=======> ", realMaladies);
       console.log("setSelectedMaladie=======> ", realMaladies);
-    // console.log('les maladiiiies', maladies);
+    // //console.log('les maladiiiies', maladies);
     let endpoint = `${process.env.REACT_APP_API_URL}/rest-api/clients/create`
     e.preventDefault();
 		let formData = new FormData();
 
 
 
-    console.log('the carte', carte);
+    //console.log('the carte', carte);
 
       formData.append('civility',civility );
       formData.append('carte',carte );
@@ -116,19 +116,19 @@ const getSelectedMaladies = ( ) => {
       if (picture !== null) {
         formData.append('picture', picture.image[0]);
       }else{
-        console.log('il ny a pas de photo', typeof(picture));
+        //console.log('il ny a pas de photo', typeof(picture));
       }
       api.post(endpoint, formData, config)
       	.then((res) => {
       		// console.log(res.data);
           history.push("/client")
           notifySuccess('Adhérent Ajouté Avec Succée') 
-          console.log('THE NEW CLIENT ONEEE ', res.data);
+          //console.log('THE NEW CLIENT ONEEE ', res.data);
       	})
       	.catch((err) => {
           notifyError(`Erreur,  ${err}`)
-          console.log('THE NEW CLIENT ', err.response.data[0])
-          console.log('THE NEW CLIENT ', err.response)
+          //console.log('THE NEW CLIENT ', err.response.data[0])
+          //console.log('THE NEW CLIENT ', err.response)
         });
     }
 
@@ -232,19 +232,19 @@ const getSelectedMaladies = ( ) => {
                             //   const maladieId = value.indexOf(value)
                             //   if (maladieId !== -1) {
                             //     const neawCren = value.filter(val => val !== maladieId)
-                            //     console.log('calue de i , id', value.id);
-                            //     console.log('calue de i , vaaal', neawCren);
-                            //     console.log('calue de i , maladieId', maladieId);
+                            //     //console.log('calue de i , id', value.id);
+                            //     //console.log('calue de i , vaaal', neawCren);
+                            //     //console.log('calue de i , maladieId', maladieId);
                             //     setSelectedMaladies(neawCren) 
                             //   }
                             //   for (let i = 0; i < value.length; i++) {
                                
                             //       setSelectedMaladies([...selectedMaladies, value[i].id])
-                            //       console.log('calue de i , maladieId', maladieId);
+                            //       //console.log('calue de i , maladieId', maladieId);
 
                             //       console.log("je suis laaa");
                             // }
-                            console.log('les maladies selectionné', selectedMaladies);
+                            //console.log('les maladies selectionné', selectedMaladies);
                             })}
                             // onChange={handleSubmit}
                             options={maladies}
@@ -253,7 +253,7 @@ const getSelectedMaladies = ( ) => {
                             //  value={activities[creneauActivite]}
                             // getOptionSelected={(option) =>  option['id']}
                             
-                            // getOptionSelected={(option) => console.log('hello', option.id )}
+                            // getOptionSelected={(option) => //console.log('hello', option.id )}
                             getOptionLabel={(option) =>  (
                                 option['name'])}
                             renderInput={(params) =>

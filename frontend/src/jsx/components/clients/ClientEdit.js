@@ -79,11 +79,11 @@ const getmaladiesNames = (actiAbon) => {
     for (let i = 0; i < actiAbon.length; i++) {
       const acti = actiAbon[i];
       const index = provActiId.indexOf(acti) 
-      // console.log('indexes', index);
+      // //console.log('indexes', index);
       indexesList.push(maladies[index])
 
     }
-    console.log('indesxxxd', indexesList);
+    //console.log('indesxxxd', indexesList);
     return indexesList    
 }
   useEffect(() => {
@@ -103,7 +103,7 @@ const getmaladiesNames = (actiAbon) => {
       setEtat(res.data.etat)
       setDette(res.data.dette)
       setCarte(res.data.carte)
-      // console.log('the real maladies', realMaladies);
+      // //console.log('the real maladies', realMaladies);
       setGotResult(true)
     })
   }
@@ -174,8 +174,8 @@ const handleImage = (e) => {
       image: e.target.files,
       });
     // setPicture(e.target.files[0])
-      console.log('e.target.files',e.target.files);
-      console.log('e.target.name', e.target.name);
+      //console.log('e.target.files',e.target.files);
+      //console.log('e.target.name', e.target.name);
   // }
 };
 // const deletClient =async () => {
@@ -214,7 +214,7 @@ const getSelectedMaladies = () => {
       const newMaladies = []
     //   for (let i = 0; i < selectedMaladies.length; i++) {
     //     // setRealMaladies([...realMaladies, selectedMaladies[i]['id']])
-    //     console.log('les the sleected madaldie',selectedMaladies);
+    //     //console.log('les the sleected madaldie',selectedMaladies);
     //     const maladie = Number(selectedMaladies[i]['id'])
     //     newMaladies.push(maladie) 
     // }
@@ -327,7 +327,7 @@ const getSelectedMaladies = () => {
                       onChange={((event, value) =>  
                         {
                           setSelectedMaladies(value)
-                        console.log('the valueee', value);
+                        //console.log('the valueee', value);
                     }
                         )} 
                       value={selectedMaladies}

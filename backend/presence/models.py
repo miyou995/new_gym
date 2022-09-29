@@ -4,12 +4,15 @@ from creneau.models import Creneau
 from django.db.models.signals import pre_save, post_save, post_delete, pre_delete
 # Create your models here.
 from django.db.models import Q
-from datetime import timedelta, datetime, timezone
+from datetime import timedelta, datetime, timezone, date
 from decimal import Decimal
 from django.utils import timezone
 from abonnement.models import AbonnementClient
 from simple_history.models import HistoricalRecords
 from django.conf import settings
+
+FTM = '%H:%M:%S'
+
 
 class PresenceManager(models.Manager):
     def get_presence(self, client_id):
@@ -52,6 +55,17 @@ class Presence(models.Model):
         if not self.date:
             self.date = timezone.now()
         return super().save(*args, **kwargs)
+    def get_time_difference(self):
+        if self.abc.is_time_volume():
+            today = date.today()
+            d_start = datetime.combine(today, self.hour_entree)
+            d_end = datetime.combine(today, self.hour_sortie)
+            diff =  d_end - d_start 
+            minutes = diff.total_seconds() 
+            ecart = int(minutes)
+        else :
+            ecart = 1
+        return ecart
 
 
 class PresenceCoach(models.Model):

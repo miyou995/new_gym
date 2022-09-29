@@ -37,7 +37,7 @@ const PaiementModal = ({show, onShowShange, clientData}) => {
     //        try {
     //           const res = await api.get(`${process.env.REACT_APP_API_URL}/rest-api/abonnement-by-client/?cl=${clientId}`);
     //           setAbc(res.data)
-    //           console.log('ceci est le resultat de labonnement client ', res.data);
+    //           //console.log('ceci est le resultat de labonnement client ', res.data);
     //        } catch (error) {
     //           console.log(error);
     //        }
@@ -90,7 +90,7 @@ const PaiementModal = ({show, onShowShange, clientData}) => {
           handleShow()
         } catch (error) {
            notifyError("Echec de paiement")
-            console.log('je suis la ', error);
+            //console.log('je suis la ', error);
         }
 
       }

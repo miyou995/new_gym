@@ -27,7 +27,7 @@ const PresencesClientModal = ({show, onShowShange, presencesData}) => {
    //       if (show == 'true') {
    //          api.get(paiementsEnd).then( res => {
    //             setPaimeents(res.data)
-   //             console.log('les paiements', paiements, res.data);
+   //             //console.log('les paiements', paiements, res.data);
    //          })
    //       }
    //    // }
@@ -39,7 +39,7 @@ const PresencesClientModal = ({show, onShowShange, presencesData}) => {
              const res = await api.get(presencesEnd);
              setPresences(res.data.results)
              setPresencesCount(res.data.count)
-              console.log('ghirrrr =transClient', res.data);
+              //console.log('ghirrrr =transClient', res.data);
           } catch (error) {
              console.log(error);
           }

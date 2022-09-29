@@ -37,7 +37,7 @@ const PaiementCreateModal = ({show, onShowShange}) => {
           try {
              const res = await api.get(clientsEnd);
              setClients(res.data)
-            //  console.log('les clizents ???', res.data.results);
+            //  //console.log('les clizents ???', res.data.results);
           } catch (error) {
              console.log(error);
           }
@@ -51,7 +51,7 @@ const PaiementCreateModal = ({show, onShowShange}) => {
            try {
               const res = await api.get(`${process.env.REACT_APP_API_URL}/rest-api/abonnement-by-client/?cl=${clientId}`);
               setAbc(res.data)
-              console.log('ceci est le resultat de labonnement client ', res.data);
+              //console.log('ceci est le resultat de labonnement client ', res.data);
            } catch (error) {
               console.log(error);
            }
@@ -65,7 +65,7 @@ const PaiementCreateModal = ({show, onShowShange}) => {
         amount : amount ,
         abonnement_client: Number(abcId),
         // type : Number(abonnement),
-        note : note
+        notes : note
       }
       await api.post(paiementCreateEnd, newTransaction).then( res => {
         notifySuccess('Paiement creer avec succés')

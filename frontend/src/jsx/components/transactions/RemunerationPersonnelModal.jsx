@@ -36,7 +36,7 @@ const RemunerationPersonnelModal = ({show, onShowShange, transactionData}) => {
   //FK 
 
   const HandleSubmit = async e => {
-    // console.log('les maladiiiies', maladies);
+    // //console.log('les maladiiiies', maladies);
     let endpoint = `${process.env.REACT_APP_API_URL}/rest-api/transactions/remuneration/create`
     e.preventDefault();
     const newClient = {

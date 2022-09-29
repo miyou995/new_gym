@@ -63,7 +63,7 @@ const RenewAbonnementModal = ({show, onShowShange, clientData}) => {
       // setPresences(clientData['abonClientpresences'])
       // setReste(clientData['abonClientReste'])
       // setTypeName(clientData['abonClientTypeName'])
-      // console.log('vdfbvfknb', abonId);
+      // //console.log('vdfbvfknb', abonId);
       // setSeleCreneau(clientData['abonnementClientCreneaux'])
       }
     }, [show, renouvler]);
@@ -75,7 +75,7 @@ const RenewAbonnementModal = ({show, onShowShange, clientData}) => {
     let result6=[]
     let result7=[]
     useEffect(() => {
-      // console.log('selected salle', typeof selectedSalle );
+      // //console.log('selected salle', typeof selectedSalle );
       if (type !== '' ) {
         api.get(creneauPerAbonnementEND).then(res =>{
           res.data.forEach((req) => {

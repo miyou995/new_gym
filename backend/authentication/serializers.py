@@ -86,48 +86,63 @@ class ChangePasswordSerializer(serializers.ModelSerializer):
 
 class UpdateUserSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(required=True)
+    get_first_group = serializers.SerializerMethodField("get_left_minutes", read_only=True)
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'email', 'groups')
-        extra_kwargs = {
-            'first_name': {'required': True},
-            'last_name': {'required': True},
-        }
+        fields = "__all__"
+        # fields = ('id', 'email', 'groups', 'get_first_group', 'first_name', 'last_name',)
+        # extra_kwargs = {
+        #     'first_name': {'required': True},
+        #     'last_name': {'required': True},
+        # }
 
-    def validate_email(self, value):
-        user = self.context['request'].user
-        if User.objects.exclude(pk=user.pk).filter(email=value).exists():
-            raise serializers.ValidationError({"email": "This email is already in use."})
-        return value
+    # def validate_email(self, value):
+    #     user = self.context['request'].user
+    #     if User.objects.exclude(pk=user.pk).filter(email=value).exists():
+    #         raise serializers.ValidationError({"email": "This email is already in use."})
+    #     return value
 
-    def validate_username(self, value):
-        user = self.context['request'].user
-        if User.objects.exclude(pk=user.pk).filter(username=value).exists():
-            raise serializers.ValidationError({"username": "This username is already in use."})
-        return value
-
+    # def validate_username(self, value):
+    #     user = self.context['request'].user
+    #     if User.objects.exclude(pk=user.pk).filter(username=value).exists():
+    #         raise serializers.ValidationError({"username": "This username is already in use."})
+    #     return value
+    def get_first_group(self, obj):
+        return obj.get_first_group()
     def update(self, instance, validated_data):
         user = self.context['request'].user
-
-        if user.pk != instance.pk:
-            raise serializers.ValidationError({"authorize": "You dont have permission for this user."})
-
+        # if user.pk != instance.pk:
+        #     raise serializers.ValidationError({"authorize": "You dont have permission for this user."})
         instance.first_name = validated_data['first_name']
         instance.last_name = validated_data['last_name']
         instance.email = validated_data['email']
+        print('What received', validated_data['groups'])
+        groups = validated_data['groups']
+        group = groups[0]
+        print('INSTRANCE GRTOUSP BEFORE', type(instance))
+        print('Groups after', group)
+        groups = instance.groups.set([group])
+        print('Final groups after', groups)
 
         instance.save()
-
         return instance
 
  
 class ReadUsersView(serializers.ModelSerializer):
     # client = serializers.CharField(source = "abc.client")
-
+    get_first_group = serializers.SerializerMethodField("first_group_name", read_only=True)
     class Meta:
         model = User
-        fields = ('id', 'email', 'groups','get_first_group','first_name', 'last_name',)
+        fields = ('id', 'email', 'groups', 'get_first_group', 'first_name', 'last_name',)
+        # fields = "__all__"
+
         # read_only_fields = 'username'
+    def first_group_name(self, obj):
+        group = obj.groups.first() 
+        if group :
+            return group.name
+        else:
+            return ""
 class GroupSerializer(serializers.ModelSerializer):
     class Meta:
         model = Group
@@ -137,6 +152,6 @@ class GroupSerializer(serializers.ModelSerializer):
 class ObtainTokenSerializer(TokenObtainPairSerializer):
     @classmethod
     def get_token(cls, user):
-        token = super(ObtainTokenSerializer, cls).get_token(user)
-        print('the token', token)
+        token = super().get_token(user)
+        token['email'] = user.email
         return token

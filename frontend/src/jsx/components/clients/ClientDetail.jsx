@@ -35,7 +35,7 @@ import ReactToPrint from 'react-to-print';
 import { ComponentToPrint } from './ComponentToPrint';
 
 const ComponentToPrintWrapper = ({ item }) => {
-  console.log('iteMM', item);
+  //console.log('iteMM', item);
   const componentRef = useRef();
 
   const marginTop="40px"
@@ -109,8 +109,8 @@ const ProductDetail = (props) => {
    const presenceCreateEND = `${process.env.REACT_APP_API_URL}/rest-api/presence/create`
    const transactionClientEND = `${process.env.REACT_APP_API_URL}/rest-api/transactions/paiement-by-client/?cl=${clientId}`
   const creneauClientEND = `${process.env.REACT_APP_API_URL}/rest-api/creneau/by-client?cl=${clientId}`
-  // console.log('les trnasactions ',transactions);
-  // console.log('le id de labonnd client est ', abonnementClientCreneaux);
+  // //console.log('les trnasactions ',transactions);
+  // //console.log('le id de labonnd client est ', abonnementClientCreneaux);
   const api = useAxios();
 
   const addPresence = async () => {
@@ -166,7 +166,7 @@ const ProductDetail = (props) => {
   //         //  let result = (creneaux) => creneaux.filter((v,i) => creneaux.indexOf(v) === i)
   //          setCreneauxClient(creneaux)
  
-  //           // console.log('ghirrrr =creneauxClient', creneauxClient);
+  //           // //console.log('ghirrrr =creneauxClient', creneauxClient);
   //       } catch (error) {
   //          console.log(error, 'erreur presneces');
   //       }
@@ -235,7 +235,7 @@ const populatePaimentData = (e) => {
   setPaiementABCInfo(e.target.abonnement_name)
   setPaiementDateInfo(e.target.date_creation)
   setPaiementEditModal(true)
-  console.log('TRHE RRRREEEE', e.target);
+  //console.log('TRHE RRRREEEE', e.target);
 }
 useEffect(() => {
   try {

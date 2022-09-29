@@ -229,13 +229,13 @@ return (
                       onChange={((event, value) =>  
                         {
                         setActivity(value)
-                        console.log('the valueee', value);
+                        //console.log('the valueee', value);
                     }
                         )} 
                       value={activity}
                       options={abonnementData['salles']}
                       id="size-small-standard-multi"
-                      getOptionLabel={(option) =>  ( option['name'])}
+                      getOptionLabel={(option) => (option['name'])}
                       renderInput={(params) =>
                   (<TextField {...params} name="salles" label="Salles" variant="outlined" fullWidth />)}
                 />

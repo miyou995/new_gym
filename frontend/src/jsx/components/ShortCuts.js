@@ -82,8 +82,8 @@ const ShortCuts = () => {
  const clientAuthorizationEnd = `${process.env.REACT_APP_API_URL}/rest-api/get_client_authorization/`
  const transactionAuthorization = `${process.env.REACT_APP_API_URL}/rest-api/transactions/get_transaction_authorization/`;
  const coachAuthorizationEnd = `${process.env.REACT_APP_API_URL}/rest-api/get_coach_authorization/`
- let personnelAuthorization = `${process.env.REACT_APP_API_URL}/rest-api/personnel/`
- let presenceAuthorization = `${process.env.REACT_APP_API_URL}/rest-api/presence/`
+ let personnelAuthorization = `${process.env.REACT_APP_API_URL}/rest-api/get_personnel_authorization/`
+ let presenceAuthorization = `${process.env.REACT_APP_API_URL}/rest-api/presence/get_presence_authorization/`
 
 
  const [clientAuth] = useAuth(clientAuthorizationEnd, 'GET')

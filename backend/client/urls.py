@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import ClientAPIView, ClientListAPIView, ClientDestroyAPIView, ClientDetailAPIView, PersonnelCreateAPIView, PersonnelListAPIView, PersonnelDetailAPIView, PersonnelDestroyAPIView ,CoachCreateAPIView ,CoachListAPIView ,CoachDetailAPIView ,CoachDestroyAPIView, MaladieCreateAPIView, MaladieViewSet, ClientNameViewAPI,  total_dettes, total_abonnes, ClientPresenceViewAPI, ClientNamesDropListAPIView, MaladieDetailViewAPI, GETClientDetailAPIView, get_client_authorization, get_coach_authorization
+from .views import ClientAPIView, ClientListAPIView, ClientDestroyAPIView, ClientDetailAPIView, PersonnelCreateAPIView, PersonnelListAPIView, PersonnelDetailAPIView, PersonnelDestroyAPIView ,CoachCreateAPIView ,CoachListAPIView ,CoachDetailAPIView ,CoachDestroyAPIView, MaladieCreateAPIView, MaladieViewSet, ClientNameViewAPI,  total_dettes, total_abonnes, ClientPresenceViewAPI, ClientNamesDropListAPIView, MaladieDetailViewAPI, GETClientDetailAPIView, get_client_authorization, get_coach_authorization, get_personnel_authorization
 from django.views.generic import TemplateView
 
 app_name = 'client'
@@ -37,6 +37,7 @@ urlpatterns = [
     path('maladie/<int:pk>', MaladieDetailViewAPI.as_view(), name="maladie-detail"),
     path('get_client_authorization/', get_client_authorization, name="get_client_authorization"),
     path('get_coach_authorization/', get_coach_authorization, name="get_coach_authorization"),
+    path('get_personnel_authorization/', get_personnel_authorization, name="get_personnel_authorization"),
 ]
 
 

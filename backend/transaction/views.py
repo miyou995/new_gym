@@ -29,7 +29,7 @@ class StandardResultsSetPagination(pagination.PageNumberPagination):
 
 
 class LimitPagination(MultipleModelLimitOffsetPagination):
-    default_limit = 10
+    default_limit = 15
 
 class BaseModelPerm(DjangoModelPermissions):
     def get_custom_perms(self, method, view):
@@ -65,6 +65,7 @@ class PaiementHistoryListAPIView(generics.ListAPIView):
     queryset = Paiement.history.all()
     # permission_classes = (IsAuthenticated,)
     serializer_class = PaiementHistorySerialiser
+    pagination_class = StandardResultsSetPagination
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
         "GET": ["transaction.can_view_history"]
@@ -283,7 +284,7 @@ class RemunerationProfDestroyAPIView(generics.DestroyAPIView):
 
 class TransactionListAPIView(FlatMultipleModelAPIView):
     queryset = Transaction.objects.all()
-    sorting_fields = ['-date_creation']
+    sorting_fields = ['-id']
     filter_backends = (filters.SearchFilter,)
     flat = True
     pagination_class = LimitPagination
@@ -297,12 +298,12 @@ class TransactionListAPIView(FlatMultipleModelAPIView):
         end_date = self.request.query_params.get('end_date', None)
         querylist = (
             {
-                'queryset': Paiement.objects.filter(date_creation__range=[start_date, end_date]).order_by('-date_creation'),
+                'queryset': Paiement.objects.filter(date_creation__range=[start_date, end_date]).select_related('abonnement_client').order_by('-date_creation'),
                 'serializer_class': PaiementSerialiser,
                 'label': 'paiement',
             },
             {
-                'queryset': Remuneration.objects.filter(date_creation__range=[start_date, end_date]).order_by('-date_creation'),
+                'queryset': Remuneration.objects.filter(date_creation__range=[start_date, end_date]).select_related('nom').order_by('-date_creation'),
                 'serializer_class': RemunerationSerialiser,# il ya un problem
                 'label': 'remuneration',
             },
@@ -312,12 +313,12 @@ class TransactionListAPIView(FlatMultipleModelAPIView):
                 'label': 'autre',
             },
             {
-                'queryset': RemunerationProf.objects.filter(date_creation__range=[start_date, end_date]).order_by('-date_creation'),
+                'queryset': RemunerationProf.objects.filter(date_creation__range=[start_date, end_date]).select_related('coach').order_by('-date_creation'),
                 'serializer_class': RemunerationProfSerialiser,
                 'label': 'remunerationProf',
             },
             {
-                'queryset': AssuranceTransaction.objects.filter(date_creation__range=[start_date, end_date]).order_by('-date_creation'),
+                'queryset': AssuranceTransaction.objects.filter(date_creation__range=[start_date, end_date]).select_related('client').order_by('-date_creation'),
                 'serializer_class': AssuranceSerialiser,
                 'label': 'assurance',
             },

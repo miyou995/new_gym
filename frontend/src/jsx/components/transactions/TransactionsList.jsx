@@ -72,37 +72,38 @@ const TransactionList = () => {
    
    const transactionAuthEnd = `${process.env.REACT_APP_API_URL}/rest-api/transactions/get_transaction_authorization/`
    useEffect(() =>  {
-      const dateDebut = formatDate(startDate)
-      const dateFin = formatDate(endDate)
-      api.get(`${process.env.REACT_APP_API_URL}/rest-api/transactions/?start_date=${dateDebut}&end_date=${dateFin}&search=${searchValue}&offset=${nextpage}`).then(res => {
-         console.log('le resultat des clients est ', res);
+      api.get(`${process.env.REACT_APP_API_URL}/rest-api/transactions/?start_date=${dateDebut}&end_date=${dateFin}&search=${searchValue}`).then(res => {
+         //console.log('le resultat des clients est ', res);
          setTransData(res.data.results)
          setNextUrl(res.data.next)
          setPreviusUrl(res.data.previous)
-         console.log('le setNextUrl des clients est ', nextUrl);
-         console.log('le setPreviusUrl des clients est ', previusUrl);
-
       })
+      console.log('le setNextUrl des clients est ', nextUrl);
+      console.log('le setPreviusUrl des clients est ', previusUrl);
+
       // if (searchValue !== '') {
       // }else {
       //    api.get(`${process.env.REACT_APP_API_URL}/rest-api/transactions/?start_date=${dateDebut}&end_date=${dateFin}&search=${searchValue}`).then(res => {
       //       setTransData(res.data)
-      //       console.log('le resultat des clients est ', res);
+      //       //console.log('le resultat des clients est ', res);
       //    })}
-   }, [searchValue, dateDebut, dateFin]);
-      useEffect(() =>  {
-         if (requestedUrl) {
-            api.get(requestedUrl).then(res => {
-               console.log('le resultat des clients est ', res);
-               setTransData(res.data.results)
-               setNextUrl(res.data.next)
-               setPreviusUrl(res.data.previous)
-               console.log('le setNextUrl des 212222222222222t ', nextUrl);
-               console.log('le setPreviusUrl des 212222222222222t ', previusUrl);
-            })
-         }
-      }, [requestedUrl]);
+
+   }, [searchValue, dateDebut, dateFin, paiementModal, autreModal, remunerationCoachModal, remunerationPersonnelModal]);
+
+   useEffect(() =>  {
+      if (requestedUrl) {
+         api.get(requestedUrl).then(res => {
+            //console.log('le resultat des clients est ', res);
+            setTransData(res.data.results)
+            setNextUrl(res.data.next)
+            setPreviusUrl(res.data.previous)
+            console.log('le setNextUrl des ', nextUrl);     
+            console.log('le setPreviusUrl des ', previusUrl);
+         })
+      }
+   }, [requestedUrl]);
    
+
    // !!! rahi : if clientAuth == true , il n'affiche pas la listes des client car la listes des client endpoint is diffrent -- clientList.jsx
    // f admin meme ki ndir permissions,  f Network y'affichili bli i dont have access ( error 403 )
 
@@ -127,7 +128,7 @@ const TransactionList = () => {
    //    api.get(endpoint).then(res => {
    //       setStartDate(res.data.results)
    //       setEndDate(res.data.results)
-   //       console.log('le resultat des clients est ', res.data);
+   //       //console.log('le resultat des clients est ', res.data);
    //    })}
    // presenceDateDate()
    // }, [startDate, endDate,nextpage,paiementModal,remunerationCoachModal,remunerationPersonnelModal,autreModal]);
@@ -270,16 +271,21 @@ const TransactionList = () => {
                               Précédent
                            </Button>
                         }
-                        <span className="m-3" >{nextpage}</span>
-                        <Button
-                           style={{ width: '100px', border: 'none', height: '48px', color: '#ffffff', textAlign: 'center', fontSize: '15px', padding: '2px' }}
-                           onClick={() => {
-                              setRequestedUrl(nextUrl)
-                              nextpage > 0 && setNextpage(nextpage + 1)
-                           }}
-                        >
-                           Suivant
-                        </Button>
+                        {
+                         previusUrl ? <span className="m-3" >{nextpage}</span> : nextUrl ?  <span className="m-3" >{nextpage}</span> : ""
+                        }
+                        {
+                           nextUrl && 
+                           <Button
+                              style={{ width: '100px', border: 'none', height: '48px', color: '#ffffff', textAlign: 'center', fontSize: '15px', padding: '2px' }}
+                              onClick={() => {
+                                 setRequestedUrl(nextUrl)
+                                 nextpage > 0 && setNextpage(nextpage + 1)
+                              }}
+                           >
+                              Suivant
+                           </Button>
+                        }
                      </div>
 
                   </div>
