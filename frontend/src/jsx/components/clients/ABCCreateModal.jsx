@@ -2,6 +2,8 @@ import React, { useState, useCallback, useEffect } from "react";
 import { Row, Card, Col, Button, Modal, Table } from "react-bootstrap";
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 // import api from 'axios';
 import PageTitle from "../../layouts/PageTitle";
 import {notifySuccess, notifyError} from '../Alert'
@@ -38,6 +40,7 @@ const ABCCreateModal = ({show, onShowShange, clientData}) => {
     const [abonnements, setAbonnements] = useState([]);
     
     const [tousLesCreneaux, setTousLesCreneaux] = useState([]);
+    const [abonnementType, setAbonnementType] = useState("");
     
     const [creneaux, setCreneaux] = useState([]);
     const [selectedDays, setSelectedDays] = useState([]);
@@ -72,7 +75,7 @@ const ABCCreateModal = ({show, onShowShange, clientData}) => {
     let result5=[]
     let result6=[]
     let result7=[]
-    // console.log('the daaaaaays', selectedDays);
+    // //console.log('the daaaaaays', selectedDays);
     useEffect(() => {
       if (show == true) {
         api.get(abonnementEND).then(res =>{
@@ -114,7 +117,21 @@ const ABCCreateModal = ({show, onShowShange, clientData}) => {
               setVendredi(result7)
             })
       }
+
     }, [selectAbonnement, planningId]);
+
+    useEffect(() => {
+      if (abonnementType === "VH") {
+        setSelectAll(true)
+        setCreneaux(selectAllCreneaux(tousLesCreneaux))
+      }else{
+        setSelectAll(false)
+        setCreneaux([])
+      }
+      console.log("IM CALLED");
+  }, [tousLesCreneaux]);
+
+
 
     // const notifySuccess = () => {
     //     toast.success('Abonnement Créer Avec Succés', {
@@ -181,20 +198,20 @@ const ABCCreateModal = ({show, onShowShange, clientData}) => {
     const getLastSelectedDay = (selectedStartDate, selectedDays) => {
       let startDate = new Date(selectedStartDate) 
       let theDay = ''
-      console.log('dayInd selectedDays ::::', selectedDays);
+      //console.log('dayInd selectedDays ::::', selectedDays);
       for (let i = 0; i < selectedDays.length; i++) {
         // const day = selectedDays[i];
         const dayInd = getDayIndex(selectedDays[i])
-        // console.log(' ZERO dayInd', dayInd);
-        // console.log('selcted DAYS', selectedDays);
+        // //console.log(' ZERO dayInd', dayInd);
+        // //console.log('selcted DAYS', selectedDays);
         const dateResult = startDate.setDate((selectedStartDate.getDate()) + (7 + dayInd - selectedStartDate.getDay()) % 7)
         let dateI = new Date(dateResult)
-        console.log('  dateRef ===============================>',  dateI);
+        //console.log('  dateRef ===============================>',  dateI);
         if (startDate <=  dateI) {
            theDay = selectedDays[i]
-           console.log('resulta intant theDay ', theDay);
+           //console.log('resulta intant theDay ', theDay);
       }
-          console.log('resulta intant T',  theDay);
+          //console.log('resulta intant T',  theDay);
       }
       return theDay;
     }
@@ -210,7 +227,7 @@ const ABCCreateModal = ({show, onShowShange, clientData}) => {
 //     const returnedDay = getLastSelectedDay(new Date(startDate), AselectedDays)
 //     console.log("FOUR returnedDay", returnedDay);
 //     const daysNumber = (numDays + getDayIndex(returnedDay)) - (startDate.getDay() % numDays)
-//     console.log('daysNumber', daysNumber);
+//     //console.log('daysNumber', daysNumber);
 //     const finalDate = resultDate.setDate(resultDate.getDate() + daysNumber);
 //     console.log("FIVEEEE returnedDay", new Date(finalDate));
 //     return finalDate;
@@ -247,7 +264,7 @@ const getSelectedDays = (creneauxIds, tousLesCreneaux) => {
         handleShow()
       }).catch(err => {
         notifyError("Erreur lors de la creation de l'abonnement'")
-        console.log('the axwait', err);
+        //console.log('the axwait', err);
       })
       return axWait
     }
@@ -278,6 +295,8 @@ return (
                           setDureeAbonnement(value.length)
                           setPaiementCochage(value.systeme_cochage)
                           setShowCreneau(true)
+                          setAbonnementType(value.type_of)
+                          console.log("ABONEEMNT ", value);
                         } catch (error) {
                           setSelectAbonnement('')
                           setDureeAbonnement('')
@@ -296,18 +315,29 @@ return (
                 <input type="date" name="start_date"  value={startDate} className="form-control" onChange={e => setStartDate(e.target.value)}/>
               </div>
       </div>
-      <div className="row">
-          <labelc className='text-dark font-weight-bold' >Selectionner tout</labelc>
-          <input className="h-80 ml-3" value={selectAll} type="checkbox" onClick={e => {
-            if (selectAll) {
-              setSelectAll(false)
-              setCreneaux([])
-            }else{
-              setSelectAll(true)
-              setCreneaux(selectAllCreneaux(tousLesCreneaux))
-            }
-            }}/>
-      </div>
+      <div className="form-group row">
+              <FormControlLabel
+                control={
+                    <Checkbox 
+                        checked={selectAll}
+                        onChange={e=> {
+                          if (selectAll) {
+                            setSelectAll(false)
+                            setCreneaux([])
+                          }else{
+                            setSelectAll(true)
+                            setCreneaux(selectAllCreneaux(tousLesCreneaux))
+                          }
+                        }}
+
+                        name="checkedB"
+                        color="primary"
+                    />
+                }
+                label="Selectionner tous"
+            />
+          </div>
+
     <div className="h-80 mt-3">
          {/* <PageTitle activeMenu="Planning" motherMenu="App" /> */}
          <div>

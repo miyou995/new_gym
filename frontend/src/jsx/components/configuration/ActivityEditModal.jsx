@@ -21,8 +21,8 @@ const ActivityEditModal = ({show, onShowShange, activityData}) => {
   const [color, setColor] = useState("");
   const [newSalle, setNewSalle] = useState(selectedSalle)
   
-  console.log('selectedSalle',selectedSalle);
-  console.log('sallesActivite',sallesActivite);
+  //console.log('selectedSalle',selectedSalle);
+  //console.log('sallesActivite',sallesActivite);
 
 useEffect(() => {
   if (activityData['activityId']) {
@@ -31,8 +31,8 @@ useEffect(() => {
     setAllSalles(activityData['salles'])
     setSalle(sallesActivite[activityData['salleId']])
     setNewSalle(sallesActivite[selectedSalle].id)
-    console.log('la couleuuuuur', activityData['color']);
-    console.log('la setNewSalle', newSalle);
+    //console.log('la couleuuuuur', activityData['color']);
+    //console.log('la setNewSalle', newSalle);
   }
 }, [ activityData['activityId']]);
 
@@ -48,8 +48,8 @@ const handleSubmit = async e => {
   handleShow()
 }
 
-console.log('sallesActivit', sallesActivite);
-console.log('newSalle', newSalle);
+//console.log('sallesActivit', sallesActivite);
+//console.log('newSalle', newSalle);
 
 return ( 
   <div>

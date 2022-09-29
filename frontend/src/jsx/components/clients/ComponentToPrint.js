@@ -3,7 +3,7 @@ import logo from "../../../images/logo.png";
 
 export const ComponentToPrint = React.forwardRef((props, ref) => {
 //   const { id, date } = props;
-console.log('PROESSSS', props);
+//console.log('PROESSSS', props);
   return (
     <div className="container"  ref={ref}>
     <div className="row px-5">

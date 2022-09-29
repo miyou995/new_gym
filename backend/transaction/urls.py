@@ -32,7 +32,7 @@ urlpatterns = [
 
     path('remuneration/create', RemunerationAPIView.as_view(),  name="remuneration-create"),
     path('remuneration/', RemunerationListAPIView.as_view(),  name="remuneration"),
-    # path('remunerationProf-by-coach/', PaiementEmployeListAPIView.as_view(),  name="remunerationProf-create"),
+    path('remunerationProf-by-id/', PaiementEmployeListAPIView.as_view(),  name="remunerationProf-create"),
     path('remuneration/<int:pk>/', RemunerationDetailAPIView.as_view(), name="remuneration-delete"),
     path('remuneration/delete/<int:pk>/', RemunerationDestroyAPIView.as_view(), name="remuneration-delete"),
     path('get_transaction_authorization/', get_transaction_authorization, name="get_transaction_authorization"),

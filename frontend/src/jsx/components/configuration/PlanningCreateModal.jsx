@@ -64,7 +64,7 @@ return (
                         checked={is_default}
                         onChange={e=> {
                         setDefault(!is_default)
-                            console.log('target value', e.target.value);
+                            //console.log('target value', e.target.value);
                         }}
 
                         name="checkedB"

@@ -155,8 +155,9 @@ class Client(models.Model):
         # update abc
         presence.save(commit=False)
         abc = presence.abc
+        
         if abc.is_time_volume():
-            ecart = presence.hour_sortie - presence.hour_entree 
+            ecart = presence.get_time_difference() 
             abc.presence_quantity -= ecart 
             abc.save()
             # ecart = abs(datetime.strptime(str(hour_start), FTM) - datetime.strptime(current_time, FTM))

@@ -26,31 +26,7 @@ const HistoryList = () => {
          return returned
       }
    }
-   // const getCurrentDay = (PresneceDate) => {
-   //    const date = new Date(PresneceDate).getDay()
-   
-   //    if (date === 0) {
-   //       return 'Dimanche'
-   //    }else if (date === 1){
-   //       return 'Lundi'
-   
-   //    }else if (date === 2){
-   //       return 'Mardi'
-   
-   //    }else if (date === 3){
-   //       return 'Mercredi'
-   
-   //    }else if (date === 4){
-   //       return 'Jeudi'
-   
-   //    }else if (date === 5){
-   //       return 'Vendredi'
-   //    }else {
-   //       return 'Samedi'
-   //    }
-   // } 
-   // const [editModal, setEditModal] = useState(false);
-   // const [presneceCreateModal, setPresneceCreateModal] = useState(false);
+
    const [nextpage, setNextpage] = useState(1);
    const [client, setClient ] = useState('')
    const [abcsData, setAbcsData] = useState([]);
@@ -60,7 +36,9 @@ const HistoryList = () => {
 
    const [clientId, setClientId ] = useState('')
    // const [carteClient, setCarteClient ] = useState('')
-
+   const [requestedUrl, setRequestedUrl] = useState(null);
+   const [nextUrl, setNextUrl] = useState("");
+   const [previusUrl, setPreviusUrl] = useState("");
    const [searchValue, setSearchValue] = useState('')
    const [searchBarActivated, setSearchBarActivated] = useState(false)
    // const [presenceData, setPresenceData] = useState([]);
@@ -76,36 +54,41 @@ const HistoryList = () => {
    //    return word.charAt(0).toUpperCase() + word.slice(1);
    //    return '';
    // };
-   // console.log('le clieeeeen RFID', client);
+   // //console.log('le clieeeeen RFID', client);
 // 
+
 
 
 useEffect(() => {
    api.get(usersEnd).then(res => {
-      setUsers(res.data)
+      setUsers(res.data.results)
+
    })
 }, [])
 
 useEffect(() => {
    api.get(`${process.env.REACT_APP_API_URL}/rest-api/abonnement-client-history?cl=${searchValue}&abc=${abcId}&start=${startDate}&end=${endDate}&usr=${userId}`).then(res => {
-      console.log('THE RESULT', res);
+      //console.log('THE RESULT', res);
       setAbcsData(res.data.results)
-      console.log('THE DATA setAbcsData', abcsData);
+      setNextUrl(res.data.next)
+      setPreviusUrl(res.data.previous)
+      //console.log('THE DATA setAbcsData', abcsData);
    })
 }, [abcId, endDate, searchValue, startDate, userId])
 
 
-   // useEffect(() => {
-   //    const presenceDateDate = async () => {
-   //       const dateDebut = formatDate(startDate)
-   //       const dateFin = formatDate(endDate)
-   //       const result =  await api.get(`${process.env.REACT_APP_API_URL}/rest-api/presence/?page=${nextpage}&start_date=${dateDebut}&end_date=${dateFin}&abc__client_id=${searchValue}&creneau__activity__salle=${salleId}&hour=${startHour}&creneau__activity=${filterActivity}`)
-   //       setPresenceData(result.data.results)
-   //       setPresencesCount(result.data.count)
-   //    }
-   //    presenceDateDate()
-   // }, [startDate, endDate, clientId,nextpage, searchValue, client, presenceCreatedSuccess, presenceupdatedSuccess, salleId, startHour, filterActivity]);
-
+useEffect(() =>  {
+   if (requestedUrl) {
+      api.get(requestedUrl).then(res => {
+         //console.log('le resultat des clients est ', res);
+         setAbcsData(res.data.results)
+         setNextUrl(res.data.next)
+         setPreviusUrl(res.data.previous)
+         console.log('le setNextUrl des ', nextUrl);     
+         console.log('le setPreviusUrl des ', previusUrl);
+      })
+   }
+}, [requestedUrl]);
 
    return (
       <Fragment>
@@ -129,20 +112,11 @@ useEffect(() => {
                      Historique Presences
                   </div>
                </Link> 
-               {/* <Link to={'history-transactions'} className="text-light">
-            <div className="btn btn-info col-3" >
-                  Historique Transactions
-            </div>
-                  </Link> 
-               <Link to={'history-presence'}className="text-light">
-            <div className="btn btn-info col-3" >
-            Historique Presences
-            </div>
-               </Link> */}
+
          </div>
          <div className="row d-flex m-3 py-4" style={{backgroundColor:'#ffffff'}}>
             <div className=" col-md-2">
-               <label style={{color:'#000000'}} >Adhérant (ID / Carte) </label>
+               <label style={{color:'#000000'}} >Adhérant  </label>
                <input type="text" className="form-control" placeholder="rechercher par ID Client" value={searchValue} onChange={e => setSearchValue(e.target.value)}/>
             </div>
             <div className=" col-md-2">
@@ -162,12 +136,13 @@ useEffect(() => {
                         setUserId('')
                      }
                   })}
+                  
                   //  value={activities[creneauActivite]}
                   getOptionSelected={(option) =>  option['id']}
                   getOptionLabel={(option) =>  option['email']}
                   style={{ color: '#000' }}
                   renderInput={(params) => 
-                     <TextField {...params} style={{color:"#000"}}  className='text-light' label="Séléectionner un utilisateur" variant="outlined"  
+                     <TextField {...params} style={{color:"#000"}}  className='text-light' label="Utilisateur" variant="outlined"  
                      InputLabelProps={{style: { color: '#000', borderColor:'#000' }, }}
                      />}
                   />
@@ -220,43 +195,40 @@ useEffect(() => {
                   </div>
                </div>
             </div>
-            {/* <PresenceEditModal show={editModal} onShowShange={setEditModal} presenceData={{presenceId:presenceId, client:client, hourIn:hourIn, hourOut: hourOut, creneau:creneau, note:note, clientId:clientId, date:date, activity:activity}}/>
-            <PresenceCreateModal show={presneceCreateModal} onShowShange={setPresneceCreateModal} /> */}
+
          </div>
-         {
-            !searchBarActivated &&
             <div className='d-flex text-center justify-content-end'>
-                <div className='dataTables_info text-black' id='example5_info '>
-                  {/* Showing {activePag.current * sort + 1} to{' '}
-                  {data.length > (activePag.current + 1) * sort
-                    ? (activePag.current + 1) * sort
-                    : data.length}{' '}
-                  of {data.length} entries{' '} */}
-                </div>
-                <div className='dataTables_paginate paging_simple_numbers' id='example5_paginate' >
-                  <Button
-                    onClick={() =>
-                     nextpage > 0 && setNextpage(nextpage - 1)
+               <div className='dataTables_paginate paging_simple_numbers' id='example5_paginate' >
+                  {
+                     previusUrl && 
+                     <Button
+                        onClick={() => {
+                           if( nextpage > 1 ) {
+                              setRequestedUrl(previusUrl)
+                              nextpage > 0 && setNextpage(nextpage - 1)
+                           }
+                        }}
+                        style={{ width: '100px', border: 'none', height: '48px', color: '#ffffff', textAlign: 'left', fontSize: '15px', paddingLeft: '8px' }}>
+                        Précédent
+                     </Button>
                   }
-                  style={{width: '100px', border: 'none', height:'48px', color:'#ffffff',textAlign: 'left', fontSize:'15px', paddingLeft:'8px'}}>
-                    Précédent
-                  </Button>
-                  <span >
-                      <input to='/transactions' type='number' className='paginate_button_client' onChange={e => setNextpage(e.target.value)} value={nextpage} style={{width: '100px', border: 'none', height:'99%', textAlign: 'center', fontSize:'15px', backgroundColor: '#ffffff'}}/>
-                  </span>
-                  <Button 
-                  style={{width: '100px', border: 'none', height:'48px', color:'#ffffff',textAlign: 'center', fontSize:'15px', padding:'2px'}}
-
-                    onClick={() =>
-                     nextpage > 0 && setNextpage(Number(nextpage) + 1)
-                    }
-                  >
-                    Suivant
-                  </Button>
-                </div>
-
-              </div>
-         }
+                  {
+                     previusUrl ? <span className="m-3" >{nextpage}</span> : nextUrl ?  <span className="m-3" >{nextpage}</span> : ""
+                  }
+                  {
+                     nextUrl && 
+                     <Button
+                        style={{ width: '100px', border: 'none', height: '48px', color: '#ffffff', textAlign: 'center', fontSize: '15px', padding: '2px' }}
+                        onClick={() => {
+                           setRequestedUrl(nextUrl)
+                           nextpage > 0 && setNextpage(nextpage + 1)
+                        }}
+                     >
+                        Suivant
+                     </Button>
+                  }
+               </div>
+            </div>
       </Fragment>
    );
 };

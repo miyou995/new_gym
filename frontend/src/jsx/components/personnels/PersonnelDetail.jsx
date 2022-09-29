@@ -13,10 +13,6 @@ import PaiementModal from './PaiementModal'
 
 
 
-
-
-
-
 const PersonnelDetail = (props) => {
   const api = useAxios();
   const [paiementModal, setPaiementModal] = useState(false);
@@ -26,7 +22,7 @@ const PersonnelDetail = (props) => {
   const employeId = props.match.params.id;
 
   let PersonnelDetailEndpoint = `${process.env.REACT_APP_API_URL}/rest-api/personnel/${employeId}`;
-  const transactionsEmployeEnd = `${process.env.REACT_APP_API_URL}/rest-api/transactions/remuneration/${employeId}`;
+  const transactionsEmployeEnd = `${process.env.REACT_APP_API_URL}/rest-api/transactions/remunerationProf-by-id?em=${employeId}`;
   const [personnelData, setPersonnelData] = useState([])
   //FK 
   useEffect(() => {

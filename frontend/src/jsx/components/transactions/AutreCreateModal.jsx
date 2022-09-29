@@ -32,7 +32,7 @@ const AutreCreateModal = ({show, onShowShange, transactionData}) => {
       // refreshPage()
       handleShow()
     }
-  console.log('creneaux detail');
+  //console.log('creneaux detail');
 
 return ( 
 

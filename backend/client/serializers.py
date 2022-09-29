@@ -10,7 +10,7 @@ from abonnement.serializers import AbonnementClientSerialiser
 from presence.models import Presence
 from datetime import date
 from django.db.models import Sum
-
+from django.db.models import Prefetch
 # from transaction.serializers import PaiementPostSerialiser
 from transaction.models import Paiement, AssuranceTransaction
 # class CreneauHourSerialiser(serializers.ModelSerializer):
@@ -84,21 +84,28 @@ class ClientSerialiser(serializers.ModelSerializer):
         except:
             return False
     def get_abonnement_detail(self, obj):
-        abon = AbonnementClient.objects.filter(client__id=obj.id)
+        
+        abon = AbonnementClient.objects.select_related('client').filter(client__id=obj.id)
         # abonnement_queryset = obj.abonnement_client.all()
         return AbonnementDetailSerialiser(abon, many=True).data
 
     def get_presences(self, obj):
         # query = obj.presences.all()
+        presences = Client.objects.prefetch_related('abonnement_client__presences')
+
+
+        # query = Presence.objects.select_related(
+        #     Prefetch('abc__client', queryset=Client.objects.prefetch_related('abonnement_client__presences')))
+
         query = Presence.objects.filter(abc__client=obj)
+        
+        
         # print('ceci sont les presneces', obj.presences.all())
         return PresencesClientSerializers(query , many= True).data
 
     def get_last_presence(self, obj):
         try :
-            # presence = client.presences.filter(is_in_salle=True).last().id
-            presence = Presence.objects.filter(abc__client=obj, is_in_salle=True).last().id
-            # print(presence, ' JJJJJJJJJJJJJJJJJJJJJJ')
+            presence = Presence.objects.filter(abc__client=obj, is_in_salle=True).last().id   # a decommenter juste poiur le test de related lookups
             return presence
         except:
             presence = False
@@ -158,7 +165,7 @@ class CoachSerializer(serializers.ModelSerializer):
         fields= ('id','civility','civility_display','last_name', 'first_name', 'adress', 'phone', 'email', 'nationality', 'birth_date', 'blood', 'state','state_display','note', 'salaire', 'date_added', 'pay_per_hour',  'last_presence', 'color')
 
     def get_last_presence(self, obj):
-        print('this is the latest presence',Coach.custom_manager.get_last_presence(obj.id))
+        # print('this is the latest presence',Coach.custom_manager.get_last_presence(obj.id))
         return Coach.custom_manager.get_last_presence(obj.id)
 
 # creer a nested serialization to get abonnement client details in client detail
