@@ -345,6 +345,107 @@ class FaceControl:
             print("Open the door fail. " + self.sdk.GetLastErrorMessage())
             return False
         return True
+    def subscibe_user(self, user_name, user_id, picture_path):
+        stuInParam = NET_IN_ACCESS_USER_SERVICE_INSERT()
+        stuInParam.dwSize = sizeof(NET_IN_ACCESS_USER_SERVICE_INSERT)
+        stuInParam.nInfoNum = 1
+        record_info = NET_ACCESS_USER_INFO()
+        record_info.szUserID = user_id.encode()
+        record_info.szName = user_name.encode()
+        record_info.emUserType = EM_A_NET_ENUM_USER_TYPE.NET_ENUM_USER_TYPE_NORMAL
+        record_info.nUserStatus = 0
+        record_info.szCitizenIDNo = b'123456789999'
+        record_info.szPsw = b'admin'
+        stuInParam.pUserInfo = cast(pointer(record_info), POINTER(NET_ACCESS_USER_INFO))
+        stuOutParam = NET_OUT_ACCESS_USER_SERVICE_INSERT()
+        stuOutParam.dwSize = sizeof(NET_OUT_ACCESS_USER_SERVICE_INSERT)
+        stuOutParam.nMaxRetNum = 1
+        print("tt")
+        codes = []
+        for i in range(stuOutParam.nMaxRetNum):
+            code = 0
+            codes.append(code)
+        stuOutParam.pFailCode = cast((C_ENUM * stuOutParam.nMaxRetNum)(*codes), POINTER(C_ENUM))
+        type = EM_A_NET_EM_ACCESS_CTL_USER_SERVICE.NET_EM_ACCESS_CTL_USER_SERVICE_INSERT
+        result = self.sdk.OperateAccessUserService(self.loginID, type, stuInParam, stuOutParam, 5000)
+        if result:
+            print("OperateAccessUserService operate succeed.")
+        else:
+            print("OperateAccessUserService operate fail. " + self.sdk.GetLastErrorMessage())
+            return False
+        print("insert face image")
+        stuInParam = NET_IN_ACCESS_FACE_SERVICE_INSERT()
+        stuInParam.dwSize = sizeof(NET_IN_ACCESS_FACE_SERVICE_INSERT)
+        stuInParam.nFaceInfoNum = 1
+        record_info = NET_ACCESS_FACE_INFO()
+        record_info.szUserID = user_id.encode()
+        record_info.nFacePhoto = 1
+        record_info.nInFacePhotoLen = (c_int * 5)()
+        record_info.nOutFacePhotoLen = (c_int * 5)()
+        record_info.pFacePhoto = (c_void_p * 5)()
+        
+        path = picture_path
+        image_path = os.path.join(os.getcwd(), path)
+        # path = str(input("please input face image path:"))
+        with open(image_path, 'rb') as face_pic:
+            face_buf = face_pic.read()
+            record_info.nInFacePhotoLen[0] = len(face_buf)
+            record_info.nOutFacePhotoLen[0] = len(face_buf)
+            record_info.pFacePhoto[0] = cast(c_char_p(face_buf), c_void_p)
+
+        record_infos = []
+        record_infos.append(record_info)
+        stuInParam.pFaceInfo = cast(pointer(record_info), POINTER(NET_ACCESS_FACE_INFO))
+        # stuInParam.pFaceInfo = cast((NET_ACCESS_FACE_INFO * 1)(*record_infos), POINTER(NET_ACCESS_FACE_INFO))
+
+        stuOutParam = NET_OUT_ACCESS_FACE_SERVICE_INSERT()
+        stuOutParam.dwSize = sizeof(NET_OUT_ACCESS_FACE_SERVICE_INSERT)
+        stuOutParam.nMaxRetNum = 1
+        codes = []
+        for i in range(stuOutParam.nMaxRetNum):
+            code = 0
+            codes.append(code)
+        stuOutParam.pFailCode = cast((C_ENUM * stuOutParam.nMaxRetNum)(*codes), POINTER(C_ENUM))
+
+        type = EM_A_NET_EM_ACCESS_CTL_FACE_SERVICE.NET_EM_ACCESS_CTL_FACE_SERVICE_INSERT
+        result = self.sdk.OperateAccessFaceService(self.loginID, type, stuInParam, stuOutParam, 5000)
+        if result:
+            print("OperateAccessFaceService operate succeed.")
+        else:
+            print("OperateAccessFaceService operate fail. " + str(self.sdk.GetLastError()))
+            return False
+        # print("add card")
+
+        # add card
+        stuInParam = NET_IN_ACCESS_CARD_SERVICE_INSERT()
+        stuInParam.dwSize = sizeof(NET_IN_ACCESS_CARD_SERVICE_INSERT)
+        stuInParam.nInfoNum = 1
+
+        record_info = NET_ACCESS_CARD_INFO()
+        record_info.szCardNo = user_id.encode()
+        record_info.szUserID = user_id.encode()
+        record_info.emType = NET_ACCESSCTLCARD_TYPE.GENERAL
+
+        stuInParam.pCardInfo = cast(pointer(record_info), POINTER(NET_ACCESS_CARD_INFO))
+
+        stuOutParam = NET_OUT_ACCESS_CARD_SERVICE_INSERT()
+        stuOutParam.dwSize = sizeof(NET_OUT_ACCESS_CARD_SERVICE_INSERT)
+        stuOutParam.nMaxRetNum = 1
+        codes = []
+        for i in range(stuOutParam.nMaxRetNum):
+            code = 0
+            codes.append(code)
+        stuOutParam.pFailCode = cast((C_ENUM * stuOutParam.nMaxRetNum)(*codes), POINTER(C_ENUM))
+
+        type = EM_A_NET_EM_ACCESS_CTL_CARD_SERVICE.NET_EM_ACCESS_CTL_CARD_SERVICE_INSERT
+        result = self.sdk.OperateAccessCardService(self.loginID, type, stuInParam, stuOutParam, 5000)
+        if result:
+            print("OperateAccessCardService operate succeed.", result)
+        else:
+            print("OperateAccessCardService operate fail. " + self.sdk.GetLastErrorMessage())
+            return False
+
+        return True
 
     def user_operate(self):
         stuInParam = NET_IN_ACCESS_USER_SERVICE_INSERT()
