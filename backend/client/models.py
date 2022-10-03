@@ -12,6 +12,7 @@ from presence.models import Presence
 from datetime import datetime, timedelta
 from django.db import transaction
 from django.utils import timezone
+from .tasks import register_user
 
 # Create your models here.
 class AbonnementManager(models.Manager):
@@ -23,26 +24,15 @@ class AbonnementManager(models.Manager):
 
 class PresenceManager(models.Manager):
     def get_last_presence(self, coach_id):
-            coach = Coach.objects.get(id=coach_id)
-            try :
-                presence = coach.presencesCoach.filter(is_in_salle=True).last().id
-                # print(presence, ' JJJJJJJJJJJJJJJJJJJJJJ')
-                return presence
-            except:
-                presence = False
-                return presence
-    # def get_last_presence(self, client_id):
-    #     client = Client.objects.get(id=client_id)
-    #     try :
-    #         # presence = client.presences.filter(is_in_salle=True).last().id
-    #         presence = Presence.objects.filter(abc__client=client_id, is_in_salle=True).last().id
-    #         # print(presence, ' JJJJJJJJJJJJJJJJJJJJJJ')
-    #         return presence
-    #     except:
-    #         presence = False
-    #         return presence
-        # presence = client.presences.last().id
-        # print( 'le ID de la derniere presences du', client, 'est le:', presence )
+        coach = Coach.objects.get(id=coach_id)
+        try :
+            presence = coach.presencesCoach.filter(is_in_salle=True).last().id
+            # print(presence, ' JJJJJJJJJJJJJJJJJJJJJJ')
+            return presence
+        except:
+            presence = False
+            return presence
+
 
 CIVILITY_CHOICES = (
     ('MLL', 'Mlle'),
@@ -107,11 +97,48 @@ class Client(models.Model):
     abonnement_manager = AbonnementManager()
     history = HistoricalRecords()
 
-
+    def __init__(self, *args, **kwargs):
+        super(Client, self).__init__(*args, **kwargs)
+        self._old_picture = self.picture
 
     def __str__(self):
         return str(self.id)
-    
+
+    def save(self, *args, **kwargs):
+        if self._old_picture != self.picture:
+            print('yess changed picture')
+            register_user.delay(self.last_name, self.id, self.picture.url)
+        else:
+            print('picture not changed')
+
+        if not self.id:
+            try :
+                # print('clientsd==> ', timezone.now())
+                last_id = Client.objects.latest('created').id
+                print('yesssss last id = ', last_id)
+                number = int(last_id[1::])+1
+                print('the number', number)     
+                result  = str(number).zfill(4)
+                print('the result', result)     
+                the_id = f'C{result}'   
+                print('the id', the_id)     
+                self.id = the_id
+            except:
+                self.id = "C0001"
+
+        if self.carte:
+            # old_carte = self.carte
+            # print('old_carte', old_carte) 
+            int_carte = int(self.carte)
+            str_carte = str(int_carte)
+            print('carte', str_carte) 
+            new_int_carte =  int(str_carte)
+            hex_card = hex(new_int_carte)
+            deleted_x = hex_card.replace('0x', '')
+            self.hex_card = deleted_x.upper().zfill(8)
+            print('deleted_x', deleted_x) 
+            print(' hex_card', self.hex_card) 
+        return super().save(*args, **kwargs)
     def full_name(self):
         return str(self.last_name)+ " " +str(self.first_name)
 
@@ -120,31 +147,6 @@ class Client(models.Model):
 
 
 
-
-
-    # def select_abc(self, abonnements):
-    #     # abcs = 
-    #     for ab in abonnements: # si il y'a plusieurs abonnement on previlegie les abonnement normal vu qu'il ne sont pas recuperable
-    #         # print("abonnement dans la bouvcle", ab.type_abonnement.free_sessions)
-    #         if ab.is_valid():
-    #             if ab.is_fixed_sessions():
-    #                 return ab
-    #             if not ab.type_abonnement.free_sessions:
-    #                 # if AbonnementClient.validity.is_valid(ab.id):
-    #                 return ab
-    #             else:
-    #                 print('je suis laaaa')
-    #                 return ab
-
-    # def init_presence(self, *args, **kwargs):
-    #     # creneau     = kwargs["creneau"]
-    #     # abc         = kwargs["abc"]
-    #     # hour_in     = kwargs["hour_in"]
-    #     # hour_out    = kwargs["hour_out"]
-    #     # is_in_list  = kwargs["is_in_list"]
-    #     # date        = kwargs["date"]
-    #     presence = Presence.objects.create(**kwargs)
-        # return presence
 
     #A VERIFIEEEEEEER
     def init_output(self):
@@ -207,149 +209,6 @@ class Client(models.Model):
             print('XWHATS THE CASE')
             return False
 
-
-
-
-
-
-
-
-        # print('les creneau permis', creneaux)
-        # if creneaux.count() > 1 :
-        #     # dur_ref_time_format = abs(datetime.strptime(str(creneaux[0].hour_start), FTM) - datetime.strptime(current_time, FTM))
-        #     dur_ref= timedelta.total_seconds(dur_ref_time_format) 
-        #     cren_ref = creneaux.first()
-        #     for cr in creneaux:
-        #         start = str(cr.hour_start)
-        #         print('heure de début', start)
-        #         temps = abs(datetime.strptime(start, FTM) - datetime.strptime(current_time, FTM))
-        #         duree_seconde = timedelta.total_seconds(temps) 
-        #         if dur_ref > duree_seconde:
-        #             dur_ref = duree_seconde
-        #             cren_ref = cr
-
-            # clients_abc = AbonnementClient.objects.filter(client = self, creneaux = cren_ref, archiver=False )
-            # actives_abonnements = clients_abc.subscription.active_subscription()
-            # clients_fixed_times_abcs = actives_abonnements.fixed_sessions().valid_presences() 
-            # if clients_fixed_times_abcs.count():
-            #     abonnement = clients_fixed_times_abcs.first()
-            # else:
-            #     clients_time_volume_abcs = actives_abonnements.valid_time()
-            #     client_s_valid_presences_abc = actives_abonnements.valid_presences()
-            #     abcs = clients_fixed_times_abcs.union(clients_time_volume_abcs, client_s_valid_presences_abc)
-            #     abonnement = abcs.first()
-            # # abonnement = self.select_abc(abonlist)
-
-            # abonnement = abon_list.first()
-            # print('l \'abonnement du client est le :>>>>>>>>>>', abonnement)
-            # is_valid = AbonnementClient.validity.is_valid(abonnement.id)
-        #     if abonnement.is_time_volume() and abonnement.presence_quantity > 30:
-        #         with transaction.atomic():
-        #             presence = Presence.objects.create(abc= abonnement, creneau= cren_ref, is_in_list=True, hour_entree=current_time, is_in_salle=True)
-        #             self.is_on_salle=True
-        #             self.save()
-        #             return presence
-        #     else: 
-        #         if abonnement.presence_quantity > 0:
-        #         # AbonnementClient.validity.is_valid(obj.id)
-        #             with transaction.atomic():
-        #                 presence = Presence.objects.create(abc= abonnement, creneau= cren_ref, is_in_list=True, hour_entree=current_time, is_in_salle=True)
-        #                 self.is_on_salle=True
-        #                 self.save()
-        #             if abonnement.is_fixed_sessions() or abonnement.is_free_sessions():
-        #                 abonnement.presence_quantity -= 1
-        #             abonnement.save()
-        #             return presence # why is this retunrning presence not True 
-        #         return True
-        # return False
-    # def has_permission(self, door_ip=None):
-    #     FTM = '%H:%M:%S'
-    #     if self.is_on_salle :
-    #         sortie = self.init_output()
-    #         self.is_on_salle = False
-    #         self.save()
-    #         return sortie
-    #     current_time = datetime.now().strftime("%H:%M:%S")
-    #     creneaux = Creneau.range.get_creneaux_of_day().filter(abonnements__client=self, activity__salle__door__ip_adress= door_ip)
-    #     print('les creneau permis', creneaux)
-    #     if creneaux.count() > 1 :
-    #         dur_ref_time_format = abs(datetime.strptime(str(creneaux[0].hour_start), FTM) - datetime.strptime(current_time, FTM))
-    #         dur_ref= timedelta.total_seconds(dur_ref_time_format) 
-    #         cren_ref = creneaux[0]
-    #         for cr in creneaux:
-    #             start = str(cr.hour_start)
-    #             print('heure de début', start)
-    #             temps = abs(datetime.strptime(start, FTM) - datetime.strptime(current_time, FTM))
-    #             duree_seconde = timedelta.total_seconds(temps) 
-    #             if dur_ref > duree_seconde:
-    #                 dur_ref = duree_seconde
-    #                 cren_ref = cr
-
-    #         clients_abc = AbonnementClient.objects.filter(client = self, creneaux = cren_ref, archiver=False )
-    #         actives_abonnements = clients_abc.subscription.active_subscription()
-    #         clients_fixed_times_abcs = actives_abonnements.fixed_sessions().valid_presences() 
-    #         if clients_fixed_times_abcs.count():
-    #             abonnement = clients_fixed_times_abcs.first()
-    #         else:
-    #             clients_time_volume_abcs = actives_abonnements.valid_time()
-    #             client_s_valid_presences_abc = actives_abonnements.valid_presences()
-    #             abcs = clients_fixed_times_abcs.union(clients_time_volume_abcs, client_s_valid_presences_abc)
-    #             abonnement = abcs.first()
-    #         # abonnement = self.select_abc(abonlist)
-
-    #         # abonnement = abon_list.first()
-    #         print('l \'abonnement du client est le :>>>>>>>>>>', abonnement)
-    #         # is_valid = AbonnementClient.validity.is_valid(abonnement.id)
-    #         if abonnement.is_time_volume() and abonnement.presence_quantity > 30:
-    #             with transaction.atomic():
-    #                 presence = Presence.objects.create(abc= abonnement, creneau= cren_ref, is_in_list=True, hour_entree=current_time, is_in_salle=True)
-    #                 self.is_on_salle=True
-    #                 self.save()
-    #                 return presence
-    #         else: 
-    #             if abonnement.presence_quantity > 0:
-    #             # AbonnementClient.validity.is_valid(obj.id)
-    #                 with transaction.atomic():
-    #                     presence = Presence.objects.create(abc= abonnement, creneau= cren_ref, is_in_list=True, hour_entree=current_time, is_in_salle=True)
-    #                     self.is_on_salle=True
-    #                     self.save()
-    #                 if abonnement.is_fixed_sessions() or abonnement.is_free_sessions():
-    #                     abonnement.presence_quantity -= 1
-    #                 abonnement.save()
-    #                 return presence # why is this retunrning presence not True 
-    #             return True
-    #     return False
-
-    def save(self, *args, **kwargs):
-        if self.picture:
-            pass # register to both face machines
-        if not self.id:
-            try :
-                # print('clientsd==> ', timezone.now())
-                last_id = Client.objects.latest('created').id
-                print('yesssss last id = ', last_id)
-                number = int(last_id[1::])+1
-                print('the number', number)     
-                result  = str(number).zfill(4)
-                print('the result', result)     
-                the_id = f'C{result}'   
-                print('the id', the_id)     
-                self.id = the_id
-            except:
-                self.id = "C0001"
-        if self.carte:
-            # old_carte = self.carte
-            # print('old_carte', old_carte) 
-            int_carte = int(self.carte)
-            str_carte = str(int_carte)
-            print('carte', str_carte) 
-            new_int_carte =  int(str_carte)
-            hex_card = hex(new_int_carte)
-            deleted_x = hex_card.replace('0x', '')
-            self.hex_card = deleted_x.upper().zfill(8)
-            print('deleted_x', deleted_x) 
-            print(' hex_card', self.hex_card) 
-        return super().save(*args, **kwargs)
 
     def dettes(self):
         try:
@@ -420,15 +279,7 @@ class Personnel(models.Model):
     state           = models.CharField(choices=STATE_CHOICES , max_length=3, verbose_name='Etat', default='A')
     note            = models.TextField(blank=True, null=True)
     social_security = models.CharField(max_length=150)
-    # SALAIRE ======> stock all transaction to know when the personnel took money
-    
-    # avance          = models.DecimalField(max_digits=10, decimal_places=2, null=True)
-    # assurance   = models.ForeignKey("app.Model", verbose_name=_(""), on_delete=models.CASCADE)
-    # salle_sport = models.ForeignKey("app.Model", verbose_name=_(""), on_delete=models.CASCADE)
-    # abonnement  = models.ForeignKey("app.Model", verbose_name=_(""), on_delete=models.CASCADE)
-    # paiement    = models.ForeignKey("app.Model", verbose_name=_(""), on_delete=models.CASCADE)
-    # planning    = models.ForeignKey("app.Model", verbose_name=_(""), on_delete=models.CASCADE)
-    # maladies    = models.ForeignKey("app.Model", verbose_name=_(""), on_delete=models.CASCADE)
+
 
     def __str__(self):
         return self.first_name
