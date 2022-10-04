@@ -11,13 +11,13 @@ usermod -aG sudo taki
 su - taki
 
 ## Setting Up a Basic Firewall
-ufw app list
-ufw allow OpenSSH
-ufw enable # pres y after 
-ufw status 
+sudo ufw app list
+sudo ufw allow OpenSSH
+sudo ufw enable # pres y after 
+sudo ufw status 
 
 
-1
+
 sudo apt-mark hold pyhton # to exclude python from beiing upgraded
 
 # sudo apt update
@@ -28,12 +28,12 @@ sudo apt-get install python3-pip python3-dev libpq-dev postgresql postgresql-con
 
 # sudo -u postgres psql
 
-CREATE DATABASE marchesa_db;
+CREATE DATABASE octogym_db;
 CREATE USER octopus WITH PASSWORD 'miyou0209';
 ALTER ROLE octopus SET client_encoding TO 'utf8';
 ALTER ROLE octopus SET default_transaction_isolation TO 'read committed';
 ALTER ROLE octopus SET timezone TO 'UTC';
-GRANT ALL PRIVILEGES ON DATABASE marchesa_db TO octopus;
+GRANT ALL PRIVILEGES ON DATABASE octogym_db TO octopus;
 \q
 
 # CONFIGURE DJANGO
@@ -46,7 +46,7 @@ source venv/bin/activate
 ## clone the repo 
 
 ## add local_settings.py
-cd /marchesa/la_marchesa/config
+cd /new_gym/config
 
 sudo nano local_settings.py
 
@@ -60,7 +60,7 @@ ALLOWED_HOSTS = ['*'] # a modifier apres l'integration du nom de domaine
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': "marchesa_db",
+        'NAME': "octogym_db",
         'USER': "octopus",
         'PASSWORD': "miyou0209",
         'HOST': "localhost",
@@ -89,78 +89,75 @@ gunicorn --bind 0.0.0.0:8000 config.wsgi
 
 # Gunicorn configuration
 
-sudo nano /etc/systemd/system/marchesa.socket
+sudo nano /etc/systemd/system/new_gym.socket
 
 [Unit]
 Description=gunicorn socket
 
 [Socket]
-ListenStream=/run/marchesa.sock
+ListenStream=/run/new_gym.sock
 
 [Install]
 WantedBy=sockets.target
 
 
-sudo nano /etc/systemd/system/marchesa.service
+sudo nano /etc/systemd/system/new_gym.service
 
 [Unit]
 Description=gunicorn daemon
-Requires=marchesa.socket
+Requires=new_gym.socket
 After=network.target
 
 [Service]
 User=taki
 Group=www-data
-WorkingDirectory=/home/taki/marchesa/la_marchesa
-ExecStart=/home/taki/marchesa/venv/bin/gunicorn \
+WorkingDirectory=/home/taki/octogym/new_gym/
+ExecStart=/home/taki/octogym/venv/bin/gunicorn \
           --access-logfile - \
           --workers 3 \
-          --bind unix:/run/marchesa.sock \
+          --bind unix:/run/new_gym.sock \
           config.wsgi:application
 
 [Install]
 WantedBy=multi-user.target
 
 
-sudo systemctl start marchesa.socket
-sudo systemctl start marchesa.service 
 
 
-sudo systemctl enable marchesa.socket
-sudo systemctl enable marchesa.service 
+sudo systemctl enable new_gym.socket
+sudo systemctl enable new_gym.service 
 
+sudo systemctl start new_gym.socket
+sudo systemctl start new_gym.service 
 # possible command check errors 
-sudo journalctl -u marchesa.socket
+sudo journalctl -u new_gym.socket
 
 sudo systemctl daemon-reload
-sudo systemctl restart marchesa
+sudo systemctl restart new_gym
 
 # NGINX CONFIGURATION
 
-sudo nano /etc/nginx/sites-available/marchesa
+sudo nano /etc/nginx/sites-available/new_gym
 
 server {
     listen 80;
-    server_name 178.62.41.8 maisonlamarchesa.com www.maisonlamarchesa.com;
+    server_name 192.168.0.110;
     location = /favicon.ico { access_log off; log_not_found off; }
-    location /static/ {
-        root /home/taki/marchesa/la_marchesa;
-    }
     
     location /media/ {
-        root /home/taki/marchesa/la_marchesa;    
+        root /home/taki/octogym/new_gym/;    
     }
     location /assets/ {
-        root /home/taki/marchesa/la_marchesa;    
+        root /home/taki/octogym/new_gym/;    
     }
 
     location / {
         include proxy_params;
-        proxy_pass http://unix:/run/marchesa.sock;
+        proxy_pass http://unix:/run/new_gym.sock;
     }
 }
 
-sudo ln -s /etc/nginx/sites-available/marchesa /etc/nginx/sites-enabled/marchesa
+sudo ln -s /etc/nginx/sites-available/new_gym /etc/nginx/sites-enabled/new_gym
 
 sudo nginx -t
 
