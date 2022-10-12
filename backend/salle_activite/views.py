@@ -12,6 +12,8 @@ from rest_framework.decorators import api_view
 from rest_framework.viewsets import ViewSet, ModelViewSet
 from .tasks import start_linsten_1, start_linsten_2
 from .device import AccessControl
+import logging
+logger = logging.getLogger('salle_activite_view')
 
 class BaseModelPerm(DjangoModelPermissions):
     def get_custom_perms(self, method, view):
@@ -159,6 +161,7 @@ class StartListening(APIView):
         Open All The Doors
         """
         print('IT S WORKING ')
+        logger.info("View inited...")
         start_linsten_1.delay()
 
         return Response(status=200)

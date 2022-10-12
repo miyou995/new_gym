@@ -4,12 +4,16 @@ from .face import FaceControl
 from .models import Door
 from celery.signals import celeryd_init
 import time
+import logging
+logger = logging.getLogger('celery_tasks')
 
 @shared_task
 def start_linsten_1():
+
     print('CALLED') 
     device = AccessControl()
     print(' the instance start_linsten_1', device)
+    logger.info("Task inited... dev=>", device)
     device.get_login_info(ip='192.168.1.2', port=37777, username='admin', password='123456')
     result = device.login()
     device.alarm_listen()
@@ -31,6 +35,8 @@ def start_linsten_2():
 
 @shared_task
 def stop_listening_1():
+    logger.info("Taskj inited...")
+
     print('CALLED') 
     device = AccessControl()
     print(' the instance start_linsten_1', device)
