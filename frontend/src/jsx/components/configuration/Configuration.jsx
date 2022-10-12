@@ -33,8 +33,8 @@ const Configuration = (props) => {
     const activitiesEND = `${process.env.REACT_APP_API_URL}/rest-api/salle-activite/activite/`
     const salleActivitiesEND = `${process.env.REACT_APP_API_URL}/rest-api/salle-activite/`
     const planningsEND = `${process.env.REACT_APP_API_URL}/rest-api/planning/`
-    const startListenEND = `${process.env.REACT_APP_API_URL}/rest-api/salle-activite/start_listening`
-    const stopListenEND = `${process.env.REACT_APP_API_URL}/rest-api/salle-activite/stop_listening`
+    const startListenEND = `${process.env.REACT_APP_API_URL}/rest-api/salle-activite/start_listening/`
+    const stopListenEND = `${process.env.REACT_APP_API_URL}/rest-api/salle-activite/stop_listening/`
     const [ doorModal, setDoorModal] = useState(false)
     const [ abonnements , setAbonnements] =useState([])
     const [ maladies , setMaladies] =useState([])
