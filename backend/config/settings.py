@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-m@qx+wsk0=4r0)_7=#b*#6)tn6_n#@hv=*tt#!_2rotvo*4byl'
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -223,12 +223,12 @@ USE_TZ = True
 
 LOCALE_PATHS = [BASE_DIR / "locale"]
 
+# real port : 6379
 CELERY_BROKER_URL = 'redis://localhost:6379'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_TRACK_STARTED = True
 # CELERY_TASK_TIME_LIMIT = 30 * 60
-
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'UTC'

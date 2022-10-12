@@ -148,14 +148,28 @@ def default_salle(request):
     print('la samme', serializer.data)
     return Response( {'default_salle': serializer.data})
 
+from rest_framework.views import APIView
 
-@api_view(['GET'])
-def start_listening(request):
-    print(' before delay')
-    start_linsten_1.delay()
-    # start_linsten_2.delay()
-    print(' AFTER delay')
-    return Response( "hello")
+class StartListening(APIView):
+    # authentication_classes = [authentication.TokenAuthentication]
+    permission_classes = [IsAdminUser]
+
+    def get(self, request, format=None):
+        """
+        Open All The Doors
+        """
+        print('IT S WORKING ')
+        start_linsten_1.delay()
+
+        return Response(status=200)
+
+# @api_view(['GET'])
+# def start_listening(request):
+#     print(' before delay')
+#     start_linsten_1.delay()
+#     # start_linsten_2.delay()
+#     print(' AFTER delay')
+#     return Response(status=403)
 
 
     
