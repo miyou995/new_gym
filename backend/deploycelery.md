@@ -41,7 +41,7 @@ CELERYD_OPTS="--time-limit=300 --concurrency=8"
 # I'm using virtualenvwrapper, and celery is installed in the 'celery_project' virtual environment
 ## CELERY_BIN="/home/username/Env/celery_project/bin/celery"
 
-CELERY_BIN="/home/taki/new_gym/venv/bin/celery"
+CELERY_BIN="/home/taki/venv/bin/celery"
 
 
 # How to call manage.py
@@ -71,6 +71,7 @@ CELERYD_LOG_LEVEL="INFO"
 
 # create the service for celery project in our case celerygym
 sudo nano /etc/systemd/system/celerygym.service
+sudo nano /etc/systemd/system/celery.service
 
 
 [Unit]
@@ -163,16 +164,94 @@ Type=forking
 User=taki
 Group=www-data
 
-EnvironmentFile=/mnt/c/Users/amd/Desktop/Octogym/ubvenv/bin/celery
-WorkingDirectory=/mnt/c/Users/amd/Desktop/Octogym/backend
-ExecStart=/home/user/.virtualenvs/venv/bin/celery multi start ${CELERYD_NODES} \
+EnvironmentFile=/etc/conf.d/celerygym
+WorkingDirectory=/home/taki/new_gym/backend
+ExecStart=/home/taki/venv/bin/celery multi start ${CELERYD_NODES} \
   -A ${CELERY_APP} --pidfile=${CELERYD_PID_FILE} \
   --logfile=${CELERYD_LOG_FILE} --loglevel=${CELERYD_LOG_LEVEL} ${CELERYD_OPTS}
-ExecStop=/home/user/.virtualenvs/venv/bin/celery ${CELERY_BIN} multi stopwait ${CELERYD_NODES} \
+ExecStop=/home/taki/venv/bin/celery ${CELERY_BIN} multi stopwait ${CELERYD_NODES} \
   --pidfile=${CELERYD_PID_FILE}
-ExecReload=/home/user/.virtualenvs/venv/bin/celery ${CELERY_BIN} multi restart ${CELERYD_NODES} \
+ExecReload=/home/taki/venv/bin/celery ${CELERY_BIN} multi restart ${CELERYD_NODES} \
   -A ${CELERY_APP} --pidfile=${CELERYD_PID_FILE} \
   --logfile=${CELERYD_LOG_FILE} --loglevel=${CELERYD_LOG_LEVEL} ${CELERYD_OPTS}
+
+[Install]
+WantedBy=multi-user.target
+
+
+
+<!-- TRY THIS  -->
+sudo nano /etc/systemd/system/celerygym.service
+
+
+
+[Unit]
+Description=Celery Service
+After=network.target
+
+[Service]
+Type=forking
+User=celery
+Group=celery
+EnvironmentFile=/etc/default/celeryd
+WorkingDirectory=/home/taki/new_gym/backend
+ExecStart=/bin/sh -c '${CELERY_BIN} -A $CELERY_APP multi start $CELERYD_NODES \
+    --pidfile=${CELERYD_PID_FILE} --logfile=${CELERYD_LOG_FILE} \
+    --loglevel="${CELERYD_LOG_LEVEL}" $CELERYD_OPTS'
+ExecStop=/bin/sh -c '${CELERY_BIN} multi stopwait $CELERYD_NODES \
+    --pidfile=${CELERYD_PID_FILE} --logfile=${CELERYD_LOG_FILE} \
+    --loglevel="${CELERYD_LOG_LEVEL}"'
+ExecReload=/bin/sh -c '${CELERY_BIN} -A $CELERY_APP multi restart $CELERYD_NODES \
+    --pidfile=${CELERYD_PID_FILE} --logfile=${CELERYD_LOG_FILE} \
+    --loglevel="${CELERYD_LOG_LEVEL}" $CELERYD_OPTS'
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
+
+
+ExecStart='${CELERY_BIN} ${CELERy_NODES} \
+  -A ${CELERY_APP} worker --pidfile=${CELERYD_PID_FILE} \
+  --logfile=${CELERYD_LOG_FILE} --loglevel=${CELERYD_LOG_LEVEL} ${CELERYD_OPTS}'
+ExecStop='${CELERY_BIN} stopwait ${CELERYD_NODES} \
+  --pidfile=${CELERYD_PID_FILE}'
+ExecReload='${CELERY_BIN} restart ${CELERYD_NODES} \
+  -A ${CELERY_APP} worker --pidfile=${CELERYD_PID_FILE} \
+  --logfile=${CELERYD_LOG_FILE} --loglevel=${CELERYD_LOG_LEVEL} ${CELERYD_OPTS}'
+
+
+  ExecStart='${CELERY_BIN} ${CELERy_NODES} \
+  -A ${CELERY_APP} worker --pidfile=${CELERYD_PID_FILE} \
+  --logfile=${CELERYD_LOG_FILE} --loglevel=${CELERYD_LOG_LEVEL} ${CELERYD_OPTS}'
+ExecStop='${CELERY_BIN} stopwait ${CELERYD_NODES} \
+  --pidfile=${CELERYD_PID_FILE}'
+ExecReload='${CELERY_BIN} restart ${CELERYD_NODES} \
+  -A ${CELERY_APP} worker --pidfile=${CELERYD_PID_FILE} \
+  --logfile=${CELERYD_LOG_FILE} --loglevel=${CELERYD_LOG_LEVEL} ${CELERYD_OPTS}'
+
+
+
+
+[Unit]
+Description=Celery Service
+After=network.target
+
+[Service]
+Type=forking
+User=celery
+Group=celery
+EnvironmentFile=/etc/conf.d/celery
+WorkingDirectory=/home/taki/new_gym/backend
+ExecStart='${CELERY_BIN} ${CELERy_NODES} \
+  -A ${CELERY_APP} worker --pidfile=${CELERYD_PID_FILE} \
+  --logfile=${CELERYD_LOG_FILE} --loglevel=${CELERYD_LOG_LEVEL} ${CELERYD_OPTS}'
+ExecStop='${CELERY_BIN} stopwait ${CELERYD_NODES} \
+  --pidfile=${CELERYD_PID_FILE}'
+ExecReload='${CELERY_BIN} restart ${CELERYD_NODES} \
+  -A ${CELERY_APP} worker --pidfile=${CELERYD_PID_FILE} \
+  --logfile=${CELERYD_LOG_FILE} --loglevel=${CELERYD_LOG_LEVEL} ${CELERYD_OPTS}'
+
 
 [Install]
 WantedBy=multi-user.target
