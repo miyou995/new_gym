@@ -1,3 +1,8 @@
 2022-10-16 10:56:30,212 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2022-10-16 11:01:41,936 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2022-10-16 11:02:55,100 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-10-17 10:18:03,623 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-10-17 10:18:43,105 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-10-17 10:20:11,129 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-10-17 10:31:11,582 django.request WARNING  Method Not Allowed (POST): /rest-api/presence/create
+2022-10-17 10:31:11,582 django.request WARNING  Method Not Allowed: /rest-api/presence/create
