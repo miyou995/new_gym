@@ -46,16 +46,16 @@ class FaceControl:
         self.alarmEvent = 0
         self.lAnalyzerHandle = C_LLONG()
 
-    def get_login_info(self):
+    def get_login_info(self, ip='192.168.1.220', port=37777, username='admin', password='mc091924'):
         
         '''self.ip = input('IP address:')
         self.port = int(input('port:'))
         self.username = input('username:')
         self.password = input('password:')'''
-        self.ip = '192.168.1.220'
-        self.port = 37777
-        self.username = 'admin'
-        self.password = 'mc091924'
+        self.ip = ip
+        self.port = port
+        self.username = username
+        self.password = password
 
     def login(self):
         if not self.loginID:
@@ -180,6 +180,7 @@ class FaceControl:
             print("RealLoadPictureEx operate fail. " + self.sdk.GetLastErrorMessage())
             return False
         return True
+        
     def register_new_user(self):
         pass
     def start_operate(self):
@@ -345,6 +346,7 @@ class FaceControl:
             print("Open the door fail. " + self.sdk.GetLastErrorMessage())
             return False
         return True
+
     def subscibe_user(self, user_name, user_id, picture_path):
         stuInParam = NET_IN_ACCESS_USER_SERVICE_INSERT()
         stuInParam.dwSize = sizeof(NET_IN_ACCESS_USER_SERVICE_INSERT)
