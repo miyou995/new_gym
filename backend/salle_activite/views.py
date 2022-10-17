@@ -169,7 +169,7 @@ class StartListening(APIView):
         start_linsten_6.delay()
         start_linsten_7.delay()
         start_linsten_8.delay()
-        start_linsten_9.delay()
+        # start_linsten_9.delay()
         start_face_door_1.delay()
         start_face_door_2.delay()
         return Response(status=200)
