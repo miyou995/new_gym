@@ -10,8 +10,10 @@ from rest_framework import status
 from django.db.models import Count
 from rest_framework.decorators import api_view
 from rest_framework.viewsets import ViewSet, ModelViewSet
-from .tasks import start_linsten_1, start_linsten_2
+from .tasks import start_linsten_1, start_linsten_2, start_linsten_3, start_linsten_4, start_linsten_5, start_linsten_6, start_face_door_1, start_face_door_2
 from .device import AccessControl
+from rest_framework.views import APIView
+
 import logging
 logger = logging.getLogger('salle_activite_view')
 
@@ -22,12 +24,10 @@ class BaseModelPerm(DjangoModelPermissions):
             return [perms for perms in view.extra_perms_map.get(method, [])]
         else:
             return []
-
     def has_permission(self, request, view):
         perms = self.get_required_permissions(request.method, view.queryset.model)
         perms.extend(self.get_custom_perms(request.method, view))
         return ( request.user and request.user.has_perms(perms) )
-
 
 class DoorApiViewSet(ModelViewSet):
     serializer_class = DoorSerializer
@@ -150,7 +150,6 @@ def default_salle(request):
     print('la samme', serializer.data)
     return Response( {'default_salle': serializer.data})
 
-from rest_framework.views import APIView
 
 class StartListening(APIView):
     # authentication_classes = [authentication.TokenAuthentication]
@@ -160,10 +159,16 @@ class StartListening(APIView):
         """
         Open All The Doors
         """
-        print('IT S WORKING ')
         logger.info("View inited...")
+        
         start_linsten_1.delay()
-
+        start_linsten_2.delay()
+        start_linsten_3.delay()
+        start_linsten_4.delay()
+        start_linsten_5.delay()
+        start_linsten_6.delay()
+        start_face_door_1.delay()
+        start_face_door_2.delay()
         return Response(status=200)
 
 # @api_view(['GET'])

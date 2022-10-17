@@ -6,3 +6,77 @@
 2022-10-17 10:20:11,129 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2022-10-17 10:31:11,582 django.request WARNING  Method Not Allowed (POST): /rest-api/presence/create
 2022-10-17 10:31:11,582 django.request WARNING  Method Not Allowed: /rest-api/presence/create
+2022-10-17 10:49:34,268 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-10-17 10:49:43,029 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-10-17 10:49:49,818 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-10-17 10:49:52,037 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-10-17 10:49:55,123 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-10-17 10:49:57,184 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-10-17 10:50:00,158 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-10-17 10:50:02,261 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-10-17 10:50:08,375 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-10-17 10:50:10,447 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-10-17 10:50:29,124 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-10-17 10:50:31,519 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-10-17 10:50:54,650 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2022-10-17 10:50:57,079 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-10-17 10:51:03,075 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2022-10-17 10:51:05,094 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-10-17 10:51:13,857 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2022-10-17 10:51:16,128 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-10-17 10:51:39,439 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2022-10-17 10:51:41,700 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-10-17 10:52:13,406 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2022-10-17 10:52:15,655 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-10-17 10:52:30,040 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2022-10-17 10:52:32,202 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-10-17 10:54:09,466 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/face.py changed, reloading.
+2022-10-17 10:54:11,787 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-10-17 10:56:20,887 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/face.py changed, reloading.
+2022-10-17 10:56:23,174 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-10-17 10:56:26,234 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2022-10-17 10:56:28,162 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-10-17 10:56:31,027 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2022-10-17 10:56:32,946 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-10-17 10:57:56,642 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2022-10-17 10:57:58,908 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-10-17 10:58:13,423 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2022-10-17 10:58:15,638 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-10-17 10:58:25,909 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-10-17 10:58:28,149 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-10-17 10:58:37,092 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2022-10-17 10:58:39,091 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-10-17 11:01:24,348 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2022-10-17 11:01:26,223 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-10-17 11:06:18,212 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-10-17 11:06:21,017 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-10-17 11:06:40,041 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-10-17 11:06:42,617 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-10-17 11:06:46,492 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-10-17 11:06:48,856 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-10-17 11:07:20,849 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-10-17 11:07:23,115 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-10-17 11:07:29,211 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-10-17 11:07:31,420 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-10-17 11:07:53,739 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-10-17 11:07:56,244 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-10-17 11:08:10,269 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/face.py changed, reloading.
+2022-10-17 11:08:12,541 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-10-17 11:08:17,269 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/face.py changed, reloading.
+2022-10-17 11:08:19,556 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-10-17 11:08:49,686 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/face.py changed, reloading.
+2022-10-17 11:08:52,254 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-10-17 11:09:13,052 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-10-17 11:09:16,043 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-10-17 11:09:36,983 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/device.py changed, reloading.
+2022-10-17 11:09:39,047 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-10-17 11:10:08,490 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/face.py changed, reloading.
+2022-10-17 11:10:10,321 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-10-17 11:10:23,126 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-10-17 11:10:25,084 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-10-17 11:10:46,328 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/face.py changed, reloading.
+2022-10-17 11:10:48,240 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-10-17 11:12:37,357 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/face_sub.py changed, reloading.
+2022-10-17 11:12:39,892 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-10-17 11:12:42,938 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/face_sub.py changed, reloading.
+2022-10-17 11:12:45,038 django.utils.autoreload INFO     Watching for file changes with StatReloader

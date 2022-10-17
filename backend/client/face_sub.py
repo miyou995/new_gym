@@ -45,16 +45,11 @@ class FaceControl:
         self.alarmEvent = 0
         self.lAnalyzerHandle = C_LLONG()
 
-    def get_login_info(self):
-        
-        '''self.ip = input('IP address:')
-        self.port = int(input('port:'))
-        self.username = input('username:')
-        self.password = input('password:')'''
-        self.ip = '192.168.1.220'
-        self.port = 37777
-        self.username = 'admin'
-        self.password = 'mc091924'
+    def get_login_info(self, ip='192.168.1.220', port=37777, username='admin', password='mc091924'):
+        self.ip = ip
+        self.port = port
+        self.username = username
+        self.password = password
 
     def login(self):
         if not self.loginID:
