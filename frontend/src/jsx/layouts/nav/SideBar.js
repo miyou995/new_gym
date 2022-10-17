@@ -95,7 +95,7 @@ const [path,setPath] = useState("");
        
                <div className="copyright">
                   <p>
-                     <strong>COPYRIGHT - OctoGym Dashboard</strong> © 2021 All
+                     <strong>COPYRIGHT - OctoGym Dashboard</strong> © 2022 All
                      Rights Reserved
                   </p>
                   {/* <p>

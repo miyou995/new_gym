@@ -319,6 +319,7 @@ useEffect(() => {
                     Modifier profile
                   </Dropdown.Item>
                   <Dropdown.Item className="dropdown-item" onClick= { e => addPresence(true)}>
+                    
                   <i className="fa fa-plus text-primary mr-2" />
                     Ajouter Presence
                   </Dropdown.Item>
@@ -388,7 +389,7 @@ useEffect(() => {
                   <div className='ajouter' onClick={e => setClientAbcModal(true)}>Abonnements</div>
            </Card.Title>
                <Card.Title>
-                  <div className=' ajouter' onClick= { e => setABCModalCreate(true)}> <i className="fa fa-plus text-primary mr-2" /></div>
+                  <div className=' ajouter' onClick= { e => setABCModalCreate(true)}> <i className="fa fa-plus text-primary mr-2" />Ajouter</div>
               </Card.Title>
             </Card.Header>
             <Card.Body>
@@ -435,7 +436,7 @@ useEffect(() => {
                   <div className=' ajouter' onClick={e => setClientPaiementsModal(true)}> Paiements </div>
               </Card.Title>
               <Card.Title>
-                  <div className=' ajouter' onClick= { e => setPaiementModal(true)}>  <i className="fa fa-plus text-primary mr-2" /></div>
+                  <div className=' ajouter' onClick= { e => setPaiementModal(true)}>   <i className="fa fa-plus text-primary mr-2" />Ajouter</div>
               </Card.Title>
             </Card.Header>
             <Card.Body>
@@ -476,7 +477,7 @@ useEffect(() => {
                   <div className='ajouter' onClick= { e => setClientPresencesModal(true)}> <h4>Seances / Presences</h4> </div>
                 </Card.Title>
                 <Card.Title>
-                    <div className=' ajouter'  onClick= { e => addPresence(true)}> <i className="fa fa-plus text-primary mr-2" /></div>
+                    <div className=' ajouter'  onClick= { e => addPresence(true)}> <i className="fa fa-plus text-primary mr-2" />Ajouter</div>
                 </Card.Title>
               </Card.Header>
               <Card.Body>
