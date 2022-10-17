@@ -10,7 +10,7 @@ from rest_framework import status
 from django.db.models import Count
 from rest_framework.decorators import api_view
 from rest_framework.viewsets import ViewSet, ModelViewSet
-from .tasks import start_linsten_1, start_linsten_2, start_linsten_3, start_linsten_4, start_linsten_5, start_linsten_6, start_face_door_1, start_face_door_2
+from .tasks import start_linsten_1, start_linsten_2, start_linsten_3, start_linsten_4, start_linsten_5, start_linsten_6, start_linsten_7, start_linsten_8, start_linsten_9, start_face_door_1, start_face_door_2
 from .device import AccessControl
 from rest_framework.views import APIView
 
@@ -167,6 +167,9 @@ class StartListening(APIView):
         start_linsten_4.delay()
         start_linsten_5.delay()
         start_linsten_6.delay()
+        start_linsten_7.delay()
+        start_linsten_8.delay()
+        start_linsten_9.delay()
         start_face_door_1.delay()
         start_face_door_2.delay()
         return Response(status=200)
