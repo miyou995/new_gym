@@ -8,6 +8,8 @@ from NetSDK.SDK_Callback import *
 from NetSDK.SDK_Enum import *
 from NetSDK.SDK_Struct import *
 from client.models import Client
+import logging
+logger = logging.getLogger('sdk_device')
 
 file = "c:/log.log"
 @CB_FUNCTYPE(c_int, c_char_p, c_uint, C_LDWORD)
@@ -110,15 +112,21 @@ class AccessControl:
         # if card_n:
         card = card_n.decode("utf-8")
         print(' la carte est ', card)
+        logger.info("log la carte est", card)
+
         try:
             client=  Client.objects.get(hex_card=card)
             if client.has_permission(door_ip) :
+                logger.info("log le client a la permission ", client)
+
                 print('le client la la permission dentree ')
                 return True
             else: 
                 return False
                 # has_perm = client.has_permission(door_ip)
         except:
+            logger.info("acces refusé client =>", client)
+
             print('client doesnt exist or doesnt have permission to get in')
             return False
         # print(' la has_perm has_perm>>>>> ', has_perm)
