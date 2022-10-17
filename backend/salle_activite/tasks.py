@@ -61,7 +61,10 @@ def start_linsten_5():
     device.get_login_info(ip='192.168.1.234', port=37777, username='admin', password='mc091924')
     result = device.login()
     device.alarm_listen()
+    logger.info("yes whaaar ", result)
+    
     if result:
+        logger.info("yes logged in", result)
         device.alarm_listen()
 
 @shared_task
