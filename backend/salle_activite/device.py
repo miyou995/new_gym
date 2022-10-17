@@ -68,6 +68,7 @@ class AccessControl:
                 print("Login succeed. Channel num:" + str(device_info.nChanNum))
                 return True
             else:
+                print('ip=>', self.ip)
                 print("Login failed. " + error_msg)
                 return False
 
