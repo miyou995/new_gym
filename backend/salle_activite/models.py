@@ -23,7 +23,9 @@ class Salle(models.Model):
     # coach = models.ManyToManyField("app.Coach")
     objects = models.Manager()
     custom_manager = SalleManager()
-
+    class Meta:
+        pass
+        # unique together
     def __str__(self):
         return self.name
         

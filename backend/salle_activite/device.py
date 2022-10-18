@@ -8,8 +8,6 @@ from NetSDK.SDK_Callback import *
 from NetSDK.SDK_Enum import *
 from NetSDK.SDK_Struct import *
 from client.models import Client
-import logging
-logger = logging.getLogger('sdk_device')
 
 file = "c:/log.log"
 @CB_FUNCTYPE(c_int, c_char_p, c_uint, C_LDWORD)
@@ -108,27 +106,24 @@ class AccessControl:
     def get_authorization(self, card_n, door_ip):
         # dictio = {'card' : card_n, 'door' : door_ip}
         # print("dictioooo",dictio)
-        has_perm = False
         # if card_n:
         card = card_n.decode("utf-8")
         print(' la carte est ', card)
-        logger.info("log la carte est", card)
-
+        print(' la door_ip  ', door_ip)
+        #0099F9AB
+        # 10126599
         try:
             client=  Client.objects.get(hex_card=card)
-            if client.has_permission(door_ip) :
-                logger.info("log le client a la permission ", client)
-
+            print(' le client est ', client)
+            if client.get_access_permission(door_ip) :
                 print('le client la la permission dentree ')
                 return True
             else: 
+                print('rani fel else')
                 return False
-                # has_perm = client.has_permission(door_ip)
-        except:
-            logger.info("acces refusé client =>", client)
-
-            print('client doesnt exist or doesnt have permission to get in')
+        except Client.DoesNotExist:
             return False
+        #     print('client doesnt exist or doesnt have permission to get in')
         # print(' la has_perm has_perm>>>>> ', has_perm)
         return client
 
@@ -143,17 +138,17 @@ class AccessControl:
             print("ALARM_ACCESS_CTL_EVENT")  # 门禁事件; Access control event
             alarm_info = cast(pBuf, POINTER(NET_A_ALARM_ACCESS_CTL_EVENT_INFO)).contents
             card_n = alarm_info.szCardNo
-            door = self.ip
-            client = self.get_authorization(card_n,door)
-            print('get_authorization => ', client)
-            if client : 
-                self.open_door()
-                # client.init_presence()
+            if card_n != b'00000000':
+                door = self.ip
+                client = self.get_authorization(card_n,door)
+                if client : 
+                    self.open_door()
+                    # client.init_presence()
 
-                # self.logout()
-                # self.login()
-                # self.alarm_listen()
-            print('get_authorization => ', client)
+                    # self.logout()
+                    # self.login()
+                    # self.alarm_listen()
+                print('get_authorization => ', client)
         return 
 
     def alarm_listen(self):

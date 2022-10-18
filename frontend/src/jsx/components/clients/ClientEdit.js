@@ -243,7 +243,10 @@ const getSelectedMaladies = () => {
             notifySuccess('Profile Modifier avec succés')
           }, 100)
           history.push(`/client/${currentClientId}`)
-        }).catch((err) => notifyError('Modification profile échoué') )
+        }).catch((err) => {
+          notifyError('Modification profile échoué, veuillez vérifié les champs')
+        
+        } )
       }
 
   return (
@@ -261,7 +264,7 @@ const getSelectedMaladies = () => {
                 <form onSubmit={HandleSubmit}>
                   <div className="form-row">
                     <div className="form-group  col-md-4 col-xl-3">
-                      <label>Carte </label>
+                      <label>Carte (uniquement des chiffres) </label>
                       <input type="text" name="last_name" className="form-control"value={carte}  onChange={e => setCarte(e.target.value)}/>
                     </div>
                     <div className="form-group  col-md-4 col-xl-3">
