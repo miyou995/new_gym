@@ -108,7 +108,7 @@ class FaceControl:
         client  = Client.objects.get(id=id)
         try:
             if client:
-                has_perm = client.has_permission(door_ip)
+                has_perm = client.get_access_permission(door_ip)
         except:
             print('client doesnt exist or doesnt have permission to get in')
             return has_perm

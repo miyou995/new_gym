@@ -9,6 +9,7 @@ from simple_history.models import HistoricalRecords
 from django.db.models.signals import post_save, pre_save
 from abonnement.models import AbonnementClient
 from presence.models import Presence
+from salle_activite.models import Salle
 from datetime import datetime, timedelta
 from django.db import transaction
 from django.utils import timezone
@@ -147,17 +148,24 @@ class Client(models.Model):
 
 
 
-
     #A VERIFIEEEEEEER
+
     def init_output(self):
-        presence = Presence.objects.filter(abc__client=self, is_in_salle=True).last()
+        my_presences = Presence.objects.filter(abc__client=self, is_in_salle=True)
+
+        presence = my_presences.last()
+        print('LA my_presences', my_presences)
+        print('LA PRESENCE', presence)
         if not presence:
             return False
-        presence.hour_sortie = timezone.now()
+        current_time = datetime.now().strftime("%H:%M:%S")
+        presence.hour_sortie = current_time
+        presence.is_in_salle =False
+        presence.save()
+
         # update abc
-        presence.save(commit=False)
+        # presence.save(commit=False)
         abc = presence.abc
-        
         if abc.is_time_volume():
             ecart = presence.get_time_difference() 
             abc.presence_quantity -= ecart 
@@ -165,31 +173,42 @@ class Client(models.Model):
             # ecart = abs(datetime.strptime(str(hour_start), FTM) - datetime.strptime(current_time, FTM))
         # else:
         #     abc.presence_quantity -= 1
-        presence.save()
+        print('la sorite--------------- ', presence.hour_sortie)
+        print('la presence.is_in_salle--------------- ', presence.is_in_salle)
         return True
 
-    def has_permission(self, door_ip=None):
+    def get_access_permission(self, door_ip=None):
         FTM = '%H:%M:%S'
         if self.is_on_salle :
+            print('is on salle')
             sortie = self.init_output()
             self.is_on_salle = False 
             self.save()
             return sortie
-        salle = Salle.objects.get(door__ip_adress=door_ip)
+        salle = Salle.objects.filter(door__ip_adress=door_ip).first()
+        print('Adress IP', door_ip)
+        print('SAlle ', salle)
         current_time = datetime.now().strftime("%H:%M:%S")
-        abonnement_client = AbonnementClient.subscription.active_subscription(client=self, type_abonnement_client__salles=salle).first()
+        abonnements_actives = AbonnementClient.subscription.active_subscription()
+        abonnement_client = abonnements_actives.filter(client=self, type_abonnement__salles=salle).first()
+        if not abonnement_client:
+            return False
         creneaux = Creneau.range.get_creneaux_of_day().filter(abonnements=abonnement_client)
+        cren_ref = creneaux.first()
         if abonnement_client.is_time_volume() and abonnement_client.is_valid():
+            print('abopnnement valid')
             with transaction.atomic():
                 presence = Presence.objects.create(abc= abonnement_client, creneaux=creneaux.first(),is_in_list=True, hour_entree=current_time, is_in_salle=True)
                 self.is_on_salle=True
                 self.save()
                 return True
         elif not abonnement_client.is_time_volume() and abonnement_client.is_valid():
+            print('abopnnement valid 2')
+
             if creneaux.count() > 1 :
                 dur_ref_time_format = abs(datetime.strptime(str(creneaux[0].hour_start), FTM) - datetime.strptime(current_time, FTM)) #nous avons besoin d'un crenaux Reference pour le comparé au autres
                 dur_ref= timedelta.total_seconds(dur_ref_time_format) 
-                cren_ref = creneaux.first()
+                
                 for cr in creneaux:
                     start = str(cr.hour_start)
                     print('heure de début', start)
@@ -206,7 +225,7 @@ class Client(models.Model):
                 self.save()
                 return True
         else:
-            print('XWHATS THE CASE')
+            print('WHATS THE CASE')
             return False
 
 

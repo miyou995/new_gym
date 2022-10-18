@@ -119,7 +119,7 @@ class PresenceAutoSerialiser(serializers.ModelSerializer):
         except:
             card = cd_client.decode("utf-8")
             client = Client.objects.get(hex_card=card)
-        client.has_permission()
+        # client.has_permission()
         creneaux = Creneau.range.get_creneaux_of_day().filter(abonnements__client=client)
         # print('Les creneaux of client=====>',Creneau.objects.filter(abonnements__client=client))
         print('Les creneaux du Today client=====>', creneaux)

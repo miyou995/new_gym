@@ -62,8 +62,9 @@ const PresenceEditModal = ({show, onShowShange, presenceData}) => {
          notifySuccess('Présence modifié avec succées ')
          handleShow()
       }
-      ).catch(
+      ).catch(err => {
          notifyError('erreur lors de la modification')
+      }
       )
     }
 
