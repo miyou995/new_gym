@@ -5,6 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import useAxios from "../useAxios";
 import PageTitle from "../../layouts/PageTitle";
+import {notifySuccess, notifyError} from '../Alert'
 
 const ActivityEditModal = ({show, onShowShange, activityData}) => {
   const api = useAxios();
@@ -44,8 +45,12 @@ const handleSubmit = async e => {
       salle : Number(newSalle),
       color: color
   }
-  await api.patch(activityEditEND, activityFormData)
-  handleShow()
+  await api.patch(activityEditEND, activityFormData).then( res => {
+    notifySuccess('Activité modifier avec succés')
+        handleShow()
+    }).catch(err => {
+        notifyError("Erreur lors de la modification de l'activité")
+    })
 }
 
 //console.log('sallesActivit', sallesActivite);
@@ -72,7 +77,11 @@ return (
               <div className="col-sm-9">
                   <Autocomplete
                       onChange={((event, value) =>  {
-                        setNewSalle(value.id)
+                        try {
+                          setNewSalle(value.id)
+                        }catch {
+                          setNewSalle("")
+                        }
 
                       }
                         )}

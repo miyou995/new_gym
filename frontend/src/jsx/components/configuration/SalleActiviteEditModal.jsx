@@ -73,7 +73,11 @@ return (
               <div className="col-sm-9">
                   <Autocomplete
                       onChange={((event, value) =>  {
-                        setDoor(value.id)
+                        try {
+                            setDoor(value.id)
+                        }catch {
+                            setDoor("")
+                        }
                     }
                         )} 
                     //   value={salles}

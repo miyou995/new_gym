@@ -101,19 +101,17 @@ class FaceControl:
     def ReConnectCallBack(self, lLoginID, pchDVRIP, nDVRPort, dwUser):
         print("Device-OnLine")
 
-    def card_infos(self, face_id, door_ip):
-        dictio = {'id' : face_id, 'door' : door_ip}
-        has_perm = False
-        # card = card_n.decode("utf-8")
-        client  = Client.objects.get(id=id)
+    def get_authorization(self, user_id, door_ip):
         try:
+            client  = Client.objects.get(id=user_id)
+            print('Client=>', client)
             if client:
-                has_perm = client.get_access_permission(door_ip)
-        except:
-            print('client doesnt exist or doesnt have permission to get in')
-            return has_perm
-        print(' la has_perm has_perm>>>>> ', has_perm)
-        return has_perm
+                return client.get_access_permission(door_ip)
+            else: 
+                print('rani fel else')
+                return False
+        except Client.DoesNotExist:
+            return False
 
     def AnalyzerDataCallBack(self, lAnalyzerHandle, dwAlarmType, pAlarmInfo, pBuffer, dwBufSize, dwUser, nSequence, reserved):
         if self.lAnalyzerHandle == lAnalyzerHandle:
@@ -129,7 +127,7 @@ class FaceControl:
                 print("p_buffer szCardNo:", p_buffer.szCardNo)
                 user_id = p_buffer.szUserID
                 door = self.ip
-                user_data = self.card_infos(user_id,door)
+                user_data = self.get_authorization(user_id,door)
                 if user_data : 
                     self.open_door()
                 print('user_data => ', user_data)

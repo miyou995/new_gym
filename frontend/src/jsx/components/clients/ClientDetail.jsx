@@ -406,15 +406,15 @@ useEffect(() => {
                 </thead>
                 <tbody>
                 {abonClient.map( abonnement => (
-                    <tr  className='cursor-abonnement' key={abonnement.id} onClick={e => {
-                      setAbonDetailModal(true)
-                      setAbonClientID(abonnement.id)
-                      setAbonClientType(abonnement.type_abonnement)
-                      setAbonClientTypeName(abonnement.type_abonnement_name)
-                      setAbonClientEnd(abonnement.end_date)
-                      setAbonClientpresences(abonnement.presence_quantity)
-                      setAbonnementClientCreneaux(abonnement.creneaux)
-                      setAbonClientReste(abonnement.reste)
+                      <tr className='cursor-abonnement' key={abonnement.id} onClick={e => {
+                        setAbonDetailModal(true)
+                        setAbonClientID(abonnement.id)
+                        setAbonClientType(abonnement.type_abonnement)
+                        setAbonClientTypeName(abonnement.type_abonnement_name)
+                        setAbonClientEnd(abonnement.end_date)
+                        setAbonClientpresences(abonnement.presence_quantity)
+                        setAbonnementClientCreneaux(abonnement.creneaux)
+                        setAbonClientReste(abonnement.reste)
                       }}>
                       <td className="text-left">{abonnement.type_abonnement_name}</td>
                       <td>{abonnement.is_time_volume ? abonnement.left_minutes : abonnement.is_free_access ? 'Forfait': abonnement.presence_quantity }</td>
