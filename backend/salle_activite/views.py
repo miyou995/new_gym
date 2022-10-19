@@ -11,6 +11,7 @@ from django.db.models import Count
 from rest_framework.decorators import api_view
 from rest_framework.viewsets import ViewSet, ModelViewSet
 from .tasks import start_linsten_1, start_linsten_2, start_linsten_3, start_linsten_4, start_linsten_5, start_linsten_6, start_linsten_7, start_linsten_8, start_linsten_9, start_face_door_1, start_face_door_2
+from celery.app import default_app
 from .device import AccessControl
 from rest_framework.views import APIView
 from celery import group
@@ -206,20 +207,22 @@ class StartListeningTwo(APIView):
 #     print(' AFTER delay')
 #     return Response(status=403)
 
-
     
 @api_view(['GET'])
 def stop_listening(request):
-    print(' before delay')
-    device = AccessControl()
-    device.get_login_info(ip='192.168.1.2', port=37777, username='admin', password='123456')
-    device.login()
-    device.logout()
-
-    device_2 = AccessControl()
-    device_2.get_login_info(ip='192.168.1.3', port=37777, username='admin', password='123456')
-    device_2.login()
-    device_2.logout()
+    default_app.control.revoke[
+        start_linsten_1,
+        start_linsten_2,
+        start_linsten_3,
+        start_linsten_4,
+        start_linsten_5,
+        start_linsten_6,
+        start_linsten_7,
+        start_linsten_8,
+        start_linsten_9,
+        start_face_door_1,
+        start_face_door_2
+    ]
     print(' AFTER delay')
     return Response( "hello")
 

@@ -105,6 +105,7 @@ class Client(models.Model):
     def __str__(self):
         return str(self.id)
 
+
     def save(self, *args, **kwargs):
         if self._old_picture != self.picture:
             print('yess changed picture')
@@ -153,7 +154,7 @@ class Client(models.Model):
     def init_output(self):
         my_presences = Presence.objects.filter(abc__client=self, is_in_salle=True)
 
-        presence = my_presences.last()
+        presence = my_presences.first()
         print('LA my_presences', my_presences)
         print('LA PRESENCE', presence)
         if not presence:
@@ -194,21 +195,22 @@ class Client(models.Model):
         if not abonnement_client:
             return False
         creneaux = Creneau.range.get_creneaux_of_day().filter(abonnements=abonnement_client)
+        print('LES CRENEAUX =====', creneaux)
+        print('Le TYPE DABONNEMENT CRENEAUX =====', abonnement_client)
+
         cren_ref = creneaux.first()
         if abonnement_client.is_time_volume() and abonnement_client.is_valid():
             print('abopnnement valid')
             with transaction.atomic():
-                presence = Presence.objects.create(abc= abonnement_client, creneaux=creneaux.first(),is_in_list=True, hour_entree=current_time, is_in_salle=True)
+                Presence.objects.create(abc= abonnement_client, creneau=cren_ref,is_in_list=True, hour_entree=current_time, is_in_salle=True)
                 self.is_on_salle=True
                 self.save()
                 return True
         elif not abonnement_client.is_time_volume() and abonnement_client.is_valid():
             print('abopnnement valid 2')
-
             if creneaux.count() > 1 :
                 dur_ref_time_format = abs(datetime.strptime(str(creneaux[0].hour_start), FTM) - datetime.strptime(current_time, FTM)) #nous avons besoin d'un crenaux Reference pour le comparé au autres
                 dur_ref= timedelta.total_seconds(dur_ref_time_format) 
-                
                 for cr in creneaux:
                     start = str(cr.hour_start)
                     print('heure de début', start)
@@ -218,7 +220,7 @@ class Client(models.Model):
                         dur_ref = duree_seconde
                         cren_ref = cr
             with transaction.atomic():
-                presence = Presence.objects.create(abc= abonnement_client,  creneau= cren_ref, is_in_list=True, hour_entree=current_time, is_in_salle=True)
+                Presence.objects.create(abc= abonnement_client,  creneau= cren_ref, is_in_list=True, hour_entree=current_time, is_in_salle=True)
                 self.is_on_salle=True
                 abonnement_client.presence_quantity -= 1
                 abonnement_client.save()

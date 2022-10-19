@@ -51,7 +51,7 @@ class ClientAPIView(generics.CreateAPIView):
 
 class ClientListAPIView(AutoPrefetchViewSetMixin, generics.ListAPIView):
     pagination_class = StandardResultsSetPagination
-    queryset = Client.objects.prefetch_related('abonnement_client', 'abonnement_client__creneaux', 'maladies')
+    queryset = Client.objects.prefetch_related('abonnement_client', 'abonnement_client__creneaux', 'maladies', 'abonnement_client__type_abonnement','abonnement_client__presences')
     # permission_classes = (IsAuthenticated,)
     serializer_class = ClientSerialiser
     # lookup_field = 'slug'

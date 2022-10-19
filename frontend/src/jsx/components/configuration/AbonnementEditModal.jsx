@@ -208,7 +208,7 @@ return (
                         defaultValue={DureeAb[abonnementData['dureeInd']]}
                         options={DureeAb}
                         getOptionLabel={(option) =>  option['mois']}
-                        renderInput={(params) => <TextField {...params} label="Mois" variant="outlined" />}
+                        renderInput={(params) => <TextField {...params} label="Mois" variant="outlined" required/>}
                         />
                 </div>
             </div>

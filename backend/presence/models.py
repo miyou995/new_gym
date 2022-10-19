@@ -58,7 +58,9 @@ class Presence(models.Model):
     def get_time_difference(self):
         today = date.today()
         print(' THE today', today)
-        time = timezone.now().strptime('09:30', '%H:%M').time()
+        # time = timezone.now().strptime('09:30', '%H:%M').time()
+        # time = datetime.now().strftime("%H:%M:%S")
+        time = datetime.now().time()
         print(' THE timezone.now()',time)
         d_end = datetime.combine(today, time)
         print(' THE D_end0', d_end)
@@ -67,8 +69,10 @@ class Presence(models.Model):
             print(' THE d_start', d_start)
 
             diff =  d_end - d_start 
-            minutes = diff.total_seconds() 
+            diff_secondes = diff.total_seconds() 
+            minutes = diff_secondes / 60
             ecart = int(minutes)
+            print(' THE ECART', ecart)
         else :
             ecart = 1
         self.hour_sortie = d_end
