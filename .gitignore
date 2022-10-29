@@ -11,4 +11,3 @@ frontend/node_modules.rar
 *.pyc
 __pycache__
 db.sqlite3
-media
