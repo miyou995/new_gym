@@ -8616,3 +8616,4 @@ TypeError: 'method' object is not subscriptable
 2022-10-29 15:20:57,362 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/config/settings.py changed, reloading.
 2022-10-29 15:20:59,519 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2022-10-29 15:21:06,753 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-10-29 15:32:32,370 django.utils.autoreload INFO     Watching for file changes with StatReloader
