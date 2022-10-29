@@ -1,5 +1,6 @@
 import React, {useContext}  from "react";
 import { Link } from "react-router-dom";
+import searchIcon from "../../images/icons/loupe.png";
 
 
 
@@ -14,7 +15,9 @@ const Search = (props) => {
          <div className="input-group search-area d-inline-flex">
             <div className="input-group-append">
                <span className="input-group-text">
-                  <i className="flaticon-381-search-2" />
+               <img src={searchIcon} width="22" />
+
+                  {/* <i className="flaticon-381-search-2" /> */}
                </span>
             </div>
             <input type="text" className="form-control" placeholder={props.placeHolder} />

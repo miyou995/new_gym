@@ -16,7 +16,6 @@ import {
 } from "react-bootstrap"
 
 import PerfectScrollbar from "react-perfect-scrollbar";
-import product1 from "../../../images/product/1.jpg";
 import Search from "../../layouts/Search";
 import { createContext } from "react";
 import ABCCreateModal from './ABCCreateModal';
@@ -30,6 +29,8 @@ import PaiementEditModal from './PaiementEditModal';
 import RenewAbonnementModal from './RenewAbonnementModal';
 import AbonnementClientModal from './AbonnementClientModal';
 import femaleImg from "../../../images/profile/female.png";
+import plusIcon from "../../../images/icons/plus.png";
+
 import useAxios from "../useAxios";
 import ReactToPrint from 'react-to-print';
 import { ComponentToPrint } from './ComponentToPrint';
@@ -58,7 +59,7 @@ const ComponentToPrintWrapper = ({ item }) => {
     <div style={{ display: "flex"}}>
      
       <ReactToPrint
-        trigger={() =>   <div > Imprimer <i className="fa la-print text-danger mr-2 h5" /> </div>}
+        trigger={() => <div> Imprimer <i className="fa la-print text-danger mr-2 h5" /> </div>}
         content={() => componentRef.current }
     
       />
@@ -319,19 +320,18 @@ useEffect(() => {
                     Modifier profile
                   </Dropdown.Item>
                   <Dropdown.Item className="dropdown-item" onClick= { e => addPresence(true)}>
-                    
-                  <i className="fa fa-plus text-primary mr-2" />
-                    Ajouter Presence
+                  <img src={plusIcon} width="16" /> 
+                     Presence
                   </Dropdown.Item>
                   
                   <Dropdown.Item className="dropdown-item" onClick= { e => setABCModalCreate(true)}>
-                    <i className="fa fa-plus text-primary mr-2" />
-                    Ajouter Abonnement 
+                    <img src={plusIcon} width="16" /> 
+                     Abonnement 
                   </Dropdown.Item>
 
                   <Dropdown.Item className="dropdown-item" onClick= { e => setPaiementModal(true)}>
-                    <i className="fa fa-plus text-primary mr-2" />
-                    Ajouter Paiement 
+                    <img src={plusIcon} width="16" /> 
+                     Paiement 
                   </Dropdown.Item>
                   <Dropdown.Item className="dropdown-item" onClick= { e => setClientPresencesModal(true)}>
                     <i className="fa fa-list text-primary mr-2" />
@@ -389,7 +389,7 @@ useEffect(() => {
                   <div className='ajouter' onClick={e => setClientAbcModal(true)}>Abonnements</div>
            </Card.Title>
                <Card.Title>
-                  <div className=' ajouter' onClick= { e => setABCModalCreate(true)}> <i className="fa fa-plus text-primary mr-2" />Ajouter</div>
+                  <div className=' ajouter' onClick= { e => setABCModalCreate(true)}> <img src={plusIcon} width="16" /></div>
               </Card.Title>
             </Card.Header>
             <Card.Body>
@@ -436,7 +436,7 @@ useEffect(() => {
                   <div className=' ajouter' onClick={e => setClientPaiementsModal(true)}> Paiements </div>
               </Card.Title>
               <Card.Title>
-                  <div className=' ajouter' onClick= { e => setPaiementModal(true)}>   <i className="fa fa-plus text-primary mr-2" />Ajouter</div>
+                  <div className=' ajouter' onClick= { e => setPaiementModal(true)}>   <img src={plusIcon} width="16" /></div>
               </Card.Title>
             </Card.Header>
             <Card.Body>
@@ -477,7 +477,7 @@ useEffect(() => {
                   <div className='ajouter' onClick= { e => setClientPresencesModal(true)}> <h4>Seances / Presences</h4> </div>
                 </Card.Title>
                 <Card.Title>
-                    <div className=' ajouter'  onClick= { e => addPresence(true)}> <i className="fa fa-plus text-primary mr-2" />Ajouter</div>
+                    <div className=' ajouter'  onClick= { e => addPresence(true)}> <img src={plusIcon} width="16" /></div>
                 </Card.Title>
               </Card.Header>
               <Card.Body>

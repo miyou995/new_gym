@@ -8,7 +8,7 @@ function SbNavLinks({ LinkName, Icon, Name }) {
         <>
             <li>
                 <NavLink to={LinkName} activeClassName='activecn' activeStyle={{ background: "#6418C3", color: "white", borderRadius: '4px', textDecoration: "none" }}>
-                    <i className={`${Icon} activei`}></i> 
+                    <img src={`${Icon}`} width="20" alt={`icon ${Name}`} />
                     <span className="nav-text">{Name}</span>
                 </NavLink>
             </li>

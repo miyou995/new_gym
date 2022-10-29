@@ -11,6 +11,15 @@ import MetisMenu from "metismenujs";
 import useAxios from "../../components/useAxios";
 import useAuth from "../../components/useAuth"
 import SbNavLinks from "./SbNavLinks";
+import agendaIcon from "../../../images/icons/agenda.png";
+import presenceIcon from "../../../images/icons/attendance.png";
+import planningIcon from "../../../images/icons/calendar.png";
+import coachIcon from "../../../images/icons/coach.png";
+import clientIcon from "../../../images/icons/people.png";
+import transactionIcon from "../../../images/icons/transaction.png";
+import userIcon from "../../../images/icons/user.png";
+import configIcon from "../../../images/icons/setting.png";
+
 // import useAaxios from "../../components/useAaxios";
 ///
 // import drump from "../../../images/card/drump.png";
@@ -73,24 +82,24 @@ const [path,setPath] = useState("");
                <MM className="metismenu" id="menu">
                   {/* <SbNavLinks LinkName="" Icon="flaticon-381-home" Name="Tableau de bord" /> */}
                   {clientAuth && (
-                     <SbNavLinks LinkName="/client" Icon="flaticon-381-user-9" Name="Abonnées" />
+                     <SbNavLinks LinkName="/client" Icon={clientIcon} Name="Abonnées" />
                   )}
                   {transactionAuth  && (
-                     <SbNavLinks LinkName="/transactions" Icon="flaticon-381-controls" Name="Transactions" />
+                     <SbNavLinks LinkName="/transactions" Icon={transactionIcon} Name="Transactions" />
                   )}
-                  <SbNavLinks LinkName="/creneaux" Icon="flaticon-381-calendar" Name="Creneaux" />
+                  <SbNavLinks LinkName="/creneaux" Icon={planningIcon} Name="Creneaux" />
                   {presenceAuth &&
-                     <SbNavLinks LinkName="/presences" Icon="flaticon-381-blueprint" Name="Présences" />
+                     <SbNavLinks LinkName="/presences" Icon={presenceIcon} Name="Présences" />
                   }
                   {coachAuth && (
-                     <SbNavLinks LinkName="/coach" Icon="flaticon-381-user-1" Name="Coachs" />
+                     <SbNavLinks LinkName="/coach" Icon={coachIcon} Name="Coachs" />
                   )}
                   {persoAuth && 
-                     <SbNavLinks LinkName="/personnel" Icon="flaticon-381-user-4" Name="Personnel" />
+                     <SbNavLinks LinkName="/personnel" Icon={userIcon} Name="Personnel" />
                   }
-                  <SbNavLinks LinkName="/configuration" Icon="flaticon-381-settings" Name="configuration" />
-                  <SbNavLinks LinkName="/users" Icon="flaticon-381-user-1" Name="Utilisateurs " />
-                  <SbNavLinks LinkName="/history-abc" Icon="flaticon-381-bookmark-1" Name="History " />
+                  <SbNavLinks LinkName="/configuration" Icon={configIcon} Name="configuration" />
+                  <SbNavLinks LinkName="/users" Icon={userIcon} Name="Utilisateurs " />
+                  <SbNavLinks LinkName="/history-abc" Icon={agendaIcon} Name="History " />
                  </MM>
        
                <div className="copyright">

@@ -17,11 +17,19 @@ import stafImg from "../../images/profile/waiter.png";
 import { Link } from "react-router-dom";
 import useAxios from "./useAxios";
 import useAuth from "./useAuth"
+
+// ICONS
+import leftArrow from "../../images/icons/left-arrow.png";
+import righttArrow from "../../images/icons/right-arrow.png";
+
+
+
 function SampleNextArrow(props) {
   const { onClick } = props;
   return (
     <div className="conteact-next c-pointer" onClick={onClick}>
-      <i className="las la-long-arrow-alt-right" />
+      <img src={righttArrow} width="40" />
+      {/* <i className="las la-long-arrow-alt-right" /> */}
     </div>
   );
 }
