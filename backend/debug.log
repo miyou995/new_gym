@@ -8612,3 +8612,7 @@ TypeError: 'method' object is not subscriptable
 2022-10-19 13:03:54,009 celery.bootsteps DEBUG    | Worker: Stopping Pool...
 2022-10-19 13:03:54,162 celery.concurrency.asynpool DEBUG    removing tasks from inqueue until task handler finished
 2022-10-27 09:00:42,177 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-10-29 15:20:31,830 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-10-29 15:20:57,362 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/config/settings.py changed, reloading.
+2022-10-29 15:20:59,519 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-10-29 15:21:06,753 django.utils.autoreload INFO     Watching for file changes with StatReloader
