@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.2fe619ef.chunk.css",
-    "main.js": "/static/js/main.38f00f12.chunk.js",
-    "main.js.map": "/static/js/main.38f00f12.chunk.js.map",
+    "main.js": "/static/js/main.8b3e2cfd.chunk.js",
+    "main.js.map": "/static/js/main.8b3e2cfd.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.c8021260.js",
     "runtime-main.js.map": "/static/js/runtime-main.c8021260.js.map",
     "static/css/2.865edddd.chunk.css": "/static/css/2.865edddd.chunk.css",
@@ -15,15 +15,23 @@
     "static/css/main.2fe619ef.chunk.css.map": "/static/css/main.2fe619ef.chunk.css.map",
     "static/js/2.444bec00.chunk.js.LICENSE.txt": "/static/js/2.444bec00.chunk.js.LICENSE.txt",
     "static/media/style.css": "/static/media/top.ebd104cf.svg",
+    "static/media/attendance.f47fcdd2.png": "/static/media/attendance.f47fcdd2.png",
+    "static/media/calendar.24c97401.png": "/static/media/calendar.24c97401.png",
+    "static/media/coach.62e1375b.png": "/static/media/coach.62e1375b.png",
     "static/media/female.6fbbb5a4.png": "/static/media/female.6fbbb5a4.png",
     "static/media/logo.05d4d93f.png": "/static/media/logo.05d4d93f.png",
-    "static/media/slick-theme.css": "/static/media/slick.c94f7671.ttf"
+    "static/media/loupe.1d92f967.png": "/static/media/loupe.1d92f967.png",
+    "static/media/people.4f89400e.png": "/static/media/people.4f89400e.png",
+    "static/media/setting.e13b8b8c.png": "/static/media/setting.e13b8b8c.png",
+    "static/media/slick-theme.css": "/static/media/slick.c94f7671.ttf",
+    "static/media/transaction.c655de86.png": "/static/media/transaction.c655de86.png",
+    "static/media/user.05d0404a.png": "/static/media/user.05d0404a.png"
   },
   "entrypoints": [
     "static/js/runtime-main.c8021260.js",
     "static/css/2.865edddd.chunk.css",
     "static/js/2.444bec00.chunk.js",
     "static/css/main.2fe619ef.chunk.css",
-    "static/js/main.38f00f12.chunk.js"
+    "static/js/main.8b3e2cfd.chunk.js"
   ]
 }

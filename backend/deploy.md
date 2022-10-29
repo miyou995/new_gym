@@ -7,6 +7,7 @@ ssh root@your_server_ip
 
 adduser taki
 
+
 usermod -aG sudo taki
 su - taki
 
@@ -44,11 +45,12 @@ virtualenv venv
 source venv/bin/activate
 
 ## clone the repo 
+git clone https://github.com/miyou995/new_gym.git
 
 ## add local_settings.py
 cd /new_gym/config
 
-sudo nano local_settings.py
+sudo nano config/local_settings.py
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -111,7 +113,7 @@ After=network.target
 [Service]
 User=taki
 Group=www-data
-WorkingDirectory=/home/taki/octogym/new_gym/
+WorkingDirectory=/home/taki/octogym/new_gym/backend/
 ExecStart=/home/taki/octogym/venv/bin/gunicorn \
           --access-logfile - \
           --workers 3 \
@@ -145,10 +147,10 @@ server {
     location = /favicon.ico { access_log off; log_not_found off; }
     
     location /media/ {
-        root /home/taki/octogym/new_gym/;    
+        root /home/taki/octogym/new_gym/backend;    
     }
     location /static/ {
-        root /home/taki/octogym/new_gym/build/;    
+        root /home/taki/octogym/new_gym/backend/build;    
     }
 
     location / {
@@ -248,6 +250,10 @@ sudo ln -s /etc/nginx/sites-available/marchesa
 
 
 
+# fix iop adress 
+## go to /etc/netplan/
+sudo nano 00-installer-config.yaml
+and...etc
 
 
 

@@ -9,7 +9,6 @@ import ShortCuts from "../ShortCuts";
 import { ToastContainer, toast } from 'react-toastify'
 import {notifySuccess, notifyError} from '../Alert'
 
-import product1 from "../../../images/product/1.jpg";
 import Search from "../../layouts/Search";
 import { createContext } from "react";
 import PaiementModal from './PaiementModal'

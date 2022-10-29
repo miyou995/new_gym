@@ -6,6 +6,7 @@ import useAxios from "../useAxios";
 /// images
 import avartar5 from "../../../images/avatar/5.png";
 import { Link } from "react-router-dom";
+import searchIcon from "../../../images/icons/loupe.png";
 
 import ShortCuts from "../ShortCuts";
 import useAuth from "../useAuth";
@@ -90,7 +91,10 @@ const [clientAuth, loading] = useAuth(clientAuthorizationEnd, 'GET')
                       <div className="input-group search-area d-inline-flex">
                          <div className="input-group-append">
                             <span className="input-group-text">
-                               <i className="flaticon-381-search-2" />
+                            
+                           <img src={searchIcon} width="22" />
+
+                               {/* <i className="flaticon-381-search-2" /> */}
                             </span>
                          </div>
                          <input id="searchClient" type="text" className="form-control" placeholder="rechercher un client" value={searchValue} onChange={e => setSearchValue(e.target.value)} />

@@ -5,8 +5,6 @@ import jwt_decode from "jwt-decode";
 import { Link } from "react-router-dom";
 /// Scroll
 import PerfectScrollbar from "react-perfect-scrollbar";
-import profile from "../../../images/profile/pic1.jpg";
-import avatar from "../../../images/avatar/1.jpg";
 import { Dropdown } from "react-bootstrap";
 // import { LogoutUser } from "../../utils/auth";
 import { set } from "js-cookie";
