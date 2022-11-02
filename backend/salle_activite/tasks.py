@@ -5,7 +5,6 @@ from .models import Door
 from celery.signals import celeryd_init
 import time
 import logging
-logger = logging.getLogger('celery_tasks')
 
 @shared_task
 def start_linsten_1():
@@ -67,7 +66,6 @@ def start_linsten_5():
     
     
     if result:
-        logger.info("yes logged in", result)
         device.alarm_listen()
 
 @shared_task
@@ -158,7 +156,6 @@ def start_face_door_2():
 
 @shared_task
 def stop_listening_1():
-    logger.info("Taskj inited...")
 
     device = AccessControl()
     print(' the instance start_linsten_1', device)

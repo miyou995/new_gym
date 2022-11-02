@@ -125,7 +125,6 @@ WantedBy=multi-user.target
 
 
 
-
 sudo systemctl enable new_gym.socket
 sudo systemctl enable new_gym.service 
 
@@ -255,7 +254,7 @@ sudo ln -s /etc/nginx/sites-available/marchesa
 sudo nano 00-installer-config.yaml
 and...etc
 
-
+sudo journalctl -n 5 -u celery
 
 
 
