@@ -378,6 +378,9 @@ class FaceControl:
         
         path = picture_path
         image_path = os.path.join(os.getcwd(), path)
+
+        print(' os.getcwd()--->',os.getcwd())
+        print('complete image path--->',image_path)
         # path = str(input("please input face image path:"))
         with open(image_path, 'rb') as face_pic:
             face_buf = face_pic.read()
@@ -402,7 +405,7 @@ class FaceControl:
         type = EM_A_NET_EM_ACCESS_CTL_FACE_SERVICE.NET_EM_ACCESS_CTL_FACE_SERVICE_INSERT
         result = self.sdk.OperateAccessFaceService(self.loginID, type, stuInParam, stuOutParam, 5000)
         if result:
-            print("OperateAccessFaceService operate succeed.")
+            print("OperateAccessFaceService operate succeed.", result)
         else:
             print("OperateAccessFaceService operate fail. " + str(self.sdk.GetLastError()))
             return False
