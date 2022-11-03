@@ -377,8 +377,9 @@ class FaceControl:
         record_info.pFacePhoto = (c_void_p * 5)()
         
         path = picture_path
-        image_path = os.path.join(os.getcwd(), 'media',path)
+        image_path = os.path.join(os.getcwd(), '/media',path)
 
+        print(' picture_path--->',picture_path)
         print(' os.getcwd()--->',os.getcwd())
         print('complete image path--->',image_path)
         # path = str(input("please input face image path:"))
