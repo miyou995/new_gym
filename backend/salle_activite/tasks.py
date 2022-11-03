@@ -156,7 +156,6 @@ def start_face_door_2():
 
 @shared_task
 def stop_listening_1():
-
     device = AccessControl()
     print(' the instance start_linsten_1', device)
     device.get_login_info(ip='192.168.0.145', port=37777, username='admin', password='123456')

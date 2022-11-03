@@ -19,8 +19,8 @@ def register_user(user_name, user_id, picture_path):
     result2 = face2.login()
     face1.subscibe_user(user_name=user_name, user_id=user_id, picture_path=picture_path)
     face2.subscibe_user(user_name=user_name, user_id=user_id, picture_path=picture_path)
-    face1 = logout()
-    face2 = logout()
+    face1 = face1.logout()
+    face2 = face2.logout()
     return result
     # result = device.logout()
 
