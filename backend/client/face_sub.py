@@ -377,7 +377,7 @@ class FaceControl:
         record_info.pFacePhoto = (c_void_p * 5)()
         
         path = picture_path
-        image_path = os.path.join(os.getcwd(), path)
+        image_path = os.path.join(os.getcwd(), 'media',path)
 
         print(' os.getcwd()--->',os.getcwd())
         print('complete image path--->',image_path)
