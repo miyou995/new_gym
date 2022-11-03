@@ -8,7 +8,7 @@ from NetSDK.NetSDK import NetClient
 from NetSDK.SDK_Callback import *
 from NetSDK.SDK_Enum import *
 from NetSDK.SDK_Struct import *
-
+from pathlib import Path
 global my_demo
 
 file = "c:/log.log"
@@ -379,9 +379,16 @@ class FaceControl:
         path = picture_path
         image_path = os.path.join(os.getcwd(), '/media',path)
 
-        print(' picture_path--->',picture_path)
-        print(' os.getcwd()--->',os.getcwd())
-        print('complete image path--->',image_path)
+        base_path =  Path(__file__).resolve().parent.parent
+        media_path = base_path / 'media'
+        image_path = base_path / f'media/photos/{picture_path}'
+        print(' base_path--->',picture_path)
+        print(' media_path--->',media_path)
+        print(' image_path--->',image_path)
+
+        # print(' picture_path--->',picture_path)
+        # print(' os.getcwd()--->',os.getcwd())
+        # print('complete image path--->',image_path)
       
         with open(image_path, 'rb') as face_pic:
             face_buf = face_pic.read()
