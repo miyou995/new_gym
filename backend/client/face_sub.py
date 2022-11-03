@@ -382,7 +382,7 @@ class FaceControl:
         print(' picture_path--->',picture_path)
         print(' os.getcwd()--->',os.getcwd())
         print('complete image path--->',image_path)
-        # path = str(input("please input face image path:"))
+      
         with open(image_path, 'rb') as face_pic:
             face_buf = face_pic.read()
             record_info.nInFacePhotoLen[0] = len(face_buf)
