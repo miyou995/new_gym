@@ -108,7 +108,8 @@ class Client(models.Model):
 
     def save(self, *args, **kwargs):
         if self._old_picture != self.picture:
-            print('yess changed picture', self.picture.url)
+            print('yess changed picturename', self.picture.name)
+            print('yess changed picture url', self.picture.url)
             register_user.delay(self.last_name, self.id, self.picture.name)
         else:
             print('picture not changed')
