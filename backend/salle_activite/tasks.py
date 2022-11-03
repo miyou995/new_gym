@@ -136,7 +136,7 @@ def start_linsten_9():
 def start_face_door_1():
     device = FaceControl()
     
-    device.get_login_info(ip='192.168.1.220', port=37777, username='admin', password='123456')
+    device.get_login_info(ip='192.168.1.220', port=37777, username='admin', password='mc091924')
     result = device.login()
     device.intelligent_operate()
     if result:
@@ -146,7 +146,7 @@ def start_face_door_1():
 def start_face_door_2():
     device = FaceControl()
     
-    device.get_login_info(ip='192.168.1.221', port=37777, username='admin', password='123456')
+    device.get_login_info(ip='192.168.1.221', port=37777, username='admin', password='mc091924')
     result = device.login()
     device.intelligent_operate()
     if result:
