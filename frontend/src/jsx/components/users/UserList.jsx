@@ -22,7 +22,7 @@ const [previusUrl, setPreviusUrl] = useState("");
 const [userGroup, setUserGroup] = useState([]);
 const [groups, setGroups] = useState([]);
 // const [usersStatus, setUsersStatus] = useState(null);
-const usersEnd= `${process.env.REACT_APP_API_URL}/rest-api/auth/users`
+const usersEnd= `${process.env.REACT_APP_API_URL}/rest-api/auth/users/`
 const groupsEnd = `${process.env.REACT_APP_API_URL}/rest-api/auth/groups/`
       // eslint-disable-next-line react-hooks/exhaustive-deps
       useEffect(  () =>  {
@@ -33,7 +33,10 @@ const groupsEnd = `${process.env.REACT_APP_API_URL}/rest-api/auth/groups/`
             setPreviusUrl(res.data.previous)
             // setUsersStatus(res.status)
          }).catch( err => {
-            //console.log('IRRROR', err);
+            setUsersData([])
+            setNextUrl(false)
+            setPreviusUrl(false)
+            console.log('IRRROR', err);
             // setUsersStatus(err.response.status)
          })
          api.get(groupsEnd).then( res => {

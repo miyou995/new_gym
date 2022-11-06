@@ -30,7 +30,20 @@ const SalleActiviteEditModal = ({show, onShowShange, salleData}) => {
 
     //console.log('doors doors', doors);
     //console.log('selected DOOR', salleData['doorId']);
-
+    
+    const openTheDoor = () => {
+        // e.preventDefault();
+        api.get(`${process.env.REACT_APP_API_URL}/rest-api/salle-activite/openthedoor/${salleData['salleId']}/`).then(res => {
+            if (res.status === 200) {
+                notifySuccess(`La salle ${salleData['salleName']} a été ouverte avec succés`)
+                handleShow()
+            }else {
+                notifyError(`La salle ${salleData['salleName']} n'a pas été ouverte `)
+            }
+        }).catch(err => {
+            notifyError(`La salle ${salleData['salleName']} n'a pas été ouverte `)
+        })
+    }
     useEffect(() => {
     if (show == true) {
         setName(salleData['salleName'])
@@ -116,6 +129,11 @@ return (
                 </button>
             </div>
             <div className="m-3">
+                <button type="button" className="btn btn-success" onClick={e => openTheDoor()}>
+                    Ouvrir
+                </button>
+            </div>
+            <div className="m-3">
                 <button type="button" className="btn btn-danger" onClick={ async () => {
                 await api.delete(`${process.env.REACT_APP_API_URL}/rest-api/salle-activite/delete/${salleData['salleId']}/`)
                 notifySuccess(`La salle ${salleData['salleName']} a été supprimer avec succés`)
@@ -124,6 +142,7 @@ return (
                     Supprimer
                 </button>
             </div>
+          
           </div>
       </form>
      </Modal.Body>

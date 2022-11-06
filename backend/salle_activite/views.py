@@ -10,7 +10,7 @@ from rest_framework import status
 from django.db.models import Count
 from rest_framework.decorators import api_view
 from rest_framework.viewsets import ViewSet, ModelViewSet
-from .tasks import start_linsten_1, start_linsten_2, start_linsten_3, start_linsten_4, start_linsten_5, start_linsten_6, start_linsten_7, start_linsten_8, start_linsten_9, start_face_door_1, start_face_door_2
+from .tasks import start_linsten_1, start_linsten_2, start_linsten_3, start_linsten_4, start_linsten_5, start_linsten_6, start_linsten_7, start_linsten_8, start_linsten_9, start_face_door_1, start_face_door_2, open_the_door
 from celery.app import default_app
 from .device import AccessControl
 from rest_framework.views import APIView
@@ -199,6 +199,30 @@ class StartListeningTwo(APIView):
             start_face_door_2.delay()
         )
         return Response(status=200)
+
+class OpenTheDoor(APIView):
+    permission_classes = [IsAdminUser]
+
+    def get(self, request, pk, format=None):
+        salle =  Salle.objects.get(pk=pk)
+        # serializer = SalleSerialiser(salle)
+        # res = open_the_door.delay(salle.door.id)
+        door = Door.objects.get(id=salle.door.id)
+        device = AccessControl()
+        # device = FaceControl()
+        print('DOOOORE', door)
+
+        device.get_login_info(ip=str(door.ip_adress), port=37777, username=door.username, password=door.password)
+        result = device.login()
+        if result:
+            device.access_operate()
+            print('pk', pk)
+            # print('serializer', serializer)
+            return Response(status=200)
+        else:
+            return Response(status=404)
+
+
 # @api_view(['GET'])
 # def start_listening(request):
 #     print(' before delay')
