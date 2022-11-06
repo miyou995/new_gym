@@ -161,3 +161,23 @@ def stop_listening_1():
     device.get_login_info(ip='192.168.0.145', port=37777, username='admin', password='123456')
     result = device.login()
     result = device.logout()
+
+
+
+@shared_task
+def open_the_door(door_pk):
+    door = Door.objects.get(id=door_pk)
+    device = AccessControl()
+    # device = FaceControl()
+    print('DOOOORE', door)
+
+    result = device.get_login_info(ip=str(door.ip_adress), port=37777, username=door.username, password=door.password)
+    result = device.login()
+    device.access_operate()
+    # return {'messages': 'door opened sussessfully'}
+    # else:
+    #     device = AccessControl()
+    #     result = device.login()
+    #     device.access_operate()
+    #     return {'messages': 'Door opened sussessfully'}
+    return {'messages': 'Opening door Failed'}

@@ -45,7 +45,7 @@ const HistoryList = () => {
    // const [presencesCount, setPresencesCount] = useState('')
    const [startDate, setStartDate] = useState(formatDate(new Date('2022-01-01')));
    const [endDate, setEndDate] = useState(formatDate(new Date()));
-   let usersEnd =  `${process.env.REACT_APP_API_URL}/rest-api/auth/users`
+   let usersEnd =  `${process.env.REACT_APP_API_URL}/rest-api/auth/users/`
 
    // console.table('els clieeents', salle);
 
@@ -68,13 +68,16 @@ useEffect(() => {
 
 useEffect(() => {
    api.get(`${process.env.REACT_APP_API_URL}/rest-api/abonnement-client-history?cl=${searchValue}&abc=${abcId}&start=${startDate}&end=${endDate}&usr=${userId}`).then(res => {
-      //console.log('THE RESULT', res);
+      console.log('THE RESULT', res);
       setAbcsData(res.data.results)
       setNextUrl(res.data.next)
       setPreviusUrl(res.data.previous)
       //console.log('THE DATA setAbcsData', abcsData);
-   })
-}, [abcId, endDate, searchValue, startDate, userId])
+   }).catch(err =>  {
+      setAbcsData([])
+      setNextUrl(false)
+      setPreviusUrl(false)
+   })}, [abcId, endDate, searchValue, startDate, userId])
 
 
 useEffect(() =>  {

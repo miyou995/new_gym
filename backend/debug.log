@@ -8701,3 +8701,1400 @@ Traceback (most recent call last):
 django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 15: 'static'. Did you forget to register or load this tag?
 2022-10-29 23:19:40,028 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2022-10-29 23:20:26,099 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 09:58:50,055 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 09:59:20,909 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/face_sub.py changed, reloading.
+2022-11-06 09:59:22,467 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 09:59:24,287 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/face_sub.py changed, reloading.
+2022-11-06 09:59:25,609 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 09:59:28,569 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/face_sub.py changed, reloading.
+2022-11-06 09:59:32,679 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 10:01:26,416 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/config/settings.py changed, reloading.
+2022-11-06 10:01:28,343 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 10:01:32,932 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/config/urls.py changed, reloading.
+2022-11-06 10:01:35,808 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 10:02:16,072 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 10:16:18,800 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2022-11-06 10:16:20,882 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 10:19:08,498 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-11-06 10:19:10,430 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 10:19:14,917 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-11-06 10:19:16,919 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 10:21:28,762 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-11-06 10:21:30,803 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 10:22:03,789 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-11-06 10:22:05,704 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 10:22:22,204 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-11-06 10:22:24,263 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 10:22:28,682 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-11-06 10:22:30,503 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 10:22:37,807 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-11-06 10:22:39,597 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 10:50:04,543 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-11-06 10:50:06,980 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 10:50:38,878 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2022-11-06 10:50:40,985 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 10:50:49,413 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2022-11-06 10:50:51,371 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 10:50:55,663 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2022-11-06 10:50:57,383 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 10:51:02,019 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2022-11-06 10:51:03,927 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 10:51:06,647 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/urls.py changed, reloading.
+2022-11-06 10:51:08,464 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 10:54:45,093 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/urls.py changed, reloading.
+2022-11-06 10:54:46,963 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 10:54:49,898 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/urls.py changed, reloading.
+2022-11-06 10:54:52,071 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 10:59:14,957 django.request WARNING  Not Found: /rest-api/salle-activite/openthedoor/5/
+2022-11-06 10:59:14,961 django.request WARNING  Not Found: /rest-api/salle-activite/openthedoor/5/
+2022-11-06 10:59:14,963 django.request WARNING  Not Found: /rest-api/salle-activite/openthedoor/5/
+2022-11-06 10:59:14,966 django.request WARNING  Not Found: /rest-api/salle-activite/openthedoor/5/
+2022-11-06 10:59:17,213 django.request WARNING  Not Found: /rest-api/salle-activite/openthedoor/5/
+2022-11-06 10:59:17,216 django.request WARNING  Not Found: /rest-api/salle-activite/openthedoor/5/
+2022-11-06 10:59:19,425 django.request WARNING  Not Found: /rest-api/salle-activite/openthedoor/5/
+2022-11-06 10:59:19,428 django.request WARNING  Not Found: /rest-api/salle-activite/openthedoor/5/
+2022-11-06 10:59:30,019 django.request WARNING  Not Found: /rest-api/salle-activite/openthedoor//
+2022-11-06 10:59:30,676 django.request WARNING  Not Found: /rest-api/salle-activite/openthedoor//
+2022-11-06 10:59:30,708 django.request WARNING  Not Found: /rest-api/salle-activite/openthedoor//
+2022-11-06 10:59:31,432 django.request WARNING  Not Found: /rest-api/salle-activite/openthedoor//
+2022-11-06 10:59:31,953 django.request WARNING  Not Found: /rest-api/salle-activite/openthedoor//
+2022-11-06 10:59:32,107 django.request WARNING  Not Found: /rest-api/salle-activite/openthedoor//
+2022-11-06 10:59:32,270 django.request WARNING  Not Found: /rest-api/salle-activite/openthedoor//
+2022-11-06 10:59:32,505 django.request WARNING  Not Found: /rest-api/salle-activite/openthedoor//
+2022-11-06 10:59:32,685 django.request WARNING  Not Found: /rest-api/salle-activite/openthedoor//
+2022-11-06 10:59:32,723 django.request WARNING  Not Found: /rest-api/salle-activite/openthedoor//
+2022-11-06 10:59:35,412 django.request WARNING  Not Found: /rest-api/salle-activite/openthedoor//
+2022-11-06 10:59:35,418 django.request WARNING  Not Found: /rest-api/salle-activite/openthedoor//
+2022-11-06 10:59:36,339 django.request WARNING  Not Found: /rest-api/salle-activite/openthedoor//
+2022-11-06 10:59:36,343 django.request WARNING  Not Found: /rest-api/salle-activite/openthedoor//
+2022-11-06 10:59:39,631 django.request WARNING  Not Found: /rest-api/salle-activite/openthedoor/
+2022-11-06 10:59:39,645 django.request WARNING  Not Found: /rest-api/salle-activite/openthedoor/
+2022-11-06 10:59:40,540 django.request WARNING  Not Found: /rest-api/salle-activite/openthedoor/
+2022-11-06 10:59:40,543 django.request WARNING  Not Found: /rest-api/salle-activite/openthedoor/
+2022-11-06 11:00:46,413 salle_activite_view INFO     View inited...
+2022-11-06 11:00:46,985 celery.backends.redis ERROR    Connection to Redis lost: Retry (0/20) now.
+2022-11-06 11:00:46,987 celery.backends.redis ERROR    Connection to Redis lost: Retry (1/20) in 1.00 second.
+2022-11-06 11:00:47,989 celery.backends.redis ERROR    Connection to Redis lost: Retry (2/20) in 1.00 second.
+2022-11-06 11:00:48,990 celery.backends.redis ERROR    Connection to Redis lost: Retry (3/20) in 1.00 second.
+2022-11-06 11:00:49,992 celery.backends.redis ERROR    Connection to Redis lost: Retry (4/20) in 1.00 second.
+2022-11-06 11:00:51,001 celery.backends.redis ERROR    Connection to Redis lost: Retry (5/20) in 1.00 second.
+2022-11-06 11:00:52,002 celery.backends.redis ERROR    Connection to Redis lost: Retry (6/20) in 1.00 second.
+2022-11-06 11:00:53,004 celery.backends.redis ERROR    Connection to Redis lost: Retry (7/20) in 1.00 second.
+2022-11-06 11:00:54,007 celery.backends.redis ERROR    Connection to Redis lost: Retry (8/20) in 1.00 second.
+2022-11-06 11:00:55,008 celery.backends.redis ERROR    Connection to Redis lost: Retry (9/20) in 1.00 second.
+2022-11-06 11:00:56,011 celery.backends.redis ERROR    Connection to Redis lost: Retry (10/20) in 1.00 second.
+2022-11-06 11:00:57,015 celery.backends.redis ERROR    Connection to Redis lost: Retry (11/20) in 1.00 second.
+2022-11-06 11:00:58,024 celery.backends.redis ERROR    Connection to Redis lost: Retry (12/20) in 1.00 second.
+2022-11-06 11:00:59,027 celery.backends.redis ERROR    Connection to Redis lost: Retry (13/20) in 1.00 second.
+2022-11-06 11:01:00,030 celery.backends.redis ERROR    Connection to Redis lost: Retry (14/20) in 1.00 second.
+2022-11-06 11:01:01,033 celery.backends.redis ERROR    Connection to Redis lost: Retry (15/20) in 1.00 second.
+2022-11-06 11:01:02,037 celery.backends.redis ERROR    Connection to Redis lost: Retry (16/20) in 1.00 second.
+2022-11-06 11:01:03,041 celery.backends.redis ERROR    Connection to Redis lost: Retry (17/20) in 1.00 second.
+2022-11-06 11:01:04,043 celery.backends.redis ERROR    Connection to Redis lost: Retry (18/20) in 1.00 second.
+2022-11-06 11:01:05,046 celery.backends.redis ERROR    Connection to Redis lost: Retry (19/20) in 1.00 second.
+2022-11-06 11:01:06,050 celery.backends.redis CRITICAL 
+Retry limit exceeded while trying to reconnect to the Celery redis result store backend. The Celery application must be restarted.
+
+2022-11-06 11:01:10,937 django.request ERROR    Internal Server Error: /rest-api/salle-activite/start_listening/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 611, in connect
+    sock = self.retry.call_with_retry(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 612, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 677, in _connect
+    raise err
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 665, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/backends/redis.py", line 119, in reconnect_on_error
+    yield
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/backends/redis.py", line 169, in _consume_from
+    self._pubsub.subscribe(key)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/client.py", line 1592, in subscribe
+    ret_val = self.execute_command("SUBSCRIBE", *new_channels.keys())
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/client.py", line 1433, in execute_command
+    self.connection = self.connection_pool.get_connection(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 1387, in get_connection
+    connection.connect()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 617, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 611, in connect
+    sock = self.retry.call_with_retry(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 612, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 677, in _connect
+    raise err
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 665, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/kombu/connection.py", line 446, in _reraise_as_library_errors
+    yield
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/app/base.py", line 787, in send_task
+    self.backend.on_task_call(P, task_id)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/backends/redis.py", line 365, in on_task_call
+    self.result_consumer.consume_from(task_id)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/backends/redis.py", line 161, in consume_from
+    return self.start(task_id)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/backends/redis.py", line 139, in start
+    self._consume_from(initial_task_id)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/backends/redis.py", line 169, in _consume_from
+    self._pubsub.subscribe(key)
+  File "/usr/lib/python3.8/contextlib.py", line 131, in __exit__
+    self.gen.throw(type, value, traceback)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/backends/redis.py", line 122, in reconnect_on_error
+    self._ensure(self._reconnect_pubsub, ())
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/backends/redis.py", line 376, in ensure
+    return retry_over_time(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/kombu/utils/functional.py", line 312, in retry_over_time
+    return fun(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/backends/redis.py", line 106, in _reconnect_pubsub
+    metas = self.backend.client.mget(self.subscribed_to)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/commands/core.py", line 1893, in mget
+    return self.execute_command("MGET", *args, **options)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/client.py", line 1235, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 1387, in get_connection
+    connection.connect()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 617, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py", line 165, in get
+    start_linsten_1.delay(),
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/app/task.py", line 425, in delay
+    return self.apply_async(args, kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/app/task.py", line 575, in apply_async
+    return app.send_task(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/app/base.py", line 788, in send_task
+    amqp.send_task_message(P, name, message, **options)
+  File "/usr/lib/python3.8/contextlib.py", line 131, in __exit__
+    self.gen.throw(type, value, traceback)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/kombu/connection.py", line 450, in _reraise_as_library_errors
+    raise ConnectionError(str(exc)) from exc
+kombu.exceptions.OperationalError: Error 111 connecting to localhost:6379. Connection refused.
+2022-11-06 11:01:19,897 django.request WARNING  Not Found: /rest-api/salle-activite/openthedoor/5
+2022-11-06 11:01:50,494 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/urls.py changed, reloading.
+2022-11-06 11:01:52,722 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 11:02:08,598 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2022-11-06 11:02:10,675 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 11:02:13,659 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2022-11-06 11:02:16,008 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 11:02:33,259 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2022-11-06 11:02:35,198 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 11:02:39,653 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2022-11-06 11:02:41,715 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 11:02:51,687 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2022-11-06 11:02:53,697 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 11:03:17,542 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2022-11-06 11:03:19,662 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 11:03:29,491 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2022-11-06 11:03:31,587 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 11:03:47,007 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2022-11-06 11:03:49,003 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 11:03:57,730 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2022-11-06 11:03:59,703 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 11:04:06,130 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2022-11-06 11:04:08,598 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 11:08:18,292 django.request ERROR    Internal Server Error: /rest-api/salle-activite/openthedoor/5
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/utils/deprecation.py", line 116, in __call__
+    response = self.process_request(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/middleware/common.py", line 54, in process_request
+    path = self.get_full_path_with_slash(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/middleware/common.py", line 88, in get_full_path_with_slash
+    raise RuntimeError(
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to 127.0.0.1:8000/rest-api/salle-activite/openthedoor/5/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+2022-11-06 11:08:48,064 django.request ERROR    Internal Server Error: /rest-api/salle-activite/openthedoor/5/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py", line 206, in get
+    salle =  self.get_object(pk)
+AttributeError: 'OpenTheDoor' object has no attribute 'get_object'
+2022-11-06 11:09:13,513 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2022-11-06 11:09:15,872 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 11:09:18,146 django.request ERROR    Internal Server Error: /rest-api/salle-activite/openthedoor/5/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py", line 215, in get
+    if serializer.is_valid():
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 220, in is_valid
+    assert hasattr(self, 'initial_data'), (
+AssertionError: Cannot call `.is_valid()` as no `data=` keyword argument was passed when instantiating the serializer instance.
+2022-11-06 11:09:31,137 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2022-11-06 11:09:33,260 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 11:09:43,431 django.request ERROR    Internal Server Error: /rest-api/salle-activite/openthedoor/5/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py", line 211, in get
+    if serializer.is_valid():
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 220, in is_valid
+    assert hasattr(self, 'initial_data'), (
+AssertionError: Cannot call `.is_valid()` as no `data=` keyword argument was passed when instantiating the serializer instance.
+2022-11-06 11:17:27,903 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2022-11-06 11:17:29,984 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 11:17:44,272 django.request ERROR    Internal Server Error: /rest-api/salle-activite/openthedoor/5/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/fields.py", line 457, in get_attribute
+    return get_attribute(instance, self.source_attrs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/fields.py", line 97, in get_attribute
+    instance = getattr(instance, attr)
+AttributeError: 'Salle' object has no attribute 'ip_adress'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py", line 212, in get
+    return Response(serializer.data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 509, in to_representation
+    attribute = field.get_attribute(instance)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/fields.py", line 490, in get_attribute
+    raise type(exc)(msg)
+AttributeError: Got AttributeError when attempting to get a value for field `ip_adress` on serializer `DoorSerializer`.
+The serializer field might be named incorrectly and not match any attribute or key on the `Salle` instance.
+Original exception text was: 'Salle' object has no attribute 'ip_adress'.
+2022-11-06 11:17:55,079 django.request ERROR    Internal Server Error: /rest-api/salle-activite/openthedoor/5/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/fields.py", line 457, in get_attribute
+    return get_attribute(instance, self.source_attrs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/fields.py", line 97, in get_attribute
+    instance = getattr(instance, attr)
+AttributeError: 'Salle' object has no attribute 'ip_adress'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py", line 212, in get
+    return Response(serializer.data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 509, in to_representation
+    attribute = field.get_attribute(instance)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/fields.py", line 490, in get_attribute
+    raise type(exc)(msg)
+AttributeError: Got AttributeError when attempting to get a value for field `ip_adress` on serializer `DoorSerializer`.
+The serializer field might be named incorrectly and not match any attribute or key on the `Salle` instance.
+Original exception text was: 'Salle' object has no attribute 'ip_adress'.
+2022-11-06 11:21:27,410 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2022-11-06 11:21:29,617 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 11:22:00,972 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2022-11-06 11:22:03,719 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 11:22:10,937 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2022-11-06 11:22:13,632 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 11:22:27,604 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-11-06 11:22:30,127 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 11:22:44,595 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-11-06 11:22:46,483 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 11:22:49,485 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-11-06 11:22:51,687 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 11:22:57,722 celery.backends.redis ERROR    Connection to Redis lost: Retry (0/20) now.
+2022-11-06 11:22:57,723 celery.backends.redis ERROR    Connection to Redis lost: Retry (1/20) in 1.00 second.
+2022-11-06 11:22:58,725 celery.backends.redis ERROR    Connection to Redis lost: Retry (2/20) in 1.00 second.
+2022-11-06 11:22:59,727 celery.backends.redis ERROR    Connection to Redis lost: Retry (3/20) in 1.00 second.
+2022-11-06 11:23:00,729 celery.backends.redis ERROR    Connection to Redis lost: Retry (4/20) in 1.00 second.
+2022-11-06 11:23:01,731 celery.backends.redis ERROR    Connection to Redis lost: Retry (5/20) in 1.00 second.
+2022-11-06 11:23:02,732 celery.backends.redis ERROR    Connection to Redis lost: Retry (6/20) in 1.00 second.
+2022-11-06 11:23:03,734 celery.backends.redis ERROR    Connection to Redis lost: Retry (7/20) in 1.00 second.
+2022-11-06 11:23:04,736 celery.backends.redis ERROR    Connection to Redis lost: Retry (8/20) in 1.00 second.
+2022-11-06 11:23:05,738 celery.backends.redis ERROR    Connection to Redis lost: Retry (9/20) in 1.00 second.
+2022-11-06 11:23:06,739 celery.backends.redis ERROR    Connection to Redis lost: Retry (10/20) in 1.00 second.
+2022-11-06 11:23:07,741 celery.backends.redis ERROR    Connection to Redis lost: Retry (11/20) in 1.00 second.
+2022-11-06 11:23:08,743 celery.backends.redis ERROR    Connection to Redis lost: Retry (12/20) in 1.00 second.
+2022-11-06 11:23:09,745 celery.backends.redis ERROR    Connection to Redis lost: Retry (13/20) in 1.00 second.
+2022-11-06 11:23:10,747 celery.backends.redis ERROR    Connection to Redis lost: Retry (14/20) in 1.00 second.
+2022-11-06 11:23:11,748 celery.backends.redis ERROR    Connection to Redis lost: Retry (15/20) in 1.00 second.
+2022-11-06 11:23:12,750 celery.backends.redis ERROR    Connection to Redis lost: Retry (16/20) in 1.00 second.
+2022-11-06 11:23:13,752 celery.backends.redis ERROR    Connection to Redis lost: Retry (17/20) in 1.00 second.
+2022-11-06 11:23:14,753 celery.backends.redis ERROR    Connection to Redis lost: Retry (18/20) in 1.00 second.
+2022-11-06 11:23:15,755 celery.backends.redis ERROR    Connection to Redis lost: Retry (19/20) in 1.00 second.
+2022-11-06 11:23:16,756 celery.backends.redis CRITICAL 
+Retry limit exceeded while trying to reconnect to the Celery redis result store backend. The Celery application must be restarted.
+
+2022-11-06 11:23:17,091 django.request ERROR    Internal Server Error: /rest-api/salle-activite/openthedoor/5/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 611, in connect
+    sock = self.retry.call_with_retry(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 612, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 677, in _connect
+    raise err
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 665, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/backends/redis.py", line 119, in reconnect_on_error
+    yield
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/backends/redis.py", line 169, in _consume_from
+    self._pubsub.subscribe(key)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/client.py", line 1592, in subscribe
+    ret_val = self.execute_command("SUBSCRIBE", *new_channels.keys())
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/client.py", line 1433, in execute_command
+    self.connection = self.connection_pool.get_connection(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 1387, in get_connection
+    connection.connect()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 617, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 611, in connect
+    sock = self.retry.call_with_retry(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 612, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 677, in _connect
+    raise err
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 665, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/kombu/connection.py", line 446, in _reraise_as_library_errors
+    yield
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/app/base.py", line 787, in send_task
+    self.backend.on_task_call(P, task_id)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/backends/redis.py", line 365, in on_task_call
+    self.result_consumer.consume_from(task_id)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/backends/redis.py", line 161, in consume_from
+    return self.start(task_id)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/backends/redis.py", line 139, in start
+    self._consume_from(initial_task_id)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/backends/redis.py", line 169, in _consume_from
+    self._pubsub.subscribe(key)
+  File "/usr/lib/python3.8/contextlib.py", line 131, in __exit__
+    self.gen.throw(type, value, traceback)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/backends/redis.py", line 122, in reconnect_on_error
+    self._ensure(self._reconnect_pubsub, ())
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/backends/redis.py", line 376, in ensure
+    return retry_over_time(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/kombu/utils/functional.py", line 312, in retry_over_time
+    return fun(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/backends/redis.py", line 106, in _reconnect_pubsub
+    metas = self.backend.client.mget(self.subscribed_to)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/commands/core.py", line 1893, in mget
+    return self.execute_command("MGET", *args, **options)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/client.py", line 1235, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 1387, in get_connection
+    connection.connect()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 617, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py", line 208, in get
+    open_the_door.delay(salle.door)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/app/task.py", line 425, in delay
+    return self.apply_async(args, kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/app/task.py", line 575, in apply_async
+    return app.send_task(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/app/base.py", line 788, in send_task
+    amqp.send_task_message(P, name, message, **options)
+  File "/usr/lib/python3.8/contextlib.py", line 131, in __exit__
+    self.gen.throw(type, value, traceback)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/kombu/connection.py", line 450, in _reraise_as_library_errors
+    raise ConnectionError(str(exc)) from exc
+kombu.exceptions.OperationalError: Error 111 connecting to localhost:6379. Connection refused.
+2022-11-06 11:23:38,205 celery.bootsteps DEBUG    | Worker: Preparing bootsteps.
+2022-11-06 11:23:38,227 celery.bootsteps DEBUG    | Worker: Building graph...
+2022-11-06 11:23:38,228 celery.bootsteps DEBUG    | Worker: New boot order: {StateDB, Timer, Hub, Pool, Autoscaler, Beat, Consumer}
+2022-11-06 11:23:38,327 celery.bootsteps DEBUG    | Consumer: Preparing bootsteps.
+2022-11-06 11:23:38,328 celery.bootsteps DEBUG    | Consumer: Building graph...
+2022-11-06 11:23:38,445 celery.bootsteps DEBUG    | Consumer: New boot order: {Connection, Events, Mingle, Gossip, Tasks, Control, Agent, Heart, event loop}
+2022-11-06 11:23:38,490 celery.bootsteps DEBUG    | Worker: Starting Hub
+2022-11-06 11:23:38,491 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 11:23:38,491 celery.bootsteps DEBUG    | Worker: Starting Pool
+2022-11-06 11:23:40,364 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 11:23:40,365 celery.bootsteps DEBUG    | Worker: Starting Consumer
+2022-11-06 11:23:40,365 celery.bootsteps DEBUG    | Consumer: Starting Connection
+2022-11-06 11:23:40,374 celery.worker.consumer.consumer ERROR    consumer: Cannot connect to redis://localhost:6379//: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 2.00 seconds... (1/100)
+
+2022-11-06 11:23:42,382 celery.worker.consumer.connection INFO     Connected to redis://localhost:6379//
+2022-11-06 11:23:42,382 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 11:23:42,383 celery.bootsteps DEBUG    | Consumer: Starting Events
+2022-11-06 11:23:42,386 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 11:23:42,387 celery.bootsteps DEBUG    | Consumer: Starting Mingle
+2022-11-06 11:23:42,387 celery.worker.consumer.mingle INFO     mingle: searching for neighbors
+2022-11-06 11:23:43,397 celery.worker.consumer.mingle INFO     mingle: all alone
+2022-11-06 11:23:43,397 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 11:23:43,398 celery.bootsteps DEBUG    | Consumer: Starting Gossip
+2022-11-06 11:23:43,402 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 11:23:43,402 celery.bootsteps DEBUG    | Consumer: Starting Tasks
+2022-11-06 11:23:43,416 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 11:23:43,416 celery.bootsteps DEBUG    | Consumer: Starting Control
+2022-11-06 11:23:43,420 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 11:23:43,420 celery.bootsteps DEBUG    | Consumer: Starting Heart
+2022-11-06 11:23:43,422 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 11:23:43,423 celery.bootsteps DEBUG    | Consumer: Starting event loop
+2022-11-06 11:23:43,423 celery.bootsteps DEBUG    | Worker: Hub.register Pool...
+2022-11-06 11:23:43,433 py.warnings  WARNING  /mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/fixups/django.py:203: UserWarning: Using settings.DEBUG leads to a memory
+            leak, never use this setting in production environments!
+  warnings.warn('''Using settings.DEBUG leads to a memory
+
+2022-11-06 11:23:43,434 celery.apps.worker INFO     celery@DESKTOP-PC6U1IH ready.
+2022-11-06 11:23:43,434 kombu.common DEBUG    basic.qos: prefetch_count->80
+2022-11-06 11:23:50,968 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 11:23:53,178 django.request ERROR    Internal Server Error: /rest-api/salle-activite/openthedoor/5/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/kombu/serialization.py", line 39, in _reraise_errors
+    yield
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/kombu/serialization.py", line 210, in dumps
+    payload = encoder(data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/kombu/utils/json.py", line 68, in dumps
+    return _dumps(s, cls=cls or _default_encoder,
+  File "/usr/lib/python3.8/json/__init__.py", line 234, in dumps
+    return cls(
+  File "/usr/lib/python3.8/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/usr/lib/python3.8/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/kombu/utils/json.py", line 58, in default
+    return super().default(o)
+  File "/usr/lib/python3.8/json/encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type Door is not JSON serializable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py", line 208, in get
+    open_the_door.delay(salle.door)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/app/task.py", line 425, in delay
+    return self.apply_async(args, kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/app/task.py", line 575, in apply_async
+    return app.send_task(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/app/base.py", line 788, in send_task
+    amqp.send_task_message(P, name, message, **options)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/app/amqp.py", line 510, in send_task_message
+    ret = producer.publish(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/kombu/messaging.py", line 166, in publish
+    body, content_type, content_encoding = self._prepare(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/kombu/messaging.py", line 254, in _prepare
+    body) = dumps(body, serializer=serializer)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/kombu/serialization.py", line 210, in dumps
+    payload = encoder(data)
+  File "/usr/lib/python3.8/contextlib.py", line 131, in __exit__
+    self.gen.throw(type, value, traceback)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/kombu/serialization.py", line 43, in _reraise_errors
+    reraise(wrapper, wrapper(exc), sys.exc_info()[2])
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/kombu/exceptions.py", line 21, in reraise
+    raise value.with_traceback(tb)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/kombu/serialization.py", line 39, in _reraise_errors
+    yield
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/kombu/serialization.py", line 210, in dumps
+    payload = encoder(data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/kombu/utils/json.py", line 68, in dumps
+    return _dumps(s, cls=cls or _default_encoder,
+  File "/usr/lib/python3.8/json/__init__.py", line 234, in dumps
+    return cls(
+  File "/usr/lib/python3.8/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/usr/lib/python3.8/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/kombu/utils/json.py", line 58, in default
+    return super().default(o)
+  File "/usr/lib/python3.8/json/encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+kombu.exceptions.EncodeError: Object of type Door is not JSON serializable
+2022-11-06 11:24:35,485 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-11-06 11:24:37,593 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 11:24:43,381 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-11-06 11:24:45,277 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 11:25:09,771 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-11-06 11:25:11,816 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 11:25:17,651 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-11-06 11:25:19,588 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 11:25:26,636 django.request ERROR    Internal Server Error: /rest-api/salle-activite/openthedoor/5/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/kombu/serialization.py", line 39, in _reraise_errors
+    yield
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/kombu/serialization.py", line 210, in dumps
+    payload = encoder(data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/kombu/utils/json.py", line 68, in dumps
+    return _dumps(s, cls=cls or _default_encoder,
+  File "/usr/lib/python3.8/json/__init__.py", line 234, in dumps
+    return cls(
+  File "/usr/lib/python3.8/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/usr/lib/python3.8/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/kombu/utils/json.py", line 58, in default
+    return super().default(o)
+  File "/usr/lib/python3.8/json/encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type Door is not JSON serializable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py", line 208, in get
+    open_the_door.delay(salle.door)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/app/task.py", line 425, in delay
+    return self.apply_async(args, kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/app/task.py", line 575, in apply_async
+    return app.send_task(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/app/base.py", line 788, in send_task
+    amqp.send_task_message(P, name, message, **options)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/app/amqp.py", line 510, in send_task_message
+    ret = producer.publish(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/kombu/messaging.py", line 166, in publish
+    body, content_type, content_encoding = self._prepare(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/kombu/messaging.py", line 254, in _prepare
+    body) = dumps(body, serializer=serializer)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/kombu/serialization.py", line 210, in dumps
+    payload = encoder(data)
+  File "/usr/lib/python3.8/contextlib.py", line 131, in __exit__
+    self.gen.throw(type, value, traceback)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/kombu/serialization.py", line 43, in _reraise_errors
+    reraise(wrapper, wrapper(exc), sys.exc_info()[2])
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/kombu/exceptions.py", line 21, in reraise
+    raise value.with_traceback(tb)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/kombu/serialization.py", line 39, in _reraise_errors
+    yield
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/kombu/serialization.py", line 210, in dumps
+    payload = encoder(data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/kombu/utils/json.py", line 68, in dumps
+    return _dumps(s, cls=cls or _default_encoder,
+  File "/usr/lib/python3.8/json/__init__.py", line 234, in dumps
+    return cls(
+  File "/usr/lib/python3.8/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/usr/lib/python3.8/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/kombu/utils/json.py", line 58, in default
+    return super().default(o)
+  File "/usr/lib/python3.8/json/encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+kombu.exceptions.EncodeError: Object of type Door is not JSON serializable
+2022-11-06 11:26:33,294 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-11-06 11:26:35,418 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 11:26:52,392 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-11-06 11:26:54,306 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 11:26:57,350 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-11-06 11:26:59,327 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 11:27:02,852 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-11-06 11:27:05,719 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 11:27:08,844 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2022-11-06 11:27:10,889 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 11:27:14,536 celery.worker.strategy INFO     Task salle_activite.tasks.open_the_door[3faf28da-0146-43a3-b00e-2b17ce3fed6c] received
+2022-11-06 11:27:14,537 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f9ba8e4cca0> (args:('salle_activite.tasks.open_the_door', '3faf28da-0146-43a3-b00e-2b17ce3fed6c', {'lang': 'py', 'task': 'salle_activite.tasks.open_the_door', 'id': '3faf28da-0146-43a3-b00e-2b17ce3fed6c', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '3faf28da-0146-43a3-b00e-2b17ce3fed6c', 'parent_id': None, 'argsrepr': '(1,)', 'kwargsrepr': '{}', 'origin': 'gen523@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': '3faf28da-0146-43a3-b00e-2b17ce3fed6c', 'reply_to': '1151226d-21c4-3d9f-9246-99d018342e5e', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '6ef489db-cb06-4766-9b61-82eab0bab559'}, 'reply_to': '1151226d-21c4-3d9f-9246-99d018342e5e', 'correlation_id': '3faf28da-0146-43a3-b00e-2b17ce3fed6c', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered':... kwargs:{})
+2022-11-06 11:27:14,764 celery.app.trace ERROR    Task salle_activite.tasks.open_the_door[3faf28da-0146-43a3-b00e-2b17ce3fed6c] raised unexpected: TypeError('print() argument after * must be an iterable, not int')
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/app/trace.py", line 451, in trace_task
+    R = retval = fun(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/app/trace.py", line 734, in __protected_call__
+    return self.run(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py", line 171, in open_the_door
+    print('DOOOORE', door)
+TypeError: print() argument after * must be an iterable, not int
+2022-11-06 11:27:32,205 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-11-06 11:27:34,490 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 11:27:41,717 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-11-06 11:27:43,893 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 11:27:57,141 celery.bootsteps DEBUG    | Worker: Closing Hub...
+2022-11-06 11:27:57,142 celery.bootsteps DEBUG    | Worker: Closing Pool...
+2022-11-06 11:27:57,142 celery.bootsteps DEBUG    | Worker: Closing Consumer...
+2022-11-06 11:27:57,142 celery.bootsteps DEBUG    | Worker: Stopping Consumer...
+2022-11-06 11:27:57,144 celery.bootsteps DEBUG    | Consumer: Closing Connection...
+2022-11-06 11:27:57,144 celery.bootsteps DEBUG    | Consumer: Closing Events...
+2022-11-06 11:27:57,145 celery.bootsteps DEBUG    | Consumer: Closing Mingle...
+2022-11-06 11:27:57,145 celery.bootsteps DEBUG    | Consumer: Closing Gossip...
+2022-11-06 11:27:57,146 celery.bootsteps DEBUG    | Consumer: Closing Tasks...
+2022-11-06 11:27:57,147 celery.bootsteps DEBUG    | Consumer: Closing Control...
+2022-11-06 11:27:57,148 celery.bootsteps DEBUG    | Consumer: Closing Heart...
+2022-11-06 11:27:57,149 celery.bootsteps DEBUG    | Consumer: Closing event loop...
+2022-11-06 11:27:57,150 celery.bootsteps DEBUG    | Consumer: Stopping event loop...
+2022-11-06 11:27:57,151 celery.bootsteps DEBUG    | Consumer: Stopping Heart...
+2022-11-06 11:27:57,153 celery.bootsteps DEBUG    | Consumer: Stopping Control...
+2022-11-06 11:27:57,155 celery.bootsteps DEBUG    | Consumer: Stopping Tasks...
+2022-11-06 11:27:57,156 celery.worker.consumer.tasks DEBUG    Canceling task consumer...
+2022-11-06 11:27:57,156 celery.bootsteps DEBUG    | Consumer: Stopping Gossip...
+2022-11-06 11:27:57,168 celery.bootsteps DEBUG    | Consumer: Stopping Mingle...
+2022-11-06 11:27:57,168 celery.bootsteps DEBUG    | Consumer: Stopping Events...
+2022-11-06 11:27:57,169 celery.bootsteps DEBUG    | Consumer: Stopping Connection...
+2022-11-06 11:27:57,169 celery.bootsteps DEBUG    | Worker: Stopping Pool...
+2022-11-06 11:27:57,283 celery.concurrency.asynpool DEBUG    removing tasks from inqueue until task handler finished
+2022-11-06 11:28:00,275 celery.bootsteps DEBUG    | Worker: Preparing bootsteps.
+2022-11-06 11:28:00,280 celery.bootsteps DEBUG    | Worker: Building graph...
+2022-11-06 11:28:00,280 celery.bootsteps DEBUG    | Worker: New boot order: {Timer, Hub, Pool, Autoscaler, Beat, StateDB, Consumer}
+2022-11-06 11:28:00,299 celery.bootsteps DEBUG    | Consumer: Preparing bootsteps.
+2022-11-06 11:28:00,299 celery.bootsteps DEBUG    | Consumer: Building graph...
+2022-11-06 11:28:00,331 celery.bootsteps DEBUG    | Consumer: New boot order: {Connection, Events, Mingle, Gossip, Tasks, Control, Heart, Agent, event loop}
+2022-11-06 11:28:00,375 celery.bootsteps DEBUG    | Worker: Starting Hub
+2022-11-06 11:28:00,375 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 11:28:00,376 celery.bootsteps DEBUG    | Worker: Starting Pool
+2022-11-06 11:28:02,238 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 11:28:02,239 celery.bootsteps DEBUG    | Worker: Starting Consumer
+2022-11-06 11:28:02,240 celery.bootsteps DEBUG    | Consumer: Starting Connection
+2022-11-06 11:28:02,255 celery.worker.consumer.connection INFO     Connected to redis://localhost:6379//
+2022-11-06 11:28:02,256 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 11:28:02,257 celery.bootsteps DEBUG    | Consumer: Starting Events
+2022-11-06 11:28:02,260 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 11:28:02,261 celery.bootsteps DEBUG    | Consumer: Starting Mingle
+2022-11-06 11:28:02,263 celery.worker.consumer.mingle INFO     mingle: searching for neighbors
+2022-11-06 11:28:03,275 celery.worker.consumer.mingle INFO     mingle: all alone
+2022-11-06 11:28:03,275 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 11:28:03,276 celery.bootsteps DEBUG    | Consumer: Starting Gossip
+2022-11-06 11:28:03,281 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 11:28:03,281 celery.bootsteps DEBUG    | Consumer: Starting Tasks
+2022-11-06 11:28:03,289 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 11:28:03,289 celery.bootsteps DEBUG    | Consumer: Starting Control
+2022-11-06 11:28:03,293 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 11:28:03,294 celery.bootsteps DEBUG    | Consumer: Starting Heart
+2022-11-06 11:28:03,297 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 11:28:03,297 celery.bootsteps DEBUG    | Consumer: Starting event loop
+2022-11-06 11:28:03,298 celery.bootsteps DEBUG    | Worker: Hub.register Pool...
+2022-11-06 11:28:03,300 py.warnings  WARNING  /mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/fixups/django.py:203: UserWarning: Using settings.DEBUG leads to a memory
+            leak, never use this setting in production environments!
+  warnings.warn('''Using settings.DEBUG leads to a memory
+
+2022-11-06 11:28:03,301 celery.apps.worker INFO     celery@DESKTOP-PC6U1IH ready.
+2022-11-06 11:28:03,302 kombu.common DEBUG    basic.qos: prefetch_count->80
+2022-11-06 11:28:05,591 celery.worker.strategy INFO     Task salle_activite.tasks.open_the_door[d99c825b-5d4a-40a8-b391-4d98b9434a9d] received
+2022-11-06 11:28:05,592 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7fd87600cca0> (args:('salle_activite.tasks.open_the_door', 'd99c825b-5d4a-40a8-b391-4d98b9434a9d', {'lang': 'py', 'task': 'salle_activite.tasks.open_the_door', 'id': 'd99c825b-5d4a-40a8-b391-4d98b9434a9d', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'd99c825b-5d4a-40a8-b391-4d98b9434a9d', 'parent_id': None, 'argsrepr': '(1,)', 'kwargsrepr': '{}', 'origin': 'gen556@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': 'd99c825b-5d4a-40a8-b391-4d98b9434a9d', 'reply_to': 'd788f5f5-7964-310f-adca-9e9222509f87', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '0e4ee36a-223b-4d96-ae35-51513f3b60ba'}, 'reply_to': 'd788f5f5-7964-310f-adca-9e9222509f87', 'correlation_id': 'd99c825b-5d4a-40a8-b391-4d98b9434a9d', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered':... kwargs:{})
+2022-11-06 11:28:05,711 celery.app.trace ERROR    Task salle_activite.tasks.open_the_door[d99c825b-5d4a-40a8-b391-4d98b9434a9d] raised unexpected: TypeError("login() got an unexpected keyword argument 'ip'")
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/app/trace.py", line 451, in trace_task
+    R = retval = fun(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/app/trace.py", line 734, in __protected_call__
+    return self.run(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py", line 173, in open_the_door
+    result = device.login(ip=door.ip_adress, port=37777, username=door.username, password=door.password)
+TypeError: login() got an unexpected keyword argument 'ip'
+2022-11-06 11:29:20,049 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-11-06 11:29:22,121 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 11:29:24,114 celery.bootsteps DEBUG    | Worker: Closing Hub...
+2022-11-06 11:29:24,114 celery.bootsteps DEBUG    | Worker: Closing Pool...
+2022-11-06 11:29:24,115 celery.bootsteps DEBUG    | Worker: Closing Consumer...
+2022-11-06 11:29:24,115 celery.bootsteps DEBUG    | Worker: Stopping Consumer...
+2022-11-06 11:29:24,116 celery.bootsteps DEBUG    | Consumer: Closing Connection...
+2022-11-06 11:29:24,117 celery.bootsteps DEBUG    | Consumer: Closing Events...
+2022-11-06 11:29:24,117 celery.bootsteps DEBUG    | Consumer: Closing Mingle...
+2022-11-06 11:29:24,118 celery.bootsteps DEBUG    | Consumer: Closing Gossip...
+2022-11-06 11:29:24,118 celery.bootsteps DEBUG    | Consumer: Closing Tasks...
+2022-11-06 11:29:24,118 celery.bootsteps DEBUG    | Consumer: Closing Control...
+2022-11-06 11:29:24,119 celery.bootsteps DEBUG    | Consumer: Closing Heart...
+2022-11-06 11:29:24,119 celery.bootsteps DEBUG    | Consumer: Closing event loop...
+2022-11-06 11:29:24,120 celery.bootsteps DEBUG    | Consumer: Stopping event loop...
+2022-11-06 11:29:24,120 celery.bootsteps DEBUG    | Consumer: Stopping Heart...
+2022-11-06 11:29:24,121 celery.bootsteps DEBUG    | Consumer: Stopping Control...
+2022-11-06 11:29:24,124 celery.bootsteps DEBUG    | Consumer: Stopping Tasks...
+2022-11-06 11:29:24,124 celery.worker.consumer.tasks DEBUG    Canceling task consumer...
+2022-11-06 11:29:24,125 celery.bootsteps DEBUG    | Consumer: Stopping Gossip...
+2022-11-06 11:29:24,127 celery.bootsteps DEBUG    | Consumer: Stopping Mingle...
+2022-11-06 11:29:24,128 celery.bootsteps DEBUG    | Consumer: Stopping Events...
+2022-11-06 11:29:24,128 celery.bootsteps DEBUG    | Consumer: Stopping Connection...
+2022-11-06 11:29:24,129 celery.bootsteps DEBUG    | Worker: Stopping Pool...
+2022-11-06 11:29:24,300 celery.concurrency.asynpool DEBUG    removing tasks from inqueue until task handler finished
+2022-11-06 11:29:29,111 celery.bootsteps DEBUG    | Worker: Preparing bootsteps.
+2022-11-06 11:29:29,116 celery.bootsteps DEBUG    | Worker: Building graph...
+2022-11-06 11:29:29,117 celery.bootsteps DEBUG    | Worker: New boot order: {Beat, Timer, Hub, Pool, Autoscaler, StateDB, Consumer}
+2022-11-06 11:29:29,138 celery.bootsteps DEBUG    | Consumer: Preparing bootsteps.
+2022-11-06 11:29:29,138 celery.bootsteps DEBUG    | Consumer: Building graph...
+2022-11-06 11:29:29,179 celery.bootsteps DEBUG    | Consumer: New boot order: {Connection, Events, Mingle, Gossip, Heart, Tasks, Control, Agent, event loop}
+2022-11-06 11:29:29,226 celery.bootsteps DEBUG    | Worker: Starting Hub
+2022-11-06 11:29:29,227 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 11:29:29,227 celery.bootsteps DEBUG    | Worker: Starting Pool
+2022-11-06 11:29:31,182 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 11:29:31,183 celery.bootsteps DEBUG    | Worker: Starting Consumer
+2022-11-06 11:29:31,184 celery.bootsteps DEBUG    | Consumer: Starting Connection
+2022-11-06 11:29:31,197 celery.worker.consumer.connection INFO     Connected to redis://localhost:6379//
+2022-11-06 11:29:31,197 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 11:29:31,198 celery.bootsteps DEBUG    | Consumer: Starting Events
+2022-11-06 11:29:31,201 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 11:29:31,201 celery.bootsteps DEBUG    | Consumer: Starting Mingle
+2022-11-06 11:29:31,201 celery.worker.consumer.mingle INFO     mingle: searching for neighbors
+2022-11-06 11:29:32,214 celery.worker.consumer.mingle INFO     mingle: all alone
+2022-11-06 11:29:32,215 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 11:29:32,215 celery.bootsteps DEBUG    | Consumer: Starting Gossip
+2022-11-06 11:29:32,220 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 11:29:32,221 celery.bootsteps DEBUG    | Consumer: Starting Heart
+2022-11-06 11:29:32,223 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 11:29:32,224 celery.bootsteps DEBUG    | Consumer: Starting Tasks
+2022-11-06 11:29:32,232 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 11:29:32,233 celery.bootsteps DEBUG    | Consumer: Starting Control
+2022-11-06 11:29:32,237 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 11:29:32,238 celery.bootsteps DEBUG    | Consumer: Starting event loop
+2022-11-06 11:29:32,239 celery.bootsteps DEBUG    | Worker: Hub.register Pool...
+2022-11-06 11:29:32,241 py.warnings  WARNING  /mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/fixups/django.py:203: UserWarning: Using settings.DEBUG leads to a memory
+            leak, never use this setting in production environments!
+  warnings.warn('''Using settings.DEBUG leads to a memory
+
+2022-11-06 11:29:32,243 celery.apps.worker INFO     celery@DESKTOP-PC6U1IH ready.
+2022-11-06 11:29:32,244 kombu.common DEBUG    basic.qos: prefetch_count->80
+2022-11-06 11:29:32,374 celery.worker.strategy INFO     Task salle_activite.tasks.open_the_door[4f364984-d48d-4fe4-9b89-883b8a1aefd3] received
+2022-11-06 11:29:32,375 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f88ead6dca0> (args:('salle_activite.tasks.open_the_door', '4f364984-d48d-4fe4-9b89-883b8a1aefd3', {'lang': 'py', 'task': 'salle_activite.tasks.open_the_door', 'id': '4f364984-d48d-4fe4-9b89-883b8a1aefd3', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '4f364984-d48d-4fe4-9b89-883b8a1aefd3', 'parent_id': None, 'argsrepr': '(1,)', 'kwargsrepr': '{}', 'origin': 'gen608@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': '4f364984-d48d-4fe4-9b89-883b8a1aefd3', 'reply_to': '91ccf17f-4e4c-3a22-a980-a044d49c2342', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '11a7b636-bbed-42d2-9ef4-166b06f86140'}, 'reply_to': '91ccf17f-4e4c-3a22-a980-a044d49c2342', 'correlation_id': '4f364984-d48d-4fe4-9b89-883b8a1aefd3', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered':... kwargs:{})
+2022-11-06 11:29:32,469 celery.app.trace ERROR    Task salle_activite.tasks.open_the_door[4f364984-d48d-4fe4-9b89-883b8a1aefd3] raised unexpected: TypeError("login() got an unexpected keyword argument 'ip'")
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/app/trace.py", line 451, in trace_task
+    R = retval = fun(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/app/trace.py", line 734, in __protected_call__
+    return self.run(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py", line 173, in open_the_door
+    result = device.login(ip=str(door.ip_adress), port=37777, username=door.username, password=door.password)
+TypeError: login() got an unexpected keyword argument 'ip'
+2022-11-06 11:29:59,086 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-11-06 11:30:01,173 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 11:30:03,992 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-11-06 11:30:05,839 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 11:30:11,492 celery.bootsteps DEBUG    | Worker: Closing Hub...
+2022-11-06 11:30:11,492 celery.bootsteps DEBUG    | Worker: Closing Pool...
+2022-11-06 11:30:11,493 celery.bootsteps DEBUG    | Worker: Closing Consumer...
+2022-11-06 11:30:11,493 celery.bootsteps DEBUG    | Worker: Stopping Consumer...
+2022-11-06 11:30:11,493 celery.bootsteps DEBUG    | Consumer: Closing Connection...
+2022-11-06 11:30:11,494 celery.bootsteps DEBUG    | Consumer: Closing Events...
+2022-11-06 11:30:11,494 celery.bootsteps DEBUG    | Consumer: Closing Mingle...
+2022-11-06 11:30:11,495 celery.bootsteps DEBUG    | Consumer: Closing Gossip...
+2022-11-06 11:30:11,495 celery.bootsteps DEBUG    | Consumer: Closing Heart...
+2022-11-06 11:30:11,495 celery.bootsteps DEBUG    | Consumer: Closing Tasks...
+2022-11-06 11:30:11,496 celery.bootsteps DEBUG    | Consumer: Closing Control...
+2022-11-06 11:30:11,496 celery.bootsteps DEBUG    | Consumer: Closing event loop...
+2022-11-06 11:30:11,497 celery.bootsteps DEBUG    | Consumer: Stopping event loop...
+2022-11-06 11:30:11,497 celery.bootsteps DEBUG    | Consumer: Stopping Control...
+2022-11-06 11:30:11,499 celery.bootsteps DEBUG    | Consumer: Stopping Tasks...
+2022-11-06 11:30:11,500 celery.worker.consumer.tasks DEBUG    Canceling task consumer...
+2022-11-06 11:30:11,500 celery.bootsteps DEBUG    | Consumer: Stopping Heart...
+2022-11-06 11:30:11,501 celery.bootsteps DEBUG    | Consumer: Stopping Gossip...
+2022-11-06 11:30:11,503 celery.bootsteps DEBUG    | Consumer: Stopping Mingle...
+2022-11-06 11:30:11,504 celery.bootsteps DEBUG    | Consumer: Stopping Events...
+2022-11-06 11:30:11,504 celery.bootsteps DEBUG    | Consumer: Stopping Connection...
+2022-11-06 11:30:11,504 celery.bootsteps DEBUG    | Worker: Stopping Pool...
+2022-11-06 11:30:11,663 celery.concurrency.asynpool DEBUG    removing tasks from inqueue until task handler finished
+2022-11-06 11:30:14,700 celery.bootsteps DEBUG    | Worker: Preparing bootsteps.
+2022-11-06 11:30:14,704 celery.bootsteps DEBUG    | Worker: Building graph...
+2022-11-06 11:30:14,705 celery.bootsteps DEBUG    | Worker: New boot order: {Timer, Hub, Pool, Autoscaler, Beat, StateDB, Consumer}
+2022-11-06 11:30:14,722 celery.bootsteps DEBUG    | Consumer: Preparing bootsteps.
+2022-11-06 11:30:14,723 celery.bootsteps DEBUG    | Consumer: Building graph...
+2022-11-06 11:30:14,759 celery.bootsteps DEBUG    | Consumer: New boot order: {Connection, Events, Mingle, Gossip, Agent, Heart, Tasks, Control, event loop}
+2022-11-06 11:30:14,796 celery.bootsteps DEBUG    | Worker: Starting Hub
+2022-11-06 11:30:14,796 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 11:30:14,796 celery.bootsteps DEBUG    | Worker: Starting Pool
+2022-11-06 11:30:16,786 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 11:30:16,787 celery.bootsteps DEBUG    | Worker: Starting Consumer
+2022-11-06 11:30:16,787 celery.bootsteps DEBUG    | Consumer: Starting Connection
+2022-11-06 11:30:16,803 celery.worker.consumer.connection INFO     Connected to redis://localhost:6379//
+2022-11-06 11:30:16,805 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 11:30:16,805 celery.bootsteps DEBUG    | Consumer: Starting Events
+2022-11-06 11:30:16,811 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 11:30:16,813 celery.bootsteps DEBUG    | Consumer: Starting Mingle
+2022-11-06 11:30:16,814 celery.worker.consumer.mingle INFO     mingle: searching for neighbors
+2022-11-06 11:30:17,826 celery.worker.consumer.mingle INFO     mingle: all alone
+2022-11-06 11:30:17,827 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 11:30:17,827 celery.bootsteps DEBUG    | Consumer: Starting Gossip
+2022-11-06 11:30:17,831 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 11:30:17,832 celery.bootsteps DEBUG    | Consumer: Starting Heart
+2022-11-06 11:30:17,834 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 11:30:17,834 celery.bootsteps DEBUG    | Consumer: Starting Tasks
+2022-11-06 11:30:17,840 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 11:30:17,841 celery.bootsteps DEBUG    | Consumer: Starting Control
+2022-11-06 11:30:17,845 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 11:30:17,845 celery.bootsteps DEBUG    | Consumer: Starting event loop
+2022-11-06 11:30:17,846 celery.bootsteps DEBUG    | Worker: Hub.register Pool...
+2022-11-06 11:30:17,848 py.warnings  WARNING  /mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/fixups/django.py:203: UserWarning: Using settings.DEBUG leads to a memory
+            leak, never use this setting in production environments!
+  warnings.warn('''Using settings.DEBUG leads to a memory
+
+2022-11-06 11:30:17,849 celery.apps.worker INFO     celery@DESKTOP-PC6U1IH ready.
+2022-11-06 11:30:17,850 kombu.common DEBUG    basic.qos: prefetch_count->80
+2022-11-06 11:30:18,053 celery.worker.strategy INFO     Task salle_activite.tasks.open_the_door[a3bee215-06fe-4bfc-9aec-b58fa7e5c5e5] received
+2022-11-06 11:30:18,054 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f962ab1cca0> (args:('salle_activite.tasks.open_the_door', 'a3bee215-06fe-4bfc-9aec-b58fa7e5c5e5', {'lang': 'py', 'task': 'salle_activite.tasks.open_the_door', 'id': 'a3bee215-06fe-4bfc-9aec-b58fa7e5c5e5', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'a3bee215-06fe-4bfc-9aec-b58fa7e5c5e5', 'parent_id': None, 'argsrepr': '(1,)', 'kwargsrepr': '{}', 'origin': 'gen665@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': 'a3bee215-06fe-4bfc-9aec-b58fa7e5c5e5', 'reply_to': '4870cbc7-50b7-3fd1-a036-ce4ca35bdb79', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '02542879-85f7-48b1-a597-817dd45e04d3'}, 'reply_to': '4870cbc7-50b7-3fd1-a036-ce4ca35bdb79', 'correlation_id': 'a3bee215-06fe-4bfc-9aec-b58fa7e5c5e5', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered':... kwargs:{})
+2022-11-06 11:30:18,443 celery.app.trace INFO     Task salle_activite.tasks.open_the_door[a3bee215-06fe-4bfc-9aec-b58fa7e5c5e5] succeeded in 0.3861509999996997s: {'messages': 'door opened sussessfully'}
+2022-11-06 13:34:29,291 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-11-06 13:34:31,360 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 13:34:46,579 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-11-06 13:34:48,372 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 13:34:57,902 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-11-06 13:34:59,835 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 13:35:54,825 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2022-11-06 13:35:56,828 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 13:35:59,673 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2022-11-06 13:36:01,511 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 13:36:07,051 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2022-11-06 13:36:08,812 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 13:48:16,014 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2022-11-06 13:48:17,930 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 13:48:25,503 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2022-11-06 13:48:27,615 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 13:48:35,197 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2022-11-06 13:48:37,172 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 13:48:40,139 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2022-11-06 13:48:42,380 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 14:03:43,680 celery.worker.strategy INFO     Task salle_activite.tasks.open_the_door[8ffb6cff-4f08-4833-87a0-afc090494193] received
+2022-11-06 14:03:43,687 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f962ab1cca0> (args:('salle_activite.tasks.open_the_door', '8ffb6cff-4f08-4833-87a0-afc090494193', {'lang': 'py', 'task': 'salle_activite.tasks.open_the_door', 'id': '8ffb6cff-4f08-4833-87a0-afc090494193', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '8ffb6cff-4f08-4833-87a0-afc090494193', 'parent_id': None, 'argsrepr': '(11,)', 'kwargsrepr': '{}', 'origin': 'gen770@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': '8ffb6cff-4f08-4833-87a0-afc090494193', 'reply_to': 'e5ecaee4-6f94-36c1-a03a-e690a9abaf2e', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '43c68960-eb63-49d1-96c3-c241825c962b'}, 'reply_to': 'e5ecaee4-6f94-36c1-a03a-e690a9abaf2e', 'correlation_id': '8ffb6cff-4f08-4833-87a0-afc090494193', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered':... kwargs:{})
+2022-11-06 14:03:43,909 celery.app.trace INFO     Task salle_activite.tasks.open_the_door[8ffb6cff-4f08-4833-87a0-afc090494193] succeeded in 0.21927710000090883s: {'messages': 'door opened sussessfully'}
+2022-11-06 14:03:44,035 django.request ERROR    Internal Server Error: /rest-api/salle-activite/openthedoor/2/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py", line 212, in get
+    return Response({'messages': res.messages})
+AttributeError: 'AsyncResult' object has no attribute 'messages'
+2022-11-06 14:04:56,577 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-11-06 14:04:58,596 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 14:05:03,254 celery.worker.strategy INFO     Task salle_activite.tasks.open_the_door[cd51b76f-46e6-4974-b4ec-5b5498013592] received
+2022-11-06 14:05:03,254 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f962ab1cca0> (args:('salle_activite.tasks.open_the_door', 'cd51b76f-46e6-4974-b4ec-5b5498013592', {'lang': 'py', 'task': 'salle_activite.tasks.open_the_door', 'id': 'cd51b76f-46e6-4974-b4ec-5b5498013592', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'cd51b76f-46e6-4974-b4ec-5b5498013592', 'parent_id': None, 'argsrepr': '(10,)', 'kwargsrepr': '{}', 'origin': 'gen780@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': 'cd51b76f-46e6-4974-b4ec-5b5498013592', 'reply_to': 'a82ce4cf-6dd5-3472-b9fa-d8f7e76cb970', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '62703c21-d199-4a13-939c-c4eb26291ebc'}, 'reply_to': 'a82ce4cf-6dd5-3472-b9fa-d8f7e76cb970', 'correlation_id': 'cd51b76f-46e6-4974-b4ec-5b5498013592', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered':... kwargs:{})
+2022-11-06 14:05:03,477 celery.app.trace INFO     Task salle_activite.tasks.open_the_door[cd51b76f-46e6-4974-b4ec-5b5498013592] succeeded in 0.2202607999988686s: {'messages': 'door opened sussessfully'}
+2022-11-06 14:05:03,661 django.request ERROR    Internal Server Error: /rest-api/salle-activite/openthedoor/4/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py", line 212, in get
+    return Response({'messages': res.messages})
+AttributeError: 'AsyncResult' object has no attribute 'messages'
+2022-11-06 14:05:21,152 celery.bootsteps DEBUG    | Worker: Closing Hub...
+2022-11-06 14:05:21,152 celery.bootsteps DEBUG    | Worker: Closing Pool...
+2022-11-06 14:05:21,153 celery.bootsteps DEBUG    | Worker: Closing Consumer...
+2022-11-06 14:05:21,153 celery.bootsteps DEBUG    | Worker: Stopping Consumer...
+2022-11-06 14:05:21,154 celery.bootsteps DEBUG    | Consumer: Closing Connection...
+2022-11-06 14:05:21,154 celery.bootsteps DEBUG    | Consumer: Closing Events...
+2022-11-06 14:05:21,155 celery.bootsteps DEBUG    | Consumer: Closing Mingle...
+2022-11-06 14:05:21,155 celery.bootsteps DEBUG    | Consumer: Closing Gossip...
+2022-11-06 14:05:21,156 celery.bootsteps DEBUG    | Consumer: Closing Heart...
+2022-11-06 14:05:21,156 celery.bootsteps DEBUG    | Consumer: Closing Tasks...
+2022-11-06 14:05:21,156 celery.bootsteps DEBUG    | Consumer: Closing Control...
+2022-11-06 14:05:21,157 celery.bootsteps DEBUG    | Consumer: Closing event loop...
+2022-11-06 14:05:21,157 celery.bootsteps DEBUG    | Consumer: Stopping event loop...
+2022-11-06 14:05:21,157 celery.bootsteps DEBUG    | Consumer: Stopping Control...
+2022-11-06 14:05:21,159 celery.bootsteps DEBUG    | Consumer: Stopping Tasks...
+2022-11-06 14:05:21,160 celery.worker.consumer.tasks DEBUG    Canceling task consumer...
+2022-11-06 14:05:21,160 celery.bootsteps DEBUG    | Consumer: Stopping Heart...
+2022-11-06 14:05:21,184 celery.bootsteps DEBUG    | Consumer: Stopping Gossip...
+2022-11-06 14:05:21,186 celery.bootsteps DEBUG    | Consumer: Stopping Mingle...
+2022-11-06 14:05:21,187 celery.bootsteps DEBUG    | Consumer: Stopping Events...
+2022-11-06 14:05:21,187 celery.bootsteps DEBUG    | Consumer: Stopping Connection...
+2022-11-06 14:05:21,188 celery.bootsteps DEBUG    | Worker: Stopping Pool...
+2022-11-06 14:05:21,316 celery.concurrency.asynpool DEBUG    removing tasks from inqueue until task handler finished
+2022-11-06 14:05:24,274 celery.bootsteps DEBUG    | Worker: Preparing bootsteps.
+2022-11-06 14:05:24,279 celery.bootsteps DEBUG    | Worker: Building graph...
+2022-11-06 14:05:24,280 celery.bootsteps DEBUG    | Worker: New boot order: {Timer, Hub, Pool, Autoscaler, Beat, StateDB, Consumer}
+2022-11-06 14:05:24,300 celery.bootsteps DEBUG    | Consumer: Preparing bootsteps.
+2022-11-06 14:05:24,301 celery.bootsteps DEBUG    | Consumer: Building graph...
+2022-11-06 14:05:24,340 celery.bootsteps DEBUG    | Consumer: New boot order: {Connection, Events, Mingle, Tasks, Control, Gossip, Agent, Heart, event loop}
+2022-11-06 14:05:24,383 celery.bootsteps DEBUG    | Worker: Starting Hub
+2022-11-06 14:05:24,384 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 14:05:24,384 celery.bootsteps DEBUG    | Worker: Starting Pool
+2022-11-06 14:05:26,210 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 14:05:26,211 celery.bootsteps DEBUG    | Worker: Starting Consumer
+2022-11-06 14:05:26,212 celery.bootsteps DEBUG    | Consumer: Starting Connection
+2022-11-06 14:05:26,226 celery.worker.consumer.connection INFO     Connected to redis://localhost:6379//
+2022-11-06 14:05:26,227 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 14:05:26,227 celery.bootsteps DEBUG    | Consumer: Starting Events
+2022-11-06 14:05:26,230 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 14:05:26,230 celery.bootsteps DEBUG    | Consumer: Starting Mingle
+2022-11-06 14:05:26,231 celery.worker.consumer.mingle INFO     mingle: searching for neighbors
+2022-11-06 14:05:27,242 celery.worker.consumer.mingle INFO     mingle: all alone
+2022-11-06 14:05:27,243 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 14:05:27,243 celery.bootsteps DEBUG    | Consumer: Starting Tasks
+2022-11-06 14:05:27,250 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 14:05:27,251 celery.bootsteps DEBUG    | Consumer: Starting Control
+2022-11-06 14:05:27,256 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 14:05:27,257 celery.bootsteps DEBUG    | Consumer: Starting Gossip
+2022-11-06 14:05:27,262 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 14:05:27,262 celery.bootsteps DEBUG    | Consumer: Starting Heart
+2022-11-06 14:05:27,266 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 14:05:27,267 celery.bootsteps DEBUG    | Consumer: Starting event loop
+2022-11-06 14:05:27,267 celery.bootsteps DEBUG    | Worker: Hub.register Pool...
+2022-11-06 14:05:27,270 py.warnings  WARNING  /mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/fixups/django.py:203: UserWarning: Using settings.DEBUG leads to a memory
+            leak, never use this setting in production environments!
+  warnings.warn('''Using settings.DEBUG leads to a memory
+
+2022-11-06 14:05:27,271 celery.apps.worker INFO     celery@DESKTOP-PC6U1IH ready.
+2022-11-06 14:05:27,272 kombu.common DEBUG    basic.qos: prefetch_count->80
+2022-11-06 14:05:31,007 celery.worker.strategy INFO     Task salle_activite.tasks.open_the_door[7e1c962c-5c5c-4791-9f51-ac9aa42a7117] received
+2022-11-06 14:05:31,008 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7fb29240cca0> (args:('salle_activite.tasks.open_the_door', '7e1c962c-5c5c-4791-9f51-ac9aa42a7117', {'lang': 'py', 'task': 'salle_activite.tasks.open_the_door', 'id': '7e1c962c-5c5c-4791-9f51-ac9aa42a7117', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '7e1c962c-5c5c-4791-9f51-ac9aa42a7117', 'parent_id': None, 'argsrepr': '(10,)', 'kwargsrepr': '{}', 'origin': 'gen780@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': '7e1c962c-5c5c-4791-9f51-ac9aa42a7117', 'reply_to': '7292294b-43a8-3ec9-8bf0-ca57e743fd38', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '7ae80cfc-a8e6-40e5-abf3-8c2a1d1caf41'}, 'reply_to': '7292294b-43a8-3ec9-8bf0-ca57e743fd38', 'correlation_id': '7e1c962c-5c5c-4791-9f51-ac9aa42a7117', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered':... kwargs:{})
+2022-11-06 14:05:31,057 django.request ERROR    Internal Server Error: /rest-api/salle-activite/openthedoor/4/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py", line 212, in get
+    return Response({'messages': res.messages})
+AttributeError: 'AsyncResult' object has no attribute 'messages'
+2022-11-06 14:05:31,098 celery.app.trace ERROR    Task salle_activite.tasks.open_the_door[7e1c962c-5c5c-4791-9f51-ac9aa42a7117] raised unexpected: TypeError("login() got an unexpected keyword argument 'ip'")
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/app/trace.py", line 451, in trace_task
+    R = retval = fun(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/app/trace.py", line 734, in __protected_call__
+    return self.run(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py", line 174, in open_the_door
+    result = device.login(ip=str(door.ip_adress), port=37777, username=door.username, password=door.password)
+TypeError: login() got an unexpected keyword argument 'ip'
+2022-11-06 14:06:03,350 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-11-06 14:06:04,171 celery.bootsteps DEBUG    | Worker: Closing Hub...
+2022-11-06 14:06:04,172 celery.bootsteps DEBUG    | Worker: Closing Pool...
+2022-11-06 14:06:04,172 celery.bootsteps DEBUG    | Worker: Closing Consumer...
+2022-11-06 14:06:04,173 celery.bootsteps DEBUG    | Worker: Stopping Consumer...
+2022-11-06 14:06:04,173 celery.bootsteps DEBUG    | Consumer: Closing Connection...
+2022-11-06 14:06:04,174 celery.bootsteps DEBUG    | Consumer: Closing Events...
+2022-11-06 14:06:04,174 celery.bootsteps DEBUG    | Consumer: Closing Mingle...
+2022-11-06 14:06:04,175 celery.bootsteps DEBUG    | Consumer: Closing Tasks...
+2022-11-06 14:06:04,175 celery.bootsteps DEBUG    | Consumer: Closing Control...
+2022-11-06 14:06:04,175 celery.bootsteps DEBUG    | Consumer: Closing Gossip...
+2022-11-06 14:06:04,176 celery.bootsteps DEBUG    | Consumer: Closing Heart...
+2022-11-06 14:06:04,176 celery.bootsteps DEBUG    | Consumer: Closing event loop...
+2022-11-06 14:06:04,176 celery.bootsteps DEBUG    | Consumer: Stopping event loop...
+2022-11-06 14:06:04,177 celery.bootsteps DEBUG    | Consumer: Stopping Heart...
+2022-11-06 14:06:04,178 celery.bootsteps DEBUG    | Consumer: Stopping Gossip...
+2022-11-06 14:06:04,180 celery.bootsteps DEBUG    | Consumer: Stopping Control...
+2022-11-06 14:06:04,183 celery.bootsteps DEBUG    | Consumer: Stopping Tasks...
+2022-11-06 14:06:04,183 celery.worker.consumer.tasks DEBUG    Canceling task consumer...
+2022-11-06 14:06:04,184 celery.bootsteps DEBUG    | Consumer: Stopping Mingle...
+2022-11-06 14:06:04,184 celery.bootsteps DEBUG    | Consumer: Stopping Events...
+2022-11-06 14:06:04,185 celery.bootsteps DEBUG    | Consumer: Stopping Connection...
+2022-11-06 14:06:04,185 celery.bootsteps DEBUG    | Worker: Stopping Pool...
+2022-11-06 14:06:04,336 celery.concurrency.asynpool DEBUG    removing tasks from inqueue until task handler finished
+2022-11-06 14:06:05,288 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 14:06:08,320 celery.bootsteps DEBUG    | Worker: Preparing bootsteps.
+2022-11-06 14:06:08,325 celery.bootsteps DEBUG    | Worker: Building graph...
+2022-11-06 14:06:08,325 celery.bootsteps DEBUG    | Worker: New boot order: {StateDB, Beat, Timer, Hub, Pool, Autoscaler, Consumer}
+2022-11-06 14:06:08,353 celery.bootsteps DEBUG    | Consumer: Preparing bootsteps.
+2022-11-06 14:06:08,354 celery.bootsteps DEBUG    | Consumer: Building graph...
+2022-11-06 14:06:08,402 celery.bootsteps DEBUG    | Consumer: New boot order: {Connection, Events, Mingle, Gossip, Heart, Agent, Tasks, Control, event loop}
+2022-11-06 14:06:08,463 celery.bootsteps DEBUG    | Worker: Starting Hub
+2022-11-06 14:06:08,463 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 14:06:08,464 celery.bootsteps DEBUG    | Worker: Starting Pool
+2022-11-06 14:06:10,473 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 14:06:10,474 celery.bootsteps DEBUG    | Worker: Starting Consumer
+2022-11-06 14:06:10,475 celery.bootsteps DEBUG    | Consumer: Starting Connection
+2022-11-06 14:06:10,494 celery.worker.consumer.connection INFO     Connected to redis://localhost:6379//
+2022-11-06 14:06:10,495 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 14:06:10,495 celery.bootsteps DEBUG    | Consumer: Starting Events
+2022-11-06 14:06:10,499 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 14:06:10,499 celery.bootsteps DEBUG    | Consumer: Starting Mingle
+2022-11-06 14:06:10,499 celery.worker.consumer.mingle INFO     mingle: searching for neighbors
+2022-11-06 14:06:11,515 celery.worker.consumer.mingle INFO     mingle: all alone
+2022-11-06 14:06:11,516 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 14:06:11,516 celery.bootsteps DEBUG    | Consumer: Starting Gossip
+2022-11-06 14:06:11,521 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 14:06:11,522 celery.bootsteps DEBUG    | Consumer: Starting Heart
+2022-11-06 14:06:11,525 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 14:06:11,525 celery.bootsteps DEBUG    | Consumer: Starting Tasks
+2022-11-06 14:06:11,534 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 14:06:11,535 celery.bootsteps DEBUG    | Consumer: Starting Control
+2022-11-06 14:06:11,540 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 14:06:11,540 celery.bootsteps DEBUG    | Consumer: Starting event loop
+2022-11-06 14:06:11,541 celery.bootsteps DEBUG    | Worker: Hub.register Pool...
+2022-11-06 14:06:11,544 py.warnings  WARNING  /mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/fixups/django.py:203: UserWarning: Using settings.DEBUG leads to a memory
+            leak, never use this setting in production environments!
+  warnings.warn('''Using settings.DEBUG leads to a memory
+
+2022-11-06 14:06:11,545 celery.apps.worker INFO     celery@DESKTOP-PC6U1IH ready.
+2022-11-06 14:06:11,546 kombu.common DEBUG    basic.qos: prefetch_count->80
+2022-11-06 14:06:11,746 celery.worker.strategy INFO     Task salle_activite.tasks.open_the_door[44f6329a-2f6d-441c-a3e6-94b504a2d57c] received
+2022-11-06 14:06:11,747 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f10dbbbdca0> (args:('salle_activite.tasks.open_the_door', '44f6329a-2f6d-441c-a3e6-94b504a2d57c', {'lang': 'py', 'task': 'salle_activite.tasks.open_the_door', 'id': '44f6329a-2f6d-441c-a3e6-94b504a2d57c', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '44f6329a-2f6d-441c-a3e6-94b504a2d57c', 'parent_id': None, 'argsrepr': '(10,)', 'kwargsrepr': '{}', 'origin': 'gen832@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': '44f6329a-2f6d-441c-a3e6-94b504a2d57c', 'reply_to': '3b7b83e3-51db-3edc-9f66-111fb4e8721b', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '1b164116-a321-4d21-ac06-3720ba4e6583'}, 'reply_to': '3b7b83e3-51db-3edc-9f66-111fb4e8721b', 'correlation_id': '44f6329a-2f6d-441c-a3e6-94b504a2d57c', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered':... kwargs:{})
+2022-11-06 14:06:11,859 celery.app.trace INFO     Task salle_activite.tasks.open_the_door[44f6329a-2f6d-441c-a3e6-94b504a2d57c] succeeded in 0.10953650000010384s: {'messages': 'Door opened sussessfully'}
+2022-11-06 14:06:12,069 django.request ERROR    Internal Server Error: /rest-api/salle-activite/openthedoor/4/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py", line 212, in get
+    return Response({'messages': res.messages})
+AttributeError: 'AsyncResult' object has no attribute 'messages'
+2022-11-06 14:06:17,276 celery.worker.strategy INFO     Task salle_activite.tasks.open_the_door[30850ba2-1a68-4589-b6e6-78ed58fd40a6] received
+2022-11-06 14:06:17,277 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f10dbbbdca0> (args:('salle_activite.tasks.open_the_door', '30850ba2-1a68-4589-b6e6-78ed58fd40a6', {'lang': 'py', 'task': 'salle_activite.tasks.open_the_door', 'id': '30850ba2-1a68-4589-b6e6-78ed58fd40a6', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '30850ba2-1a68-4589-b6e6-78ed58fd40a6', 'parent_id': None, 'argsrepr': '(1,)', 'kwargsrepr': '{}', 'origin': 'gen832@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': '30850ba2-1a68-4589-b6e6-78ed58fd40a6', 'reply_to': '3b7b83e3-51db-3edc-9f66-111fb4e8721b', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '9a11f8e9-5260-4f05-bba0-429bff41bf2f'}, 'reply_to': '3b7b83e3-51db-3edc-9f66-111fb4e8721b', 'correlation_id': '30850ba2-1a68-4589-b6e6-78ed58fd40a6', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered':... kwargs:{})
+2022-11-06 14:06:17,325 django.request ERROR    Internal Server Error: /rest-api/salle-activite/openthedoor/5/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py", line 212, in get
+    return Response({'messages': res.messages})
+AttributeError: 'AsyncResult' object has no attribute 'messages'
+2022-11-06 14:06:17,512 celery.app.trace INFO     Task salle_activite.tasks.open_the_door[30850ba2-1a68-4589-b6e6-78ed58fd40a6] succeeded in 0.23283400000036636s: {'messages': 'door opened sussessfully'}
+2022-11-06 14:06:31,701 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-11-06 14:06:33,643 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 14:06:51,771 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-11-06 14:06:53,629 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 14:07:03,452 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-11-06 14:07:05,318 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 14:07:53,207 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-11-06 14:07:55,183 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 14:08:20,526 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-11-06 14:08:22,424 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 14:10:40,723 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-11-06 14:10:43,097 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 14:11:10,395 celery.worker.strategy INFO     Task salle_activite.tasks.open_the_door[fdb082a8-00ac-490e-b6d7-e3d36af588be] received
+2022-11-06 14:11:10,396 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f10dbbbdca0> (args:('salle_activite.tasks.open_the_door', 'fdb082a8-00ac-490e-b6d7-e3d36af588be', {'lang': 'py', 'task': 'salle_activite.tasks.open_the_door', 'id': 'fdb082a8-00ac-490e-b6d7-e3d36af588be', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'fdb082a8-00ac-490e-b6d7-e3d36af588be', 'parent_id': None, 'argsrepr': '(1,)', 'kwargsrepr': '{}', 'origin': 'gen920@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': 'fdb082a8-00ac-490e-b6d7-e3d36af588be', 'reply_to': '16965f05-5c72-3b8f-b21e-83a11ba8e3b1', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '8278eddb-9787-4368-957f-42c3e4ffb4aa'}, 'reply_to': '16965f05-5c72-3b8f-b21e-83a11ba8e3b1', 'correlation_id': 'fdb082a8-00ac-490e-b6d7-e3d36af588be', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered':... kwargs:{})
+2022-11-06 14:11:10,619 celery.app.trace INFO     Task salle_activite.tasks.open_the_door[fdb082a8-00ac-490e-b6d7-e3d36af588be] succeeded in 0.22079550000125892s: {'messages': 'door opened sussessfully'}
+2022-11-06 14:11:10,694 django.request ERROR    Internal Server Error: /rest-api/salle-activite/openthedoor/5/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py", line 212, in get
+    return Response({'messages': res.messages})
+AttributeError: 'AsyncResult' object has no attribute 'messages'
+2022-11-06 14:11:15,885 celery.bootsteps DEBUG    | Worker: Closing Hub...
+2022-11-06 14:11:15,886 celery.bootsteps DEBUG    | Worker: Closing Pool...
+2022-11-06 14:11:15,886 celery.bootsteps DEBUG    | Worker: Closing Consumer...
+2022-11-06 14:11:15,887 celery.bootsteps DEBUG    | Worker: Stopping Consumer...
+2022-11-06 14:11:15,887 celery.bootsteps DEBUG    | Consumer: Closing Connection...
+2022-11-06 14:11:15,888 celery.bootsteps DEBUG    | Consumer: Closing Events...
+2022-11-06 14:11:15,889 celery.bootsteps DEBUG    | Consumer: Closing Mingle...
+2022-11-06 14:11:15,889 celery.bootsteps DEBUG    | Consumer: Closing Gossip...
+2022-11-06 14:11:15,890 celery.bootsteps DEBUG    | Consumer: Closing Heart...
+2022-11-06 14:11:15,890 celery.bootsteps DEBUG    | Consumer: Closing Tasks...
+2022-11-06 14:11:15,890 celery.bootsteps DEBUG    | Consumer: Closing Control...
+2022-11-06 14:11:15,891 celery.bootsteps DEBUG    | Consumer: Closing event loop...
+2022-11-06 14:11:15,891 celery.bootsteps DEBUG    | Consumer: Stopping event loop...
+2022-11-06 14:11:15,891 celery.bootsteps DEBUG    | Consumer: Stopping Control...
+2022-11-06 14:11:15,893 celery.bootsteps DEBUG    | Consumer: Stopping Tasks...
+2022-11-06 14:11:15,893 celery.worker.consumer.tasks DEBUG    Canceling task consumer...
+2022-11-06 14:11:15,894 celery.bootsteps DEBUG    | Consumer: Stopping Heart...
+2022-11-06 14:11:15,903 celery.bootsteps DEBUG    | Consumer: Stopping Gossip...
+2022-11-06 14:11:15,905 celery.bootsteps DEBUG    | Consumer: Stopping Mingle...
+2022-11-06 14:11:15,906 celery.bootsteps DEBUG    | Consumer: Stopping Events...
+2022-11-06 14:11:15,906 celery.bootsteps DEBUG    | Consumer: Stopping Connection...
+2022-11-06 14:11:15,907 celery.bootsteps DEBUG    | Worker: Stopping Pool...
+2022-11-06 14:11:16,076 celery.concurrency.asynpool DEBUG    removing tasks from inqueue until task handler finished
+2022-11-06 14:11:19,173 celery.bootsteps DEBUG    | Worker: Preparing bootsteps.
+2022-11-06 14:11:19,178 celery.bootsteps DEBUG    | Worker: Building graph...
+2022-11-06 14:11:19,179 celery.bootsteps DEBUG    | Worker: New boot order: {Beat, StateDB, Timer, Hub, Pool, Autoscaler, Consumer}
+2022-11-06 14:11:19,199 celery.bootsteps DEBUG    | Consumer: Preparing bootsteps.
+2022-11-06 14:11:19,200 celery.bootsteps DEBUG    | Consumer: Building graph...
+2022-11-06 14:11:19,236 celery.bootsteps DEBUG    | Consumer: New boot order: {Connection, Events, Mingle, Gossip, Tasks, Control, Agent, Heart, event loop}
+2022-11-06 14:11:19,279 celery.bootsteps DEBUG    | Worker: Starting Hub
+2022-11-06 14:11:19,279 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 14:11:19,280 celery.bootsteps DEBUG    | Worker: Starting Pool
+2022-11-06 14:11:21,000 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 14:11:21,001 celery.bootsteps DEBUG    | Worker: Starting Consumer
+2022-11-06 14:11:21,001 celery.bootsteps DEBUG    | Consumer: Starting Connection
+2022-11-06 14:11:21,017 celery.worker.consumer.connection INFO     Connected to redis://localhost:6379//
+2022-11-06 14:11:21,017 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 14:11:21,018 celery.bootsteps DEBUG    | Consumer: Starting Events
+2022-11-06 14:11:21,021 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 14:11:21,021 celery.bootsteps DEBUG    | Consumer: Starting Mingle
+2022-11-06 14:11:21,022 celery.worker.consumer.mingle INFO     mingle: searching for neighbors
+2022-11-06 14:11:22,035 celery.worker.consumer.mingle INFO     mingle: all alone
+2022-11-06 14:11:22,035 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 14:11:22,036 celery.bootsteps DEBUG    | Consumer: Starting Gossip
+2022-11-06 14:11:22,042 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 14:11:22,042 celery.bootsteps DEBUG    | Consumer: Starting Tasks
+2022-11-06 14:11:22,050 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 14:11:22,051 celery.bootsteps DEBUG    | Consumer: Starting Control
+2022-11-06 14:11:22,055 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 14:11:22,056 celery.bootsteps DEBUG    | Consumer: Starting Heart
+2022-11-06 14:11:22,059 celery.bootsteps DEBUG    ^-- substep ok
+2022-11-06 14:11:22,060 celery.bootsteps DEBUG    | Consumer: Starting event loop
+2022-11-06 14:11:22,060 celery.bootsteps DEBUG    | Worker: Hub.register Pool...
+2022-11-06 14:11:22,063 py.warnings  WARNING  /mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/fixups/django.py:203: UserWarning: Using settings.DEBUG leads to a memory
+            leak, never use this setting in production environments!
+  warnings.warn('''Using settings.DEBUG leads to a memory
+
+2022-11-06 14:11:22,064 celery.apps.worker INFO     celery@DESKTOP-PC6U1IH ready.
+2022-11-06 14:11:22,064 kombu.common DEBUG    basic.qos: prefetch_count->80
+2022-11-06 14:11:25,192 celery.worker.strategy INFO     Task salle_activite.tasks.open_the_door[10ac6b7d-51da-4f97-b091-f22154fd4382] received
+2022-11-06 14:11:25,194 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f63d2b8cca0> (args:('salle_activite.tasks.open_the_door', '10ac6b7d-51da-4f97-b091-f22154fd4382', {'lang': 'py', 'task': 'salle_activite.tasks.open_the_door', 'id': '10ac6b7d-51da-4f97-b091-f22154fd4382', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '10ac6b7d-51da-4f97-b091-f22154fd4382', 'parent_id': None, 'argsrepr': '(1,)', 'kwargsrepr': '{}', 'origin': 'gen920@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': '10ac6b7d-51da-4f97-b091-f22154fd4382', 'reply_to': '16965f05-5c72-3b8f-b21e-83a11ba8e3b1', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'ff1829dd-4364-4b66-a128-a737479e2860'}, 'reply_to': '16965f05-5c72-3b8f-b21e-83a11ba8e3b1', 'correlation_id': '10ac6b7d-51da-4f97-b091-f22154fd4382', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered':... kwargs:{})
+2022-11-06 14:11:25,263 django.request ERROR    Internal Server Error: /rest-api/salle-activite/openthedoor/5/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py", line 212, in get
+    return Response({'messages': res.messages})
+AttributeError: 'AsyncResult' object has no attribute 'messages'
+2022-11-06 14:11:25,517 celery.app.trace INFO     Task salle_activite.tasks.open_the_door[10ac6b7d-51da-4f97-b091-f22154fd4382] succeeded in 0.31953750000138825s: {'messages': 'door opened sussessfully'}
+2022-11-06 14:11:56,989 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-11-06 14:11:59,076 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 14:12:04,790 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-11-06 14:12:06,757 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 14:12:18,031 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-11-06 14:12:19,936 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 14:12:46,541 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2022-11-06 14:12:48,561 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 14:13:00,133 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2022-11-06 14:13:02,155 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 14:13:12,070 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2022-11-06 14:13:14,176 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 14:13:19,912 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2022-11-06 14:13:21,884 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 14:13:27,887 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2022-11-06 14:13:29,736 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 14:14:57,121 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2022-11-06 14:19:37,519 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 14:21:20,719 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2022-11-06 14:22:09,557 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 14:22:18,890 django.request WARNING  Bad Request: /rest-api/salle-activite/openthedoor/2/
+2022-11-06 14:22:34,353 django.request WARNING  Bad Request: /rest-api/salle-activite/openthedoor/2/
+2022-11-06 14:22:41,758 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2022-11-06 14:22:43,603 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 14:22:50,765 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2022-11-06 14:22:52,660 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-11-06 14:22:55,944 django.request WARNING  Not Found: /rest-api/salle-activite/openthedoor/2/
+2022-11-06 14:23:29,760 django.request WARNING  Not Found: /rest-api/salle-activite/openthedoor/2/
+2022-11-06 17:07:10,702 django.request WARNING  Not Found: /rest-api/salle-activite/openthedoor/4/

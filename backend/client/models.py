@@ -113,7 +113,6 @@ class Client(models.Model):
             register_user.delay(self.last_name, self.id, self.picture.name)
         else:
             print('picture not changed')
-
         if not self.id:
             try :
                 # print('clientsd==> ', timezone.now())
