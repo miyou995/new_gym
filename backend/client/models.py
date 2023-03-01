@@ -202,7 +202,7 @@ class Client(models.Model):
         if abonnement_client.is_time_volume() and abonnement_client.is_valid():
             print('abopnnement valid')
             with transaction.atomic():
-                Presence.objects.create(abc= abonnement_client, creneau=cren_ref,is_in_list=True, hour_entree=current_time, is_in_salle=True)
+                Presence.objects.create(abc= abonnement_client, creneau=cren_ref, is_in_list=True, hour_entree=current_time, is_in_salle=True)
                 self.is_on_salle=True
                 self.save()
                 return True
