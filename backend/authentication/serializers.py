@@ -7,7 +7,6 @@ from .models import User
 # registration with only username and pass1 and pass2 won't work and raised an error that said 
 # " user got unexpected argument password2 so we added the email and firstname last names fields and it work we will come back after 
 
-
 # from .models import CustomUser
 # class UserSerializer(ModelSerializer):
 #     class Meta:

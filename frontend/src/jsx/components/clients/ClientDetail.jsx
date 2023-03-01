@@ -454,6 +454,7 @@ useEffect(() => {
                     <tr className="ajouter" key={trans.id} onClick={ e => {
                         setPaiementIdInfo(trans.id)
                         setPaiementAmountInfo(trans.amount)
+                        // setPaiementAmountInfo(trans.amount)
                         setPaiementABCInfo(trans.abc_id)
                         setPaiementABCName(trans.abonnement_name)
                         setPaiementDateInfo(trans.date_creation)

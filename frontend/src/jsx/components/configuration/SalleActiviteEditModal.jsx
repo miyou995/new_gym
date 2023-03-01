@@ -15,9 +15,9 @@ import createPalette from "@material-ui/core/styles/createPalette";
 function refreshPage() {
   window.location.reload(false);
 }
-const SalleActiviteEditModal = ({show, onShowShange, salleData}) => {
-  const api = useAxios();
-  const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+    const SalleActiviteEditModal = ({show, onShowShange, salleData}) => {
+    const api = useAxios();
+    const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
     // const creneauPerAbonnementEND = `${process.env.REACT_APP_API_URL}/rest-api/abonnement/`
     const salleActiviteUpdateEnd = `${process.env.REACT_APP_API_URL}/rest-api/salle-activite/${salleData['salleId']}/`
     const doors = salleData['doors']
@@ -47,6 +47,7 @@ const SalleActiviteEditModal = ({show, onShowShange, salleData}) => {
     useEffect(() => {
     if (show == true) {
         setName(salleData['salleName'])
+        setDoor(salleData['doorId'])
         setDefault(salleData['isDefaultSalle'])
     }
     }, [salleData['salleId']]);
@@ -62,6 +63,9 @@ const SalleActiviteEditModal = ({show, onShowShange, salleData}) => {
             notifySuccess('Salle modifier avec succés')
                 handleShow()
             }).catch(err => {
+                console.log("err  salle modif===>", err);
+                console.log(" =================> salleFormData ", salleFormData);
+
                 notifyError("Erreur lors de la modification de la salle")
             })
       } 
@@ -87,6 +91,7 @@ return (
                   <Autocomplete
                       onChange={((event, value) =>  {
                         try {
+                            console.log("on door change id  =>",  value);
                             setDoor(value.id)
                         }catch {
                             setDoor("")
