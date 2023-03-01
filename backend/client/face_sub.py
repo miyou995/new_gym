@@ -520,7 +520,7 @@ class FaceControl:
         record_info = NET_ACCESS_CARD_INFO()
         record_info.szCardNo = b'ABA'
         record_info.szUserID = b'777'
-        record_info.emType = NET_ACCESSCTLCARD_TYPE.GENERAL
+        record_info.emType = NET_ACCESSCTLCARD_TYPE.GB_CUSTOM1
 
         stuInParam.pCardInfo = cast(pointer(record_info), POINTER(NET_ACCESS_CARD_INFO))
 

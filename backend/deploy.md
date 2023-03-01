@@ -139,6 +139,7 @@ sudo systemctl restart new_gym
 # NGINX CONFIGURATION
 
 sudo nano /etc/nginx/sites-available/new_gym
+sudo nano /etc/nginx/sites-available/stock
 
 server {
     listen 80;
@@ -221,7 +222,7 @@ sudo ufw status
 sudo ufw allow 'Nginx Full'
 sudo ufw delete allow 'Nginx HTTP'
 
-sudo certbot --nginx -d maisonlamarchesa.com -d www.maisonlamarchesa.com
+sudo certbot --nginx -d timeloge-dz.com -d www.timeloge-dz.com
 
 sudo systemctl status certbot.timer
 sudo certbot renew --dry-run

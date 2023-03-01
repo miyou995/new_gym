@@ -10,7 +10,6 @@ urlpatterns = [
     # path('detail/<int:pk>/', TransactionDetailAPIView.as_view(),  name="transaction-detail"),
     path('paiement/create', PaiementAPIView.as_view(),  name="paiement-create"),
     path('paiement/', PaiementListAPIView.as_view(),  name="paiement"),
-    path('paiement/', PaiementListAPIView.as_view(),  name="paiement"),
     path('paiement/by_test', MyModelViewSet.as_view(),  name="paiement"),
     path('paiement/ca-by-salle', ca_by_salle,  name="ca-by-filters"),
     path('paiement/ca-by-abonnement', ca_by_ab,  name="ca-by-filters"),

@@ -10098,3 +10098,130 @@ AttributeError: 'AsyncResult' object has no attribute 'messages'
 2022-11-06 14:22:55,944 django.request WARNING  Not Found: /rest-api/salle-activite/openthedoor/2/
 2022-11-06 14:23:29,760 django.request WARNING  Not Found: /rest-api/salle-activite/openthedoor/2/
 2022-11-06 17:07:10,702 django.request WARNING  Not Found: /rest-api/salle-activite/openthedoor/4/
+2023-02-28 09:14:29,130 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-02-28 09:16:48,136 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-02-28 09:17:38,548 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-02-28 09:18:16,522 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-02-28 09:18:39,663 django.request WARNING  Unauthorized: /rest-api/auth/token/refresh/
+2023-02-28 09:18:39,665 django.request WARNING  Unauthorized: /rest-api/auth/token/refresh/
+2023-02-28 09:18:39,669 django.request WARNING  Unauthorized: /rest-api/auth/token/refresh/
+2023-02-28 09:18:39,676 django.request WARNING  Unauthorized: /rest-api/auth/token/refresh/
+2023-02-28 09:18:39,678 django.request WARNING  Unauthorized: /rest-api/auth/token/refresh/
+2023-02-28 09:18:39,688 django.request WARNING  Unauthorized: /rest-api/auth/token/refresh/
+2023-02-28 09:18:39,853 django.request WARNING  Unauthorized: /rest-api/auth/token/refresh/
+2023-02-28 09:18:39,856 django.request WARNING  Unauthorized: /rest-api/auth/token/refresh/
+2023-02-28 09:18:39,859 django.request WARNING  Unauthorized: /rest-api/auth/token/refresh/
+2023-02-28 09:18:39,862 django.request WARNING  Unauthorized: /rest-api/auth/token/refresh/
+2023-02-28 09:18:39,865 django.request WARNING  Unauthorized: /rest-api/auth/token/refresh/
+2023-02-28 09:18:39,879 django.request WARNING  Unauthorized: /rest-api/auth/token/refresh/
+2023-02-28 09:18:40,015 django.request WARNING  Unauthorized: /rest-api/auth/token/refresh/
+2023-02-28 09:18:40,021 django.request WARNING  Unauthorized: /rest-api/auth/token/refresh/
+2023-02-28 09:18:40,036 django.request WARNING  Unauthorized: /rest-api/auth/token/refresh/
+2023-02-28 09:18:40,065 django.request WARNING  Unauthorized: /rest-api/auth/token/refresh/
+2023-02-28 09:18:40,068 django.request WARNING  Unauthorized: /rest-api/auth/token/refresh/
+2023-02-28 09:27:53,808 django.request WARNING  Bad Request: /rest-api/presence/
+2023-02-28 09:27:54,267 django.request WARNING  Bad Request: /rest-api/presence/
+2023-02-28 09:27:54,461 django.request WARNING  Bad Request: /rest-api/presence/
+2023-02-28 09:27:54,580 django.request WARNING  Bad Request: /rest-api/presence/
+2023-02-28 09:28:43,291 django.request WARNING  Not Found: /rest-api/presence/create
+2023-02-28 09:29:50,591 django.request WARNING  Bad Request: /rest-api/presence/edit/116/
+2023-03-01 09:22:36,624 celery.bootsteps DEBUG    | Worker: Preparing bootsteps.
+2023-03-01 09:22:36,648 celery.bootsteps DEBUG    | Worker: Building graph...
+2023-03-01 09:22:36,649 celery.bootsteps DEBUG    | Worker: New boot order: {Timer, Hub, Pool, Autoscaler, Beat, StateDB, Consumer}
+2023-03-01 09:22:36,772 celery.bootsteps DEBUG    | Consumer: Preparing bootsteps.
+2023-03-01 09:22:36,773 celery.bootsteps DEBUG    | Consumer: Building graph...
+2023-03-01 09:22:36,876 celery.bootsteps DEBUG    | Consumer: New boot order: {Connection, Agent, Events, Mingle, Gossip, Tasks, Control, Heart, event loop}
+2023-03-01 09:22:37,038 celery.bootsteps DEBUG    | Worker: Starting Hub
+2023-03-01 09:22:37,039 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-01 09:22:37,039 celery.bootsteps DEBUG    | Worker: Starting Pool
+2023-03-01 09:22:39,158 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-01 09:22:39,159 celery.bootsteps DEBUG    | Worker: Starting Consumer
+2023-03-01 09:22:39,160 celery.bootsteps DEBUG    | Consumer: Starting Connection
+2023-03-01 09:22:39,170 celery.worker.consumer.consumer ERROR    consumer: Cannot connect to redis://localhost:6379//: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 2.00 seconds... (1/100)
+
+2023-03-01 09:22:41,175 celery.worker.consumer.consumer ERROR    consumer: Cannot connect to redis://localhost:6379//: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 4.00 seconds... (2/100)
+
+2023-03-01 09:22:45,194 celery.worker.consumer.connection INFO     Connected to redis://localhost:6379//
+2023-03-01 09:22:45,194 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-01 09:22:45,195 celery.bootsteps DEBUG    | Consumer: Starting Events
+2023-03-01 09:22:45,198 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-01 09:22:45,199 celery.bootsteps DEBUG    | Consumer: Starting Mingle
+2023-03-01 09:22:45,200 celery.worker.consumer.mingle INFO     mingle: searching for neighbors
+2023-03-01 09:22:46,209 celery.worker.consumer.mingle INFO     mingle: all alone
+2023-03-01 09:22:46,209 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-01 09:22:46,210 celery.bootsteps DEBUG    | Consumer: Starting Gossip
+2023-03-01 09:22:46,215 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-01 09:22:46,215 celery.bootsteps DEBUG    | Consumer: Starting Tasks
+2023-03-01 09:22:46,227 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-01 09:22:46,227 celery.bootsteps DEBUG    | Consumer: Starting Control
+2023-03-01 09:22:46,231 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-01 09:22:46,231 celery.bootsteps DEBUG    | Consumer: Starting Heart
+2023-03-01 09:22:46,233 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-01 09:22:46,233 celery.bootsteps DEBUG    | Consumer: Starting event loop
+2023-03-01 09:22:46,234 celery.bootsteps DEBUG    | Worker: Hub.register Pool...
+2023-03-01 09:22:46,243 py.warnings  WARNING  /mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/fixups/django.py:203: UserWarning: Using settings.DEBUG leads to a memory
+            leak, never use this setting in production environments!
+  warnings.warn('''Using settings.DEBUG leads to a memory
+
+2023-03-01 09:22:46,243 celery.apps.worker INFO     celery@DESKTOP-PC6U1IH ready.
+2023-03-01 09:22:46,244 kombu.common DEBUG    basic.qos: prefetch_count->80
+2023-03-01 09:39:40,427 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-01 09:39:51,846 django.request WARNING  Not Found: /
+2023-03-01 09:39:52,087 django.request WARNING  Not Found: /
+2023-03-01 09:39:52,400 django.request WARNING  Not Found: /favicon.ico
+2023-03-01 09:40:16,499 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-01 11:00:31,051 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-01 11:11:33,369 django.request WARNING  Forbidden: /rest-api/transactions/paiement-by-client/
+2023-03-01 11:11:33,663 django.request WARNING  Forbidden: /rest-api/transactions/paiement-by-client/
+2023-03-01 11:17:24,727 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/transaction/urls.py changed, reloading.
+2023-03-01 11:17:26,649 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-01 11:29:10,103 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/transaction/models.py changed, reloading.
+2023-03-01 11:29:12,670 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-01 11:29:17,231 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/models.py changed, reloading.
+2023-03-01 11:29:19,355 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-01 11:29:22,641 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/transaction/models.py changed, reloading.
+2023-03-01 11:29:24,709 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-01 11:30:07,229 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/transaction/models.py changed, reloading.
+2023-03-01 11:30:09,335 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-01 11:30:12,433 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/transaction/serializers.py changed, reloading.
+2023-03-01 11:30:14,307 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-01 11:31:33,908 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/transaction/serializers.py changed, reloading.
+2023-03-01 11:31:36,803 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-01 11:36:34,556 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/transaction/models.py changed, reloading.
+2023-03-01 11:36:36,612 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-01 11:37:02,665 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/transaction/models.py changed, reloading.
+2023-03-01 11:37:04,928 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-01 11:37:11,946 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/transaction/serializers.py changed, reloading.
+2023-03-01 11:37:14,028 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-01 11:37:23,946 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/transaction/serializers.py changed, reloading.
+2023-03-01 11:37:25,938 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-01 11:37:32,524 django.request WARNING  Not Found: /favicon.ico
+2023-03-01 11:37:50,445 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-01 11:38:12,857 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/transaction/serializers.py changed, reloading.
+2023-03-01 11:38:14,646 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-01 11:38:21,779 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/transaction/serializers.py changed, reloading.
+2023-03-01 11:38:24,034 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-01 11:38:30,164 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/transaction/serializers.py changed, reloading.
+2023-03-01 11:38:32,078 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-01 11:38:44,449 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/transaction/models.py changed, reloading.
+2023-03-01 11:38:46,556 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-01 11:38:52,962 django.request WARNING  Not Found: /favicon.ico
+2023-03-01 11:39:16,768 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/transaction/serializers.py changed, reloading.
+2023-03-01 11:39:19,425 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-01 11:39:29,290 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/models.py changed, reloading.
+2023-03-01 11:39:32,166 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-01 11:39:36,798 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/transaction/models.py changed, reloading.
+2023-03-01 11:39:39,186 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-01 11:39:42,551 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/transaction/serializers.py changed, reloading.
+2023-03-01 11:39:44,413 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-01 11:39:51,565 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/transaction/models.py changed, reloading.
+2023-03-01 11:39:53,658 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-01 11:40:01,181 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/transaction/models.py changed, reloading.
+2023-03-01 11:40:03,353 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-01 11:40:11,092 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/transaction/models.py changed, reloading.
+2023-03-01 11:40:13,476 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-01 11:43:44,963 django.request WARNING  Bad Request: /rest-api/salle-activite/1/
+2023-03-01 11:48:52,100 django.request WARNING  Bad Request: /rest-api/salle-activite/1/
+2023-03-01 11:50:03,971 django.request WARNING  Bad Request: /rest-api/salle-activite/1/

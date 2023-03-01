@@ -1,5 +1,6 @@
 import React from "react";
 import logo from "../../../images/logo.png";
+import atlas from "../../../images/atlas.png";
 
 export const ComponentToPrint = React.forwardRef((props, ref) => {
 //   const { id, date } = props;
@@ -81,11 +82,10 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
         </div> */}
         <div className="col-12 pt-5 p-3">
             <div className="row pt-4 p-5">
-                <div className="col-12 mb-2 text-center">
-                    <img  src={logo} style={{width: "5rem", height: "5rem"}} />
+                <div className="col-12 mb-2 text-left">
+                    <img src={atlas} style={{width: "5rem", height: "5rem"}} />
                 </div>
             </div>   
-        
             <div className="row mb-5 py-3 ">
                 <div className="col-6">
                     <p className="font-weight-bold mb-4 h2">Adhérant</p>
@@ -93,15 +93,11 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
                     <p className="mb-1 h3 mb-2">Nom : <span className="font-weight-light">{props.value.client_last_name}</span></p>
                 </div>
                 <div className="col-6 text-right font-italic">
-                    <p className="mb-1 h3 ">N° : <span className="font-weight-light">#{props.value.id}</span></p>
-                    <p className="text-muted h3">Date : <span className="font-weight-light">{props.value.date_creation}</span></p>
+                    <p className="mb-1 mr-5 h3 ">N° : <span className="font-weight-light">#{props.value.id}</span></p>
+                    <p className="text-muted mr-5 h3">Date : <span className="font-weight-light">{props.value.date_creation}</span></p>
                 </div>
             </div>
-
-
             <hr className="mb-2"/>
-
-
             <div className="row d-flex align-items-center px-5 mx-5 pt-5 mb-5">
                 <div className="col-12 justify-content-between align-items-center d-flex mb-3 text-uppercase">
                     <th><h4 className='h2 mr-5'>Abonnement : </h4></th>
@@ -121,19 +117,23 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
                 </div>
                 <div className="col-12 justify-content-between align-items-center d-flex mb-3 text-uppercase">
                     <th><h4 className="h2 mr-5">Montant : </h4></th>
-                    <td><div className="text-left font-weight-lighter mt-1 h2" >{props.value.amount}</div></td>
+                    <td><div className="text-left font-weight-lighter mt-1 h2" >{props.value.get_abc_price} DA</div></td>
+                </div>
+                <div className="col-12 justify-content-between align-items-center d-flex mb-3 text-uppercase">
+                    <th><h4 className="h2 mr-5">Reçu : </h4></th>
+                    <td><div className="text-left font-weight-lighter mt-1 h2" >{props.value.amount} DA</div></td>
+                </div>
+                <div className="col-12 justify-content-between align-items-center d-flex mb-3 text-uppercase">
+                    <th><h4 className="h2 mr-5">Reste : </h4></th>
+                    <td><div className="text-left font-weight-lighter mt-1 h2" >{props.value.get_abc_reste} DA</div></td>
                 </div>
             </div>
-
-
             <div className="d-flex flex-row bg-light text-dark p-2 mt-5">
                 <div className="py-2 px-3 d-flex text-left align-items-center">
                     <div className="mb-2 h1 mr-4">Total : </div>
                     <div className="h1 font-weight-light">{props.value.amount}</div>
                 </div>
             </div>
-
-
         </div>
     </div>
 </div>
@@ -235,7 +235,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 
 //                         <div className="py-3 px-5 text-right">
 //                             <div className="mb-2">Sub - Total amount</div>
-//                             <div className="h2 font-weight-light">$32,432</div>
+//                             <div className="h2 font-weight-light">$32,432</div>s
 //                         </div>
 //                     </div>
 //                 </div>
