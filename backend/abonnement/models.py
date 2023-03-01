@@ -90,8 +90,10 @@ class Abonnement(models.Model):
 
     def time_volume(self):
         return True if self.type_of == "VH" else False
+    
     def free_access(self):
         return True if self.type_of == "AL" else False
+    
     def fixed_sessions(self):
         return True if self.type_of == "SF" else False
     

@@ -36,7 +36,7 @@ const ABCDetailModal = ({show, onShowShange, abonnementData}) => {
   const abcRenewEND =`${process.env.REACT_APP_API_URL}/rest-api/abonnement-client/renouveler` 
   const abcEditEND =`${process.env.REACT_APP_API_URL}/rest-api/abonnement-client/${abonId}/` 
   const creneauClientEND = `${process.env.REACT_APP_API_URL}/rest-api/creneau/by-client?cl=${clientId}`
-  let creneauPerAbonnementEND = `${process.env.REACT_APP_API_URL}/rest-api/creneau/by-abonnement?ab=${type}`
+  let creneauPerAbonnementEND = `${process.env.REACT_APP_API_URL}/rest-api/creneau/by-abonnement?ab=${type}&abc=${abonId}`
 const abonnementDeleteEND = `${process.env.REACT_APP_API_URL}/rest-api/abonnement-client/delete/${abonnementData['abonClientID']}/`
 
   
@@ -115,7 +115,7 @@ const abonnementDeleteEND = `${process.env.REACT_APP_API_URL}/rest-api/abonnemen
               setVendredi(result7)
             })
       }
-    }, [type]);
+    }, [type, abonId]);
 
 const changingStyle = (crenId) => {
     if (selectedCreneau.indexOf(crenId) !== -1) {
