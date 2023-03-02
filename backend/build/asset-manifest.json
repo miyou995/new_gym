@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.2fe619ef.chunk.css",
-    "main.js": "/static/js/main.e9930d14.chunk.js",
-    "main.js.map": "/static/js/main.e9930d14.chunk.js.map",
+    "main.js": "/static/js/main.b04a7bf7.chunk.js",
+    "main.js.map": "/static/js/main.b04a7bf7.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.c8021260.js",
     "runtime-main.js.map": "/static/js/runtime-main.c8021260.js.map",
     "static/css/2.865edddd.chunk.css": "/static/css/2.865edddd.chunk.css",
@@ -15,6 +15,7 @@
     "static/css/main.2fe619ef.chunk.css.map": "/static/css/main.2fe619ef.chunk.css.map",
     "static/js/2.444bec00.chunk.js.LICENSE.txt": "/static/js/2.444bec00.chunk.js.LICENSE.txt",
     "static/media/style.css": "/static/media/top.ebd104cf.svg",
+    "static/media/atlas.1b8691da.png": "/static/media/atlas.1b8691da.png",
     "static/media/attendance.f47fcdd2.png": "/static/media/attendance.f47fcdd2.png",
     "static/media/calendar.24c97401.png": "/static/media/calendar.24c97401.png",
     "static/media/coach.62e1375b.png": "/static/media/coach.62e1375b.png",
@@ -32,6 +33,6 @@
     "static/css/2.865edddd.chunk.css",
     "static/js/2.444bec00.chunk.js",
     "static/css/main.2fe619ef.chunk.css",
-    "static/js/main.e9930d14.chunk.js"
+    "static/js/main.b04a7bf7.chunk.js"
   ]
 }

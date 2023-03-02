@@ -10435,3 +10435,29 @@ ValueError: Cannot query "2": Must be "Abonnement" instance.
 2023-03-01 16:04:08,382 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2023-03-01 16:04:42,602 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
 2023-03-01 16:04:44,383 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-02 09:22:27,603 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-02 09:24:57,513 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-02 09:25:04,895 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/config/urls.py changed, reloading.
+2023-03-02 09:25:06,949 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-02 09:25:23,067 django.request WARNING  Unauthorized: /rest-api/auth/token/refresh/
+2023-03-02 09:25:23,069 django.request WARNING  Unauthorized: /rest-api/auth/token/refresh/
+2023-03-02 09:25:23,069 django.request WARNING  Unauthorized: /rest-api/auth/token/refresh/
+2023-03-02 09:25:23,070 django.request WARNING  Unauthorized: /rest-api/auth/token/refresh/
+2023-03-02 09:25:23,071 django.request WARNING  Unauthorized: /rest-api/auth/token/refresh/
+2023-03-02 09:25:23,072 django.request WARNING  Unauthorized: /rest-api/auth/token/refresh/
+2023-03-02 09:25:23,082 django.request WARNING  Unauthorized: /rest-api/auth/token/refresh/
+2023-03-02 09:25:23,090 django.request WARNING  Unauthorized: /rest-api/auth/token/refresh/
+2023-03-02 09:25:23,097 django.request WARNING  Unauthorized: /rest-api/auth/token/refresh/
+2023-03-02 09:25:23,101 django.request WARNING  Unauthorized: /rest-api/auth/token/refresh/
+2023-03-02 09:25:23,111 django.request WARNING  Unauthorized: /rest-api/auth/token/refresh/
+2023-03-02 09:25:23,115 django.request WARNING  Unauthorized: /rest-api/auth/token/refresh/
+2023-03-02 09:25:23,119 django.request WARNING  Unauthorized: /rest-api/auth/token/refresh/
+2023-03-02 09:25:23,125 django.request WARNING  Unauthorized: /rest-api/auth/token/refresh/
+2023-03-02 09:25:23,128 django.request WARNING  Unauthorized: /rest-api/auth/token/refresh/
+2023-03-02 09:25:23,134 django.request WARNING  Unauthorized: /rest-api/auth/token/refresh/
+2023-03-02 09:25:23,147 django.request WARNING  Unauthorized: /rest-api/auth/token/refresh/
+2023-03-02 09:26:05,191 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/config/settings.py changed, reloading.
+2023-03-02 09:26:07,184 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-02 09:27:26,653 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-02 09:28:24,613 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-02 09:29:51,548 django.utils.autoreload INFO     Watching for file changes with StatReloader
