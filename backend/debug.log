@@ -10461,3 +10461,945 @@ ValueError: Cannot query "2": Must be "Abonnement" instance.
 2023-03-02 09:27:26,653 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2023-03-02 09:28:24,613 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2023-03-02 09:29:51,548 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-06 09:10:37,797 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-06 09:11:32,047 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/face_sub.py changed, reloading.
+2023-03-06 09:11:33,979 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-06 09:11:56,496 django.request ERROR    Internal Server Error: /
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 204, in _get_response
+    response = response.render()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/template/response.py", line 105, in render
+    self.content = self.rendered_content
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/template/response.py", line 81, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/template/response.py", line 63, in resolve_template
+    return select_template(template, using=self.using)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/template/loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(', '.join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: index.html
+2023-03-06 09:11:57,249 django.request ERROR    Internal Server Error: /
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 204, in _get_response
+    response = response.render()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/template/response.py", line 105, in render
+    self.content = self.rendered_content
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/template/response.py", line 81, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/template/response.py", line 63, in resolve_template
+    return select_template(template, using=self.using)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/template/loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(', '.join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: index.html
+2023-03-06 09:11:57,732 django.request ERROR    Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 204, in _get_response
+    response = response.render()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/template/response.py", line 105, in render
+    self.content = self.rendered_content
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/template/response.py", line 81, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/template/response.py", line 63, in resolve_template
+    return select_template(template, using=self.using)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/template/loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(', '.join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: index.html
+2023-03-06 09:12:48,241 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/config/urls.py changed, reloading.
+2023-03-06 09:12:50,295 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-06 09:54:55,617 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/apps.py changed, reloading.
+2023-03-06 09:54:58,336 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-06 09:56:34,487 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/signals.py changed, reloading.
+2023-03-06 09:56:36,835 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-06 09:57:40,564 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-06 09:57:42,864 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-06 09:57:45,987 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-06 09:57:48,135 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-06 09:58:18,567 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-06 09:58:20,979 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-06 09:58:22,953 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-06 09:58:25,356 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-06 09:58:39,879 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-06 09:58:42,215 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-06 09:58:50,968 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-06 09:58:53,127 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-06 09:59:00,716 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-06 09:59:03,224 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-06 09:59:23,666 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-06 09:59:25,859 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-06 09:59:39,171 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-06 09:59:41,333 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-06 09:59:51,289 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-06 09:59:53,597 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-06 10:00:09,219 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-06 10:00:11,548 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-06 10:00:25,125 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-06 10:00:27,544 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-06 10:00:35,242 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-06 10:00:37,613 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-06 10:00:40,773 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-06 10:00:43,013 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-06 10:00:46,038 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-06 10:00:48,315 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-06 10:07:04,944 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/signals.py changed, reloading.
+2023-03-06 10:07:09,924 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-06 10:10:09,247 django.request WARNING  Not Found: /rest-api/clients/undefined/
+2023-03-06 10:10:33,768 django.request WARNING  Not Found: /rest-api/clients/undefined/
+2023-03-06 10:10:39,846 django.request WARNING  Not Found: /rest-api/clients/undefined/
+2023-03-06 10:11:35,615 PIL.PngImagePlugin DEBUG    STREAM b'IHDR' 16 13
+2023-03-06 10:11:35,616 PIL.PngImagePlugin DEBUG    STREAM b'tEXt' 41 25
+2023-03-06 10:11:35,616 PIL.PngImagePlugin DEBUG    STREAM b'IDAT' 78 402664
+2023-03-06 10:11:35,618 PIL.Image    DEBUG    Importing BlpImagePlugin
+2023-03-06 10:11:35,629 PIL.Image    DEBUG    Importing BmpImagePlugin
+2023-03-06 10:11:35,629 PIL.Image    DEBUG    Importing BufrStubImagePlugin
+2023-03-06 10:11:35,640 PIL.Image    DEBUG    Importing CurImagePlugin
+2023-03-06 10:11:35,649 PIL.Image    DEBUG    Importing DcxImagePlugin
+2023-03-06 10:11:35,671 PIL.Image    DEBUG    Importing DdsImagePlugin
+2023-03-06 10:11:35,683 PIL.Image    DEBUG    Importing EpsImagePlugin
+2023-03-06 10:11:35,695 PIL.Image    DEBUG    Importing FitsImagePlugin
+2023-03-06 10:11:35,708 PIL.Image    DEBUG    Importing FitsStubImagePlugin
+2023-03-06 10:11:35,718 PIL.Image    DEBUG    Importing FliImagePlugin
+2023-03-06 10:11:35,731 PIL.Image    DEBUG    Importing FpxImagePlugin
+2023-03-06 10:11:35,743 PIL.Image    DEBUG    Image: failed to import FpxImagePlugin: No module named 'olefile'
+2023-03-06 10:11:35,744 PIL.Image    DEBUG    Importing FtexImagePlugin
+2023-03-06 10:11:35,758 PIL.Image    DEBUG    Importing GbrImagePlugin
+2023-03-06 10:11:35,772 PIL.Image    DEBUG    Importing GifImagePlugin
+2023-03-06 10:11:35,772 PIL.Image    DEBUG    Importing GribStubImagePlugin
+2023-03-06 10:11:35,784 PIL.Image    DEBUG    Importing Hdf5StubImagePlugin
+2023-03-06 10:11:35,796 PIL.Image    DEBUG    Importing IcnsImagePlugin
+2023-03-06 10:11:35,828 PIL.Image    DEBUG    Importing IcoImagePlugin
+2023-03-06 10:11:35,839 PIL.Image    DEBUG    Importing ImImagePlugin
+2023-03-06 10:11:35,849 PIL.Image    DEBUG    Importing ImtImagePlugin
+2023-03-06 10:11:35,861 PIL.Image    DEBUG    Importing IptcImagePlugin
+2023-03-06 10:11:35,871 PIL.Image    DEBUG    Importing JpegImagePlugin
+2023-03-06 10:11:35,872 PIL.Image    DEBUG    Importing Jpeg2KImagePlugin
+2023-03-06 10:11:35,872 PIL.Image    DEBUG    Importing McIdasImagePlugin
+2023-03-06 10:11:35,882 PIL.Image    DEBUG    Importing MicImagePlugin
+2023-03-06 10:11:35,895 PIL.Image    DEBUG    Image: failed to import MicImagePlugin: No module named 'olefile'
+2023-03-06 10:11:35,895 PIL.Image    DEBUG    Importing MpegImagePlugin
+2023-03-06 10:11:35,906 PIL.Image    DEBUG    Importing MpoImagePlugin
+2023-03-06 10:11:35,917 PIL.Image    DEBUG    Importing MspImagePlugin
+2023-03-06 10:11:35,929 PIL.Image    DEBUG    Importing PalmImagePlugin
+2023-03-06 10:11:35,943 PIL.Image    DEBUG    Importing PcdImagePlugin
+2023-03-06 10:11:35,954 PIL.Image    DEBUG    Importing PcxImagePlugin
+2023-03-06 10:11:35,954 PIL.Image    DEBUG    Importing PdfImagePlugin
+2023-03-06 10:11:35,985 PIL.Image    DEBUG    Importing PixarImagePlugin
+2023-03-06 10:11:35,993 PIL.Image    DEBUG    Importing PngImagePlugin
+2023-03-06 10:11:35,994 PIL.Image    DEBUG    Importing PpmImagePlugin
+2023-03-06 10:11:35,994 PIL.Image    DEBUG    Importing PsdImagePlugin
+2023-03-06 10:11:36,005 PIL.Image    DEBUG    Importing SgiImagePlugin
+2023-03-06 10:11:36,014 PIL.Image    DEBUG    Importing SpiderImagePlugin
+2023-03-06 10:11:36,025 PIL.Image    DEBUG    Importing SunImagePlugin
+2023-03-06 10:11:36,036 PIL.Image    DEBUG    Importing TgaImagePlugin
+2023-03-06 10:11:36,046 PIL.Image    DEBUG    Importing TiffImagePlugin
+2023-03-06 10:11:36,047 PIL.Image    DEBUG    Importing WebPImagePlugin
+2023-03-06 10:11:36,087 PIL.Image    DEBUG    Importing WmfImagePlugin
+2023-03-06 10:11:36,096 PIL.Image    DEBUG    Importing XbmImagePlugin
+2023-03-06 10:11:36,106 PIL.Image    DEBUG    Importing XpmImagePlugin
+2023-03-06 10:11:36,114 PIL.Image    DEBUG    Importing XVThumbImagePlugin
+2023-03-06 10:11:36,274 PIL.PngImagePlugin DEBUG    STREAM b'IHDR' 16 13
+2023-03-06 10:11:36,275 PIL.PngImagePlugin DEBUG    STREAM b'tEXt' 41 25
+2023-03-06 10:11:36,275 PIL.PngImagePlugin DEBUG    STREAM b'IDAT' 78 402664
+2023-03-06 10:11:36,769 celery.backends.redis ERROR    Connection to Redis lost: Retry (0/20) now.
+2023-03-06 10:11:36,770 celery.backends.redis ERROR    Connection to Redis lost: Retry (1/20) in 1.00 second.
+2023-03-06 10:11:37,772 celery.backends.redis ERROR    Connection to Redis lost: Retry (2/20) in 1.00 second.
+2023-03-06 10:11:38,774 celery.backends.redis ERROR    Connection to Redis lost: Retry (3/20) in 1.00 second.
+2023-03-06 10:11:39,779 celery.backends.redis ERROR    Connection to Redis lost: Retry (4/20) in 1.00 second.
+2023-03-06 10:11:40,781 celery.backends.redis ERROR    Connection to Redis lost: Retry (5/20) in 1.00 second.
+2023-03-06 10:11:41,784 celery.backends.redis ERROR    Connection to Redis lost: Retry (6/20) in 1.00 second.
+2023-03-06 10:11:42,785 celery.backends.redis ERROR    Connection to Redis lost: Retry (7/20) in 1.00 second.
+2023-03-06 10:11:43,789 celery.backends.redis ERROR    Connection to Redis lost: Retry (8/20) in 1.00 second.
+2023-03-06 10:11:44,791 celery.backends.redis ERROR    Connection to Redis lost: Retry (9/20) in 1.00 second.
+2023-03-06 10:11:45,793 celery.backends.redis ERROR    Connection to Redis lost: Retry (10/20) in 1.00 second.
+2023-03-06 10:11:46,796 celery.backends.redis ERROR    Connection to Redis lost: Retry (11/20) in 1.00 second.
+2023-03-06 10:11:47,798 celery.backends.redis ERROR    Connection to Redis lost: Retry (12/20) in 1.00 second.
+2023-03-06 10:11:48,800 celery.backends.redis ERROR    Connection to Redis lost: Retry (13/20) in 1.00 second.
+2023-03-06 10:11:49,802 celery.backends.redis ERROR    Connection to Redis lost: Retry (14/20) in 1.00 second.
+2023-03-06 10:11:50,804 celery.backends.redis ERROR    Connection to Redis lost: Retry (15/20) in 1.00 second.
+2023-03-06 10:11:51,806 celery.backends.redis ERROR    Connection to Redis lost: Retry (16/20) in 1.00 second.
+2023-03-06 10:11:52,808 celery.backends.redis ERROR    Connection to Redis lost: Retry (17/20) in 1.00 second.
+2023-03-06 10:11:53,810 celery.backends.redis ERROR    Connection to Redis lost: Retry (18/20) in 1.00 second.
+2023-03-06 10:11:54,812 celery.backends.redis ERROR    Connection to Redis lost: Retry (19/20) in 1.00 second.
+2023-03-06 10:11:55,814 celery.backends.redis CRITICAL 
+Retry limit exceeded while trying to reconnect to the Celery redis result store backend. The Celery application must be restarted.
+
+2023-03-06 10:11:56,431 django.request ERROR    Internal Server Error: /rest-api/clients/C0019/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 611, in connect
+    sock = self.retry.call_with_retry(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 612, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 677, in _connect
+    raise err
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 665, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/backends/redis.py", line 119, in reconnect_on_error
+    yield
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/backends/redis.py", line 169, in _consume_from
+    self._pubsub.subscribe(key)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/client.py", line 1592, in subscribe
+    ret_val = self.execute_command("SUBSCRIBE", *new_channels.keys())
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/client.py", line 1433, in execute_command
+    self.connection = self.connection_pool.get_connection(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 1387, in get_connection
+    connection.connect()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 617, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 611, in connect
+    sock = self.retry.call_with_retry(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 612, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 677, in _connect
+    raise err
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 665, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/kombu/connection.py", line 446, in _reraise_as_library_errors
+    yield
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/app/base.py", line 787, in send_task
+    self.backend.on_task_call(P, task_id)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/backends/redis.py", line 365, in on_task_call
+    self.result_consumer.consume_from(task_id)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/backends/redis.py", line 161, in consume_from
+    return self.start(task_id)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/backends/redis.py", line 139, in start
+    self._consume_from(initial_task_id)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/backends/redis.py", line 169, in _consume_from
+    self._pubsub.subscribe(key)
+  File "/usr/lib/python3.8/contextlib.py", line 131, in __exit__
+    self.gen.throw(type, value, traceback)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/backends/redis.py", line 122, in reconnect_on_error
+    self._ensure(self._reconnect_pubsub, ())
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/backends/redis.py", line 376, in ensure
+    return retry_over_time(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/kombu/utils/functional.py", line 312, in retry_over_time
+    return fun(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/backends/redis.py", line 106, in _reconnect_pubsub
+    metas = self.backend.client.mget(self.subscribed_to)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/commands/core.py", line 1893, in mget
+    return self.execute_command("MGET", *args, **options)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/client.py", line 1235, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 1387, in get_connection
+    connection.connect()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 617, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/generics.py", line 255, in put
+    return self.update(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/mixins.py", line 68, in update
+    self.perform_update(serializer)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/mixins.py", line 78, in perform_update
+    serializer.save()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 207, in save
+    self.instance = self.update(self.instance, validated_data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 1006, in update
+    instance.save()
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py", line 130, in save
+    register_user.delay(self.last_name, self.id, self.picture.name)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/app/task.py", line 425, in delay
+    return self.apply_async(args, kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/app/task.py", line 575, in apply_async
+    return app.send_task(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/app/base.py", line 788, in send_task
+    amqp.send_task_message(P, name, message, **options)
+  File "/usr/lib/python3.8/contextlib.py", line 131, in __exit__
+    self.gen.throw(type, value, traceback)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/kombu/connection.py", line 450, in _reraise_as_library_errors
+    raise ConnectionError(str(exc)) from exc
+kombu.exceptions.OperationalError: Error 111 connecting to localhost:6379. Connection refused.
+2023-03-06 10:14:08,721 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-06 10:14:11,118 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-06 10:14:29,664 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-06 10:14:31,906 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-06 10:14:47,559 PIL.TiffImagePlugin DEBUG    tag: ImageWidth (256) - type: short (3) - value: b'\xb0\x04'
+2023-03-06 10:14:47,560 PIL.TiffImagePlugin DEBUG    tag: ImageLength (257) - type: short (3) - value: b'\x08\x07'
+2023-03-06 10:14:47,560 PIL.TiffImagePlugin DEBUG    tag: BitsPerSample (258) - type: short (3) Tag Location: 46 - Data Location: 194 - value: b'\x08\x00\x08\x00\x08\x00'
+2023-03-06 10:14:47,561 PIL.TiffImagePlugin DEBUG    tag: PhotometricInterpretation (262) - type: short (3) - value: b'\x02\x00'
+2023-03-06 10:14:47,561 PIL.TiffImagePlugin DEBUG    tag: Make (271) - type: string (2) Tag Location: 70 - Data Location: 200 - value: b'Canon\x00'
+2023-03-06 10:14:47,561 PIL.TiffImagePlugin DEBUG    tag: Model (272) - type: string (2) Tag Location: 82 - Data Location: 206 - value: b'Canon EOS 5DS R\x00'
+2023-03-06 10:14:47,562 PIL.TiffImagePlugin DEBUG    tag: Orientation (274) - type: short (3) - value: b'\x01\x00'
+2023-03-06 10:14:47,562 PIL.TiffImagePlugin DEBUG    tag: SamplesPerPixel (277) - type: short (3) - value: b'\x03\x00'
+2023-03-06 10:14:47,563 PIL.TiffImagePlugin DEBUG    tag: XResolution (282) - type: rational (5) Tag Location: 118 - Data Location: 222 - value: b'`\x00\x00\x00\x01\x00\x00\x00'
+2023-03-06 10:14:47,563 PIL.TiffImagePlugin DEBUG    tag: YResolution (283) - type: rational (5) Tag Location: 130 - Data Location: 230 - value: b'`\x00\x00\x00\x01\x00\x00\x00'
+2023-03-06 10:14:47,564 PIL.TiffImagePlugin DEBUG    tag: ResolutionUnit (296) - type: short (3) - value: b'\x02\x00'
+2023-03-06 10:14:47,564 PIL.TiffImagePlugin DEBUG    tag: Software (305) - type: string (2) Tag Location: 154 - Data Location: 238 - value: <table: 33 bytes>
+2023-03-06 10:14:47,565 PIL.TiffImagePlugin DEBUG    tag: DateTime (306) - type: string (2) Tag Location: 166 - Data Location: 271 - value: b'2021:03:10 16:00:27\x00'
+2023-03-06 10:14:47,566 PIL.TiffImagePlugin DEBUG    tag: ExifIFD (34665) - type: long (4) - value: b'$\x01\x00\x00'
+2023-03-06 10:14:47,566 PIL.TiffImagePlugin DEBUG    tag: GPSInfoIFD (34853) - type: long (4) - value: b'\x80\x03\x00\x00'
+2023-03-06 10:14:47,567 PIL.Image    DEBUG    Importing BlpImagePlugin
+2023-03-06 10:14:47,570 PIL.Image    DEBUG    Importing BmpImagePlugin
+2023-03-06 10:14:47,570 PIL.Image    DEBUG    Importing BufrStubImagePlugin
+2023-03-06 10:14:47,572 PIL.Image    DEBUG    Importing CurImagePlugin
+2023-03-06 10:14:47,573 PIL.Image    DEBUG    Importing DcxImagePlugin
+2023-03-06 10:14:47,576 PIL.Image    DEBUG    Importing DdsImagePlugin
+2023-03-06 10:14:47,577 PIL.Image    DEBUG    Importing EpsImagePlugin
+2023-03-06 10:14:47,579 PIL.Image    DEBUG    Importing FitsImagePlugin
+2023-03-06 10:14:47,581 PIL.Image    DEBUG    Importing FitsStubImagePlugin
+2023-03-06 10:14:47,582 PIL.Image    DEBUG    Importing FliImagePlugin
+2023-03-06 10:14:47,583 PIL.Image    DEBUG    Importing FpxImagePlugin
+2023-03-06 10:14:47,586 PIL.Image    DEBUG    Image: failed to import FpxImagePlugin: No module named 'olefile'
+2023-03-06 10:14:47,586 PIL.Image    DEBUG    Importing FtexImagePlugin
+2023-03-06 10:14:47,588 PIL.Image    DEBUG    Importing GbrImagePlugin
+2023-03-06 10:14:47,590 PIL.Image    DEBUG    Importing GifImagePlugin
+2023-03-06 10:14:47,590 PIL.Image    DEBUG    Importing GribStubImagePlugin
+2023-03-06 10:14:47,592 PIL.Image    DEBUG    Importing Hdf5StubImagePlugin
+2023-03-06 10:14:47,593 PIL.Image    DEBUG    Importing IcnsImagePlugin
+2023-03-06 10:14:47,596 PIL.Image    DEBUG    Importing IcoImagePlugin
+2023-03-06 10:14:47,598 PIL.Image    DEBUG    Importing ImImagePlugin
+2023-03-06 10:14:47,600 PIL.Image    DEBUG    Importing ImtImagePlugin
+2023-03-06 10:14:47,601 PIL.Image    DEBUG    Importing IptcImagePlugin
+2023-03-06 10:14:47,603 PIL.Image    DEBUG    Importing JpegImagePlugin
+2023-03-06 10:14:47,604 PIL.Image    DEBUG    Importing Jpeg2KImagePlugin
+2023-03-06 10:14:47,604 PIL.Image    DEBUG    Importing McIdasImagePlugin
+2023-03-06 10:14:47,606 PIL.Image    DEBUG    Importing MicImagePlugin
+2023-03-06 10:14:47,608 PIL.Image    DEBUG    Image: failed to import MicImagePlugin: No module named 'olefile'
+2023-03-06 10:14:47,609 PIL.Image    DEBUG    Importing MpegImagePlugin
+2023-03-06 10:14:47,610 PIL.Image    DEBUG    Importing MpoImagePlugin
+2023-03-06 10:14:47,611 PIL.Image    DEBUG    Importing MspImagePlugin
+2023-03-06 10:14:47,613 PIL.Image    DEBUG    Importing PalmImagePlugin
+2023-03-06 10:14:47,615 PIL.Image    DEBUG    Importing PcdImagePlugin
+2023-03-06 10:14:47,616 PIL.Image    DEBUG    Importing PcxImagePlugin
+2023-03-06 10:14:47,617 PIL.Image    DEBUG    Importing PdfImagePlugin
+2023-03-06 10:14:47,626 PIL.Image    DEBUG    Importing PixarImagePlugin
+2023-03-06 10:14:47,627 PIL.Image    DEBUG    Importing PngImagePlugin
+2023-03-06 10:14:47,628 PIL.Image    DEBUG    Importing PpmImagePlugin
+2023-03-06 10:14:47,628 PIL.Image    DEBUG    Importing PsdImagePlugin
+2023-03-06 10:14:47,629 PIL.Image    DEBUG    Importing SgiImagePlugin
+2023-03-06 10:14:47,631 PIL.Image    DEBUG    Importing SpiderImagePlugin
+2023-03-06 10:14:47,632 PIL.Image    DEBUG    Importing SunImagePlugin
+2023-03-06 10:14:47,634 PIL.Image    DEBUG    Importing TgaImagePlugin
+2023-03-06 10:14:47,636 PIL.Image    DEBUG    Importing TiffImagePlugin
+2023-03-06 10:14:47,636 PIL.Image    DEBUG    Importing WebPImagePlugin
+2023-03-06 10:14:47,640 PIL.Image    DEBUG    Importing WmfImagePlugin
+2023-03-06 10:14:47,642 PIL.Image    DEBUG    Importing XbmImagePlugin
+2023-03-06 10:14:47,644 PIL.Image    DEBUG    Importing XpmImagePlugin
+2023-03-06 10:14:47,645 PIL.Image    DEBUG    Importing XVThumbImagePlugin
+2023-03-06 10:14:47,803 PIL.TiffImagePlugin DEBUG    tag: ImageWidth (256) - type: short (3) - value: b'\xb0\x04'
+2023-03-06 10:14:47,804 PIL.TiffImagePlugin DEBUG    tag: ImageLength (257) - type: short (3) - value: b'\x08\x07'
+2023-03-06 10:14:47,804 PIL.TiffImagePlugin DEBUG    tag: BitsPerSample (258) - type: short (3) Tag Location: 46 - Data Location: 194 - value: b'\x08\x00\x08\x00\x08\x00'
+2023-03-06 10:14:47,804 PIL.TiffImagePlugin DEBUG    tag: PhotometricInterpretation (262) - type: short (3) - value: b'\x02\x00'
+2023-03-06 10:14:47,805 PIL.TiffImagePlugin DEBUG    tag: Make (271) - type: string (2) Tag Location: 70 - Data Location: 200 - value: b'Canon\x00'
+2023-03-06 10:14:47,805 PIL.TiffImagePlugin DEBUG    tag: Model (272) - type: string (2) Tag Location: 82 - Data Location: 206 - value: b'Canon EOS 5DS R\x00'
+2023-03-06 10:14:47,806 PIL.TiffImagePlugin DEBUG    tag: Orientation (274) - type: short (3) - value: b'\x01\x00'
+2023-03-06 10:14:47,806 PIL.TiffImagePlugin DEBUG    tag: SamplesPerPixel (277) - type: short (3) - value: b'\x03\x00'
+2023-03-06 10:14:47,806 PIL.TiffImagePlugin DEBUG    tag: XResolution (282) - type: rational (5) Tag Location: 118 - Data Location: 222 - value: b'`\x00\x00\x00\x01\x00\x00\x00'
+2023-03-06 10:14:47,807 PIL.TiffImagePlugin DEBUG    tag: YResolution (283) - type: rational (5) Tag Location: 130 - Data Location: 230 - value: b'`\x00\x00\x00\x01\x00\x00\x00'
+2023-03-06 10:14:47,807 PIL.TiffImagePlugin DEBUG    tag: ResolutionUnit (296) - type: short (3) - value: b'\x02\x00'
+2023-03-06 10:14:47,808 PIL.TiffImagePlugin DEBUG    tag: Software (305) - type: string (2) Tag Location: 154 - Data Location: 238 - value: <table: 33 bytes>
+2023-03-06 10:14:47,808 PIL.TiffImagePlugin DEBUG    tag: DateTime (306) - type: string (2) Tag Location: 166 - Data Location: 271 - value: b'2021:03:10 16:00:27\x00'
+2023-03-06 10:14:47,809 PIL.TiffImagePlugin DEBUG    tag: ExifIFD (34665) - type: long (4) - value: b'$\x01\x00\x00'
+2023-03-06 10:14:47,810 PIL.TiffImagePlugin DEBUG    tag: GPSInfoIFD (34853) - type: long (4) - value: b'\x80\x03\x00\x00'
+2023-03-06 10:14:48,603 django.request ERROR    Internal Server Error: /rest-api/clients/C0019/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/generics.py", line 255, in put
+    return self.update(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/mixins.py", line 68, in update
+    self.perform_update(serializer)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/mixins.py", line 78, in perform_update
+    serializer.save()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 207, in save
+    self.instance = self.update(self.instance, validated_data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 1006, in update
+    instance.save()
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py", line 160, in save
+    return super().save(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 739, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 776, in save_base
+    updated = self._save_table(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 855, in _save_table
+    values = [(f, None, (getattr(self, f.attname) if raw else f.pre_save(self, False)))
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 855, in <listcomp>
+    values = [(f, None, (getattr(self, f.attname) if raw else f.pre_save(self, False)))
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/fields/files.py", line 300, in pre_save
+    if file and not file._committed:
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/PIL/Image.py", line 548, in __getattr__
+    raise AttributeError(name)
+AttributeError: _committed
+2023-03-06 10:15:26,297 PIL.TiffImagePlugin DEBUG    tag: ImageWidth (256) - type: short (3) - value: b'\xb0\x04'
+2023-03-06 10:15:26,297 PIL.TiffImagePlugin DEBUG    tag: ImageLength (257) - type: short (3) - value: b'\x08\x07'
+2023-03-06 10:15:26,298 PIL.TiffImagePlugin DEBUG    tag: BitsPerSample (258) - type: short (3) Tag Location: 46 - Data Location: 194 - value: b'\x08\x00\x08\x00\x08\x00'
+2023-03-06 10:15:26,298 PIL.TiffImagePlugin DEBUG    tag: PhotometricInterpretation (262) - type: short (3) - value: b'\x02\x00'
+2023-03-06 10:15:26,299 PIL.TiffImagePlugin DEBUG    tag: Make (271) - type: string (2) Tag Location: 70 - Data Location: 200 - value: b'Canon\x00'
+2023-03-06 10:15:26,299 PIL.TiffImagePlugin DEBUG    tag: Model (272) - type: string (2) Tag Location: 82 - Data Location: 206 - value: b'Canon EOS 5DS R\x00'
+2023-03-06 10:15:26,300 PIL.TiffImagePlugin DEBUG    tag: Orientation (274) - type: short (3) - value: b'\x01\x00'
+2023-03-06 10:15:26,300 PIL.TiffImagePlugin DEBUG    tag: SamplesPerPixel (277) - type: short (3) - value: b'\x03\x00'
+2023-03-06 10:15:26,300 PIL.TiffImagePlugin DEBUG    tag: XResolution (282) - type: rational (5) Tag Location: 118 - Data Location: 222 - value: b'`\x00\x00\x00\x01\x00\x00\x00'
+2023-03-06 10:15:26,301 PIL.TiffImagePlugin DEBUG    tag: YResolution (283) - type: rational (5) Tag Location: 130 - Data Location: 230 - value: b'`\x00\x00\x00\x01\x00\x00\x00'
+2023-03-06 10:15:26,301 PIL.TiffImagePlugin DEBUG    tag: ResolutionUnit (296) - type: short (3) - value: b'\x02\x00'
+2023-03-06 10:15:26,302 PIL.TiffImagePlugin DEBUG    tag: Software (305) - type: string (2) Tag Location: 154 - Data Location: 238 - value: <table: 33 bytes>
+2023-03-06 10:15:26,302 PIL.TiffImagePlugin DEBUG    tag: DateTime (306) - type: string (2) Tag Location: 166 - Data Location: 271 - value: b'2021:03:10 16:00:27\x00'
+2023-03-06 10:15:26,303 PIL.TiffImagePlugin DEBUG    tag: ExifIFD (34665) - type: long (4) - value: b'$\x01\x00\x00'
+2023-03-06 10:15:26,303 PIL.TiffImagePlugin DEBUG    tag: GPSInfoIFD (34853) - type: long (4) - value: b'\x80\x03\x00\x00'
+2023-03-06 10:15:26,510 PIL.TiffImagePlugin DEBUG    tag: ImageWidth (256) - type: short (3) - value: b'\xb0\x04'
+2023-03-06 10:15:26,510 PIL.TiffImagePlugin DEBUG    tag: ImageLength (257) - type: short (3) - value: b'\x08\x07'
+2023-03-06 10:15:26,511 PIL.TiffImagePlugin DEBUG    tag: BitsPerSample (258) - type: short (3) Tag Location: 46 - Data Location: 194 - value: b'\x08\x00\x08\x00\x08\x00'
+2023-03-06 10:15:26,511 PIL.TiffImagePlugin DEBUG    tag: PhotometricInterpretation (262) - type: short (3) - value: b'\x02\x00'
+2023-03-06 10:15:26,512 PIL.TiffImagePlugin DEBUG    tag: Make (271) - type: string (2) Tag Location: 70 - Data Location: 200 - value: b'Canon\x00'
+2023-03-06 10:15:26,512 PIL.TiffImagePlugin DEBUG    tag: Model (272) - type: string (2) Tag Location: 82 - Data Location: 206 - value: b'Canon EOS 5DS R\x00'
+2023-03-06 10:15:26,513 PIL.TiffImagePlugin DEBUG    tag: Orientation (274) - type: short (3) - value: b'\x01\x00'
+2023-03-06 10:15:26,514 PIL.TiffImagePlugin DEBUG    tag: SamplesPerPixel (277) - type: short (3) - value: b'\x03\x00'
+2023-03-06 10:15:26,515 PIL.TiffImagePlugin DEBUG    tag: XResolution (282) - type: rational (5) Tag Location: 118 - Data Location: 222 - value: b'`\x00\x00\x00\x01\x00\x00\x00'
+2023-03-06 10:15:26,516 PIL.TiffImagePlugin DEBUG    tag: YResolution (283) - type: rational (5) Tag Location: 130 - Data Location: 230 - value: b'`\x00\x00\x00\x01\x00\x00\x00'
+2023-03-06 10:15:26,517 PIL.TiffImagePlugin DEBUG    tag: ResolutionUnit (296) - type: short (3) - value: b'\x02\x00'
+2023-03-06 10:15:26,517 PIL.TiffImagePlugin DEBUG    tag: Software (305) - type: string (2) Tag Location: 154 - Data Location: 238 - value: <table: 33 bytes>
+2023-03-06 10:15:26,518 PIL.TiffImagePlugin DEBUG    tag: DateTime (306) - type: string (2) Tag Location: 166 - Data Location: 271 - value: b'2021:03:10 16:00:27\x00'
+2023-03-06 10:15:26,518 PIL.TiffImagePlugin DEBUG    tag: ExifIFD (34665) - type: long (4) - value: b'$\x01\x00\x00'
+2023-03-06 10:15:26,519 PIL.TiffImagePlugin DEBUG    tag: GPSInfoIFD (34853) - type: long (4) - value: b'\x80\x03\x00\x00'
+2023-03-06 10:15:27,053 django.request ERROR    Internal Server Error: /rest-api/clients/C0019/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/generics.py", line 255, in put
+    return self.update(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/mixins.py", line 68, in update
+    self.perform_update(serializer)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/mixins.py", line 78, in perform_update
+    serializer.save()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 207, in save
+    self.instance = self.update(self.instance, validated_data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 1006, in update
+    instance.save()
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py", line 160, in save
+    return super().save(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 739, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 776, in save_base
+    updated = self._save_table(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 855, in _save_table
+    values = [(f, None, (getattr(self, f.attname) if raw else f.pre_save(self, False)))
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 855, in <listcomp>
+    values = [(f, None, (getattr(self, f.attname) if raw else f.pre_save(self, False)))
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/fields/files.py", line 300, in pre_save
+    if file and not file._committed:
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/PIL/Image.py", line 548, in __getattr__
+    raise AttributeError(name)
+AttributeError: _committed
+2023-03-06 10:15:29,583 django.request WARNING  Forbidden: /rest-api/clients/C0019/
+2023-03-06 10:15:29,923 django.request WARNING  Forbidden: /rest-api/clients/C0019/
+2023-03-06 10:15:30,367 django.request WARNING  Not Found: /favicon.ico
+2023-03-06 10:18:37,840 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-06 10:18:40,267 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-06 10:18:43,481 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-06 10:18:46,166 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-06 10:19:09,731 PIL.TiffImagePlugin DEBUG    tag: ImageWidth (256) - type: short (3) - value: b'\xb0\x04'
+2023-03-06 10:19:09,731 PIL.TiffImagePlugin DEBUG    tag: ImageLength (257) - type: short (3) - value: b'\x08\x07'
+2023-03-06 10:19:09,732 PIL.TiffImagePlugin DEBUG    tag: BitsPerSample (258) - type: short (3) Tag Location: 46 - Data Location: 194 - value: b'\x08\x00\x08\x00\x08\x00'
+2023-03-06 10:19:09,732 PIL.TiffImagePlugin DEBUG    tag: PhotometricInterpretation (262) - type: short (3) - value: b'\x02\x00'
+2023-03-06 10:19:09,732 PIL.TiffImagePlugin DEBUG    tag: Make (271) - type: string (2) Tag Location: 70 - Data Location: 200 - value: b'Canon\x00'
+2023-03-06 10:19:09,733 PIL.TiffImagePlugin DEBUG    tag: Model (272) - type: string (2) Tag Location: 82 - Data Location: 206 - value: b'Canon EOS 5DS R\x00'
+2023-03-06 10:19:09,733 PIL.TiffImagePlugin DEBUG    tag: Orientation (274) - type: short (3) - value: b'\x01\x00'
+2023-03-06 10:19:09,733 PIL.TiffImagePlugin DEBUG    tag: SamplesPerPixel (277) - type: short (3) - value: b'\x03\x00'
+2023-03-06 10:19:09,734 PIL.TiffImagePlugin DEBUG    tag: XResolution (282) - type: rational (5) Tag Location: 118 - Data Location: 222 - value: b'`\x00\x00\x00\x01\x00\x00\x00'
+2023-03-06 10:19:09,734 PIL.TiffImagePlugin DEBUG    tag: YResolution (283) - type: rational (5) Tag Location: 130 - Data Location: 230 - value: b'`\x00\x00\x00\x01\x00\x00\x00'
+2023-03-06 10:19:09,735 PIL.TiffImagePlugin DEBUG    tag: ResolutionUnit (296) - type: short (3) - value: b'\x02\x00'
+2023-03-06 10:19:09,735 PIL.TiffImagePlugin DEBUG    tag: Software (305) - type: string (2) Tag Location: 154 - Data Location: 238 - value: <table: 33 bytes>
+2023-03-06 10:19:09,735 PIL.TiffImagePlugin DEBUG    tag: DateTime (306) - type: string (2) Tag Location: 166 - Data Location: 271 - value: b'2021:03:10 16:00:27\x00'
+2023-03-06 10:19:09,736 PIL.TiffImagePlugin DEBUG    tag: ExifIFD (34665) - type: long (4) - value: b'$\x01\x00\x00'
+2023-03-06 10:19:09,736 PIL.TiffImagePlugin DEBUG    tag: GPSInfoIFD (34853) - type: long (4) - value: b'\x80\x03\x00\x00'
+2023-03-06 10:19:09,737 PIL.Image    DEBUG    Importing BlpImagePlugin
+2023-03-06 10:19:09,739 PIL.Image    DEBUG    Importing BmpImagePlugin
+2023-03-06 10:19:09,740 PIL.Image    DEBUG    Importing BufrStubImagePlugin
+2023-03-06 10:19:09,741 PIL.Image    DEBUG    Importing CurImagePlugin
+2023-03-06 10:19:09,742 PIL.Image    DEBUG    Importing DcxImagePlugin
+2023-03-06 10:19:09,744 PIL.Image    DEBUG    Importing DdsImagePlugin
+2023-03-06 10:19:09,745 PIL.Image    DEBUG    Importing EpsImagePlugin
+2023-03-06 10:19:09,747 PIL.Image    DEBUG    Importing FitsImagePlugin
+2023-03-06 10:19:09,748 PIL.Image    DEBUG    Importing FitsStubImagePlugin
+2023-03-06 10:19:09,749 PIL.Image    DEBUG    Importing FliImagePlugin
+2023-03-06 10:19:09,751 PIL.Image    DEBUG    Importing FpxImagePlugin
+2023-03-06 10:19:09,753 PIL.Image    DEBUG    Image: failed to import FpxImagePlugin: No module named 'olefile'
+2023-03-06 10:19:09,753 PIL.Image    DEBUG    Importing FtexImagePlugin
+2023-03-06 10:19:09,755 PIL.Image    DEBUG    Importing GbrImagePlugin
+2023-03-06 10:19:09,756 PIL.Image    DEBUG    Importing GifImagePlugin
+2023-03-06 10:19:09,756 PIL.Image    DEBUG    Importing GribStubImagePlugin
+2023-03-06 10:19:09,758 PIL.Image    DEBUG    Importing Hdf5StubImagePlugin
+2023-03-06 10:19:09,759 PIL.Image    DEBUG    Importing IcnsImagePlugin
+2023-03-06 10:19:09,763 PIL.Image    DEBUG    Importing IcoImagePlugin
+2023-03-06 10:19:09,764 PIL.Image    DEBUG    Importing ImImagePlugin
+2023-03-06 10:19:09,766 PIL.Image    DEBUG    Importing ImtImagePlugin
+2023-03-06 10:19:09,767 PIL.Image    DEBUG    Importing IptcImagePlugin
+2023-03-06 10:19:09,769 PIL.Image    DEBUG    Importing JpegImagePlugin
+2023-03-06 10:19:09,769 PIL.Image    DEBUG    Importing Jpeg2KImagePlugin
+2023-03-06 10:19:09,770 PIL.Image    DEBUG    Importing McIdasImagePlugin
+2023-03-06 10:19:09,772 PIL.Image    DEBUG    Importing MicImagePlugin
+2023-03-06 10:19:09,774 PIL.Image    DEBUG    Image: failed to import MicImagePlugin: No module named 'olefile'
+2023-03-06 10:19:09,774 PIL.Image    DEBUG    Importing MpegImagePlugin
+2023-03-06 10:19:09,776 PIL.Image    DEBUG    Importing MpoImagePlugin
+2023-03-06 10:19:09,778 PIL.Image    DEBUG    Importing MspImagePlugin
+2023-03-06 10:19:09,780 PIL.Image    DEBUG    Importing PalmImagePlugin
+2023-03-06 10:19:09,783 PIL.Image    DEBUG    Importing PcdImagePlugin
+2023-03-06 10:19:09,784 PIL.Image    DEBUG    Importing PcxImagePlugin
+2023-03-06 10:19:09,785 PIL.Image    DEBUG    Importing PdfImagePlugin
+2023-03-06 10:19:09,794 PIL.Image    DEBUG    Importing PixarImagePlugin
+2023-03-06 10:19:09,795 PIL.Image    DEBUG    Importing PngImagePlugin
+2023-03-06 10:19:09,796 PIL.Image    DEBUG    Importing PpmImagePlugin
+2023-03-06 10:19:09,797 PIL.Image    DEBUG    Importing PsdImagePlugin
+2023-03-06 10:19:09,798 PIL.Image    DEBUG    Importing SgiImagePlugin
+2023-03-06 10:19:09,800 PIL.Image    DEBUG    Importing SpiderImagePlugin
+2023-03-06 10:19:09,801 PIL.Image    DEBUG    Importing SunImagePlugin
+2023-03-06 10:19:09,803 PIL.Image    DEBUG    Importing TgaImagePlugin
+2023-03-06 10:19:09,805 PIL.Image    DEBUG    Importing TiffImagePlugin
+2023-03-06 10:19:09,805 PIL.Image    DEBUG    Importing WebPImagePlugin
+2023-03-06 10:19:09,810 PIL.Image    DEBUG    Importing WmfImagePlugin
+2023-03-06 10:19:09,812 PIL.Image    DEBUG    Importing XbmImagePlugin
+2023-03-06 10:19:09,814 PIL.Image    DEBUG    Importing XpmImagePlugin
+2023-03-06 10:19:09,816 PIL.Image    DEBUG    Importing XVThumbImagePlugin
+2023-03-06 10:19:09,948 PIL.TiffImagePlugin DEBUG    tag: ImageWidth (256) - type: short (3) - value: b'\xb0\x04'
+2023-03-06 10:19:09,949 PIL.TiffImagePlugin DEBUG    tag: ImageLength (257) - type: short (3) - value: b'\x08\x07'
+2023-03-06 10:19:09,949 PIL.TiffImagePlugin DEBUG    tag: BitsPerSample (258) - type: short (3) Tag Location: 46 - Data Location: 194 - value: b'\x08\x00\x08\x00\x08\x00'
+2023-03-06 10:19:09,950 PIL.TiffImagePlugin DEBUG    tag: PhotometricInterpretation (262) - type: short (3) - value: b'\x02\x00'
+2023-03-06 10:19:09,951 PIL.TiffImagePlugin DEBUG    tag: Make (271) - type: string (2) Tag Location: 70 - Data Location: 200 - value: b'Canon\x00'
+2023-03-06 10:19:09,951 PIL.TiffImagePlugin DEBUG    tag: Model (272) - type: string (2) Tag Location: 82 - Data Location: 206 - value: b'Canon EOS 5DS R\x00'
+2023-03-06 10:19:09,952 PIL.TiffImagePlugin DEBUG    tag: Orientation (274) - type: short (3) - value: b'\x01\x00'
+2023-03-06 10:19:09,952 PIL.TiffImagePlugin DEBUG    tag: SamplesPerPixel (277) - type: short (3) - value: b'\x03\x00'
+2023-03-06 10:19:09,953 PIL.TiffImagePlugin DEBUG    tag: XResolution (282) - type: rational (5) Tag Location: 118 - Data Location: 222 - value: b'`\x00\x00\x00\x01\x00\x00\x00'
+2023-03-06 10:19:09,953 PIL.TiffImagePlugin DEBUG    tag: YResolution (283) - type: rational (5) Tag Location: 130 - Data Location: 230 - value: b'`\x00\x00\x00\x01\x00\x00\x00'
+2023-03-06 10:19:09,953 PIL.TiffImagePlugin DEBUG    tag: ResolutionUnit (296) - type: short (3) - value: b'\x02\x00'
+2023-03-06 10:19:09,954 PIL.TiffImagePlugin DEBUG    tag: Software (305) - type: string (2) Tag Location: 154 - Data Location: 238 - value: <table: 33 bytes>
+2023-03-06 10:19:09,954 PIL.TiffImagePlugin DEBUG    tag: DateTime (306) - type: string (2) Tag Location: 166 - Data Location: 271 - value: b'2021:03:10 16:00:27\x00'
+2023-03-06 10:19:09,955 PIL.TiffImagePlugin DEBUG    tag: ExifIFD (34665) - type: long (4) - value: b'$\x01\x00\x00'
+2023-03-06 10:19:09,955 PIL.TiffImagePlugin DEBUG    tag: GPSInfoIFD (34853) - type: long (4) - value: b'\x80\x03\x00\x00'
+2023-03-06 10:19:10,029 django.security.SuspiciousFileOperation ERROR    Detected path traversal attempt in '/tmp/tmp8p6pj9l6.jpg'
+2023-03-06 10:19:10,718 django.request WARNING  Bad Request: /rest-api/clients/C0019/
+2023-03-06 10:19:20,062 django.request WARNING  Forbidden: /rest-api/clients/C0019/
+2023-03-06 10:19:20,528 django.request WARNING  Forbidden: /rest-api/clients/C0019/
+2023-03-06 10:23:49,108 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-06 10:23:51,675 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-06 10:24:06,436 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-06 10:24:09,269 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-06 10:24:18,496 PIL.TiffImagePlugin DEBUG    tag: ImageWidth (256) - type: short (3) - value: b'\xb0\x04'
+2023-03-06 10:24:18,497 PIL.TiffImagePlugin DEBUG    tag: ImageLength (257) - type: short (3) - value: b'\x08\x07'
+2023-03-06 10:24:18,497 PIL.TiffImagePlugin DEBUG    tag: BitsPerSample (258) - type: short (3) Tag Location: 46 - Data Location: 194 - value: b'\x08\x00\x08\x00\x08\x00'
+2023-03-06 10:24:18,498 PIL.TiffImagePlugin DEBUG    tag: PhotometricInterpretation (262) - type: short (3) - value: b'\x02\x00'
+2023-03-06 10:24:18,498 PIL.TiffImagePlugin DEBUG    tag: Make (271) - type: string (2) Tag Location: 70 - Data Location: 200 - value: b'Canon\x00'
+2023-03-06 10:24:18,499 PIL.TiffImagePlugin DEBUG    tag: Model (272) - type: string (2) Tag Location: 82 - Data Location: 206 - value: b'Canon EOS 5DS R\x00'
+2023-03-06 10:24:18,499 PIL.TiffImagePlugin DEBUG    tag: Orientation (274) - type: short (3) - value: b'\x01\x00'
+2023-03-06 10:24:18,500 PIL.TiffImagePlugin DEBUG    tag: SamplesPerPixel (277) - type: short (3) - value: b'\x03\x00'
+2023-03-06 10:24:18,500 PIL.TiffImagePlugin DEBUG    tag: XResolution (282) - type: rational (5) Tag Location: 118 - Data Location: 222 - value: b'`\x00\x00\x00\x01\x00\x00\x00'
+2023-03-06 10:24:18,501 PIL.TiffImagePlugin DEBUG    tag: YResolution (283) - type: rational (5) Tag Location: 130 - Data Location: 230 - value: b'`\x00\x00\x00\x01\x00\x00\x00'
+2023-03-06 10:24:18,501 PIL.TiffImagePlugin DEBUG    tag: ResolutionUnit (296) - type: short (3) - value: b'\x02\x00'
+2023-03-06 10:24:18,502 PIL.TiffImagePlugin DEBUG    tag: Software (305) - type: string (2) Tag Location: 154 - Data Location: 238 - value: <table: 33 bytes>
+2023-03-06 10:24:18,502 PIL.TiffImagePlugin DEBUG    tag: DateTime (306) - type: string (2) Tag Location: 166 - Data Location: 271 - value: b'2021:03:10 16:00:27\x00'
+2023-03-06 10:24:18,503 PIL.TiffImagePlugin DEBUG    tag: ExifIFD (34665) - type: long (4) - value: b'$\x01\x00\x00'
+2023-03-06 10:24:18,503 PIL.TiffImagePlugin DEBUG    tag: GPSInfoIFD (34853) - type: long (4) - value: b'\x80\x03\x00\x00'
+2023-03-06 10:24:18,504 PIL.Image    DEBUG    Importing BlpImagePlugin
+2023-03-06 10:24:18,507 PIL.Image    DEBUG    Importing BmpImagePlugin
+2023-03-06 10:24:18,507 PIL.Image    DEBUG    Importing BufrStubImagePlugin
+2023-03-06 10:24:18,508 PIL.Image    DEBUG    Importing CurImagePlugin
+2023-03-06 10:24:18,510 PIL.Image    DEBUG    Importing DcxImagePlugin
+2023-03-06 10:24:18,512 PIL.Image    DEBUG    Importing DdsImagePlugin
+2023-03-06 10:24:18,514 PIL.Image    DEBUG    Importing EpsImagePlugin
+2023-03-06 10:24:18,515 PIL.Image    DEBUG    Importing FitsImagePlugin
+2023-03-06 10:24:18,517 PIL.Image    DEBUG    Importing FitsStubImagePlugin
+2023-03-06 10:24:18,518 PIL.Image    DEBUG    Importing FliImagePlugin
+2023-03-06 10:24:18,520 PIL.Image    DEBUG    Importing FpxImagePlugin
+2023-03-06 10:24:18,522 PIL.Image    DEBUG    Image: failed to import FpxImagePlugin: No module named 'olefile'
+2023-03-06 10:24:18,522 PIL.Image    DEBUG    Importing FtexImagePlugin
+2023-03-06 10:24:18,523 PIL.Image    DEBUG    Importing GbrImagePlugin
+2023-03-06 10:24:18,525 PIL.Image    DEBUG    Importing GifImagePlugin
+2023-03-06 10:24:18,525 PIL.Image    DEBUG    Importing GribStubImagePlugin
+2023-03-06 10:24:18,527 PIL.Image    DEBUG    Importing Hdf5StubImagePlugin
+2023-03-06 10:24:18,528 PIL.Image    DEBUG    Importing IcnsImagePlugin
+2023-03-06 10:24:18,532 PIL.Image    DEBUG    Importing IcoImagePlugin
+2023-03-06 10:24:18,533 PIL.Image    DEBUG    Importing ImImagePlugin
+2023-03-06 10:24:18,535 PIL.Image    DEBUG    Importing ImtImagePlugin
+2023-03-06 10:24:18,537 PIL.Image    DEBUG    Importing IptcImagePlugin
+2023-03-06 10:24:18,538 PIL.Image    DEBUG    Importing JpegImagePlugin
+2023-03-06 10:24:18,538 PIL.Image    DEBUG    Importing Jpeg2KImagePlugin
+2023-03-06 10:24:18,539 PIL.Image    DEBUG    Importing McIdasImagePlugin
+2023-03-06 10:24:18,540 PIL.Image    DEBUG    Importing MicImagePlugin
+2023-03-06 10:24:18,542 PIL.Image    DEBUG    Image: failed to import MicImagePlugin: No module named 'olefile'
+2023-03-06 10:24:18,543 PIL.Image    DEBUG    Importing MpegImagePlugin
+2023-03-06 10:24:18,544 PIL.Image    DEBUG    Importing MpoImagePlugin
+2023-03-06 10:24:18,545 PIL.Image    DEBUG    Importing MspImagePlugin
+2023-03-06 10:24:18,547 PIL.Image    DEBUG    Importing PalmImagePlugin
+2023-03-06 10:24:18,549 PIL.Image    DEBUG    Importing PcdImagePlugin
+2023-03-06 10:24:18,550 PIL.Image    DEBUG    Importing PcxImagePlugin
+2023-03-06 10:24:18,551 PIL.Image    DEBUG    Importing PdfImagePlugin
+2023-03-06 10:24:18,558 PIL.Image    DEBUG    Importing PixarImagePlugin
+2023-03-06 10:24:18,559 PIL.Image    DEBUG    Importing PngImagePlugin
+2023-03-06 10:24:18,560 PIL.Image    DEBUG    Importing PpmImagePlugin
+2023-03-06 10:24:18,560 PIL.Image    DEBUG    Importing PsdImagePlugin
+2023-03-06 10:24:18,562 PIL.Image    DEBUG    Importing SgiImagePlugin
+2023-03-06 10:24:18,563 PIL.Image    DEBUG    Importing SpiderImagePlugin
+2023-03-06 10:24:18,565 PIL.Image    DEBUG    Importing SunImagePlugin
+2023-03-06 10:24:18,566 PIL.Image    DEBUG    Importing TgaImagePlugin
+2023-03-06 10:24:18,568 PIL.Image    DEBUG    Importing TiffImagePlugin
+2023-03-06 10:24:18,568 PIL.Image    DEBUG    Importing WebPImagePlugin
+2023-03-06 10:24:18,572 PIL.Image    DEBUG    Importing WmfImagePlugin
+2023-03-06 10:24:18,573 PIL.Image    DEBUG    Importing XbmImagePlugin
+2023-03-06 10:24:18,575 PIL.Image    DEBUG    Importing XpmImagePlugin
+2023-03-06 10:24:18,577 PIL.Image    DEBUG    Importing XVThumbImagePlugin
+2023-03-06 10:24:18,728 PIL.TiffImagePlugin DEBUG    tag: ImageWidth (256) - type: short (3) - value: b'\xb0\x04'
+2023-03-06 10:24:18,729 PIL.TiffImagePlugin DEBUG    tag: ImageLength (257) - type: short (3) - value: b'\x08\x07'
+2023-03-06 10:24:18,729 PIL.TiffImagePlugin DEBUG    tag: BitsPerSample (258) - type: short (3) Tag Location: 46 - Data Location: 194 - value: b'\x08\x00\x08\x00\x08\x00'
+2023-03-06 10:24:18,730 PIL.TiffImagePlugin DEBUG    tag: PhotometricInterpretation (262) - type: short (3) - value: b'\x02\x00'
+2023-03-06 10:24:18,730 PIL.TiffImagePlugin DEBUG    tag: Make (271) - type: string (2) Tag Location: 70 - Data Location: 200 - value: b'Canon\x00'
+2023-03-06 10:24:18,731 PIL.TiffImagePlugin DEBUG    tag: Model (272) - type: string (2) Tag Location: 82 - Data Location: 206 - value: b'Canon EOS 5DS R\x00'
+2023-03-06 10:24:18,731 PIL.TiffImagePlugin DEBUG    tag: Orientation (274) - type: short (3) - value: b'\x01\x00'
+2023-03-06 10:24:18,732 PIL.TiffImagePlugin DEBUG    tag: SamplesPerPixel (277) - type: short (3) - value: b'\x03\x00'
+2023-03-06 10:24:18,732 PIL.TiffImagePlugin DEBUG    tag: XResolution (282) - type: rational (5) Tag Location: 118 - Data Location: 222 - value: b'`\x00\x00\x00\x01\x00\x00\x00'
+2023-03-06 10:24:18,733 PIL.TiffImagePlugin DEBUG    tag: YResolution (283) - type: rational (5) Tag Location: 130 - Data Location: 230 - value: b'`\x00\x00\x00\x01\x00\x00\x00'
+2023-03-06 10:24:18,733 PIL.TiffImagePlugin DEBUG    tag: ResolutionUnit (296) - type: short (3) - value: b'\x02\x00'
+2023-03-06 10:24:18,733 PIL.TiffImagePlugin DEBUG    tag: Software (305) - type: string (2) Tag Location: 154 - Data Location: 238 - value: <table: 33 bytes>
+2023-03-06 10:24:18,734 PIL.TiffImagePlugin DEBUG    tag: DateTime (306) - type: string (2) Tag Location: 166 - Data Location: 271 - value: b'2021:03:10 16:00:27\x00'
+2023-03-06 10:24:18,734 PIL.TiffImagePlugin DEBUG    tag: ExifIFD (34665) - type: long (4) - value: b'$\x01\x00\x00'
+2023-03-06 10:24:18,735 PIL.TiffImagePlugin DEBUG    tag: GPSInfoIFD (34853) - type: long (4) - value: b'\x80\x03\x00\x00'
+2023-03-06 10:24:19,583 django.request ERROR    Internal Server Error: /rest-api/clients/C0019/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/generics.py", line 255, in put
+    return self.update(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/mixins.py", line 68, in update
+    self.perform_update(serializer)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/mixins.py", line 78, in perform_update
+    serializer.save()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 207, in save
+    self.instance = self.update(self.instance, validated_data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 1006, in update
+    instance.save()
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py", line 164, in save
+    return super().save(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 739, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 776, in save_base
+    updated = self._save_table(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 855, in _save_table
+    values = [(f, None, (getattr(self, f.attname) if raw else f.pre_save(self, False)))
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 855, in <listcomp>
+    values = [(f, None, (getattr(self, f.attname) if raw else f.pre_save(self, False)))
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/fields/files.py", line 300, in pre_save
+    if file and not file._committed:
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/PIL/Image.py", line 548, in __getattr__
+    raise AttributeError(name)
+AttributeError: _committed
+2023-03-06 10:24:28,029 django.request WARNING  Forbidden: /rest-api/clients/C0019/
+2023-03-06 10:24:28,524 django.request WARNING  Forbidden: /rest-api/clients/C0019/
+2023-03-06 10:25:56,602 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-06 10:25:58,967 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-06 10:26:02,150 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-06 10:26:04,470 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-06 10:26:09,177 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-06 10:26:11,306 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-06 10:26:18,782 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-06 10:26:21,261 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-06 10:26:31,388 PIL.TiffImagePlugin DEBUG    tag: ImageWidth (256) - type: short (3) - value: b'\xb0\x04'
+2023-03-06 10:26:31,389 PIL.TiffImagePlugin DEBUG    tag: ImageLength (257) - type: short (3) - value: b'\x08\x07'
+2023-03-06 10:26:31,389 PIL.TiffImagePlugin DEBUG    tag: BitsPerSample (258) - type: short (3) Tag Location: 46 - Data Location: 194 - value: b'\x08\x00\x08\x00\x08\x00'
+2023-03-06 10:26:31,390 PIL.TiffImagePlugin DEBUG    tag: PhotometricInterpretation (262) - type: short (3) - value: b'\x02\x00'
+2023-03-06 10:26:31,390 PIL.TiffImagePlugin DEBUG    tag: Make (271) - type: string (2) Tag Location: 70 - Data Location: 200 - value: b'Canon\x00'
+2023-03-06 10:26:31,391 PIL.TiffImagePlugin DEBUG    tag: Model (272) - type: string (2) Tag Location: 82 - Data Location: 206 - value: b'Canon EOS 5DS R\x00'
+2023-03-06 10:26:31,391 PIL.TiffImagePlugin DEBUG    tag: Orientation (274) - type: short (3) - value: b'\x01\x00'
+2023-03-06 10:26:31,392 PIL.TiffImagePlugin DEBUG    tag: SamplesPerPixel (277) - type: short (3) - value: b'\x03\x00'
+2023-03-06 10:26:31,392 PIL.TiffImagePlugin DEBUG    tag: XResolution (282) - type: rational (5) Tag Location: 118 - Data Location: 222 - value: b'`\x00\x00\x00\x01\x00\x00\x00'
+2023-03-06 10:26:31,393 PIL.TiffImagePlugin DEBUG    tag: YResolution (283) - type: rational (5) Tag Location: 130 - Data Location: 230 - value: b'`\x00\x00\x00\x01\x00\x00\x00'
+2023-03-06 10:26:31,393 PIL.TiffImagePlugin DEBUG    tag: ResolutionUnit (296) - type: short (3) - value: b'\x02\x00'
+2023-03-06 10:26:31,393 PIL.TiffImagePlugin DEBUG    tag: Software (305) - type: string (2) Tag Location: 154 - Data Location: 238 - value: <table: 33 bytes>
+2023-03-06 10:26:31,394 PIL.TiffImagePlugin DEBUG    tag: DateTime (306) - type: string (2) Tag Location: 166 - Data Location: 271 - value: b'2021:03:10 16:00:27\x00'
+2023-03-06 10:26:31,394 PIL.TiffImagePlugin DEBUG    tag: ExifIFD (34665) - type: long (4) - value: b'$\x01\x00\x00'
+2023-03-06 10:26:31,394 PIL.TiffImagePlugin DEBUG    tag: GPSInfoIFD (34853) - type: long (4) - value: b'\x80\x03\x00\x00'
+2023-03-06 10:26:31,395 PIL.Image    DEBUG    Importing BlpImagePlugin
+2023-03-06 10:26:31,397 PIL.Image    DEBUG    Importing BmpImagePlugin
+2023-03-06 10:26:31,397 PIL.Image    DEBUG    Importing BufrStubImagePlugin
+2023-03-06 10:26:31,399 PIL.Image    DEBUG    Importing CurImagePlugin
+2023-03-06 10:26:31,400 PIL.Image    DEBUG    Importing DcxImagePlugin
+2023-03-06 10:26:31,402 PIL.Image    DEBUG    Importing DdsImagePlugin
+2023-03-06 10:26:31,403 PIL.Image    DEBUG    Importing EpsImagePlugin
+2023-03-06 10:26:31,405 PIL.Image    DEBUG    Importing FitsImagePlugin
+2023-03-06 10:26:31,406 PIL.Image    DEBUG    Importing FitsStubImagePlugin
+2023-03-06 10:26:31,408 PIL.Image    DEBUG    Importing FliImagePlugin
+2023-03-06 10:26:31,409 PIL.Image    DEBUG    Importing FpxImagePlugin
+2023-03-06 10:26:31,411 PIL.Image    DEBUG    Image: failed to import FpxImagePlugin: No module named 'olefile'
+2023-03-06 10:26:31,411 PIL.Image    DEBUG    Importing FtexImagePlugin
+2023-03-06 10:26:31,413 PIL.Image    DEBUG    Importing GbrImagePlugin
+2023-03-06 10:26:31,414 PIL.Image    DEBUG    Importing GifImagePlugin
+2023-03-06 10:26:31,414 PIL.Image    DEBUG    Importing GribStubImagePlugin
+2023-03-06 10:26:31,415 PIL.Image    DEBUG    Importing Hdf5StubImagePlugin
+2023-03-06 10:26:31,417 PIL.Image    DEBUG    Importing IcnsImagePlugin
+2023-03-06 10:26:31,421 PIL.Image    DEBUG    Importing IcoImagePlugin
+2023-03-06 10:26:31,423 PIL.Image    DEBUG    Importing ImImagePlugin
+2023-03-06 10:26:31,424 PIL.Image    DEBUG    Importing ImtImagePlugin
+2023-03-06 10:26:31,426 PIL.Image    DEBUG    Importing IptcImagePlugin
+2023-03-06 10:26:31,427 PIL.Image    DEBUG    Importing JpegImagePlugin
+2023-03-06 10:26:31,428 PIL.Image    DEBUG    Importing Jpeg2KImagePlugin
+2023-03-06 10:26:31,428 PIL.Image    DEBUG    Importing McIdasImagePlugin
+2023-03-06 10:26:31,429 PIL.Image    DEBUG    Importing MicImagePlugin
+2023-03-06 10:26:31,431 PIL.Image    DEBUG    Image: failed to import MicImagePlugin: No module named 'olefile'
+2023-03-06 10:26:31,432 PIL.Image    DEBUG    Importing MpegImagePlugin
+2023-03-06 10:26:31,433 PIL.Image    DEBUG    Importing MpoImagePlugin
+2023-03-06 10:26:31,434 PIL.Image    DEBUG    Importing MspImagePlugin
+2023-03-06 10:26:31,435 PIL.Image    DEBUG    Importing PalmImagePlugin
+2023-03-06 10:26:31,437 PIL.Image    DEBUG    Importing PcdImagePlugin
+2023-03-06 10:26:31,438 PIL.Image    DEBUG    Importing PcxImagePlugin
+2023-03-06 10:26:31,439 PIL.Image    DEBUG    Importing PdfImagePlugin
+2023-03-06 10:26:31,446 PIL.Image    DEBUG    Importing PixarImagePlugin
+2023-03-06 10:26:31,450 PIL.Image    DEBUG    Importing PngImagePlugin
+2023-03-06 10:26:31,451 PIL.Image    DEBUG    Importing PpmImagePlugin
+2023-03-06 10:26:31,451 PIL.Image    DEBUG    Importing PsdImagePlugin
+2023-03-06 10:26:31,453 PIL.Image    DEBUG    Importing SgiImagePlugin
+2023-03-06 10:26:31,454 PIL.Image    DEBUG    Importing SpiderImagePlugin
+2023-03-06 10:26:31,456 PIL.Image    DEBUG    Importing SunImagePlugin
+2023-03-06 10:26:31,457 PIL.Image    DEBUG    Importing TgaImagePlugin
+2023-03-06 10:26:31,460 PIL.Image    DEBUG    Importing TiffImagePlugin
+2023-03-06 10:26:31,461 PIL.Image    DEBUG    Importing WebPImagePlugin
+2023-03-06 10:26:31,465 PIL.Image    DEBUG    Importing WmfImagePlugin
+2023-03-06 10:26:31,466 PIL.Image    DEBUG    Importing XbmImagePlugin
+2023-03-06 10:26:31,468 PIL.Image    DEBUG    Importing XpmImagePlugin
+2023-03-06 10:26:31,470 PIL.Image    DEBUG    Importing XVThumbImagePlugin
+2023-03-06 10:26:31,618 PIL.TiffImagePlugin DEBUG    tag: ImageWidth (256) - type: short (3) - value: b'\xb0\x04'
+2023-03-06 10:26:31,619 PIL.TiffImagePlugin DEBUG    tag: ImageLength (257) - type: short (3) - value: b'\x08\x07'
+2023-03-06 10:26:31,619 PIL.TiffImagePlugin DEBUG    tag: BitsPerSample (258) - type: short (3) Tag Location: 46 - Data Location: 194 - value: b'\x08\x00\x08\x00\x08\x00'
+2023-03-06 10:26:31,620 PIL.TiffImagePlugin DEBUG    tag: PhotometricInterpretation (262) - type: short (3) - value: b'\x02\x00'
+2023-03-06 10:26:31,620 PIL.TiffImagePlugin DEBUG    tag: Make (271) - type: string (2) Tag Location: 70 - Data Location: 200 - value: b'Canon\x00'
+2023-03-06 10:26:31,621 PIL.TiffImagePlugin DEBUG    tag: Model (272) - type: string (2) Tag Location: 82 - Data Location: 206 - value: b'Canon EOS 5DS R\x00'
+2023-03-06 10:26:31,621 PIL.TiffImagePlugin DEBUG    tag: Orientation (274) - type: short (3) - value: b'\x01\x00'
+2023-03-06 10:26:31,622 PIL.TiffImagePlugin DEBUG    tag: SamplesPerPixel (277) - type: short (3) - value: b'\x03\x00'
+2023-03-06 10:26:31,622 PIL.TiffImagePlugin DEBUG    tag: XResolution (282) - type: rational (5) Tag Location: 118 - Data Location: 222 - value: b'`\x00\x00\x00\x01\x00\x00\x00'
+2023-03-06 10:26:31,623 PIL.TiffImagePlugin DEBUG    tag: YResolution (283) - type: rational (5) Tag Location: 130 - Data Location: 230 - value: b'`\x00\x00\x00\x01\x00\x00\x00'
+2023-03-06 10:26:31,623 PIL.TiffImagePlugin DEBUG    tag: ResolutionUnit (296) - type: short (3) - value: b'\x02\x00'
+2023-03-06 10:26:31,624 PIL.TiffImagePlugin DEBUG    tag: Software (305) - type: string (2) Tag Location: 154 - Data Location: 238 - value: <table: 33 bytes>
+2023-03-06 10:26:31,624 PIL.TiffImagePlugin DEBUG    tag: DateTime (306) - type: string (2) Tag Location: 166 - Data Location: 271 - value: b'2021:03:10 16:00:27\x00'
+2023-03-06 10:26:31,625 PIL.TiffImagePlugin DEBUG    tag: ExifIFD (34665) - type: long (4) - value: b'$\x01\x00\x00'
+2023-03-06 10:26:31,625 PIL.TiffImagePlugin DEBUG    tag: GPSInfoIFD (34853) - type: long (4) - value: b'\x80\x03\x00\x00'
+2023-03-06 10:26:32,472 django.request ERROR    Internal Server Error: /rest-api/clients/C0019/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/generics.py", line 255, in put
+    return self.update(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/mixins.py", line 68, in update
+    self.perform_update(serializer)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/mixins.py", line 78, in perform_update
+    serializer.save()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 207, in save
+    self.instance = self.update(self.instance, validated_data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 1006, in update
+    instance.save()
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py", line 164, in save
+    return super().save(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 739, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 776, in save_base
+    updated = self._save_table(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 855, in _save_table
+    values = [(f, None, (getattr(self, f.attname) if raw else f.pre_save(self, False)))
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 855, in <listcomp>
+    values = [(f, None, (getattr(self, f.attname) if raw else f.pre_save(self, False)))
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/fields/files.py", line 300, in pre_save
+    if file and not file._committed:
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/PIL/Image.py", line 548, in __getattr__
+    raise AttributeError(name)
+AttributeError: _committed
+2023-03-06 10:26:36,290 django.request WARNING  Forbidden: /rest-api/clients/C0019/
+2023-03-06 10:26:36,700 django.request WARNING  Forbidden: /rest-api/clients/C0019/
+2023-03-06 10:28:22,114 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-06 10:28:24,751 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-06 10:28:32,023 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-06 10:28:34,311 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-06 10:29:08,832 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-06 10:29:11,211 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-06 10:29:15,898 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-06 10:29:17,607 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-06 10:29:23,895 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-06 10:29:26,194 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-06 10:29:29,563 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-06 10:29:31,936 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-06 10:29:35,130 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-06 10:29:37,552 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-06 10:29:53,475 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-06 10:29:56,093 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-06 10:29:59,197 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-06 10:30:01,637 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-06 10:30:10,343 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-06 10:30:12,944 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-06 10:30:24,551 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-06 10:30:26,836 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-06 10:30:32,806 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-06 10:30:35,067 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-06 10:30:56,957 PIL.TiffImagePlugin DEBUG    tag: ImageWidth (256) - type: short (3) - value: b'\xb0\x04'
+2023-03-06 10:30:56,957 PIL.TiffImagePlugin DEBUG    tag: ImageLength (257) - type: short (3) - value: b'\x08\x07'
+2023-03-06 10:30:56,958 PIL.TiffImagePlugin DEBUG    tag: BitsPerSample (258) - type: short (3) Tag Location: 46 - Data Location: 194 - value: b'\x08\x00\x08\x00\x08\x00'
+2023-03-06 10:30:56,958 PIL.TiffImagePlugin DEBUG    tag: PhotometricInterpretation (262) - type: short (3) - value: b'\x02\x00'
+2023-03-06 10:30:56,959 PIL.TiffImagePlugin DEBUG    tag: Make (271) - type: string (2) Tag Location: 70 - Data Location: 200 - value: b'Canon\x00'
+2023-03-06 10:30:56,959 PIL.TiffImagePlugin DEBUG    tag: Model (272) - type: string (2) Tag Location: 82 - Data Location: 206 - value: b'Canon EOS 5DS R\x00'
+2023-03-06 10:30:56,960 PIL.TiffImagePlugin DEBUG    tag: Orientation (274) - type: short (3) - value: b'\x01\x00'
+2023-03-06 10:30:56,961 PIL.TiffImagePlugin DEBUG    tag: SamplesPerPixel (277) - type: short (3) - value: b'\x03\x00'
+2023-03-06 10:30:56,961 PIL.TiffImagePlugin DEBUG    tag: XResolution (282) - type: rational (5) Tag Location: 118 - Data Location: 222 - value: b'`\x00\x00\x00\x01\x00\x00\x00'
+2023-03-06 10:30:56,962 PIL.TiffImagePlugin DEBUG    tag: YResolution (283) - type: rational (5) Tag Location: 130 - Data Location: 230 - value: b'`\x00\x00\x00\x01\x00\x00\x00'
+2023-03-06 10:30:56,962 PIL.TiffImagePlugin DEBUG    tag: ResolutionUnit (296) - type: short (3) - value: b'\x02\x00'
+2023-03-06 10:30:56,962 PIL.TiffImagePlugin DEBUG    tag: Software (305) - type: string (2) Tag Location: 154 - Data Location: 238 - value: <table: 33 bytes>
+2023-03-06 10:30:56,963 PIL.TiffImagePlugin DEBUG    tag: DateTime (306) - type: string (2) Tag Location: 166 - Data Location: 271 - value: b'2021:03:10 16:00:27\x00'
+2023-03-06 10:30:56,963 PIL.TiffImagePlugin DEBUG    tag: ExifIFD (34665) - type: long (4) - value: b'$\x01\x00\x00'
+2023-03-06 10:30:56,964 PIL.TiffImagePlugin DEBUG    tag: GPSInfoIFD (34853) - type: long (4) - value: b'\x80\x03\x00\x00'
+2023-03-06 10:30:56,964 PIL.Image    DEBUG    Importing BlpImagePlugin
+2023-03-06 10:30:56,967 PIL.Image    DEBUG    Importing BmpImagePlugin
+2023-03-06 10:30:56,967 PIL.Image    DEBUG    Importing BufrStubImagePlugin
+2023-03-06 10:30:56,968 PIL.Image    DEBUG    Importing CurImagePlugin
+2023-03-06 10:30:56,970 PIL.Image    DEBUG    Importing DcxImagePlugin
+2023-03-06 10:30:56,972 PIL.Image    DEBUG    Importing DdsImagePlugin
+2023-03-06 10:30:56,973 PIL.Image    DEBUG    Importing EpsImagePlugin
+2023-03-06 10:30:56,975 PIL.Image    DEBUG    Importing FitsImagePlugin
+2023-03-06 10:30:56,976 PIL.Image    DEBUG    Importing FitsStubImagePlugin
+2023-03-06 10:30:56,977 PIL.Image    DEBUG    Importing FliImagePlugin
+2023-03-06 10:30:56,979 PIL.Image    DEBUG    Importing FpxImagePlugin
+2023-03-06 10:30:56,981 PIL.Image    DEBUG    Image: failed to import FpxImagePlugin: No module named 'olefile'
+2023-03-06 10:30:56,981 PIL.Image    DEBUG    Importing FtexImagePlugin
+2023-03-06 10:30:56,982 PIL.Image    DEBUG    Importing GbrImagePlugin
+2023-03-06 10:30:56,984 PIL.Image    DEBUG    Importing GifImagePlugin
+2023-03-06 10:30:56,984 PIL.Image    DEBUG    Importing GribStubImagePlugin
+2023-03-06 10:30:56,985 PIL.Image    DEBUG    Importing Hdf5StubImagePlugin
+2023-03-06 10:30:56,987 PIL.Image    DEBUG    Importing IcnsImagePlugin
+2023-03-06 10:30:56,990 PIL.Image    DEBUG    Importing IcoImagePlugin
+2023-03-06 10:30:56,992 PIL.Image    DEBUG    Importing ImImagePlugin
+2023-03-06 10:30:56,993 PIL.Image    DEBUG    Importing ImtImagePlugin
+2023-03-06 10:30:56,995 PIL.Image    DEBUG    Importing IptcImagePlugin
+2023-03-06 10:30:56,996 PIL.Image    DEBUG    Importing JpegImagePlugin
+2023-03-06 10:30:56,997 PIL.Image    DEBUG    Importing Jpeg2KImagePlugin
+2023-03-06 10:30:56,997 PIL.Image    DEBUG    Importing McIdasImagePlugin
+2023-03-06 10:30:56,999 PIL.Image    DEBUG    Importing MicImagePlugin
+2023-03-06 10:30:57,001 PIL.Image    DEBUG    Image: failed to import MicImagePlugin: No module named 'olefile'
+2023-03-06 10:30:57,001 PIL.Image    DEBUG    Importing MpegImagePlugin
+2023-03-06 10:30:57,003 PIL.Image    DEBUG    Importing MpoImagePlugin
+2023-03-06 10:30:57,004 PIL.Image    DEBUG    Importing MspImagePlugin
+2023-03-06 10:30:57,006 PIL.Image    DEBUG    Importing PalmImagePlugin
+2023-03-06 10:30:57,008 PIL.Image    DEBUG    Importing PcdImagePlugin
+2023-03-06 10:30:57,009 PIL.Image    DEBUG    Importing PcxImagePlugin
+2023-03-06 10:30:57,010 PIL.Image    DEBUG    Importing PdfImagePlugin
+2023-03-06 10:30:57,019 PIL.Image    DEBUG    Importing PixarImagePlugin
+2023-03-06 10:30:57,020 PIL.Image    DEBUG    Importing PngImagePlugin
+2023-03-06 10:30:57,020 PIL.Image    DEBUG    Importing PpmImagePlugin
+2023-03-06 10:30:57,021 PIL.Image    DEBUG    Importing PsdImagePlugin
+2023-03-06 10:30:57,022 PIL.Image    DEBUG    Importing SgiImagePlugin
+2023-03-06 10:30:57,024 PIL.Image    DEBUG    Importing SpiderImagePlugin
+2023-03-06 10:30:57,025 PIL.Image    DEBUG    Importing SunImagePlugin
+2023-03-06 10:30:57,026 PIL.Image    DEBUG    Importing TgaImagePlugin
+2023-03-06 10:30:57,028 PIL.Image    DEBUG    Importing TiffImagePlugin
+2023-03-06 10:30:57,028 PIL.Image    DEBUG    Importing WebPImagePlugin
+2023-03-06 10:30:57,032 PIL.Image    DEBUG    Importing WmfImagePlugin
+2023-03-06 10:30:57,033 PIL.Image    DEBUG    Importing XbmImagePlugin
+2023-03-06 10:30:57,036 PIL.Image    DEBUG    Importing XpmImagePlugin
+2023-03-06 10:30:57,037 PIL.Image    DEBUG    Importing XVThumbImagePlugin
+2023-03-06 10:30:57,181 PIL.TiffImagePlugin DEBUG    tag: ImageWidth (256) - type: short (3) - value: b'\xb0\x04'
+2023-03-06 10:30:57,182 PIL.TiffImagePlugin DEBUG    tag: ImageLength (257) - type: short (3) - value: b'\x08\x07'
+2023-03-06 10:30:57,182 PIL.TiffImagePlugin DEBUG    tag: BitsPerSample (258) - type: short (3) Tag Location: 46 - Data Location: 194 - value: b'\x08\x00\x08\x00\x08\x00'
+2023-03-06 10:30:57,183 PIL.TiffImagePlugin DEBUG    tag: PhotometricInterpretation (262) - type: short (3) - value: b'\x02\x00'
+2023-03-06 10:30:57,184 PIL.TiffImagePlugin DEBUG    tag: Make (271) - type: string (2) Tag Location: 70 - Data Location: 200 - value: b'Canon\x00'
+2023-03-06 10:30:57,184 PIL.TiffImagePlugin DEBUG    tag: Model (272) - type: string (2) Tag Location: 82 - Data Location: 206 - value: b'Canon EOS 5DS R\x00'
+2023-03-06 10:30:57,185 PIL.TiffImagePlugin DEBUG    tag: Orientation (274) - type: short (3) - value: b'\x01\x00'
+2023-03-06 10:30:57,185 PIL.TiffImagePlugin DEBUG    tag: SamplesPerPixel (277) - type: short (3) - value: b'\x03\x00'
+2023-03-06 10:30:57,185 PIL.TiffImagePlugin DEBUG    tag: XResolution (282) - type: rational (5) Tag Location: 118 - Data Location: 222 - value: b'`\x00\x00\x00\x01\x00\x00\x00'
+2023-03-06 10:30:57,186 PIL.TiffImagePlugin DEBUG    tag: YResolution (283) - type: rational (5) Tag Location: 130 - Data Location: 230 - value: b'`\x00\x00\x00\x01\x00\x00\x00'
+2023-03-06 10:30:57,187 PIL.TiffImagePlugin DEBUG    tag: ResolutionUnit (296) - type: short (3) - value: b'\x02\x00'
+2023-03-06 10:30:57,187 PIL.TiffImagePlugin DEBUG    tag: Software (305) - type: string (2) Tag Location: 154 - Data Location: 238 - value: <table: 33 bytes>
+2023-03-06 10:30:57,187 PIL.TiffImagePlugin DEBUG    tag: DateTime (306) - type: string (2) Tag Location: 166 - Data Location: 271 - value: b'2021:03:10 16:00:27\x00'
+2023-03-06 10:30:57,188 PIL.TiffImagePlugin DEBUG    tag: ExifIFD (34665) - type: long (4) - value: b'$\x01\x00\x00'
+2023-03-06 10:30:57,188 PIL.TiffImagePlugin DEBUG    tag: GPSInfoIFD (34853) - type: long (4) - value: b'\x80\x03\x00\x00'
+2023-03-06 10:32:26,359 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-06 10:32:28,724 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-06 10:34:51,912 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-06 10:34:54,607 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-06 10:37:44,693 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/config/urls.py changed, reloading.
+2023-03-06 10:37:47,089 django.utils.autoreload INFO     Watching for file changes with StatReloader

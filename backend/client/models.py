@@ -15,6 +15,11 @@ from django.db import transaction
 from django.utils import timezone
 from .tasks import register_user
 
+
+from io import BytesIO
+from PIL import Image
+from django.core.files.base import ContentFile
+
 # Create your models here.
 class AbonnementManager(models.Manager):
     def get_abonnement(self, client_id):
@@ -105,9 +110,42 @@ class Client(models.Model):
     def __str__(self):
         return str(self.id)
 
+    def generate_thumbnail(self, picture, picture_name):
+        THUMBNAIL_SIZE = (250, 360)
+        image = Image.open(picture)
+        image = image.convert("RGB")
+        image.thumbnail(THUMBNAIL_SIZE, Image.ANTIALIAS)
+        temp_thumb = BytesIO()
+        image.save(temp_thumb, "JPEG")
+        temp_thumb.seek(0)
+        # set save=False, otherwise it will run in an infinite loop
+        self.picture.save(self.picture.name,ContentFile(temp_thumb.read()),save=False)
+        print('DONE')
+        temp_thumb.close()
 
+    # def generate_thumbnail(self, picture, picture_name):
+    #     from django.core.files import File
+    #     THUMBNAIL_SIZE = (250, 360)
+    #     image = Image.open(picture)
+    #     image = image.convert("RGB")
+    #     image.thumbnail(THUMBNAIL_SIZE, Image.ANTIALIAS)
+    #     thumb_io = BytesIO()
+    #     temp_thumb.seek(0)
+    #     image.save(temp_thumb, format='JPEG')
+    #     thumb_file = File(thumb_io, name=picture_name)
+    #     insstance.thumbnail.save(instance.fichier.name,ContentFile(temp_thumb.read()),save=False)
+    #     temp_thumb.close()
+    #     self.picture.save(picture_name, thumb_file, save=False)
+    #     print('IMAGE RESIZED')
+    #     return image
+
+        # set save=False, otherwise it will run in an infinite loop
+        # picture.save(instance.picture.name,ContentFile(temp_thumb.read()),save=False)
+    
+    
     def save(self, *args, **kwargs):
         if self._old_picture != self.picture:
+            self.generate_thumbnail(self.picture, self.picture.name)
             print('yess changed picturename', self.picture.name)
             print('yess changed picture url', self.picture.url)
             register_user.delay(self.last_name, self.id, self.picture.name)

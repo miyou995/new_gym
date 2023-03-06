@@ -353,7 +353,7 @@ useEffect(() => {
       <div className="container-fluid" style={{padding: '0px'}}>
 
       <div className="row d-flex no-gutters ">
-      <div className='col-6 col-md-2'>
+      <div className='col-6 col-md-4 col-xl-3'>
           <Card >
             <Card.Header style={{padding :'10px 30px'}}>
               <Card.Title>
@@ -382,7 +382,7 @@ useEffect(() => {
             </Card.Body>
           </Card>
         </div>
-        <div className='col-6 col-md-4'>
+        <div className='col-6 col-md-8 col-xl-5'>
           <Card >
             <Card.Header style={{padding :'10px 30px'}}>
               <Card.Title>
@@ -418,9 +418,9 @@ useEffect(() => {
                       }}>
                       <td className="text-left">{abonnement.type_abonnement_name}</td>
                       <td>{abonnement.is_time_volume ? abonnement.left_minutes : abonnement.is_free_access ? 'Forfait': abonnement.presence_quantity }</td>
-                      <td className="text-right">{abonnement.start_date}</td>
-                      <td className="text-right">{abonnement.end_date}</td>
-                      <td className="text-right">{abonnement.price}</td>
+                      <td className="text-left">{abonnement.start_date}</td>
+                      <td className="text-left">{abonnement.end_date}</td>
+                      <td className="text-left">{abonnement.price}</td>
                       <td className="text-left">{abonnement.reste}</td>
                     </tr>
                 ))}
@@ -429,7 +429,7 @@ useEffect(() => {
             </Card.Body>
           </Card>
           </div>
-          <div className='col-6 col-md-3'>
+          <div className='col-6 col-md-3 col-lg-6 col-xl-4'>
           <Card >
             <Card.Header style={{padding :'10px 30px'}}>
               <Card.Title >
@@ -471,7 +471,7 @@ useEffect(() => {
             </Card.Body>
           </Card>
           </div>
-          <div className='col-6 col-md-3'>
+          <div className='col-6 col-md-3 col-lg-6'>
             <Card >
               <Card.Header style={{padding :'10px 30px'}}>
                 <Card.Title >
@@ -520,7 +520,6 @@ useEffect(() => {
           paiementNotesInfo: paiementNotesInfo,
           paiementABCName : paiementABCName,
         }} />
-        
         <ABCDetailModal show={abonDetailModal} onShowShange={setAbonDetailModal} abonnementData={{
           clientId: clientId, 
           abonClientID: abonClientID,

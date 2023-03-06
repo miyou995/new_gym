@@ -328,6 +328,8 @@ class FaceControl:
             print("Open the door fail. " + self.sdk.GetLastErrorMessage())
             return False
         return True
+    
+    
     def subscibe_user(self, user_name, user_id, picture_path):
         stuInParam = NET_IN_ACCESS_USER_SERVICE_INSERT()
         stuInParam.dwSize = sizeof(NET_IN_ACCESS_USER_SERVICE_INSERT)
