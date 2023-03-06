@@ -143,10 +143,13 @@ sudo nano /etc/nginx/sites-available/stock
 
 server {
     listen 80;
-    server_name 192.168.0.250;
+    server_name 192.168.1.250;
     location = /favicon.ico { access_log off; log_not_found off; }
     
     location /media/ {
+        root /home/taki/octogym/new_gym/backend;    
+    }
+    location /build/ {
         root /home/taki/octogym/new_gym/backend;    
     }
     location /assets/ {

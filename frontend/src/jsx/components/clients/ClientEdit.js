@@ -264,11 +264,11 @@ const getSelectedMaladies = () => {
                 <form onSubmit={HandleSubmit}>
                   <div className="form-row">
                     <div className="form-group  col-md-4 col-xl-3">
-                      <label>Carte (uniquement des chiffres) </label>
+                      <label>Carte (uniquement des chiffres) *</label>
                       <input type="text" name="last_name" className="form-control"value={carte}  onChange={e => setCarte(e.target.value)}/>
                     </div>
                     <div className="form-group  col-md-4 col-xl-3">
-                      <label>Nom </label>
+                      <label>Nom *</label>
                       <input type="text" name="last_name" className="form-control"value={lastName}  onChange={e => setLastName(e.target.value)}/>
                     </div>
                     <div className="form-group col-md-4 col-xl-3">
@@ -288,7 +288,7 @@ const getSelectedMaladies = () => {
                       <input type="text"name="adress" className="form-control"value={adress} onChange={e => setAdress(e.target.value)}/>
                     </div>
                     <div className="form-group col-md-4 col-xl-3">
-                      <label>Date de naissance </label>
+                      <label>Date de naissance * </label>
                       <input type="date" name="birth_date" max="2099-01-01"  className="form-control" value={birthDate}onChange={e => setBirthDate(e.target.value)}/>
                     </div>
                     <div className="form-group col-md-4 col-xl-3">
@@ -300,7 +300,7 @@ const getSelectedMaladies = () => {
                       <input type="text" name="phone" className="form-control" value={phone}onChange={e => setPhone(e.target.value)} />
                     </div>
                     <div className="form-group col-md-2 col-xl-2">
-                      <label>Civilité</label>
+                      <label>Civilité *</label>
                       <select defaultValue={"option"} name="civility"  className="form-control" value={civility}onChange={e => setCivility(e.target.value)}>
                       <option value="option" disabled>Cliquez pour choisir</option>
                         <option value="MLL" >Mlle</option>
@@ -309,7 +309,7 @@ const getSelectedMaladies = () => {
                       </select>
                     </div>
                     <div className="form-group col-md-2">
-                      <label>Groupe sanguin</label>
+                      <label>Groupe sanguin  *</label>
                       <select name="blood" className="form-control" value={blood} onChange={e => setBlood(e.target.value)}>
                       <option value="option" disabled>Cliquez pour choisir</option>
                         <option value='A-' >A-</option>
@@ -325,6 +325,7 @@ const getSelectedMaladies = () => {
                     <div className="form-group col-md-4">
                     <label>Maladies</label>
                     <Autocomplete
+                      className="form-group"
                       style={{backgroundColor:'#ffffff'}}
                       multiple
                       onChange={((event, value) =>  
@@ -336,7 +337,7 @@ const getSelectedMaladies = () => {
                       value={selectedMaladies}
                       options={maladies}
                       getOptionLabel={(option) => (option['name'])}
-                      renderInput={(params) => (<TextField {...params} name="maladies" variant="outlined" fullWidth />)} />
+                      renderInput={(params) => (<TextField {...params}  className="form-group" name="maladies" variant="outlined" fullWidth />)} />
                     </div>
                   </div>
                   <div className="form-row mb-4">

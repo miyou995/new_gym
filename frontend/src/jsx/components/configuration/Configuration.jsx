@@ -245,8 +245,8 @@ const Configuration = (props) => {
                 {/* <Button onClick={ closeTheGym()}>fermé La salle</Button> */}
                 </div>
             </div>
-            <div className="row no-gutters">
-                <div className="col-lg-2 col-sm-6">
+            <div className="row r">
+                <div className="col-sm-12 col-md-6 col-xl-4 ">
                     <div className="card">
                         <div className="card-header">
                             <h4 className="card-title">Planning</h4>
@@ -277,7 +277,7 @@ const Configuration = (props) => {
                         </div>
                     </div>
                 </div>
-                <div className="col-lg-2 col-sm-6">
+                <div className="col-sm-12 col-md-6 col-xl-4">
                     <div className="card">
                         <div className="card-header">
                             <h4 className="card-title">Salle</h4>
@@ -317,7 +317,7 @@ const Configuration = (props) => {
                     </div>
                 </div>
                 {/* type abonnement va au modal */}
-                <div className="col-xl-4 col-lg-4">
+                <div className="col-sm-12  col-lg-5 col-xl-4 ">
                     <div className="card">
                         <div className="card-header">
                             <h4 className="card-title">Activitées</h4>
@@ -354,7 +354,7 @@ const Configuration = (props) => {
                     </div>
                 </div>
                 {/* DEBUT MALADIES */}
-                <div className="col-xl-4 col-lg-4">
+                <div className="col-lg-4 col-xl-3 ">
                     <div className="card">
                         <div className="card-header">
                             <h4 className="card-title">Maladies</h4>
@@ -388,7 +388,7 @@ const Configuration = (props) => {
                 </div>
                 {/* FIN MALADIES */}
                  {/* DEBUT portes */}
-                 <div className="col-xl-4 col-lg-4">
+                 <div className="col-lg-3 col-xl-3 ">
                     <div className="card">
                         <div className="card-header">
                             <h4 className="card-title">Portes</h4>
@@ -429,7 +429,7 @@ const Configuration = (props) => {
                     </div>
                 </div> 
                 {/* FIN portes */}
-                <div className=" col-lg-6 config-tableaux">
+                <div className="col-sm-12 col-xl-6 config-tableaux">
                     <div className="card">
                         <div className="card-header">
                             <h4  className="card-title ajouter">Type D'abonnement</h4>
@@ -443,7 +443,7 @@ const Configuration = (props) => {
                                             <tr>
                                                 <th className="text-left">Abonnement</th>
                                                 <th>Durée <br /> <small>(seances/ heures)</small></th>
-                                                <th className="text-right">Nombre d'activités'</th>
+                                                <th className="text-right">Nombre d'activités</th>
                                                 <th >Inscrits</th>
                                             </tr>
                                         </thead>
