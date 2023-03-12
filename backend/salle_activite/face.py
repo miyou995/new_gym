@@ -126,10 +126,12 @@ class FaceControl:
                 print("p_buffer szUserID:", p_buffer.szUserID)
                 print("p_buffer szCardNo:", p_buffer.szCardNo)
                 user_id = p_buffer.szUserID
+                print('THE USER ID 2', user_id)
+                print('THE USER ID DECODED', user_id.decode("utf-8"))
                 door = self.ip
-                user_data = self.get_authorization(user_id,door)
+                user_data = self.get_authorization(user_id.decode("utf-8"),door)
                 if user_data : 
-                    self.open_door()
+                    self.access_operate()
                 print('user_data => ', user_data)
 
 

@@ -11403,3 +11403,1339 @@ AttributeError: _committed
 2023-03-06 10:34:54,607 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2023-03-06 10:37:44,693 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/config/urls.py changed, reloading.
 2023-03-06 10:37:47,089 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-07 10:49:23,309 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-07 10:49:34,274 celery.bootsteps DEBUG    | Worker: Preparing bootsteps.
+2023-03-07 10:49:34,308 celery.bootsteps DEBUG    | Worker: Building graph...
+2023-03-07 10:49:34,309 celery.bootsteps DEBUG    | Worker: New boot order: {StateDB, Timer, Hub, Pool, Autoscaler, Beat, Consumer}
+2023-03-07 10:49:34,468 celery.bootsteps DEBUG    | Consumer: Preparing bootsteps.
+2023-03-07 10:49:34,469 celery.bootsteps DEBUG    | Consumer: Building graph...
+2023-03-07 10:49:34,625 celery.bootsteps DEBUG    | Consumer: New boot order: {Connection, Events, Mingle, Tasks, Control, Agent, Heart, Gossip, event loop}
+2023-03-07 10:49:34,715 celery.bootsteps DEBUG    | Worker: Starting Hub
+2023-03-07 10:49:34,716 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-07 10:49:34,717 celery.bootsteps DEBUG    | Worker: Starting Pool
+2023-03-07 10:49:35,073 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-07 10:49:35,074 celery.bootsteps DEBUG    | Worker: Starting Consumer
+2023-03-07 10:49:35,075 celery.bootsteps DEBUG    | Consumer: Starting Connection
+2023-03-07 10:49:35,111 celery.worker.consumer.connection INFO     Connected to redis://localhost:6379//
+2023-03-07 10:49:35,112 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-07 10:49:35,113 celery.bootsteps DEBUG    | Consumer: Starting Events
+2023-03-07 10:49:35,125 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-07 10:49:35,126 celery.bootsteps DEBUG    | Consumer: Starting Mingle
+2023-03-07 10:49:35,127 celery.worker.consumer.mingle INFO     mingle: searching for neighbors
+2023-03-07 10:49:36,157 celery.worker.consumer.mingle INFO     mingle: all alone
+2023-03-07 10:49:36,158 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-07 10:49:36,159 celery.bootsteps DEBUG    | Consumer: Starting Tasks
+2023-03-07 10:49:36,188 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-07 10:49:36,189 celery.bootsteps DEBUG    | Consumer: Starting Control
+2023-03-07 10:49:36,200 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-07 10:49:36,208 celery.bootsteps DEBUG    | Consumer: Starting Heart
+2023-03-07 10:49:36,213 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-07 10:49:36,215 celery.bootsteps DEBUG    | Consumer: Starting Gossip
+2023-03-07 10:49:36,225 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-07 10:49:36,225 celery.bootsteps DEBUG    | Consumer: Starting event loop
+2023-03-07 10:49:36,227 celery.bootsteps DEBUG    | Worker: Hub.register Pool...
+2023-03-07 10:49:36,247 celery.apps.worker INFO     celery@DESKTOP-ACIBNGT ready.
+2023-03-07 10:49:36,247 kombu.common DEBUG    basic.qos: prefetch_count->16
+2023-03-07 10:54:40,464 django.request WARNING  Bad Request: /rest-api/salle-activite/1/
+2023-03-07 10:54:43,740 django.request WARNING  Bad Request: /rest-api/salle-activite/1/
+2023-03-07 10:55:28,417 django.request WARNING  Not Found: /rest-api/clients/undefined/
+2023-03-07 10:55:48,878 django.request WARNING  Not Found: /rest-api/clients/undefined/
+2023-03-07 10:56:00,567 django.request WARNING  Not Found: /rest-api/clients/undefined/
+2023-03-07 10:56:31,567 PIL.TiffImagePlugin DEBUG    tag: Orientation (274) - type: short (3) - value: b'\x00\x01'
+2023-03-07 10:56:31,568 PIL.TiffImagePlugin DEBUG    tag: XResolution (282) - type: rational (5) Tag Location: 34 - Data Location: 98 - value: b"\x00\n\xfc\x80\x00\x00'\x10"
+2023-03-07 10:56:31,569 PIL.TiffImagePlugin DEBUG    tag: YResolution (283) - type: rational (5) Tag Location: 46 - Data Location: 106 - value: b"\x00\n\xfc\x80\x00\x00'\x10"
+2023-03-07 10:56:31,570 PIL.TiffImagePlugin DEBUG    tag: ResolutionUnit (296) - type: short (3) - value: b'\x00\x02'
+2023-03-07 10:56:31,571 PIL.TiffImagePlugin DEBUG    tag: Software (305) - type: string (2) Tag Location: 70 - Data Location: 114 - value: b'Adobe Photoshop CS6 (Macintosh)\x00'
+2023-03-07 10:56:31,572 PIL.TiffImagePlugin DEBUG    tag: DateTime (306) - type: string (2) Tag Location: 82 - Data Location: 146 - value: b'2014:06:18 20:59:59\x00'
+2023-03-07 10:56:31,573 PIL.TiffImagePlugin DEBUG    tag: ExifIFD (34665) - type: long (4) - value: b'\x00\x00\x00\xa8'
+2023-03-07 10:56:31,574 PIL.Image    DEBUG    Importing BlpImagePlugin
+2023-03-07 10:56:31,592 PIL.Image    DEBUG    Importing BmpImagePlugin
+2023-03-07 10:56:31,593 PIL.Image    DEBUG    Importing BufrStubImagePlugin
+2023-03-07 10:56:31,606 PIL.Image    DEBUG    Importing CurImagePlugin
+2023-03-07 10:56:31,618 PIL.Image    DEBUG    Importing DcxImagePlugin
+2023-03-07 10:56:31,641 PIL.Image    DEBUG    Importing DdsImagePlugin
+2023-03-07 10:56:31,653 PIL.Image    DEBUG    Importing EpsImagePlugin
+2023-03-07 10:56:31,665 PIL.Image    DEBUG    Importing FitsImagePlugin
+2023-03-07 10:56:31,676 PIL.Image    DEBUG    Importing FitsStubImagePlugin
+2023-03-07 10:56:31,690 PIL.Image    DEBUG    Importing FliImagePlugin
+2023-03-07 10:56:31,700 PIL.Image    DEBUG    Importing FpxImagePlugin
+2023-03-07 10:56:31,712 PIL.Image    DEBUG    Image: failed to import FpxImagePlugin: No module named 'olefile'
+2023-03-07 10:56:31,714 PIL.Image    DEBUG    Importing FtexImagePlugin
+2023-03-07 10:56:31,726 PIL.Image    DEBUG    Importing GbrImagePlugin
+2023-03-07 10:56:31,739 PIL.Image    DEBUG    Importing GifImagePlugin
+2023-03-07 10:56:31,740 PIL.Image    DEBUG    Importing GribStubImagePlugin
+2023-03-07 10:56:31,750 PIL.Image    DEBUG    Importing Hdf5StubImagePlugin
+2023-03-07 10:56:31,760 PIL.Image    DEBUG    Importing IcnsImagePlugin
+2023-03-07 10:56:31,798 PIL.Image    DEBUG    Importing IcoImagePlugin
+2023-03-07 10:56:31,811 PIL.Image    DEBUG    Importing ImImagePlugin
+2023-03-07 10:56:31,825 PIL.Image    DEBUG    Importing ImtImagePlugin
+2023-03-07 10:56:31,839 PIL.Image    DEBUG    Importing IptcImagePlugin
+2023-03-07 10:56:31,852 PIL.Image    DEBUG    Importing JpegImagePlugin
+2023-03-07 10:56:31,853 PIL.Image    DEBUG    Importing Jpeg2KImagePlugin
+2023-03-07 10:56:31,855 PIL.Image    DEBUG    Importing McIdasImagePlugin
+2023-03-07 10:56:31,865 PIL.Image    DEBUG    Importing MicImagePlugin
+2023-03-07 10:56:31,877 PIL.Image    DEBUG    Image: failed to import MicImagePlugin: No module named 'olefile'
+2023-03-07 10:56:31,878 PIL.Image    DEBUG    Importing MpegImagePlugin
+2023-03-07 10:56:31,891 PIL.Image    DEBUG    Importing MpoImagePlugin
+2023-03-07 10:56:31,904 PIL.Image    DEBUG    Importing MspImagePlugin
+2023-03-07 10:56:31,913 PIL.Image    DEBUG    Importing PalmImagePlugin
+2023-03-07 10:56:31,929 PIL.Image    DEBUG    Importing PcdImagePlugin
+2023-03-07 10:56:31,940 PIL.Image    DEBUG    Importing PcxImagePlugin
+2023-03-07 10:56:31,940 PIL.Image    DEBUG    Importing PdfImagePlugin
+2023-03-07 10:56:31,972 PIL.Image    DEBUG    Importing PixarImagePlugin
+2023-03-07 10:56:31,982 PIL.Image    DEBUG    Importing PngImagePlugin
+2023-03-07 10:56:31,983 PIL.Image    DEBUG    Importing PpmImagePlugin
+2023-03-07 10:56:31,984 PIL.Image    DEBUG    Importing PsdImagePlugin
+2023-03-07 10:56:31,997 PIL.Image    DEBUG    Importing SgiImagePlugin
+2023-03-07 10:56:32,009 PIL.Image    DEBUG    Importing SpiderImagePlugin
+2023-03-07 10:56:32,022 PIL.Image    DEBUG    Importing SunImagePlugin
+2023-03-07 10:56:32,035 PIL.Image    DEBUG    Importing TgaImagePlugin
+2023-03-07 10:56:32,049 PIL.Image    DEBUG    Importing TiffImagePlugin
+2023-03-07 10:56:32,050 PIL.Image    DEBUG    Importing WebPImagePlugin
+2023-03-07 10:56:32,101 PIL.Image    DEBUG    Importing WmfImagePlugin
+2023-03-07 10:56:32,112 PIL.Image    DEBUG    Importing XbmImagePlugin
+2023-03-07 10:56:32,125 PIL.Image    DEBUG    Importing XpmImagePlugin
+2023-03-07 10:56:32,140 PIL.Image    DEBUG    Importing XVThumbImagePlugin
+2023-03-07 10:57:48,758 django.request WARNING  Not Found: /rest-api/clients/undefined/
+2023-03-07 10:58:07,345 celery.worker.strategy INFO     Received task: client.tasks.register_user[41ce87a9-b347-490c-96c6-403437ae68e2]  
+2023-03-07 10:58:07,346 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f66b3403550> (args:('client.tasks.register_user', '41ce87a9-b347-490c-96c6-403437ae68e2', {'lang': 'py', 'task': 'client.tasks.register_user', 'id': '41ce87a9-b347-490c-96c6-403437ae68e2', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '41ce87a9-b347-490c-96c6-403437ae68e2', 'parent_id': None, 'argsrepr': "('hello', 'C0002', 'photos/download.jpg')", 'kwargsrepr': '{}', 'origin': 'gen416@DESKTOP-ACIBNGT', 'reply_to': '707e1c41-ce25-3af2-a153-985da658cdcb', 'correlation_id': '41ce87a9-b347-490c-96c6-403437ae68e2', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': ['hello', 'C0002', 'photos/download.jpg'], 'kwargs': {}}, b'[["hello", "C0002", "photos/download.jpg"], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-07 10:58:07,350 celery.worker.request DEBUG    Task accepted: client.tasks.register_user[41ce87a9-b347-490c-96c6-403437ae68e2] pid:423
+2023-03-07 10:58:08,669 celery.app.trace ERROR    Task client.tasks.register_user[41ce87a9-b347-490c-96c6-403437ae68e2] raised unexpected: FileNotFoundError(2, 'No such file or directory')
+Traceback (most recent call last):
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/celery/app/trace.py", line 412, in trace_task
+    R = retval = fun(*args, **kwargs)
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/celery/app/trace.py", line 704, in __protected_call__
+    return self.run(*args, **kwargs)
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/backend/client/tasks.py", line 22, in register_user
+    face1.subscibe_user(user_name=user_name, user_id=user_id, picture_path=picture_path)
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/backend/client/face_sub.py", line 386, in subscibe_user
+    with open(image_path, 'rb') as face_pic:
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/backend/media/photos/photos/download.jpg'
+2023-03-07 11:00:44,411 PIL.TiffImagePlugin DEBUG    tag: Orientation (274) - type: short (3) - value: b'\x00\x01'
+2023-03-07 11:00:44,412 PIL.TiffImagePlugin DEBUG    tag: XResolution (282) - type: rational (5) Tag Location: 34 - Data Location: 98 - value: b"\x00\n\xfc\x80\x00\x00'\x10"
+2023-03-07 11:00:44,412 PIL.TiffImagePlugin DEBUG    tag: YResolution (283) - type: rational (5) Tag Location: 46 - Data Location: 106 - value: b"\x00\n\xfc\x80\x00\x00'\x10"
+2023-03-07 11:00:44,413 PIL.TiffImagePlugin DEBUG    tag: ResolutionUnit (296) - type: short (3) - value: b'\x00\x02'
+2023-03-07 11:00:44,414 PIL.TiffImagePlugin DEBUG    tag: Software (305) - type: string (2) Tag Location: 70 - Data Location: 114 - value: b'Adobe Photoshop CS6 (Macintosh)\x00'
+2023-03-07 11:00:44,414 PIL.TiffImagePlugin DEBUG    tag: DateTime (306) - type: string (2) Tag Location: 82 - Data Location: 146 - value: b'2014:06:18 20:59:59\x00'
+2023-03-07 11:00:44,415 PIL.TiffImagePlugin DEBUG    tag: ExifIFD (34665) - type: long (4) - value: b'\x00\x00\x00\xa8'
+2023-03-07 11:00:44,479 PIL.TiffImagePlugin DEBUG    tag: Orientation (274) - type: short (3) - value: b'\x00\x01'
+2023-03-07 11:00:44,480 PIL.TiffImagePlugin DEBUG    tag: XResolution (282) - type: rational (5) Tag Location: 34 - Data Location: 98 - value: b"\x00\n\xfc\x80\x00\x00'\x10"
+2023-03-07 11:00:44,481 PIL.TiffImagePlugin DEBUG    tag: YResolution (283) - type: rational (5) Tag Location: 46 - Data Location: 106 - value: b"\x00\n\xfc\x80\x00\x00'\x10"
+2023-03-07 11:00:44,482 PIL.TiffImagePlugin DEBUG    tag: ResolutionUnit (296) - type: short (3) - value: b'\x00\x02'
+2023-03-07 11:00:44,483 PIL.TiffImagePlugin DEBUG    tag: Software (305) - type: string (2) Tag Location: 70 - Data Location: 114 - value: b'Adobe Photoshop CS6 (Macintosh)\x00'
+2023-03-07 11:00:44,484 PIL.TiffImagePlugin DEBUG    tag: DateTime (306) - type: string (2) Tag Location: 82 - Data Location: 146 - value: b'2014:06:18 20:59:59\x00'
+2023-03-07 11:00:44,485 PIL.TiffImagePlugin DEBUG    tag: ExifIFD (34665) - type: long (4) - value: b'\x00\x00\x00\xa8'
+2023-03-07 11:00:44,511 celery.worker.strategy INFO     Received task: client.tasks.register_user[61910be8-d22b-4dfd-a99e-5f9a0849ba14]  
+2023-03-07 11:00:44,512 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f66b3403550> (args:('client.tasks.register_user', '61910be8-d22b-4dfd-a99e-5f9a0849ba14', {'lang': 'py', 'task': 'client.tasks.register_user', 'id': '61910be8-d22b-4dfd-a99e-5f9a0849ba14', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '61910be8-d22b-4dfd-a99e-5f9a0849ba14', 'parent_id': None, 'argsrepr': "('hello', 'C0002', 'photos/Templeton_Peck_8NrgYuH.jpg')", 'kwargsrepr': '{}', 'origin': 'gen416@DESKTOP-ACIBNGT', 'reply_to': '707e1c41-ce25-3af2-a153-985da658cdcb', 'correlation_id': '61910be8-d22b-4dfd-a99e-5f9a0849ba14', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': ['hello', 'C0002', 'photos/Templeton_Peck_8NrgYuH.jpg'], 'kwargs': {}}, b'[["hello", "C0002", "photos/Templeton_Peck_8NrgYuH.jpg"], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-07 11:00:44,514 celery.worker.request DEBUG    Task accepted: client.tasks.register_user[61910be8-d22b-4dfd-a99e-5f9a0849ba14] pid:423
+2023-03-07 11:00:45,826 celery.app.trace ERROR    Task client.tasks.register_user[61910be8-d22b-4dfd-a99e-5f9a0849ba14] raised unexpected: FileNotFoundError(2, 'No such file or directory')
+Traceback (most recent call last):
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/celery/app/trace.py", line 412, in trace_task
+    R = retval = fun(*args, **kwargs)
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/celery/app/trace.py", line 704, in __protected_call__
+    return self.run(*args, **kwargs)
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/backend/client/tasks.py", line 22, in register_user
+    face1.subscibe_user(user_name=user_name, user_id=user_id, picture_path=picture_path)
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/backend/client/face_sub.py", line 386, in subscibe_user
+    with open(image_path, 'rb') as face_pic:
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/backend/media/photos/photos/Templeton_Peck_8NrgYuH.jpg'
+2023-03-07 11:03:57,776 django.utils.autoreload INFO     /mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/backend/client/models.py changed, reloading.
+2023-03-07 11:04:00,351 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-07 11:04:09,521 django.request WARNING  Not Found: /rest-api/clients/undefined/
+2023-03-07 11:04:13,244 django.request WARNING  Not Found: /rest-api/clients/undefined/
+2023-03-07 11:04:29,366 PIL.Image    DEBUG    Importing BlpImagePlugin
+2023-03-07 11:04:29,368 PIL.Image    DEBUG    Importing BmpImagePlugin
+2023-03-07 11:04:29,369 PIL.Image    DEBUG    Importing BufrStubImagePlugin
+2023-03-07 11:04:29,371 PIL.Image    DEBUG    Importing CurImagePlugin
+2023-03-07 11:04:29,373 PIL.Image    DEBUG    Importing DcxImagePlugin
+2023-03-07 11:04:29,378 PIL.Image    DEBUG    Importing DdsImagePlugin
+2023-03-07 11:04:29,379 PIL.Image    DEBUG    Importing EpsImagePlugin
+2023-03-07 11:04:29,381 PIL.Image    DEBUG    Importing FitsImagePlugin
+2023-03-07 11:04:29,383 PIL.Image    DEBUG    Importing FitsStubImagePlugin
+2023-03-07 11:04:29,385 PIL.Image    DEBUG    Importing FliImagePlugin
+2023-03-07 11:04:29,386 PIL.Image    DEBUG    Importing FpxImagePlugin
+2023-03-07 11:04:29,388 PIL.Image    DEBUG    Image: failed to import FpxImagePlugin: No module named 'olefile'
+2023-03-07 11:04:29,389 PIL.Image    DEBUG    Importing FtexImagePlugin
+2023-03-07 11:04:29,392 PIL.Image    DEBUG    Importing GbrImagePlugin
+2023-03-07 11:04:29,394 PIL.Image    DEBUG    Importing GifImagePlugin
+2023-03-07 11:04:29,395 PIL.Image    DEBUG    Importing GribStubImagePlugin
+2023-03-07 11:04:29,397 PIL.Image    DEBUG    Importing Hdf5StubImagePlugin
+2023-03-07 11:04:29,398 PIL.Image    DEBUG    Importing IcnsImagePlugin
+2023-03-07 11:04:29,402 PIL.Image    DEBUG    Importing IcoImagePlugin
+2023-03-07 11:04:29,403 PIL.Image    DEBUG    Importing ImImagePlugin
+2023-03-07 11:04:29,406 PIL.Image    DEBUG    Importing ImtImagePlugin
+2023-03-07 11:04:29,408 PIL.Image    DEBUG    Importing IptcImagePlugin
+2023-03-07 11:04:29,410 PIL.Image    DEBUG    Importing JpegImagePlugin
+2023-03-07 11:04:29,411 PIL.Image    DEBUG    Importing Jpeg2KImagePlugin
+2023-03-07 11:04:29,411 PIL.Image    DEBUG    Importing McIdasImagePlugin
+2023-03-07 11:04:29,413 PIL.Image    DEBUG    Importing MicImagePlugin
+2023-03-07 11:04:29,415 PIL.Image    DEBUG    Image: failed to import MicImagePlugin: No module named 'olefile'
+2023-03-07 11:04:29,416 PIL.Image    DEBUG    Importing MpegImagePlugin
+2023-03-07 11:04:29,418 PIL.Image    DEBUG    Importing MpoImagePlugin
+2023-03-07 11:04:29,420 PIL.Image    DEBUG    Importing MspImagePlugin
+2023-03-07 11:04:29,422 PIL.Image    DEBUG    Importing PalmImagePlugin
+2023-03-07 11:04:29,425 PIL.Image    DEBUG    Importing PcdImagePlugin
+2023-03-07 11:04:29,427 PIL.Image    DEBUG    Importing PcxImagePlugin
+2023-03-07 11:04:29,427 PIL.Image    DEBUG    Importing PdfImagePlugin
+2023-03-07 11:04:29,436 PIL.Image    DEBUG    Importing PixarImagePlugin
+2023-03-07 11:04:29,438 PIL.Image    DEBUG    Importing PngImagePlugin
+2023-03-07 11:04:29,438 PIL.Image    DEBUG    Importing PpmImagePlugin
+2023-03-07 11:04:29,439 PIL.Image    DEBUG    Importing PsdImagePlugin
+2023-03-07 11:04:29,441 PIL.Image    DEBUG    Importing SgiImagePlugin
+2023-03-07 11:04:29,443 PIL.Image    DEBUG    Importing SpiderImagePlugin
+2023-03-07 11:04:29,444 PIL.Image    DEBUG    Importing SunImagePlugin
+2023-03-07 11:04:29,446 PIL.Image    DEBUG    Importing TgaImagePlugin
+2023-03-07 11:04:29,448 PIL.Image    DEBUG    Importing TiffImagePlugin
+2023-03-07 11:04:29,448 PIL.Image    DEBUG    Importing WebPImagePlugin
+2023-03-07 11:04:29,452 PIL.Image    DEBUG    Importing WmfImagePlugin
+2023-03-07 11:04:29,454 PIL.Image    DEBUG    Importing XbmImagePlugin
+2023-03-07 11:04:29,456 PIL.Image    DEBUG    Importing XpmImagePlugin
+2023-03-07 11:04:29,458 PIL.Image    DEBUG    Importing XVThumbImagePlugin
+2023-03-07 11:04:29,662 celery.worker.strategy INFO     Received task: client.tasks.register_user[a6bd8ef5-8d57-415c-b2ca-72d7382b64c1]  
+2023-03-07 11:04:29,663 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f66b3403550> (args:('client.tasks.register_user', 'a6bd8ef5-8d57-415c-b2ca-72d7382b64c1', {'lang': 'py', 'task': 'client.tasks.register_user', 'id': 'a6bd8ef5-8d57-415c-b2ca-72d7382b64c1', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'a6bd8ef5-8d57-415c-b2ca-72d7382b64c1', 'parent_id': None, 'argsrepr': "('hello', 'C0002', 'IMGNEW.jpg')", 'kwargsrepr': '{}', 'origin': 'gen539@DESKTOP-ACIBNGT', 'reply_to': 'ecbc7dfe-3d2c-314d-aaaf-bd034c74e5a0', 'correlation_id': 'a6bd8ef5-8d57-415c-b2ca-72d7382b64c1', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': ['hello', 'C0002', 'IMGNEW.jpg'], 'kwargs': {}}, b'[["hello", "C0002", "IMGNEW.jpg"], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-07 11:04:29,669 celery.worker.request DEBUG    Task accepted: client.tasks.register_user[a6bd8ef5-8d57-415c-b2ca-72d7382b64c1] pid:423
+2023-03-07 11:04:32,437 celery.app.trace INFO     Task client.tasks.register_user[a6bd8ef5-8d57-415c-b2ca-72d7382b64c1] succeeded in 2.7680233999999473s: True
+2023-03-07 11:05:05,166 django.utils.autoreload INFO     /mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/backend/config/urls.py changed, reloading.
+2023-03-07 11:05:09,328 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-07 11:07:36,826 django.utils.autoreload INFO     /mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/backend/client/face_sub.py changed, reloading.
+2023-03-07 11:07:39,215 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-07 11:07:57,837 PIL.Image    DEBUG    Importing BlpImagePlugin
+2023-03-07 11:07:57,840 PIL.Image    DEBUG    Importing BmpImagePlugin
+2023-03-07 11:07:57,841 PIL.Image    DEBUG    Importing BufrStubImagePlugin
+2023-03-07 11:07:57,842 PIL.Image    DEBUG    Importing CurImagePlugin
+2023-03-07 11:07:57,844 PIL.Image    DEBUG    Importing DcxImagePlugin
+2023-03-07 11:07:57,847 PIL.Image    DEBUG    Importing DdsImagePlugin
+2023-03-07 11:07:57,848 PIL.Image    DEBUG    Importing EpsImagePlugin
+2023-03-07 11:07:57,853 PIL.Image    DEBUG    Importing FitsImagePlugin
+2023-03-07 11:07:57,854 PIL.Image    DEBUG    Importing FitsStubImagePlugin
+2023-03-07 11:07:57,856 PIL.Image    DEBUG    Importing FliImagePlugin
+2023-03-07 11:07:57,858 PIL.Image    DEBUG    Importing FpxImagePlugin
+2023-03-07 11:07:57,860 PIL.Image    DEBUG    Image: failed to import FpxImagePlugin: No module named 'olefile'
+2023-03-07 11:07:57,861 PIL.Image    DEBUG    Importing FtexImagePlugin
+2023-03-07 11:07:57,864 PIL.Image    DEBUG    Importing GbrImagePlugin
+2023-03-07 11:07:57,866 PIL.Image    DEBUG    Importing GifImagePlugin
+2023-03-07 11:07:57,867 PIL.Image    DEBUG    Importing GribStubImagePlugin
+2023-03-07 11:07:57,869 PIL.Image    DEBUG    Importing Hdf5StubImagePlugin
+2023-03-07 11:07:57,871 PIL.Image    DEBUG    Importing IcnsImagePlugin
+2023-03-07 11:07:57,875 PIL.Image    DEBUG    Importing IcoImagePlugin
+2023-03-07 11:07:57,877 PIL.Image    DEBUG    Importing ImImagePlugin
+2023-03-07 11:07:57,880 PIL.Image    DEBUG    Importing ImtImagePlugin
+2023-03-07 11:07:57,881 PIL.Image    DEBUG    Importing IptcImagePlugin
+2023-03-07 11:07:57,884 PIL.Image    DEBUG    Importing JpegImagePlugin
+2023-03-07 11:07:57,885 PIL.Image    DEBUG    Importing Jpeg2KImagePlugin
+2023-03-07 11:07:57,885 PIL.Image    DEBUG    Importing McIdasImagePlugin
+2023-03-07 11:07:57,887 PIL.Image    DEBUG    Importing MicImagePlugin
+2023-03-07 11:07:57,889 PIL.Image    DEBUG    Image: failed to import MicImagePlugin: No module named 'olefile'
+2023-03-07 11:07:57,890 PIL.Image    DEBUG    Importing MpegImagePlugin
+2023-03-07 11:07:57,892 PIL.Image    DEBUG    Importing MpoImagePlugin
+2023-03-07 11:07:57,893 PIL.Image    DEBUG    Importing MspImagePlugin
+2023-03-07 11:07:57,895 PIL.Image    DEBUG    Importing PalmImagePlugin
+2023-03-07 11:07:57,898 PIL.Image    DEBUG    Importing PcdImagePlugin
+2023-03-07 11:07:57,900 PIL.Image    DEBUG    Importing PcxImagePlugin
+2023-03-07 11:07:57,901 PIL.Image    DEBUG    Importing PdfImagePlugin
+2023-03-07 11:07:57,911 PIL.Image    DEBUG    Importing PixarImagePlugin
+2023-03-07 11:07:57,912 PIL.Image    DEBUG    Importing PngImagePlugin
+2023-03-07 11:07:57,913 PIL.Image    DEBUG    Importing PpmImagePlugin
+2023-03-07 11:07:57,914 PIL.Image    DEBUG    Importing PsdImagePlugin
+2023-03-07 11:07:57,916 PIL.Image    DEBUG    Importing SgiImagePlugin
+2023-03-07 11:07:57,917 PIL.Image    DEBUG    Importing SpiderImagePlugin
+2023-03-07 11:07:57,919 PIL.Image    DEBUG    Importing SunImagePlugin
+2023-03-07 11:07:57,921 PIL.Image    DEBUG    Importing TgaImagePlugin
+2023-03-07 11:07:57,923 PIL.Image    DEBUG    Importing TiffImagePlugin
+2023-03-07 11:07:57,923 PIL.Image    DEBUG    Importing WebPImagePlugin
+2023-03-07 11:07:57,927 PIL.Image    DEBUG    Importing WmfImagePlugin
+2023-03-07 11:07:57,929 PIL.Image    DEBUG    Importing XbmImagePlugin
+2023-03-07 11:07:57,931 PIL.Image    DEBUG    Importing XpmImagePlugin
+2023-03-07 11:07:57,933 PIL.Image    DEBUG    Importing XVThumbImagePlugin
+2023-03-07 11:07:58,097 celery.worker.strategy INFO     Received task: client.tasks.register_user[2fcd1721-3dfe-4c06-bd3c-f5713b266a61]  
+2023-03-07 11:07:58,098 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f66b3403550> (args:('client.tasks.register_user', '2fcd1721-3dfe-4c06-bd3c-f5713b266a61', {'lang': 'py', 'task': 'client.tasks.register_user', 'id': '2fcd1721-3dfe-4c06-bd3c-f5713b266a61', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '2fcd1721-3dfe-4c06-bd3c-f5713b266a61', 'parent_id': None, 'argsrepr': "('hello', 'C0002', 'rafik.jpg')", 'kwargsrepr': '{}', 'origin': 'gen557@DESKTOP-ACIBNGT', 'reply_to': '4d9fd82c-642c-32d6-a217-b04a93fcc718', 'correlation_id': '2fcd1721-3dfe-4c06-bd3c-f5713b266a61', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': ['hello', 'C0002', 'rafik.jpg'], 'kwargs': {}}, b'[["hello", "C0002", "rafik.jpg"], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-07 11:07:58,103 celery.worker.request DEBUG    Task accepted: client.tasks.register_user[2fcd1721-3dfe-4c06-bd3c-f5713b266a61] pid:423
+2023-03-07 11:08:00,378 celery.app.trace INFO     Task client.tasks.register_user[2fcd1721-3dfe-4c06-bd3c-f5713b266a61] succeeded in 2.276366500000222s: True
+2023-03-07 11:09:18,135 django.utils.autoreload INFO     /mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/backend/client/face_sub.py changed, reloading.
+2023-03-07 11:09:21,331 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-07 11:09:28,375 PIL.Image    DEBUG    Importing BlpImagePlugin
+2023-03-07 11:09:28,377 PIL.Image    DEBUG    Importing BmpImagePlugin
+2023-03-07 11:09:28,378 PIL.Image    DEBUG    Importing BufrStubImagePlugin
+2023-03-07 11:09:28,380 PIL.Image    DEBUG    Importing CurImagePlugin
+2023-03-07 11:09:28,382 PIL.Image    DEBUG    Importing DcxImagePlugin
+2023-03-07 11:09:28,385 PIL.Image    DEBUG    Importing DdsImagePlugin
+2023-03-07 11:09:28,387 PIL.Image    DEBUG    Importing EpsImagePlugin
+2023-03-07 11:09:28,389 PIL.Image    DEBUG    Importing FitsImagePlugin
+2023-03-07 11:09:28,391 PIL.Image    DEBUG    Importing FitsStubImagePlugin
+2023-03-07 11:09:28,393 PIL.Image    DEBUG    Importing FliImagePlugin
+2023-03-07 11:09:28,396 PIL.Image    DEBUG    Importing FpxImagePlugin
+2023-03-07 11:09:28,400 PIL.Image    DEBUG    Image: failed to import FpxImagePlugin: No module named 'olefile'
+2023-03-07 11:09:28,400 PIL.Image    DEBUG    Importing FtexImagePlugin
+2023-03-07 11:09:28,403 PIL.Image    DEBUG    Importing GbrImagePlugin
+2023-03-07 11:09:28,405 PIL.Image    DEBUG    Importing GifImagePlugin
+2023-03-07 11:09:28,405 PIL.Image    DEBUG    Importing GribStubImagePlugin
+2023-03-07 11:09:28,407 PIL.Image    DEBUG    Importing Hdf5StubImagePlugin
+2023-03-07 11:09:28,409 PIL.Image    DEBUG    Importing IcnsImagePlugin
+2023-03-07 11:09:28,414 PIL.Image    DEBUG    Importing IcoImagePlugin
+2023-03-07 11:09:28,416 PIL.Image    DEBUG    Importing ImImagePlugin
+2023-03-07 11:09:28,418 PIL.Image    DEBUG    Importing ImtImagePlugin
+2023-03-07 11:09:28,420 PIL.Image    DEBUG    Importing IptcImagePlugin
+2023-03-07 11:09:28,422 PIL.Image    DEBUG    Importing JpegImagePlugin
+2023-03-07 11:09:28,423 PIL.Image    DEBUG    Importing Jpeg2KImagePlugin
+2023-03-07 11:09:28,423 PIL.Image    DEBUG    Importing McIdasImagePlugin
+2023-03-07 11:09:28,425 PIL.Image    DEBUG    Importing MicImagePlugin
+2023-03-07 11:09:28,428 PIL.Image    DEBUG    Image: failed to import MicImagePlugin: No module named 'olefile'
+2023-03-07 11:09:28,429 PIL.Image    DEBUG    Importing MpegImagePlugin
+2023-03-07 11:09:28,431 PIL.Image    DEBUG    Importing MpoImagePlugin
+2023-03-07 11:09:28,432 PIL.Image    DEBUG    Importing MspImagePlugin
+2023-03-07 11:09:28,434 PIL.Image    DEBUG    Importing PalmImagePlugin
+2023-03-07 11:09:28,437 PIL.Image    DEBUG    Importing PcdImagePlugin
+2023-03-07 11:09:28,439 PIL.Image    DEBUG    Importing PcxImagePlugin
+2023-03-07 11:09:28,439 PIL.Image    DEBUG    Importing PdfImagePlugin
+2023-03-07 11:09:28,449 PIL.Image    DEBUG    Importing PixarImagePlugin
+2023-03-07 11:09:28,450 PIL.Image    DEBUG    Importing PngImagePlugin
+2023-03-07 11:09:28,451 PIL.Image    DEBUG    Importing PpmImagePlugin
+2023-03-07 11:09:28,452 PIL.Image    DEBUG    Importing PsdImagePlugin
+2023-03-07 11:09:28,454 PIL.Image    DEBUG    Importing SgiImagePlugin
+2023-03-07 11:09:28,455 PIL.Image    DEBUG    Importing SpiderImagePlugin
+2023-03-07 11:09:28,457 PIL.Image    DEBUG    Importing SunImagePlugin
+2023-03-07 11:09:28,459 PIL.Image    DEBUG    Importing TgaImagePlugin
+2023-03-07 11:09:28,461 PIL.Image    DEBUG    Importing TiffImagePlugin
+2023-03-07 11:09:28,462 PIL.Image    DEBUG    Importing WebPImagePlugin
+2023-03-07 11:09:28,466 PIL.Image    DEBUG    Importing WmfImagePlugin
+2023-03-07 11:09:28,468 PIL.Image    DEBUG    Importing XbmImagePlugin
+2023-03-07 11:09:28,471 PIL.Image    DEBUG    Importing XpmImagePlugin
+2023-03-07 11:09:28,473 PIL.Image    DEBUG    Importing XVThumbImagePlugin
+2023-03-07 11:09:28,703 celery.worker.strategy INFO     Received task: client.tasks.register_user[167814df-1fc7-4043-86f5-20945c3eb471]  
+2023-03-07 11:09:28,704 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f66b3403550> (args:('client.tasks.register_user', '167814df-1fc7-4043-86f5-20945c3eb471', {'lang': 'py', 'task': 'client.tasks.register_user', 'id': '167814df-1fc7-4043-86f5-20945c3eb471', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '167814df-1fc7-4043-86f5-20945c3eb471', 'parent_id': None, 'argsrepr': "('hello', 'C0002', 'IMGNEW.jpg')", 'kwargsrepr': '{}', 'origin': 'gen570@DESKTOP-ACIBNGT', 'reply_to': '7b54ec04-c712-37c3-9a5d-69f82c3be439', 'correlation_id': '167814df-1fc7-4043-86f5-20945c3eb471', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': ['hello', 'C0002', 'IMGNEW.jpg'], 'kwargs': {}}, b'[["hello", "C0002", "IMGNEW.jpg"], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-07 11:09:28,708 celery.worker.request DEBUG    Task accepted: client.tasks.register_user[167814df-1fc7-4043-86f5-20945c3eb471] pid:423
+2023-03-07 11:09:31,137 celery.app.trace INFO     Task client.tasks.register_user[167814df-1fc7-4043-86f5-20945c3eb471] succeeded in 2.429639999999381s: True
+2023-03-07 11:10:19,979 django.utils.autoreload INFO     /mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/backend/client/face_sub.py changed, reloading.
+2023-03-07 11:10:22,651 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-07 11:10:27,446 django.request WARNING  Not Found: /rest-api/clients/undefined/
+2023-03-07 11:10:43,563 PIL.TiffImagePlugin DEBUG    tag: Orientation (274) - type: short (3) - value: b'\x00\x01'
+2023-03-07 11:10:43,564 PIL.TiffImagePlugin DEBUG    tag: XResolution (282) - type: rational (5) Tag Location: 34 - Data Location: 98 - value: b"\x00\n\xfc\x80\x00\x00'\x10"
+2023-03-07 11:10:43,565 PIL.TiffImagePlugin DEBUG    tag: YResolution (283) - type: rational (5) Tag Location: 46 - Data Location: 106 - value: b"\x00\n\xfc\x80\x00\x00'\x10"
+2023-03-07 11:10:43,566 PIL.TiffImagePlugin DEBUG    tag: ResolutionUnit (296) - type: short (3) - value: b'\x00\x02'
+2023-03-07 11:10:43,567 PIL.TiffImagePlugin DEBUG    tag: Software (305) - type: string (2) Tag Location: 70 - Data Location: 114 - value: b'Adobe Photoshop CS6 (Macintosh)\x00'
+2023-03-07 11:10:43,568 PIL.TiffImagePlugin DEBUG    tag: DateTime (306) - type: string (2) Tag Location: 82 - Data Location: 146 - value: b'2014:06:18 20:59:59\x00'
+2023-03-07 11:10:43,569 PIL.TiffImagePlugin DEBUG    tag: ExifIFD (34665) - type: long (4) - value: b'\x00\x00\x00\xa8'
+2023-03-07 11:10:43,570 PIL.Image    DEBUG    Importing BlpImagePlugin
+2023-03-07 11:10:43,572 PIL.Image    DEBUG    Importing BmpImagePlugin
+2023-03-07 11:10:43,573 PIL.Image    DEBUG    Importing BufrStubImagePlugin
+2023-03-07 11:10:43,575 PIL.Image    DEBUG    Importing CurImagePlugin
+2023-03-07 11:10:43,577 PIL.Image    DEBUG    Importing DcxImagePlugin
+2023-03-07 11:10:43,579 PIL.Image    DEBUG    Importing DdsImagePlugin
+2023-03-07 11:10:43,581 PIL.Image    DEBUG    Importing EpsImagePlugin
+2023-03-07 11:10:43,583 PIL.Image    DEBUG    Importing FitsImagePlugin
+2023-03-07 11:10:43,585 PIL.Image    DEBUG    Importing FitsStubImagePlugin
+2023-03-07 11:10:43,587 PIL.Image    DEBUG    Importing FliImagePlugin
+2023-03-07 11:10:43,588 PIL.Image    DEBUG    Importing FpxImagePlugin
+2023-03-07 11:10:43,591 PIL.Image    DEBUG    Image: failed to import FpxImagePlugin: No module named 'olefile'
+2023-03-07 11:10:43,591 PIL.Image    DEBUG    Importing FtexImagePlugin
+2023-03-07 11:10:43,593 PIL.Image    DEBUG    Importing GbrImagePlugin
+2023-03-07 11:10:43,595 PIL.Image    DEBUG    Importing GifImagePlugin
+2023-03-07 11:10:43,596 PIL.Image    DEBUG    Importing GribStubImagePlugin
+2023-03-07 11:10:43,597 PIL.Image    DEBUG    Importing Hdf5StubImagePlugin
+2023-03-07 11:10:43,599 PIL.Image    DEBUG    Importing IcnsImagePlugin
+2023-03-07 11:10:43,603 PIL.Image    DEBUG    Importing IcoImagePlugin
+2023-03-07 11:10:43,604 PIL.Image    DEBUG    Importing ImImagePlugin
+2023-03-07 11:10:43,606 PIL.Image    DEBUG    Importing ImtImagePlugin
+2023-03-07 11:10:43,608 PIL.Image    DEBUG    Importing IptcImagePlugin
+2023-03-07 11:10:43,610 PIL.Image    DEBUG    Importing JpegImagePlugin
+2023-03-07 11:10:43,611 PIL.Image    DEBUG    Importing Jpeg2KImagePlugin
+2023-03-07 11:10:43,612 PIL.Image    DEBUG    Importing McIdasImagePlugin
+2023-03-07 11:10:43,613 PIL.Image    DEBUG    Importing MicImagePlugin
+2023-03-07 11:10:43,616 PIL.Image    DEBUG    Image: failed to import MicImagePlugin: No module named 'olefile'
+2023-03-07 11:10:43,617 PIL.Image    DEBUG    Importing MpegImagePlugin
+2023-03-07 11:10:43,618 PIL.Image    DEBUG    Importing MpoImagePlugin
+2023-03-07 11:10:43,620 PIL.Image    DEBUG    Importing MspImagePlugin
+2023-03-07 11:10:43,622 PIL.Image    DEBUG    Importing PalmImagePlugin
+2023-03-07 11:10:43,624 PIL.Image    DEBUG    Importing PcdImagePlugin
+2023-03-07 11:10:43,626 PIL.Image    DEBUG    Importing PcxImagePlugin
+2023-03-07 11:10:43,627 PIL.Image    DEBUG    Importing PdfImagePlugin
+2023-03-07 11:10:43,636 PIL.Image    DEBUG    Importing PixarImagePlugin
+2023-03-07 11:10:43,637 PIL.Image    DEBUG    Importing PngImagePlugin
+2023-03-07 11:10:43,638 PIL.Image    DEBUG    Importing PpmImagePlugin
+2023-03-07 11:10:43,639 PIL.Image    DEBUG    Importing PsdImagePlugin
+2023-03-07 11:10:43,640 PIL.Image    DEBUG    Importing SgiImagePlugin
+2023-03-07 11:10:43,642 PIL.Image    DEBUG    Importing SpiderImagePlugin
+2023-03-07 11:10:43,644 PIL.Image    DEBUG    Importing SunImagePlugin
+2023-03-07 11:10:43,646 PIL.Image    DEBUG    Importing TgaImagePlugin
+2023-03-07 11:10:43,649 PIL.Image    DEBUG    Importing TiffImagePlugin
+2023-03-07 11:10:43,649 PIL.Image    DEBUG    Importing WebPImagePlugin
+2023-03-07 11:10:43,653 PIL.Image    DEBUG    Importing WmfImagePlugin
+2023-03-07 11:10:43,655 PIL.Image    DEBUG    Importing XbmImagePlugin
+2023-03-07 11:10:43,657 PIL.Image    DEBUG    Importing XpmImagePlugin
+2023-03-07 11:10:43,660 PIL.Image    DEBUG    Importing XVThumbImagePlugin
+2023-03-07 11:10:43,825 celery.worker.strategy INFO     Received task: client.tasks.register_user[1c40dafa-e991-44a3-a2a8-de7dcb464cb9]  
+2023-03-07 11:10:43,827 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f66b3403550> (args:('client.tasks.register_user', '1c40dafa-e991-44a3-a2a8-de7dcb464cb9', {'lang': 'py', 'task': 'client.tasks.register_user', 'id': '1c40dafa-e991-44a3-a2a8-de7dcb464cb9', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '1c40dafa-e991-44a3-a2a8-de7dcb464cb9', 'parent_id': None, 'argsrepr': "('hello', 'C0002', 'Templeton_Peck.jpg')", 'kwargsrepr': '{}', 'origin': 'gen583@DESKTOP-ACIBNGT', 'reply_to': 'edea36be-1c9e-3fbe-b506-f16ac34bc78b', 'correlation_id': '1c40dafa-e991-44a3-a2a8-de7dcb464cb9', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': ['hello', 'C0002', 'Templeton_Peck.jpg'], 'kwargs': {}}, b'[["hello", "C0002", "Templeton_Peck.jpg"], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-07 11:10:43,912 celery.worker.request DEBUG    Task accepted: client.tasks.register_user[1c40dafa-e991-44a3-a2a8-de7dcb464cb9] pid:423
+2023-03-07 11:10:46,130 celery.app.trace INFO     Task client.tasks.register_user[1c40dafa-e991-44a3-a2a8-de7dcb464cb9] succeeded in 2.222623100000419s: True
+2023-03-07 11:14:36,296 django.utils.autoreload INFO     /mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/backend/client/face_sub.py changed, reloading.
+2023-03-07 11:14:38,922 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-07 11:17:58,242 django.utils.autoreload INFO     /mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/backend/NetSDK/SDK_Enum.py changed, reloading.
+2023-03-07 11:18:00,941 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-07 11:18:04,469 django.utils.autoreload INFO     /mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/backend/client/face_sub.py changed, reloading.
+2023-03-07 11:18:06,743 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-07 11:18:37,798 PIL.Image    DEBUG    Importing BlpImagePlugin
+2023-03-07 11:18:37,800 PIL.Image    DEBUG    Importing BmpImagePlugin
+2023-03-07 11:18:37,801 PIL.Image    DEBUG    Importing BufrStubImagePlugin
+2023-03-07 11:18:37,803 PIL.Image    DEBUG    Importing CurImagePlugin
+2023-03-07 11:18:37,806 PIL.Image    DEBUG    Importing DcxImagePlugin
+2023-03-07 11:18:37,809 PIL.Image    DEBUG    Importing DdsImagePlugin
+2023-03-07 11:18:37,810 PIL.Image    DEBUG    Importing EpsImagePlugin
+2023-03-07 11:18:37,812 PIL.Image    DEBUG    Importing FitsImagePlugin
+2023-03-07 11:18:37,814 PIL.Image    DEBUG    Importing FitsStubImagePlugin
+2023-03-07 11:18:37,816 PIL.Image    DEBUG    Importing FliImagePlugin
+2023-03-07 11:18:37,818 PIL.Image    DEBUG    Importing FpxImagePlugin
+2023-03-07 11:18:37,821 PIL.Image    DEBUG    Image: failed to import FpxImagePlugin: No module named 'olefile'
+2023-03-07 11:18:37,823 PIL.Image    DEBUG    Importing FtexImagePlugin
+2023-03-07 11:18:37,825 PIL.Image    DEBUG    Importing GbrImagePlugin
+2023-03-07 11:18:37,827 PIL.Image    DEBUG    Importing GifImagePlugin
+2023-03-07 11:18:37,828 PIL.Image    DEBUG    Importing GribStubImagePlugin
+2023-03-07 11:18:37,829 PIL.Image    DEBUG    Importing Hdf5StubImagePlugin
+2023-03-07 11:18:37,831 PIL.Image    DEBUG    Importing IcnsImagePlugin
+2023-03-07 11:18:37,835 PIL.Image    DEBUG    Importing IcoImagePlugin
+2023-03-07 11:18:37,838 PIL.Image    DEBUG    Importing ImImagePlugin
+2023-03-07 11:18:37,840 PIL.Image    DEBUG    Importing ImtImagePlugin
+2023-03-07 11:18:37,842 PIL.Image    DEBUG    Importing IptcImagePlugin
+2023-03-07 11:18:37,844 PIL.Image    DEBUG    Importing JpegImagePlugin
+2023-03-07 11:18:37,844 PIL.Image    DEBUG    Importing Jpeg2KImagePlugin
+2023-03-07 11:18:37,845 PIL.Image    DEBUG    Importing McIdasImagePlugin
+2023-03-07 11:18:37,847 PIL.Image    DEBUG    Importing MicImagePlugin
+2023-03-07 11:18:37,849 PIL.Image    DEBUG    Image: failed to import MicImagePlugin: No module named 'olefile'
+2023-03-07 11:18:37,850 PIL.Image    DEBUG    Importing MpegImagePlugin
+2023-03-07 11:18:37,851 PIL.Image    DEBUG    Importing MpoImagePlugin
+2023-03-07 11:18:37,854 PIL.Image    DEBUG    Importing MspImagePlugin
+2023-03-07 11:18:37,855 PIL.Image    DEBUG    Importing PalmImagePlugin
+2023-03-07 11:18:37,858 PIL.Image    DEBUG    Importing PcdImagePlugin
+2023-03-07 11:18:37,860 PIL.Image    DEBUG    Importing PcxImagePlugin
+2023-03-07 11:18:37,861 PIL.Image    DEBUG    Importing PdfImagePlugin
+2023-03-07 11:18:37,872 PIL.Image    DEBUG    Importing PixarImagePlugin
+2023-03-07 11:18:37,873 PIL.Image    DEBUG    Importing PngImagePlugin
+2023-03-07 11:18:37,874 PIL.Image    DEBUG    Importing PpmImagePlugin
+2023-03-07 11:18:37,875 PIL.Image    DEBUG    Importing PsdImagePlugin
+2023-03-07 11:18:37,876 PIL.Image    DEBUG    Importing SgiImagePlugin
+2023-03-07 11:18:37,878 PIL.Image    DEBUG    Importing SpiderImagePlugin
+2023-03-07 11:18:37,879 PIL.Image    DEBUG    Importing SunImagePlugin
+2023-03-07 11:18:37,881 PIL.Image    DEBUG    Importing TgaImagePlugin
+2023-03-07 11:18:37,883 PIL.Image    DEBUG    Importing TiffImagePlugin
+2023-03-07 11:18:37,884 PIL.Image    DEBUG    Importing WebPImagePlugin
+2023-03-07 11:18:37,887 PIL.Image    DEBUG    Importing WmfImagePlugin
+2023-03-07 11:18:37,889 PIL.Image    DEBUG    Importing XbmImagePlugin
+2023-03-07 11:18:37,892 PIL.Image    DEBUG    Importing XpmImagePlugin
+2023-03-07 11:18:37,893 PIL.Image    DEBUG    Importing XVThumbImagePlugin
+2023-03-07 11:19:09,100 django.request WARNING  Not Found: /rest-api/clients/undefined/
+2023-03-07 11:19:24,199 celery.worker.strategy INFO     Received task: client.tasks.register_user[aad02a66-daeb-4794-9bd5-e2e88190a833]  
+2023-03-07 11:19:24,201 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f66b3403550> (args:('client.tasks.register_user', 'aad02a66-daeb-4794-9bd5-e2e88190a833', {'lang': 'py', 'task': 'client.tasks.register_user', 'id': 'aad02a66-daeb-4794-9bd5-e2e88190a833', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'aad02a66-daeb-4794-9bd5-e2e88190a833', 'parent_id': None, 'argsrepr': "('PATROL', 'C0003', 'IMGNEW.jpg')", 'kwargsrepr': '{}', 'origin': 'gen603@DESKTOP-ACIBNGT', 'reply_to': '846d2642-480e-3113-b63c-d545b2b7cca9', 'correlation_id': 'aad02a66-daeb-4794-9bd5-e2e88190a833', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': ['PATROL', 'C0003', 'IMGNEW.jpg'], 'kwargs': {}}, b'[["PATROL", "C0003", "IMGNEW.jpg"], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-07 11:19:24,208 celery.worker.request DEBUG    Task accepted: client.tasks.register_user[aad02a66-daeb-4794-9bd5-e2e88190a833] pid:423
+2023-03-07 11:19:25,660 celery.app.trace INFO     Task client.tasks.register_user[aad02a66-daeb-4794-9bd5-e2e88190a833] succeeded in 1.4515559000001304s: True
+2023-03-07 11:35:59,325 django.utils.autoreload INFO     /mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/backend/NetSDK/SDK_Struct.py changed, reloading.
+2023-03-07 11:36:01,739 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-07 11:37:49,535 django.utils.autoreload INFO     /mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/backend/NetSDK/SDK_Enum.py changed, reloading.
+2023-03-07 11:37:51,930 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-07 11:38:18,607 django.utils.autoreload INFO     /mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/backend/client/face_sub.py changed, reloading.
+2023-03-07 11:38:21,201 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-07 11:38:48,405 PIL.TiffImagePlugin DEBUG    tag: Copyright (33432) - type: string (2) Tag Location: 22 - Data Location: 26 - value: b'2019 NHLI\x00'
+2023-03-07 11:38:48,406 PIL.Image    DEBUG    Importing BlpImagePlugin
+2023-03-07 11:38:48,408 PIL.Image    DEBUG    Importing BmpImagePlugin
+2023-03-07 11:38:48,409 PIL.Image    DEBUG    Importing BufrStubImagePlugin
+2023-03-07 11:38:48,411 PIL.Image    DEBUG    Importing CurImagePlugin
+2023-03-07 11:38:48,412 PIL.Image    DEBUG    Importing DcxImagePlugin
+2023-03-07 11:38:48,415 PIL.Image    DEBUG    Importing DdsImagePlugin
+2023-03-07 11:38:48,418 PIL.Image    DEBUG    Importing EpsImagePlugin
+2023-03-07 11:38:48,421 PIL.Image    DEBUG    Importing FitsImagePlugin
+2023-03-07 11:38:48,423 PIL.Image    DEBUG    Importing FitsStubImagePlugin
+2023-03-07 11:38:48,424 PIL.Image    DEBUG    Importing FliImagePlugin
+2023-03-07 11:38:48,426 PIL.Image    DEBUG    Importing FpxImagePlugin
+2023-03-07 11:38:48,429 PIL.Image    DEBUG    Image: failed to import FpxImagePlugin: No module named 'olefile'
+2023-03-07 11:38:48,430 PIL.Image    DEBUG    Importing FtexImagePlugin
+2023-03-07 11:38:48,431 PIL.Image    DEBUG    Importing GbrImagePlugin
+2023-03-07 11:38:48,434 PIL.Image    DEBUG    Importing GifImagePlugin
+2023-03-07 11:38:48,435 PIL.Image    DEBUG    Importing GribStubImagePlugin
+2023-03-07 11:38:48,436 PIL.Image    DEBUG    Importing Hdf5StubImagePlugin
+2023-03-07 11:38:48,438 PIL.Image    DEBUG    Importing IcnsImagePlugin
+2023-03-07 11:38:48,441 PIL.Image    DEBUG    Importing IcoImagePlugin
+2023-03-07 11:38:48,443 PIL.Image    DEBUG    Importing ImImagePlugin
+2023-03-07 11:38:48,445 PIL.Image    DEBUG    Importing ImtImagePlugin
+2023-03-07 11:38:48,447 PIL.Image    DEBUG    Importing IptcImagePlugin
+2023-03-07 11:38:48,448 PIL.Image    DEBUG    Importing JpegImagePlugin
+2023-03-07 11:38:48,450 PIL.Image    DEBUG    Importing Jpeg2KImagePlugin
+2023-03-07 11:38:48,451 PIL.Image    DEBUG    Importing McIdasImagePlugin
+2023-03-07 11:38:48,452 PIL.Image    DEBUG    Importing MicImagePlugin
+2023-03-07 11:38:48,455 PIL.Image    DEBUG    Image: failed to import MicImagePlugin: No module named 'olefile'
+2023-03-07 11:38:48,455 PIL.Image    DEBUG    Importing MpegImagePlugin
+2023-03-07 11:38:48,457 PIL.Image    DEBUG    Importing MpoImagePlugin
+2023-03-07 11:38:48,459 PIL.Image    DEBUG    Importing MspImagePlugin
+2023-03-07 11:38:48,461 PIL.Image    DEBUG    Importing PalmImagePlugin
+2023-03-07 11:38:48,463 PIL.Image    DEBUG    Importing PcdImagePlugin
+2023-03-07 11:38:48,465 PIL.Image    DEBUG    Importing PcxImagePlugin
+2023-03-07 11:38:48,467 PIL.Image    DEBUG    Importing PdfImagePlugin
+2023-03-07 11:38:48,475 PIL.Image    DEBUG    Importing PixarImagePlugin
+2023-03-07 11:38:48,477 PIL.Image    DEBUG    Importing PngImagePlugin
+2023-03-07 11:38:48,478 PIL.Image    DEBUG    Importing PpmImagePlugin
+2023-03-07 11:38:48,478 PIL.Image    DEBUG    Importing PsdImagePlugin
+2023-03-07 11:38:48,481 PIL.Image    DEBUG    Importing SgiImagePlugin
+2023-03-07 11:38:48,483 PIL.Image    DEBUG    Importing SpiderImagePlugin
+2023-03-07 11:38:48,485 PIL.Image    DEBUG    Importing SunImagePlugin
+2023-03-07 11:38:48,486 PIL.Image    DEBUG    Importing TgaImagePlugin
+2023-03-07 11:38:48,488 PIL.Image    DEBUG    Importing TiffImagePlugin
+2023-03-07 11:38:48,489 PIL.Image    DEBUG    Importing WebPImagePlugin
+2023-03-07 11:38:48,493 PIL.Image    DEBUG    Importing WmfImagePlugin
+2023-03-07 11:38:48,494 PIL.Image    DEBUG    Importing XbmImagePlugin
+2023-03-07 11:38:48,498 PIL.Image    DEBUG    Importing XpmImagePlugin
+2023-03-07 11:38:48,500 PIL.Image    DEBUG    Importing XVThumbImagePlugin
+2023-03-07 11:38:48,670 celery.worker.strategy INFO     Received task: client.tasks.register_user[1df45a7d-fe45-4473-a399-2d21291fbfeb]  
+2023-03-07 11:38:48,672 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f66b3403550> (args:('client.tasks.register_user', '1df45a7d-fe45-4473-a399-2d21291fbfeb', {'lang': 'py', 'task': 'client.tasks.register_user', 'id': '1df45a7d-fe45-4473-a399-2d21291fbfeb', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '1df45a7d-fe45-4473-a399-2d21291fbfeb', 'parent_id': None, 'argsrepr': "('PATROL', 'C0003', '8471716.jpg')", 'kwargsrepr': '{}', 'origin': 'gen622@DESKTOP-ACIBNGT', 'reply_to': 'bb851099-affc-3e22-a490-66443b8a311e', 'correlation_id': '1df45a7d-fe45-4473-a399-2d21291fbfeb', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': ['PATROL', 'C0003', '8471716.jpg'], 'kwargs': {}}, b'[["PATROL", "C0003", "8471716.jpg"], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-07 11:38:48,681 celery.worker.request DEBUG    Task accepted: client.tasks.register_user[1df45a7d-fe45-4473-a399-2d21291fbfeb] pid:423
+2023-03-07 11:38:49,870 celery.app.trace INFO     Task client.tasks.register_user[1df45a7d-fe45-4473-a399-2d21291fbfeb] succeeded in 1.1913771999998062s: True
+2023-03-07 11:53:39,000 django.utils.autoreload INFO     /mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/backend/client/face_sub.py changed, reloading.
+2023-03-07 11:53:42,197 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-07 11:53:58,365 PIL.Image    DEBUG    Importing BlpImagePlugin
+2023-03-07 11:53:58,368 PIL.Image    DEBUG    Importing BmpImagePlugin
+2023-03-07 11:53:58,368 PIL.Image    DEBUG    Importing BufrStubImagePlugin
+2023-03-07 11:53:58,370 PIL.Image    DEBUG    Importing CurImagePlugin
+2023-03-07 11:53:58,372 PIL.Image    DEBUG    Importing DcxImagePlugin
+2023-03-07 11:53:58,374 PIL.Image    DEBUG    Importing DdsImagePlugin
+2023-03-07 11:53:58,377 PIL.Image    DEBUG    Importing EpsImagePlugin
+2023-03-07 11:53:58,381 PIL.Image    DEBUG    Importing FitsImagePlugin
+2023-03-07 11:53:58,382 PIL.Image    DEBUG    Importing FitsStubImagePlugin
+2023-03-07 11:53:58,384 PIL.Image    DEBUG    Importing FliImagePlugin
+2023-03-07 11:53:58,386 PIL.Image    DEBUG    Importing FpxImagePlugin
+2023-03-07 11:53:58,388 PIL.Image    DEBUG    Image: failed to import FpxImagePlugin: No module named 'olefile'
+2023-03-07 11:53:58,389 PIL.Image    DEBUG    Importing FtexImagePlugin
+2023-03-07 11:53:58,390 PIL.Image    DEBUG    Importing GbrImagePlugin
+2023-03-07 11:53:58,393 PIL.Image    DEBUG    Importing GifImagePlugin
+2023-03-07 11:53:58,394 PIL.Image    DEBUG    Importing GribStubImagePlugin
+2023-03-07 11:53:58,397 PIL.Image    DEBUG    Importing Hdf5StubImagePlugin
+2023-03-07 11:53:58,399 PIL.Image    DEBUG    Importing IcnsImagePlugin
+2023-03-07 11:53:58,402 PIL.Image    DEBUG    Importing IcoImagePlugin
+2023-03-07 11:53:58,404 PIL.Image    DEBUG    Importing ImImagePlugin
+2023-03-07 11:53:58,406 PIL.Image    DEBUG    Importing ImtImagePlugin
+2023-03-07 11:53:58,409 PIL.Image    DEBUG    Importing IptcImagePlugin
+2023-03-07 11:53:58,411 PIL.Image    DEBUG    Importing JpegImagePlugin
+2023-03-07 11:53:58,411 PIL.Image    DEBUG    Importing Jpeg2KImagePlugin
+2023-03-07 11:53:58,412 PIL.Image    DEBUG    Importing McIdasImagePlugin
+2023-03-07 11:53:58,414 PIL.Image    DEBUG    Importing MicImagePlugin
+2023-03-07 11:53:58,416 PIL.Image    DEBUG    Image: failed to import MicImagePlugin: No module named 'olefile'
+2023-03-07 11:53:58,416 PIL.Image    DEBUG    Importing MpegImagePlugin
+2023-03-07 11:53:58,418 PIL.Image    DEBUG    Importing MpoImagePlugin
+2023-03-07 11:53:58,420 PIL.Image    DEBUG    Importing MspImagePlugin
+2023-03-07 11:53:58,422 PIL.Image    DEBUG    Importing PalmImagePlugin
+2023-03-07 11:53:58,424 PIL.Image    DEBUG    Importing PcdImagePlugin
+2023-03-07 11:53:58,427 PIL.Image    DEBUG    Importing PcxImagePlugin
+2023-03-07 11:53:58,428 PIL.Image    DEBUG    Importing PdfImagePlugin
+2023-03-07 11:53:58,437 PIL.Image    DEBUG    Importing PixarImagePlugin
+2023-03-07 11:53:58,438 PIL.Image    DEBUG    Importing PngImagePlugin
+2023-03-07 11:53:58,439 PIL.Image    DEBUG    Importing PpmImagePlugin
+2023-03-07 11:53:58,440 PIL.Image    DEBUG    Importing PsdImagePlugin
+2023-03-07 11:53:58,442 PIL.Image    DEBUG    Importing SgiImagePlugin
+2023-03-07 11:53:58,444 PIL.Image    DEBUG    Importing SpiderImagePlugin
+2023-03-07 11:53:58,446 PIL.Image    DEBUG    Importing SunImagePlugin
+2023-03-07 11:53:58,447 PIL.Image    DEBUG    Importing TgaImagePlugin
+2023-03-07 11:53:58,449 PIL.Image    DEBUG    Importing TiffImagePlugin
+2023-03-07 11:53:58,449 PIL.Image    DEBUG    Importing WebPImagePlugin
+2023-03-07 11:53:58,453 PIL.Image    DEBUG    Importing WmfImagePlugin
+2023-03-07 11:53:58,455 PIL.Image    DEBUG    Importing XbmImagePlugin
+2023-03-07 11:53:58,458 PIL.Image    DEBUG    Importing XpmImagePlugin
+2023-03-07 11:53:58,460 PIL.Image    DEBUG    Importing XVThumbImagePlugin
+2023-03-07 11:53:58,736 celery.worker.strategy INFO     Received task: client.tasks.register_user[e1e18a41-0b3d-4b6f-9bf6-e5f84b641ed4]  
+2023-03-07 11:53:58,738 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f66b3403550> (args:('client.tasks.register_user', 'e1e18a41-0b3d-4b6f-9bf6-e5f84b641ed4', {'lang': 'py', 'task': 'client.tasks.register_user', 'id': 'e1e18a41-0b3d-4b6f-9bf6-e5f84b641ed4', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'e1e18a41-0b3d-4b6f-9bf6-e5f84b641ed4', 'parent_id': None, 'argsrepr': "('PATROL', 'C0003', 'download.jpg')", 'kwargsrepr': '{}', 'origin': 'gen633@DESKTOP-ACIBNGT', 'reply_to': '25e0dd28-18dd-3258-833c-91be41292a9b', 'correlation_id': 'e1e18a41-0b3d-4b6f-9bf6-e5f84b641ed4', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': ['PATROL', 'C0003', 'download.jpg'], 'kwargs': {}}, b'[["PATROL", "C0003", "download.jpg"], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-07 11:53:58,744 celery.worker.request DEBUG    Task accepted: client.tasks.register_user[e1e18a41-0b3d-4b6f-9bf6-e5f84b641ed4] pid:423
+2023-03-07 11:53:59,836 celery.app.trace INFO     Task client.tasks.register_user[e1e18a41-0b3d-4b6f-9bf6-e5f84b641ed4] succeeded in 1.0921541999996407s: True
+2023-03-12 09:31:39,544 celery.bootsteps DEBUG    | Worker: Preparing bootsteps.
+2023-03-12 09:31:39,579 celery.bootsteps DEBUG    | Worker: Building graph...
+2023-03-12 09:31:39,580 celery.bootsteps DEBUG    | Worker: New boot order: {StateDB, Beat, Timer, Hub, Pool, Autoscaler, Consumer}
+2023-03-12 09:31:39,777 celery.bootsteps DEBUG    | Consumer: Preparing bootsteps.
+2023-03-12 09:31:39,778 celery.bootsteps DEBUG    | Consumer: Building graph...
+2023-03-12 09:31:39,977 celery.bootsteps DEBUG    | Consumer: New boot order: {Connection, Agent, Events, Mingle, Gossip, Tasks, Control, Heart, event loop}
+2023-03-12 09:31:40,084 celery.bootsteps DEBUG    | Worker: Starting Hub
+2023-03-12 09:31:40,086 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 09:31:40,087 celery.bootsteps DEBUG    | Worker: Starting Pool
+2023-03-12 09:31:40,588 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 09:31:40,590 celery.bootsteps DEBUG    | Worker: Starting Consumer
+2023-03-12 09:31:40,591 celery.bootsteps DEBUG    | Consumer: Starting Connection
+2023-03-12 09:31:40,668 celery.worker.consumer.connection INFO     Connected to redis://localhost:6379//
+2023-03-12 09:31:40,670 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 09:31:40,671 celery.bootsteps DEBUG    | Consumer: Starting Events
+2023-03-12 09:31:40,682 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 09:31:40,684 celery.bootsteps DEBUG    | Consumer: Starting Mingle
+2023-03-12 09:31:40,684 celery.worker.consumer.mingle INFO     mingle: searching for neighbors
+2023-03-12 09:31:41,725 celery.worker.consumer.mingle INFO     mingle: all alone
+2023-03-12 09:31:41,726 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 09:31:41,727 celery.bootsteps DEBUG    | Consumer: Starting Gossip
+2023-03-12 09:31:41,732 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 09:31:41,732 celery.bootsteps DEBUG    | Consumer: Starting Tasks
+2023-03-12 09:31:41,757 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 09:31:41,758 celery.bootsteps DEBUG    | Consumer: Starting Control
+2023-03-12 09:31:41,765 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 09:31:41,765 celery.bootsteps DEBUG    | Consumer: Starting Heart
+2023-03-12 09:31:41,770 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 09:31:41,770 celery.bootsteps DEBUG    | Consumer: Starting event loop
+2023-03-12 09:31:41,771 celery.bootsteps DEBUG    | Worker: Hub.register Pool...
+2023-03-12 09:31:41,789 celery.apps.worker INFO     celery@DESKTOP-ACIBNGT ready.
+2023-03-12 09:31:41,790 kombu.common DEBUG    basic.qos: prefetch_count->16
+2023-03-12 09:31:59,341 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-12 09:32:16,429 django.request WARNING  Not Found: /
+2023-03-12 09:32:17,935 django.request WARNING  Not Found: /favicon.ico
+2023-03-12 09:32:21,578 django.request WARNING  Not Found: /
+2023-03-12 09:33:39,561 salle_activite_view INFO     View inited...
+2023-03-12 09:33:39,839 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_1[a6d3e9b9-7454-4ac3-8f66-fa823022e182]  
+2023-03-12 09:33:39,842 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f7c8d581550> (args:('salle_activite.tasks.start_linsten_1', 'a6d3e9b9-7454-4ac3-8f66-fa823022e182', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_1', 'id': 'a6d3e9b9-7454-4ac3-8f66-fa823022e182', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'a6d3e9b9-7454-4ac3-8f66-fa823022e182', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen249@DESKTOP-ACIBNGT', 'reply_to': 'a269ca87-32d3-3302-8bc0-da9846faef80', 'correlation_id': 'a6d3e9b9-7454-4ac3-8f66-fa823022e182', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-12 09:33:39,926 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_2[18fe1318-c9dc-47f5-8a86-64a191ee32e9]  
+2023-03-12 09:33:39,931 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f7c8d581550> (args:('salle_activite.tasks.start_linsten_2', '18fe1318-c9dc-47f5-8a86-64a191ee32e9', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_2', 'id': '18fe1318-c9dc-47f5-8a86-64a191ee32e9', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '18fe1318-c9dc-47f5-8a86-64a191ee32e9', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen249@DESKTOP-ACIBNGT', 'reply_to': 'a269ca87-32d3-3302-8bc0-da9846faef80', 'correlation_id': '18fe1318-c9dc-47f5-8a86-64a191ee32e9', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-12 09:33:39,937 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_1[a6d3e9b9-7454-4ac3-8f66-fa823022e182] pid:228
+2023-03-12 09:33:39,966 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_3[b3efe2a3-2235-4d0f-b843-e902c58f7211]  
+2023-03-12 09:33:39,970 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f7c8d581550> (args:('salle_activite.tasks.start_linsten_3', 'b3efe2a3-2235-4d0f-b843-e902c58f7211', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_3', 'id': 'b3efe2a3-2235-4d0f-b843-e902c58f7211', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'b3efe2a3-2235-4d0f-b843-e902c58f7211', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen249@DESKTOP-ACIBNGT', 'reply_to': 'a269ca87-32d3-3302-8bc0-da9846faef80', 'correlation_id': 'b3efe2a3-2235-4d0f-b843-e902c58f7211', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-12 09:33:39,977 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_2[18fe1318-c9dc-47f5-8a86-64a191ee32e9] pid:230
+2023-03-12 09:33:39,985 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_4[9cd430ac-9974-4f5a-825a-7ef55acf67f6]  
+2023-03-12 09:33:39,986 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f7c8d581550> (args:('salle_activite.tasks.start_linsten_4', '9cd430ac-9974-4f5a-825a-7ef55acf67f6', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_4', 'id': '9cd430ac-9974-4f5a-825a-7ef55acf67f6', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '9cd430ac-9974-4f5a-825a-7ef55acf67f6', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen249@DESKTOP-ACIBNGT', 'reply_to': 'a269ca87-32d3-3302-8bc0-da9846faef80', 'correlation_id': '9cd430ac-9974-4f5a-825a-7ef55acf67f6', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-12 09:33:39,998 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_3[b3efe2a3-2235-4d0f-b843-e902c58f7211] pid:229
+2023-03-12 09:33:40,022 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_4[9cd430ac-9974-4f5a-825a-7ef55acf67f6] pid:231
+2023-03-12 09:33:41,621 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_4[9cd430ac-9974-4f5a-825a-7ef55acf67f6] succeeded in 1.6235379000000023s: None
+2023-03-12 09:33:41,755 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_3[b3efe2a3-2235-4d0f-b843-e902c58f7211] succeeded in 1.7602614000000187s: None
+2023-03-12 09:33:41,843 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_2[18fe1318-c9dc-47f5-8a86-64a191ee32e9] succeeded in 1.900404100000003s: None
+2023-03-12 09:33:41,865 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_1[a6d3e9b9-7454-4ac3-8f66-fa823022e182] succeeded in 1.9635316000000103s: None
+2023-03-12 09:35:22,781 django.utils.autoreload INFO     /mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/backend/salle_activite/views.py changed, reloading.
+2023-03-12 09:35:31,923 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-12 09:35:43,180 salle_activite_view INFO     View inited...
+2023-03-12 09:35:43,671 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_1[d0cc4fed-4f24-4e05-9d70-492ce7fcc4cd]  
+2023-03-12 09:35:43,673 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f7c8d581550> (args:('salle_activite.tasks.start_linsten_1', 'd0cc4fed-4f24-4e05-9d70-492ce7fcc4cd', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_1', 'id': 'd0cc4fed-4f24-4e05-9d70-492ce7fcc4cd', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'd0cc4fed-4f24-4e05-9d70-492ce7fcc4cd', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen360@DESKTOP-ACIBNGT', 'reply_to': '28988b09-4939-3b8a-a472-b6109951064b', 'correlation_id': 'd0cc4fed-4f24-4e05-9d70-492ce7fcc4cd', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-12 09:35:43,680 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_2[c9532c8a-e605-4025-b103-8f8349bf173c]  
+2023-03-12 09:35:43,681 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f7c8d581550> (args:('salle_activite.tasks.start_linsten_2', 'c9532c8a-e605-4025-b103-8f8349bf173c', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_2', 'id': 'c9532c8a-e605-4025-b103-8f8349bf173c', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'c9532c8a-e605-4025-b103-8f8349bf173c', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen360@DESKTOP-ACIBNGT', 'reply_to': '28988b09-4939-3b8a-a472-b6109951064b', 'correlation_id': 'c9532c8a-e605-4025-b103-8f8349bf173c', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-12 09:35:43,692 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_1[d0cc4fed-4f24-4e05-9d70-492ce7fcc4cd] pid:228
+2023-03-12 09:35:43,697 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_2[c9532c8a-e605-4025-b103-8f8349bf173c] pid:230
+2023-03-12 09:35:43,712 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_3[ab57e553-f2f6-463b-bed3-362567363de3]  
+2023-03-12 09:35:43,713 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f7c8d581550> (args:('salle_activite.tasks.start_linsten_3', 'ab57e553-f2f6-463b-bed3-362567363de3', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_3', 'id': 'ab57e553-f2f6-463b-bed3-362567363de3', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'ab57e553-f2f6-463b-bed3-362567363de3', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen360@DESKTOP-ACIBNGT', 'reply_to': '28988b09-4939-3b8a-a472-b6109951064b', 'correlation_id': 'ab57e553-f2f6-463b-bed3-362567363de3', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-12 09:35:43,724 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_4[0ffe0e8d-1b39-4a28-8ff4-8e5357c9223d]  
+2023-03-12 09:35:43,726 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f7c8d581550> (args:('salle_activite.tasks.start_linsten_4', '0ffe0e8d-1b39-4a28-8ff4-8e5357c9223d', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_4', 'id': '0ffe0e8d-1b39-4a28-8ff4-8e5357c9223d', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '0ffe0e8d-1b39-4a28-8ff4-8e5357c9223d', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen360@DESKTOP-ACIBNGT', 'reply_to': '28988b09-4939-3b8a-a472-b6109951064b', 'correlation_id': '0ffe0e8d-1b39-4a28-8ff4-8e5357c9223d', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-12 09:35:43,732 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_3[ab57e553-f2f6-463b-bed3-362567363de3] pid:229
+2023-03-12 09:35:43,739 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_5[86cdb2e3-675d-45cb-b57c-98b85f9692ff]  
+2023-03-12 09:35:43,748 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_6[1c0aef57-ba0e-45af-9ebe-0433a62bc860]  
+2023-03-12 09:35:43,750 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_4[0ffe0e8d-1b39-4a28-8ff4-8e5357c9223d] pid:231
+2023-03-12 09:35:43,757 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_7[2debe518-df8a-47e6-9c77-2d0c728cc19d]  
+2023-03-12 09:35:43,762 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_8[5db6fa16-d736-47b1-9a9a-1e0f821fdab8]  
+2023-03-12 09:35:43,767 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_9[af6b538d-4573-4f9b-a9d3-d8bf37356829]  
+2023-03-12 09:35:43,771 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_face_door_1[455784f8-3bf5-4bde-a97f-e593d7259823]  
+2023-03-12 09:35:43,775 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_face_door_2[e800d3c1-f137-4b52-8a22-31473a994a6d]  
+2023-03-12 09:35:45,204 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_2[c9532c8a-e605-4025-b103-8f8349bf173c] succeeded in 1.5169162000000256s: None
+2023-03-12 09:35:45,205 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f7c8d581550> (args:('salle_activite.tasks.start_linsten_5', '86cdb2e3-675d-45cb-b57c-98b85f9692ff', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_5', 'id': '86cdb2e3-675d-45cb-b57c-98b85f9692ff', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '86cdb2e3-675d-45cb-b57c-98b85f9692ff', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen360@DESKTOP-ACIBNGT', 'reply_to': '28988b09-4939-3b8a-a472-b6109951064b', 'correlation_id': '86cdb2e3-675d-45cb-b57c-98b85f9692ff', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-12 09:35:45,210 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_5[86cdb2e3-675d-45cb-b57c-98b85f9692ff] pid:230
+2023-03-12 09:35:45,221 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_1[d0cc4fed-4f24-4e05-9d70-492ce7fcc4cd] succeeded in 1.5347479999999791s: None
+2023-03-12 09:35:45,222 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f7c8d581550> (args:('salle_activite.tasks.start_linsten_6', '1c0aef57-ba0e-45af-9ebe-0433a62bc860', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_6', 'id': '1c0aef57-ba0e-45af-9ebe-0433a62bc860', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '1c0aef57-ba0e-45af-9ebe-0433a62bc860', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen360@DESKTOP-ACIBNGT', 'reply_to': '28988b09-4939-3b8a-a472-b6109951064b', 'correlation_id': '1c0aef57-ba0e-45af-9ebe-0433a62bc860', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-12 09:35:45,229 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_6[1c0aef57-ba0e-45af-9ebe-0433a62bc860] pid:228
+2023-03-12 09:35:46,470 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_5[86cdb2e3-675d-45cb-b57c-98b85f9692ff] succeeded in 1.2594230999999922s: None
+2023-03-12 09:35:46,472 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f7c8d581550> (args:('salle_activite.tasks.start_linsten_7', '2debe518-df8a-47e6-9c77-2d0c728cc19d', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_7', 'id': '2debe518-df8a-47e6-9c77-2d0c728cc19d', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '2debe518-df8a-47e6-9c77-2d0c728cc19d', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen360@DESKTOP-ACIBNGT', 'reply_to': '28988b09-4939-3b8a-a472-b6109951064b', 'correlation_id': '2debe518-df8a-47e6-9c77-2d0c728cc19d', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-12 09:35:46,479 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_6[1c0aef57-ba0e-45af-9ebe-0433a62bc860] succeeded in 1.2505386999999928s: None
+2023-03-12 09:35:46,480 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_7[2debe518-df8a-47e6-9c77-2d0c728cc19d] pid:230
+2023-03-12 09:35:46,488 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f7c8d581550> (args:('salle_activite.tasks.start_linsten_8', '5db6fa16-d736-47b1-9a9a-1e0f821fdab8', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_8', 'id': '5db6fa16-d736-47b1-9a9a-1e0f821fdab8', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '5db6fa16-d736-47b1-9a9a-1e0f821fdab8', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen360@DESKTOP-ACIBNGT', 'reply_to': '28988b09-4939-3b8a-a472-b6109951064b', 'correlation_id': '5db6fa16-d736-47b1-9a9a-1e0f821fdab8', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-12 09:35:46,495 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_8[5db6fa16-d736-47b1-9a9a-1e0f821fdab8] pid:228
+2023-03-12 09:35:47,706 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_7[2debe518-df8a-47e6-9c77-2d0c728cc19d] succeeded in 1.226263500000016s: None
+2023-03-12 09:35:47,715 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f7c8d581550> (args:('salle_activite.tasks.start_linsten_9', 'af6b538d-4573-4f9b-a9d3-d8bf37356829', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_9', 'id': 'af6b538d-4573-4f9b-a9d3-d8bf37356829', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'af6b538d-4573-4f9b-a9d3-d8bf37356829', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen360@DESKTOP-ACIBNGT', 'reply_to': '28988b09-4939-3b8a-a472-b6109951064b', 'correlation_id': 'af6b538d-4573-4f9b-a9d3-d8bf37356829', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-12 09:35:47,722 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_9[af6b538d-4573-4f9b-a9d3-d8bf37356829] pid:230
+2023-03-12 09:35:47,729 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_8[5db6fa16-d736-47b1-9a9a-1e0f821fdab8] succeeded in 1.2348142000000166s: None
+2023-03-12 09:35:47,732 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f7c8d581550> (args:('salle_activite.tasks.start_face_door_1', '455784f8-3bf5-4bde-a97f-e593d7259823', {'lang': 'py', 'task': 'salle_activite.tasks.start_face_door_1', 'id': '455784f8-3bf5-4bde-a97f-e593d7259823', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '455784f8-3bf5-4bde-a97f-e593d7259823', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen360@DESKTOP-ACIBNGT', 'reply_to': '28988b09-4939-3b8a-a472-b6109951064b', 'correlation_id': '455784f8-3bf5-4bde-a97f-e593d7259823', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-12 09:35:47,735 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_face_door_1[455784f8-3bf5-4bde-a97f-e593d7259823] pid:228
+2023-03-12 09:35:49,038 celery.app.trace INFO     Task salle_activite.tasks.start_face_door_1[455784f8-3bf5-4bde-a97f-e593d7259823] succeeded in 1.3034812000000215s: None
+2023-03-12 09:35:49,039 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f7c8d581550> (args:('salle_activite.tasks.start_face_door_2', 'e800d3c1-f137-4b52-8a22-31473a994a6d', {'lang': 'py', 'task': 'salle_activite.tasks.start_face_door_2', 'id': 'e800d3c1-f137-4b52-8a22-31473a994a6d', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'e800d3c1-f137-4b52-8a22-31473a994a6d', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen360@DESKTOP-ACIBNGT', 'reply_to': '28988b09-4939-3b8a-a472-b6109951064b', 'correlation_id': 'e800d3c1-f137-4b52-8a22-31473a994a6d', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-12 09:35:49,043 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_face_door_2[e800d3c1-f137-4b52-8a22-31473a994a6d] pid:228
+2023-03-12 09:35:49,230 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_3[ab57e553-f2f6-463b-bed3-362567363de3] succeeded in 5.510502799999983s: None
+2023-03-12 09:35:49,234 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_9[af6b538d-4573-4f9b-a9d3-d8bf37356829] succeeded in 1.5119149999999877s: None
+2023-03-12 09:35:49,240 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_4[0ffe0e8d-1b39-4a28-8ff4-8e5357c9223d] succeeded in 5.4941895000000045s: None
+2023-03-12 09:35:50,366 celery.app.trace INFO     Task salle_activite.tasks.start_face_door_2[e800d3c1-f137-4b52-8a22-31473a994a6d] succeeded in 1.3232066000000486s: None
+2023-03-12 09:36:22,633 celery.bootsteps DEBUG    | Worker: Closing Hub...
+2023-03-12 09:36:22,633 celery.bootsteps DEBUG    | Worker: Closing Pool...
+2023-03-12 09:36:22,633 celery.bootsteps DEBUG    | Worker: Closing Consumer...
+2023-03-12 09:36:22,634 celery.bootsteps DEBUG    | Worker: Stopping Consumer...
+2023-03-12 09:36:22,634 celery.bootsteps DEBUG    | Consumer: Closing Connection...
+2023-03-12 09:36:22,634 celery.bootsteps DEBUG    | Consumer: Closing Events...
+2023-03-12 09:36:22,634 celery.bootsteps DEBUG    | Consumer: Closing Mingle...
+2023-03-12 09:36:22,634 celery.bootsteps DEBUG    | Consumer: Closing Gossip...
+2023-03-12 09:36:22,635 celery.bootsteps DEBUG    | Consumer: Closing Tasks...
+2023-03-12 09:36:22,636 celery.bootsteps DEBUG    | Consumer: Closing Control...
+2023-03-12 09:36:22,637 celery.bootsteps DEBUG    | Consumer: Closing Heart...
+2023-03-12 09:36:22,638 celery.bootsteps DEBUG    | Consumer: Closing event loop...
+2023-03-12 09:36:22,639 celery.bootsteps DEBUG    | Consumer: Stopping event loop...
+2023-03-12 09:36:22,640 celery.bootsteps DEBUG    | Consumer: Stopping Heart...
+2023-03-12 09:36:22,643 celery.bootsteps DEBUG    | Consumer: Stopping Control...
+2023-03-12 09:36:22,646 celery.bootsteps DEBUG    | Consumer: Stopping Tasks...
+2023-03-12 09:36:22,647 celery.worker.consumer.tasks DEBUG    Canceling task consumer...
+2023-03-12 09:36:22,647 celery.bootsteps DEBUG    | Consumer: Stopping Gossip...
+2023-03-12 09:36:22,651 celery.bootsteps DEBUG    | Consumer: Stopping Mingle...
+2023-03-12 09:36:22,652 celery.bootsteps DEBUG    | Consumer: Stopping Events...
+2023-03-12 09:36:22,653 celery.bootsteps DEBUG    | Consumer: Stopping Connection...
+2023-03-12 09:36:22,653 celery.bootsteps DEBUG    | Worker: Stopping Pool...
+2023-03-12 09:36:22,777 celery.concurrency.asynpool DEBUG    removing tasks from inqueue until task handler finished
+2023-03-12 09:36:28,696 celery.bootsteps DEBUG    | Worker: Preparing bootsteps.
+2023-03-12 09:36:28,709 celery.bootsteps DEBUG    | Worker: Building graph...
+2023-03-12 09:36:28,710 celery.bootsteps DEBUG    | Worker: New boot order: {Timer, Hub, Pool, Autoscaler, Beat, StateDB, Consumer}
+2023-03-12 09:36:28,801 celery.bootsteps DEBUG    | Consumer: Preparing bootsteps.
+2023-03-12 09:36:28,801 celery.bootsteps DEBUG    | Consumer: Building graph...
+2023-03-12 09:36:28,863 celery.bootsteps DEBUG    | Consumer: New boot order: {Connection, Events, Mingle, Gossip, Tasks, Control, Heart, Agent, event loop}
+2023-03-12 09:36:28,893 celery.bootsteps DEBUG    | Worker: Starting Hub
+2023-03-12 09:36:28,894 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 09:36:28,894 celery.bootsteps DEBUG    | Worker: Starting Pool
+2023-03-12 09:36:29,182 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 09:36:29,183 celery.bootsteps DEBUG    | Worker: Starting Consumer
+2023-03-12 09:36:29,184 celery.bootsteps DEBUG    | Consumer: Starting Connection
+2023-03-12 09:36:29,213 celery.worker.consumer.connection INFO     Connected to redis://localhost:6379//
+2023-03-12 09:36:29,214 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 09:36:29,215 celery.bootsteps DEBUG    | Consumer: Starting Events
+2023-03-12 09:36:29,221 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 09:36:29,223 celery.bootsteps DEBUG    | Consumer: Starting Mingle
+2023-03-12 09:36:29,225 celery.worker.consumer.mingle INFO     mingle: searching for neighbors
+2023-03-12 09:36:30,248 celery.worker.consumer.mingle INFO     mingle: all alone
+2023-03-12 09:36:30,249 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 09:36:30,250 celery.bootsteps DEBUG    | Consumer: Starting Gossip
+2023-03-12 09:36:30,254 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 09:36:30,255 celery.bootsteps DEBUG    | Consumer: Starting Tasks
+2023-03-12 09:36:30,268 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 09:36:30,268 celery.bootsteps DEBUG    | Consumer: Starting Control
+2023-03-12 09:36:30,274 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 09:36:30,275 celery.bootsteps DEBUG    | Consumer: Starting Heart
+2023-03-12 09:36:30,278 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 09:36:30,279 celery.bootsteps DEBUG    | Consumer: Starting event loop
+2023-03-12 09:36:30,279 celery.bootsteps DEBUG    | Worker: Hub.register Pool...
+2023-03-12 09:36:30,284 celery.apps.worker INFO     celery@DESKTOP-ACIBNGT ready.
+2023-03-12 09:36:30,284 kombu.common DEBUG    basic.qos: prefetch_count->16
+2023-03-12 09:36:45,518 salle_activite_view INFO     View inited...
+2023-03-12 09:36:45,524 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_1[e74a4aa3-a1f7-4e73-9ca9-edd23d885b63]  
+2023-03-12 09:36:45,525 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f8edfba5550> (args:('salle_activite.tasks.start_linsten_1', 'e74a4aa3-a1f7-4e73-9ca9-edd23d885b63', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_1', 'id': 'e74a4aa3-a1f7-4e73-9ca9-edd23d885b63', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'e74a4aa3-a1f7-4e73-9ca9-edd23d885b63', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen360@DESKTOP-ACIBNGT', 'reply_to': '28988b09-4939-3b8a-a472-b6109951064b', 'correlation_id': 'e74a4aa3-a1f7-4e73-9ca9-edd23d885b63', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-12 09:36:45,532 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_2[e5485509-7470-4ba3-a5d0-86f4c7d76aeb]  
+2023-03-12 09:36:45,537 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f8edfba5550> (args:('salle_activite.tasks.start_linsten_2', 'e5485509-7470-4ba3-a5d0-86f4c7d76aeb', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_2', 'id': 'e5485509-7470-4ba3-a5d0-86f4c7d76aeb', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'e5485509-7470-4ba3-a5d0-86f4c7d76aeb', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen360@DESKTOP-ACIBNGT', 'reply_to': '28988b09-4939-3b8a-a472-b6109951064b', 'correlation_id': 'e5485509-7470-4ba3-a5d0-86f4c7d76aeb', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-12 09:36:45,549 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_1[e74a4aa3-a1f7-4e73-9ca9-edd23d885b63] pid:395
+2023-03-12 09:36:45,568 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_3[f6278600-0be7-44f9-9c76-c6139d913a95]  
+2023-03-12 09:36:45,571 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f8edfba5550> (args:('salle_activite.tasks.start_linsten_3', 'f6278600-0be7-44f9-9c76-c6139d913a95', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_3', 'id': 'f6278600-0be7-44f9-9c76-c6139d913a95', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'f6278600-0be7-44f9-9c76-c6139d913a95', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen360@DESKTOP-ACIBNGT', 'reply_to': '28988b09-4939-3b8a-a472-b6109951064b', 'correlation_id': 'f6278600-0be7-44f9-9c76-c6139d913a95', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-12 09:36:45,577 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_2[e5485509-7470-4ba3-a5d0-86f4c7d76aeb] pid:397
+2023-03-12 09:36:45,603 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_4[053e592f-96c2-4079-96f6-4b832966f8d7]  
+2023-03-12 09:36:45,609 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f8edfba5550> (args:('salle_activite.tasks.start_linsten_4', '053e592f-96c2-4079-96f6-4b832966f8d7', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_4', 'id': '053e592f-96c2-4079-96f6-4b832966f8d7', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '053e592f-96c2-4079-96f6-4b832966f8d7', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen360@DESKTOP-ACIBNGT', 'reply_to': '28988b09-4939-3b8a-a472-b6109951064b', 'correlation_id': '053e592f-96c2-4079-96f6-4b832966f8d7', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-12 09:36:45,676 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_5[d91168c5-6539-4522-ad59-677d058e70be]  
+2023-03-12 09:36:45,693 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_3[f6278600-0be7-44f9-9c76-c6139d913a95] pid:396
+2023-03-12 09:36:45,744 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_4[053e592f-96c2-4079-96f6-4b832966f8d7] pid:398
+2023-03-12 09:36:45,809 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_6[1c9b0651-6bf3-442c-825e-db4c1cfd9604]  
+2023-03-12 09:36:45,823 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_7[71996b48-31f8-4e28-a986-17f36b0d2e13]  
+2023-03-12 09:36:45,827 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_8[07d7734d-e381-4872-ab4a-6eb10172d400]  
+2023-03-12 09:36:45,830 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_9[433d1100-ae45-42e0-b0d1-d1f054ea9d0d]  
+2023-03-12 09:36:45,833 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_face_door_1[fb1b4d5f-8639-4ec2-b306-27e2d9017302]  
+2023-03-12 09:36:45,845 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_face_door_2[fa5e3a1d-878d-454c-af5c-5dac76e141d6]  
+2023-03-12 09:36:46,075 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_4[053e592f-96c2-4079-96f6-4b832966f8d7] succeeded in 0.4433518000000163s: None
+2023-03-12 09:36:46,080 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f8edfba5550> (args:('salle_activite.tasks.start_linsten_5', 'd91168c5-6539-4522-ad59-677d058e70be', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_5', 'id': 'd91168c5-6539-4522-ad59-677d058e70be', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'd91168c5-6539-4522-ad59-677d058e70be', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen360@DESKTOP-ACIBNGT', 'reply_to': '28988b09-4939-3b8a-a472-b6109951064b', 'correlation_id': 'd91168c5-6539-4522-ad59-677d058e70be', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-12 09:36:46,091 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_3[f6278600-0be7-44f9-9c76-c6139d913a95] succeeded in 0.4608701000000224s: None
+2023-03-12 09:36:46,093 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_5[d91168c5-6539-4522-ad59-677d058e70be] pid:398
+2023-03-12 09:36:46,105 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f8edfba5550> (args:('salle_activite.tasks.start_linsten_6', '1c9b0651-6bf3-442c-825e-db4c1cfd9604', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_6', 'id': '1c9b0651-6bf3-442c-825e-db4c1cfd9604', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '1c9b0651-6bf3-442c-825e-db4c1cfd9604', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen360@DESKTOP-ACIBNGT', 'reply_to': '28988b09-4939-3b8a-a472-b6109951064b', 'correlation_id': '1c9b0651-6bf3-442c-825e-db4c1cfd9604', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-12 09:36:46,112 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_6[1c9b0651-6bf3-442c-825e-db4c1cfd9604] pid:396
+2023-03-12 09:36:46,319 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_5[d91168c5-6539-4522-ad59-677d058e70be] succeeded in 0.22854589999997188s: None
+2023-03-12 09:36:46,320 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f8edfba5550> (args:('salle_activite.tasks.start_linsten_7', '71996b48-31f8-4e28-a986-17f36b0d2e13', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_7', 'id': '71996b48-31f8-4e28-a986-17f36b0d2e13', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '71996b48-31f8-4e28-a986-17f36b0d2e13', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen360@DESKTOP-ACIBNGT', 'reply_to': '28988b09-4939-3b8a-a472-b6109951064b', 'correlation_id': '71996b48-31f8-4e28-a986-17f36b0d2e13', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-12 09:36:46,330 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_7[71996b48-31f8-4e28-a986-17f36b0d2e13] pid:398
+2023-03-12 09:36:46,347 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_6[1c9b0651-6bf3-442c-825e-db4c1cfd9604] succeeded in 0.23560510000004342s: None
+2023-03-12 09:36:46,353 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f8edfba5550> (args:('salle_activite.tasks.start_linsten_8', '07d7734d-e381-4872-ab4a-6eb10172d400', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_8', 'id': '07d7734d-e381-4872-ab4a-6eb10172d400', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '07d7734d-e381-4872-ab4a-6eb10172d400', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen360@DESKTOP-ACIBNGT', 'reply_to': '28988b09-4939-3b8a-a472-b6109951064b', 'correlation_id': '07d7734d-e381-4872-ab4a-6eb10172d400', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-12 09:36:46,370 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_8[07d7734d-e381-4872-ab4a-6eb10172d400] pid:396
+2023-03-12 09:36:46,556 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_7[71996b48-31f8-4e28-a986-17f36b0d2e13] succeeded in 0.22683610000001408s: None
+2023-03-12 09:36:46,559 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f8edfba5550> (args:('salle_activite.tasks.start_linsten_9', '433d1100-ae45-42e0-b0d1-d1f054ea9d0d', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_9', 'id': '433d1100-ae45-42e0-b0d1-d1f054ea9d0d', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '433d1100-ae45-42e0-b0d1-d1f054ea9d0d', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen360@DESKTOP-ACIBNGT', 'reply_to': '28988b09-4939-3b8a-a472-b6109951064b', 'correlation_id': '433d1100-ae45-42e0-b0d1-d1f054ea9d0d', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-12 09:36:46,562 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_9[433d1100-ae45-42e0-b0d1-d1f054ea9d0d] pid:398
+2023-03-12 09:36:46,603 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_8[07d7734d-e381-4872-ab4a-6eb10172d400] succeeded in 0.23253070000004072s: None
+2023-03-12 09:36:46,604 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f8edfba5550> (args:('salle_activite.tasks.start_face_door_1', 'fb1b4d5f-8639-4ec2-b306-27e2d9017302', {'lang': 'py', 'task': 'salle_activite.tasks.start_face_door_1', 'id': 'fb1b4d5f-8639-4ec2-b306-27e2d9017302', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'fb1b4d5f-8639-4ec2-b306-27e2d9017302', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen360@DESKTOP-ACIBNGT', 'reply_to': '28988b09-4939-3b8a-a472-b6109951064b', 'correlation_id': 'fb1b4d5f-8639-4ec2-b306-27e2d9017302', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-12 09:36:46,610 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_face_door_1[fb1b4d5f-8639-4ec2-b306-27e2d9017302] pid:396
+2023-03-12 09:36:46,866 celery.app.trace INFO     Task salle_activite.tasks.start_face_door_1[fb1b4d5f-8639-4ec2-b306-27e2d9017302] succeeded in 0.2560806000000184s: None
+2023-03-12 09:36:46,870 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f8edfba5550> (args:('salle_activite.tasks.start_face_door_2', 'fa5e3a1d-878d-454c-af5c-5dac76e141d6', {'lang': 'py', 'task': 'salle_activite.tasks.start_face_door_2', 'id': 'fa5e3a1d-878d-454c-af5c-5dac76e141d6', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'fa5e3a1d-878d-454c-af5c-5dac76e141d6', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen360@DESKTOP-ACIBNGT', 'reply_to': '28988b09-4939-3b8a-a472-b6109951064b', 'correlation_id': 'fa5e3a1d-878d-454c-af5c-5dac76e141d6', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-12 09:36:46,875 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_face_door_2[fa5e3a1d-878d-454c-af5c-5dac76e141d6] pid:396
+2023-03-12 09:36:47,169 celery.app.trace INFO     Task salle_activite.tasks.start_face_door_2[fa5e3a1d-878d-454c-af5c-5dac76e141d6] succeeded in 0.29367039999999633s: None
+2023-03-12 09:36:47,308 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_2[e5485509-7470-4ba3-a5d0-86f4c7d76aeb] succeeded in 1.745177799999965s: None
+2023-03-12 09:36:47,316 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_1[e74a4aa3-a1f7-4e73-9ca9-edd23d885b63] succeeded in 1.7852268999999978s: None
+2023-03-12 09:36:48,071 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_9[433d1100-ae45-42e0-b0d1-d1f054ea9d0d] succeeded in 1.508674400000018s: None
+2023-03-12 09:37:43,087 django.utils.autoreload INFO     /mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/backend/salle_activite/views.py changed, reloading.
+2023-03-12 09:37:44,051 celery.bootsteps DEBUG    | Worker: Closing Hub...
+2023-03-12 09:37:44,054 celery.bootsteps DEBUG    | Worker: Closing Pool...
+2023-03-12 09:37:44,054 celery.bootsteps DEBUG    | Worker: Closing Consumer...
+2023-03-12 09:37:44,055 celery.bootsteps DEBUG    | Worker: Stopping Consumer...
+2023-03-12 09:37:44,056 celery.bootsteps DEBUG    | Consumer: Closing Connection...
+2023-03-12 09:37:44,057 celery.bootsteps DEBUG    | Consumer: Closing Events...
+2023-03-12 09:37:44,057 celery.bootsteps DEBUG    | Consumer: Closing Mingle...
+2023-03-12 09:37:44,058 celery.bootsteps DEBUG    | Consumer: Closing Gossip...
+2023-03-12 09:37:44,058 celery.bootsteps DEBUG    | Consumer: Closing Tasks...
+2023-03-12 09:37:44,060 celery.bootsteps DEBUG    | Consumer: Closing Control...
+2023-03-12 09:37:44,062 celery.bootsteps DEBUG    | Consumer: Closing Heart...
+2023-03-12 09:37:44,063 celery.bootsteps DEBUG    | Consumer: Closing event loop...
+2023-03-12 09:37:44,064 celery.bootsteps DEBUG    | Consumer: Stopping event loop...
+2023-03-12 09:37:44,064 celery.bootsteps DEBUG    | Consumer: Stopping Heart...
+2023-03-12 09:37:44,067 celery.bootsteps DEBUG    | Consumer: Stopping Control...
+2023-03-12 09:37:44,073 celery.bootsteps DEBUG    | Consumer: Stopping Tasks...
+2023-03-12 09:37:44,074 celery.worker.consumer.tasks DEBUG    Canceling task consumer...
+2023-03-12 09:37:44,075 celery.bootsteps DEBUG    | Consumer: Stopping Gossip...
+2023-03-12 09:37:44,096 celery.bootsteps DEBUG    | Consumer: Stopping Mingle...
+2023-03-12 09:37:44,097 celery.bootsteps DEBUG    | Consumer: Stopping Events...
+2023-03-12 09:37:44,098 celery.bootsteps DEBUG    | Consumer: Stopping Connection...
+2023-03-12 09:37:44,099 celery.bootsteps DEBUG    | Worker: Stopping Pool...
+2023-03-12 09:37:44,251 celery.concurrency.asynpool DEBUG    removing tasks from inqueue until task handler finished
+2023-03-12 09:37:45,160 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-12 09:37:49,427 celery.bootsteps DEBUG    | Worker: Preparing bootsteps.
+2023-03-12 09:37:49,436 celery.bootsteps DEBUG    | Worker: Building graph...
+2023-03-12 09:37:49,437 celery.bootsteps DEBUG    | Worker: New boot order: {StateDB, Timer, Hub, Pool, Autoscaler, Beat, Consumer}
+2023-03-12 09:37:49,461 celery.bootsteps DEBUG    | Consumer: Preparing bootsteps.
+2023-03-12 09:37:49,462 celery.bootsteps DEBUG    | Consumer: Building graph...
+2023-03-12 09:37:49,500 celery.bootsteps DEBUG    | Consumer: New boot order: {Connection, Agent, Events, Mingle, Gossip, Tasks, Control, Heart, event loop}
+2023-03-12 09:37:49,532 celery.bootsteps DEBUG    | Worker: Starting Hub
+2023-03-12 09:37:49,532 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 09:37:49,533 celery.bootsteps DEBUG    | Worker: Starting Pool
+2023-03-12 09:37:49,818 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 09:37:49,819 celery.bootsteps DEBUG    | Worker: Starting Consumer
+2023-03-12 09:37:49,820 celery.bootsteps DEBUG    | Consumer: Starting Connection
+2023-03-12 09:37:49,843 celery.worker.consumer.connection INFO     Connected to redis://localhost:6379//
+2023-03-12 09:37:49,844 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 09:37:49,844 celery.bootsteps DEBUG    | Consumer: Starting Events
+2023-03-12 09:37:49,851 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 09:37:49,852 celery.bootsteps DEBUG    | Consumer: Starting Mingle
+2023-03-12 09:37:49,853 celery.worker.consumer.mingle INFO     mingle: searching for neighbors
+2023-03-12 09:37:50,872 celery.worker.consumer.mingle INFO     mingle: all alone
+2023-03-12 09:37:50,873 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 09:37:50,873 celery.bootsteps DEBUG    | Consumer: Starting Gossip
+2023-03-12 09:37:50,878 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 09:37:50,878 celery.bootsteps DEBUG    | Consumer: Starting Tasks
+2023-03-12 09:37:50,883 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 09:37:50,884 celery.bootsteps DEBUG    | Consumer: Starting Control
+2023-03-12 09:37:50,890 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 09:37:50,891 celery.bootsteps DEBUG    | Consumer: Starting Heart
+2023-03-12 09:37:50,893 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 09:37:50,894 celery.bootsteps DEBUG    | Consumer: Starting event loop
+2023-03-12 09:37:50,895 celery.bootsteps DEBUG    | Worker: Hub.register Pool...
+2023-03-12 09:37:50,898 celery.apps.worker INFO     celery@DESKTOP-ACIBNGT ready.
+2023-03-12 09:37:50,898 kombu.common DEBUG    basic.qos: prefetch_count->16
+2023-03-12 09:38:00,089 salle_activite_view INFO     View inited...
+2023-03-12 09:38:00,186 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_face_door_1[d1e5e3b1-2201-4b15-82fb-8564da4a9aae]  
+2023-03-12 09:38:00,188 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f800cfe1550> (args:('salle_activite.tasks.start_face_door_1', 'd1e5e3b1-2201-4b15-82fb-8564da4a9aae', {'lang': 'py', 'task': 'salle_activite.tasks.start_face_door_1', 'id': 'd1e5e3b1-2201-4b15-82fb-8564da4a9aae', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'd1e5e3b1-2201-4b15-82fb-8564da4a9aae', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen501@DESKTOP-ACIBNGT', 'reply_to': 'de83a068-af38-3e23-97dd-f6ddf043affa', 'correlation_id': 'd1e5e3b1-2201-4b15-82fb-8564da4a9aae', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-12 09:38:00,191 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_face_door_2[dacce8b2-b35b-4e93-b2b2-385b37e59ad5]  
+2023-03-12 09:38:00,192 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f800cfe1550> (args:('salle_activite.tasks.start_face_door_2', 'dacce8b2-b35b-4e93-b2b2-385b37e59ad5', {'lang': 'py', 'task': 'salle_activite.tasks.start_face_door_2', 'id': 'dacce8b2-b35b-4e93-b2b2-385b37e59ad5', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'dacce8b2-b35b-4e93-b2b2-385b37e59ad5', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen501@DESKTOP-ACIBNGT', 'reply_to': 'de83a068-af38-3e23-97dd-f6ddf043affa', 'correlation_id': 'dacce8b2-b35b-4e93-b2b2-385b37e59ad5', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-12 09:38:00,195 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_face_door_1[d1e5e3b1-2201-4b15-82fb-8564da4a9aae] pid:509
+2023-03-12 09:38:00,198 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_face_door_2[dacce8b2-b35b-4e93-b2b2-385b37e59ad5] pid:511
+2023-03-12 09:38:00,544 celery.app.trace INFO     Task salle_activite.tasks.start_face_door_1[d1e5e3b1-2201-4b15-82fb-8564da4a9aae] succeeded in 0.3477522000000022s: None
+2023-03-12 09:38:00,557 celery.app.trace INFO     Task salle_activite.tasks.start_face_door_2[dacce8b2-b35b-4e93-b2b2-385b37e59ad5] succeeded in 0.36130709999997634s: None
+2023-03-12 10:03:52,900 django.utils.autoreload INFO     /mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/backend/salle_activite/face.py changed, reloading.
+2023-03-12 10:03:54,751 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-12 10:04:23,808 celery.bootsteps DEBUG    | Worker: Closing Hub...
+2023-03-12 10:04:23,808 celery.bootsteps DEBUG    | Worker: Closing Pool...
+2023-03-12 10:04:23,808 celery.bootsteps DEBUG    | Worker: Closing Consumer...
+2023-03-12 10:04:23,808 celery.bootsteps DEBUG    | Worker: Stopping Consumer...
+2023-03-12 10:04:23,809 celery.bootsteps DEBUG    | Consumer: Closing Connection...
+2023-03-12 10:04:23,809 celery.bootsteps DEBUG    | Consumer: Closing Events...
+2023-03-12 10:04:23,809 celery.bootsteps DEBUG    | Consumer: Closing Mingle...
+2023-03-12 10:04:23,809 celery.bootsteps DEBUG    | Consumer: Closing Gossip...
+2023-03-12 10:04:23,809 celery.bootsteps DEBUG    | Consumer: Closing Tasks...
+2023-03-12 10:04:23,811 celery.bootsteps DEBUG    | Consumer: Closing Control...
+2023-03-12 10:04:23,811 celery.bootsteps DEBUG    | Consumer: Closing Heart...
+2023-03-12 10:04:23,812 celery.bootsteps DEBUG    | Consumer: Closing event loop...
+2023-03-12 10:04:23,814 celery.bootsteps DEBUG    | Consumer: Stopping event loop...
+2023-03-12 10:04:23,814 celery.bootsteps DEBUG    | Consumer: Stopping Heart...
+2023-03-12 10:04:23,816 celery.bootsteps DEBUG    | Consumer: Stopping Control...
+2023-03-12 10:04:23,819 celery.bootsteps DEBUG    | Consumer: Stopping Tasks...
+2023-03-12 10:04:23,820 celery.worker.consumer.tasks DEBUG    Canceling task consumer...
+2023-03-12 10:04:23,821 celery.bootsteps DEBUG    | Consumer: Stopping Gossip...
+2023-03-12 10:04:23,824 celery.bootsteps DEBUG    | Consumer: Stopping Mingle...
+2023-03-12 10:04:23,825 celery.bootsteps DEBUG    | Consumer: Stopping Events...
+2023-03-12 10:04:23,825 celery.bootsteps DEBUG    | Consumer: Stopping Connection...
+2023-03-12 10:04:23,826 celery.bootsteps DEBUG    | Worker: Stopping Pool...
+2023-03-12 10:04:23,967 celery.concurrency.asynpool DEBUG    removing tasks from inqueue until task handler finished
+2023-03-12 10:04:27,929 celery.bootsteps DEBUG    | Worker: Preparing bootsteps.
+2023-03-12 10:04:27,935 celery.bootsteps DEBUG    | Worker: Building graph...
+2023-03-12 10:04:27,937 celery.bootsteps DEBUG    | Worker: New boot order: {Beat, StateDB, Timer, Hub, Pool, Autoscaler, Consumer}
+2023-03-12 10:04:27,978 celery.bootsteps DEBUG    | Consumer: Preparing bootsteps.
+2023-03-12 10:04:27,979 celery.bootsteps DEBUG    | Consumer: Building graph...
+2023-03-12 10:04:28,032 celery.bootsteps DEBUG    | Consumer: New boot order: {Connection, Events, Heart, Mingle, Tasks, Control, Agent, Gossip, event loop}
+2023-03-12 10:04:28,073 celery.bootsteps DEBUG    | Worker: Starting Hub
+2023-03-12 10:04:28,074 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:04:28,075 celery.bootsteps DEBUG    | Worker: Starting Pool
+2023-03-12 10:04:28,443 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:04:28,444 celery.bootsteps DEBUG    | Worker: Starting Consumer
+2023-03-12 10:04:28,445 celery.bootsteps DEBUG    | Consumer: Starting Connection
+2023-03-12 10:04:28,470 celery.worker.consumer.connection INFO     Connected to redis://localhost:6379//
+2023-03-12 10:04:28,471 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:04:28,471 celery.bootsteps DEBUG    | Consumer: Starting Events
+2023-03-12 10:04:28,479 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:04:28,480 celery.bootsteps DEBUG    | Consumer: Starting Heart
+2023-03-12 10:04:28,486 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:04:28,486 celery.bootsteps DEBUG    | Consumer: Starting Mingle
+2023-03-12 10:04:28,487 celery.worker.consumer.mingle INFO     mingle: searching for neighbors
+2023-03-12 10:04:29,524 celery.worker.consumer.mingle INFO     mingle: all alone
+2023-03-12 10:04:29,526 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:04:29,527 celery.bootsteps DEBUG    | Consumer: Starting Tasks
+2023-03-12 10:04:29,541 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:04:29,542 celery.bootsteps DEBUG    | Consumer: Starting Control
+2023-03-12 10:04:29,550 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:04:29,551 celery.bootsteps DEBUG    | Consumer: Starting Gossip
+2023-03-12 10:04:29,558 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:04:29,559 celery.bootsteps DEBUG    | Consumer: Starting event loop
+2023-03-12 10:04:29,560 celery.bootsteps DEBUG    | Worker: Hub.register Pool...
+2023-03-12 10:04:29,568 celery.apps.worker INFO     celery@DESKTOP-ACIBNGT ready.
+2023-03-12 10:04:29,570 kombu.common DEBUG    basic.qos: prefetch_count->16
+2023-03-12 10:04:34,713 salle_activite_view INFO     View inited...
+2023-03-12 10:04:34,838 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_face_door_1[a5d472f8-bbe4-4eae-8aea-44b88f662fb8]  
+2023-03-12 10:04:34,840 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f3b4bc21550> (args:('salle_activite.tasks.start_face_door_1', 'a5d472f8-bbe4-4eae-8aea-44b88f662fb8', {'lang': 'py', 'task': 'salle_activite.tasks.start_face_door_1', 'id': 'a5d472f8-bbe4-4eae-8aea-44b88f662fb8', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'a5d472f8-bbe4-4eae-8aea-44b88f662fb8', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen567@DESKTOP-ACIBNGT', 'reply_to': 'a7f3d109-8a94-3638-9519-82904ac6b5af', 'correlation_id': 'a5d472f8-bbe4-4eae-8aea-44b88f662fb8', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-12 10:04:34,845 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_face_door_2[5beeb150-430e-443e-8b8f-28c7fae5f1a9]  
+2023-03-12 10:04:34,846 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f3b4bc21550> (args:('salle_activite.tasks.start_face_door_2', '5beeb150-430e-443e-8b8f-28c7fae5f1a9', {'lang': 'py', 'task': 'salle_activite.tasks.start_face_door_2', 'id': '5beeb150-430e-443e-8b8f-28c7fae5f1a9', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '5beeb150-430e-443e-8b8f-28c7fae5f1a9', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen567@DESKTOP-ACIBNGT', 'reply_to': 'a7f3d109-8a94-3638-9519-82904ac6b5af', 'correlation_id': '5beeb150-430e-443e-8b8f-28c7fae5f1a9', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-12 10:04:34,849 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_face_door_1[a5d472f8-bbe4-4eae-8aea-44b88f662fb8] pid:576
+2023-03-12 10:04:34,851 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_face_door_2[5beeb150-430e-443e-8b8f-28c7fae5f1a9] pid:578
+2023-03-12 10:04:35,190 celery.app.trace INFO     Task salle_activite.tasks.start_face_door_1[a5d472f8-bbe4-4eae-8aea-44b88f662fb8] succeeded in 0.3388603999997031s: None
+2023-03-12 10:04:35,224 celery.app.trace INFO     Task salle_activite.tasks.start_face_door_2[5beeb150-430e-443e-8b8f-28c7fae5f1a9] succeeded in 0.37400290000005043s: None
+2023-03-12 10:15:20,700 celery.bootsteps DEBUG    | Worker: Closing Hub...
+2023-03-12 10:15:20,701 celery.bootsteps DEBUG    | Worker: Closing Pool...
+2023-03-12 10:15:20,702 celery.bootsteps DEBUG    | Worker: Closing Consumer...
+2023-03-12 10:15:20,702 celery.bootsteps DEBUG    | Worker: Stopping Consumer...
+2023-03-12 10:15:20,703 celery.bootsteps DEBUG    | Consumer: Closing Connection...
+2023-03-12 10:15:20,705 celery.bootsteps DEBUG    | Consumer: Closing Events...
+2023-03-12 10:15:20,705 celery.bootsteps DEBUG    | Consumer: Closing Heart...
+2023-03-12 10:15:20,706 celery.bootsteps DEBUG    | Consumer: Closing Mingle...
+2023-03-12 10:15:20,707 celery.bootsteps DEBUG    | Consumer: Closing Tasks...
+2023-03-12 10:15:20,707 celery.bootsteps DEBUG    | Consumer: Closing Control...
+2023-03-12 10:15:20,709 celery.bootsteps DEBUG    | Consumer: Closing Gossip...
+2023-03-12 10:15:20,709 celery.bootsteps DEBUG    | Consumer: Closing event loop...
+2023-03-12 10:15:20,710 celery.bootsteps DEBUG    | Consumer: Stopping event loop...
+2023-03-12 10:15:20,711 celery.bootsteps DEBUG    | Consumer: Stopping Gossip...
+2023-03-12 10:15:20,718 celery.bootsteps DEBUG    | Consumer: Stopping Control...
+2023-03-12 10:15:20,744 celery.bootsteps DEBUG    | Consumer: Stopping Tasks...
+2023-03-12 10:15:20,745 celery.worker.consumer.tasks DEBUG    Canceling task consumer...
+2023-03-12 10:15:20,745 celery.bootsteps DEBUG    | Consumer: Stopping Mingle...
+2023-03-12 10:15:20,746 celery.bootsteps DEBUG    | Consumer: Stopping Heart...
+2023-03-12 10:15:20,761 celery.bootsteps DEBUG    | Consumer: Stopping Events...
+2023-03-12 10:15:20,762 celery.bootsteps DEBUG    | Consumer: Stopping Connection...
+2023-03-12 10:15:20,762 celery.bootsteps DEBUG    | Worker: Stopping Pool...
+2023-03-12 10:15:20,877 celery.concurrency.asynpool DEBUG    removing tasks from inqueue until task handler finished
+2023-03-12 10:18:03,742 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-12 10:18:04,585 celery.bootsteps DEBUG    | Worker: Preparing bootsteps.
+2023-03-12 10:18:04,595 celery.bootsteps DEBUG    | Worker: Building graph...
+2023-03-12 10:18:04,597 celery.bootsteps DEBUG    | Worker: New boot order: {Beat, StateDB, Timer, Hub, Pool, Autoscaler, Consumer}
+2023-03-12 10:18:04,655 celery.bootsteps DEBUG    | Consumer: Preparing bootsteps.
+2023-03-12 10:18:04,656 celery.bootsteps DEBUG    | Consumer: Building graph...
+2023-03-12 10:18:04,751 celery.bootsteps DEBUG    | Consumer: New boot order: {Connection, Events, Mingle, Gossip, Agent, Heart, Tasks, Control, event loop}
+2023-03-12 10:18:04,827 celery.bootsteps DEBUG    | Worker: Starting Hub
+2023-03-12 10:18:04,828 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:18:04,832 celery.bootsteps DEBUG    | Worker: Starting Pool
+2023-03-12 10:18:05,383 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:18:05,385 celery.bootsteps DEBUG    | Worker: Starting Consumer
+2023-03-12 10:18:05,385 celery.bootsteps DEBUG    | Consumer: Starting Connection
+2023-03-12 10:18:05,443 celery.worker.consumer.connection INFO     Connected to redis://localhost:6379//
+2023-03-12 10:18:05,444 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:18:05,445 celery.bootsteps DEBUG    | Consumer: Starting Events
+2023-03-12 10:18:05,466 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:18:05,475 celery.bootsteps DEBUG    | Consumer: Starting Mingle
+2023-03-12 10:18:05,477 celery.worker.consumer.mingle INFO     mingle: searching for neighbors
+2023-03-12 10:18:06,531 celery.worker.consumer.mingle INFO     mingle: all alone
+2023-03-12 10:18:06,533 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:18:06,534 celery.bootsteps DEBUG    | Consumer: Starting Gossip
+2023-03-12 10:18:06,542 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:18:06,543 celery.bootsteps DEBUG    | Consumer: Starting Heart
+2023-03-12 10:18:06,549 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:18:06,551 celery.bootsteps DEBUG    | Consumer: Starting Tasks
+2023-03-12 10:18:06,568 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:18:06,569 celery.bootsteps DEBUG    | Consumer: Starting Control
+2023-03-12 10:18:06,579 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:18:06,583 celery.bootsteps DEBUG    | Consumer: Starting event loop
+2023-03-12 10:18:06,586 celery.bootsteps DEBUG    | Worker: Hub.register Pool...
+2023-03-12 10:18:06,603 celery.apps.worker INFO     celery@DESKTOP-ACIBNGT ready.
+2023-03-12 10:18:06,605 kombu.common DEBUG    basic.qos: prefetch_count->16
+2023-03-12 10:19:17,792 django.request WARNING  Not Found: /rest-api/salle-activite/openthedoor/3/
+2023-03-12 10:21:50,212 django.utils.autoreload INFO     /mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/backend/salle_activite/views.py changed, reloading.
+2023-03-12 10:21:55,150 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-12 10:22:11,391 django.request WARNING  Bad Request: /rest-api/salle-activite/openthedoor/3/
+2023-03-12 10:25:06,650 django.request WARNING  Bad Request: /rest-api/salle-activite/openthedoor/3/
+2023-03-12 10:25:32,854 salle_activite_view INFO     View inited...
+2023-03-12 10:25:33,010 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_face_door_1[44de083a-a231-4118-891a-a525f8589799]  
+2023-03-12 10:25:33,012 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f1327363550> (args:('salle_activite.tasks.start_face_door_1', '44de083a-a231-4118-891a-a525f8589799', {'lang': 'py', 'task': 'salle_activite.tasks.start_face_door_1', 'id': '44de083a-a231-4118-891a-a525f8589799', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '44de083a-a231-4118-891a-a525f8589799', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen686@DESKTOP-ACIBNGT', 'reply_to': '5555df77-e75d-34f9-b0e3-d6dc89a80ebc', 'correlation_id': '44de083a-a231-4118-891a-a525f8589799', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-12 10:25:33,017 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_face_door_2[b1059f22-be03-44fd-85c6-172207a44fb9]  
+2023-03-12 10:25:33,019 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f1327363550> (args:('salle_activite.tasks.start_face_door_2', 'b1059f22-be03-44fd-85c6-172207a44fb9', {'lang': 'py', 'task': 'salle_activite.tasks.start_face_door_2', 'id': 'b1059f22-be03-44fd-85c6-172207a44fb9', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'b1059f22-be03-44fd-85c6-172207a44fb9', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen686@DESKTOP-ACIBNGT', 'reply_to': '5555df77-e75d-34f9-b0e3-d6dc89a80ebc', 'correlation_id': 'b1059f22-be03-44fd-85c6-172207a44fb9', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-12 10:25:33,024 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_face_door_1[44de083a-a231-4118-891a-a525f8589799] pid:649
+2023-03-12 10:25:33,031 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_face_door_2[b1059f22-be03-44fd-85c6-172207a44fb9] pid:651
+2023-03-12 10:25:33,430 celery.app.trace INFO     Task salle_activite.tasks.start_face_door_1[44de083a-a231-4118-891a-a525f8589799] succeeded in 0.4111926000000494s: None
+2023-03-12 10:25:33,530 celery.app.trace INFO     Task salle_activite.tasks.start_face_door_2[b1059f22-be03-44fd-85c6-172207a44fb9] succeeded in 0.5005433000001176s: None
+2023-03-12 10:25:42,708 django.request WARNING  Bad Request: /rest-api/salle-activite/openthedoor/3/
+2023-03-12 10:30:28,222 django.request WARNING  Bad Request: /rest-api/salle-activite/openthedoor/3/
+2023-03-12 10:30:34,224 django.request WARNING  Bad Request: /rest-api/salle-activite/openthedoor/3/
+2023-03-12 10:30:39,981 django.request WARNING  Bad Request: /rest-api/salle-activite/openthedoor/3/
+2023-03-12 10:30:45,653 django.request WARNING  Bad Request: /rest-api/salle-activite/openthedoor/3/
+2023-03-12 10:31:12,019 celery.bootsteps DEBUG    | Worker: Closing Hub...
+2023-03-12 10:31:12,020 celery.bootsteps DEBUG    | Worker: Closing Pool...
+2023-03-12 10:31:12,022 celery.bootsteps DEBUG    | Worker: Closing Consumer...
+2023-03-12 10:31:12,023 celery.bootsteps DEBUG    | Worker: Stopping Consumer...
+2023-03-12 10:31:12,025 celery.bootsteps DEBUG    | Consumer: Closing Connection...
+2023-03-12 10:31:12,026 celery.bootsteps DEBUG    | Consumer: Closing Events...
+2023-03-12 10:31:12,026 celery.bootsteps DEBUG    | Consumer: Closing Mingle...
+2023-03-12 10:31:12,027 celery.bootsteps DEBUG    | Consumer: Closing Gossip...
+2023-03-12 10:31:12,029 celery.bootsteps DEBUG    | Consumer: Closing Heart...
+2023-03-12 10:31:12,030 celery.bootsteps DEBUG    | Consumer: Closing Tasks...
+2023-03-12 10:31:12,034 celery.bootsteps DEBUG    | Consumer: Closing Control...
+2023-03-12 10:31:12,038 celery.bootsteps DEBUG    | Consumer: Closing event loop...
+2023-03-12 10:31:12,039 celery.bootsteps DEBUG    | Consumer: Stopping event loop...
+2023-03-12 10:31:12,040 celery.bootsteps DEBUG    | Consumer: Stopping Control...
+2023-03-12 10:31:12,047 celery.bootsteps DEBUG    | Consumer: Stopping Tasks...
+2023-03-12 10:31:12,049 celery.worker.consumer.tasks DEBUG    Canceling task consumer...
+2023-03-12 10:31:12,051 celery.bootsteps DEBUG    | Consumer: Stopping Heart...
+2023-03-12 10:31:12,060 celery.bootsteps DEBUG    | Consumer: Stopping Gossip...
+2023-03-12 10:31:12,066 celery.bootsteps DEBUG    | Consumer: Stopping Mingle...
+2023-03-12 10:31:12,066 celery.bootsteps DEBUG    | Consumer: Stopping Events...
+2023-03-12 10:31:12,067 celery.bootsteps DEBUG    | Consumer: Stopping Connection...
+2023-03-12 10:31:12,068 celery.bootsteps DEBUG    | Worker: Stopping Pool...
+2023-03-12 10:31:12,240 celery.concurrency.asynpool DEBUG    removing tasks from inqueue until task handler finished
+2023-03-12 10:31:13,249 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-12 10:31:17,289 celery.bootsteps DEBUG    | Worker: Preparing bootsteps.
+2023-03-12 10:31:17,294 celery.bootsteps DEBUG    | Worker: Building graph...
+2023-03-12 10:31:17,297 celery.bootsteps DEBUG    | Worker: New boot order: {Timer, Hub, Pool, Autoscaler, StateDB, Beat, Consumer}
+2023-03-12 10:31:17,325 celery.bootsteps DEBUG    | Consumer: Preparing bootsteps.
+2023-03-12 10:31:17,327 celery.bootsteps DEBUG    | Consumer: Building graph...
+2023-03-12 10:31:17,385 celery.bootsteps DEBUG    | Consumer: New boot order: {Connection, Events, Heart, Mingle, Gossip, Agent, Tasks, Control, event loop}
+2023-03-12 10:31:17,450 celery.bootsteps DEBUG    | Worker: Starting Hub
+2023-03-12 10:31:17,451 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:31:17,451 celery.bootsteps DEBUG    | Worker: Starting Pool
+2023-03-12 10:31:17,899 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:31:17,904 celery.bootsteps DEBUG    | Worker: Starting Consumer
+2023-03-12 10:31:17,905 celery.bootsteps DEBUG    | Consumer: Starting Connection
+2023-03-12 10:31:17,949 celery.worker.consumer.connection INFO     Connected to redis://localhost:6379//
+2023-03-12 10:31:17,950 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:31:17,952 celery.bootsteps DEBUG    | Consumer: Starting Events
+2023-03-12 10:31:17,969 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:31:17,970 celery.bootsteps DEBUG    | Consumer: Starting Heart
+2023-03-12 10:31:17,973 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:31:17,974 celery.bootsteps DEBUG    | Consumer: Starting Mingle
+2023-03-12 10:31:17,974 celery.worker.consumer.mingle INFO     mingle: searching for neighbors
+2023-03-12 10:31:19,018 celery.worker.consumer.mingle INFO     mingle: all alone
+2023-03-12 10:31:19,021 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:31:19,023 celery.bootsteps DEBUG    | Consumer: Starting Gossip
+2023-03-12 10:31:19,048 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:31:19,052 celery.bootsteps DEBUG    | Consumer: Starting Tasks
+2023-03-12 10:31:19,080 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:31:19,082 celery.bootsteps DEBUG    | Consumer: Starting Control
+2023-03-12 10:31:19,089 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:31:19,090 celery.bootsteps DEBUG    | Consumer: Starting event loop
+2023-03-12 10:31:19,091 celery.bootsteps DEBUG    | Worker: Hub.register Pool...
+2023-03-12 10:31:19,096 celery.apps.worker INFO     celery@DESKTOP-ACIBNGT ready.
+2023-03-12 10:31:19,097 kombu.common DEBUG    basic.qos: prefetch_count->16
+2023-03-12 10:31:32,615 salle_activite_view INFO     View inited...
+2023-03-12 10:31:32,833 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_6[a5d11c77-8af3-4706-b9dc-6618e86437ba]  
+2023-03-12 10:31:32,835 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7fe46dd53550> (args:('salle_activite.tasks.start_linsten_6', 'a5d11c77-8af3-4706-b9dc-6618e86437ba', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_6', 'id': 'a5d11c77-8af3-4706-b9dc-6618e86437ba', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'a5d11c77-8af3-4706-b9dc-6618e86437ba', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen751@DESKTOP-ACIBNGT', 'reply_to': 'd8344e3b-8308-31f5-bdcd-187221f6c301', 'correlation_id': 'a5d11c77-8af3-4706-b9dc-6618e86437ba', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-12 10:31:32,862 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_face_door_1[5e64180a-f988-4f45-9abb-bf7cbb707944]  
+2023-03-12 10:31:32,881 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7fe46dd53550> (args:('salle_activite.tasks.start_face_door_1', '5e64180a-f988-4f45-9abb-bf7cbb707944', {'lang': 'py', 'task': 'salle_activite.tasks.start_face_door_1', 'id': '5e64180a-f988-4f45-9abb-bf7cbb707944', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '5e64180a-f988-4f45-9abb-bf7cbb707944', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen751@DESKTOP-ACIBNGT', 'reply_to': 'd8344e3b-8308-31f5-bdcd-187221f6c301', 'correlation_id': '5e64180a-f988-4f45-9abb-bf7cbb707944', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-12 10:31:32,887 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_6[a5d11c77-8af3-4706-b9dc-6618e86437ba] pid:758
+2023-03-12 10:31:32,949 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_face_door_2[969230aa-755e-4696-a473-d2806bf4e017]  
+2023-03-12 10:31:32,953 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7fe46dd53550> (args:('salle_activite.tasks.start_face_door_2', '969230aa-755e-4696-a473-d2806bf4e017', {'lang': 'py', 'task': 'salle_activite.tasks.start_face_door_2', 'id': '969230aa-755e-4696-a473-d2806bf4e017', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '969230aa-755e-4696-a473-d2806bf4e017', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen751@DESKTOP-ACIBNGT', 'reply_to': 'd8344e3b-8308-31f5-bdcd-187221f6c301', 'correlation_id': '969230aa-755e-4696-a473-d2806bf4e017', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-12 10:31:32,974 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_face_door_2[969230aa-755e-4696-a473-d2806bf4e017] pid:759
+2023-03-12 10:31:33,025 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_face_door_1[5e64180a-f988-4f45-9abb-bf7cbb707944] pid:760
+2023-03-12 10:31:33,473 celery.app.trace INFO     Task salle_activite.tasks.start_face_door_1[5e64180a-f988-4f45-9abb-bf7cbb707944] succeeded in 0.5064073000003191s: None
+2023-03-12 10:31:33,492 celery.app.trace INFO     Task salle_activite.tasks.start_face_door_2[969230aa-755e-4696-a473-d2806bf4e017] succeeded in 0.5176084000004266s: None
+2023-03-12 10:31:38,491 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_6[a5d11c77-8af3-4706-b9dc-6618e86437ba] succeeded in 5.641725199999655s: None
+2023-03-12 10:35:30,047 django.utils.autoreload INFO     /mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/backend/salle_activite/face.py changed, reloading.
+2023-03-12 10:35:33,177 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-12 10:36:08,686 django.utils.autoreload INFO     /mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/backend/salle_activite/face.py changed, reloading.
+2023-03-12 10:36:11,204 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-12 10:36:14,624 celery.bootsteps DEBUG    | Worker: Closing Hub...
+2023-03-12 10:36:14,627 celery.bootsteps DEBUG    | Worker: Closing Pool...
+2023-03-12 10:36:14,628 celery.bootsteps DEBUG    | Worker: Closing Consumer...
+2023-03-12 10:36:14,629 celery.bootsteps DEBUG    | Worker: Stopping Consumer...
+2023-03-12 10:36:14,630 celery.bootsteps DEBUG    | Consumer: Closing Connection...
+2023-03-12 10:36:14,631 celery.bootsteps DEBUG    | Consumer: Closing Events...
+2023-03-12 10:36:14,631 celery.bootsteps DEBUG    | Consumer: Closing Heart...
+2023-03-12 10:36:14,632 celery.bootsteps DEBUG    | Consumer: Closing Mingle...
+2023-03-12 10:36:14,633 celery.bootsteps DEBUG    | Consumer: Closing Gossip...
+2023-03-12 10:36:14,634 celery.bootsteps DEBUG    | Consumer: Closing Tasks...
+2023-03-12 10:36:14,634 celery.bootsteps DEBUG    | Consumer: Closing Control...
+2023-03-12 10:36:14,635 celery.bootsteps DEBUG    | Consumer: Closing event loop...
+2023-03-12 10:36:14,637 celery.bootsteps DEBUG    | Consumer: Stopping event loop...
+2023-03-12 10:36:14,639 celery.bootsteps DEBUG    | Consumer: Stopping Control...
+2023-03-12 10:36:14,643 celery.bootsteps DEBUG    | Consumer: Stopping Tasks...
+2023-03-12 10:36:14,645 celery.worker.consumer.tasks DEBUG    Canceling task consumer...
+2023-03-12 10:36:14,645 celery.bootsteps DEBUG    | Consumer: Stopping Gossip...
+2023-03-12 10:36:14,698 celery.bootsteps DEBUG    | Consumer: Stopping Mingle...
+2023-03-12 10:36:14,700 celery.bootsteps DEBUG    | Consumer: Stopping Heart...
+2023-03-12 10:36:14,703 celery.bootsteps DEBUG    | Consumer: Stopping Events...
+2023-03-12 10:36:14,703 celery.bootsteps DEBUG    | Consumer: Stopping Connection...
+2023-03-12 10:36:14,704 celery.bootsteps DEBUG    | Worker: Stopping Pool...
+2023-03-12 10:36:14,785 celery.concurrency.asynpool DEBUG    removing tasks from inqueue until task handler finished
+2023-03-12 10:36:18,626 celery.bootsteps DEBUG    | Worker: Preparing bootsteps.
+2023-03-12 10:36:18,633 celery.bootsteps DEBUG    | Worker: Building graph...
+2023-03-12 10:36:18,634 celery.bootsteps DEBUG    | Worker: New boot order: {Timer, Hub, Pool, Autoscaler, Beat, StateDB, Consumer}
+2023-03-12 10:36:18,670 celery.bootsteps DEBUG    | Consumer: Preparing bootsteps.
+2023-03-12 10:36:18,671 celery.bootsteps DEBUG    | Consumer: Building graph...
+2023-03-12 10:36:18,741 celery.bootsteps DEBUG    | Consumer: New boot order: {Connection, Agent, Events, Mingle, Gossip, Tasks, Control, Heart, event loop}
+2023-03-12 10:36:18,805 celery.bootsteps DEBUG    | Worker: Starting Hub
+2023-03-12 10:36:18,806 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:36:18,807 celery.bootsteps DEBUG    | Worker: Starting Pool
+2023-03-12 10:36:19,164 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:36:19,166 celery.bootsteps DEBUG    | Worker: Starting Consumer
+2023-03-12 10:36:19,167 celery.bootsteps DEBUG    | Consumer: Starting Connection
+2023-03-12 10:36:19,196 celery.worker.consumer.connection INFO     Connected to redis://localhost:6379//
+2023-03-12 10:36:19,196 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:36:19,198 celery.bootsteps DEBUG    | Consumer: Starting Events
+2023-03-12 10:36:19,209 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:36:19,209 celery.bootsteps DEBUG    | Consumer: Starting Mingle
+2023-03-12 10:36:19,210 celery.worker.consumer.mingle INFO     mingle: searching for neighbors
+2023-03-12 10:36:20,244 celery.worker.consumer.mingle INFO     mingle: all alone
+2023-03-12 10:36:20,245 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:36:20,247 celery.bootsteps DEBUG    | Consumer: Starting Gossip
+2023-03-12 10:36:20,258 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:36:20,259 celery.bootsteps DEBUG    | Consumer: Starting Tasks
+2023-03-12 10:36:20,270 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:36:20,270 celery.bootsteps DEBUG    | Consumer: Starting Control
+2023-03-12 10:36:20,275 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:36:20,276 celery.bootsteps DEBUG    | Consumer: Starting Heart
+2023-03-12 10:36:20,279 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:36:20,280 celery.bootsteps DEBUG    | Consumer: Starting event loop
+2023-03-12 10:36:20,281 celery.bootsteps DEBUG    | Worker: Hub.register Pool...
+2023-03-12 10:36:20,286 celery.apps.worker INFO     celery@DESKTOP-ACIBNGT ready.
+2023-03-12 10:36:20,287 kombu.common DEBUG    basic.qos: prefetch_count->16
+2023-03-12 10:36:51,445 salle_activite_view INFO     View inited...
+2023-03-12 10:36:51,849 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_6[7afa3711-2500-42d8-b2f4-01a874189858]  
+2023-03-12 10:36:51,850 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7fa684a03550> (args:('salle_activite.tasks.start_linsten_6', '7afa3711-2500-42d8-b2f4-01a874189858', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_6', 'id': '7afa3711-2500-42d8-b2f4-01a874189858', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '7afa3711-2500-42d8-b2f4-01a874189858', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen829@DESKTOP-ACIBNGT', 'reply_to': 'e2c1e06c-47c7-33ed-a55a-2b81e1226983', 'correlation_id': '7afa3711-2500-42d8-b2f4-01a874189858', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-12 10:36:51,873 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_face_door_1[2cd110f8-e7b0-4297-9195-ae44594e52ea]  
+2023-03-12 10:36:51,881 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7fa684a03550> (args:('salle_activite.tasks.start_face_door_1', '2cd110f8-e7b0-4297-9195-ae44594e52ea', {'lang': 'py', 'task': 'salle_activite.tasks.start_face_door_1', 'id': '2cd110f8-e7b0-4297-9195-ae44594e52ea', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '2cd110f8-e7b0-4297-9195-ae44594e52ea', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen829@DESKTOP-ACIBNGT', 'reply_to': 'e2c1e06c-47c7-33ed-a55a-2b81e1226983', 'correlation_id': '2cd110f8-e7b0-4297-9195-ae44594e52ea', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-12 10:36:51,889 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_6[7afa3711-2500-42d8-b2f4-01a874189858] pid:837
+2023-03-12 10:36:51,903 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_face_door_2[9cffbe6c-f6aa-4833-b129-ecfd3d1ae510]  
+2023-03-12 10:36:51,907 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7fa684a03550> (args:('salle_activite.tasks.start_face_door_2', '9cffbe6c-f6aa-4833-b129-ecfd3d1ae510', {'lang': 'py', 'task': 'salle_activite.tasks.start_face_door_2', 'id': '9cffbe6c-f6aa-4833-b129-ecfd3d1ae510', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '9cffbe6c-f6aa-4833-b129-ecfd3d1ae510', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen829@DESKTOP-ACIBNGT', 'reply_to': 'e2c1e06c-47c7-33ed-a55a-2b81e1226983', 'correlation_id': '9cffbe6c-f6aa-4833-b129-ecfd3d1ae510', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-12 10:36:51,957 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_face_door_2[9cffbe6c-f6aa-4833-b129-ecfd3d1ae510] pid:838
+2023-03-12 10:36:51,986 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_face_door_1[2cd110f8-e7b0-4297-9195-ae44594e52ea] pid:839
+2023-03-12 10:36:52,426 celery.app.trace INFO     Task salle_activite.tasks.start_face_door_2[9cffbe6c-f6aa-4833-b129-ecfd3d1ae510] succeeded in 0.48296879999998055s: None
+2023-03-12 10:36:52,439 celery.app.trace INFO     Task salle_activite.tasks.start_face_door_1[2cd110f8-e7b0-4297-9195-ae44594e52ea] succeeded in 0.49955279999994673s: None
+2023-03-12 10:36:57,524 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_6[7afa3711-2500-42d8-b2f4-01a874189858] succeeded in 5.666234499999973s: None
+2023-03-12 10:38:57,571 django.utils.autoreload INFO     /mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/backend/salle_activite/face.py changed, reloading.
+2023-03-12 10:38:59,980 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-12 10:39:11,242 django.utils.autoreload INFO     /mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/backend/salle_activite/face.py changed, reloading.
+2023-03-12 10:39:11,846 celery.bootsteps DEBUG    | Worker: Closing Hub...
+2023-03-12 10:39:11,858 celery.bootsteps DEBUG    | Worker: Closing Pool...
+2023-03-12 10:39:11,883 celery.bootsteps DEBUG    | Worker: Closing Consumer...
+2023-03-12 10:39:11,887 celery.bootsteps DEBUG    | Worker: Stopping Consumer...
+2023-03-12 10:39:11,895 celery.bootsteps DEBUG    | Consumer: Closing Connection...
+2023-03-12 10:39:11,897 celery.bootsteps DEBUG    | Consumer: Closing Events...
+2023-03-12 10:39:11,899 celery.bootsteps DEBUG    | Consumer: Closing Mingle...
+2023-03-12 10:39:11,901 celery.bootsteps DEBUG    | Consumer: Closing Gossip...
+2023-03-12 10:39:11,903 celery.bootsteps DEBUG    | Consumer: Closing Tasks...
+2023-03-12 10:39:11,905 celery.bootsteps DEBUG    | Consumer: Closing Control...
+2023-03-12 10:39:11,913 celery.bootsteps DEBUG    | Consumer: Closing Heart...
+2023-03-12 10:39:11,914 celery.bootsteps DEBUG    | Consumer: Closing event loop...
+2023-03-12 10:39:11,915 celery.bootsteps DEBUG    | Consumer: Stopping event loop...
+2023-03-12 10:39:11,917 celery.bootsteps DEBUG    | Consumer: Stopping Heart...
+2023-03-12 10:39:11,930 celery.bootsteps DEBUG    | Consumer: Stopping Control...
+2023-03-12 10:39:11,935 celery.bootsteps DEBUG    | Consumer: Stopping Tasks...
+2023-03-12 10:39:11,938 celery.worker.consumer.tasks DEBUG    Canceling task consumer...
+2023-03-12 10:39:11,944 celery.bootsteps DEBUG    | Consumer: Stopping Gossip...
+2023-03-12 10:39:11,950 celery.bootsteps DEBUG    | Consumer: Stopping Mingle...
+2023-03-12 10:39:12,010 celery.bootsteps DEBUG    | Consumer: Stopping Events...
+2023-03-12 10:39:12,037 celery.bootsteps DEBUG    | Consumer: Stopping Connection...
+2023-03-12 10:39:12,043 celery.bootsteps DEBUG    | Worker: Stopping Pool...
+2023-03-12 10:39:13,656 celery.bootsteps DEBUG    | Worker: Stopping Hub...
+2023-03-12 10:39:13,662 celery.bootsteps DEBUG    | Consumer: Shutdown Heart...
+2023-03-12 10:39:13,664 celery.bootsteps DEBUG    | Consumer: Shutdown Control...
+2023-03-12 10:39:13,666 celery.bootsteps DEBUG    | Consumer: Shutdown Tasks...
+2023-03-12 10:39:13,667 celery.worker.consumer.tasks DEBUG    Canceling task consumer...
+2023-03-12 10:39:13,668 celery.worker.consumer.tasks DEBUG    Closing consumer channel...
+2023-03-12 10:39:13,669 celery.bootsteps DEBUG    | Consumer: Shutdown Gossip...
+2023-03-12 10:39:13,670 celery.bootsteps DEBUG    | Consumer: Shutdown Events...
+2023-03-12 10:39:13,672 celery.bootsteps DEBUG    | Consumer: Shutdown Connection...
+2023-03-12 10:39:13,675 celery.concurrency.asynpool DEBUG    removing tasks from inqueue until task handler finished
+2023-03-12 10:39:14,504 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-12 10:39:18,631 celery.bootsteps DEBUG    | Worker: Preparing bootsteps.
+2023-03-12 10:39:18,636 celery.bootsteps DEBUG    | Worker: Building graph...
+2023-03-12 10:39:18,638 celery.bootsteps DEBUG    | Worker: New boot order: {Beat, Timer, Hub, Pool, Autoscaler, StateDB, Consumer}
+2023-03-12 10:39:18,684 celery.bootsteps DEBUG    | Consumer: Preparing bootsteps.
+2023-03-12 10:39:18,686 celery.bootsteps DEBUG    | Consumer: Building graph...
+2023-03-12 10:39:18,744 celery.bootsteps DEBUG    | Consumer: New boot order: {Connection, Agent, Events, Mingle, Gossip, Heart, Tasks, Control, event loop}
+2023-03-12 10:39:18,788 celery.bootsteps DEBUG    | Worker: Starting Hub
+2023-03-12 10:39:18,791 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:39:18,792 celery.bootsteps DEBUG    | Worker: Starting Pool
+2023-03-12 10:39:19,119 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:39:19,120 celery.bootsteps DEBUG    | Worker: Starting Consumer
+2023-03-12 10:39:19,121 celery.bootsteps DEBUG    | Consumer: Starting Connection
+2023-03-12 10:39:19,148 celery.worker.consumer.connection INFO     Connected to redis://localhost:6379//
+2023-03-12 10:39:19,149 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:39:19,150 celery.bootsteps DEBUG    | Consumer: Starting Events
+2023-03-12 10:39:19,160 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:39:19,161 celery.bootsteps DEBUG    | Consumer: Starting Mingle
+2023-03-12 10:39:19,162 celery.worker.consumer.mingle INFO     mingle: searching for neighbors
+2023-03-12 10:39:20,185 celery.worker.consumer.mingle INFO     mingle: all alone
+2023-03-12 10:39:20,187 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:39:20,188 celery.bootsteps DEBUG    | Consumer: Starting Gossip
+2023-03-12 10:39:20,210 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:39:20,212 celery.bootsteps DEBUG    | Consumer: Starting Heart
+2023-03-12 10:39:20,234 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:39:20,236 celery.bootsteps DEBUG    | Consumer: Starting Tasks
+2023-03-12 10:39:20,251 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:39:20,252 celery.bootsteps DEBUG    | Consumer: Starting Control
+2023-03-12 10:39:20,264 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:39:20,265 celery.bootsteps DEBUG    | Consumer: Starting event loop
+2023-03-12 10:39:20,267 celery.bootsteps DEBUG    | Worker: Hub.register Pool...
+2023-03-12 10:39:20,271 celery.apps.worker INFO     celery@DESKTOP-ACIBNGT ready.
+2023-03-12 10:39:20,277 kombu.common DEBUG    basic.qos: prefetch_count->16
+2023-03-12 10:39:26,371 salle_activite_view INFO     View inited...
+2023-03-12 10:39:26,752 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_6[a3aa96a1-8849-4b75-932c-7ada01657951]  
+2023-03-12 10:39:26,754 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7fad7aea3550> (args:('salle_activite.tasks.start_linsten_6', 'a3aa96a1-8849-4b75-932c-7ada01657951', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_6', 'id': 'a3aa96a1-8849-4b75-932c-7ada01657951', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'a3aa96a1-8849-4b75-932c-7ada01657951', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen924@DESKTOP-ACIBNGT', 'reply_to': '174b42d7-e66b-3bf2-b1ec-bcccc231c8f0', 'correlation_id': 'a3aa96a1-8849-4b75-932c-7ada01657951', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-12 10:39:26,762 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_face_door_1[4ad0bf06-c2bf-4b14-a8ba-8c20b77ebeea]  
+2023-03-12 10:39:26,764 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7fad7aea3550> (args:('salle_activite.tasks.start_face_door_1', '4ad0bf06-c2bf-4b14-a8ba-8c20b77ebeea', {'lang': 'py', 'task': 'salle_activite.tasks.start_face_door_1', 'id': '4ad0bf06-c2bf-4b14-a8ba-8c20b77ebeea', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '4ad0bf06-c2bf-4b14-a8ba-8c20b77ebeea', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen924@DESKTOP-ACIBNGT', 'reply_to': '174b42d7-e66b-3bf2-b1ec-bcccc231c8f0', 'correlation_id': '4ad0bf06-c2bf-4b14-a8ba-8c20b77ebeea', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-12 10:39:26,770 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_face_door_2[48680d22-2fb5-4a03-94e7-680706eabd49]  
+2023-03-12 10:39:26,771 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7fad7aea3550> (args:('salle_activite.tasks.start_face_door_2', '48680d22-2fb5-4a03-94e7-680706eabd49', {'lang': 'py', 'task': 'salle_activite.tasks.start_face_door_2', 'id': '48680d22-2fb5-4a03-94e7-680706eabd49', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '48680d22-2fb5-4a03-94e7-680706eabd49', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen924@DESKTOP-ACIBNGT', 'reply_to': '174b42d7-e66b-3bf2-b1ec-bcccc231c8f0', 'correlation_id': '48680d22-2fb5-4a03-94e7-680706eabd49', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-12 10:39:26,775 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_6[a3aa96a1-8849-4b75-932c-7ada01657951] pid:931
+2023-03-12 10:39:26,795 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_face_door_2[48680d22-2fb5-4a03-94e7-680706eabd49] pid:932
+2023-03-12 10:39:26,802 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_face_door_1[4ad0bf06-c2bf-4b14-a8ba-8c20b77ebeea] pid:933
+2023-03-12 10:39:27,181 celery.app.trace INFO     Task salle_activite.tasks.start_face_door_1[4ad0bf06-c2bf-4b14-a8ba-8c20b77ebeea] succeeded in 0.39945410000018455s: None
+2023-03-12 10:39:27,217 celery.app.trace INFO     Task salle_activite.tasks.start_face_door_2[48680d22-2fb5-4a03-94e7-680706eabd49] succeeded in 0.43388039999990724s: None
+2023-03-12 10:39:32,391 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_6[a3aa96a1-8849-4b75-932c-7ada01657951] succeeded in 5.628221899999517s: None
+2023-03-12 10:40:13,227 django.request WARNING  Bad Request: /rest-api/salle-activite/openthedoor/2/
+2023-03-12 10:47:05,081 django.utils.autoreload INFO     /mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/backend/salle_activite/face.py changed, reloading.
+2023-03-12 10:47:05,536 celery.bootsteps DEBUG    | Worker: Closing Hub...
+2023-03-12 10:47:05,537 celery.bootsteps DEBUG    | Worker: Closing Pool...
+2023-03-12 10:47:05,537 celery.bootsteps DEBUG    | Worker: Closing Consumer...
+2023-03-12 10:47:05,538 celery.bootsteps DEBUG    | Worker: Stopping Consumer...
+2023-03-12 10:47:05,539 celery.bootsteps DEBUG    | Consumer: Closing Connection...
+2023-03-12 10:47:05,540 celery.bootsteps DEBUG    | Consumer: Closing Events...
+2023-03-12 10:47:05,541 celery.bootsteps DEBUG    | Consumer: Closing Mingle...
+2023-03-12 10:47:05,541 celery.bootsteps DEBUG    | Consumer: Closing Gossip...
+2023-03-12 10:47:05,542 celery.bootsteps DEBUG    | Consumer: Closing Heart...
+2023-03-12 10:47:05,543 celery.bootsteps DEBUG    | Consumer: Closing Tasks...
+2023-03-12 10:47:05,543 celery.bootsteps DEBUG    | Consumer: Closing Control...
+2023-03-12 10:47:05,544 celery.bootsteps DEBUG    | Consumer: Closing event loop...
+2023-03-12 10:47:05,545 celery.bootsteps DEBUG    | Consumer: Stopping event loop...
+2023-03-12 10:47:05,545 celery.bootsteps DEBUG    | Consumer: Stopping Control...
+2023-03-12 10:47:05,548 celery.bootsteps DEBUG    | Consumer: Stopping Tasks...
+2023-03-12 10:47:05,549 celery.worker.consumer.tasks DEBUG    Canceling task consumer...
+2023-03-12 10:47:05,550 celery.bootsteps DEBUG    | Consumer: Stopping Heart...
+2023-03-12 10:47:05,585 celery.bootsteps DEBUG    | Consumer: Stopping Gossip...
+2023-03-12 10:47:05,591 celery.bootsteps DEBUG    | Consumer: Stopping Mingle...
+2023-03-12 10:47:05,592 celery.bootsteps DEBUG    | Consumer: Stopping Events...
+2023-03-12 10:47:05,593 celery.bootsteps DEBUG    | Consumer: Stopping Connection...
+2023-03-12 10:47:05,594 celery.bootsteps DEBUG    | Worker: Stopping Pool...
+2023-03-12 10:47:05,740 celery.concurrency.asynpool DEBUG    removing tasks from inqueue until task handler finished
+2023-03-12 10:47:07,703 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-12 10:47:09,941 celery.bootsteps DEBUG    | Worker: Preparing bootsteps.
+2023-03-12 10:47:09,946 celery.bootsteps DEBUG    | Worker: Building graph...
+2023-03-12 10:47:09,948 celery.bootsteps DEBUG    | Worker: New boot order: {StateDB, Beat, Timer, Hub, Pool, Autoscaler, Consumer}
+2023-03-12 10:47:09,973 celery.bootsteps DEBUG    | Consumer: Preparing bootsteps.
+2023-03-12 10:47:09,974 celery.bootsteps DEBUG    | Consumer: Building graph...
+2023-03-12 10:47:10,019 celery.bootsteps DEBUG    | Consumer: New boot order: {Connection, Events, Mingle, Tasks, Control, Gossip, Heart, Agent, event loop}
+2023-03-12 10:47:10,059 celery.bootsteps DEBUG    | Worker: Starting Hub
+2023-03-12 10:47:10,060 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:47:10,060 celery.bootsteps DEBUG    | Worker: Starting Pool
+2023-03-12 10:47:10,356 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:47:10,357 celery.bootsteps DEBUG    | Worker: Starting Consumer
+2023-03-12 10:47:10,358 celery.bootsteps DEBUG    | Consumer: Starting Connection
+2023-03-12 10:47:10,390 celery.worker.consumer.connection INFO     Connected to redis://localhost:6379//
+2023-03-12 10:47:10,391 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:47:10,392 celery.bootsteps DEBUG    | Consumer: Starting Events
+2023-03-12 10:47:10,408 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:47:10,408 celery.bootsteps DEBUG    | Consumer: Starting Mingle
+2023-03-12 10:47:10,409 celery.worker.consumer.mingle INFO     mingle: searching for neighbors
+2023-03-12 10:47:11,444 celery.worker.consumer.mingle INFO     mingle: all alone
+2023-03-12 10:47:11,444 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:47:11,445 celery.bootsteps DEBUG    | Consumer: Starting Tasks
+2023-03-12 10:47:11,458 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:47:11,459 celery.bootsteps DEBUG    | Consumer: Starting Control
+2023-03-12 10:47:11,465 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:47:11,466 celery.bootsteps DEBUG    | Consumer: Starting Gossip
+2023-03-12 10:47:11,471 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:47:11,472 celery.bootsteps DEBUG    | Consumer: Starting Heart
+2023-03-12 10:47:11,475 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:47:11,476 celery.bootsteps DEBUG    | Consumer: Starting event loop
+2023-03-12 10:47:11,477 celery.bootsteps DEBUG    | Worker: Hub.register Pool...
+2023-03-12 10:47:11,485 celery.apps.worker INFO     celery@DESKTOP-ACIBNGT ready.
+2023-03-12 10:47:11,486 kombu.common DEBUG    basic.qos: prefetch_count->16
+2023-03-12 10:47:17,214 salle_activite_view INFO     View inited...
+2023-03-12 10:47:17,615 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_6[beaa861f-4e9e-42c8-9c66-8247297fe539]  
+2023-03-12 10:47:17,617 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f16f7ac3550> (args:('salle_activite.tasks.start_linsten_6', 'beaa861f-4e9e-42c8-9c66-8247297fe539', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_6', 'id': 'beaa861f-4e9e-42c8-9c66-8247297fe539', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'beaa861f-4e9e-42c8-9c66-8247297fe539', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen1049@DESKTOP-ACIBNGT', 'reply_to': '4ea848c1-6325-30ec-8624-639251edbbdd', 'correlation_id': 'beaa861f-4e9e-42c8-9c66-8247297fe539', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-12 10:47:17,623 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_face_door_1[c064ae69-341e-42e7-b72b-3d22a991b441]  
+2023-03-12 10:47:17,626 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f16f7ac3550> (args:('salle_activite.tasks.start_face_door_1', 'c064ae69-341e-42e7-b72b-3d22a991b441', {'lang': 'py', 'task': 'salle_activite.tasks.start_face_door_1', 'id': 'c064ae69-341e-42e7-b72b-3d22a991b441', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'c064ae69-341e-42e7-b72b-3d22a991b441', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen1049@DESKTOP-ACIBNGT', 'reply_to': '4ea848c1-6325-30ec-8624-639251edbbdd', 'correlation_id': 'c064ae69-341e-42e7-b72b-3d22a991b441', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-12 10:47:17,631 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_6[beaa861f-4e9e-42c8-9c66-8247297fe539] pid:1057
+2023-03-12 10:47:17,640 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_face_door_2[3325372e-2d07-4bf0-9503-28beb43c0cd6]  
+2023-03-12 10:47:17,652 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f16f7ac3550> (args:('salle_activite.tasks.start_face_door_2', '3325372e-2d07-4bf0-9503-28beb43c0cd6', {'lang': 'py', 'task': 'salle_activite.tasks.start_face_door_2', 'id': '3325372e-2d07-4bf0-9503-28beb43c0cd6', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '3325372e-2d07-4bf0-9503-28beb43c0cd6', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen1049@DESKTOP-ACIBNGT', 'reply_to': '4ea848c1-6325-30ec-8624-639251edbbdd', 'correlation_id': '3325372e-2d07-4bf0-9503-28beb43c0cd6', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-12 10:47:17,660 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_face_door_1[c064ae69-341e-42e7-b72b-3d22a991b441] pid:1059
+2023-03-12 10:47:17,665 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_face_door_2[3325372e-2d07-4bf0-9503-28beb43c0cd6] pid:1058
+2023-03-12 10:47:18,083 celery.app.trace INFO     Task salle_activite.tasks.start_face_door_2[3325372e-2d07-4bf0-9503-28beb43c0cd6] succeeded in 0.41680489999998827s: None
+2023-03-12 10:47:18,488 celery.app.trace INFO     Task salle_activite.tasks.start_face_door_1[c064ae69-341e-42e7-b72b-3d22a991b441] succeeded in 0.8496488000000681s: None
+2023-03-12 10:47:23,116 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_6[beaa861f-4e9e-42c8-9c66-8247297fe539] succeeded in 5.492218000000321s: None
+2023-03-12 10:50:35,193 celery.bootsteps DEBUG    | Worker: Closing Hub...
+2023-03-12 10:50:35,194 celery.bootsteps DEBUG    | Worker: Closing Pool...
+2023-03-12 10:50:35,195 celery.bootsteps DEBUG    | Worker: Closing Consumer...
+2023-03-12 10:50:35,196 celery.bootsteps DEBUG    | Worker: Stopping Consumer...
+2023-03-12 10:50:35,197 celery.bootsteps DEBUG    | Consumer: Closing Connection...
+2023-03-12 10:50:35,198 celery.bootsteps DEBUG    | Consumer: Closing Events...
+2023-03-12 10:50:35,199 celery.bootsteps DEBUG    | Consumer: Closing Mingle...
+2023-03-12 10:50:35,199 celery.bootsteps DEBUG    | Consumer: Closing Tasks...
+2023-03-12 10:50:35,200 celery.bootsteps DEBUG    | Consumer: Closing Control...
+2023-03-12 10:50:35,200 celery.bootsteps DEBUG    | Consumer: Closing Gossip...
+2023-03-12 10:50:35,201 celery.bootsteps DEBUG    | Consumer: Closing Heart...
+2023-03-12 10:50:35,201 celery.bootsteps DEBUG    | Consumer: Closing event loop...
+2023-03-12 10:50:35,202 celery.bootsteps DEBUG    | Consumer: Stopping event loop...
+2023-03-12 10:50:35,203 celery.bootsteps DEBUG    | Consumer: Stopping Heart...
+2023-03-12 10:50:35,205 celery.bootsteps DEBUG    | Consumer: Stopping Gossip...
+2023-03-12 10:50:35,209 celery.bootsteps DEBUG    | Consumer: Stopping Control...
+2023-03-12 10:50:35,212 celery.bootsteps DEBUG    | Consumer: Stopping Tasks...
+2023-03-12 10:50:35,213 celery.worker.consumer.tasks DEBUG    Canceling task consumer...
+2023-03-12 10:50:35,214 celery.bootsteps DEBUG    | Consumer: Stopping Mingle...
+2023-03-12 10:50:35,214 celery.bootsteps DEBUG    | Consumer: Stopping Events...
+2023-03-12 10:50:35,215 celery.bootsteps DEBUG    | Consumer: Stopping Connection...
+2023-03-12 10:50:35,216 celery.bootsteps DEBUG    | Worker: Stopping Pool...
+2023-03-12 10:50:35,353 celery.concurrency.asynpool DEBUG    removing tasks from inqueue until task handler finished
+2023-03-12 10:50:43,141 celery.bootsteps DEBUG    | Worker: Preparing bootsteps.
+2023-03-12 10:50:43,145 celery.bootsteps DEBUG    | Worker: Building graph...
+2023-03-12 10:50:43,146 celery.bootsteps DEBUG    | Worker: New boot order: {Timer, Hub, Pool, Autoscaler, StateDB, Beat, Consumer}
+2023-03-12 10:50:43,170 celery.bootsteps DEBUG    | Consumer: Preparing bootsteps.
+2023-03-12 10:50:43,171 celery.bootsteps DEBUG    | Consumer: Building graph...
+2023-03-12 10:50:43,213 celery.bootsteps DEBUG    | Consumer: New boot order: {Connection, Events, Mingle, Tasks, Control, Agent, Heart, Gossip, event loop}
+2023-03-12 10:50:43,256 celery.bootsteps DEBUG    | Worker: Starting Hub
+2023-03-12 10:50:43,256 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:50:43,257 celery.bootsteps DEBUG    | Worker: Starting Pool
+2023-03-12 10:50:43,648 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:50:43,649 celery.bootsteps DEBUG    | Worker: Starting Consumer
+2023-03-12 10:50:43,650 celery.bootsteps DEBUG    | Consumer: Starting Connection
+2023-03-12 10:50:43,670 celery.worker.consumer.connection INFO     Connected to redis://localhost:6379//
+2023-03-12 10:50:43,670 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:50:43,671 celery.bootsteps DEBUG    | Consumer: Starting Events
+2023-03-12 10:50:43,683 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:50:43,683 celery.bootsteps DEBUG    | Consumer: Starting Mingle
+2023-03-12 10:50:43,684 celery.worker.consumer.mingle INFO     mingle: searching for neighbors
+2023-03-12 10:50:44,705 celery.worker.consumer.mingle INFO     mingle: all alone
+2023-03-12 10:50:44,705 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:50:44,706 celery.bootsteps DEBUG    | Consumer: Starting Tasks
+2023-03-12 10:50:44,720 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:50:44,721 celery.bootsteps DEBUG    | Consumer: Starting Control
+2023-03-12 10:50:44,727 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:50:44,728 celery.bootsteps DEBUG    | Consumer: Starting Heart
+2023-03-12 10:50:44,733 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:50:44,734 celery.bootsteps DEBUG    | Consumer: Starting Gossip
+2023-03-12 10:50:44,740 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-12 10:50:44,741 celery.bootsteps DEBUG    | Consumer: Starting event loop
+2023-03-12 10:50:44,743 celery.bootsteps DEBUG    | Worker: Hub.register Pool...
+2023-03-12 10:50:44,748 celery.apps.worker INFO     celery@DESKTOP-ACIBNGT ready.
+2023-03-12 10:50:44,749 kombu.common DEBUG    basic.qos: prefetch_count->16
+2023-03-12 10:50:49,260 salle_activite_view INFO     View inited...
+2023-03-12 10:50:49,265 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_6[7f4de898-b834-49da-8937-0a8fcf8c094a]  
+2023-03-12 10:50:49,266 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f8ec6163550> (args:('salle_activite.tasks.start_linsten_6', '7f4de898-b834-49da-8937-0a8fcf8c094a', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_6', 'id': '7f4de898-b834-49da-8937-0a8fcf8c094a', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '7f4de898-b834-49da-8937-0a8fcf8c094a', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen1049@DESKTOP-ACIBNGT', 'reply_to': '4ea848c1-6325-30ec-8624-639251edbbdd', 'correlation_id': '7f4de898-b834-49da-8937-0a8fcf8c094a', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-12 10:50:49,277 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_face_door_1[f18c84db-7c95-4719-8ce1-565d5b8ad021]  
+2023-03-12 10:50:49,280 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f8ec6163550> (args:('salle_activite.tasks.start_face_door_1', 'f18c84db-7c95-4719-8ce1-565d5b8ad021', {'lang': 'py', 'task': 'salle_activite.tasks.start_face_door_1', 'id': 'f18c84db-7c95-4719-8ce1-565d5b8ad021', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'f18c84db-7c95-4719-8ce1-565d5b8ad021', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen1049@DESKTOP-ACIBNGT', 'reply_to': '4ea848c1-6325-30ec-8624-639251edbbdd', 'correlation_id': 'f18c84db-7c95-4719-8ce1-565d5b8ad021', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-12 10:50:49,285 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_6[7f4de898-b834-49da-8937-0a8fcf8c094a] pid:1128
+2023-03-12 10:50:49,294 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_face_door_2[3be34100-6354-4e76-bd6b-a214af011902]  
+2023-03-12 10:50:49,296 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f8ec6163550> (args:('salle_activite.tasks.start_face_door_2', '3be34100-6354-4e76-bd6b-a214af011902', {'lang': 'py', 'task': 'salle_activite.tasks.start_face_door_2', 'id': '3be34100-6354-4e76-bd6b-a214af011902', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '3be34100-6354-4e76-bd6b-a214af011902', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen1049@DESKTOP-ACIBNGT', 'reply_to': '4ea848c1-6325-30ec-8624-639251edbbdd', 'correlation_id': '3be34100-6354-4e76-bd6b-a214af011902', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-12 10:50:49,304 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_face_door_2[3be34100-6354-4e76-bd6b-a214af011902] pid:1129
+2023-03-12 10:50:49,309 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_face_door_1[f18c84db-7c95-4719-8ce1-565d5b8ad021] pid:1130
+2023-03-12 10:50:49,730 celery.app.trace INFO     Task salle_activite.tasks.start_face_door_1[f18c84db-7c95-4719-8ce1-565d5b8ad021] succeeded in 0.4280298000003313s: None
+2023-03-12 10:50:49,763 celery.app.trace INFO     Task salle_activite.tasks.start_face_door_2[3be34100-6354-4e76-bd6b-a214af011902] succeeded in 0.46127330000035727s: None
+2023-03-12 10:50:54,907 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_6[7f4de898-b834-49da-8937-0a8fcf8c094a] succeeded in 5.633148400000209s: None
+2023-03-12 10:51:08,791 django.request WARNING  Bad Request: /rest-api/salle-activite/openthedoor/2/
+2023-03-12 10:51:48,879 django.request WARNING  Bad Request: /rest-api/salle-activite/openthedoor/2/
+2023-03-12 10:52:42,128 django.utils.autoreload INFO     /mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/backend/salle_activite/views.py changed, reloading.
+2023-03-12 10:52:44,900 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-12 10:52:50,406 django.request WARNING  Bad Request: /rest-api/salle-activite/openthedoor/2/
+2023-03-12 10:53:31,779 celery.bootsteps DEBUG    | Worker: Closing Hub...
+2023-03-12 10:53:31,779 celery.bootsteps DEBUG    | Worker: Closing Pool...
+2023-03-12 10:53:31,780 celery.bootsteps DEBUG    | Worker: Closing Consumer...
+2023-03-12 10:53:31,782 celery.bootsteps DEBUG    | Worker: Stopping Consumer...
+2023-03-12 10:53:31,784 celery.bootsteps DEBUG    | Consumer: Closing Connection...
+2023-03-12 10:53:31,784 celery.bootsteps DEBUG    | Consumer: Closing Events...
+2023-03-12 10:53:31,785 celery.bootsteps DEBUG    | Consumer: Closing Mingle...
+2023-03-12 10:53:31,786 celery.bootsteps DEBUG    | Consumer: Closing Tasks...
+2023-03-12 10:53:31,786 celery.bootsteps DEBUG    | Consumer: Closing Control...
+2023-03-12 10:53:31,787 celery.bootsteps DEBUG    | Consumer: Closing Heart...
+2023-03-12 10:53:31,788 celery.bootsteps DEBUG    | Consumer: Closing Gossip...
+2023-03-12 10:53:31,790 celery.bootsteps DEBUG    | Consumer: Closing event loop...
+2023-03-12 10:53:31,792 celery.bootsteps DEBUG    | Consumer: Stopping event loop...
+2023-03-12 10:53:31,793 celery.bootsteps DEBUG    | Consumer: Stopping Gossip...
+2023-03-12 10:53:31,800 celery.bootsteps DEBUG    | Consumer: Stopping Heart...
+2023-03-12 10:53:31,802 celery.bootsteps DEBUG    | Consumer: Stopping Control...
+2023-03-12 10:53:31,805 celery.bootsteps DEBUG    | Consumer: Stopping Tasks...
+2023-03-12 10:53:31,806 celery.worker.consumer.tasks DEBUG    Canceling task consumer...
+2023-03-12 10:53:31,808 celery.bootsteps DEBUG    | Consumer: Stopping Mingle...
+2023-03-12 10:53:31,809 celery.bootsteps DEBUG    | Consumer: Stopping Events...
+2023-03-12 10:53:31,810 celery.bootsteps DEBUG    | Consumer: Stopping Connection...
+2023-03-12 10:53:31,811 celery.bootsteps DEBUG    | Worker: Stopping Pool...
+2023-03-12 10:53:31,999 celery.concurrency.asynpool DEBUG    removing tasks from inqueue until task handler finished
+2023-03-12 10:54:08,928 django.request WARNING  Bad Request: /rest-api/salle-activite/openthedoor/2/
+2023-03-12 10:54:14,459 django.request WARNING  Bad Request: /rest-api/salle-activite/openthedoor/2/
+2023-03-12 10:54:29,766 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-12 10:59:08,623 django.utils.autoreload INFO     Watching for file changes with StatReloader
