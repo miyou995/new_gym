@@ -10,7 +10,19 @@ from rest_framework import status
 from django.db.models import Count
 from rest_framework.decorators import api_view
 from rest_framework.viewsets import ViewSet, ModelViewSet
-from .tasks import start_linsten_1, start_linsten_2, start_linsten_3, start_linsten_4, start_linsten_5, start_linsten_6, start_linsten_7, start_linsten_8, start_linsten_9, start_face_door_1, start_face_door_2, open_the_door
+from .tasks import ( 
+    start_linsten_test_device_1, 
+    start_linsten_test_device_2, 
+    start_linsten_3, 
+    start_linsten_4, 
+    start_linsten_5, 
+    start_linsten_6, 
+    start_linsten_7, 
+    start_linsten_8, 
+    start_linsten_9, 
+    start_face_door_right, 
+    start_face_door_left, 
+)
 from celery.app import default_app
 from .device import AccessControl
 from rest_framework.views import APIView
@@ -160,10 +172,10 @@ class StartListening(APIView):
         """
         Open All The Doors
         """
-        logger.info("View inited...")
+        logger.info("Open All The Doors inited...")
         taks_group = group(
-            # start_linsten_1.delay(),
-            # start_linsten_2.delay(),
+            # start_linsten_test_device_1.delay(),
+            # start_linsten_test_device_2.delay(),
             # start_linsten_3.delay(),
             # start_linsten_4.delay(),
             # start_linsten_5.delay(),
@@ -171,34 +183,35 @@ class StartListening(APIView):
             # start_linsten_7.delay(),
             # start_linsten_8.delay(),
             # start_linsten_9.delay(),
-            start_face_door_1.delay(),
-            start_face_door_2.delay()
+
+            start_face_door_right.delay(),
+            start_face_door_left.delay()
         )
         return Response(status=200)
 
-class StartListeningTwo(APIView):
-    # authentication_classes = [authentication.TokenAuthentication]
-    permission_classes = [IsAdminUser]
+# class StartListeningTwo(APIView):
+#     # authentication_classes = [authentication.TokenAuthentication]
+#     permission_classes = [IsAdminUser]
 
-    def get(self, request, format=None):
-        """
-        Open All The Doors
-        """
-        logger.info("View inited...")
-        taks_group = group(
-            start_linsten_1.delay(),
-            start_linsten_2.delay(),
-            start_linsten_3.delay(),
-            start_linsten_4.delay(),
-            start_linsten_5.delay(),
-            start_linsten_6.delay(),
-            start_linsten_7.delay(),
-            start_linsten_8.delay(),
-            start_linsten_9.delay(),
-            start_face_door_1.delay(),
-            start_face_door_2.delay()
-        )
-        return Response(status=200)
+#     def get(self, request, format=None):
+#         """
+#         Open All The Doors
+#         """
+#         logger.info("View inited...")
+#         taks_group = group(
+#             start_linsten_test_device_1.delay(),
+#             start_linsten_test_device_2.delay(),
+#             start_linsten_3.delay(),
+#             start_linsten_4.delay(),
+#             start_linsten_5.delay(),
+#             start_linsten_6.delay(),
+#             start_linsten_7.delay(),
+#             start_linsten_8.delay(),
+#             start_linsten_9.delay(),
+#             start_face_door_right.delay(),
+#             start_face_door_left.delay()
+#         )
+#         return Response(status=200)
 
 class OpenTheDoor(APIView):
     permission_classes = [IsAdminUser]
@@ -230,8 +243,8 @@ class OpenTheDoor(APIView):
 # @api_view(['GET'])
 # def start_listening(request):
 #     print(' before delay')
-#     start_linsten_1.delay()
-#     # start_linsten_2.delay()
+#     start_linsten_test_device_1.delay()
+#     # start_linsten_test_device_2.delay()
 #     print(' AFTER delay')
 #     return Response(status=403)
 
@@ -239,8 +252,8 @@ class OpenTheDoor(APIView):
 @api_view(['GET'])
 def stop_listening(request):
     default_app.control.revoke[
-        start_linsten_1,
-        start_linsten_2,
+        start_linsten_test_device_1,
+        start_linsten_test_device_2,
         start_linsten_3,
         start_linsten_4,
         start_linsten_5,
@@ -248,8 +261,8 @@ def stop_listening(request):
         start_linsten_7,
         start_linsten_8,
         start_linsten_9,
-        start_face_door_1,
-        start_face_door_2
+        start_face_door_right,
+        start_face_door_left
     ]
     print(' AFTER delay')
     return Response( "hello")
