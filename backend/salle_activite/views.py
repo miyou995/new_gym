@@ -162,17 +162,17 @@ class StartListening(APIView):
         """
         logger.info("View inited...")
         taks_group = group(
-            start_linsten_1.delay(),
-            start_linsten_2.delay(),
-            start_linsten_3.delay(),
-            start_linsten_4.delay(),
+            # start_linsten_1.delay(),
+            # start_linsten_2.delay(),
+            # start_linsten_3.delay(),
+            # start_linsten_4.delay(),
             # start_linsten_5.delay(),
-            # start_linsten_6.delay(),
+            start_linsten_6.delay(),
             # start_linsten_7.delay(),
             # start_linsten_8.delay(),
             # start_linsten_9.delay(),
-            # start_face_door_1.delay(),
-            # start_face_door_2.delay()
+            start_face_door_1.delay(),
+            start_face_door_2.delay()
         )
         return Response(status=200)
 
@@ -208,9 +208,12 @@ class OpenTheDoor(APIView):
         # serializer = SalleSerialiser(salle)
         # res = open_the_door.delay(salle.door.id)
         door = Door.objects.get(id=salle.door.id)
+
         device = AccessControl()
         # device = FaceControl()
         print('DOOOORE', door)
+        print('ad', door.username)
+        print('PWD', door.password)
 
         device.get_login_info(ip=str(door.ip_adress), port=37777, username=door.username, password=door.password)
         result = device.login()
@@ -220,7 +223,8 @@ class OpenTheDoor(APIView):
             # print('serializer', serializer)
             return Response(status=200)
         else:
-            return Response(status=404)
+            print('WHAT')
+            return Response(status=400)
 
 
 # @api_view(['GET'])

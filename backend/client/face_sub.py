@@ -337,7 +337,7 @@ class FaceControl:
         record_info = NET_ACCESS_USER_INFO()
         record_info.szUserID = user_id.encode()
         record_info.szName = user_name.encode()
-        record_info.emUserType = EM_A_NET_ENUM_USER_TYPE.NET_ENUM_USER_TYPE_NORMAL
+        record_info.emUserType = EM_A_NET_ENUM_USER_TYPE.NET_ENUM_USER_TYPE_PATROL
         record_info.nUserStatus = 0
         record_info.szCitizenIDNo = b'123456789999'
         record_info.szPsw = b'admin'
