@@ -7,10 +7,10 @@ import time
 import logging
 
 @shared_task
-def start_linsten_1():
+def start_linsten_test_device_1():
     # tennis 236
     device = AccessControl()
-    print(' the instance start_linsten_1', device)
+    print(' the instance start_linsten_test_device_1', device)
     
     device.get_login_info(ip='192.168.0.145', port=37777, username='admin', password='123456')
     # device.get_login_info(ip='192.168.1.230', port=37777, username='admin', password='123456')
@@ -20,10 +20,10 @@ def start_linsten_1():
         device.alarm_listen()
    
 @shared_task
-def start_linsten_2():
+def start_linsten_test_device_2():
     # tennis 237
     device = AccessControl()
-    print(' the instance start_linsten_2', device)
+    print(' the instance start_linsten_test_device_2', device)
     device.get_login_info(ip='192.168.0.146', port=37777, username='admin', password='123456')
 
     # device.get_login_info(ip='192.168.1.231', port=37777, username='admin', password='123456')
@@ -36,7 +36,7 @@ def start_linsten_2():
 def start_linsten_3():
 
     device = AccessControl()
-    print(' the instance start_linsten_1', device)
+    print(' the instance start_linsten_3', device)
     
     device.get_login_info(ip='192.168.1.232', port=37777, username='admin', password='123456')
     result = device.login()
@@ -47,7 +47,7 @@ def start_linsten_3():
 @shared_task
 def start_linsten_4():
     device = AccessControl()
-    print(' the instance start_linsten_1', device)
+    print(' the instance start_linsten_4', device)
     
     device.get_login_info(ip='192.168.1.233', port=37777, username='admin', password='123456')
     result = device.login()
@@ -58,7 +58,7 @@ def start_linsten_4():
 @shared_task
 def start_linsten_5():
     device = AccessControl()
-    print(' the instance start_linsten_1', device)
+    print(' the instance start_linsten_5', device)
     
     device.get_login_info(ip='192.168.1.234', port=37777, username='admin', password='123456')
     result = device.login()
@@ -91,7 +91,6 @@ def start_linsten_7():
 @shared_task
 def start_linsten_8():
     device = AccessControl()
-    
     device.get_login_info(ip='192.168.1.237', port=37777, username='admin', password='123456')
     result = device.login()
     device.alarm_listen()
@@ -101,7 +100,6 @@ def start_linsten_8():
 @shared_task
 def start_linsten_9():
     device = AccessControl()
-    
     device.get_login_info(ip='192.168.1.238', port=37777, username='admin', password='123456')
     result = device.login()
     device.alarm_listen()
@@ -133,9 +131,8 @@ def start_linsten_9():
 
 
 @shared_task
-def start_face_door_1():
+def start_face_door_right():
     device = FaceControl()
-    
     device.get_login_info(ip='192.168.1.220', port=37777, username='admin', password='mc091924')
     result = device.login()
     device.intelligent_operate()
@@ -143,9 +140,8 @@ def start_face_door_1():
         device.intelligent_operate()
  
 @shared_task
-def start_face_door_2():
+def start_face_door_left():
     device = FaceControl()
-    
     device.get_login_info(ip='192.168.1.221', port=37777, username='admin', password='mc091924')
     result = device.login()
     device.intelligent_operate()
@@ -161,23 +157,3 @@ def stop_listening_1():
     device.get_login_info(ip='192.168.0.145', port=37777, username='admin', password='123456')
     result = device.login()
     result = device.logout()
-
-
-
-@shared_task
-def open_the_door(door_pk):
-    door = Door.objects.get(id=door_pk)
-    device = AccessControl()
-    # device = FaceControl()
-    print('DOOOORE', door)
-
-    result = device.get_login_info(ip=str(door.ip_adress), port=37777, username=door.username, password=door.password)
-    result = device.login()
-    device.access_operate()
-    # return {'messages': 'door opened sussessfully'}
-    # else:
-    #     device = AccessControl()
-    #     result = device.login()
-    #     device.access_operate()
-    #     return {'messages': 'Door opened sussessfully'}
-    return {'messages': 'Opening door Failed'}
