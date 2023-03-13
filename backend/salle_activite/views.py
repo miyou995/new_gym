@@ -174,18 +174,20 @@ class StartListening(APIView):
         """
         logger.info("Open All The Doors inited...")
         taks_group = group(
-            # start_linsten_test_device_1.delay(),
-            # start_linsten_test_device_2.delay(),
-            start_linsten_3.delay(),
-            start_linsten_4.delay(),
-            start_linsten_5.delay(),
-            start_linsten_6.delay(),
-            start_linsten_7.delay(),
-            start_linsten_8.delay(),
-            start_linsten_9.delay(),
+            start_linsten_test_device_1.delay(),
+            start_linsten_test_device_2.delay(),
 
-            start_face_door_right.delay(),
-            start_face_door_left.delay()
+            # start_linsten_3.delay(),
+            # start_linsten_4.delay(),
+            # start_linsten_5.delay(),
+            # start_linsten_6.delay(),
+            # start_linsten_7.delay(),
+            # start_linsten_8.delay(),
+            # start_linsten_9.delay(),
+
+            # start_face_door_right.delay(),
+            # start_face_door_left.delay()
+            
         )
         return Response(status=200)
 

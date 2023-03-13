@@ -239,15 +239,14 @@ const populatePaimentData = (e) => {
   //console.log('TRHE RRRREEEE', e.target);
 }
 useEffect(() => {
-  try {
-    populatePaimentData()
-  } catch (error) {
-    
+    try {
+      populatePaimentData()
+    } catch (error) {
   }
 }, [populatePaimentData]);
   return (
     <>
-     <Helmet>
+        <Helmet>
           <title>{String(clientId)} - {String(client.last_name)} </title>
         </Helmet>
       <div className="testimonial-one owl-right-nav owl-carousel owl-loaded owl-drag mb-4">
@@ -278,7 +277,10 @@ useEffect(() => {
               <p>ID: <span className='text-danger'>{client.id}</span></p>
             </div>
             <div className="social-icons">
+              {
+                client.id &&
                 <Link to={`/client/edit/${client.id}`} className="btn-xs btn-primary light" > Modifier Profile </Link>
+              }
             </div>
           </div>
             <div className="profile-email px-2 pt-2">
@@ -342,7 +344,7 @@ useEffect(() => {
             </Dropdown>
         </div>
       </div>
-          {/* <div className="row d-flex justify-content-start mb-3 ml-4">
+          {/* <div className="row d-flex justify-content-start mb-3 ml-4"ff>
               <div className="btn btn-success ml-4" onClick={e => setPaiementModal(true) }>
                   + Paiement 
               </div>

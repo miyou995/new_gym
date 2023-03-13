@@ -49,10 +49,12 @@ function refreshPage() {
         setName(salleData['salleName'])
         setDoor(salleData['doorId'])
         setDefault(salleData['isDefaultSalle'])
+        console.log("racct", salleData);
     }
-    }, [salleData['salleId']]);
+    }, [salleData, show]);
     const HandleSubmit = e => {
         e.preventDefault();
+        console.log("door", door);
         const salleFormData = {
             name : name,
             door : Number(door),

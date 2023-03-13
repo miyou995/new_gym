@@ -10,7 +10,7 @@ from django.db.models.signals import post_save, pre_save
 from abonnement.models import AbonnementClient
 from presence.models import Presence
 from salle_activite.models import Salle
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 from django.db import transaction
 from django.utils import timezone
 from .tasks import register_user
@@ -19,6 +19,8 @@ from .tasks import register_user
 from io import BytesIO
 from PIL import Image
 from django.core.files.base import ContentFile
+
+FTM = '%H:%M:%S'
 
 # Create your models here.
 class AbonnementManager(models.Manager):
@@ -93,7 +95,7 @@ class Client(models.Model):
     updated     = models.DateTimeField(verbose_name='Date de dernière mise à jour',  auto_now=True)
     note        = models.TextField(blank=True, null=True)
     dette       = models.DecimalField(max_digits=10, decimal_places=0, blank=True, null=True,default=0)
-    is_on_salle = models.BooleanField(default=True)
+    is_on_salle = models.BooleanField(default=False)
     maladies    = models.ManyToManyField(Maladie)
     # date_added  = models.DateTimeField(auto_now_add=True, verbose_name='Date d\'inscription')
     # state       = models.CharField(choices=STATE_CHOICES , max_length=3, verbose_name='Etat', blank=True, null=True)
@@ -179,34 +181,49 @@ class Client(models.Model):
             print('deleted_x', deleted_x) 
             print(' hex_card', self.hex_card) 
         return super().save(*args, **kwargs)
+    
     def full_name(self):
         return str(self.last_name)+ " " +str(self.first_name)
 
     def get_absolute_url(self):
         return reverse("client:client-detail", args={"slug": self.slug})
 
+    #A VERIF
 
 
-    #A VERIFIEEEEEEER
 
-    def init_output(self):
+
+    def init_output(self,  exit_hour=None):
         my_presences = Presence.objects.filter(abc__client=self, is_in_salle=True)
-
         presence = my_presences.first()
         print('LA my_presences', my_presences)
         print('LA PRESENCE', presence)
-        if not presence:
-            return False
         current_time = datetime.now().strftime("%H:%M:%S")
+        if exit_hour:
+            current_time = exit_hour
+        presence_time = presence.hour_entree
+        if not presence:
+            """ ecart + de 10 seconde"""
+            return False
+        
+        ecart = abs(datetime.strptime(current_time, FTM) - datetime.strptime(str(presence_time), FTM))
+        print('ECART', ecart)
+        print('ECART TYPE', type(ecart))
+
+        time_diff_seconds = timedelta.total_seconds(ecart)
+        print('time_diff_seconds================>', time_diff_seconds)
+        if not time_diff_seconds > 10:
+            return False
+        
         presence.hour_sortie = current_time
-        presence.is_in_salle =False
+        presence.is_in_salle = False
         presence.save()
 
         # update abc
         # presence.save(commit=False)
         abc = presence.abc
         if abc.is_time_volume():
-            ecart = presence.get_time_difference() 
+            ecart = presence.get_time_consumed() 
             abc.presence_quantity -= ecart 
             abc.save()
             # ecart = abs(datetime.strptime(str(hour_start), FTM) - datetime.strptime(current_time, FTM))
@@ -217,26 +234,29 @@ class Client(models.Model):
         return True
 
     def get_access_permission(self, door_ip=None):
-        FTM = '%H:%M:%S'
+        current_time = datetime.now().strftime("%H:%M:%S")
+
         if self.is_on_salle :
             print('is on salle')
             sortie = self.init_output()
+            if not sortie: # if sortie is false this mean that the client passed the card on an interval < 10 secondes
+                return False
             self.is_on_salle = False 
             self.save()
             return sortie
         salle = Salle.objects.filter(door__ip_adress=door_ip).first()
         print('Adress IP', door_ip)
         print('SAlle ', salle)
-        current_time = datetime.now().strftime("%H:%M:%S")
         abonnements_actives = AbonnementClient.subscription.active_subscription()
         abonnement_client = abonnements_actives.filter(client=self, type_abonnement__salles=salle).first()
-        if not abonnement_client:
-            return False
         creneaux = Creneau.range.get_creneaux_of_day().filter(abonnements=abonnement_client)
+        if not abonnement_client or not creneaux:
+            return False
         print('LES CRENEAUX =====', creneaux)
         print('Le TYPE DABONNEMENT CRENEAUX =====', abonnement_client)
 
         cren_ref = creneaux.first()
+        print('Creneau de reference', cren_ref)
         if abonnement_client.is_time_volume() and abonnement_client.is_valid():
             print('abopnnement valid')
             with transaction.atomic():
