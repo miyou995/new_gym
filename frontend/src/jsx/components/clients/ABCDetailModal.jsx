@@ -147,147 +147,264 @@ const handleSubmit = async () => {
     notifySuccess('Abonnement mis A jour avec succés')
     handleShow()
   }).catch( err => {
-    notifyError("Erreur lors de la modification de l'abonnement")
+    notifyError("Erreur lors de la modification de l'abonnement, Vérifier que le client n'a pas fait de paiement sur cet abonnement ")
   })
   // refreshPage()
   handleShow()
 }
 return ( 
     <Modal  className="fade bd-example-modal-lg" size="xl" onHide={handleShow} show={show}>
-    <Modal.Header>
-      <Modal.Title className='text-black font-weight-bold'>Detail abonnement</Modal.Title>
-      <Button variant="" className="close" onClick={handleShow} > <span>&times;</span>
-      </Button>
-    </Modal.Header>
-    <Modal.Body>
-    <Tab.Container defaultActiveKey="monthly">
-      <div className="row justify-content-center">
-                <div className="card-body bg-white ">
-                  <div className="media profile-bx">
-                      <div className="media-body align-items-center">
-                        <h2 className="text-black font-w600">
-                          {capitalizeFirstLetter(abc.last_name)} {capitalizeFirstLetter(abc.first_name)}
-                        </h2>
-                        <h4 className="mb-2 text-black">ID client : <span className='text-danger'>{clientId}</span></h4>
-                        <h6 className="text-black"> Presences Restantes <span className="text-primary">{abc.presence_quantity}</span>
-                        </h6>
-                        {/* <h6 className='text-primary'>Date d'éxpiration:&nbsp;&nbsp; <span className="badge badge-danger light">{endDate}</span> </h6> */}
-                        <div className="card-header border-0 d-xl-flex d-lg-block d-md-flex d-sm-flex d-block">
-                            <div className="mr-2">
-                              <h4 className="fs-20 text-black">Abonnement: <a className="item text-primary">{typeName} </a> </h4>
-                            </div>
-                            <div className="card-action card-tabs mt-3 mt-sm-0">
-                              <Nav className="nav nav-tabs" role="tablist">
-                                  <Nav.Item>
-                                    <Nav.Link className="nav-link" data-toggle="tab" eventKey="monthly" role="tab" aria-selected="true" > Detail </Nav.Link>
-                                  </Nav.Item>
-                                  <Nav.Item>
-                                    <Nav.Link className="nav-link" data-toggle="tab" eventKey="Weekly" role="tab" aria-selected="false" > Renouvelé </Nav.Link>
-                                  </Nav.Item>
-                              </Nav>
-                            </div>
-                        </div>
-                      
-                    </div>
-                  </div>
-                </div>
-                {/* les creneaux */}
-               <div className="col-12 card-body p-0 tab-content card-table">
-                  <Tab.Content>
-                    <Tab.Pane eventKey="monthly">
-                      <div className='col-12'>
-                        <form>
-                          <div className="row">
-                            <div className="form-group col-md-4">
-                              <label className="text-black">Date d'expiration</label>
-                              <input type="date" name="end_date"  value={endDate} className="form-control" onChange={e => setEndDate(e.target.value)}/>
-                            </div>
-                            <div className="form-group col-md-4">
-                              <label className="text-black">séances restantes</label>
-                              <input type="number" value={presences} className="form-control" onChange={e => setPresences(e.target.value)}/>
-                            </div>
-                            <div className="form-group col-md-4">
-                              <label className="text-black">Reste</label>
-                              <input type="number" value={reste} className="form-control" onChange={e => setReste(e.target.value)}/>
-                            </div>
-                          </div>
-                        </form>
-                      </div>
-                      <div className='col-12'>
-                        <Table responsive bordered className="verticle-middle">
-                        <tbody>
-                        { dimanche.length > 0 &&
-                          <tr>
-                            <th style={{verticalAlign: "middle", width: "150px", border: ' 1px solid #000000'}}>
-                                  <h4 className='pl-2 text-dark font-weight-bold'>Dimanche</h4>
-                            </th>
-                            <td>
-                              <div>
-                              {dimanche.map(day=>   ( 
-                                <td style={{border: "none", width: day.width, maxWidth: '300px', padding : '6px'}}  key={day.id}  onClick={e => { 
-                                  const creneauId = selectedCreneau.indexOf(day.id)
-                                  if (creneauId !== -1) {
-                                    const neawCren = selectedCreneau.filter(cren => cren !== day.id)
-                                    setSeleCreneau(neawCren) 
-                                  } else{
-                                    setSeleCreneau([...selectedCreneau, day.id]) 
-                                  }}}>
-                                  <div className={changingStyle(day.id) ? 'selected-creneau fc-event-calendar mt-0 ml-0 mb-2 btn btn-block rounded': 'fc-event-calendar mt-0 ml-0 mb-2 btn btn-block rounded'} style={{backgroundColor: day.creneau_color}}>
-                                    <h6 style={{color: "#ffffff"}}  > {day.hour_start}
-                                    <span> - </span> 
-                                    {day.hour_finish}</h6> 
-                                    <p style={{color: "#ffffff"}}>-{day.coach_name}- {day.activity_name}</p> 
-                                  </div>
-                                </td> 
-                              ))
-                            }
+      <Modal.Header>
+        <Modal.Title className='text-black font-weight-bold'>Detail abonnement</Modal.Title>
+        <Button variant="" className="close" onClick={handleShow} > <span>&times;</span>
+        </Button>
+      </Modal.Header>
+      <Modal.Body>
+        <Tab.Container defaultActiveKey="monthly">
+          <div className="row justify-content-center">
+                    <div className="card-body bg-white ">
+                      <div className="media profile-bx">
+                          <div className="media-body align-items-center">
+                            <h2 className="text-black font-w600">
+                              {capitalizeFirstLetter(abc.last_name)} {capitalizeFirstLetter(abc.first_name)}
+                            </h2>
+                            <h4 className="mb-2 text-black">ID client : <span className='text-danger'>{clientId}</span></h4>
+                            <h6 className="text-black"> Presences Restantes <span className="text-primary">{abc.presence_quantity}</span>
+                            </h6>
+                            {/* <h6 className='text-primary'>Date d'éxpiration:&nbsp;&nbsp; <span className="badge badge-danger light">{endDate}</span> </h6> */}
+                            <div className="card-header border-0 d-xl-flex d-lg-block d-md-flex d-sm-flex d-block">
+                                <div className="mr-2">
+                                  <h4 className="fs-20 text-black">Abonnement: <a className="item text-primary">{typeName} </a> </h4>
                                 </div>
-                            </td>
-                          </tr>
-                            }
-                        { lundi.length > 0 &&
-
-                        <tr>
-                          <th style={{verticalAlign: "middle"}}>
-                                <h4 className='pl-2 text-dark font-weight-bold'>Lundi</h4>
-                          </th>
-                          <td style={{ padding: '3px'}}>
-
-                          <div>
-                          { lundi.map(day=>   ( 
-                              <td style={{border: "none", width: day.width, maxWidth: '300px', padding : '6px'}}  key={day.id}  onClick={e => { 
-                                const creneauId = selectedCreneau.indexOf(day.id)
-                                if (creneauId !== -1) {
-                                  const neawCren = selectedCreneau.filter(cren => cren !== day.id)
-                                  setSeleCreneau(neawCren) 
-                                } else{
-                                  setSeleCreneau([...selectedCreneau, day.id]) 
-                                }}}>
-                                  <div className={changingStyle(day.id) ? 'selected-creneau fc-event-calendar mt-0 ml-0 mb-2 btn btn-block rounded': 'fc-event-calendar mt-0 ml-0 mb-2 btn btn-block rounded'} style={{backgroundColor: day.creneau_color}}>
-
-                              
-                                    <h5 style={{color: "#ffffff"}}> {day.hour_start}
-                                    <span> - </span> 
-                                    {day.hour_finish}</h5> 
-                                    <h6 style={{color: "#ffffff"}}>-{day.coach_name}- {day.activity_name}</h6> 
-                                  </div>
-                                </td> 
-                                ))}
+                                <div className="card-action card-tabs mt-3 mt-sm-0">
+                                  <Nav className="nav nav-tabs" role="tablist">
+                                      <Nav.Item>
+                                        <Nav.Link className="nav-link" data-toggle="tab" eventKey="monthly" role="tab" aria-selected="true" > Detail </Nav.Link>
+                                      </Nav.Item>
+                                      <Nav.Item>
+                                        <Nav.Link className="nav-link" data-toggle="tab" eventKey="Weekly" role="tab" aria-selected="false" > Renouvelé </Nav.Link>
+                                      </Nav.Item>
+                                  </Nav>
+                                </div>
+                            </div>
+                          
+                        </div>
+                      </div>
+                    </div>
+                    {/* les creneaux */}
+                  <div className="col-12 card-body p-0 tab-content card-table">
+                      <Tab.Content>
+                        <Tab.Pane eventKey="monthly">
+                          <div className='col-12'>
+                            <form>
+                              <div className="row">
+                                <div className="form-group col-md-4">
+                                  <label className="text-black">Date d'expiration</label>
+                                  <input type="date" name="end_date"  value={endDate} className="form-control" onChange={e => setEndDate(e.target.value)}/>
+                                </div>
+                                <div className="form-group col-md-4">
+                                  <label className="text-black">séances restantes</label>
+                                  <input type="number" value={presences} className="form-control" onChange={e => setPresences(e.target.value)}/>
+                                </div>
+                                <div className="form-group col-md-4">
+                                  <label className="text-black">Reste</label>
+                                  <input type="number" value={reste} className="form-control" onChange={e => setReste(e.target.value)}/>
+                                </div>
+                              </div>
+                            </form>
                           </div>
-                          </td>
-                        </tr>
+                          <div className='col-12'>
+                            <Table responsive bordered className="verticle-middle">
+                            <tbody>
+                            { dimanche.length > 0 &&
+                              <tr>
+                                <th style={{verticalAlign: "middle", width: "150px", border: ' 1px solid #000000'}}>
+                                      <h4 className='pl-2 text-dark font-weight-bold'>Dimanche</h4>
+                                </th>
+                                <td>
+                                  <div>
+                                  {dimanche.map(day=>   ( 
+                                    <td style={{border: "none", width: day.width, maxWidth: '300px', padding : '6px'}}  key={day.id}  onClick={e => { 
+                                      const creneauId = selectedCreneau.indexOf(day.id)
+                                      if (creneauId !== -1) {
+                                        const neawCren = selectedCreneau.filter(cren => cren !== day.id)
+                                        setSeleCreneau(neawCren) 
+                                      } else{
+                                        setSeleCreneau([...selectedCreneau, day.id]) 
+                                      }}}>
+                                      <div className={changingStyle(day.id) ? 'selected-creneau fc-event-calendar mt-0 ml-0 mb-2 btn btn-block rounded': 'fc-event-calendar mt-0 ml-0 mb-2 btn btn-block rounded'} style={{backgroundColor: day.creneau_color}}>
+                                        <h6 style={{color: "#ffffff"}}  > {day.hour_start}
+                                        <span> - </span> 
+                                        {day.hour_finish}</h6> 
+                                        <p style={{color: "#ffffff"}}>-{day.coach_name}- {day.activity_name}</p> 
+                                      </div>
+                                    </td> 
+                                  ))
+                                }
+                                    </div>
+                                </td>
+                              </tr>
+                                }
+                            { lundi.length > 0 &&
+
+                            <tr>
+                              <th style={{verticalAlign: "middle"}}>
+                                    <h4 className='pl-2 text-dark font-weight-bold'>Lundi</h4>
+                              </th>
+                              <td style={{ padding: '3px'}}>
+
+                              <div>
+                              { lundi.map(day=>   ( 
+                                  <td style={{border: "none", width: day.width, maxWidth: '300px', padding : '6px'}}  key={day.id}  onClick={e => { 
+                                    const creneauId = selectedCreneau.indexOf(day.id)
+                                    if (creneauId !== -1) {
+                                      const neawCren = selectedCreneau.filter(cren => cren !== day.id)
+                                      setSeleCreneau(neawCren) 
+                                    } else{
+                                      setSeleCreneau([...selectedCreneau, day.id]) 
+                                    }}}>
+                                      <div className={changingStyle(day.id) ? 'selected-creneau fc-event-calendar mt-0 ml-0 mb-2 btn btn-block rounded': 'fc-event-calendar mt-0 ml-0 mb-2 btn btn-block rounded'} style={{backgroundColor: day.creneau_color}}>
+
+                                  
+                                        <h5 style={{color: "#ffffff"}}> {day.hour_start}
+                                        <span> - </span> 
+                                        {day.hour_finish}</h5> 
+                                        <h6 style={{color: "#ffffff"}}>-{day.coach_name}- {day.activity_name}</h6> 
+                                      </div>
+                                    </td> 
+                                    ))}
+                              </div>
+                              </td>
+                            </tr>
+                                }
+
+                            { mardi.length > 0 && 
+
+                            <tr>
+                              <th style={{verticalAlign: "middle"}}>
+                                    <h4 className='pl-2 text-dark font-weight-bold'>Mardi</h4>
+                              </th>
+                              <td>
+                              <div>
+                              { mardi.map(day=>   ( 
+                                    
+                                    <td style={{border: "none", width: day.width, maxWidth: '300px', padding : '6px'}}  key={day.id}  onClick={e => { 
+                                      const creneauId = selectedCreneau.indexOf(day.id)
+                                      if (creneauId !== -1) {
+                                        const neawCren = selectedCreneau.filter(cren => cren !== day.id)
+                                        setSeleCreneau(neawCren) 
+                                      } else{
+                                        setSeleCreneau([...selectedCreneau, day.id]) 
+                                      }}}>
+                                        <div className={changingStyle(day.id) ? 'selected-creneau fc-event-calendar mt-0 ml-0 mb-2 btn btn-block rounded': 'fc-event-calendar mt-0 ml-0 mb-2 btn btn-block rounded'} style={{backgroundColor: day.creneau_color}}>
+                                          <h5 style={{color: "#ffffff"}}> {day.hour_start}
+                                          <span> - </span> 
+                                          {day.hour_finish}</h5> 
+                                          <h6 style={{color: "#ffffff"}}>-{day.coach_name}- {day.activity_name}</h6> 
+                                        </div>
+                                      </td> 
+                                    ))}
+                              </div>
+                              </td>
+                            </tr>
+                              }
+
+                            { mercredi.length > 0 && 
+
+                            <tr>
+                              <th style={{verticalAlign: "middle"}}>
+                                    <h4 className='pl-2 text-dark font-weight-bold'>Mercredi</h4>
+                              </th>
+                              <td>
+                              <div>
+                              {mercredi.map(day=>   ( 
+                                  
+                                  <td style={{border: "none", width: day.width, maxWidth: '300px', padding : '6px'}}  key={day.id}  onClick={e => { 
+                                    const creneauId = selectedCreneau.indexOf(day.id)
+                                    if (creneauId !== -1) {
+                                      const neawCren = selectedCreneau.filter(cren => cren !== day.id)
+                                      setSeleCreneau(neawCren) 
+                                    } else{
+                                      setSeleCreneau([...selectedCreneau, day.id]) 
+                                    }}}>
+                                      <div className={changingStyle(day.id) ? 'selected-creneau fc-event-calendar mt-0 ml-0 mb-2 btn btn-block rounded': 'fc-event-calendar mt-0 ml-0 mb-2 btn btn-block rounded'} style={{backgroundColor: day.creneau_color}}>
+                                        <h5 style={{color: "#ffffff"}}> {day.hour_start}
+                                        <span> - </span> 
+                                        {day.hour_finish}</h5> 
+                                        <h6 style={{color: "#ffffff"}}>-{day.coach_name}- {day.activity_name}</h6> 
+                                      </div>
+                                    </td> 
+                                  ))}
+                              </div>
+                              </td>
+                            </tr>
                             }
+                            { jeudi.length > 0 && 
 
-                        { mardi.length > 0 && 
-
-                        <tr>
-                          <th style={{verticalAlign: "middle"}}>
-                                <h4 className='pl-2 text-dark font-weight-bold'>Mardi</h4>
-                          </th>
-                          <td>
-                          <div>
-                          { mardi.map(day=>   ( 
-                                
+                            <tr>
+                              <th style={{verticalAlign: "middle"}}>
+                                    <h4 className='pl-2 text-dark font-weight-bold'>Jeudi</h4>
+                              </th>
+                              <td>
+                              <div>
+                              { jeudi.map(day=>   ( 
+                                  
+                                  <td style={{border: "none", width: day.width, maxWidth: '300px', padding : '6px'}}  key={day.id}  onClick={e => { 
+                                    const creneauId = selectedCreneau.indexOf(day.id)
+                                    if (creneauId !== -1) {
+                                      const neawCren = selectedCreneau.filter(cren => cren !== day.id)
+                                      setSeleCreneau(neawCren) 
+                                    } else{
+                                      setSeleCreneau([...selectedCreneau, day.id]) 
+                                    }}}>
+                                      <div className={changingStyle(day.id) ? 'selected-creneau fc-event-calendar mt-0 ml-0 mb-2 btn btn-block rounded': 'fc-event-calendar mt-0 ml-0 mb-2 btn btn-block rounded'} style={{backgroundColor: day.creneau_color}}>
+                                        <h5 style={{color: "#ffffff"}}> {day.hour_start}
+                                        <span> - </span> 
+                                        {day.hour_finish}</h5> 
+                                        <h6 style={{color: "#ffffff"}}>-{day.coach_name}- {day.activity_name}</h6> 
+                                      </div>
+                                    </td> 
+                                    ))}
+                              </div>
+                              </td>
+                            </tr>
+                            }
+                            { vendredi.length > 0 && 
+                            <tr>
+                              <th style={{verticalAlign: "middle"}}>
+                                    <h4 className='pl-2 text-dark font-weight-bold'>Vendredi</h4>
+                              </th>
+                              <td>
+                              <div>
+                              { vendredi.map(day=>   ( 
+                                  <td style={{border: "none", width: day.width, maxWidth: '300px', padding : '6px'}}  key={day.id}  onClick={e => { 
+                                    const creneauId = selectedCreneau.indexOf(day.id)
+                                    if (creneauId !== -1) {
+                                      const neawCren = selectedCreneau.filter(cren => cren !== day.id)
+                                      setSeleCreneau(neawCren) 
+                                    } else{
+                                      setSeleCreneau([...selectedCreneau, day.id]) 
+                                    }}}>
+                                      <div className={changingStyle(day.id) ? 'selected-creneau fc-event-calendar mt-0 ml-0 mb-2 btn btn-block rounded': 'fc-event-calendar mt-0 ml-0 mb-2 btn btn-block rounded'} style={{backgroundColor: day.creneau_color}}>
+                                        <h5 style={{color: "#ffffff"}}> {day.hour_start}
+                                        <span> - </span> 
+                                        {day.hour_finish}</h5> 
+                                        <h6 style={{color: "#ffffff"}}>-{day.coach_name}- {day.activity_name}</h6> 
+                                      </div>
+                                    </td> 
+                                    ))}
+                              </div>
+                              </td>
+                            </tr>
+                            }
+                            { samedi.length > 0 && 
+                            <tr>
+                              <th style={{verticalAlign: "middle"}}>
+                                    <h4 className='pl-2 text-dark font-weight-bold'>Samedi</h4>
+                              </th>
+                              <td>
+                              <div>
+                              { samedi.map(day=>   ( 
                                 <td style={{border: "none", width: day.width, maxWidth: '300px', padding : '6px'}}  key={day.id}  onClick={e => { 
                                   const creneauId = selectedCreneau.indexOf(day.id)
                                   if (creneauId !== -1) {
@@ -296,175 +413,58 @@ return (
                                   } else{
                                     setSeleCreneau([...selectedCreneau, day.id]) 
                                   }}}>
-                                    <div className={changingStyle(day.id) ? 'selected-creneau fc-event-calendar mt-0 ml-0 mb-2 btn btn-block rounded': 'fc-event-calendar mt-0 ml-0 mb-2 btn btn-block rounded'} style={{backgroundColor: day.creneau_color}}>
-                                      <h5 style={{color: "#ffffff"}}> {day.hour_start}
-                                      <span> - </span> 
-                                      {day.hour_finish}</h5> 
-                                      <h6 style={{color: "#ffffff"}}>-{day.coach_name}- {day.activity_name}</h6> 
-                                    </div>
-                                  </td> 
-                                ))}
+                                      <div className={changingStyle(day.id) ? 'selected-creneau fc-event-calendar mt-0 ml-0 mb-2 btn btn-block rounded': 'fc-event-calendar mt-0 ml-0 mb-2 btn btn-block rounded'} style={{backgroundColor: day.creneau_color}}>
+                                        <h5 style={{color: "#ffffff"}}> {day.hour_start}
+                                        <span> - </span> 
+                                        {day.hour_finish}</h5> 
+                                        <h6 style={{color: "#ffffff"}}>-{day.coach_name}- {day.activity_name}</h6> 
+                                      </div>
+                                    </td> 
+                                  ))}
+                              </div>
+                              </td>
+                            </tr>
+                            }
+                            </tbody>
+                            </Table>
                           </div>
-                          </td>
-                        </tr>
-                          }
-
-                        { mercredi.length > 0 && 
-
-                        <tr>
-                          <th style={{verticalAlign: "middle"}}>
-                                <h4 className='pl-2 text-dark font-weight-bold'>Mercredi</h4>
-                          </th>
-                          <td>
-                          <div>
-                          {mercredi.map(day=>   ( 
-                              
-                              <td style={{border: "none", width: day.width, maxWidth: '300px', padding : '6px'}}  key={day.id}  onClick={e => { 
-                                const creneauId = selectedCreneau.indexOf(day.id)
-                                if (creneauId !== -1) {
-                                  const neawCren = selectedCreneau.filter(cren => cren !== day.id)
-                                  setSeleCreneau(neawCren) 
-                                } else{
-                                  setSeleCreneau([...selectedCreneau, day.id]) 
-                                }}}>
-                                  <div className={changingStyle(day.id) ? 'selected-creneau fc-event-calendar mt-0 ml-0 mb-2 btn btn-block rounded': 'fc-event-calendar mt-0 ml-0 mb-2 btn btn-block rounded'} style={{backgroundColor: day.creneau_color}}>
-                                    <h5 style={{color: "#ffffff"}}> {day.hour_start}
-                                    <span> - </span> 
-                                    {day.hour_finish}</h5> 
-                                    <h6 style={{color: "#ffffff"}}>-{day.coach_name}- {day.activity_name}</h6> 
-                                  </div>
-                                </td> 
-                              ))}
+                        </Tab.Pane>
+                        <Tab.Pane eventKey="Weekly">
+                        <div className='col-12'>
+                            <form className="d-block">
+                              <div className="row d-flex justify-content-arround">
+                                <div className="form-group col-md-4">
+                                  <label className="text-black">Renouvelé à partir du</label>
+                                  <input type="date"  value={startRenewData} className="form-control" onChange={e => setStartRenewData(e.target.value)}/>
+                                </div>
+                                <div className="form-group col-md-6">
+                                  <div className="btn btn-secondary popover-tes cursor-abonnement mt-4" onClick={handleRenew} role="button">Renouveler l'abonnement </div>
+                                </div>
+                              </div>
+                            </form>
                           </div>
-                          </td>
-                        </tr>
-                        }
-                        { jeudi.length > 0 && 
-
-                        <tr>
-                          <th style={{verticalAlign: "middle"}}>
-                                <h4 className='pl-2 text-dark font-weight-bold'>Jeudi</h4>
-                          </th>
-                          <td>
-                          <div>
-                          { jeudi.map(day=>   ( 
-                              
-                              <td style={{border: "none", width: day.width, maxWidth: '300px', padding : '6px'}}  key={day.id}  onClick={e => { 
-                                const creneauId = selectedCreneau.indexOf(day.id)
-                                if (creneauId !== -1) {
-                                  const neawCren = selectedCreneau.filter(cren => cren !== day.id)
-                                  setSeleCreneau(neawCren) 
-                                } else{
-                                  setSeleCreneau([...selectedCreneau, day.id]) 
-                                }}}>
-                                  <div className={changingStyle(day.id) ? 'selected-creneau fc-event-calendar mt-0 ml-0 mb-2 btn btn-block rounded': 'fc-event-calendar mt-0 ml-0 mb-2 btn btn-block rounded'} style={{backgroundColor: day.creneau_color}}>
-                                    <h5 style={{color: "#ffffff"}}> {day.hour_start}
-                                    <span> - </span> 
-                                    {day.hour_finish}</h5> 
-                                    <h6 style={{color: "#ffffff"}}>-{day.coach_name}- {day.activity_name}</h6> 
-                                  </div>
-                                </td> 
-                                ))}
-                          </div>
-                          </td>
-                        </tr>
-                        }
-                        { vendredi.length > 0 && 
-                        <tr>
-                          <th style={{verticalAlign: "middle"}}>
-                                <h4 className='pl-2 text-dark font-weight-bold'>Vendredi</h4>
-                          </th>
-                          <td>
-                          <div>
-                          { vendredi.map(day=>   ( 
-                              <td style={{border: "none", width: day.width, maxWidth: '300px', padding : '6px'}}  key={day.id}  onClick={e => { 
-                                const creneauId = selectedCreneau.indexOf(day.id)
-                                if (creneauId !== -1) {
-                                  const neawCren = selectedCreneau.filter(cren => cren !== day.id)
-                                  setSeleCreneau(neawCren) 
-                                } else{
-                                  setSeleCreneau([...selectedCreneau, day.id]) 
-                                }}}>
-                                  <div className={changingStyle(day.id) ? 'selected-creneau fc-event-calendar mt-0 ml-0 mb-2 btn btn-block rounded': 'fc-event-calendar mt-0 ml-0 mb-2 btn btn-block rounded'} style={{backgroundColor: day.creneau_color}}>
-                                    <h5 style={{color: "#ffffff"}}> {day.hour_start}
-                                    <span> - </span> 
-                                    {day.hour_finish}</h5> 
-                                    <h6 style={{color: "#ffffff"}}>-{day.coach_name}- {day.activity_name}</h6> 
-                                  </div>
-                                </td> 
-                                ))}
-                          </div>
-                          </td>
-                        </tr>
-                        }
-                        { samedi.length > 0 && 
-                        <tr>
-                          <th style={{verticalAlign: "middle"}}>
-                                <h4 className='pl-2 text-dark font-weight-bold'>Samedi</h4>
-                          </th>
-                          <td>
-                          <div>
-                          { samedi.map(day=>   ( 
-                            <td style={{border: "none", width: day.width, maxWidth: '300px', padding : '6px'}}  key={day.id}  onClick={e => { 
-                              const creneauId = selectedCreneau.indexOf(day.id)
-                              if (creneauId !== -1) {
-                                const neawCren = selectedCreneau.filter(cren => cren !== day.id)
-                                setSeleCreneau(neawCren) 
-                              } else{
-                                setSeleCreneau([...selectedCreneau, day.id]) 
-                              }}}>
-                                  <div className={changingStyle(day.id) ? 'selected-creneau fc-event-calendar mt-0 ml-0 mb-2 btn btn-block rounded': 'fc-event-calendar mt-0 ml-0 mb-2 btn btn-block rounded'} style={{backgroundColor: day.creneau_color}}>
-                                    <h5 style={{color: "#ffffff"}}> {day.hour_start}
-                                    <span> - </span> 
-                                    {day.hour_finish}</h5> 
-                                    <h6 style={{color: "#ffffff"}}>-{day.coach_name}- {day.activity_name}</h6> 
-                                  </div>
-                                </td> 
-                              ))}
-                          </div>
-                          </td>
-                        </tr>
-                        }
-                        </tbody>
-                        </Table>
+                        </Tab.Pane>
+                      </Tab.Content>
+                    </div>
+                      <div className="col-12">
+                      <Button onClick={handleShow} variant="danger light" className='m-2' > Fermer </Button>
+                      <Button onClick={handleSubmit} variant="primary" className='m-2' > Valider </Button>
+                      <Button 
+                        onClick={ () => {
+                          api.delete(abonnementDeleteEND).then( res =>{
+                            notifySuccess(res.message)
+                            handleShow()
+                          }).catch(err =>{
+                            notifyError("erreur lors de la supression de l'abonnement")
+                          })
+                          }}
+                        variant="danger" 
+                        className='m-2' > Supprimer </Button>
                       </div>
-                    </Tab.Pane>
-                    <Tab.Pane eventKey="Weekly">
-                    <div className='col-12'>
-                        <form className="d-block">
-                          <div className="row d-flex justify-content-arround">
-                            <div className="form-group col-md-4">
-                              <label className="text-black">Renouvelé à partir du</label>
-                              <input type="date"  value={startRenewData} className="form-control" onChange={e => setStartRenewData(e.target.value)}/>
-                            </div>
-                            <div className="form-group col-md-6">
-                              <div className="btn btn-secondary popover-tes cursor-abonnement mt-4" onClick={handleRenew} role="button">Renouveler l'abonnement </div>
-                            </div>
-                          </div>
-                        </form>
-                      </div>
-                    </Tab.Pane>
-                  </Tab.Content>
-                </div>
-                  <div className="col-12">
-                  <Button onClick={handleShow} variant="danger light" className='m-2' > Fermer </Button>
-                  <Button onClick={handleSubmit} variant="primary" className='m-2' > Valider </Button>
-                  <Button 
-                    onClick={ () => {
-                       api.delete(abonnementDeleteEND).then( res =>{
-                        notifySuccess(res.message)
-                        handleShow()
-                      }).catch(err =>{
-                        notifyError("erreur lors de la supression de l'abonnement")
-                      })
-                      }}
-                    variant="danger" 
-                    className='m-2' > Supprimer </Button>
-                  </div>
-      </div>
-    </Tab.Container>
-
-     </Modal.Body>
+          </div>
+        </Tab.Container>
+      </Modal.Body>
     </Modal>
 )}
 export default ABCDetailModal;
+

@@ -142,7 +142,7 @@ useEffect(() => {
       })
   }
   FetchData();
-}, [modal, modalCreate,salleId, planningId]);
+}, [modal, modalCreate, salleId, planningId]);
 
   //console.log('selected  creneaux', selectedCreneau);
 

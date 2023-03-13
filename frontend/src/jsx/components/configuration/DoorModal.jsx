@@ -27,7 +27,7 @@ const DoorModal = ({show, onShowShange, doorData}) => {
         setDoorPassword(doorData['doorPassword'])
         console.log('id de la porte ',doorId , 'new one ',doorData['doorId']  );
       }
-    }, [doorData['doorId'], show]);
+    }, [doorData, show]);
     const HandleSubmit = e => {
         e.preventDefault();
         const doorData = {

@@ -55,7 +55,7 @@ class Presence(models.Model):
         if not self.date:
             self.date = timezone.now()
         return super().save(*args, **kwargs)
-    def get_time_difference(self):
+    def get_time_consumed(self):
         today = date.today()
         print(' THE today', today)
         # time = timezone.now().strptime('09:30', '%H:%M').time()

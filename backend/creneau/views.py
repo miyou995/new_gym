@@ -143,12 +143,11 @@ class CreneauByAbonnement(generics.ListAPIView):
         abc_id = self.request.query_params.get('abc', None)
         abonnement_client = AbonnementClient.objects.get(id=abc_id)
         # planning = Planning.objects.get()
-        if abonnement_client:
+        try:
             planning_id = abonnement_client.creneaux.first().planning.id
             print('PLANNNING ID', planning_id)
-
             creneaux = Creneau.objects.filter(activity__salle__abonnements__id = abonnement_id,  planning__id=planning_id)
-        else:
+        except:
             creneaux = Creneau.objects.filter(activity__salle__abonnements__id = abonnement_id)
         # print('les ceneaux', creneaux.count())
         return creneaux
