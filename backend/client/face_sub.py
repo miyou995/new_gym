@@ -210,18 +210,16 @@ class FaceControl:
         if result:
             print("Add card info success.nRecNo:%d" % stuInParam.stuCtrlRecordSetResult.nRecNo)
             self.recordNo = stuInParam.stuCtrlRecordSetResult.nRecNo
-            
             result = self.search_card_info(card_num = "112233")
             if result:
                 print("Search card info success")
             else:
                 print("Search card info fail")
                 return False
-
+            
             stuInParam = NET_CTRL_RECORDSET_PARAM()
             stuInParam.dwSize = sizeof(NET_CTRL_RECORDSET_PARAM)
             stuInParam.emType = EM_NET_RECORD_TYPE.ACCESSCTLCARD
-
             card_info = NET_RECORDSET_ACCESS_CTL_CARD()
             card_info.nRecNo = self.recordNo
             card_info.dwSize = sizeof(NET_RECORDSET_ACCESS_CTL_CARD)
