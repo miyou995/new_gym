@@ -201,10 +201,10 @@ class Client(models.Model):
         current_time = datetime.now().strftime("%H:%M:%S")
         if exit_hour:
             current_time = exit_hour
-        presence_time = presence.hour_entree
         if not presence:
             """ ecart + de 10 seconde"""
             return False
+        presence_time = presence.hour_entree
         
         ecart = abs(datetime.strptime(current_time, FTM) - datetime.strptime(str(presence_time), FTM))
         print('ECART', ecart)

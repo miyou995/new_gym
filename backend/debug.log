@@ -1998,3 +1998,104 @@ AttributeError: 'NoneType' object has no attribute 'planning'
 2023-03-13 11:33:59,827 celery.bootsteps DEBUG    | Consumer: Stopping Connection...
 2023-03-13 11:33:59,828 celery.bootsteps DEBUG    | Worker: Stopping Pool...
 2023-03-13 11:33:59,983 celery.concurrency.asynpool DEBUG    removing tasks from inqueue until task handler finished
+2023-03-14 09:59:32,558 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-14 10:00:12,491 celery.bootsteps DEBUG    | Worker: Preparing bootsteps.
+2023-03-14 10:00:12,516 celery.bootsteps DEBUG    | Worker: Building graph...
+2023-03-14 10:00:12,517 celery.bootsteps DEBUG    | Worker: New boot order: {StateDB, Beat, Timer, Hub, Pool, Autoscaler, Consumer}
+2023-03-14 10:00:12,636 celery.bootsteps DEBUG    | Consumer: Preparing bootsteps.
+2023-03-14 10:00:12,637 celery.bootsteps DEBUG    | Consumer: Building graph...
+2023-03-14 10:00:12,734 celery.bootsteps DEBUG    | Consumer: New boot order: {Connection, Events, Mingle, Gossip, Agent, Tasks, Control, Heart, event loop}
+2023-03-14 10:00:12,802 celery.bootsteps DEBUG    | Worker: Starting Hub
+2023-03-14 10:00:12,802 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-14 10:00:12,803 celery.bootsteps DEBUG    | Worker: Starting Pool
+2023-03-14 10:00:13,466 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-14 10:00:13,467 celery.bootsteps DEBUG    | Worker: Starting Consumer
+2023-03-14 10:00:13,468 celery.bootsteps DEBUG    | Consumer: Starting Connection
+2023-03-14 10:00:13,490 celery.worker.consumer.connection INFO     Connected to redis://localhost:6379//
+2023-03-14 10:00:13,490 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-14 10:00:13,491 celery.bootsteps DEBUG    | Consumer: Starting Events
+2023-03-14 10:00:13,495 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-14 10:00:13,495 celery.bootsteps DEBUG    | Consumer: Starting Mingle
+2023-03-14 10:00:13,495 celery.worker.consumer.mingle INFO     mingle: searching for neighbors
+2023-03-14 10:00:14,504 celery.worker.consumer.mingle INFO     mingle: all alone
+2023-03-14 10:00:14,504 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-14 10:00:14,505 celery.bootsteps DEBUG    | Consumer: Starting Gossip
+2023-03-14 10:00:14,509 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-14 10:00:14,509 celery.bootsteps DEBUG    | Consumer: Starting Tasks
+2023-03-14 10:00:14,522 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-14 10:00:14,523 celery.bootsteps DEBUG    | Consumer: Starting Control
+2023-03-14 10:00:14,527 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-14 10:00:14,527 celery.bootsteps DEBUG    | Consumer: Starting Heart
+2023-03-14 10:00:14,530 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-14 10:00:14,530 celery.bootsteps DEBUG    | Consumer: Starting event loop
+2023-03-14 10:00:14,531 celery.bootsteps DEBUG    | Worker: Hub.register Pool...
+2023-03-14 10:00:14,540 py.warnings  WARNING  /mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/fixups/django.py:203: UserWarning: Using settings.DEBUG leads to a memory
+            leak, never use this setting in production environments!
+  warnings.warn('''Using settings.DEBUG leads to a memory
+
+2023-03-14 10:00:14,542 celery.apps.worker INFO     celery@DESKTOP-PC6U1IH ready.
+2023-03-14 10:00:14,543 kombu.common DEBUG    basic.qos: prefetch_count->32
+2023-03-14 10:04:26,487 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-14 10:05:17,724 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/face_sub.py changed, reloading.
+2023-03-14 10:05:19,954 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-14 10:07:25,898 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-14 10:07:27,943 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-14 10:14:03,582 django.request WARNING  Method Not Allowed (POST): /rest-api/presence/create
+2023-03-14 10:14:03,697 django.request WARNING  Method Not Allowed: /rest-api/presence/create
+2023-03-14 10:19:29,174 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/config/urls.py changed, reloading.
+2023-03-14 10:19:31,333 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-14 10:19:32,133 django.request WARNING  Forbidden: /rest-api/transactions/remunerationProf-by-id/
+2023-03-14 10:19:32,376 django.request WARNING  Forbidden: /rest-api/transactions/remunerationProf-by-id/
+2023-03-14 10:19:32,600 django.request WARNING  Not Found: /favicon.ico
+2023-03-14 10:21:12,238 django.request WARNING  Not Found: /favicon.ico
+2023-03-14 10:44:17,745 django.request WARNING  Not Found: /
+2023-03-14 10:44:17,974 django.request WARNING  Not Found: /
+2023-03-14 11:18:49,655 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/transaction/urls.py changed, reloading.
+2023-03-14 11:18:55,601 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-14 14:41:37,682 celery.bootsteps DEBUG    | Worker: Preparing bootsteps.
+2023-03-14 14:41:37,719 celery.bootsteps DEBUG    | Worker: Building graph...
+2023-03-14 14:41:37,720 celery.bootsteps DEBUG    | Worker: New boot order: {StateDB, Timer, Hub, Pool, Autoscaler, Beat, Consumer}
+2023-03-14 14:41:37,937 celery.bootsteps DEBUG    | Consumer: Preparing bootsteps.
+2023-03-14 14:41:37,938 celery.bootsteps DEBUG    | Consumer: Building graph...
+2023-03-14 14:41:38,064 celery.bootsteps DEBUG    | Consumer: New boot order: {Connection, Events, Heart, Mingle, Tasks, Control, Agent, Gossip, event loop}
+2023-03-14 14:41:38,350 celery.bootsteps DEBUG    | Worker: Starting Hub
+2023-03-14 14:41:38,352 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-14 14:41:38,353 celery.bootsteps DEBUG    | Worker: Starting Pool
+2023-03-14 14:41:39,330 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-14 14:41:39,332 celery.bootsteps DEBUG    | Worker: Starting Consumer
+2023-03-14 14:41:39,332 celery.bootsteps DEBUG    | Consumer: Starting Connection
+2023-03-14 14:41:39,378 celery.worker.consumer.connection INFO     Connected to redis://localhost:6379//
+2023-03-14 14:41:39,379 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-14 14:41:39,379 celery.bootsteps DEBUG    | Consumer: Starting Events
+2023-03-14 14:41:39,383 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-14 14:41:39,383 celery.bootsteps DEBUG    | Consumer: Starting Heart
+2023-03-14 14:41:39,386 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-14 14:41:39,387 celery.bootsteps DEBUG    | Consumer: Starting Mingle
+2023-03-14 14:41:39,387 celery.worker.consumer.mingle INFO     mingle: searching for neighbors
+2023-03-14 14:41:40,401 celery.worker.consumer.mingle INFO     mingle: all alone
+2023-03-14 14:41:40,402 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-14 14:41:40,402 celery.bootsteps DEBUG    | Consumer: Starting Tasks
+2023-03-14 14:41:40,421 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-14 14:41:40,421 celery.bootsteps DEBUG    | Consumer: Starting Control
+2023-03-14 14:41:40,427 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-14 14:41:40,427 celery.bootsteps DEBUG    | Consumer: Starting Gossip
+2023-03-14 14:41:40,434 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-14 14:41:40,434 celery.bootsteps DEBUG    | Consumer: Starting event loop
+2023-03-14 14:41:40,435 celery.bootsteps DEBUG    | Worker: Hub.register Pool...
+2023-03-14 14:41:40,449 py.warnings  WARNING  /mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/fixups/django.py:203: UserWarning: Using settings.DEBUG leads to a memory
+            leak, never use this setting in production environments!
+  warnings.warn('''Using settings.DEBUG leads to a memory
+
+2023-03-14 14:41:40,451 celery.apps.worker INFO     celery@DESKTOP-PC6U1IH ready.
+2023-03-14 14:41:40,452 kombu.common DEBUG    basic.qos: prefetch_count->32
+2023-03-14 14:41:46,048 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-14 14:46:15,906 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-14 14:46:40,568 salle_activite_view INFO     Open All The Doors inited...
+2023-03-14 14:46:40,705 celery.worker.strategy INFO     Task salle_activite.tasks.start_linsten_test_device_1[268ca302-45d2-44be-bd10-81ead4746d95] received
+2023-03-14 14:46:40,706 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f4d790afca0> (args:('salle_activite.tasks.start_linsten_test_device_1', '268ca302-45d2-44be-bd10-81ead4746d95', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_test_device_1', 'id': '268ca302-45d2-44be-bd10-81ead4746d95', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '268ca302-45d2-44be-bd10-81ead4746d95', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen197@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': '268ca302-45d2-44be-bd10-81ead4746d95', 'reply_to': '8accf0c5-93c0-3322-9b55-63f8338d3602', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '1e612c0f-15b2-4740-8810-39bde0446d11'}, 'reply_to': '8accf0c5-93c0-3322-9b55-63f8338d3602', 'correlation_id': '268ca302-45d2-44be-bd10-81ead4746d95', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery',... kwargs:{})
+2023-03-14 14:46:40,709 celery.worker.strategy INFO     Task salle_activite.tasks.start_linsten_test_device_2[086ad6a3-0248-4dcb-a9c4-4e68df7fa5b5] received
+2023-03-14 14:46:40,710 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f4d790afca0> (args:('salle_activite.tasks.start_linsten_test_device_2', '086ad6a3-0248-4dcb-a9c4-4e68df7fa5b5', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_test_device_2', 'id': '086ad6a3-0248-4dcb-a9c4-4e68df7fa5b5', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '086ad6a3-0248-4dcb-a9c4-4e68df7fa5b5', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen197@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': '086ad6a3-0248-4dcb-a9c4-4e68df7fa5b5', 'reply_to': '8accf0c5-93c0-3322-9b55-63f8338d3602', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '5565a01a-1956-4479-b946-5f0a0c983435'}, 'reply_to': '8accf0c5-93c0-3322-9b55-63f8338d3602', 'correlation_id': '086ad6a3-0248-4dcb-a9c4-4e68df7fa5b5', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery',... kwargs:{})
+2023-03-14 14:46:41,058 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_test_device_1[268ca302-45d2-44be-bd10-81ead4746d95] succeeded in 0.34439270000001443s: None
+2023-03-14 14:46:42,342 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_test_device_2[086ad6a3-0248-4dcb-a9c4-4e68df7fa5b5] succeeded in 1.6289725999999973s: None
+2023-03-14 14:51:19,663 django.request WARNING  Not Found: /media/photos/3.jpg
+2023-03-14 14:51:40,902 django.request WARNING  Not Found: /media/photos/3.jpg

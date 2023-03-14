@@ -28,7 +28,7 @@ urlpatterns = [
     path('assurance/', AssuranceListAPIView.as_view(),  name="assurance"),
     path('assurance/<int:pk>/', AssuranceDetailAPIView.as_view(), name="assurance-delete"),
     path('assurance/delete/<int:pk>/', AssuranceDestroyAPIView.as_view(), name="assurance-delete"),
-
+                                                                                            
     path('remuneration/create', RemunerationAPIView.as_view(),  name="remuneration-create"),
     path('remuneration/', RemunerationListAPIView.as_view(),  name="remuneration"),
     path('remunerationProf-by-id/', PaiementEmployeListAPIView.as_view(),  name="remunerationProf-create"),

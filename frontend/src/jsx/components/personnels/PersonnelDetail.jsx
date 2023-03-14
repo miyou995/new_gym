@@ -42,6 +42,7 @@ const PersonnelDetail = (props) => {
   useEffect(() => {
     //  const clientId = props.match.params.id;
      api.get(transactionsEmployeEnd).then( res => {
+      console.log("res.data: TransactionsEmploye=>", res.data);
       setTransactionsEmploye(res.data)
            })
   }, [props.match.params.id] );
