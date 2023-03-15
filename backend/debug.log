@@ -3644,3 +3644,40 @@ Trying again in 2.00 seconds... (1/100)
 2023-03-15 13:40:16,462 celery.bootsteps DEBUG    | Worker: Stopping Consumer...
 2023-03-15 13:40:16,463 celery.bootsteps DEBUG    | Worker: Stopping Pool...
 2023-03-15 13:40:16,653 celery.concurrency.asynpool DEBUG    removing tasks from inqueue until task handler finished
+2023-03-15 14:44:16,307 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-15 14:44:22,668 celery.bootsteps DEBUG    | Worker: Preparing bootsteps.
+2023-03-15 14:44:22,698 celery.bootsteps DEBUG    | Worker: Building graph...
+2023-03-15 14:44:22,699 celery.bootsteps DEBUG    | Worker: New boot order: {StateDB, Beat, Timer, Hub, Pool, Autoscaler, Consumer}
+2023-03-15 14:44:22,842 celery.bootsteps DEBUG    | Consumer: Preparing bootsteps.
+2023-03-15 14:44:22,843 celery.bootsteps DEBUG    | Consumer: Building graph...
+2023-03-15 14:44:22,972 celery.bootsteps DEBUG    | Consumer: New boot order: {Connection, Events, Mingle, Tasks, Control, Agent, Heart, Gossip, event loop}
+2023-03-15 14:44:23,056 celery.bootsteps DEBUG    | Worker: Starting Hub
+2023-03-15 14:44:23,057 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-15 14:44:23,057 celery.bootsteps DEBUG    | Worker: Starting Pool
+2023-03-15 14:44:23,871 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-15 14:44:23,871 celery.bootsteps DEBUG    | Worker: Starting Consumer
+2023-03-15 14:44:23,872 celery.bootsteps DEBUG    | Consumer: Starting Connection
+2023-03-15 14:44:23,890 celery.worker.consumer.connection INFO     Connected to redis://localhost:6379//
+2023-03-15 14:44:23,891 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-15 14:44:23,891 celery.bootsteps DEBUG    | Consumer: Starting Events
+2023-03-15 14:44:23,895 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-15 14:44:23,897 celery.bootsteps DEBUG    | Consumer: Starting Mingle
+2023-03-15 14:44:23,899 celery.worker.consumer.mingle INFO     mingle: searching for neighbors
+2023-03-15 14:44:24,911 celery.worker.consumer.mingle INFO     mingle: all alone
+2023-03-15 14:44:24,912 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-15 14:44:24,913 celery.bootsteps DEBUG    | Consumer: Starting Tasks
+2023-03-15 14:44:24,930 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-15 14:44:24,930 celery.bootsteps DEBUG    | Consumer: Starting Control
+2023-03-15 14:44:24,935 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-15 14:44:24,936 celery.bootsteps DEBUG    | Consumer: Starting Heart
+2023-03-15 14:44:24,939 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-15 14:44:24,939 celery.bootsteps DEBUG    | Consumer: Starting Gossip
+2023-03-15 14:44:24,945 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-15 14:44:24,947 celery.bootsteps DEBUG    | Consumer: Starting event loop
+2023-03-15 14:44:24,948 celery.bootsteps DEBUG    | Worker: Hub.register Pool...
+2023-03-15 14:44:24,960 py.warnings  WARNING  /mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/fixups/django.py:203: UserWarning: Using settings.DEBUG leads to a memory
+            leak, never use this setting in production environments!
+  warnings.warn('''Using settings.DEBUG leads to a memory
+
+2023-03-15 14:44:24,961 celery.apps.worker INFO     celery@DESKTOP-PC6U1IH ready.
+2023-03-15 14:44:24,962 kombu.common DEBUG    basic.qos: prefetch_count->32
