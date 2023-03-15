@@ -265,7 +265,7 @@ const [presenceAuth, loading] = useAuth(presenceAuthorization, 'GET')
             </div>
             <div className="form-group col-md-2">
                <label style={{color:'#000000'}} htmlFor="birth_date">Date début </label>
-               <input type="date" name="start_date" className="form-control" value={startDate}  onChange={e => setStartDate(e.target.value)}/>
+               <input type="date" name="start_date" className="form-control" value={startDate}  pattern="\d{1,2}/\d{1,2}/\d{4}" onChange={e => setStartDate(e.target.value)}/>
             </div>
             <div className="form-group col-md-2">
                <label style={{color:'#000000'}} htmlFor="end_date">Date Fin </label>

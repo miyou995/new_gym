@@ -105,6 +105,7 @@ const ProductDetail = (props) => {
    const [clientPresencesModal, setClientPresencesModal] = useState(false);
    const [clientAbcModal, setClientAbcModal] = useState(false);
    const [renewAbcModal, setRenewAbcModal] = useState(false);
+   const [isOnSalle, setIsOnSalle] = useState(null);
    
    const clientId = props.match.params.id;
    const presenceCreateEND = `${process.env.REACT_APP_API_URL}/rest-api/presence/create`
@@ -179,6 +180,8 @@ const ProductDetail = (props) => {
         try {
            const res = await api.get(`${process.env.REACT_APP_API_URL}/rest-api/clients/${clientId}/`);
            setClient(res.data);
+           setIsOnSalle(res.data.is_on_salle)
+           console.log("Clien res.data.is_on_sallet", res.data.is_on_salle);
         } catch (error) {
            console.log(error);
         }
@@ -302,8 +305,14 @@ useEffect(() => {
             </div>
             <div className="profile-email text-danger pt-2" style={{marginLeft: 'auto'}}>
               <h3 className="text-danger mb-0">
-                Dettes :{dettesClient}             
+                Dettes :{dettesClient}              {client.is_on_salle}
               </h3>
+              {isOnSalle
+                ?
+                  <Button className="btn-xs  btn-success light m-3 ml-auto" >Est en salle</Button>
+                :
+                  <Button className="btn-xs  btn-danger light m-3 ml-auto" >N'est pas en salle</Button>
+              }
             </div>
             <Dropdown className="dropdown ml-auto">
               <Dropdown.Toggle  variant="primary"  className="btn btn-primary light sharp i-false"  data-toggle="dropdown"  aria-expanded="true" >

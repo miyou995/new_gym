@@ -2099,3 +2099,1548 @@ AttributeError: 'NoneType' object has no attribute 'planning'
 2023-03-14 14:46:42,342 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_test_device_2[086ad6a3-0248-4dcb-a9c4-4e68df7fa5b5] succeeded in 1.6289725999999973s: None
 2023-03-14 14:51:19,663 django.request WARNING  Not Found: /media/photos/3.jpg
 2023-03-14 14:51:40,902 django.request WARNING  Not Found: /media/photos/3.jpg
+2023-03-14 15:08:29,824 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-14 16:00:51,651 celery.bootsteps DEBUG    | Worker: Closing Hub...
+2023-03-14 16:00:51,652 celery.bootsteps DEBUG    | Worker: Closing Pool...
+2023-03-14 16:00:51,653 celery.bootsteps DEBUG    | Worker: Closing Consumer...
+2023-03-14 16:00:51,653 celery.bootsteps DEBUG    | Worker: Stopping Consumer...
+2023-03-14 16:00:51,654 celery.bootsteps DEBUG    | Consumer: Closing Connection...
+2023-03-14 16:00:51,654 celery.bootsteps DEBUG    | Consumer: Closing Events...
+2023-03-14 16:00:51,655 celery.bootsteps DEBUG    | Consumer: Closing Heart...
+2023-03-14 16:00:51,655 celery.bootsteps DEBUG    | Consumer: Closing Mingle...
+2023-03-14 16:00:51,656 celery.bootsteps DEBUG    | Consumer: Closing Tasks...
+2023-03-14 16:00:51,657 celery.bootsteps DEBUG    | Consumer: Closing Control...
+2023-03-14 16:00:51,657 celery.bootsteps DEBUG    | Consumer: Closing Gossip...
+2023-03-14 16:00:51,658 celery.bootsteps DEBUG    | Consumer: Closing event loop...
+2023-03-14 16:00:51,658 celery.bootsteps DEBUG    | Consumer: Stopping event loop...
+2023-03-14 16:00:51,659 celery.bootsteps DEBUG    | Consumer: Stopping Gossip...
+2023-03-14 16:00:51,661 celery.bootsteps DEBUG    | Consumer: Stopping Control...
+2023-03-14 16:00:51,682 celery.bootsteps DEBUG    | Consumer: Stopping Tasks...
+2023-03-14 16:00:51,683 celery.worker.consumer.tasks DEBUG    Canceling task consumer...
+2023-03-14 16:00:51,683 celery.bootsteps DEBUG    | Consumer: Stopping Mingle...
+2023-03-14 16:00:51,684 celery.bootsteps DEBUG    | Consumer: Stopping Heart...
+2023-03-14 16:00:51,686 celery.bootsteps DEBUG    | Consumer: Stopping Events...
+2023-03-14 16:00:51,686 celery.bootsteps DEBUG    | Consumer: Stopping Connection...
+2023-03-14 16:00:51,686 celery.bootsteps DEBUG    | Worker: Stopping Pool...
+2023-03-14 16:00:51,851 celery.concurrency.asynpool DEBUG    removing tasks from inqueue until task handler finished
+2023-03-14 16:00:55,405 celery.bootsteps DEBUG    | Worker: Preparing bootsteps.
+2023-03-14 16:00:55,410 celery.bootsteps DEBUG    | Worker: Building graph...
+2023-03-14 16:00:55,411 celery.bootsteps DEBUG    | Worker: New boot order: {Timer, Hub, Pool, Autoscaler, StateDB, Beat, Consumer}
+2023-03-14 16:00:55,432 celery.bootsteps DEBUG    | Consumer: Preparing bootsteps.
+2023-03-14 16:00:55,433 celery.bootsteps DEBUG    | Consumer: Building graph...
+2023-03-14 16:00:55,465 celery.bootsteps DEBUG    | Consumer: New boot order: {Connection, Agent, Events, Mingle, Tasks, Control, Heart, Gossip, event loop}
+2023-03-14 16:00:55,508 celery.bootsteps DEBUG    | Worker: Starting Hub
+2023-03-14 16:00:55,509 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-14 16:00:55,509 celery.bootsteps DEBUG    | Worker: Starting Pool
+2023-03-14 16:00:56,187 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-14 16:00:56,188 celery.bootsteps DEBUG    | Worker: Starting Consumer
+2023-03-14 16:00:56,189 celery.bootsteps DEBUG    | Consumer: Starting Connection
+2023-03-14 16:00:56,202 celery.worker.consumer.connection INFO     Connected to redis://localhost:6379//
+2023-03-14 16:00:56,202 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-14 16:00:56,203 celery.bootsteps DEBUG    | Consumer: Starting Events
+2023-03-14 16:00:56,206 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-14 16:00:56,207 celery.bootsteps DEBUG    | Consumer: Starting Mingle
+2023-03-14 16:00:56,207 celery.worker.consumer.mingle INFO     mingle: searching for neighbors
+2023-03-14 16:00:57,218 celery.worker.consumer.mingle INFO     mingle: all alone
+2023-03-14 16:00:57,219 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-14 16:00:57,219 celery.bootsteps DEBUG    | Consumer: Starting Tasks
+2023-03-14 16:00:57,227 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-14 16:00:57,227 celery.bootsteps DEBUG    | Consumer: Starting Control
+2023-03-14 16:00:57,232 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-14 16:00:57,232 celery.bootsteps DEBUG    | Consumer: Starting Heart
+2023-03-14 16:00:57,234 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-14 16:00:57,235 celery.bootsteps DEBUG    | Consumer: Starting Gossip
+2023-03-14 16:00:57,239 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-14 16:00:57,239 celery.bootsteps DEBUG    | Consumer: Starting event loop
+2023-03-14 16:00:57,240 celery.bootsteps DEBUG    | Worker: Hub.register Pool...
+2023-03-14 16:00:57,242 py.warnings  WARNING  /mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/fixups/django.py:203: UserWarning: Using settings.DEBUG leads to a memory
+            leak, never use this setting in production environments!
+  warnings.warn('''Using settings.DEBUG leads to a memory
+
+2023-03-14 16:00:57,243 celery.apps.worker INFO     celery@DESKTOP-PC6U1IH ready.
+2023-03-14 16:00:57,243 kombu.common DEBUG    basic.qos: prefetch_count->32
+2023-03-14 16:01:04,124 salle_activite_view INFO     Open All The Doors inited...
+2023-03-14 16:01:04,248 celery.worker.strategy INFO     Task salle_activite.tasks.start_linsten_3[6271c1f1-8beb-4303-9d13-72ff17f40f27] received
+2023-03-14 16:01:04,248 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f371505fca0> (args:('salle_activite.tasks.start_linsten_3', '6271c1f1-8beb-4303-9d13-72ff17f40f27', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_3', 'id': '6271c1f1-8beb-4303-9d13-72ff17f40f27', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '6271c1f1-8beb-4303-9d13-72ff17f40f27', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen343@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': '6271c1f1-8beb-4303-9d13-72ff17f40f27', 'reply_to': 'd3a76f8f-7eaa-3035-a440-5fce29fe52bb', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'ff4f9fa2-60df-4fcd-a0c1-bad810c5b382'}, 'reply_to': 'd3a76f8f-7eaa-3035-a440-5fce29fe52bb', 'correlation_id': '6271c1f1-8beb-4303-9d13-72ff17f40f27', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered':... kwargs:{})
+2023-03-14 16:01:04,251 celery.worker.strategy INFO     Task salle_activite.tasks.start_linsten_4[7f463d6e-715c-492b-a239-858cb6da240f] received
+2023-03-14 16:01:04,252 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f371505fca0> (args:('salle_activite.tasks.start_linsten_4', '7f463d6e-715c-492b-a239-858cb6da240f', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_4', 'id': '7f463d6e-715c-492b-a239-858cb6da240f', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '7f463d6e-715c-492b-a239-858cb6da240f', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen343@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': '7f463d6e-715c-492b-a239-858cb6da240f', 'reply_to': 'd3a76f8f-7eaa-3035-a440-5fce29fe52bb', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '36cc8889-657e-48d5-8c31-45dbc474c97c'}, 'reply_to': 'd3a76f8f-7eaa-3035-a440-5fce29fe52bb', 'correlation_id': '7f463d6e-715c-492b-a239-858cb6da240f', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered':... kwargs:{})
+2023-03-14 16:01:04,255 celery.worker.strategy INFO     Task salle_activite.tasks.start_linsten_5[d70a4470-0212-403f-acff-ded4c7c2a51b] received
+2023-03-14 16:01:04,256 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f371505fca0> (args:('salle_activite.tasks.start_linsten_5', 'd70a4470-0212-403f-acff-ded4c7c2a51b', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_5', 'id': 'd70a4470-0212-403f-acff-ded4c7c2a51b', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'd70a4470-0212-403f-acff-ded4c7c2a51b', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen343@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': 'd70a4470-0212-403f-acff-ded4c7c2a51b', 'reply_to': 'd3a76f8f-7eaa-3035-a440-5fce29fe52bb', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '557f53d9-1fba-488d-9e56-64915095c695'}, 'reply_to': 'd3a76f8f-7eaa-3035-a440-5fce29fe52bb', 'correlation_id': 'd70a4470-0212-403f-acff-ded4c7c2a51b', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered':... kwargs:{})
+2023-03-14 16:01:04,262 celery.worker.strategy INFO     Task salle_activite.tasks.start_linsten_6[3ec2424e-a95d-43aa-9471-c0ff4c3cbde7] received
+2023-03-14 16:01:04,263 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f371505fca0> (args:('salle_activite.tasks.start_linsten_6', '3ec2424e-a95d-43aa-9471-c0ff4c3cbde7', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_6', 'id': '3ec2424e-a95d-43aa-9471-c0ff4c3cbde7', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '3ec2424e-a95d-43aa-9471-c0ff4c3cbde7', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen343@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': '3ec2424e-a95d-43aa-9471-c0ff4c3cbde7', 'reply_to': 'd3a76f8f-7eaa-3035-a440-5fce29fe52bb', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '245e9d40-f7eb-4060-a39b-5f59126ca387'}, 'reply_to': 'd3a76f8f-7eaa-3035-a440-5fce29fe52bb', 'correlation_id': '3ec2424e-a95d-43aa-9471-c0ff4c3cbde7', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered':... kwargs:{})
+2023-03-14 16:01:04,270 celery.worker.strategy INFO     Task salle_activite.tasks.start_linsten_7[090c5146-d9e6-4aa1-854b-c643b2458c58] received
+2023-03-14 16:01:04,272 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f371505fca0> (args:('salle_activite.tasks.start_linsten_7', '090c5146-d9e6-4aa1-854b-c643b2458c58', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_7', 'id': '090c5146-d9e6-4aa1-854b-c643b2458c58', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '090c5146-d9e6-4aa1-854b-c643b2458c58', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen343@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': '090c5146-d9e6-4aa1-854b-c643b2458c58', 'reply_to': 'd3a76f8f-7eaa-3035-a440-5fce29fe52bb', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '31725d93-4a3a-4b79-8a30-055cc35b2020'}, 'reply_to': 'd3a76f8f-7eaa-3035-a440-5fce29fe52bb', 'correlation_id': '090c5146-d9e6-4aa1-854b-c643b2458c58', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered':... kwargs:{})
+2023-03-14 16:01:04,278 celery.worker.strategy INFO     Task salle_activite.tasks.start_linsten_8[fe5a8c39-7046-43ae-8c86-9b2df46a0916] received
+2023-03-14 16:01:04,279 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f371505fca0> (args:('salle_activite.tasks.start_linsten_8', 'fe5a8c39-7046-43ae-8c86-9b2df46a0916', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_8', 'id': 'fe5a8c39-7046-43ae-8c86-9b2df46a0916', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'fe5a8c39-7046-43ae-8c86-9b2df46a0916', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen343@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': 'fe5a8c39-7046-43ae-8c86-9b2df46a0916', 'reply_to': 'd3a76f8f-7eaa-3035-a440-5fce29fe52bb', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '960dd902-0b32-4407-9881-5fd00951654c'}, 'reply_to': 'd3a76f8f-7eaa-3035-a440-5fce29fe52bb', 'correlation_id': 'fe5a8c39-7046-43ae-8c86-9b2df46a0916', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered':... kwargs:{})
+2023-03-14 16:01:04,317 celery.worker.strategy INFO     Task salle_activite.tasks.start_linsten_9[c4f9d7ae-e5a1-4121-bac4-72f93bc95257] received
+2023-03-14 16:01:04,327 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f371505fca0> (args:('salle_activite.tasks.start_linsten_9', 'c4f9d7ae-e5a1-4121-bac4-72f93bc95257', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_9', 'id': 'c4f9d7ae-e5a1-4121-bac4-72f93bc95257', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'c4f9d7ae-e5a1-4121-bac4-72f93bc95257', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen343@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': 'c4f9d7ae-e5a1-4121-bac4-72f93bc95257', 'reply_to': 'd3a76f8f-7eaa-3035-a440-5fce29fe52bb', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'baaed415-8696-4ae3-ad83-ab2232615012'}, 'reply_to': 'd3a76f8f-7eaa-3035-a440-5fce29fe52bb', 'correlation_id': 'c4f9d7ae-e5a1-4121-bac4-72f93bc95257', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered':... kwargs:{})
+2023-03-14 16:01:04,368 celery.worker.strategy INFO     Task salle_activite.tasks.start_face_door_right[f9daa699-d9bc-4f99-ae1b-9758a4f27f53] received
+2023-03-14 16:01:04,370 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f371505fca0> (args:('salle_activite.tasks.start_face_door_right', 'f9daa699-d9bc-4f99-ae1b-9758a4f27f53', {'lang': 'py', 'task': 'salle_activite.tasks.start_face_door_right', 'id': 'f9daa699-d9bc-4f99-ae1b-9758a4f27f53', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'f9daa699-d9bc-4f99-ae1b-9758a4f27f53', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen343@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': 'f9daa699-d9bc-4f99-ae1b-9758a4f27f53', 'reply_to': 'd3a76f8f-7eaa-3035-a440-5fce29fe52bb', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '6ebaa710-5960-42cc-adcf-66054e8c2b14'}, 'reply_to': 'd3a76f8f-7eaa-3035-a440-5fce29fe52bb', 'correlation_id': 'f9daa699-d9bc-4f99-ae1b-9758a4f27f53', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0,... kwargs:{})
+2023-03-14 16:01:04,380 celery.worker.strategy INFO     Task salle_activite.tasks.start_face_door_left[5cec25ac-153a-47ce-bcc0-84f96ec2a14f] received
+2023-03-14 16:01:05,866 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_4[7f463d6e-715c-492b-a239-858cb6da240f] succeeded in 1.6114791999998488s: None
+2023-03-14 16:01:05,867 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f371505fca0> (args:('salle_activite.tasks.start_face_door_left', '5cec25ac-153a-47ce-bcc0-84f96ec2a14f', {'lang': 'py', 'task': 'salle_activite.tasks.start_face_door_left', 'id': '5cec25ac-153a-47ce-bcc0-84f96ec2a14f', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '5cec25ac-153a-47ce-bcc0-84f96ec2a14f', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen343@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': '5cec25ac-153a-47ce-bcc0-84f96ec2a14f', 'reply_to': 'd3a76f8f-7eaa-3035-a440-5fce29fe52bb', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'd449c9ed-b351-4891-8c5d-1901bbb7c58b'}, 'reply_to': 'd3a76f8f-7eaa-3035-a440-5fce29fe52bb', 'correlation_id': '5cec25ac-153a-47ce-bcc0-84f96ec2a14f', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0,... kwargs:{})
+2023-03-14 16:01:05,877 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_3[6271c1f1-8beb-4303-9d13-72ff17f40f27] succeeded in 1.623027199999342s: None
+2023-03-14 16:01:05,882 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_6[3ec2424e-a95d-43aa-9471-c0ff4c3cbde7] succeeded in 1.6156909999999698s: None
+2023-03-14 16:01:05,888 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_5[d70a4470-0212-403f-acff-ded4c7c2a51b] succeeded in 1.6214342000002944s: None
+2023-03-14 16:01:05,922 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_8[fe5a8c39-7046-43ae-8c86-9b2df46a0916] succeeded in 1.6359344999991663s: None
+2023-03-14 16:01:05,922 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_7[090c5146-d9e6-4aa1-854b-c643b2458c58] succeeded in 1.6359459999994215s: None
+2023-03-14 16:01:05,963 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_9[c4f9d7ae-e5a1-4121-bac4-72f93bc95257] succeeded in 1.6034013999997114s: None
+2023-03-14 16:01:05,981 celery.app.trace INFO     Task salle_activite.tasks.start_face_door_right[f9daa699-d9bc-4f99-ae1b-9758a4f27f53] succeeded in 1.5965408000001844s: None
+2023-03-14 16:01:07,377 celery.app.trace INFO     Task salle_activite.tasks.start_face_door_left[5cec25ac-153a-47ce-bcc0-84f96ec2a14f] succeeded in 1.5075102999999217s: None
+2023-03-14 16:01:20,436 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2023-03-14 16:01:22,619 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-14 16:01:32,023 celery.bootsteps DEBUG    | Worker: Closing Hub...
+2023-03-14 16:01:32,024 celery.bootsteps DEBUG    | Worker: Closing Pool...
+2023-03-14 16:01:32,024 celery.bootsteps DEBUG    | Worker: Closing Consumer...
+2023-03-14 16:01:32,025 celery.bootsteps DEBUG    | Worker: Stopping Consumer...
+2023-03-14 16:01:32,026 celery.bootsteps DEBUG    | Consumer: Closing Connection...
+2023-03-14 16:01:32,026 celery.bootsteps DEBUG    | Consumer: Closing Events...
+2023-03-14 16:01:32,026 celery.bootsteps DEBUG    | Consumer: Closing Mingle...
+2023-03-14 16:01:32,027 celery.bootsteps DEBUG    | Consumer: Closing Tasks...
+2023-03-14 16:01:32,027 celery.bootsteps DEBUG    | Consumer: Closing Control...
+2023-03-14 16:01:32,028 celery.bootsteps DEBUG    | Consumer: Closing Heart...
+2023-03-14 16:01:32,028 celery.bootsteps DEBUG    | Consumer: Closing Gossip...
+2023-03-14 16:01:32,029 celery.bootsteps DEBUG    | Consumer: Closing event loop...
+2023-03-14 16:01:32,030 celery.bootsteps DEBUG    | Consumer: Stopping event loop...
+2023-03-14 16:01:32,030 celery.bootsteps DEBUG    | Consumer: Stopping Gossip...
+2023-03-14 16:01:32,033 celery.bootsteps DEBUG    | Consumer: Stopping Heart...
+2023-03-14 16:01:32,052 celery.bootsteps DEBUG    | Consumer: Stopping Control...
+2023-03-14 16:01:32,054 celery.bootsteps DEBUG    | Consumer: Stopping Tasks...
+2023-03-14 16:01:32,055 celery.worker.consumer.tasks DEBUG    Canceling task consumer...
+2023-03-14 16:01:32,055 celery.bootsteps DEBUG    | Consumer: Stopping Mingle...
+2023-03-14 16:01:32,055 celery.bootsteps DEBUG    | Consumer: Stopping Events...
+2023-03-14 16:01:32,056 celery.bootsteps DEBUG    | Consumer: Stopping Connection...
+2023-03-14 16:01:32,056 celery.bootsteps DEBUG    | Worker: Stopping Pool...
+2023-03-14 16:01:32,208 celery.concurrency.asynpool DEBUG    removing tasks from inqueue until task handler finished
+2023-03-14 16:01:35,661 celery.bootsteps DEBUG    | Worker: Preparing bootsteps.
+2023-03-14 16:01:35,666 celery.bootsteps DEBUG    | Worker: Building graph...
+2023-03-14 16:01:35,667 celery.bootsteps DEBUG    | Worker: New boot order: {Beat, StateDB, Timer, Hub, Pool, Autoscaler, Consumer}
+2023-03-14 16:01:35,687 celery.bootsteps DEBUG    | Consumer: Preparing bootsteps.
+2023-03-14 16:01:35,687 celery.bootsteps DEBUG    | Consumer: Building graph...
+2023-03-14 16:01:35,726 celery.bootsteps DEBUG    | Consumer: New boot order: {Connection, Agent, Events, Mingle, Gossip, Heart, Tasks, Control, event loop}
+2023-03-14 16:01:35,773 celery.bootsteps DEBUG    | Worker: Starting Hub
+2023-03-14 16:01:35,774 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-14 16:01:35,774 celery.bootsteps DEBUG    | Worker: Starting Pool
+2023-03-14 16:01:36,472 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-14 16:01:36,473 celery.bootsteps DEBUG    | Worker: Starting Consumer
+2023-03-14 16:01:36,473 celery.bootsteps DEBUG    | Consumer: Starting Connection
+2023-03-14 16:01:36,485 celery.worker.consumer.connection INFO     Connected to redis://localhost:6379//
+2023-03-14 16:01:36,486 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-14 16:01:36,486 celery.bootsteps DEBUG    | Consumer: Starting Events
+2023-03-14 16:01:36,489 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-14 16:01:36,489 celery.bootsteps DEBUG    | Consumer: Starting Mingle
+2023-03-14 16:01:36,490 celery.worker.consumer.mingle INFO     mingle: searching for neighbors
+2023-03-14 16:01:37,498 celery.worker.consumer.mingle INFO     mingle: all alone
+2023-03-14 16:01:37,499 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-14 16:01:37,499 celery.bootsteps DEBUG    | Consumer: Starting Gossip
+2023-03-14 16:01:37,505 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-14 16:01:37,506 celery.bootsteps DEBUG    | Consumer: Starting Heart
+2023-03-14 16:01:37,509 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-14 16:01:37,509 celery.bootsteps DEBUG    | Consumer: Starting Tasks
+2023-03-14 16:01:37,516 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-14 16:01:37,516 celery.bootsteps DEBUG    | Consumer: Starting Control
+2023-03-14 16:01:37,523 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-14 16:01:37,523 celery.bootsteps DEBUG    | Consumer: Starting event loop
+2023-03-14 16:01:37,524 celery.bootsteps DEBUG    | Worker: Hub.register Pool...
+2023-03-14 16:01:37,527 py.warnings  WARNING  /mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/fixups/django.py:203: UserWarning: Using settings.DEBUG leads to a memory
+            leak, never use this setting in production environments!
+  warnings.warn('''Using settings.DEBUG leads to a memory
+
+2023-03-14 16:01:37,528 celery.apps.worker INFO     celery@DESKTOP-PC6U1IH ready.
+2023-03-14 16:01:37,528 kombu.common DEBUG    basic.qos: prefetch_count->32
+2023-03-14 16:01:44,736 salle_activite_view INFO     Open All The Doors inited...
+2023-03-14 16:01:44,864 celery.worker.strategy INFO     Task salle_activite.tasks.start_linsten_test_device_1[b0b238da-5613-420f-acc3-d0c081ba6c43] received
+2023-03-14 16:01:44,865 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f1f7ad1fca0> (args:('salle_activite.tasks.start_linsten_test_device_1', 'b0b238da-5613-420f-acc3-d0c081ba6c43', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_test_device_1', 'id': 'b0b238da-5613-420f-acc3-d0c081ba6c43', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'b0b238da-5613-420f-acc3-d0c081ba6c43', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen569@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': 'b0b238da-5613-420f-acc3-d0c081ba6c43', 'reply_to': '486c0f4f-5df5-3aca-9474-b42fdac34e19', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '7b28423a-a783-4e5e-8aa5-d6791cde52d8'}, 'reply_to': '486c0f4f-5df5-3aca-9474-b42fdac34e19', 'correlation_id': 'b0b238da-5613-420f-acc3-d0c081ba6c43', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery',... kwargs:{})
+2023-03-14 16:01:44,867 celery.worker.strategy INFO     Task salle_activite.tasks.start_linsten_test_device_2[61b9abf3-190b-42c6-8bb8-186a946f3ef5] received
+2023-03-14 16:01:44,868 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f1f7ad1fca0> (args:('salle_activite.tasks.start_linsten_test_device_2', '61b9abf3-190b-42c6-8bb8-186a946f3ef5', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_test_device_2', 'id': '61b9abf3-190b-42c6-8bb8-186a946f3ef5', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '61b9abf3-190b-42c6-8bb8-186a946f3ef5', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen569@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': '61b9abf3-190b-42c6-8bb8-186a946f3ef5', 'reply_to': '486c0f4f-5df5-3aca-9474-b42fdac34e19', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'a610f740-17a7-49fc-9902-8bcf7bf0be4b'}, 'reply_to': '486c0f4f-5df5-3aca-9474-b42fdac34e19', 'correlation_id': '61b9abf3-190b-42c6-8bb8-186a946f3ef5', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery',... kwargs:{})
+2023-03-14 16:01:45,150 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_test_device_1[b0b238da-5613-420f-acc3-d0c081ba6c43] succeeded in 0.278986199999963s: None
+2023-03-14 16:01:46,450 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_test_device_2[61b9abf3-190b-42c6-8bb8-186a946f3ef5] succeeded in 1.5795884999997725s: None
+2023-03-15 09:39:30,012 celery.bootsteps DEBUG    | Worker: Preparing bootsteps.
+2023-03-15 09:39:30,034 celery.bootsteps DEBUG    | Worker: Building graph...
+2023-03-15 09:39:30,035 celery.bootsteps DEBUG    | Worker: New boot order: {Timer, Hub, Pool, Autoscaler, StateDB, Beat, Consumer}
+2023-03-15 09:39:30,142 celery.bootsteps DEBUG    | Consumer: Preparing bootsteps.
+2023-03-15 09:39:30,142 celery.bootsteps DEBUG    | Consumer: Building graph...
+2023-03-15 09:39:30,237 celery.bootsteps DEBUG    | Consumer: New boot order: {Connection, Agent, Events, Heart, Mingle, Gossip, Tasks, Control, event loop}
+2023-03-15 09:39:30,305 celery.bootsteps DEBUG    | Worker: Starting Hub
+2023-03-15 09:39:30,306 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-15 09:39:30,306 celery.bootsteps DEBUG    | Worker: Starting Pool
+2023-03-15 09:39:31,137 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-15 09:39:31,138 celery.bootsteps DEBUG    | Worker: Starting Consumer
+2023-03-15 09:39:31,138 celery.bootsteps DEBUG    | Consumer: Starting Connection
+2023-03-15 09:39:31,176 celery.worker.consumer.consumer ERROR    consumer: Cannot connect to redis://localhost:6379//: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 2.00 seconds... (1/100)
+
+2023-03-15 09:39:33,179 celery.worker.consumer.consumer ERROR    consumer: Cannot connect to redis://localhost:6379//: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 4.00 seconds... (2/100)
+
+2023-03-15 09:39:37,131 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-15 09:39:37,185 celery.worker.consumer.consumer ERROR    consumer: Cannot connect to redis://localhost:6379//: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 6.00 seconds... (3/100)
+
+2023-03-15 09:39:43,191 celery.worker.consumer.consumer ERROR    consumer: Cannot connect to redis://localhost:6379//: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 8.00 seconds... (4/100)
+
+2023-03-15 09:39:51,197 celery.worker.consumer.consumer ERROR    consumer: Cannot connect to redis://localhost:6379//: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 10.00 seconds... (5/100)
+
+2023-03-15 09:40:01,204 celery.worker.consumer.consumer ERROR    consumer: Cannot connect to redis://localhost:6379//: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 12.00 seconds... (6/100)
+
+2023-03-15 09:40:13,212 celery.worker.consumer.consumer ERROR    consumer: Cannot connect to redis://localhost:6379//: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 14.00 seconds... (7/100)
+
+2023-03-15 09:40:27,223 celery.worker.consumer.consumer ERROR    consumer: Cannot connect to redis://localhost:6379//: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 16.00 seconds... (8/100)
+
+2023-03-15 09:40:43,236 celery.worker.consumer.consumer ERROR    consumer: Cannot connect to redis://localhost:6379//: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 18.00 seconds... (9/100)
+
+2023-03-15 09:41:01,248 celery.worker.consumer.consumer ERROR    consumer: Cannot connect to redis://localhost:6379//: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 20.00 seconds... (10/100)
+
+2023-03-15 09:41:21,263 celery.worker.consumer.consumer ERROR    consumer: Cannot connect to redis://localhost:6379//: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 22.00 seconds... (11/100)
+
+2023-03-15 09:41:43,277 celery.worker.consumer.consumer ERROR    consumer: Cannot connect to redis://localhost:6379//: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 24.00 seconds... (12/100)
+
+2023-03-15 09:42:07,294 celery.worker.consumer.consumer ERROR    consumer: Cannot connect to redis://localhost:6379//: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 26.00 seconds... (13/100)
+
+2023-03-15 09:42:33,311 celery.worker.consumer.consumer ERROR    consumer: Cannot connect to redis://localhost:6379//: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 28.00 seconds... (14/100)
+
+2023-03-15 09:42:55,757 salle_activite_view INFO     Open All The Doors inited...
+2023-03-15 09:42:55,871 celery.backends.redis ERROR    Connection to Redis lost: Retry (0/20) now.
+2023-03-15 09:42:55,873 celery.backends.redis ERROR    Connection to Redis lost: Retry (1/20) in 1.00 second.
+2023-03-15 09:42:56,875 celery.backends.redis ERROR    Connection to Redis lost: Retry (2/20) in 1.00 second.
+2023-03-15 09:42:57,877 celery.backends.redis ERROR    Connection to Redis lost: Retry (3/20) in 1.00 second.
+2023-03-15 09:42:58,880 celery.backends.redis ERROR    Connection to Redis lost: Retry (4/20) in 1.00 second.
+2023-03-15 09:42:59,881 celery.backends.redis ERROR    Connection to Redis lost: Retry (5/20) in 1.00 second.
+2023-03-15 09:43:00,891 celery.backends.redis ERROR    Connection to Redis lost: Retry (6/20) in 1.00 second.
+2023-03-15 09:43:01,329 celery.worker.consumer.consumer ERROR    consumer: Cannot connect to redis://localhost:6379//: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 30.00 seconds... (15/100)
+
+2023-03-15 09:43:01,893 celery.backends.redis ERROR    Connection to Redis lost: Retry (7/20) in 1.00 second.
+2023-03-15 09:43:02,895 celery.backends.redis ERROR    Connection to Redis lost: Retry (8/20) in 1.00 second.
+2023-03-15 09:43:03,897 celery.backends.redis ERROR    Connection to Redis lost: Retry (9/20) in 1.00 second.
+2023-03-15 09:43:04,898 celery.backends.redis ERROR    Connection to Redis lost: Retry (10/20) in 1.00 second.
+2023-03-15 09:43:05,901 celery.backends.redis ERROR    Connection to Redis lost: Retry (11/20) in 1.00 second.
+2023-03-15 09:43:06,903 celery.backends.redis ERROR    Connection to Redis lost: Retry (12/20) in 1.00 second.
+2023-03-15 09:43:07,905 celery.backends.redis ERROR    Connection to Redis lost: Retry (13/20) in 1.00 second.
+2023-03-15 09:43:08,907 celery.backends.redis ERROR    Connection to Redis lost: Retry (14/20) in 1.00 second.
+2023-03-15 09:43:09,909 celery.backends.redis ERROR    Connection to Redis lost: Retry (15/20) in 1.00 second.
+2023-03-15 09:43:10,911 celery.backends.redis ERROR    Connection to Redis lost: Retry (16/20) in 1.00 second.
+2023-03-15 09:43:11,913 celery.backends.redis ERROR    Connection to Redis lost: Retry (17/20) in 1.00 second.
+2023-03-15 09:43:12,915 celery.backends.redis ERROR    Connection to Redis lost: Retry (18/20) in 1.00 second.
+2023-03-15 09:43:13,918 celery.backends.redis ERROR    Connection to Redis lost: Retry (19/20) in 1.00 second.
+2023-03-15 09:43:14,919 celery.backends.redis CRITICAL 
+Retry limit exceeded while trying to reconnect to the Celery redis result store backend. The Celery application must be restarted.
+
+2023-03-15 09:43:17,623 django.request ERROR    Internal Server Error: /rest-api/salle-activite/start_listening/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 611, in connect
+    sock = self.retry.call_with_retry(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 612, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 677, in _connect
+    raise err
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 665, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/backends/redis.py", line 119, in reconnect_on_error
+    yield
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/backends/redis.py", line 169, in _consume_from
+    self._pubsub.subscribe(key)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/client.py", line 1592, in subscribe
+    ret_val = self.execute_command("SUBSCRIBE", *new_channels.keys())
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/client.py", line 1433, in execute_command
+    self.connection = self.connection_pool.get_connection(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 1387, in get_connection
+    connection.connect()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 617, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 611, in connect
+    sock = self.retry.call_with_retry(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 612, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 677, in _connect
+    raise err
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 665, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/kombu/connection.py", line 446, in _reraise_as_library_errors
+    yield
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/app/base.py", line 787, in send_task
+    self.backend.on_task_call(P, task_id)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/backends/redis.py", line 365, in on_task_call
+    self.result_consumer.consume_from(task_id)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/backends/redis.py", line 161, in consume_from
+    return self.start(task_id)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/backends/redis.py", line 139, in start
+    self._consume_from(initial_task_id)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/backends/redis.py", line 169, in _consume_from
+    self._pubsub.subscribe(key)
+  File "/usr/lib/python3.8/contextlib.py", line 131, in __exit__
+    self.gen.throw(type, value, traceback)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/backends/redis.py", line 122, in reconnect_on_error
+    self._ensure(self._reconnect_pubsub, ())
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/backends/redis.py", line 376, in ensure
+    return retry_over_time(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/kombu/utils/functional.py", line 312, in retry_over_time
+    return fun(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/backends/redis.py", line 106, in _reconnect_pubsub
+    metas = self.backend.client.mget(self.subscribed_to)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/commands/core.py", line 1893, in mget
+    return self.execute_command("MGET", *args, **options)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/client.py", line 1235, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 1387, in get_connection
+    connection.connect()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 617, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py", line 177, in get
+    start_linsten_test_device_1.delay(),
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/app/task.py", line 425, in delay
+    return self.apply_async(args, kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/app/task.py", line 575, in apply_async
+    return app.send_task(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/app/base.py", line 788, in send_task
+    amqp.send_task_message(P, name, message, **options)
+  File "/usr/lib/python3.8/contextlib.py", line 131, in __exit__
+    self.gen.throw(type, value, traceback)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/kombu/connection.py", line 450, in _reraise_as_library_errors
+    raise ConnectionError(str(exc)) from exc
+kombu.exceptions.OperationalError: Error 111 connecting to localhost:6379. Connection refused.
+2023-03-15 09:43:29,272 celery.bootsteps DEBUG    | Worker: Closing Hub...
+2023-03-15 09:43:29,273 celery.bootsteps DEBUG    | Worker: Closing Pool...
+2023-03-15 09:43:29,273 celery.bootsteps DEBUG    | Worker: Closing Consumer...
+2023-03-15 09:43:29,274 celery.bootsteps DEBUG    | Worker: Stopping Consumer...
+2023-03-15 09:43:29,274 celery.bootsteps DEBUG    | Worker: Stopping Pool...
+2023-03-15 09:43:29,435 celery.concurrency.asynpool DEBUG    removing tasks from inqueue until task handler finished
+2023-03-15 09:43:32,698 celery.bootsteps DEBUG    | Worker: Preparing bootsteps.
+2023-03-15 09:43:32,703 celery.bootsteps DEBUG    | Worker: Building graph...
+2023-03-15 09:43:32,704 celery.bootsteps DEBUG    | Worker: New boot order: {StateDB, Timer, Hub, Pool, Autoscaler, Beat, Consumer}
+2023-03-15 09:43:32,722 celery.bootsteps DEBUG    | Consumer: Preparing bootsteps.
+2023-03-15 09:43:32,723 celery.bootsteps DEBUG    | Consumer: Building graph...
+2023-03-15 09:43:32,757 celery.bootsteps DEBUG    | Consumer: New boot order: {Connection, Agent, Events, Mingle, Tasks, Control, Gossip, Heart, event loop}
+2023-03-15 09:43:32,807 celery.bootsteps DEBUG    | Worker: Starting Hub
+2023-03-15 09:43:32,807 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-15 09:43:32,807 celery.bootsteps DEBUG    | Worker: Starting Pool
+2023-03-15 09:43:33,699 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-15 09:43:33,699 celery.bootsteps DEBUG    | Worker: Starting Consumer
+2023-03-15 09:43:33,700 celery.bootsteps DEBUG    | Consumer: Starting Connection
+2023-03-15 09:43:33,716 celery.worker.consumer.connection INFO     Connected to redis://localhost:6379//
+2023-03-15 09:43:33,717 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-15 09:43:33,717 celery.bootsteps DEBUG    | Consumer: Starting Events
+2023-03-15 09:43:33,720 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-15 09:43:33,721 celery.bootsteps DEBUG    | Consumer: Starting Mingle
+2023-03-15 09:43:33,721 celery.worker.consumer.mingle INFO     mingle: searching for neighbors
+2023-03-15 09:43:34,732 celery.worker.consumer.mingle INFO     mingle: all alone
+2023-03-15 09:43:34,732 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-15 09:43:34,733 celery.bootsteps DEBUG    | Consumer: Starting Tasks
+2023-03-15 09:43:34,748 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-15 09:43:34,748 celery.bootsteps DEBUG    | Consumer: Starting Control
+2023-03-15 09:43:34,752 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-15 09:43:34,752 celery.bootsteps DEBUG    | Consumer: Starting Gossip
+2023-03-15 09:43:34,757 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-15 09:43:34,757 celery.bootsteps DEBUG    | Consumer: Starting Heart
+2023-03-15 09:43:34,759 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-15 09:43:34,760 celery.bootsteps DEBUG    | Consumer: Starting event loop
+2023-03-15 09:43:34,760 celery.bootsteps DEBUG    | Worker: Hub.register Pool...
+2023-03-15 09:43:34,769 py.warnings  WARNING  /mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/fixups/django.py:203: UserWarning: Using settings.DEBUG leads to a memory
+            leak, never use this setting in production environments!
+  warnings.warn('''Using settings.DEBUG leads to a memory
+
+2023-03-15 09:43:34,770 celery.apps.worker INFO     celery@DESKTOP-PC6U1IH ready.
+2023-03-15 09:43:34,771 kombu.common DEBUG    basic.qos: prefetch_count->40
+2023-03-15 09:44:15,434 django.request WARNING  Not Found: /media/photos/231_T0e4oDT.jpg
+2023-03-15 09:45:21,736 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-15 09:45:23,804 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-15 09:45:36,857 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py changed, reloading.
+2023-03-15 09:45:39,089 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-15 09:45:46,066 django.request WARNING  Not Found: /media/photos/231_T0e4oDT.jpg
+2023-03-15 09:46:06,805 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/urls.py changed, reloading.
+2023-03-15 09:46:10,357 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-15 09:47:45,510 django.request WARNING  Not Found: /media/photos/231_T0e4oDT.jpg
+2023-03-15 09:48:11,966 django.request WARNING  Not Found: /media/photos/231_T0e4oDT.jpg
+2023-03-15 09:48:55,779 django.request WARNING  Not Found: /favicon.ico
+2023-03-15 09:53:33,555 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py changed, reloading.
+2023-03-15 09:53:35,781 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-15 09:54:02,593 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py changed, reloading.
+2023-03-15 09:54:04,557 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-15 09:55:52,736 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py changed, reloading.
+2023-03-15 09:55:54,845 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-15 09:56:38,972 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py changed, reloading.
+2023-03-15 09:56:41,117 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-15 09:56:44,339 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py changed, reloading.
+2023-03-15 09:56:46,457 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-15 09:57:25,118 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py changed, reloading.
+2023-03-15 09:57:27,204 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-15 09:57:29,679 django.request ERROR    Internal Server Error: /rest-api/clients/C0019/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py", line 129, in get
+    return Response(ax.data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/fields.py", line 1886, in to_representation
+    return method(value)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py", line 90, in get_abonnement_detail
+    return AbonnementDetailSerialiser(abon, many=True).data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 280, in __iter__
+    self._fetch_all()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1324, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 51, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/compiler.py", line 1162, in execute_sql
+    sql, params = self.as_sql()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/compiler.py", line 513, in as_sql
+    extra_select, order_by, group_by = self.pre_sql_setup()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/compiler.py", line 55, in pre_sql_setup
+    self.setup_query()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/compiler.py", line 46, in setup_query
+    self.select, self.klass_info, self.annotation_col_map = self.get_select()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/compiler.py", line 248, in get_select
+    related_klass_infos = self.get_related_selections(select)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/compiler.py", line 985, in get_related_selections
+    raise FieldError(
+django.core.exceptions.FieldError: Invalid field name(s) given in select_related: 'creneaux'. Choices are: client, type_abonnement
+2023-03-15 09:57:31,116 django.request ERROR    Internal Server Error: /rest-api/clients/C0019/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py", line 129, in get
+    return Response(ax.data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/fields.py", line 1886, in to_representation
+    return method(value)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py", line 90, in get_abonnement_detail
+    return AbonnementDetailSerialiser(abon, many=True).data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 280, in __iter__
+    self._fetch_all()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1324, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 51, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/compiler.py", line 1162, in execute_sql
+    sql, params = self.as_sql()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/compiler.py", line 513, in as_sql
+    extra_select, order_by, group_by = self.pre_sql_setup()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/compiler.py", line 55, in pre_sql_setup
+    self.setup_query()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/compiler.py", line 46, in setup_query
+    self.select, self.klass_info, self.annotation_col_map = self.get_select()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/compiler.py", line 248, in get_select
+    related_klass_infos = self.get_related_selections(select)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/compiler.py", line 985, in get_related_selections
+    raise FieldError(
+django.core.exceptions.FieldError: Invalid field name(s) given in select_related: 'creneaux'. Choices are: client, type_abonnement
+2023-03-15 09:58:19,806 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py changed, reloading.
+2023-03-15 09:58:21,681 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-15 09:58:24,624 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py changed, reloading.
+2023-03-15 09:58:26,516 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-15 09:58:29,465 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py changed, reloading.
+2023-03-15 09:58:31,496 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-15 10:02:11,083 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/abonnement/models.py changed, reloading.
+2023-03-15 10:02:13,276 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-15 10:04:08,446 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py changed, reloading.
+2023-03-15 10:04:10,311 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-15 10:05:39,414 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py changed, reloading.
+2023-03-15 10:05:41,454 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-15 10:05:54,302 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-15 10:05:56,779 django.request ERROR    Internal Server Error: /rest-api/clients/C0019/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py", line 129, in get
+    return Response(ax.data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/fields.py", line 1886, in to_representation
+    return method(value)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py", line 88, in get_abonnement_detail
+    prefetch = Prefetch('abonnement_client__creneaux', queryset=Creneau.objects.all())
+NameError: name 'Creneau' is not defined
+2023-03-15 10:05:58,220 django.request ERROR    Internal Server Error: /rest-api/clients/C0019/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py", line 129, in get
+    return Response(ax.data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/fields.py", line 1886, in to_representation
+    return method(value)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py", line 88, in get_abonnement_detail
+    prefetch = Prefetch('abonnement_client__creneaux', queryset=Creneau.objects.all())
+NameError: name 'Creneau' is not defined
+2023-03-15 10:06:06,802 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py changed, reloading.
+2023-03-15 10:06:08,809 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-15 10:06:12,127 django.request ERROR    Internal Server Error: /rest-api/clients/C0019/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py", line 129, in get
+    return Response(ax.data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/fields.py", line 1886, in to_representation
+    return method(value)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py", line 90, in get_abonnement_detail
+    return AbonnementDetailSerialiser(abon, many=True).data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 280, in __iter__
+    self._fetch_all()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1326, in _fetch_all
+    self._prefetch_related_objects()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 813, in _prefetch_related_objects
+    prefetch_related_objects(self._result_cache, *self._prefetch_related_lookups)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1713, in prefetch_related_objects
+    raise AttributeError("Cannot find '%s' on %s object, '%s' is an invalid "
+AttributeError: Cannot find 'abonnement_client' on AbonnementClient object, 'abonnement_client__creneaux' is an invalid parameter to prefetch_related()
+2023-03-15 10:06:13,263 django.request ERROR    Internal Server Error: /rest-api/clients/C0019/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py", line 129, in get
+    return Response(ax.data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/fields.py", line 1886, in to_representation
+    return method(value)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py", line 90, in get_abonnement_detail
+    return AbonnementDetailSerialiser(abon, many=True).data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 280, in __iter__
+    self._fetch_all()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1326, in _fetch_all
+    self._prefetch_related_objects()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 813, in _prefetch_related_objects
+    prefetch_related_objects(self._result_cache, *self._prefetch_related_lookups)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1713, in prefetch_related_objects
+    raise AttributeError("Cannot find '%s' on %s object, '%s' is an invalid "
+AttributeError: Cannot find 'abonnement_client' on AbonnementClient object, 'abonnement_client__creneaux' is an invalid parameter to prefetch_related()
+2023-03-15 10:06:30,562 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py changed, reloading.
+2023-03-15 10:06:32,550 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-15 10:09:21,721 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py changed, reloading.
+2023-03-15 10:09:23,925 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-15 10:12:54,558 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py changed, reloading.
+2023-03-15 10:12:56,586 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-15 10:17:21,985 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py changed, reloading.
+2023-03-15 10:17:24,066 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-15 10:17:36,737 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py changed, reloading.
+2023-03-15 10:17:38,901 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-15 10:19:18,923 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py changed, reloading.
+2023-03-15 10:19:21,083 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-15 10:20:20,123 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py changed, reloading.
+2023-03-15 10:20:22,348 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-15 10:20:24,899 django.request ERROR    Internal Server Error: /rest-api/clients/C0019/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py", line 129, in get
+    return Response(ax.data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/fields.py", line 1886, in to_representation
+    return method(value)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py", line 75, in get_maladie_name
+    return MaladieNameSerialiser(maladies_queryset, many=True).data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 280, in __iter__
+    self._fetch_all()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1326, in _fetch_all
+    self._prefetch_related_objects()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 813, in _prefetch_related_objects
+    prefetch_related_objects(self._result_cache, *self._prefetch_related_lookups)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1713, in prefetch_related_objects
+    raise AttributeError("Cannot find '%s' on %s object, '%s' is an invalid "
+AttributeError: Cannot find 'maladies' on Maladie object, 'maladies' is an invalid parameter to prefetch_related()
+2023-03-15 10:20:26,243 django.request ERROR    Internal Server Error: /rest-api/clients/C0019/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py", line 129, in get
+    return Response(ax.data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/fields.py", line 1886, in to_representation
+    return method(value)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py", line 75, in get_maladie_name
+    return MaladieNameSerialiser(maladies_queryset, many=True).data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 280, in __iter__
+    self._fetch_all()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1326, in _fetch_all
+    self._prefetch_related_objects()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 813, in _prefetch_related_objects
+    prefetch_related_objects(self._result_cache, *self._prefetch_related_lookups)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1713, in prefetch_related_objects
+    raise AttributeError("Cannot find '%s' on %s object, '%s' is an invalid "
+AttributeError: Cannot find 'maladies' on Maladie object, 'maladies' is an invalid parameter to prefetch_related()
+2023-03-15 10:20:47,465 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py changed, reloading.
+2023-03-15 10:20:49,566 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-15 10:20:52,040 django.request ERROR    Internal Server Error: /rest-api/clients/C0019/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py", line 129, in get
+    return Response(ax.data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/fields.py", line 1886, in to_representation
+    return method(value)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py", line 75, in get_maladie_name
+    return MaladieNameSerialiser(maladies_queryset, many=True).data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 280, in __iter__
+    self._fetch_all()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1324, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 51, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/compiler.py", line 1162, in execute_sql
+    sql, params = self.as_sql()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/compiler.py", line 513, in as_sql
+    extra_select, order_by, group_by = self.pre_sql_setup()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/compiler.py", line 55, in pre_sql_setup
+    self.setup_query()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/compiler.py", line 46, in setup_query
+    self.select, self.klass_info, self.annotation_col_map = self.get_select()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/compiler.py", line 248, in get_select
+    related_klass_infos = self.get_related_selections(select)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/compiler.py", line 985, in get_related_selections
+    raise FieldError(
+django.core.exceptions.FieldError: Invalid field name(s) given in select_related: 'client'. Choices are: (none)
+2023-03-15 10:20:53,279 django.request ERROR    Internal Server Error: /rest-api/clients/C0019/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py", line 129, in get
+    return Response(ax.data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/fields.py", line 1886, in to_representation
+    return method(value)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py", line 75, in get_maladie_name
+    return MaladieNameSerialiser(maladies_queryset, many=True).data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 280, in __iter__
+    self._fetch_all()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1324, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 51, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/compiler.py", line 1162, in execute_sql
+    sql, params = self.as_sql()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/compiler.py", line 513, in as_sql
+    extra_select, order_by, group_by = self.pre_sql_setup()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/compiler.py", line 55, in pre_sql_setup
+    self.setup_query()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/compiler.py", line 46, in setup_query
+    self.select, self.klass_info, self.annotation_col_map = self.get_select()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/compiler.py", line 248, in get_select
+    related_klass_infos = self.get_related_selections(select)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/compiler.py", line 985, in get_related_selections
+    raise FieldError(
+django.core.exceptions.FieldError: Invalid field name(s) given in select_related: 'client'. Choices are: (none)
+2023-03-15 10:21:15,806 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py changed, reloading.
+2023-03-15 10:21:17,866 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-15 10:21:20,468 django.request ERROR    Internal Server Error: /rest-api/clients/C0019/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py", line 129, in get
+    return Response(ax.data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/fields.py", line 1886, in to_representation
+    return method(value)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py", line 75, in get_maladie_name
+    return MaladieNameSerialiser(maladies_queryset, many=True).data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 280, in __iter__
+    self._fetch_all()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1326, in _fetch_all
+    self._prefetch_related_objects()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 813, in _prefetch_related_objects
+    prefetch_related_objects(self._result_cache, *self._prefetch_related_lookups)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1713, in prefetch_related_objects
+    raise AttributeError("Cannot find '%s' on %s object, '%s' is an invalid "
+AttributeError: Cannot find 'client' on Maladie object, 'client' is an invalid parameter to prefetch_related()
+2023-03-15 10:21:21,600 django.request ERROR    Internal Server Error: /rest-api/clients/C0019/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py", line 129, in get
+    return Response(ax.data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/fields.py", line 1886, in to_representation
+    return method(value)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py", line 75, in get_maladie_name
+    return MaladieNameSerialiser(maladies_queryset, many=True).data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 280, in __iter__
+    self._fetch_all()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1326, in _fetch_all
+    self._prefetch_related_objects()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 813, in _prefetch_related_objects
+    prefetch_related_objects(self._result_cache, *self._prefetch_related_lookups)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1713, in prefetch_related_objects
+    raise AttributeError("Cannot find '%s' on %s object, '%s' is an invalid "
+AttributeError: Cannot find 'client' on Maladie object, 'client' is an invalid parameter to prefetch_related()
+2023-03-15 10:22:23,772 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py changed, reloading.
+2023-03-15 10:22:25,902 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-15 10:22:53,391 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py changed, reloading.
+2023-03-15 10:22:55,401 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-15 10:23:00,478 django.request ERROR    Internal Server Error: /rest-api/clients/C0019/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py", line 129, in get
+    return Response(ax.data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/fields.py", line 1886, in to_representation
+    return method(value)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py", line 74, in get_maladie_name
+    maladies_queryset = obj.prefetch_related('maladies').only('name')
+AttributeError: 'Client' object has no attribute 'prefetch_related'
+2023-03-15 10:23:01,542 django.request ERROR    Internal Server Error: /rest-api/clients/C0019/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py", line 129, in get
+    return Response(ax.data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/fields.py", line 1886, in to_representation
+    return method(value)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py", line 74, in get_maladie_name
+    maladies_queryset = obj.prefetch_related('maladies').only('name')
+AttributeError: 'Client' object has no attribute 'prefetch_related'
+2023-03-15 10:23:19,462 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py changed, reloading.
+2023-03-15 10:23:21,528 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-15 10:25:55,590 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py changed, reloading.
+2023-03-15 10:25:57,637 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-15 10:26:03,562 django.request ERROR    Internal Server Error: /rest-api/clients/C0019/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py", line 129, in get
+    return Response(ax.data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/fields.py", line 1886, in to_representation
+    return method(value)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py", line 87, in get_abonnement_detail
+    abonnement_queryset = abonnement_queryset.prefetch_related(prefetch)
+UnboundLocalError: local variable 'abonnement_queryset' referenced before assignment
+2023-03-15 10:26:04,855 django.request ERROR    Internal Server Error: /rest-api/clients/C0019/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py", line 129, in get
+    return Response(ax.data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/fields.py", line 1886, in to_representation
+    return method(value)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py", line 87, in get_abonnement_detail
+    abonnement_queryset = abonnement_queryset.prefetch_related(prefetch)
+UnboundLocalError: local variable 'abonnement_queryset' referenced before assignment
+2023-03-15 10:26:24,570 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py changed, reloading.
+2023-03-15 10:26:26,581 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-15 10:26:45,236 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py changed, reloading.
+2023-03-15 10:26:47,644 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-15 10:28:47,344 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py changed, reloading.
+2023-03-15 10:28:49,175 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-15 10:29:42,762 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py changed, reloading.
+2023-03-15 10:29:44,938 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-15 10:29:55,289 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py changed, reloading.
+2023-03-15 10:29:57,170 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-15 10:30:02,754 django.request ERROR    Internal Server Error: /rest-api/clients/C0019/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py", line 129, in get
+    return Response(ax.data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/fields.py", line 1886, in to_representation
+    return method(value)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py", line 75, in get_maladie_name
+    return MaladieNameSerialiser(maladies_queryset, many=True).data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 280, in __iter__
+    self._fetch_all()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1326, in _fetch_all
+    self._prefetch_related_objects()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 813, in _prefetch_related_objects
+    prefetch_related_objects(self._result_cache, *self._prefetch_related_lookups)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1713, in prefetch_related_objects
+    raise AttributeError("Cannot find '%s' on %s object, '%s' is an invalid "
+AttributeError: Cannot find 'clients' on Maladie object, 'clients' is an invalid parameter to prefetch_related()
+2023-03-15 10:30:04,073 django.request ERROR    Internal Server Error: /rest-api/clients/C0019/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py", line 129, in get
+    return Response(ax.data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/fields.py", line 1886, in to_representation
+    return method(value)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py", line 75, in get_maladie_name
+    return MaladieNameSerialiser(maladies_queryset, many=True).data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 280, in __iter__
+    self._fetch_all()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1326, in _fetch_all
+    self._prefetch_related_objects()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 813, in _prefetch_related_objects
+    prefetch_related_objects(self._result_cache, *self._prefetch_related_lookups)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1713, in prefetch_related_objects
+    raise AttributeError("Cannot find '%s' on %s object, '%s' is an invalid "
+AttributeError: Cannot find 'clients' on Maladie object, 'clients' is an invalid parameter to prefetch_related()
+2023-03-15 10:33:43,609 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py changed, reloading.
+2023-03-15 10:33:45,665 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-15 10:33:48,739 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py changed, reloading.
+2023-03-15 10:33:50,855 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-15 10:33:53,066 django.request ERROR    Internal Server Error: /rest-api/clients/C0019/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py", line 129, in get
+    return Response(ax.data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/fields.py", line 1885, in to_representation
+    method = getattr(self.parent, self.method_name)
+AttributeError: 'ClientSerialiser' object has no attribute 'get_maladie_name'
+2023-03-15 10:33:54,106 django.request ERROR    Internal Server Error: /rest-api/clients/C0019/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py", line 129, in get
+    return Response(ax.data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/fields.py", line 1885, in to_representation
+    method = getattr(self.parent, self.method_name)
+AttributeError: 'ClientSerialiser' object has no attribute 'get_maladie_name'
+2023-03-15 10:34:17,936 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py changed, reloading.
+2023-03-15 10:34:20,045 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-15 10:34:24,171 django.request ERROR    Internal Server Error: /rest-api/clients/C0019/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py", line 129, in get
+    return Response(ax.data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/fields.py", line 1886, in to_representation
+    return method(value)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py", line 77, in get_maladie_name
+    return MaladieNameSerialiser(maladies_queryset, many=True).data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 280, in __iter__
+    self._fetch_all()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1326, in _fetch_all
+    self._prefetch_related_objects()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 813, in _prefetch_related_objects
+    prefetch_related_objects(self._result_cache, *self._prefetch_related_lookups)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1713, in prefetch_related_objects
+    raise AttributeError("Cannot find '%s' on %s object, '%s' is an invalid "
+AttributeError: Cannot find 'clients' on Maladie object, 'clients' is an invalid parameter to prefetch_related()
+2023-03-15 10:34:25,410 django.request ERROR    Internal Server Error: /rest-api/clients/C0019/
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/views.py", line 129, in get
+    return Response(ax.data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/fields.py", line 1886, in to_representation
+    return method(value)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py", line 77, in get_maladie_name
+    return MaladieNameSerialiser(maladies_queryset, many=True).data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 280, in __iter__
+    self._fetch_all()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1326, in _fetch_all
+    self._prefetch_related_objects()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 813, in _prefetch_related_objects
+    prefetch_related_objects(self._result_cache, *self._prefetch_related_lookups)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1713, in prefetch_related_objects
+    raise AttributeError("Cannot find '%s' on %s object, '%s' is an invalid "
+AttributeError: Cannot find 'clients' on Maladie object, 'clients' is an invalid parameter to prefetch_related()
+2023-03-15 10:35:30,410 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/serializers.py changed, reloading.
+2023-03-15 10:35:32,544 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-15 11:01:52,507 django.request WARNING  Not Found: /media/photos/231_T0e4oDT.jpg
+2023-03-15 11:03:03,146 django.request WARNING  Not Found: /media/photos/231_T0e4oDT.jpg
+2023-03-15 11:04:16,691 django.request WARNING  Not Found: /media/photos/231_T0e4oDT.jpg
+2023-03-15 11:05:46,678 django.request WARNING  Not Found: /media/photos/231_T0e4oDT.jpg
+2023-03-15 11:06:41,881 django.request WARNING  Not Found: /media/photos/231_T0e4oDT.jpg
+2023-03-15 11:07:06,918 django.request WARNING  Not Found: /media/photos/231_T0e4oDT.jpg
+2023-03-15 11:07:33,254 django.request WARNING  Not Found: /media/photos/231_T0e4oDT.jpg
+2023-03-15 11:08:21,267 django.request WARNING  Not Found: /media/photos/231_T0e4oDT.jpg
+2023-03-15 11:10:17,526 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-15 11:10:54,748 django.request WARNING  Not Found: /media/photos/231_T0e4oDT.jpg
+2023-03-15 11:11:31,261 django.request WARNING  Not Found: /media/photos/231_T0e4oDT.jpg
+2023-03-15 11:18:25,182 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-15 11:18:35,411 salle_activite_view INFO     Open All The Doors inited...
+2023-03-15 11:18:35,580 celery.worker.strategy INFO     Task salle_activite.tasks.start_linsten_test_device_1[c772c1c1-e0a0-4e9f-96d8-3e7497b8bd64] received
+2023-03-15 11:18:35,581 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f1d09f0dca0> (args:('salle_activite.tasks.start_linsten_test_device_1', 'c772c1c1-e0a0-4e9f-96d8-3e7497b8bd64', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_test_device_1', 'id': 'c772c1c1-e0a0-4e9f-96d8-3e7497b8bd64', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'c772c1c1-e0a0-4e9f-96d8-3e7497b8bd64', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen630@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': 'c772c1c1-e0a0-4e9f-96d8-3e7497b8bd64', 'reply_to': 'f6c6b320-797b-368f-ae63-b2b9e7b9037e', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'e24d4cc5-0799-4754-9d84-5e29f3862ddf'}, 'reply_to': 'f6c6b320-797b-368f-ae63-b2b9e7b9037e', 'correlation_id': 'c772c1c1-e0a0-4e9f-96d8-3e7497b8bd64', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery',... kwargs:{})
+2023-03-15 11:18:35,584 celery.worker.strategy INFO     Task salle_activite.tasks.start_linsten_test_device_2[49ee9dda-610a-4770-b365-babd429e24a6] received
+2023-03-15 11:18:35,585 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f1d09f0dca0> (args:('salle_activite.tasks.start_linsten_test_device_2', '49ee9dda-610a-4770-b365-babd429e24a6', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_test_device_2', 'id': '49ee9dda-610a-4770-b365-babd429e24a6', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '49ee9dda-610a-4770-b365-babd429e24a6', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen630@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': '49ee9dda-610a-4770-b365-babd429e24a6', 'reply_to': 'f6c6b320-797b-368f-ae63-b2b9e7b9037e', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '26cb305c-0d83-4d28-ab8c-abe5c36c5477'}, 'reply_to': 'f6c6b320-797b-368f-ae63-b2b9e7b9037e', 'correlation_id': '49ee9dda-610a-4770-b365-babd429e24a6', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery',... kwargs:{})
+2023-03-15 11:18:35,939 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_test_device_1[c772c1c1-e0a0-4e9f-96d8-3e7497b8bd64] succeeded in 0.3497803999998723s: None
+2023-03-15 11:18:37,230 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_test_device_2[49ee9dda-610a-4770-b365-babd429e24a6] succeeded in 1.6403175000004921s: None
+2023-03-15 11:19:51,514 django.request WARNING  Not Found: /media/photos/3.jpg
+2023-03-15 11:20:44,794 django.request WARNING  Not Found: /media/photos/3.jpg
+2023-03-15 11:22:02,954 salle_activite_view INFO     Open All The Doors inited...
+2023-03-15 11:22:02,983 celery.worker.strategy INFO     Task salle_activite.tasks.start_linsten_test_device_1[2ee04642-5d91-46fc-8921-834b1e14a8e8] received
+2023-03-15 11:22:02,984 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f1d09f0dca0> (args:('salle_activite.tasks.start_linsten_test_device_1', '2ee04642-5d91-46fc-8921-834b1e14a8e8', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_test_device_1', 'id': '2ee04642-5d91-46fc-8921-834b1e14a8e8', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '2ee04642-5d91-46fc-8921-834b1e14a8e8', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen630@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': '2ee04642-5d91-46fc-8921-834b1e14a8e8', 'reply_to': '009e42b4-1f5a-3f47-99a7-038494d968b8', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'e97a98c9-6684-4973-a68d-17b514d5826c'}, 'reply_to': '009e42b4-1f5a-3f47-99a7-038494d968b8', 'correlation_id': '2ee04642-5d91-46fc-8921-834b1e14a8e8', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery',... kwargs:{})
+2023-03-15 11:22:02,987 celery.worker.strategy INFO     Task salle_activite.tasks.start_linsten_test_device_2[f747569d-378c-4863-ba98-e80e21859fdd] received
+2023-03-15 11:22:02,988 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f1d09f0dca0> (args:('salle_activite.tasks.start_linsten_test_device_2', 'f747569d-378c-4863-ba98-e80e21859fdd', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_test_device_2', 'id': 'f747569d-378c-4863-ba98-e80e21859fdd', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'f747569d-378c-4863-ba98-e80e21859fdd', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen630@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': 'f747569d-378c-4863-ba98-e80e21859fdd', 'reply_to': '009e42b4-1f5a-3f47-99a7-038494d968b8', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'bc759c48-3d5c-45cb-a962-c31c0b03cf87'}, 'reply_to': '009e42b4-1f5a-3f47-99a7-038494d968b8', 'correlation_id': 'f747569d-378c-4863-ba98-e80e21859fdd', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery',... kwargs:{})
+2023-03-15 11:22:03,188 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_test_device_1[2ee04642-5d91-46fc-8921-834b1e14a8e8] succeeded in 0.1989170999995622s: None
+2023-03-15 11:22:04,495 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_test_device_2[f747569d-378c-4863-ba98-e80e21859fdd] succeeded in 1.5061656999996558s: None
+2023-03-15 11:22:14,040 celery.bootsteps DEBUG    | Worker: Closing Hub...
+2023-03-15 11:22:14,040 celery.bootsteps DEBUG    | Worker: Closing Pool...
+2023-03-15 11:22:14,041 celery.bootsteps DEBUG    | Worker: Closing Consumer...
+2023-03-15 11:22:14,041 celery.bootsteps DEBUG    | Worker: Stopping Consumer...
+2023-03-15 11:22:14,042 celery.bootsteps DEBUG    | Consumer: Closing Connection...
+2023-03-15 11:22:14,042 celery.bootsteps DEBUG    | Consumer: Closing Events...
+2023-03-15 11:22:14,042 celery.bootsteps DEBUG    | Consumer: Closing Mingle...
+2023-03-15 11:22:14,043 celery.bootsteps DEBUG    | Consumer: Closing Tasks...
+2023-03-15 11:22:14,043 celery.bootsteps DEBUG    | Consumer: Closing Control...
+2023-03-15 11:22:14,044 celery.bootsteps DEBUG    | Consumer: Closing Gossip...
+2023-03-15 11:22:14,044 celery.bootsteps DEBUG    | Consumer: Closing Heart...
+2023-03-15 11:22:14,044 celery.bootsteps DEBUG    | Consumer: Closing event loop...
+2023-03-15 11:22:14,045 celery.bootsteps DEBUG    | Consumer: Stopping event loop...
+2023-03-15 11:22:14,045 celery.bootsteps DEBUG    | Consumer: Stopping Heart...
+2023-03-15 11:22:14,046 celery.bootsteps DEBUG    | Consumer: Stopping Gossip...
+2023-03-15 11:22:14,049 celery.bootsteps DEBUG    | Consumer: Stopping Control...
+2023-03-15 11:22:14,051 celery.bootsteps DEBUG    | Consumer: Stopping Tasks...
+2023-03-15 11:22:14,051 celery.worker.consumer.tasks DEBUG    Canceling task consumer...
+2023-03-15 11:22:14,051 celery.bootsteps DEBUG    | Consumer: Stopping Mingle...
+2023-03-15 11:22:14,052 celery.bootsteps DEBUG    | Consumer: Stopping Events...
+2023-03-15 11:22:14,052 celery.bootsteps DEBUG    | Consumer: Stopping Connection...
+2023-03-15 11:22:14,052 celery.bootsteps DEBUG    | Worker: Stopping Pool...
+2023-03-15 11:22:14,248 celery.concurrency.asynpool DEBUG    removing tasks from inqueue until task handler finished
+2023-03-15 11:22:17,550 celery.bootsteps DEBUG    | Worker: Preparing bootsteps.
+2023-03-15 11:22:17,555 celery.bootsteps DEBUG    | Worker: Building graph...
+2023-03-15 11:22:17,556 celery.bootsteps DEBUG    | Worker: New boot order: {Timer, Hub, Pool, Autoscaler, StateDB, Beat, Consumer}
+2023-03-15 11:22:17,578 celery.bootsteps DEBUG    | Consumer: Preparing bootsteps.
+2023-03-15 11:22:17,579 celery.bootsteps DEBUG    | Consumer: Building graph...
+2023-03-15 11:22:17,616 celery.bootsteps DEBUG    | Consumer: New boot order: {Connection, Agent, Events, Heart, Mingle, Tasks, Control, Gossip, event loop}
+2023-03-15 11:22:17,663 celery.bootsteps DEBUG    | Worker: Starting Hub
+2023-03-15 11:22:17,663 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-15 11:22:17,664 celery.bootsteps DEBUG    | Worker: Starting Pool
+2023-03-15 11:22:18,494 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-15 11:22:18,495 celery.bootsteps DEBUG    | Worker: Starting Consumer
+2023-03-15 11:22:18,496 celery.bootsteps DEBUG    | Consumer: Starting Connection
+2023-03-15 11:22:18,509 celery.worker.consumer.connection INFO     Connected to redis://localhost:6379//
+2023-03-15 11:22:18,509 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-15 11:22:18,510 celery.bootsteps DEBUG    | Consumer: Starting Events
+2023-03-15 11:22:18,520 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-15 11:22:18,521 celery.bootsteps DEBUG    | Consumer: Starting Heart
+2023-03-15 11:22:18,526 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-15 11:22:18,526 celery.bootsteps DEBUG    | Consumer: Starting Mingle
+2023-03-15 11:22:18,527 celery.worker.consumer.mingle INFO     mingle: searching for neighbors
+2023-03-15 11:22:19,539 celery.worker.consumer.mingle INFO     mingle: all alone
+2023-03-15 11:22:19,543 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-15 11:22:19,545 celery.bootsteps DEBUG    | Consumer: Starting Tasks
+2023-03-15 11:22:19,556 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-15 11:22:19,557 celery.bootsteps DEBUG    | Consumer: Starting Control
+2023-03-15 11:22:19,565 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-15 11:22:19,565 celery.bootsteps DEBUG    | Consumer: Starting Gossip
+2023-03-15 11:22:19,571 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-15 11:22:19,571 celery.bootsteps DEBUG    | Consumer: Starting event loop
+2023-03-15 11:22:19,572 celery.bootsteps DEBUG    | Worker: Hub.register Pool...
+2023-03-15 11:22:19,575 py.warnings  WARNING  /mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/fixups/django.py:203: UserWarning: Using settings.DEBUG leads to a memory
+            leak, never use this setting in production environments!
+  warnings.warn('''Using settings.DEBUG leads to a memory
+
+2023-03-15 11:22:19,577 celery.apps.worker INFO     celery@DESKTOP-PC6U1IH ready.
+2023-03-15 11:22:19,578 kombu.common DEBUG    basic.qos: prefetch_count->40
+2023-03-15 11:22:29,268 salle_activite_view INFO     Open All The Doors inited...
+2023-03-15 11:22:29,301 celery.worker.strategy INFO     Task salle_activite.tasks.start_linsten_test_device_1[9246eda9-7d60-4db0-bd23-d18184fa85a8] received
+2023-03-15 11:22:29,302 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7fd7048ccca0> (args:('salle_activite.tasks.start_linsten_test_device_1', '9246eda9-7d60-4db0-bd23-d18184fa85a8', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_test_device_1', 'id': '9246eda9-7d60-4db0-bd23-d18184fa85a8', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '9246eda9-7d60-4db0-bd23-d18184fa85a8', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen630@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': '9246eda9-7d60-4db0-bd23-d18184fa85a8', 'reply_to': '118b361f-a563-398c-b3bc-1e611a0f3c0d', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '69f52921-5af6-41be-8ebc-32cb83a6615e'}, 'reply_to': '118b361f-a563-398c-b3bc-1e611a0f3c0d', 'correlation_id': '9246eda9-7d60-4db0-bd23-d18184fa85a8', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery',... kwargs:{})
+2023-03-15 11:22:29,305 celery.worker.strategy INFO     Task salle_activite.tasks.start_linsten_test_device_2[ac400e41-cb07-4ed6-adeb-6201e7dafb74] received
+2023-03-15 11:22:29,306 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7fd7048ccca0> (args:('salle_activite.tasks.start_linsten_test_device_2', 'ac400e41-cb07-4ed6-adeb-6201e7dafb74', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_test_device_2', 'id': 'ac400e41-cb07-4ed6-adeb-6201e7dafb74', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'ac400e41-cb07-4ed6-adeb-6201e7dafb74', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen630@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': 'ac400e41-cb07-4ed6-adeb-6201e7dafb74', 'reply_to': '118b361f-a563-398c-b3bc-1e611a0f3c0d', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'f0fd72aa-146f-40c4-a7fe-2f4394bbe4b2'}, 'reply_to': '118b361f-a563-398c-b3bc-1e611a0f3c0d', 'correlation_id': 'ac400e41-cb07-4ed6-adeb-6201e7dafb74', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery',... kwargs:{})
+2023-03-15 11:22:29,610 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_test_device_1[9246eda9-7d60-4db0-bd23-d18184fa85a8] succeeded in 0.30084100000021863s: None
+2023-03-15 11:22:30,893 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_test_device_2[ac400e41-cb07-4ed6-adeb-6201e7dafb74] succeeded in 1.5837572999998883s: None
+2023-03-15 11:23:24,507 django.request WARNING  Not Found: /favicon.ico
+2023-03-15 11:23:54,971 django.request WARNING  Not Found: /media/photos/3.jpg
+2023-03-15 11:24:13,177 django.request WARNING  Not Found: /media/photos/3.jpg
+2023-03-15 11:24:54,413 django.request WARNING  Not Found: /media/photos/3.jpg
+2023-03-15 11:25:19,381 django.request WARNING  Not Found: /media/photos/3.jpg
+2023-03-15 13:40:14,421 celery.worker.consumer.consumer WARNING  consumer: Connection to broker lost. Trying to re-establish the connection...
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/worker/consumer/consumer.py", line 332, in start
+    blueprint.start(self)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/bootsteps.py", line 116, in start
+    step.start(parent)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/worker/consumer/consumer.py", line 628, in start
+    c.loop(*c.loop_args())
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/worker/loops.py", line 97, in asynloop
+    next(loop)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/kombu/asynchronous/hub.py", line 362, in create_loop
+    cb(*cbargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/kombu/transport/redis.py", line 1326, in on_readable
+    self.cycle.on_readable(fileno)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/kombu/transport/redis.py", line 562, in on_readable
+    chan.handlers[type]()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/kombu/transport/redis.py", line 955, in _brpop_read
+    dest__item = self.client.parse_response(self.client.connection,
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/client.py", line 1254, in parse_response
+    response = connection.read_response()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 824, in read_response
+    response = self._parser.read_response(disable_decoding=disable_decoding)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 318, in read_response
+    raw = self._buffer.readline()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 249, in readline
+    self._read_from_socket()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/redis/connection.py", line 195, in _read_from_socket
+    raise ConnectionError(SERVER_CLOSED_CONNECTION_ERROR)
+redis.exceptions.ConnectionError: Connection closed by server.
+2023-03-15 13:40:14,490 py.warnings  WARNING  /mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/worker/consumer/consumer.py:367: CPendingDeprecationWarning: 
+In Celery 5.1 we introduced an optional breaking change which
+on connection loss cancels all currently executed tasks with late acknowledgement enabled.
+These tasks cannot be acknowledged as the connection is gone, and the tasks are automatically redelivered back to the queue.
+You can enable this behavior using the worker_cancel_long_running_tasks_on_connection_loss setting.
+In Celery 5.1 it is set to False by default. The setting will be set to True by default in Celery 6.0.
+
+  warnings.warn(CANCEL_TASKS_BY_DEFAULT, CPendingDeprecationWarning)
+
+2023-03-15 13:40:14,493 celery.bootsteps DEBUG    | Consumer: Restarting event loop...
+2023-03-15 13:40:14,493 celery.bootsteps DEBUG    | Consumer: Restarting Gossip...
+2023-03-15 13:40:14,504 celery.bootsteps DEBUG    | Consumer: Restarting Control...
+2023-03-15 13:40:14,506 celery.bootsteps DEBUG    | Consumer: Restarting Tasks...
+2023-03-15 13:40:14,506 celery.worker.consumer.tasks DEBUG    Canceling task consumer...
+2023-03-15 13:40:14,506 celery.bootsteps DEBUG    | Consumer: Restarting Mingle...
+2023-03-15 13:40:14,507 celery.bootsteps DEBUG    | Consumer: Restarting Heart...
+2023-03-15 13:40:14,520 celery.bootsteps DEBUG    | Consumer: Restarting Events...
+2023-03-15 13:40:14,521 celery.bootsteps DEBUG    | Consumer: Restarting Connection...
+2023-03-15 13:40:14,521 celery.bootsteps DEBUG    | Consumer: Starting Connection
+2023-03-15 13:40:14,524 celery.worker.consumer.consumer ERROR    consumer: Cannot connect to redis://localhost:6379//: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 2.00 seconds... (1/100)
+
+2023-03-15 13:40:16,461 celery.bootsteps DEBUG    | Worker: Closing Hub...
+2023-03-15 13:40:16,461 celery.bootsteps DEBUG    | Worker: Closing Pool...
+2023-03-15 13:40:16,462 celery.bootsteps DEBUG    | Worker: Closing Consumer...
+2023-03-15 13:40:16,462 celery.bootsteps DEBUG    | Worker: Stopping Consumer...
+2023-03-15 13:40:16,463 celery.bootsteps DEBUG    | Worker: Stopping Pool...
+2023-03-15 13:40:16,653 celery.concurrency.asynpool DEBUG    removing tasks from inqueue until task handler finished

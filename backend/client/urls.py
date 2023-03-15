@@ -9,13 +9,13 @@ urlpatterns = [
     # Clients paths
     # path('', TemplateView.as_view(template_name="index.html")),
     path('clients/', ClientListAPIView.as_view(),  name="client"),
+    path('clients/<str:pk>/', ClientDetailAPIView.as_view(), name="client-detail"),
     # path('clients-transactions/', ClientPaeiementsViewAPI.as_view(),  name="client-transactions"),
     path('clients-dettes/', total_dettes,  name="client-dettes"),
     path('clients-count/', total_abonnes,  name="client-nombre"),
     path('clients-name/', ClientNameViewAPI.as_view(),  name="client-name"),
     path('clients-name-drop/', ClientNamesDropListAPIView.as_view(),  name="client-name"),
     path('clients-presence/', ClientPresenceViewAPI.as_view(),  name="client-presence"),
-    path('clients/<str:pk>/', ClientDetailAPIView.as_view(), name="client-detail"),
     path('get-client/', GETClientDetailAPIView.as_view(), name="client-detail"),
 
     path('clients/create', ClientAPIView.as_view(),  name="client-create"),

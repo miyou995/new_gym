@@ -2,7 +2,7 @@ from rest_framework.views import set_rollback
 from .models import Client, Personnel, Coach, Maladie, CIVILITY_CHOICES, STATE_CHOICES, BLOOD_CHOICES 
 from rest_framework import serializers
 # from django.http import JsonResponse
-# from creneau.models import Creneau
+from creneau.models import Creneau
 from abonnement.models import AbonnementClient
 from abonnement.serializers import AbonnementClientSerialiser
 # from abonnement.views import  AbonnementClientTransactionsDetailListApi
@@ -68,26 +68,29 @@ class ClientSerialiser(serializers.ModelSerializer):
     class Meta:
         model = Client
         read_only_fields = ('id','date_added','abonnement_detail')
-        fields= ('id', 'picture','carte','hex_card','civility','civility_display', 'last_name', 'first_name', 'adress', 'phone', 'email', 'nationality', 'birth_date', 'blood', 'state_display','note', 'dette', 'date_added', 'maladies', 'maladie_name','abonnement_detail', 'presences', 'last_presence', 'age', 'debut_assurance', 'fin_assurance','profession')
+        fields= ('id', 'picture','carte','hex_card','civility','civility_display', 'last_name', 'first_name', 'adress', 'phone', 'email', 'nationality', 'birth_date', 'blood', 'state_display','note', 'is_on_salle','dette', 'date_added', 'maladies', 'maladie_name','abonnement_detail', 'presences', 'last_presence', 'age', 'debut_assurance', 'fin_assurance','profession')
  
     def get_maladie_name(self, obj):
         maladies_queryset = obj.maladies.all()
         return MaladieNameSerialiser(maladies_queryset, many=True).data
     
-    # def get_abonnement_detail(self, obj):
-    #     abonnement_queryset = obj.abonnement_client.all()
-    #     return AbonnementDetailSerialiser(abonnement_queryset, many=True).data
+
     def get_debut_assurance(self, obj):
-        assurance = AssuranceTransaction.objects.filter(client=obj.id)
+        assurance = AssuranceTransaction.objects.select_related('client').filter(client=obj.id)
         try:
             return assurance.last().date_creation
         except:
             return False
     def get_abonnement_detail(self, obj):
-        
-        abon = AbonnementClient.objects.select_related('client').filter(client__id=obj.id)
-        # abonnement_queryset = obj.abonnement_client.all()
+        abon = AbonnementClient.objects.select_related('type_abonnement').prefetch_related('creneaux').filter(client__id=obj.id)
         return AbonnementDetailSerialiser(abon, many=True).data
+
+
+    # def get_abonnement_detail(self, obj):
+        
+    #     abon = AbonnementClient.objects.select_related('client','type_abonnement').filter(client__id=obj.id)
+    #     # abonnement_queryset = obj.abonnement_client.all()
+    #     return AbonnementDetailSerialiser(abon, many=True).data
 
     def get_presences(self, obj):
         # query = obj.presences.all()
