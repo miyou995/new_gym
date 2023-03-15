@@ -39,7 +39,7 @@ class SubscriptionManager(models.Manager):
     def free_sessions(self):
         return self.get_queryset().free_sessions()
     def free_access_subscription(self):
-        return sself.get_queryset().free_access_subscription()
+        return self.get_queryset().free_access_subscription()
     def active_subscription(self):
         return self.get_queryset().active_subscription()
     def valid_presences(self):

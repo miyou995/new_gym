@@ -57,7 +57,7 @@ class PresencePostSerialiser(serializers.ModelSerializer):
         # client.init_presence(dict(abc= abc, creneau= creneau, hour_in=hour_in , hour_sortie=hour_out,is_in_list=True, is_in_salle=False, date=presence_date))
         client.is_on_salle=False
         ecart = presence.get_time_difference()
-        
+         
         abc.presence_quantity -= ecart
 
         abc.save() 
