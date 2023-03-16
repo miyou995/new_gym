@@ -117,9 +117,9 @@ class ClientDetailAPIView(generics.RetrieveUpdateAPIView):
     }
 
     def get_object(self):
-
         obj = get_object_or_404(Client, id=self.kwargs["pk"])
         return obj
+    
     def get(self , request, *args, **kwargs):
         # try:
         obj = get_object_or_404(Client, id=self.kwargs["pk"])
@@ -130,7 +130,6 @@ class ClientDetailAPIView(generics.RetrieveUpdateAPIView):
         # except:
         #     msg = 'le client nexiste pas'
             # return Response({'message': msg}, status=404)
-
 
 
 class ClientDestroyAPIView(generics.DestroyAPIView):

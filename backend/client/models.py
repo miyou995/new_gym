@@ -191,8 +191,6 @@ class Client(models.Model):
     #A VERIF
 
 
-
-
     def init_output(self,  exit_hour=None):
         my_presences = Presence.objects.filter(abc__client=self, is_in_salle=True)
         presence = my_presences.first()
@@ -240,6 +238,7 @@ class Client(models.Model):
             print('is on salle')
             sortie = self.init_output()
             if not sortie: # if sortie is false this mean that the client passed the card on an interval < 10 secondes
+                print('WAIT 10 SECONDES')  
                 return False
             self.is_on_salle = False 
             self.save()
