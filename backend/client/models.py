@@ -233,7 +233,7 @@ class Client(models.Model):
 
     def get_access_permission(self, door_ip=None):
         current_time = datetime.now().strftime("%H:%M:%S")
-
+        # the problem is that it doesn't turn the client is_on_salle to True on entering we can try to make comparison here if it less than 10 s we directly return False
         if self.is_on_salle :
             print('is on salle')
             sortie = self.init_output()
