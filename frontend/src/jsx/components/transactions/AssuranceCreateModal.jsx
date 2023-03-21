@@ -9,9 +9,9 @@ import { Link } from "react-router-dom";
 import {notifySuccess, notifyError} from '../Alert'
  
 
-const AssuranceCreateModal = ({show, onShowShange}) => {
+const AssuranceCreateModal = ({show, onShowChange}) => {
   const api = useAxios();
-  const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+  const handleShow = useCallback( () => {onShowChange(false)}, [onShowChange])
     let clientEnd = `${process.env.REACT_APP_API_URL}/rest-api/clients-name/`
     let assuranceEnd = `${process.env.REACT_APP_API_URL}/rest-api/assurance/`
   const [clients, setClients] = useState([])

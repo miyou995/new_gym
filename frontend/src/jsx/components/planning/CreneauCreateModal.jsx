@@ -10,12 +10,12 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 // import { Dropdown, Tab, Nav } from "react-bootstrap";
 // import { Link } from "react-router-dom";
 import useForm from 'react-hook-form';
-const PaiementCreateModal = ({show, onShowShange, creneauData}) => {
+const PaiementCreateModal = ({show, onShowChange, creneauData}) => {
   const api = useAxios();
   const handleShow = useCallback( () => {
-    onShowShange(false)
+    onShowChange(false)
     setActiveButton(true)
-  }, [onShowShange])
+  }, [onShowChange])
     const creneauCreateEND = `${process.env.REACT_APP_API_URL}/rest-api/creneau/create/`
 
     const [newActivity, setNewActivity] = useState("")

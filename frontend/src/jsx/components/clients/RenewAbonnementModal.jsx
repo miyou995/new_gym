@@ -13,11 +13,11 @@ const capitalizeFirstLetter = (word) => {
   return '';
 };
 
-const RenewAbonnementModal = ({show, onShowShange, clientData}) => {
+const RenewAbonnementModal = ({show, onShowChange, clientData}) => {
 
   const api = useAxios();
 
-  const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+  const handleShow = useCallback( () => {onShowChange(false)}, [onShowChange])
   const [clientId, setClientId] = useState('')
   const [abonId, setAbontId] = useState('')
   const [type, setType] = useState('')

@@ -15,9 +15,9 @@ import createPalette from "@material-ui/core/styles/createPalette";
 function refreshPage() {
   window.location.reload(false);
 }
-    const SalleActiviteEditModal = ({show, onShowShange, salleData}) => {
+    const SalleActiviteEditModal = ({show, onShowChange, salleData}) => {
     const api = useAxios();
-    const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+    const handleShow = useCallback( () => {onShowChange(false)}, [onShowChange])
     // const creneauPerAbonnementEND = `${process.env.REACT_APP_API_URL}/rest-api/abonnement/`
     const salleActiviteUpdateEnd = `${process.env.REACT_APP_API_URL}/rest-api/salle-activite/${salleData['salleId']}/`
     const doors = salleData['doors']
@@ -31,19 +31,7 @@ function refreshPage() {
     //console.log('doors doors', doors);
     //console.log('selected DOOR', salleData['doorId']);
     
-    const openTheDoor = () => {
-        // e.preventDefault();
-        api.get(`${process.env.REACT_APP_API_URL}/rest-api/salle-activite/openthedoor/${salleData['salleId']}/`).then(res => {
-            if (res.status === 200) {
-                notifySuccess(`La salle ${salleData['salleName']} a été ouverte avec succés`)
-                handleShow()
-            }else {
-                notifyError(`La salle ${salleData['salleName']} n'a pas été ouverte `)
-            }
-        }).catch(err => {
-            notifyError(`La salle ${salleData['salleName']} n'a pas été ouverte `)
-        })
-    }
+
     useEffect(() => {
     if (show == true) {
         setName(salleData['salleName'])
@@ -54,10 +42,8 @@ function refreshPage() {
     }, [salleData, show]);
     const HandleSubmit = e => {
         e.preventDefault();
-        console.log("door", door);
         const salleFormData = {
             name : name,
-            door : Number(door),
             is_default : is_default
         }
         console.log(" =================> salleFormData ", salleFormData);
@@ -88,31 +74,6 @@ return (
                 </div>
             </div>
             <div className="form-group row">
-              <label className="col-sm-3 col-form-label">Salle </label>
-              <div className="col-sm-9">
-                  <Autocomplete
-                      onChange={((event, value) =>  {
-                        try {
-                            console.log("on door change id  =>",  value);
-                            setDoor(value.id)
-                        }catch {
-                            setDoor("")
-                        }
-                    }
-                        )} 
-                    //   value={salles}
-                      options={salleData['doors']}
-                      defaultValue={doors[selectedDoor]}
-                      getOptionSelected={(option) =>  option['id']}
-
-                      id="size-small-standard-multi"
-                      getOptionLabel={(option) =>  ( option['ip_adress'])}
-                      renderInput={(params) =>
-                  (<TextField {...params} name="door" label="Porte" variant="outlined" fullWidth />)}
-                />
-              </div>
-            </div>
-            <div className="form-group row">
                 <FormControlLabel
                     control={
                         <Checkbox 
@@ -135,11 +96,7 @@ return (
                     Valider
                 </button>
             </div>
-            <div className="m-3">
-                <button type="button" className="btn btn-success" onClick={e => openTheDoor()}>
-                    Ouvrir
-                </button>
-            </div>
+
             <div className="m-3">
                 <button type="button" className="btn btn-danger" onClick={ async () => {
                 await api.delete(`${process.env.REACT_APP_API_URL}/rest-api/salle-activite/delete/${salleData['salleId']}/`)

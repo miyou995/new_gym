@@ -12,8 +12,8 @@ import {notifySuccess, notifyError} from '../Alert'
 // import { Link } from "react-router-dom";
 
 
-const PaiementEditModal = ({show, onShowShange, paiementData}) => {
-    const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+const PaiementEditModal = ({show, onShowChange, paiementData}) => {
+    const handleShow = useCallback( () => {onShowChange(false)}, [onShowChange])
   const api = useAxios();
   
   const clientId = paiementData['clientId']

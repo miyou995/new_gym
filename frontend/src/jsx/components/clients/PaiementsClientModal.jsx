@@ -9,10 +9,10 @@ import { Dropdown, Tab, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
  
 
-const PaiementsClientModal = ({show, onShowShange, paiementsData}) => {
+const PaiementsClientModal = ({show, onShowChange, paiementsData}) => {
   const api = useAxios();
 
-    const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+    const handleShow = useCallback( () => {onShowChange(false)}, [onShowChange])
     const [paiements, setPaimeents] = useState([])
     const clientId = paiementsData['clientId']
       const paiementsEnd = `${process.env.REACT_APP_API_URL}/rest-api/transactions/paiement-by-client/?cl=${clientId}`

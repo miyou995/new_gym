@@ -8,9 +8,9 @@ import { Dropdown, Tab, Navn, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import {notifySuccess, notifyError} from '../Alert'
 
-const PresenceCreateModal = ({show, onShowShange, presenceData}) => {
+const PresenceCreateModal = ({show, onShowChange, presenceData}) => {
   const api = useAxios();
-  const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+  const handleShow = useCallback( () => {onShowChange(false)}, [onShowChange])
 
     const [samedi, setSamedi] = useState([]);
     const [dimanche, setDimanche] = useState([]);

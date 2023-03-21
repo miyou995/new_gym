@@ -396,7 +396,7 @@ const getDay = (days,creneauDay) => {
             </tbody>
           </Table>
             <div>
-              <CreneauCreateModal show={modalCreate} onShowShange={setModalCreate} 
+              <CreneauCreateModal show={modalCreate} onShowChange={setModalCreate} 
                 creneauData={{
                 creneauId : selectedCreneau,
                 activite :creneauActi,
@@ -412,7 +412,7 @@ const getDay = (days,creneauDay) => {
                 clients : clients
                 }} 
               />
-              <CreneauEditModal show={modal} onShowShange={setModal} creneauData={{
+              <CreneauEditModal show={modal} onShowChange={setModal} creneauData={{
                 creneauId : selectedCreneau,
                 activite :creneauActi,
                 activities : activities,

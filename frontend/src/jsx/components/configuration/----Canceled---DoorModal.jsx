@@ -8,8 +8,8 @@ import {notifySuccess, notifyError} from '../Alert'
 // import { Dropdown, Tab, Nav } from "react-bootstrap";
 // import { Link } from "react-router-dom";
 
-const DoorModal = ({show, onShowShange, doorData}) => {
-    const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+const DoorModal = ({show, onShowChange, doorData}) => {
+    const handleShow = useCallback( () => {onShowChange(false)}, [onShowChange])
   const api = useAxios();
   // const creneauPerAbonnementEND = `${process.env.REACT_APP_API_URL}/rest-api/abonnement/`
     const postDoorEnd = `${process.env.REACT_APP_API_URL}/rest-api/salle-activite/door/`

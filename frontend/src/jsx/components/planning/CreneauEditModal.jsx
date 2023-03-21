@@ -11,9 +11,9 @@ import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 
-const CreneauCreateModal = ({show, onShowShange, creneauData}) => {
+const CreneauCreateModal = ({show, onShowChange, creneauData}) => {
   const api = useAxios();
-  const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+  const handleShow = useCallback( () => {onShowChange(false)}, [onShowChange])
 
     let creneauUpdateEND = `${process.env.REACT_APP_API_URL}/rest-api/creneau/${creneauData['creneauId']}/`
     const creneauDetailEnd = `${process.env.REACT_APP_API_URL}/rest-api/abc-by-creneau?cr=${creneauData['creneauId']}`

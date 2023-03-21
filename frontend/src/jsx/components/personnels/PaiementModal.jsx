@@ -7,9 +7,9 @@ import useAxios from "../useAxios";
 import PageTitle from "../../layouts/PageTitle";
 import {notifySuccess, notifyError} from '../Alert'
 
-const PaiementModal = ({show, onShowShange, coachData}) => {
+const PaiementModal = ({show, onShowChange, coachData}) => {
   const api = useAxios();
-  const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+  const handleShow = useCallback( () => {onShowChange(false)}, [onShowChange])
   const coachId  = coachData['coachId']
      const coachName =  coachData['coachName']
   const paiementCreateEND =`${process.env.REACT_APP_API_URL}/rest-api/transactions/remunerationProf/create` 

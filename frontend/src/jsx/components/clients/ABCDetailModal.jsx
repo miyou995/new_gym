@@ -12,9 +12,9 @@ const capitalizeFirstLetter = (word) => {
       return word.charAt(0).toUpperCase() + word.slice(1);
   return '';
 };
-const ABCDetailModal = ({show, onShowShange, abonnementData}) => {
+const ABCDetailModal = ({show, onShowChange, abonnementData}) => {
   const api = useAxios();
-  const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+  const handleShow = useCallback( () => {onShowChange(false)}, [onShowChange])
   const today = new Date().toISOString().slice(0, 10)
 
   const [clientId, setClientId] = useState('')

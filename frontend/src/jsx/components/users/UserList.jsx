@@ -160,7 +160,7 @@ const groupsEnd = `${process.env.REACT_APP_API_URL}/rest-api/auth/groups/`
                      </div>
 
                   </div>
-               <UserModal show={userModal} onShowShange={setUserModal}  userData={{
+               <UserModal show={userModal} onShowChange={setUserModal}  userData={{
                   userId : userId,
                   selectedUser : setSelectedUser,
                   userGroup: userGroup,

@@ -19,9 +19,9 @@ function refreshPage() {
   window.location.reload(false);
 }
 
-const AbonnementEditModal = ({show, onShowShange, abonnementData}) => {
+const AbonnementEditModal = ({show, onShowChange, abonnementData}) => {
   const api = useAxios();
-  const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+  const handleShow = useCallback( () => {onShowChange(false)}, [onShowChange])
     // const abonnementEditEND = `${process.env.REACT_APP_API_URL}/rest-api/abonnement/`
     // const creneauPerAbonnementEND = `${process.env.REACT_APP_API_URL}/rest-api/abonnement/`
 

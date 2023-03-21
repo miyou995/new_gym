@@ -7,9 +7,9 @@ import useAxios from "../useAxios";
 import PageTitle from "../../layouts/PageTitle";
 import {notifySuccess, notifyError} from '../Alert'
 
-const ActivityEditModal = ({show, onShowShange, activityData}) => {
+const ActivityEditModal = ({show, onShowChange, activityData}) => {
   const api = useAxios();
-  const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+  const handleShow = useCallback( () => {onShowChange(false)}, [onShowChange])
   const activityEditEND = `${process.env.REACT_APP_API_URL}/rest-api/salle-activite/activite/${activityData['activityId']}/`
  
   const sallesActivite = activityData['salles']

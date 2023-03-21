@@ -14,9 +14,9 @@ import TextField from '@material-ui/core/TextField';
 import { notifyError, notifySuccess } from "../Alert";
 
 
-const UserModal = ({show, onShowShange, userData}) => {
+const UserModal = ({show, onShowChange, userData}) => {
 
-  // const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+  // const handleShow = useCallback( () => {onShowChange(false)}, [onShowChange])
   // const api = useAxios();
   // const [selectedUser, setSelectedUser] = useState();
   // const [groups, setGroups] = useState();
@@ -74,7 +74,7 @@ const UserModal = ({show, onShowShange, userData}) => {
 
   // const creneaux = useGetAPI(creneauxEnd)
   const history = useHistory();
-  const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+  const handleShow = useCallback( () => {onShowChange(false)}, [onShowChange])
 
   const [userGroup, setUserGroup] = useState(userData['userGroup']);
   const [group, setGroup] = useState('');
@@ -130,7 +130,7 @@ const UserModal = ({show, onShowShange, userData}) => {
         console.log(res);
         console.log(res.data);
         notifySuccess(" Le Client a été ajouter avec succés");
-        onShowShange(false)
+        onShowChange(false)
     }).catch(err => {
       notifyError("Erreur lors de la creation de l'abonnement")
     });

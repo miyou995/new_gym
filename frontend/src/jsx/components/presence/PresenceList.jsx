@@ -336,8 +336,8 @@ const [presenceAuth, loading] = useAuth(presenceAuthorization, 'GET')
                   </div>
                </div>
             </div>
-            <PresenceEditModal show={editModal} onShowShange={setEditModal} presenceData={{presenceId:presenceId, client:client, hourIn:hourIn, hourOut: hourOut, creneau:creneau, note:note, clientId:clientId, date:date, activity:activity}}/>
-            <PresenceCreateModal show={presneceCreateModal} onShowShange={setPresneceCreateModal} />
+            <PresenceEditModal show={editModal} onShowChange={setEditModal} presenceData={{presenceId:presenceId, client:client, hourIn:hourIn, hourOut: hourOut, creneau:creneau, note:note, clientId:clientId, date:date, activity:activity}}/>
+            <PresenceCreateModal show={presneceCreateModal} onShowChange={setPresneceCreateModal} />
          </div>
          {
             !searchBarActivated &&

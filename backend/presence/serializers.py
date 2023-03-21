@@ -56,7 +56,7 @@ class PresencePostSerialiser(serializers.ModelSerializer):
         presence = Presence.objects.create(abc= abc, creneau= creneau, hour_entree=hour_in , hour_sortie=hour_out,is_in_list=True, is_in_salle=False, date=presence_date)
         # client.init_presence(dict(abc= abc, creneau= creneau, hour_in=hour_in , hour_sortie=hour_out,is_in_list=True, is_in_salle=False, date=presence_date))
         client.is_on_salle=False
-        ecart = presence.get_time_difference()
+        ecart = presence.get_time_consumed(hour_out)
          
         abc.presence_quantity -= ecart
 
@@ -106,7 +106,7 @@ class PresenceAutoSerialiser(serializers.ModelSerializer):
     client = serializers.CharField(source = "abc.client")
     class Meta:
         model = Presence
-        read_only_fields = ('creneau', 'is_in_list', 'hour_entree', 'hour_sortie', 'is_in_salle')
+        read_only_fields = ('creneau', 'is_in_list', 'hor_entree', 'hour_sortie', 'is_in_salle')
         fields= ('client',)
         
 

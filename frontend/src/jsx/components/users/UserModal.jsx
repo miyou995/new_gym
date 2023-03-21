@@ -16,8 +16,8 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
 
 
-const UserModal = ({show, onShowShange, userData}) => {
-  const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+const UserModal = ({show, onShowChange, userData}) => {
+  const handleShow = useCallback( () => {onShowChange(false)}, [onShowChange])
   const api = useAxios();
   // const userEnd = `${process.env.REACT_APP_API_URL}/rest-api/auth/users/${userData['doorId']}/`
   const [selectedUser, setSelectedUser] = useState();
@@ -84,7 +84,7 @@ const UserModal = ({show, onShowShange, userData}) => {
               console.log(res);
               console.log(res.data);
               notifySuccess(" Le Client a été ajouter avec succés");
-              onShowShange(false)
+              onShowChange(false)
           }).catch(err => {
             notifyError("Erreur lors de la creation de l'abonnement")
           });

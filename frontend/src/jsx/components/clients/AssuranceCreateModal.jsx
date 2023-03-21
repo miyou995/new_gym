@@ -9,9 +9,9 @@ import { Link } from "react-router-dom";
 function refreshPage() {
   window.location.reload(false);
 }
-const AssuranceCreateModal = ({show, onShowShange, clientData}) => {
+const AssuranceCreateModal = ({show, onShowChange, clientData}) => {
   const api = useAxios();
-    const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+    const handleShow = useCallback( () => {onShowChange(false)}, [onShowChange])
 
     // let clientEnd = `${process.env.REACT_APP_API_URL}/rest-api/clients-name/`
     // let assuranceEnd = `${process.env.REACT_APP_API_URL}/rest-api/assurance/`

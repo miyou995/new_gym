@@ -16,8 +16,8 @@ function refreshPage() {
 const formatDate = (date) => {
   return new Date(date).toISOString().slice(0, 10)
 }
-const PaiementModal = ({show, onShowShange, clientData}) => {
-    const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+const PaiementModal = ({show, onShowChange, clientData}) => {
+    const handleShow = useCallback( () => {onShowChange(false)}, [onShowChange])
   const api = useAxios();
   const clientId = clientData['clientId']
     const abonnements = clientData['abcs']
