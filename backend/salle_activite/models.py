@@ -25,7 +25,8 @@ class Salle(models.Model):
         
     @property
     def get_door(self):
-        return self.door.ip_adress
+        first_door = self.doors.first().ip_adress 
+        return first_door 
 
     def save(self, *args, **kwargs):
         if self.is_default:
@@ -35,11 +36,15 @@ class Salle(models.Model):
         
 class Door(models.Model):
     ip_adress = models.CharField(max_length=20, verbose_name="Adresse ip de la porte")
-    door = models.ForeignKey(Salle, on_delete=models.CASCADE, related_name='doors', blank=True, null=True)
+    salle      = models.ForeignKey(Salle, on_delete=models.CASCADE, related_name='doors', blank=True, null=True)
     username  = models.CharField(max_length=50, verbose_name="username de la porte")
     password  = models.CharField(max_length=30, verbose_name="password de la porte")
     def __str__(self):
         return self.ip_adress
+    
+    @property
+    def salle_name(self):
+        return self.salle.name or ''
 
 class Activity(models.Model):
     name    = models.CharField( max_length=150, verbose_name="nom d'activité")
@@ -49,8 +54,6 @@ class Activity(models.Model):
     def __str__(self):
         return self.name
 
-    def get_absolute_url(self):
-        return reverse("salle_activity:activity_detail", kwargs={"pk": self.pk})
 
 
 

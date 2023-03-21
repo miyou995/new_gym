@@ -434,7 +434,7 @@ const capitalizeFirstLetter = (word) => {
             </div>
           </div>
         </div>
-        <PaiementModal show={paiementModal} onShowShange={setPaiementModal} coachData={{coachId: coachID, coachName:coach.first_name}} />
+        <PaiementModal show={paiementModal} onShowChange={setPaiementModal} coachData={{coachId: coachID, coachName:coach.first_name}} />
 
       </div>
     </>

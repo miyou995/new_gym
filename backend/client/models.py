@@ -9,7 +9,7 @@ from simple_history.models import HistoricalRecords
 from django.db.models.signals import post_save, pre_save
 from abonnement.models import AbonnementClient
 from presence.models import Presence
-from salle_activite.models import Salle
+from salle_activite.models import Salle, Door
 from datetime import datetime, timedelta, date
 from django.db import transaction
 from django.utils import timezone
@@ -243,7 +243,9 @@ class Client(models.Model):
             self.is_on_salle = False 
             self.save()
             return sortie
-        salle = Salle.objects.filter(door__ip_adress=door_ip).first()
+        door = Door.objects.filter(ip_adress=door_ip).first()
+        salle = door.salle
+        # salle = Salle.objects.filter(door__ip_adress=door_ip).first()
         print('Adress IP', door_ip)
         print('SAlle ', salle)
         abonnements_actives = AbonnementClient.subscription.active_subscription()

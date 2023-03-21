@@ -11,10 +11,10 @@ import {notifySuccess, notifyError} from '../Alert'
 // function refreshPage() {
 //   window.location.reload(false);
 // }
-const PresenceEditModal = ({show, onShowShange, presenceData}) => {
+const PresenceEditModal = ({show, onShowChange, presenceData}) => {
    const api = useAxios();
 
-    const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+    const handleShow = useCallback( () => {onShowChange(false)}, [onShowChange])
     const client  =presenceData['client']
     const clientID  =presenceData['clientId']
     const hourIn  =presenceData['hourIn']

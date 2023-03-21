@@ -11,9 +11,9 @@ import useAxios from "../useAxios";
 function refreshPage() {
   window.location.reload(false);
 }
-const RemunerationCoachModal = ({show, onShowShange, transactionData}) => {
+const RemunerationCoachModal = ({show, onShowChange, transactionData}) => {
   const api = useAxios();
-    const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+    const handleShow = useCallback( () => {onShowChange(false)}, [onShowChange])
 
 
     let paiementCreateEnd = `${process.env.REACT_APP_API_URL}/rest-api/transactions/remunerationProf/create`

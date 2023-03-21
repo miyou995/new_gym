@@ -223,8 +223,8 @@ useEffect(() =>  {
                   </div>
                </div>
             </div>
-            {/* <PresenceEditModal show={editModal} onShowShange={setEditModal} presenceData={{presenceId:presenceId, client:client, hourIn:hourIn, hourOut: hourOut, creneau:creneau, note:note, clientId:clientId, date:date, activity:activity}}/>
-            <PresenceCreateModal show={presneceCreateModal} onShowShange={setPresneceCreateModal} /> */}
+            {/* <PresenceEditModal show={editModal} onShowChange={setEditModal} presenceData={{presenceId:presenceId, client:client, hourIn:hourIn, hourOut: hourOut, creneau:creneau, note:note, clientId:clientId, date:date, activity:activity}}/>
+            <PresenceCreateModal show={presneceCreateModal} onShowChange={setPresneceCreateModal} /> */}
          </div>
          <div className='d-flex text-center justify-content-end'>
                <div className='dataTables_paginate paging_simple_numbers' id='example5_paginate' >

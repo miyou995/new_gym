@@ -9,10 +9,10 @@ import { Dropdown, Tab, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 
-const PresencesClientModal = ({show, onShowShange, presencesData}) => {
+const PresencesClientModal = ({show, onShowChange, presencesData}) => {
   const api = useAxios();
 
-    const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+    const handleShow = useCallback( () => {onShowChange(false)}, [onShowChange])
     const formatDate = (date) => {
       return new Date(date).toISOString().slice(0, 10)
    }

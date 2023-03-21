@@ -247,11 +247,11 @@ const TransactionList = () => {
                            </div>
                         </div>
                      </div>
-                     {/* <TransactionCreateModal show={modal} onShowShange={setModal}/> */}
-                     <PaiementCreateModal show={paiementModal} onShowShange={setPaiementModal} />
-                     <RemunerationCoachModal show={remunerationCoachModal} onShowShange={setRemunerationCoachModal} />
-                     <RemunerationPersonnelModal show={remunerationPersonnelModal} onShowShange={setRemunerationPersonnelModal} />
-                     <AutreCreateModal show={autreModal} onShowShange={setAutreModal} />
+                     {/* <TransactionCreateModal show={modal} onShowChange={setModal}/> */}
+                     <PaiementCreateModal show={paiementModal} onShowChange={setPaiementModal} />
+                     <RemunerationCoachModal show={remunerationCoachModal} onShowChange={setRemunerationCoachModal} />
+                     <RemunerationPersonnelModal show={remunerationPersonnelModal} onShowChange={setRemunerationPersonnelModal} />
+                     <AutreCreateModal show={autreModal} onShowChange={setAutreModal} />
                   </div>
                   <div className='d-flex text-center justify-content-end'>
                      <div className='dataTables_info text-black' id='example5_info '>

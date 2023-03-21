@@ -9,8 +9,8 @@ import useForm from 'react-hook-form';
 import {notifySuccess, notifyError} from '../Alert'
 import useAxios from "../useAxios";
 
-const PaiementCreateModal = ({show, onShowShange}) => {
-    const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+const PaiementCreateModal = ({show, onShowChange}) => {
+    const handleShow = useCallback( () => {onShowChange(false)}, [onShowChange])
     const api = useAxios();
 
     // const {register, handleSubmit, errors } = useForm();

@@ -10,9 +10,9 @@ import {notifySuccess, notifyError} from '../Alert'
 function refreshPage() {
   window.location.reload(false);
 }
-const RemunerationPersonnelModal = ({show, onShowShange, transactionData}) => {
+const RemunerationPersonnelModal = ({show, onShowChange, transactionData}) => {
   const api = useAxios();
-    const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+    const handleShow = useCallback( () => {onShowChange(false)}, [onShowChange])
 
    
   let personnelEnd = `${process.env.REACT_APP_API_URL}/rest-api/personnel/`

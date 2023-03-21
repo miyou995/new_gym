@@ -16,13 +16,13 @@ import useForm from 'react-hook-form';
 function refreshPage() {
   window.location.reload(false);
 }
-const ABCCreateModal = ({show, onShowShange, clientData}) => {
+const ABCCreateModal = ({show, onShowChange, clientData}) => {
   const api = useAxios();
   const [showCreneau, setShowCreneau] = useState(false)
     const handleShow = useCallback( () => {
-      onShowShange(false)
+      onShowChange(false)
       setShowCreneau(false)
-    }, [onShowShange])
+    }, [onShowChange])
     
     
     const clientId = clientData['clientId']

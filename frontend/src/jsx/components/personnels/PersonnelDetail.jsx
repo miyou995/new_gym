@@ -182,7 +182,7 @@ const PersonnelDetail = (props) => {
             </div>
           </div>
         </div>
-        <PaiementModal show={paiementModal} onShowShange={setPaiementModal} coachData={{employeId: employeId, emplyeName:employe.first_name}} />
+        <PaiementModal show={paiementModal} onShowChange={setPaiementModal} coachData={{employeId: employeId, emplyeName:employe.first_name}} />
       </div>
     </>
   );

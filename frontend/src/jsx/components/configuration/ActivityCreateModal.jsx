@@ -12,9 +12,9 @@ import createPalette from "@material-ui/core/styles/createPalette";
 function refreshPage() {
   window.location.reload(false);
 }
-const ActivityCreateModal = ({show, onShowShange, activityData}) => {
+const ActivityCreateModal = ({show, onShowChange, activityData}) => {
   const api = useAxios();
-  const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+  const handleShow = useCallback( () => {onShowChange(false)}, [onShowChange])
     // const activitiesEND = `${process.env.REACT_APP_API_URL}/rest-api/salle-activite/activite/`
     const activityCreateEND = `${process.env.REACT_APP_API_URL}/rest-api/salle-activite/activite/create`
     // const creneauPerAbonnementEND = `${process.env.REACT_APP_API_URL}/rest-api/abonnement/`

@@ -14,9 +14,9 @@ import createPalette from "@material-ui/core/styles/createPalette";
 function refreshPage() {
   window.location.reload(false);
 }
-const AbonnementListModal = ({show, onShowShange, abonnementData}) => {
+const AbonnementListModal = ({show, onShowChange, abonnementData}) => {
   const api = useAxios();
-  const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+  const handleShow = useCallback( () => {onShowChange(false)}, [onShowChange])
     // const abonnementEditEND = `${process.env.REACT_APP_API_URL}/rest-api/abonnement/`
     // const creneauPerAbonnementEND = `${process.env.REACT_APP_API_URL}/rest-api/abonnement/`
 
@@ -48,7 +48,7 @@ useEffect(() => {
   
 }, [show]);
 
-// const openCloseModal = useCallback( (abID) => {} ,[onShowShange])
+// const openCloseModal = useCallback( (abID) => {} ,[onShowChange])
 //  had el useEffect trigli probleme ta3 retard hata ikounou 3andha les valeurs bach t3ayet la fonctions
   useEffect(() => { 
     abonnementData(abId, acti)

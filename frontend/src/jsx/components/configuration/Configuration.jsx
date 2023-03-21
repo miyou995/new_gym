@@ -68,6 +68,7 @@ const Configuration = (props) => {
     const [doorIp, setDoorIp] = useState('')
     const [doorUsername, setDoorUsername] = useState('')
     const [doorPassword, setDoorPassword] = useState('')
+    const [doorSalle, setDoorSalle] = useState('')
 
     const [color, setColor] = useState("")
     const [salle, setSalle] = useState("")
@@ -113,13 +114,14 @@ const Configuration = (props) => {
         api.get(salleActivitiesEND).then(res =>{
             setSalllesActivities(res.data)
         })
-    }, [salleActiviteCreateModal, salleActivitiesEND, salleActiviteEditModal]);
+    }, [salleActiviteCreateModal, salleActiviteEditModal]);
 
     useEffect(() => {
         api.get(doorsEnd).then(res =>{
             setDoors(res.data)
         })
     }, [doorModal]);
+
     useEffect(() => {
         //console.log('dureee de labonnement', DureeAb.findIndex(x => x.jours === Number(abDuree)));
      }, [abDuree, abonnementCreateModal]);
@@ -149,13 +151,13 @@ const Configuration = (props) => {
         }
         return indexesList    
     }
-    const setSelectedSalle = (salles, salleId ) => {
-        for (let i = 0; i < salles.length; i++) {
-            if (salleId == salles[i].id){
-               return i
-            }            
-        }
-    }
+    // const setSelectedSalle = (salles, salleId ) => {
+    //     for (let i = 0; i < salles.length; i++) {
+    //         if (salleId == salles[i].id){
+    //            return i
+    //         }            
+    //     }
+    // }
     const openTheGym = () => {
         if (gymStatus === false) {
             api.get(startListenEND).then(res => {
@@ -291,7 +293,6 @@ const Configuration = (props) => {
                   <thead>
                     <tr>
                       <th>Nom de la salle </th>
-                      <th>Adresse IP</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -393,32 +394,37 @@ const Configuration = (props) => {
                         <div className="card-header">
                             <h4 className="card-title">Portes</h4>
                             <Button onClick={e => { 
-                                setDoorModal(true)
                                 setDoorId('')
                                 setDoorIp('')
+                                setDoorSalle('')
                                 setDoorUsername('')
                                 setDoorPassword('')
+                                setDoorModal(true)
                                 }}>Ajouter</Button>
                         </div>
                         <div className="card-body">
-                            <PerfectScrollbar   style={{ height: "370px" }}   id="DZ_W_TimeLine" className="widget-timeline dz-scroll height370 ps ps--active-y" >
+                            <PerfectScrollbar style={{ height: "370px" }} id="DZ_W_TimeLine" className="widget-timeline dz-scroll height370 ps ps--active-y" >
                                 <div className="table-responsive card-table">
                                     <table className="table text-center bg-warning-hover">
                                         <thead>
                                             <tr>
-                                                <th className="text-left">Nom</th>
+                                                <th className="text-left">Adresse IP</th>
+                                                <th>Salle</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                         {doors.map( door => (
                                             <tr className='cursor-abonnement' key={door.id} onClick={e => {
-                                                setDoorModal(true)
                                                 setDoorId(door.id)
+                                                console.log("the door id", door);
                                                 setDoorIp(door.ip_adress)
+                                                setDoorSalle(door.salle)
                                                 setDoorUsername(door.username)
                                                 setDoorPassword(door.password)
+                                                setDoorModal(true)
                                             }}>
                                                 <td className="text-left">{door.ip_adress}</td>
+                                                <td >{door.salle}</td>
                                             </tr>
                                         ))}
                                         </tbody>
@@ -500,12 +506,12 @@ const Configuration = (props) => {
                     </div>
                 </div> */}
         </div>
-        <AbonnementCreateModal show={abonnementCreateModal} onShowShange={setAbonnementCreateModal} abonnementData={{abonnementId: abonnementId}} />
-        <ActivityCreateModal show={activityCreateModal} onShowShange={setActivityCreateModal} activityData={{
+        <AbonnementCreateModal show={abonnementCreateModal} onShowChange={setAbonnementCreateModal} abonnementData={{abonnementId: abonnementId}} />
+        <ActivityCreateModal show={activityCreateModal} onShowChange={setActivityCreateModal} activityData={{
             activityId: activityId, 
             salllesActivities : salllesActivities
             }} />
-        <ActivityEditModal show={activityEditModal} onShowShange={setActivityEditModal} activityData={{
+        <ActivityEditModal show={activityEditModal} onShowChange={setActivityEditModal} activityData={{
             activityId: activityId, 
             salllesActivities : salllesActivities, 
             color:color, 
@@ -513,26 +519,28 @@ const Configuration = (props) => {
             activityName: activityName, 
             salles: salllesActivities, 
             salleId:salleId}} />
-        <SalleActiviteCreateModal  show={salleActiviteCreateModal} onShowShange={setSalleActiviteCreateModal}  salleData={{doors : doors}} />
-        <PlanningCreateModal  show={planningCreateModal} onShowShange={setPlanningCreateModal}  />
-        <MaladieCreateModal  show={maladieCreateModal} onShowShange={setMaladieCreateModal}  />
-        <MaladieEditModal  show={maladieEditModal} onShowShange={setMaladieEditModal} maladieData={{
+        <SalleActiviteCreateModal  show={salleActiviteCreateModal} onShowChange={setSalleActiviteCreateModal}  salleData={{doors : doors}} />
+        <PlanningCreateModal  show={planningCreateModal} onShowChange={setPlanningCreateModal}  />
+        <MaladieCreateModal  show={maladieCreateModal} onShowChange={setMaladieCreateModal}  />
+        <MaladieEditModal  show={maladieEditModal} onShowChange={setMaladieEditModal} maladieData={{
             maladieId : maladieId,
             maladieName : maladieName
         }} />
-         <DoorModal  show={doorModal} onShowShange={setDoorModal} doorData={{
+         <DoorModal  show={doorModal} onShowChange={setDoorModal} doorData={{
             doorId : doorId,
             doorIp : doorIp,
             doorUsername: doorUsername,
-            doorPassword: doorPassword
+            doorPassword: doorPassword,
+            salllesActivities : salllesActivities,
+            doorSalle : doorSalle
         }} /> 
-        <PlanningEditModal  show={planningEditModal} onShowShange={setPlanningEditModal} planningData={{
+        <PlanningEditModal  show={planningEditModal} onShowChange={setPlanningEditModal} planningData={{
             planId : planId,
             planName :planName,
             isDefaultPlanning: isDefaultPlanning,
         }}  />
-        < AbonnementListModal  show={abonnementListModal} onShowShange={setAbonnementListModal} abonnementData={TestFunc} />
-        < SalleActiviteEditModal  show={salleActiviteEditModal} onShowShange={setSalleActiviteEditModal}  salleData={{
+        < AbonnementListModal  show={abonnementListModal} onShowChange={setAbonnementListModal} abonnementData={TestFunc} />
+        < SalleActiviteEditModal  show={salleActiviteEditModal} onShowChange={setSalleActiviteEditModal}  salleData={{
             salleId : salleId,
             salleName : salleName,
             isDefaultSalle : isDefaultSalle,
@@ -540,7 +548,7 @@ const Configuration = (props) => {
             doorId : doorId,
             doorIp : doorIp,
             }} />
-        <AbonnementEditModal show={abonnementEditModal} onShowShange={setAbonnementEditModal} 
+        <AbonnementEditModal show={abonnementEditModal} onShowChange={setAbonnementEditModal} 
         abonnementData={
             {
             abonnementId: abonnementId,

@@ -55,14 +55,21 @@ class Presence(models.Model):
         if not self.date:
             self.date = timezone.now()
         return super().save(*args, **kwargs)
-    def get_time_consumed(self):
+    
+    def get_time_consumed(self, sortie=None):
         today = date.today()
         print(' THE today', today)
         # time = timezone.now().strptime('09:30', '%H:%M').time()
         # time = datetime.now().strftime("%H:%M:%S")
         time = datetime.now().time()
         print(' THE timezone.now()',time)
-        d_end = datetime.combine(today, time)
+        if sortie:
+            print('LA SORTIE TIME', sortie)
+            print('LA SORTIE TIME TYPE =>', type(sortie))
+            d_end = datetime.combine(today, sortie)
+        else:
+            d_end = datetime.combine(today, time)
+
         print(' THE D_end0', d_end)
         if self.abc.is_time_volume():
             d_start = datetime.combine(today, self.hour_entree)
@@ -75,7 +82,8 @@ class Presence(models.Model):
             print(' THE ECART', ecart)
         else :
             ecart = 1
-        self.hour_sortie = d_end
+        print('THE FINAL DEND', d_end)
+        self.hour_sortie = d_end.time()
         self.is_in_salle = False
         self.save()
         return ecart

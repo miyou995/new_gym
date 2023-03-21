@@ -5,8 +5,8 @@ import useAxios from "../useAxios";
 import PageTitle from "../../layouts/PageTitle";
 import {notifySuccess, notifyError} from '../Alert'
 
-const MaladieCreateModal = ({show, onShowShange}) => {
-    const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+const MaladieCreateModal = ({show, onShowChange}) => {
+    const handleShow = useCallback( () => {onShowChange(false)}, [onShowChange])
   const api = useAxios();
   const maladieCreateEnd = `${process.env.REACT_APP_API_URL}/rest-api/maladie/create/`
 

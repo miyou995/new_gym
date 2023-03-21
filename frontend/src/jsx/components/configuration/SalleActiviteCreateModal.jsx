@@ -14,9 +14,9 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import useForm from 'react-hook-form';
 import createPalette from "@material-ui/core/styles/createPalette";
 
-const SalleActiviteCreateModal = ({show, onShowShange, salleData}) => {
+const SalleActiviteCreateModal = ({show, onShowChange, salleData}) => {
   const api = useAxios();
-  const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+  const handleShow = useCallback( () => {onShowChange(false)}, [onShowChange])
     // const creneauPerAbonnementEND = `${process.env.REACT_APP_API_URL}/rest-api/abonnement/`
     const salleActiviteCreateEnd = `${process.env.REACT_APP_API_URL}/rest-api/salle-activite/create`
 
@@ -65,25 +65,7 @@ return (
             </div>
 
 
-            <div className="form-group row">
-              <label className="col-sm-3 col-form-label">Salle </label>
-              <div className="col-sm-9">
-                  <Autocomplete
-                      onChange={((event, value) =>  {
-                        setDoor(value.id)
-                    }
-                        )} 
-                    //   value={salles}
-                      options={salleData['doors']}
-                      getOptionSelected={(option) =>  option['id']}
 
-                      id="size-small-standard-multi"
-                      getOptionLabel={(option) =>  ( option['ip_adress'])}
-                      renderInput={(params) =>
-                  (<TextField {...params} name="door" label="Porte" variant="outlined" fullWidth />)}
-                />
-              </div>
-          </div>
           
           <div className="form-group row">
                 <FormControlLabel

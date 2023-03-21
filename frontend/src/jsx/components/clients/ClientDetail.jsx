@@ -516,13 +516,13 @@ useEffect(() => {
               </Card.Body>
             </Card>
         </div>
-        <ABCCreateModal show={aBCmodalCreate} onShowShange={setABCModalCreate} clientData={{clientId: clientId}} />
-        <RenewAbonnementModal show={renewAbcModal} onShowShange={setRenewAbcModal} clientData={{clientId: clientId}}/>
-        <PaiementsClientModal show={clientPaiementsModal} onShowShange={setClientPaiementsModal} paiementsData={{clientId: clientId}} />
-        <PresencesClientModal show={clientPresencesModal} onShowShange={setClientPresencesModal} presencesData={{clientId: clientId}} />
-        <AbonnementClientModal show={clientAbcModal} onShowShange={setClientAbcModal} abcData={{clientId: clientId}} />
-        <PaiementModal show={paiementModal} onShowShange={setPaiementModal} clientData={{clientId: clientId, abcs :abonClient}} />
-        <PaiementEditModal show={paiementEditModal} onShowShange={setPaiementEditModal} paiementData={{clientId: clientId,
+        <ABCCreateModal show={aBCmodalCreate} onShowChange={setABCModalCreate} clientData={{clientId: clientId}} />
+        <RenewAbonnementModal show={renewAbcModal} onShowChange={setRenewAbcModal} clientData={{clientId: clientId}}/>
+        <PaiementsClientModal show={clientPaiementsModal} onShowChange={setClientPaiementsModal} paiementsData={{clientId: clientId}} />
+        <PresencesClientModal show={clientPresencesModal} onShowChange={setClientPresencesModal} presencesData={{clientId: clientId}} />
+        <AbonnementClientModal show={clientAbcModal} onShowChange={setClientAbcModal} abcData={{clientId: clientId}} />
+        <PaiementModal show={paiementModal} onShowChange={setPaiementModal} clientData={{clientId: clientId, abcs :abonClient}} />
+        <PaiementEditModal show={paiementEditModal} onShowChange={setPaiementEditModal} paiementData={{clientId: clientId,
           abcs :abonClient,
           paiementIdInfo: paiementIdInfo,
           paiementAmountInfo: paiementAmountInfo,
@@ -531,7 +531,7 @@ useEffect(() => {
           paiementNotesInfo: paiementNotesInfo,
           paiementABCName : paiementABCName,
         }} />
-        <ABCDetailModal show={abonDetailModal} onShowShange={setAbonDetailModal} abonnementData={{
+        <ABCDetailModal show={abonDetailModal} onShowChange={setAbonDetailModal} abonnementData={{
           clientId: clientId, 
           abonClientID: abonClientID,
           abonClientType : abonClientType,
@@ -541,8 +541,8 @@ useEffect(() => {
           abonnementClientCreneaux :abonnementClientCreneaux,
           abonClientReste :abonClientReste
           }} />
-          <AssuranceCreateModal show={assuranceModal} onShowShange={setAssuranceModal} clientData={{clientId: clientId}}/>
-          {/* <AssuranceCreateModal show={assuranceModal} onShowShange={setAssuranceModal} clientData={{clientId: clientId}}/> */}
+          <AssuranceCreateModal show={assuranceModal} onShowChange={setAssuranceModal} clientData={{clientId: clientId}}/>
+          {/* <AssuranceCreateModal show={assuranceModal} onShowChange={setAssuranceModal} clientData={{clientId: clientId}}/> */}
       </div>
       </div>
     </>
