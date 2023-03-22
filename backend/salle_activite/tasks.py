@@ -31,6 +31,18 @@ def start_linsten_test_device_2():
     device.alarm_listen()
     if result:
         device.alarm_listen()
+
+@shared_task
+def start_linsten_3():
+
+    device = AccessControl()
+    print(' the instance start_linsten_3', device)
+    
+    device.get_login_info(ip='192.168.1.230', port=37777, username='admin', password='123456')
+    result = device.login()
+    device.alarm_listen()
+    if result:
+        device.alarm_listen()
         
 @shared_task
 def start_linsten_3():

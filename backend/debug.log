@@ -4913,3 +4913,691 @@ abonnement.models.AbonnementClient.DoesNotExist: AbonnementClient matching query
 2023-03-21 09:54:18,214 celery.bootsteps DEBUG    | Consumer: Stopping Connection...
 2023-03-21 09:54:18,215 celery.bootsteps DEBUG    | Worker: Stopping Pool...
 2023-03-21 09:54:18,365 celery.concurrency.asynpool DEBUG    removing tasks from inqueue until task handler finished
+2023-03-22 13:29:41,468 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-22 13:30:24,915 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-22 13:30:42,241 celery.bootsteps DEBUG    | Worker: Preparing bootsteps.
+2023-03-22 13:30:42,264 celery.bootsteps DEBUG    | Worker: Building graph...
+2023-03-22 13:30:42,265 celery.bootsteps DEBUG    | Worker: New boot order: {StateDB, Timer, Hub, Pool, Autoscaler, Beat, Consumer}
+2023-03-22 13:30:42,396 celery.bootsteps DEBUG    | Consumer: Preparing bootsteps.
+2023-03-22 13:30:42,397 celery.bootsteps DEBUG    | Consumer: Building graph...
+2023-03-22 13:30:42,492 celery.bootsteps DEBUG    | Consumer: New boot order: {Connection, Agent, Events, Mingle, Tasks, Control, Heart, Gossip, event loop}
+2023-03-22 13:30:42,549 celery.bootsteps DEBUG    | Worker: Starting Hub
+2023-03-22 13:30:42,549 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-22 13:30:42,550 celery.bootsteps DEBUG    | Worker: Starting Pool
+2023-03-22 13:30:42,829 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-22 13:30:42,830 celery.bootsteps DEBUG    | Worker: Starting Consumer
+2023-03-22 13:30:42,831 celery.bootsteps DEBUG    | Consumer: Starting Connection
+2023-03-22 13:30:42,843 celery.worker.consumer.consumer ERROR    consumer: Cannot connect to redis://localhost:6379//: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 2.00 seconds... (1/100)
+
+2023-03-22 13:30:44,848 celery.worker.consumer.consumer ERROR    consumer: Cannot connect to redis://localhost:6379//: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 4.00 seconds... (2/100)
+
+2023-03-22 13:30:48,852 celery.worker.consumer.consumer ERROR    consumer: Cannot connect to redis://localhost:6379//: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 6.00 seconds... (3/100)
+
+2023-03-22 13:30:54,858 celery.worker.consumer.consumer ERROR    consumer: Cannot connect to redis://localhost:6379//: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 8.00 seconds... (4/100)
+
+2023-03-22 13:31:02,865 celery.worker.consumer.consumer ERROR    consumer: Cannot connect to redis://localhost:6379//: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 10.00 seconds... (5/100)
+
+2023-03-22 13:31:12,872 celery.worker.consumer.consumer ERROR    consumer: Cannot connect to redis://localhost:6379//: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 12.00 seconds... (6/100)
+
+2023-03-22 13:31:24,882 celery.worker.consumer.consumer ERROR    consumer: Cannot connect to redis://localhost:6379//: Error 111 connecting to localhost:6379. Connection refused..
+Trying again in 14.00 seconds... (7/100)
+
+2023-03-22 13:31:34,410 celery.bootsteps DEBUG    | Worker: Closing Hub...
+2023-03-22 13:31:34,411 celery.bootsteps DEBUG    | Worker: Closing Pool...
+2023-03-22 13:31:34,412 celery.bootsteps DEBUG    | Worker: Closing Consumer...
+2023-03-22 13:31:34,413 celery.bootsteps DEBUG    | Worker: Stopping Consumer...
+2023-03-22 13:31:34,413 celery.bootsteps DEBUG    | Worker: Stopping Pool...
+2023-03-22 13:31:34,613 celery.concurrency.asynpool DEBUG    removing tasks from inqueue until task handler finished
+2023-03-22 13:31:37,649 celery.bootsteps DEBUG    | Worker: Preparing bootsteps.
+2023-03-22 13:31:37,654 celery.bootsteps DEBUG    | Worker: Building graph...
+2023-03-22 13:31:37,656 celery.bootsteps DEBUG    | Worker: New boot order: {StateDB, Timer, Hub, Pool, Autoscaler, Beat, Consumer}
+2023-03-22 13:31:37,678 celery.bootsteps DEBUG    | Consumer: Preparing bootsteps.
+2023-03-22 13:31:37,679 celery.bootsteps DEBUG    | Consumer: Building graph...
+2023-03-22 13:31:37,726 celery.bootsteps DEBUG    | Consumer: New boot order: {Connection, Events, Mingle, Gossip, Tasks, Control, Agent, Heart, event loop}
+2023-03-22 13:31:37,764 celery.bootsteps DEBUG    | Worker: Starting Hub
+2023-03-22 13:31:37,764 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-22 13:31:37,765 celery.bootsteps DEBUG    | Worker: Starting Pool
+2023-03-22 13:31:38,052 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-22 13:31:38,052 celery.bootsteps DEBUG    | Worker: Starting Consumer
+2023-03-22 13:31:38,053 celery.bootsteps DEBUG    | Consumer: Starting Connection
+2023-03-22 13:31:38,077 celery.worker.consumer.connection INFO     Connected to redis://localhost:6379//
+2023-03-22 13:31:38,077 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-22 13:31:38,078 celery.bootsteps DEBUG    | Consumer: Starting Events
+2023-03-22 13:31:38,084 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-22 13:31:38,085 celery.bootsteps DEBUG    | Consumer: Starting Mingle
+2023-03-22 13:31:38,085 celery.worker.consumer.mingle INFO     mingle: searching for neighbors
+2023-03-22 13:31:39,105 celery.worker.consumer.mingle INFO     mingle: all alone
+2023-03-22 13:31:39,105 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-22 13:31:39,106 celery.bootsteps DEBUG    | Consumer: Starting Gossip
+2023-03-22 13:31:39,111 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-22 13:31:39,111 celery.bootsteps DEBUG    | Consumer: Starting Tasks
+2023-03-22 13:31:39,128 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-22 13:31:39,129 celery.bootsteps DEBUG    | Consumer: Starting Control
+2023-03-22 13:31:39,134 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-22 13:31:39,135 celery.bootsteps DEBUG    | Consumer: Starting Heart
+2023-03-22 13:31:39,138 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-22 13:31:39,139 celery.bootsteps DEBUG    | Consumer: Starting event loop
+2023-03-22 13:31:39,140 celery.bootsteps DEBUG    | Worker: Hub.register Pool...
+2023-03-22 13:31:39,152 celery.apps.worker INFO     celery@DESKTOP-ACIBNGT ready.
+2023-03-22 13:31:39,153 kombu.common DEBUG    basic.qos: prefetch_count->16
+2023-03-22 13:33:04,390 PIL.Image    DEBUG    Importing BlpImagePlugin
+2023-03-22 13:33:04,398 PIL.Image    DEBUG    Importing BmpImagePlugin
+2023-03-22 13:33:04,399 PIL.Image    DEBUG    Importing BufrStubImagePlugin
+2023-03-22 13:33:04,407 PIL.Image    DEBUG    Importing CurImagePlugin
+2023-03-22 13:33:04,414 PIL.Image    DEBUG    Importing DcxImagePlugin
+2023-03-22 13:33:04,428 PIL.Image    DEBUG    Importing DdsImagePlugin
+2023-03-22 13:33:04,436 PIL.Image    DEBUG    Importing EpsImagePlugin
+2023-03-22 13:33:04,445 PIL.Image    DEBUG    Importing FitsImagePlugin
+2023-03-22 13:33:04,453 PIL.Image    DEBUG    Importing FitsStubImagePlugin
+2023-03-22 13:33:04,461 PIL.Image    DEBUG    Importing FliImagePlugin
+2023-03-22 13:33:04,469 PIL.Image    DEBUG    Importing FpxImagePlugin
+2023-03-22 13:33:04,477 PIL.Image    DEBUG    Image: failed to import FpxImagePlugin: No module named 'olefile'
+2023-03-22 13:33:04,478 PIL.Image    DEBUG    Importing FtexImagePlugin
+2023-03-22 13:33:04,486 PIL.Image    DEBUG    Importing GbrImagePlugin
+2023-03-22 13:33:04,493 PIL.Image    DEBUG    Importing GifImagePlugin
+2023-03-22 13:33:04,494 PIL.Image    DEBUG    Importing GribStubImagePlugin
+2023-03-22 13:33:04,501 PIL.Image    DEBUG    Importing Hdf5StubImagePlugin
+2023-03-22 13:33:04,508 PIL.Image    DEBUG    Importing IcnsImagePlugin
+2023-03-22 13:33:04,531 PIL.Image    DEBUG    Importing IcoImagePlugin
+2023-03-22 13:33:04,539 PIL.Image    DEBUG    Importing ImImagePlugin
+2023-03-22 13:33:04,546 PIL.Image    DEBUG    Importing ImtImagePlugin
+2023-03-22 13:33:04,554 PIL.Image    DEBUG    Importing IptcImagePlugin
+2023-03-22 13:33:04,561 PIL.Image    DEBUG    Importing JpegImagePlugin
+2023-03-22 13:33:04,561 PIL.Image    DEBUG    Importing Jpeg2KImagePlugin
+2023-03-22 13:33:04,562 PIL.Image    DEBUG    Importing McIdasImagePlugin
+2023-03-22 13:33:04,569 PIL.Image    DEBUG    Importing MicImagePlugin
+2023-03-22 13:33:04,579 PIL.Image    DEBUG    Image: failed to import MicImagePlugin: No module named 'olefile'
+2023-03-22 13:33:04,580 PIL.Image    DEBUG    Importing MpegImagePlugin
+2023-03-22 13:33:04,589 PIL.Image    DEBUG    Importing MpoImagePlugin
+2023-03-22 13:33:04,597 PIL.Image    DEBUG    Importing MspImagePlugin
+2023-03-22 13:33:04,605 PIL.Image    DEBUG    Importing PalmImagePlugin
+2023-03-22 13:33:04,619 PIL.Image    DEBUG    Importing PcdImagePlugin
+2023-03-22 13:33:04,627 PIL.Image    DEBUG    Importing PcxImagePlugin
+2023-03-22 13:33:04,628 PIL.Image    DEBUG    Importing PdfImagePlugin
+2023-03-22 13:33:04,650 PIL.Image    DEBUG    Importing PixarImagePlugin
+2023-03-22 13:33:04,658 PIL.Image    DEBUG    Importing PngImagePlugin
+2023-03-22 13:33:04,659 PIL.Image    DEBUG    Importing PpmImagePlugin
+2023-03-22 13:33:04,659 PIL.Image    DEBUG    Importing PsdImagePlugin
+2023-03-22 13:33:04,668 PIL.Image    DEBUG    Importing SgiImagePlugin
+2023-03-22 13:33:04,677 PIL.Image    DEBUG    Importing SpiderImagePlugin
+2023-03-22 13:33:04,687 PIL.Image    DEBUG    Importing SunImagePlugin
+2023-03-22 13:33:04,695 PIL.Image    DEBUG    Importing TgaImagePlugin
+2023-03-22 13:33:04,704 PIL.Image    DEBUG    Importing TiffImagePlugin
+2023-03-22 13:33:04,705 PIL.Image    DEBUG    Importing WebPImagePlugin
+2023-03-22 13:33:04,741 PIL.Image    DEBUG    Importing WmfImagePlugin
+2023-03-22 13:33:04,751 PIL.Image    DEBUG    Importing XbmImagePlugin
+2023-03-22 13:33:04,759 PIL.Image    DEBUG    Importing XpmImagePlugin
+2023-03-22 13:33:04,767 PIL.Image    DEBUG    Importing XVThumbImagePlugin
+2023-03-22 13:33:04,951 celery.worker.strategy INFO     Received task: client.tasks.register_user[3b57177c-e014-4b9c-a02b-45d6d0a8e7fb]  
+2023-03-22 13:33:04,953 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7fcd67d83550> (args:('client.tasks.register_user', '3b57177c-e014-4b9c-a02b-45d6d0a8e7fb', {'lang': 'py', 'task': 'client.tasks.register_user', 'id': '3b57177c-e014-4b9c-a02b-45d6d0a8e7fb', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '3b57177c-e014-4b9c-a02b-45d6d0a8e7fb', 'parent_id': None, 'argsrepr': "('ASMA', 'C0002', 'download.jpg')", 'kwargsrepr': '{}', 'origin': 'gen199@DESKTOP-ACIBNGT', 'reply_to': '34fa47cb-ccda-374e-984e-cbfcfce7b07f', 'correlation_id': '3b57177c-e014-4b9c-a02b-45d6d0a8e7fb', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': ['ASMA', 'C0002', 'download.jpg'], 'kwargs': {}}, b'[["ASMA", "C0002", "download.jpg"], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-22 13:33:04,957 celery.worker.request DEBUG    Task accepted: client.tasks.register_user[3b57177c-e014-4b9c-a02b-45d6d0a8e7fb] pid:248
+2023-03-22 13:33:06,415 celery.app.trace INFO     Task client.tasks.register_user[3b57177c-e014-4b9c-a02b-45d6d0a8e7fb] succeeded in 1.4573908999999503s: True
+2023-03-22 13:38:23,128 django.request ERROR    Internal Server Error: /rest-api/abonnement-client/delete/1/
+Traceback (most recent call last):
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/rest_framework/generics.py", line 217, in delete
+    return self.destroy(request, *args, **kwargs)
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/rest_framework/mixins.py", line 91, in destroy
+    self.perform_destroy(instance)
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/rest_framework/mixins.py", line 95, in perform_destroy
+    instance.delete()
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 966, in delete
+    collector.collect([self], keep_parents=keep_parents)
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/django/db/models/deletion.py", line 302, in collect
+    raise ProtectedError(
+django.db.models.deletion.ProtectedError: ("Cannot delete some instances of model 'AbonnementClient' because they are referenced through protected foreign keys: 'Paiement.abonnement_client'.", {<Paiement: 5000>, <Paiement: 5000>})
+2023-03-22 13:38:23,891 django.request ERROR    Internal Server Error: /rest-api/abonnement-client/delete/1/
+Traceback (most recent call last):
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/rest_framework/generics.py", line 217, in delete
+    return self.destroy(request, *args, **kwargs)
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/rest_framework/mixins.py", line 91, in destroy
+    self.perform_destroy(instance)
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/rest_framework/mixins.py", line 95, in perform_destroy
+    instance.delete()
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 966, in delete
+    collector.collect([self], keep_parents=keep_parents)
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/django/db/models/deletion.py", line 302, in collect
+    raise ProtectedError(
+django.db.models.deletion.ProtectedError: ("Cannot delete some instances of model 'AbonnementClient' because they are referenced through protected foreign keys: 'Paiement.abonnement_client'.", {<Paiement: 5000>, <Paiement: 5000>})
+2023-03-22 13:38:25,668 django.request ERROR    Internal Server Error: /rest-api/abonnement-client/delete/1/
+Traceback (most recent call last):
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/rest_framework/generics.py", line 217, in delete
+    return self.destroy(request, *args, **kwargs)
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/rest_framework/mixins.py", line 91, in destroy
+    self.perform_destroy(instance)
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/rest_framework/mixins.py", line 95, in perform_destroy
+    instance.delete()
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 966, in delete
+    collector.collect([self], keep_parents=keep_parents)
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/django/db/models/deletion.py", line 302, in collect
+    raise ProtectedError(
+django.db.models.deletion.ProtectedError: ("Cannot delete some instances of model 'AbonnementClient' because they are referenced through protected foreign keys: 'Paiement.abonnement_client'.", {<Paiement: 5000>, <Paiement: 5000>})
+2023-03-22 13:38:34,541 django.request ERROR    Internal Server Error: /rest-api/abonnement-client/delete/1/
+Traceback (most recent call last):
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/rest_framework/generics.py", line 217, in delete
+    return self.destroy(request, *args, **kwargs)
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/rest_framework/mixins.py", line 91, in destroy
+    self.perform_destroy(instance)
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/rest_framework/mixins.py", line 95, in perform_destroy
+    instance.delete()
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 966, in delete
+    collector.collect([self], keep_parents=keep_parents)
+  File "/mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/venv/lib/python3.8/site-packages/django/db/models/deletion.py", line 302, in collect
+    raise ProtectedError(
+django.db.models.deletion.ProtectedError: ("Cannot delete some instances of model 'AbonnementClient' because they are referenced through protected foreign keys: 'Paiement.abonnement_client'.", {<Paiement: 5000>, <Paiement: 5000>})
+2023-03-22 13:44:54,104 salle_activite_view INFO     Open All The Doors inited...
+2023-03-22 13:44:54,118 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_3[25c5405d-b621-49a4-b0ba-2cf2245d705b]  
+2023-03-22 13:44:54,122 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7fcd67d83550> (args:('salle_activite.tasks.start_linsten_3', '25c5405d-b621-49a4-b0ba-2cf2245d705b', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_3', 'id': '25c5405d-b621-49a4-b0ba-2cf2245d705b', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '25c5405d-b621-49a4-b0ba-2cf2245d705b', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen199@DESKTOP-ACIBNGT', 'reply_to': '34fa47cb-ccda-374e-984e-cbfcfce7b07f', 'correlation_id': '25c5405d-b621-49a4-b0ba-2cf2245d705b', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-22 13:44:54,126 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_3[25c5405d-b621-49a4-b0ba-2cf2245d705b] pid:248
+2023-03-22 13:44:54,135 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_4[034067fc-6b88-49aa-b180-bd76547e62d9]  
+2023-03-22 13:44:54,137 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7fcd67d83550> (args:('salle_activite.tasks.start_linsten_4', '034067fc-6b88-49aa-b180-bd76547e62d9', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_4', 'id': '034067fc-6b88-49aa-b180-bd76547e62d9', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '034067fc-6b88-49aa-b180-bd76547e62d9', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen199@DESKTOP-ACIBNGT', 'reply_to': '34fa47cb-ccda-374e-984e-cbfcfce7b07f', 'correlation_id': '034067fc-6b88-49aa-b180-bd76547e62d9', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-22 13:44:54,142 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_4[034067fc-6b88-49aa-b180-bd76547e62d9] pid:250
+2023-03-22 13:44:54,156 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_5[3ce6a787-4e6f-41ea-8c09-588b8a0a30e2]  
+2023-03-22 13:44:54,157 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7fcd67d83550> (args:('salle_activite.tasks.start_linsten_5', '3ce6a787-4e6f-41ea-8c09-588b8a0a30e2', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_5', 'id': '3ce6a787-4e6f-41ea-8c09-588b8a0a30e2', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '3ce6a787-4e6f-41ea-8c09-588b8a0a30e2', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen199@DESKTOP-ACIBNGT', 'reply_to': '34fa47cb-ccda-374e-984e-cbfcfce7b07f', 'correlation_id': '3ce6a787-4e6f-41ea-8c09-588b8a0a30e2', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-22 13:44:54,165 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_5[3ce6a787-4e6f-41ea-8c09-588b8a0a30e2] pid:249
+2023-03-22 13:44:54,196 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_6[0fb51078-3417-4fd8-a67b-535f4d4afa23]  
+2023-03-22 13:44:54,211 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7fcd67d83550> (args:('salle_activite.tasks.start_linsten_6', '0fb51078-3417-4fd8-a67b-535f4d4afa23', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_6', 'id': '0fb51078-3417-4fd8-a67b-535f4d4afa23', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '0fb51078-3417-4fd8-a67b-535f4d4afa23', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen199@DESKTOP-ACIBNGT', 'reply_to': '34fa47cb-ccda-374e-984e-cbfcfce7b07f', 'correlation_id': '0fb51078-3417-4fd8-a67b-535f4d4afa23', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-22 13:44:54,238 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_6[0fb51078-3417-4fd8-a67b-535f4d4afa23] pid:251
+2023-03-22 13:44:54,387 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_7[3c6dc535-5ae3-4010-a529-a2c26a7f183d]  
+2023-03-22 13:44:54,408 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_8[58899e84-f4f6-4f66-860f-2e120426bce2]  
+2023-03-22 13:44:54,434 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_9[d6ca8d8d-53f1-48e4-877e-77ae2f09c912]  
+2023-03-22 13:44:54,458 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_face_door_right[a535acff-5ad0-4897-926b-14c9ebc4b31a]  
+2023-03-22 13:44:54,480 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_face_door_left[6516f3dc-66bc-4c7a-8b21-25028d9a868b]  
+2023-03-22 13:44:55,466 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_3[25c5405d-b621-49a4-b0ba-2cf2245d705b] succeeded in 1.3404343999998218s: None
+2023-03-22 13:44:55,471 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7fcd67d83550> (args:('salle_activite.tasks.start_linsten_7', '3c6dc535-5ae3-4010-a529-a2c26a7f183d', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_7', 'id': '3c6dc535-5ae3-4010-a529-a2c26a7f183d', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '3c6dc535-5ae3-4010-a529-a2c26a7f183d', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen199@DESKTOP-ACIBNGT', 'reply_to': '34fa47cb-ccda-374e-984e-cbfcfce7b07f', 'correlation_id': '3c6dc535-5ae3-4010-a529-a2c26a7f183d', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-22 13:44:55,477 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_7[3c6dc535-5ae3-4010-a529-a2c26a7f183d] pid:248
+2023-03-22 13:44:55,612 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_5[3ce6a787-4e6f-41ea-8c09-588b8a0a30e2] succeeded in 1.4457992000000104s: None
+2023-03-22 13:44:55,615 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7fcd67d83550> (args:('salle_activite.tasks.start_linsten_8', '58899e84-f4f6-4f66-860f-2e120426bce2', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_8', 'id': '58899e84-f4f6-4f66-860f-2e120426bce2', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '58899e84-f4f6-4f66-860f-2e120426bce2', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen199@DESKTOP-ACIBNGT', 'reply_to': '34fa47cb-ccda-374e-984e-cbfcfce7b07f', 'correlation_id': '58899e84-f4f6-4f66-860f-2e120426bce2', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-22 13:44:55,623 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_8[58899e84-f4f6-4f66-860f-2e120426bce2] pid:249
+2023-03-22 13:44:55,627 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_4[034067fc-6b88-49aa-b180-bd76547e62d9] succeeded in 1.481308300000137s: None
+2023-03-22 13:44:55,631 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7fcd67d83550> (args:('salle_activite.tasks.start_linsten_9', 'd6ca8d8d-53f1-48e4-877e-77ae2f09c912', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_9', 'id': 'd6ca8d8d-53f1-48e4-877e-77ae2f09c912', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'd6ca8d8d-53f1-48e4-877e-77ae2f09c912', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen199@DESKTOP-ACIBNGT', 'reply_to': '34fa47cb-ccda-374e-984e-cbfcfce7b07f', 'correlation_id': 'd6ca8d8d-53f1-48e4-877e-77ae2f09c912', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-22 13:44:55,635 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_9[d6ca8d8d-53f1-48e4-877e-77ae2f09c912] pid:250
+2023-03-22 13:44:55,713 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_6[0fb51078-3417-4fd8-a67b-535f4d4afa23] succeeded in 1.4828749000000698s: None
+2023-03-22 13:44:55,716 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7fcd67d83550> (args:('salle_activite.tasks.start_face_door_right', 'a535acff-5ad0-4897-926b-14c9ebc4b31a', {'lang': 'py', 'task': 'salle_activite.tasks.start_face_door_right', 'id': 'a535acff-5ad0-4897-926b-14c9ebc4b31a', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'a535acff-5ad0-4897-926b-14c9ebc4b31a', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen199@DESKTOP-ACIBNGT', 'reply_to': '34fa47cb-ccda-374e-984e-cbfcfce7b07f', 'correlation_id': 'a535acff-5ad0-4897-926b-14c9ebc4b31a', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-22 13:44:55,721 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_face_door_right[a535acff-5ad0-4897-926b-14c9ebc4b31a] pid:251
+2023-03-22 13:44:55,989 celery.app.trace INFO     Task salle_activite.tasks.start_face_door_right[a535acff-5ad0-4897-926b-14c9ebc4b31a] succeeded in 0.2681518999997934s: None
+2023-03-22 13:44:55,991 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7fcd67d83550> (args:('salle_activite.tasks.start_face_door_left', '6516f3dc-66bc-4c7a-8b21-25028d9a868b', {'lang': 'py', 'task': 'salle_activite.tasks.start_face_door_left', 'id': '6516f3dc-66bc-4c7a-8b21-25028d9a868b', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '6516f3dc-66bc-4c7a-8b21-25028d9a868b', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen199@DESKTOP-ACIBNGT', 'reply_to': '34fa47cb-ccda-374e-984e-cbfcfce7b07f', 'correlation_id': '6516f3dc-66bc-4c7a-8b21-25028d9a868b', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-22 13:44:55,996 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_face_door_left[6516f3dc-66bc-4c7a-8b21-25028d9a868b] pid:251
+2023-03-22 13:44:56,487 celery.app.trace INFO     Task salle_activite.tasks.start_face_door_left[6516f3dc-66bc-4c7a-8b21-25028d9a868b] succeeded in 0.49092959999984487s: None
+2023-03-22 13:44:56,980 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_7[3c6dc535-5ae3-4010-a529-a2c26a7f183d] succeeded in 1.5022839000000658s: None
+2023-03-22 13:44:57,152 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_8[58899e84-f4f6-4f66-860f-2e120426bce2] succeeded in 1.5297069000000647s: None
+2023-03-22 13:44:57,165 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_9[d6ca8d8d-53f1-48e4-877e-77ae2f09c912] succeeded in 1.5307522000000517s: None
+2023-03-22 13:46:36,490 celery.bootsteps DEBUG    | Worker: Closing Hub...
+2023-03-22 13:46:36,490 celery.bootsteps DEBUG    | Worker: Closing Pool...
+2023-03-22 13:46:36,491 celery.bootsteps DEBUG    | Worker: Closing Consumer...
+2023-03-22 13:46:36,494 celery.bootsteps DEBUG    | Worker: Stopping Consumer...
+2023-03-22 13:46:36,494 celery.bootsteps DEBUG    | Consumer: Closing Connection...
+2023-03-22 13:46:36,495 celery.bootsteps DEBUG    | Consumer: Closing Events...
+2023-03-22 13:46:36,495 celery.bootsteps DEBUG    | Consumer: Closing Mingle...
+2023-03-22 13:46:36,497 celery.bootsteps DEBUG    | Consumer: Closing Gossip...
+2023-03-22 13:46:36,498 celery.bootsteps DEBUG    | Consumer: Closing Tasks...
+2023-03-22 13:46:36,498 celery.bootsteps DEBUG    | Consumer: Closing Control...
+2023-03-22 13:46:36,501 celery.bootsteps DEBUG    | Consumer: Closing Heart...
+2023-03-22 13:46:36,502 celery.bootsteps DEBUG    | Consumer: Closing event loop...
+2023-03-22 13:46:36,502 celery.bootsteps DEBUG    | Consumer: Stopping event loop...
+2023-03-22 13:46:36,502 celery.bootsteps DEBUG    | Consumer: Stopping Heart...
+2023-03-22 13:46:36,504 celery.bootsteps DEBUG    | Consumer: Stopping Control...
+2023-03-22 13:46:36,510 celery.bootsteps DEBUG    | Consumer: Stopping Tasks...
+2023-03-22 13:46:36,511 celery.worker.consumer.tasks DEBUG    Canceling task consumer...
+2023-03-22 13:46:36,511 celery.bootsteps DEBUG    | Consumer: Stopping Gossip...
+2023-03-22 13:46:36,519 celery.bootsteps DEBUG    | Consumer: Stopping Mingle...
+2023-03-22 13:46:36,522 celery.bootsteps DEBUG    | Consumer: Stopping Events...
+2023-03-22 13:46:36,523 celery.bootsteps DEBUG    | Consumer: Stopping Connection...
+2023-03-22 13:46:36,526 celery.bootsteps DEBUG    | Worker: Stopping Pool...
+2023-03-22 13:46:36,689 celery.concurrency.asynpool DEBUG    removing tasks from inqueue until task handler finished
+2023-03-22 13:46:41,320 celery.bootsteps DEBUG    | Worker: Preparing bootsteps.
+2023-03-22 13:46:41,334 celery.bootsteps DEBUG    | Worker: Building graph...
+2023-03-22 13:46:41,335 celery.bootsteps DEBUG    | Worker: New boot order: {Beat, StateDB, Timer, Hub, Pool, Autoscaler, Consumer}
+2023-03-22 13:46:41,374 celery.bootsteps DEBUG    | Consumer: Preparing bootsteps.
+2023-03-22 13:46:41,375 celery.bootsteps DEBUG    | Consumer: Building graph...
+2023-03-22 13:46:41,453 celery.bootsteps DEBUG    | Consumer: New boot order: {Connection, Events, Mingle, Tasks, Control, Heart, Gossip, Agent, event loop}
+2023-03-22 13:46:41,599 celery.bootsteps DEBUG    | Worker: Starting Hub
+2023-03-22 13:46:41,599 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-22 13:46:41,600 celery.bootsteps DEBUG    | Worker: Starting Pool
+2023-03-22 13:46:41,971 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-22 13:46:41,972 celery.bootsteps DEBUG    | Worker: Starting Consumer
+2023-03-22 13:46:41,973 celery.bootsteps DEBUG    | Consumer: Starting Connection
+2023-03-22 13:46:42,004 celery.worker.consumer.connection INFO     Connected to redis://localhost:6379//
+2023-03-22 13:46:42,005 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-22 13:46:42,005 celery.bootsteps DEBUG    | Consumer: Starting Events
+2023-03-22 13:46:42,017 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-22 13:46:42,017 celery.bootsteps DEBUG    | Consumer: Starting Mingle
+2023-03-22 13:46:42,018 celery.worker.consumer.mingle INFO     mingle: searching for neighbors
+2023-03-22 13:46:43,048 celery.worker.consumer.mingle INFO     mingle: all alone
+2023-03-22 13:46:43,050 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-22 13:46:43,052 celery.bootsteps DEBUG    | Consumer: Starting Tasks
+2023-03-22 13:46:43,060 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-22 13:46:43,061 celery.bootsteps DEBUG    | Consumer: Starting Control
+2023-03-22 13:46:43,068 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-22 13:46:43,070 celery.bootsteps DEBUG    | Consumer: Starting Heart
+2023-03-22 13:46:43,075 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-22 13:46:43,077 celery.bootsteps DEBUG    | Consumer: Starting Gossip
+2023-03-22 13:46:43,089 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-22 13:46:43,094 celery.bootsteps DEBUG    | Consumer: Starting event loop
+2023-03-22 13:46:43,096 celery.bootsteps DEBUG    | Worker: Hub.register Pool...
+2023-03-22 13:46:43,108 celery.apps.worker INFO     celery@DESKTOP-ACIBNGT ready.
+2023-03-22 13:46:43,111 kombu.common DEBUG    basic.qos: prefetch_count->16
+2023-03-22 13:46:55,511 salle_activite_view INFO     Open All The Doors inited...
+2023-03-22 13:46:55,545 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_3[5849b6e1-c3a5-4085-878f-70bee9b7e684]  
+2023-03-22 13:46:55,551 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7fa4dc101550> (args:('salle_activite.tasks.start_linsten_3', '5849b6e1-c3a5-4085-878f-70bee9b7e684', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_3', 'id': '5849b6e1-c3a5-4085-878f-70bee9b7e684', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '5849b6e1-c3a5-4085-878f-70bee9b7e684', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen199@DESKTOP-ACIBNGT', 'reply_to': '34fa47cb-ccda-374e-984e-cbfcfce7b07f', 'correlation_id': '5849b6e1-c3a5-4085-878f-70bee9b7e684', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-22 13:46:55,557 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_3[5849b6e1-c3a5-4085-878f-70bee9b7e684] pid:412
+2023-03-22 13:46:55,578 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_4[2adab25a-8d30-4ced-981a-93d31ffb367c]  
+2023-03-22 13:46:55,588 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7fa4dc101550> (args:('salle_activite.tasks.start_linsten_4', '2adab25a-8d30-4ced-981a-93d31ffb367c', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_4', 'id': '2adab25a-8d30-4ced-981a-93d31ffb367c', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '2adab25a-8d30-4ced-981a-93d31ffb367c', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen199@DESKTOP-ACIBNGT', 'reply_to': '34fa47cb-ccda-374e-984e-cbfcfce7b07f', 'correlation_id': '2adab25a-8d30-4ced-981a-93d31ffb367c', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-22 13:46:55,605 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_4[2adab25a-8d30-4ced-981a-93d31ffb367c] pid:414
+2023-03-22 13:46:55,834 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_5[88c51a76-2e48-484e-8bc4-530d27f26596]  
+2023-03-22 13:46:55,866 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7fa4dc101550> (args:('salle_activite.tasks.start_linsten_5', '88c51a76-2e48-484e-8bc4-530d27f26596', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_5', 'id': '88c51a76-2e48-484e-8bc4-530d27f26596', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '88c51a76-2e48-484e-8bc4-530d27f26596', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen199@DESKTOP-ACIBNGT', 'reply_to': '34fa47cb-ccda-374e-984e-cbfcfce7b07f', 'correlation_id': '88c51a76-2e48-484e-8bc4-530d27f26596', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-22 13:46:55,911 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_6[2554b09d-bf22-4912-8738-d03ccf13712d]  
+2023-03-22 13:46:55,920 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7fa4dc101550> (args:('salle_activite.tasks.start_linsten_6', '2554b09d-bf22-4912-8738-d03ccf13712d', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_6', 'id': '2554b09d-bf22-4912-8738-d03ccf13712d', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '2554b09d-bf22-4912-8738-d03ccf13712d', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen199@DESKTOP-ACIBNGT', 'reply_to': '34fa47cb-ccda-374e-984e-cbfcfce7b07f', 'correlation_id': '2554b09d-bf22-4912-8738-d03ccf13712d', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-22 13:46:55,940 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_5[88c51a76-2e48-484e-8bc4-530d27f26596] pid:413
+2023-03-22 13:46:55,988 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_7[69bb47c8-e955-460c-a5af-016380207b62]  
+2023-03-22 13:46:56,001 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_6[2554b09d-bf22-4912-8738-d03ccf13712d] pid:415
+2023-03-22 13:46:56,075 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_8[c6ea3dca-0bd1-45b0-884b-860223a49ad0]  
+2023-03-22 13:46:56,132 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_9[8a0e4453-09e7-4c81-b371-70cd4b59863f]  
+2023-03-22 13:46:56,186 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_face_door_right[e448d49c-1a08-4b00-94a8-a924c3cc1de7]  
+2023-03-22 13:46:56,240 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_face_door_left[9aafda80-1f8d-4848-8dcf-bc2fc2fddd3a]  
+2023-03-22 13:46:56,312 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_4[2adab25a-8d30-4ced-981a-93d31ffb367c] succeeded in 0.7077916000000641s: None
+2023-03-22 13:46:56,321 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_3[5849b6e1-c3a5-4085-878f-70bee9b7e684] succeeded in 0.7623410999999578s: None
+2023-03-22 13:46:56,327 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7fa4dc101550> (args:('salle_activite.tasks.start_linsten_7', '69bb47c8-e955-460c-a5af-016380207b62', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_7', 'id': '69bb47c8-e955-460c-a5af-016380207b62', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '69bb47c8-e955-460c-a5af-016380207b62', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen199@DESKTOP-ACIBNGT', 'reply_to': '34fa47cb-ccda-374e-984e-cbfcfce7b07f', 'correlation_id': '69bb47c8-e955-460c-a5af-016380207b62', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-22 13:46:56,337 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7fa4dc101550> (args:('salle_activite.tasks.start_linsten_8', 'c6ea3dca-0bd1-45b0-884b-860223a49ad0', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_8', 'id': 'c6ea3dca-0bd1-45b0-884b-860223a49ad0', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'c6ea3dca-0bd1-45b0-884b-860223a49ad0', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen199@DESKTOP-ACIBNGT', 'reply_to': '34fa47cb-ccda-374e-984e-cbfcfce7b07f', 'correlation_id': 'c6ea3dca-0bd1-45b0-884b-860223a49ad0', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-22 13:46:56,350 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_7[69bb47c8-e955-460c-a5af-016380207b62] pid:412
+2023-03-22 13:46:56,355 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_8[c6ea3dca-0bd1-45b0-884b-860223a49ad0] pid:414
+2023-03-22 13:46:56,543 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_5[88c51a76-2e48-484e-8bc4-530d27f26596] succeeded in 0.6390283000000636s: None
+2023-03-22 13:46:56,577 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7fa4dc101550> (args:('salle_activite.tasks.start_linsten_9', '8a0e4453-09e7-4c81-b371-70cd4b59863f', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_9', 'id': '8a0e4453-09e7-4c81-b371-70cd4b59863f', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '8a0e4453-09e7-4c81-b371-70cd4b59863f', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen199@DESKTOP-ACIBNGT', 'reply_to': '34fa47cb-ccda-374e-984e-cbfcfce7b07f', 'correlation_id': '8a0e4453-09e7-4c81-b371-70cd4b59863f', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-22 13:46:56,592 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_6[2554b09d-bf22-4912-8738-d03ccf13712d] succeeded in 0.6413279000000784s: None
+2023-03-22 13:46:56,594 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_9[8a0e4453-09e7-4c81-b371-70cd4b59863f] pid:413
+2023-03-22 13:46:56,610 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7fa4dc101550> (args:('salle_activite.tasks.start_face_door_right', 'e448d49c-1a08-4b00-94a8-a924c3cc1de7', {'lang': 'py', 'task': 'salle_activite.tasks.start_face_door_right', 'id': 'e448d49c-1a08-4b00-94a8-a924c3cc1de7', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'e448d49c-1a08-4b00-94a8-a924c3cc1de7', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen199@DESKTOP-ACIBNGT', 'reply_to': '34fa47cb-ccda-374e-984e-cbfcfce7b07f', 'correlation_id': 'e448d49c-1a08-4b00-94a8-a924c3cc1de7', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-22 13:46:56,621 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_face_door_right[e448d49c-1a08-4b00-94a8-a924c3cc1de7] pid:415
+2023-03-22 13:46:56,693 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_8[c6ea3dca-0bd1-45b0-884b-860223a49ad0] succeeded in 0.3503970000001573s: None
+2023-03-22 13:46:56,702 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7fa4dc101550> (args:('salle_activite.tasks.start_face_door_left', '9aafda80-1f8d-4848-8dcf-bc2fc2fddd3a', {'lang': 'py', 'task': 'salle_activite.tasks.start_face_door_left', 'id': '9aafda80-1f8d-4848-8dcf-bc2fc2fddd3a', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '9aafda80-1f8d-4848-8dcf-bc2fc2fddd3a', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen199@DESKTOP-ACIBNGT', 'reply_to': '34fa47cb-ccda-374e-984e-cbfcfce7b07f', 'correlation_id': '9aafda80-1f8d-4848-8dcf-bc2fc2fddd3a', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-22 13:46:56,709 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_7[69bb47c8-e955-460c-a5af-016380207b62] succeeded in 0.3666877000000568s: None
+2023-03-22 13:46:56,715 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_face_door_left[9aafda80-1f8d-4848-8dcf-bc2fc2fddd3a] pid:414
+2023-03-22 13:46:56,891 salle_activite_view INFO     Open All The Doors inited...
+2023-03-22 13:46:56,926 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_3[4b16c251-bad2-48e1-bb31-b3298b977330]  
+2023-03-22 13:46:56,928 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7fa4dc101550> (args:('salle_activite.tasks.start_linsten_3', '4b16c251-bad2-48e1-bb31-b3298b977330', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_3', 'id': '4b16c251-bad2-48e1-bb31-b3298b977330', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '4b16c251-bad2-48e1-bb31-b3298b977330', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen199@DESKTOP-ACIBNGT', 'reply_to': '34fa47cb-ccda-374e-984e-cbfcfce7b07f', 'correlation_id': '4b16c251-bad2-48e1-bb31-b3298b977330', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-22 13:46:56,942 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_3[4b16c251-bad2-48e1-bb31-b3298b977330] pid:412
+2023-03-22 13:46:56,952 celery.app.trace INFO     Task salle_activite.tasks.start_face_door_right[e448d49c-1a08-4b00-94a8-a924c3cc1de7] succeeded in 0.33171600000014223s: None
+2023-03-22 13:46:56,960 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_4[bf256804-8b44-4a8d-9696-82d2905a149c]  
+2023-03-22 13:46:56,971 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7fa4dc101550> (args:('salle_activite.tasks.start_linsten_4', 'bf256804-8b44-4a8d-9696-82d2905a149c', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_4', 'id': 'bf256804-8b44-4a8d-9696-82d2905a149c', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'bf256804-8b44-4a8d-9696-82d2905a149c', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen199@DESKTOP-ACIBNGT', 'reply_to': '34fa47cb-ccda-374e-984e-cbfcfce7b07f', 'correlation_id': 'bf256804-8b44-4a8d-9696-82d2905a149c', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-22 13:46:56,984 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_5[7ba654e5-3d50-45f5-8998-b0117509794f]  
+2023-03-22 13:46:56,989 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_4[bf256804-8b44-4a8d-9696-82d2905a149c] pid:415
+2023-03-22 13:46:57,059 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_6[17a52143-b275-407c-ab48-d189efe99761]  
+2023-03-22 13:46:57,073 celery.app.trace INFO     Task salle_activite.tasks.start_face_door_left[9aafda80-1f8d-4848-8dcf-bc2fc2fddd3a] succeeded in 0.3612938999999642s: None
+2023-03-22 13:46:57,076 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_7[8ce7241a-a81a-4118-b4b5-e97e969fc4ca]  
+2023-03-22 13:46:57,087 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7fa4dc101550> (args:('salle_activite.tasks.start_linsten_5', '7ba654e5-3d50-45f5-8998-b0117509794f', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_5', 'id': '7ba654e5-3d50-45f5-8998-b0117509794f', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '7ba654e5-3d50-45f5-8998-b0117509794f', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen199@DESKTOP-ACIBNGT', 'reply_to': '34fa47cb-ccda-374e-984e-cbfcfce7b07f', 'correlation_id': '7ba654e5-3d50-45f5-8998-b0117509794f', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-22 13:46:57,102 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_8[d1d69901-990d-4b83-a056-ad9154e94630]  
+2023-03-22 13:46:57,116 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_5[7ba654e5-3d50-45f5-8998-b0117509794f] pid:414
+2023-03-22 13:46:57,155 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_9[5ec4ef33-2ae0-434b-99bb-46528927877d]  
+2023-03-22 13:46:57,175 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_face_door_right[3e788cf7-796d-487e-91a5-cdd9cfcb7f05]  
+2023-03-22 13:46:57,191 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_face_door_left[d00e4f1e-5ca5-4815-9096-721b150a31b8]  
+2023-03-22 13:46:57,338 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_3[4b16c251-bad2-48e1-bb31-b3298b977330] succeeded in 0.3977397999999539s: None
+2023-03-22 13:46:57,340 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7fa4dc101550> (args:('salle_activite.tasks.start_linsten_6', '17a52143-b275-407c-ab48-d189efe99761', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_6', 'id': '17a52143-b275-407c-ab48-d189efe99761', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '17a52143-b275-407c-ab48-d189efe99761', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen199@DESKTOP-ACIBNGT', 'reply_to': '34fa47cb-ccda-374e-984e-cbfcfce7b07f', 'correlation_id': '17a52143-b275-407c-ab48-d189efe99761', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-22 13:46:57,357 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_6[17a52143-b275-407c-ab48-d189efe99761] pid:412
+2023-03-22 13:46:57,425 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_4[bf256804-8b44-4a8d-9696-82d2905a149c] succeeded in 0.4371707999998762s: None
+2023-03-22 13:46:57,428 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7fa4dc101550> (args:('salle_activite.tasks.start_linsten_7', '8ce7241a-a81a-4118-b4b5-e97e969fc4ca', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_7', 'id': '8ce7241a-a81a-4118-b4b5-e97e969fc4ca', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '8ce7241a-a81a-4118-b4b5-e97e969fc4ca', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen199@DESKTOP-ACIBNGT', 'reply_to': '34fa47cb-ccda-374e-984e-cbfcfce7b07f', 'correlation_id': '8ce7241a-a81a-4118-b4b5-e97e969fc4ca', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-22 13:46:57,440 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_7[8ce7241a-a81a-4118-b4b5-e97e969fc4ca] pid:415
+2023-03-22 13:46:57,769 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_7[8ce7241a-a81a-4118-b4b5-e97e969fc4ca] succeeded in 0.32906449999995857s: None
+2023-03-22 13:46:57,826 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7fa4dc101550> (args:('salle_activite.tasks.start_linsten_8', 'd1d69901-990d-4b83-a056-ad9154e94630', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_8', 'id': 'd1d69901-990d-4b83-a056-ad9154e94630', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'd1d69901-990d-4b83-a056-ad9154e94630', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen199@DESKTOP-ACIBNGT', 'reply_to': '34fa47cb-ccda-374e-984e-cbfcfce7b07f', 'correlation_id': 'd1d69901-990d-4b83-a056-ad9154e94630', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-22 13:46:57,840 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_8[d1d69901-990d-4b83-a056-ad9154e94630] pid:415
+2023-03-22 13:46:58,208 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_9[8a0e4453-09e7-4c81-b371-70cd4b59863f] succeeded in 1.6167794999998932s: None
+2023-03-22 13:46:58,228 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7fa4dc101550> (args:('salle_activite.tasks.start_linsten_9', '5ec4ef33-2ae0-434b-99bb-46528927877d', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_9', 'id': '5ec4ef33-2ae0-434b-99bb-46528927877d', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '5ec4ef33-2ae0-434b-99bb-46528927877d', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen199@DESKTOP-ACIBNGT', 'reply_to': '34fa47cb-ccda-374e-984e-cbfcfce7b07f', 'correlation_id': '5ec4ef33-2ae0-434b-99bb-46528927877d', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-22 13:46:58,275 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_9[5ec4ef33-2ae0-434b-99bb-46528927877d] pid:413
+2023-03-22 13:46:59,791 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_9[5ec4ef33-2ae0-434b-99bb-46528927877d] succeeded in 1.529428100000132s: None
+2023-03-22 13:46:59,792 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7fa4dc101550> (args:('salle_activite.tasks.start_face_door_right', '3e788cf7-796d-487e-91a5-cdd9cfcb7f05', {'lang': 'py', 'task': 'salle_activite.tasks.start_face_door_right', 'id': '3e788cf7-796d-487e-91a5-cdd9cfcb7f05', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '3e788cf7-796d-487e-91a5-cdd9cfcb7f05', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen199@DESKTOP-ACIBNGT', 'reply_to': '34fa47cb-ccda-374e-984e-cbfcfce7b07f', 'correlation_id': '3e788cf7-796d-487e-91a5-cdd9cfcb7f05', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-22 13:46:59,803 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_face_door_right[3e788cf7-796d-487e-91a5-cdd9cfcb7f05] pid:413
+2023-03-22 13:47:00,105 celery.app.trace INFO     Task salle_activite.tasks.start_face_door_right[3e788cf7-796d-487e-91a5-cdd9cfcb7f05] succeeded in 0.3041940999999042s: None
+2023-03-22 13:47:00,107 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7fa4dc101550> (args:('salle_activite.tasks.start_face_door_left', 'd00e4f1e-5ca5-4815-9096-721b150a31b8', {'lang': 'py', 'task': 'salle_activite.tasks.start_face_door_left', 'id': 'd00e4f1e-5ca5-4815-9096-721b150a31b8', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'd00e4f1e-5ca5-4815-9096-721b150a31b8', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen199@DESKTOP-ACIBNGT', 'reply_to': '34fa47cb-ccda-374e-984e-cbfcfce7b07f', 'correlation_id': 'd00e4f1e-5ca5-4815-9096-721b150a31b8', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-22 13:47:00,116 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_face_door_left[d00e4f1e-5ca5-4815-9096-721b150a31b8] pid:413
+2023-03-22 13:47:00,210 celery.app.trace INFO     Task salle_activite.tasks.start_face_door_left[d00e4f1e-5ca5-4815-9096-721b150a31b8] succeeded in 0.09556800000018484s: None
+2023-03-22 13:47:03,324 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_5[7ba654e5-3d50-45f5-8998-b0117509794f] succeeded in 6.21407279999994s: None
+2023-03-22 13:47:03,493 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_6[17a52143-b275-407c-ab48-d189efe99761] succeeded in 6.137755199999901s: None
+2023-03-22 13:47:03,815 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_8[d1d69901-990d-4b83-a056-ad9154e94630] succeeded in 5.977488900000026s: None
+2023-03-22 13:51:08,343 django.utils.autoreload INFO     /mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/backend/creneau/models.py changed, reloading.
+2023-03-22 13:51:13,377 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-22 13:52:08,618 django.utils.autoreload INFO     /mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/backend/client/models.py changed, reloading.
+2023-03-22 13:52:13,072 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-22 13:52:58,461 PIL.TiffImagePlugin DEBUG    tag: Orientation (274) - type: short (3) - value: b'\x00\x01'
+2023-03-22 13:52:58,462 PIL.TiffImagePlugin DEBUG    tag: XResolution (282) - type: rational (5) Tag Location: 34 - Data Location: 98 - value: b"\x00\n\xfc\x80\x00\x00'\x10"
+2023-03-22 13:52:58,463 PIL.TiffImagePlugin DEBUG    tag: YResolution (283) - type: rational (5) Tag Location: 46 - Data Location: 106 - value: b"\x00\n\xfc\x80\x00\x00'\x10"
+2023-03-22 13:52:58,465 PIL.TiffImagePlugin DEBUG    tag: ResolutionUnit (296) - type: short (3) - value: b'\x00\x02'
+2023-03-22 13:52:58,466 PIL.TiffImagePlugin DEBUG    tag: Software (305) - type: string (2) Tag Location: 70 - Data Location: 114 - value: b'Adobe Photoshop CS6 (Macintosh)\x00'
+2023-03-22 13:52:58,468 PIL.TiffImagePlugin DEBUG    tag: DateTime (306) - type: string (2) Tag Location: 82 - Data Location: 146 - value: b'2014:06:18 20:59:59\x00'
+2023-03-22 13:52:58,470 PIL.TiffImagePlugin DEBUG    tag: ExifIFD (34665) - type: long (4) - value: b'\x00\x00\x00\xa8'
+2023-03-22 13:52:58,471 PIL.Image    DEBUG    Importing BlpImagePlugin
+2023-03-22 13:52:58,474 PIL.Image    DEBUG    Importing BmpImagePlugin
+2023-03-22 13:52:58,475 PIL.Image    DEBUG    Importing BufrStubImagePlugin
+2023-03-22 13:52:58,477 PIL.Image    DEBUG    Importing CurImagePlugin
+2023-03-22 13:52:58,479 PIL.Image    DEBUG    Importing DcxImagePlugin
+2023-03-22 13:52:58,485 PIL.Image    DEBUG    Importing DdsImagePlugin
+2023-03-22 13:52:58,487 PIL.Image    DEBUG    Importing EpsImagePlugin
+2023-03-22 13:52:58,490 PIL.Image    DEBUG    Importing FitsImagePlugin
+2023-03-22 13:52:58,492 PIL.Image    DEBUG    Importing FitsStubImagePlugin
+2023-03-22 13:52:58,495 PIL.Image    DEBUG    Importing FliImagePlugin
+2023-03-22 13:52:58,497 PIL.Image    DEBUG    Importing FpxImagePlugin
+2023-03-22 13:52:58,504 PIL.Image    DEBUG    Image: failed to import FpxImagePlugin: No module named 'olefile'
+2023-03-22 13:52:58,504 PIL.Image    DEBUG    Importing FtexImagePlugin
+2023-03-22 13:52:58,506 PIL.Image    DEBUG    Importing GbrImagePlugin
+2023-03-22 13:52:58,508 PIL.Image    DEBUG    Importing GifImagePlugin
+2023-03-22 13:52:58,509 PIL.Image    DEBUG    Importing GribStubImagePlugin
+2023-03-22 13:52:58,511 PIL.Image    DEBUG    Importing Hdf5StubImagePlugin
+2023-03-22 13:52:58,513 PIL.Image    DEBUG    Importing IcnsImagePlugin
+2023-03-22 13:52:58,520 PIL.Image    DEBUG    Importing IcoImagePlugin
+2023-03-22 13:52:58,522 PIL.Image    DEBUG    Importing ImImagePlugin
+2023-03-22 13:52:58,525 PIL.Image    DEBUG    Importing ImtImagePlugin
+2023-03-22 13:52:58,527 PIL.Image    DEBUG    Importing IptcImagePlugin
+2023-03-22 13:52:58,529 PIL.Image    DEBUG    Importing JpegImagePlugin
+2023-03-22 13:52:58,530 PIL.Image    DEBUG    Importing Jpeg2KImagePlugin
+2023-03-22 13:52:58,531 PIL.Image    DEBUG    Importing McIdasImagePlugin
+2023-03-22 13:52:58,533 PIL.Image    DEBUG    Importing MicImagePlugin
+2023-03-22 13:52:58,537 PIL.Image    DEBUG    Image: failed to import MicImagePlugin: No module named 'olefile'
+2023-03-22 13:52:58,538 PIL.Image    DEBUG    Importing MpegImagePlugin
+2023-03-22 13:52:58,539 PIL.Image    DEBUG    Importing MpoImagePlugin
+2023-03-22 13:52:58,542 PIL.Image    DEBUG    Importing MspImagePlugin
+2023-03-22 13:52:58,544 PIL.Image    DEBUG    Importing PalmImagePlugin
+2023-03-22 13:52:58,549 PIL.Image    DEBUG    Importing PcdImagePlugin
+2023-03-22 13:52:58,551 PIL.Image    DEBUG    Importing PcxImagePlugin
+2023-03-22 13:52:58,552 PIL.Image    DEBUG    Importing PdfImagePlugin
+2023-03-22 13:52:58,565 PIL.Image    DEBUG    Importing PixarImagePlugin
+2023-03-22 13:52:58,568 PIL.Image    DEBUG    Importing PngImagePlugin
+2023-03-22 13:52:58,569 PIL.Image    DEBUG    Importing PpmImagePlugin
+2023-03-22 13:52:58,569 PIL.Image    DEBUG    Importing PsdImagePlugin
+2023-03-22 13:52:58,571 PIL.Image    DEBUG    Importing SgiImagePlugin
+2023-03-22 13:52:58,574 PIL.Image    DEBUG    Importing SpiderImagePlugin
+2023-03-22 13:52:58,576 PIL.Image    DEBUG    Importing SunImagePlugin
+2023-03-22 13:52:58,578 PIL.Image    DEBUG    Importing TgaImagePlugin
+2023-03-22 13:52:58,580 PIL.Image    DEBUG    Importing TiffImagePlugin
+2023-03-22 13:52:58,581 PIL.Image    DEBUG    Importing WebPImagePlugin
+2023-03-22 13:52:58,589 PIL.Image    DEBUG    Importing WmfImagePlugin
+2023-03-22 13:52:58,591 PIL.Image    DEBUG    Importing XbmImagePlugin
+2023-03-22 13:52:58,595 PIL.Image    DEBUG    Importing XpmImagePlugin
+2023-03-22 13:52:58,598 PIL.Image    DEBUG    Importing XVThumbImagePlugin
+2023-03-22 13:52:58,845 celery.worker.strategy INFO     Received task: client.tasks.register_user[97bbbcf5-cc1c-4796-8911-0f84b594bd73]  
+2023-03-22 13:52:58,849 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7fa4dc101550> (args:('client.tasks.register_user', '97bbbcf5-cc1c-4796-8911-0f84b594bd73', {'lang': 'py', 'task': 'client.tasks.register_user', 'id': '97bbbcf5-cc1c-4796-8911-0f84b594bd73', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '97bbbcf5-cc1c-4796-8911-0f84b594bd73', 'parent_id': None, 'argsrepr': "('PATROL', 'C0003', 'Templeton_Peck.jpg')", 'kwargsrepr': '{}', 'origin': 'gen538@DESKTOP-ACIBNGT', 'reply_to': '93fd5604-3263-36c2-97b6-8f94be256fb6', 'correlation_id': '97bbbcf5-cc1c-4796-8911-0f84b594bd73', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': ['PATROL', 'C0003', 'Templeton_Peck.jpg'], 'kwargs': {}}, b'[["PATROL", "C0003", "Templeton_Peck.jpg"], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-22 13:52:58,856 celery.worker.request DEBUG    Task accepted: client.tasks.register_user[97bbbcf5-cc1c-4796-8911-0f84b594bd73] pid:412
+2023-03-22 13:53:01,421 celery.app.trace INFO     Task client.tasks.register_user[97bbbcf5-cc1c-4796-8911-0f84b594bd73] succeeded in 2.5654990999998972s: True
+2023-03-22 14:01:10,305 django.utils.autoreload INFO     /mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/backend/client/models.py changed, reloading.
+2023-03-22 14:01:12,597 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-22 14:03:06,960 django.utils.autoreload INFO     /mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/backend/client/models.py changed, reloading.
+2023-03-22 14:03:09,048 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-22 14:03:20,698 django.utils.autoreload INFO     /mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/backend/client/models.py changed, reloading.
+2023-03-22 14:03:23,050 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-22 14:04:22,245 django.utils.autoreload INFO     /mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/backend/client/models.py changed, reloading.
+2023-03-22 14:04:24,938 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-22 14:07:48,089 django.utils.autoreload INFO     /mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/backend/client/models.py changed, reloading.
+2023-03-22 14:07:50,170 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-22 14:08:09,075 django.utils.autoreload INFO     /mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/backend/client/models.py changed, reloading.
+2023-03-22 14:08:11,000 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-22 14:10:04,762 django.utils.autoreload INFO     /mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/backend/client/models.py changed, reloading.
+2023-03-22 14:10:06,501 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-22 14:15:48,292 django.utils.autoreload INFO     /mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/backend/client/models.py changed, reloading.
+2023-03-22 14:15:50,746 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-22 14:15:54,789 django.utils.autoreload INFO     /mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/backend/client/models.py changed, reloading.
+2023-03-22 14:15:56,500 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-22 14:16:54,080 django.utils.autoreload INFO     /mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/backend/client/models.py changed, reloading.
+2023-03-22 14:16:56,358 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-22 14:17:02,983 django.utils.autoreload INFO     /mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/backend/client/models.py changed, reloading.
+2023-03-22 14:17:04,637 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-22 14:17:14,099 django.utils.autoreload INFO     /mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/backend/client/models.py changed, reloading.
+2023-03-22 14:17:16,362 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-22 14:17:38,484 django.utils.autoreload INFO     /mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/backend/client/models.py changed, reloading.
+2023-03-22 14:17:40,320 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-22 14:17:48,085 celery.bootsteps DEBUG    | Worker: Closing Hub...
+2023-03-22 14:17:48,086 celery.bootsteps DEBUG    | Worker: Closing Pool...
+2023-03-22 14:17:48,086 celery.bootsteps DEBUG    | Worker: Closing Consumer...
+2023-03-22 14:17:48,086 celery.bootsteps DEBUG    | Worker: Stopping Consumer...
+2023-03-22 14:17:48,087 celery.bootsteps DEBUG    | Consumer: Closing Connection...
+2023-03-22 14:17:48,087 celery.bootsteps DEBUG    | Consumer: Closing Events...
+2023-03-22 14:17:48,087 celery.bootsteps DEBUG    | Consumer: Closing Mingle...
+2023-03-22 14:17:48,087 celery.bootsteps DEBUG    | Consumer: Closing Tasks...
+2023-03-22 14:17:48,088 celery.bootsteps DEBUG    | Consumer: Closing Control...
+2023-03-22 14:17:48,088 celery.bootsteps DEBUG    | Consumer: Closing Heart...
+2023-03-22 14:17:48,088 celery.bootsteps DEBUG    | Consumer: Closing Gossip...
+2023-03-22 14:17:48,089 celery.bootsteps DEBUG    | Consumer: Closing event loop...
+2023-03-22 14:17:48,089 celery.bootsteps DEBUG    | Consumer: Stopping event loop...
+2023-03-22 14:17:48,090 celery.bootsteps DEBUG    | Consumer: Stopping Gossip...
+2023-03-22 14:17:48,094 celery.bootsteps DEBUG    | Consumer: Stopping Heart...
+2023-03-22 14:17:48,095 celery.bootsteps DEBUG    | Consumer: Stopping Control...
+2023-03-22 14:17:48,100 celery.bootsteps DEBUG    | Consumer: Stopping Tasks...
+2023-03-22 14:17:48,100 celery.worker.consumer.tasks DEBUG    Canceling task consumer...
+2023-03-22 14:17:48,101 celery.bootsteps DEBUG    | Consumer: Stopping Mingle...
+2023-03-22 14:17:48,101 celery.bootsteps DEBUG    | Consumer: Stopping Events...
+2023-03-22 14:17:48,102 celery.bootsteps DEBUG    | Consumer: Stopping Connection...
+2023-03-22 14:17:48,102 celery.bootsteps DEBUG    | Worker: Stopping Pool...
+2023-03-22 14:17:48,442 celery.concurrency.asynpool DEBUG    removing tasks from inqueue until task handler finished
+2023-03-22 14:17:51,726 celery.bootsteps DEBUG    | Worker: Preparing bootsteps.
+2023-03-22 14:17:51,733 celery.bootsteps DEBUG    | Worker: Building graph...
+2023-03-22 14:17:51,734 celery.bootsteps DEBUG    | Worker: New boot order: {StateDB, Timer, Hub, Pool, Autoscaler, Beat, Consumer}
+2023-03-22 14:17:51,767 celery.bootsteps DEBUG    | Consumer: Preparing bootsteps.
+2023-03-22 14:17:51,768 celery.bootsteps DEBUG    | Consumer: Building graph...
+2023-03-22 14:17:51,816 celery.bootsteps DEBUG    | Consumer: New boot order: {Connection, Events, Heart, Agent, Mingle, Gossip, Tasks, Control, event loop}
+2023-03-22 14:17:51,861 celery.bootsteps DEBUG    | Worker: Starting Hub
+2023-03-22 14:17:51,862 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-22 14:17:51,865 celery.bootsteps DEBUG    | Worker: Starting Pool
+2023-03-22 14:17:52,180 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-22 14:17:52,181 celery.bootsteps DEBUG    | Worker: Starting Consumer
+2023-03-22 14:17:52,182 celery.bootsteps DEBUG    | Consumer: Starting Connection
+2023-03-22 14:17:52,211 celery.worker.consumer.connection INFO     Connected to redis://localhost:6379//
+2023-03-22 14:17:52,211 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-22 14:17:52,211 celery.bootsteps DEBUG    | Consumer: Starting Events
+2023-03-22 14:17:52,221 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-22 14:17:52,222 celery.bootsteps DEBUG    | Consumer: Starting Heart
+2023-03-22 14:17:52,224 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-22 14:17:52,225 celery.bootsteps DEBUG    | Consumer: Starting Mingle
+2023-03-22 14:17:52,225 celery.worker.consumer.mingle INFO     mingle: searching for neighbors
+2023-03-22 14:17:53,247 celery.worker.consumer.mingle INFO     mingle: all alone
+2023-03-22 14:17:53,248 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-22 14:17:53,248 celery.bootsteps DEBUG    | Consumer: Starting Gossip
+2023-03-22 14:17:53,255 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-22 14:17:53,256 celery.bootsteps DEBUG    | Consumer: Starting Tasks
+2023-03-22 14:17:53,272 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-22 14:17:53,273 celery.bootsteps DEBUG    | Consumer: Starting Control
+2023-03-22 14:17:53,280 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-22 14:17:53,281 celery.bootsteps DEBUG    | Consumer: Starting event loop
+2023-03-22 14:17:53,283 celery.bootsteps DEBUG    | Worker: Hub.register Pool...
+2023-03-22 14:17:53,288 celery.apps.worker INFO     celery@DESKTOP-ACIBNGT ready.
+2023-03-22 14:17:53,289 kombu.common DEBUG    basic.qos: prefetch_count->16
+2023-03-22 14:17:58,713 salle_activite_view INFO     Open All The Doors inited...
+2023-03-22 14:17:58,957 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_3[5196128b-9efe-4e2f-ae3d-aecec8e640fa]  
+2023-03-22 14:17:58,959 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f26aa0a5550> (args:('salle_activite.tasks.start_linsten_3', '5196128b-9efe-4e2f-ae3d-aecec8e640fa', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_3', 'id': '5196128b-9efe-4e2f-ae3d-aecec8e640fa', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '5196128b-9efe-4e2f-ae3d-aecec8e640fa', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen608@DESKTOP-ACIBNGT', 'reply_to': '2bbd9a60-877e-3524-b016-578d5455c66b', 'correlation_id': '5196128b-9efe-4e2f-ae3d-aecec8e640fa', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-22 14:17:58,970 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_3[5196128b-9efe-4e2f-ae3d-aecec8e640fa] pid:615
+2023-03-22 14:17:58,975 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_4[7e57ec5a-69f0-4be2-abf8-c3f07ad67e1e]  
+2023-03-22 14:17:58,976 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f26aa0a5550> (args:('salle_activite.tasks.start_linsten_4', '7e57ec5a-69f0-4be2-abf8-c3f07ad67e1e', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_4', 'id': '7e57ec5a-69f0-4be2-abf8-c3f07ad67e1e', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '7e57ec5a-69f0-4be2-abf8-c3f07ad67e1e', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen608@DESKTOP-ACIBNGT', 'reply_to': '2bbd9a60-877e-3524-b016-578d5455c66b', 'correlation_id': '7e57ec5a-69f0-4be2-abf8-c3f07ad67e1e', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-22 14:17:58,989 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_5[d1192560-893f-4699-8806-183a4033781e]  
+2023-03-22 14:17:58,991 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f26aa0a5550> (args:('salle_activite.tasks.start_linsten_5', 'd1192560-893f-4699-8806-183a4033781e', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_5', 'id': 'd1192560-893f-4699-8806-183a4033781e', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'd1192560-893f-4699-8806-183a4033781e', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen608@DESKTOP-ACIBNGT', 'reply_to': '2bbd9a60-877e-3524-b016-578d5455c66b', 'correlation_id': 'd1192560-893f-4699-8806-183a4033781e', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-22 14:17:59,001 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_4[7e57ec5a-69f0-4be2-abf8-c3f07ad67e1e] pid:617
+2023-03-22 14:17:59,007 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_6[f91708e0-67a6-4df6-b06e-fb09ede997b0]  
+2023-03-22 14:17:59,009 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f26aa0a5550> (args:('salle_activite.tasks.start_linsten_6', 'f91708e0-67a6-4df6-b06e-fb09ede997b0', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_6', 'id': 'f91708e0-67a6-4df6-b06e-fb09ede997b0', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'f91708e0-67a6-4df6-b06e-fb09ede997b0', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen608@DESKTOP-ACIBNGT', 'reply_to': '2bbd9a60-877e-3524-b016-578d5455c66b', 'correlation_id': 'f91708e0-67a6-4df6-b06e-fb09ede997b0', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-22 14:17:59,025 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_5[d1192560-893f-4699-8806-183a4033781e] pid:616
+2023-03-22 14:17:59,042 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_6[f91708e0-67a6-4df6-b06e-fb09ede997b0] pid:618
+2023-03-22 14:17:59,154 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_7[19de6f10-a57d-4e80-adbc-16f05eeb0222]  
+2023-03-22 14:17:59,202 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_8[fc2ee7ee-cce6-433d-b9f0-771c7209c68e]  
+2023-03-22 14:17:59,234 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_9[ff93a9c0-0770-4050-8f37-8da4e99d0593]  
+2023-03-22 14:17:59,243 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_face_door_right[709fbff2-6b31-4c41-b51c-a972040c1e19]  
+2023-03-22 14:17:59,269 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_face_door_left[31cbd2fd-68ab-4c54-bcea-8c29a656c141]  
+2023-03-22 14:17:59,487 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_3[5196128b-9efe-4e2f-ae3d-aecec8e640fa] succeeded in 0.5169513999999253s: None
+2023-03-22 14:17:59,492 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f26aa0a5550> (args:('salle_activite.tasks.start_linsten_7', '19de6f10-a57d-4e80-adbc-16f05eeb0222', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_7', 'id': '19de6f10-a57d-4e80-adbc-16f05eeb0222', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '19de6f10-a57d-4e80-adbc-16f05eeb0222', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen608@DESKTOP-ACIBNGT', 'reply_to': '2bbd9a60-877e-3524-b016-578d5455c66b', 'correlation_id': '19de6f10-a57d-4e80-adbc-16f05eeb0222', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-22 14:17:59,502 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_7[19de6f10-a57d-4e80-adbc-16f05eeb0222] pid:615
+2023-03-22 14:17:59,523 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_4[7e57ec5a-69f0-4be2-abf8-c3f07ad67e1e] succeeded in 0.5339014000001043s: None
+2023-03-22 14:17:59,539 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_5[d1192560-893f-4699-8806-183a4033781e] succeeded in 0.5141242999998212s: None
+2023-03-22 14:17:59,544 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f26aa0a5550> (args:('salle_activite.tasks.start_linsten_8', 'fc2ee7ee-cce6-433d-b9f0-771c7209c68e', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_8', 'id': 'fc2ee7ee-cce6-433d-b9f0-771c7209c68e', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'fc2ee7ee-cce6-433d-b9f0-771c7209c68e', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen608@DESKTOP-ACIBNGT', 'reply_to': '2bbd9a60-877e-3524-b016-578d5455c66b', 'correlation_id': 'fc2ee7ee-cce6-433d-b9f0-771c7209c68e', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-22 14:17:59,544 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_6[f91708e0-67a6-4df6-b06e-fb09ede997b0] succeeded in 0.5191447000001972s: None
+2023-03-22 14:17:59,555 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f26aa0a5550> (args:('salle_activite.tasks.start_linsten_9', 'ff93a9c0-0770-4050-8f37-8da4e99d0593', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_9', 'id': 'ff93a9c0-0770-4050-8f37-8da4e99d0593', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'ff93a9c0-0770-4050-8f37-8da4e99d0593', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen608@DESKTOP-ACIBNGT', 'reply_to': '2bbd9a60-877e-3524-b016-578d5455c66b', 'correlation_id': 'ff93a9c0-0770-4050-8f37-8da4e99d0593', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-22 14:17:59,564 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_8[fc2ee7ee-cce6-433d-b9f0-771c7209c68e] pid:617
+2023-03-22 14:17:59,569 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f26aa0a5550> (args:('salle_activite.tasks.start_face_door_right', '709fbff2-6b31-4c41-b51c-a972040c1e19', {'lang': 'py', 'task': 'salle_activite.tasks.start_face_door_right', 'id': '709fbff2-6b31-4c41-b51c-a972040c1e19', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '709fbff2-6b31-4c41-b51c-a972040c1e19', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen608@DESKTOP-ACIBNGT', 'reply_to': '2bbd9a60-877e-3524-b016-578d5455c66b', 'correlation_id': '709fbff2-6b31-4c41-b51c-a972040c1e19', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-22 14:17:59,609 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_9[ff93a9c0-0770-4050-8f37-8da4e99d0593] pid:616
+2023-03-22 14:17:59,618 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_face_door_right[709fbff2-6b31-4c41-b51c-a972040c1e19] pid:618
+2023-03-22 14:17:59,770 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_7[19de6f10-a57d-4e80-adbc-16f05eeb0222] succeeded in 0.26883589999988544s: None
+2023-03-22 14:17:59,772 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f26aa0a5550> (args:('salle_activite.tasks.start_face_door_left', '31cbd2fd-68ab-4c54-bcea-8c29a656c141', {'lang': 'py', 'task': 'salle_activite.tasks.start_face_door_left', 'id': '31cbd2fd-68ab-4c54-bcea-8c29a656c141', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '31cbd2fd-68ab-4c54-bcea-8c29a656c141', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen608@DESKTOP-ACIBNGT', 'reply_to': '2bbd9a60-877e-3524-b016-578d5455c66b', 'correlation_id': '31cbd2fd-68ab-4c54-bcea-8c29a656c141', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-22 14:17:59,776 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_face_door_left[31cbd2fd-68ab-4c54-bcea-8c29a656c141] pid:615
+2023-03-22 14:17:59,839 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_8[fc2ee7ee-cce6-433d-b9f0-771c7209c68e] succeeded in 0.2768040999999357s: None
+2023-03-22 14:17:59,869 celery.app.trace INFO     Task salle_activite.tasks.start_face_door_right[709fbff2-6b31-4c41-b51c-a972040c1e19] succeeded in 0.2534632000001693s: None
+2023-03-22 14:18:00,061 celery.app.trace INFO     Task salle_activite.tasks.start_face_door_left[31cbd2fd-68ab-4c54-bcea-8c29a656c141] succeeded in 0.284588900000017s: None
+2023-03-22 14:18:01,100 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_9[ff93a9c0-0770-4050-8f37-8da4e99d0593] succeeded in 1.5350968000002467s: None
+2023-03-22 14:26:16,121 django.utils.autoreload INFO     /mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/backend/salle_activite/tasks.py changed, reloading.
+2023-03-22 14:26:18,825 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-22 14:26:35,418 celery.bootsteps DEBUG    | Worker: Closing Hub...
+2023-03-22 14:26:35,422 celery.bootsteps DEBUG    | Worker: Closing Pool...
+2023-03-22 14:26:35,427 celery.bootsteps DEBUG    | Worker: Closing Consumer...
+2023-03-22 14:26:35,434 celery.bootsteps DEBUG    | Worker: Stopping Consumer...
+2023-03-22 14:26:35,437 celery.bootsteps DEBUG    | Consumer: Closing Connection...
+2023-03-22 14:26:35,445 celery.bootsteps DEBUG    | Consumer: Closing Events...
+2023-03-22 14:26:35,448 celery.bootsteps DEBUG    | Consumer: Closing Heart...
+2023-03-22 14:26:35,450 celery.bootsteps DEBUG    | Consumer: Closing Mingle...
+2023-03-22 14:26:35,452 celery.bootsteps DEBUG    | Consumer: Closing Gossip...
+2023-03-22 14:26:35,453 celery.bootsteps DEBUG    | Consumer: Closing Tasks...
+2023-03-22 14:26:35,453 celery.bootsteps DEBUG    | Consumer: Closing Control...
+2023-03-22 14:26:35,454 celery.bootsteps DEBUG    | Consumer: Closing event loop...
+2023-03-22 14:26:35,457 celery.bootsteps DEBUG    | Consumer: Stopping event loop...
+2023-03-22 14:26:35,460 celery.bootsteps DEBUG    | Consumer: Stopping Control...
+2023-03-22 14:26:35,465 celery.bootsteps DEBUG    | Consumer: Stopping Tasks...
+2023-03-22 14:26:35,466 celery.worker.consumer.tasks DEBUG    Canceling task consumer...
+2023-03-22 14:26:35,467 celery.bootsteps DEBUG    | Consumer: Stopping Gossip...
+2023-03-22 14:26:35,471 celery.bootsteps DEBUG    | Consumer: Stopping Mingle...
+2023-03-22 14:26:35,473 celery.bootsteps DEBUG    | Consumer: Stopping Heart...
+2023-03-22 14:26:35,478 celery.bootsteps DEBUG    | Consumer: Stopping Events...
+2023-03-22 14:26:35,479 celery.bootsteps DEBUG    | Consumer: Stopping Connection...
+2023-03-22 14:26:35,480 celery.bootsteps DEBUG    | Worker: Stopping Pool...
+2023-03-22 14:26:35,583 celery.concurrency.asynpool DEBUG    removing tasks from inqueue until task handler finished
+2023-03-22 14:26:36,457 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-22 14:26:42,032 celery.bootsteps DEBUG    | Worker: Preparing bootsteps.
+2023-03-22 14:26:42,037 celery.bootsteps DEBUG    | Worker: Building graph...
+2023-03-22 14:26:42,039 celery.bootsteps DEBUG    | Worker: New boot order: {Timer, Hub, Pool, Autoscaler, StateDB, Beat, Consumer}
+2023-03-22 14:26:42,075 celery.bootsteps DEBUG    | Consumer: Preparing bootsteps.
+2023-03-22 14:26:42,076 celery.bootsteps DEBUG    | Consumer: Building graph...
+2023-03-22 14:26:42,139 celery.bootsteps DEBUG    | Consumer: New boot order: {Connection, Events, Mingle, Gossip, Heart, Tasks, Control, Agent, event loop}
+2023-03-22 14:26:42,183 celery.bootsteps DEBUG    | Worker: Starting Hub
+2023-03-22 14:26:42,184 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-22 14:26:42,184 celery.bootsteps DEBUG    | Worker: Starting Pool
+2023-03-22 14:26:42,544 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-22 14:26:42,546 celery.bootsteps DEBUG    | Worker: Starting Consumer
+2023-03-22 14:26:42,547 celery.bootsteps DEBUG    | Consumer: Starting Connection
+2023-03-22 14:26:42,571 celery.worker.consumer.connection INFO     Connected to redis://localhost:6379//
+2023-03-22 14:26:42,572 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-22 14:26:42,573 celery.bootsteps DEBUG    | Consumer: Starting Events
+2023-03-22 14:26:42,584 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-22 14:26:42,585 celery.bootsteps DEBUG    | Consumer: Starting Mingle
+2023-03-22 14:26:42,585 celery.worker.consumer.mingle INFO     mingle: searching for neighbors
+2023-03-22 14:26:43,618 celery.worker.consumer.mingle INFO     mingle: all alone
+2023-03-22 14:26:43,619 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-22 14:26:43,619 celery.bootsteps DEBUG    | Consumer: Starting Gossip
+2023-03-22 14:26:43,632 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-22 14:26:43,633 celery.bootsteps DEBUG    | Consumer: Starting Heart
+2023-03-22 14:26:43,635 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-22 14:26:43,636 celery.bootsteps DEBUG    | Consumer: Starting Tasks
+2023-03-22 14:26:43,654 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-22 14:26:43,658 celery.bootsteps DEBUG    | Consumer: Starting Control
+2023-03-22 14:26:43,696 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-22 14:26:43,699 celery.bootsteps DEBUG    | Consumer: Starting event loop
+2023-03-22 14:26:43,700 celery.bootsteps DEBUG    | Worker: Hub.register Pool...
+2023-03-22 14:26:43,716 celery.apps.worker INFO     celery@DESKTOP-ACIBNGT ready.
+2023-03-22 14:26:43,717 kombu.common DEBUG    basic.qos: prefetch_count->16
+2023-03-22 14:26:47,606 salle_activite_view INFO     Open All The Doors inited...
+2023-03-22 14:26:47,998 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_3[d9d2692f-adbd-44d6-b2f0-d729cba1bc2f]  
+2023-03-22 14:26:47,999 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f7f10843550> (args:('salle_activite.tasks.start_linsten_3', 'd9d2692f-adbd-44d6-b2f0-d729cba1bc2f', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_3', 'id': 'd9d2692f-adbd-44d6-b2f0-d729cba1bc2f', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'd9d2692f-adbd-44d6-b2f0-d729cba1bc2f', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen758@DESKTOP-ACIBNGT', 'reply_to': 'caf96e50-f89e-3da9-b882-8d4f39e7ca67', 'correlation_id': 'd9d2692f-adbd-44d6-b2f0-d729cba1bc2f', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-22 14:26:48,007 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_4[faf92890-df13-4517-aeee-d592bec2c67a]  
+2023-03-22 14:26:48,008 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f7f10843550> (args:('salle_activite.tasks.start_linsten_4', 'faf92890-df13-4517-aeee-d592bec2c67a', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_4', 'id': 'faf92890-df13-4517-aeee-d592bec2c67a', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'faf92890-df13-4517-aeee-d592bec2c67a', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen758@DESKTOP-ACIBNGT', 'reply_to': 'caf96e50-f89e-3da9-b882-8d4f39e7ca67', 'correlation_id': 'faf92890-df13-4517-aeee-d592bec2c67a', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-22 14:26:48,015 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_4[faf92890-df13-4517-aeee-d592bec2c67a] pid:768
+2023-03-22 14:26:48,020 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_5[343d383a-3da7-4ae2-95cb-928a2755e6cf]  
+2023-03-22 14:26:48,032 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f7f10843550> (args:('salle_activite.tasks.start_linsten_5', '343d383a-3da7-4ae2-95cb-928a2755e6cf', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_5', 'id': '343d383a-3da7-4ae2-95cb-928a2755e6cf', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '343d383a-3da7-4ae2-95cb-928a2755e6cf', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen758@DESKTOP-ACIBNGT', 'reply_to': 'caf96e50-f89e-3da9-b882-8d4f39e7ca67', 'correlation_id': '343d383a-3da7-4ae2-95cb-928a2755e6cf', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-22 14:26:48,035 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_3[d9d2692f-adbd-44d6-b2f0-d729cba1bc2f] pid:766
+2023-03-22 14:26:48,050 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_6[2ed736aa-c33e-48ef-80e1-b27cd1072ce2]  
+2023-03-22 14:26:48,051 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f7f10843550> (args:('salle_activite.tasks.start_linsten_6', '2ed736aa-c33e-48ef-80e1-b27cd1072ce2', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_6', 'id': '2ed736aa-c33e-48ef-80e1-b27cd1072ce2', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '2ed736aa-c33e-48ef-80e1-b27cd1072ce2', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen758@DESKTOP-ACIBNGT', 'reply_to': 'caf96e50-f89e-3da9-b882-8d4f39e7ca67', 'correlation_id': '2ed736aa-c33e-48ef-80e1-b27cd1072ce2', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-22 14:26:48,095 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_7[4545d364-34f7-4d73-92be-f7e365a6e063]  
+2023-03-22 14:26:48,100 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_5[343d383a-3da7-4ae2-95cb-928a2755e6cf] pid:767
+2023-03-22 14:26:48,114 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_6[2ed736aa-c33e-48ef-80e1-b27cd1072ce2] pid:769
+2023-03-22 14:26:48,252 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_8[5776a6fb-5c0e-4952-9117-db9ff1062eed]  
+2023-03-22 14:26:48,269 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_linsten_9[3b61e89d-f569-48f8-95bc-c3f517ab6e46]  
+2023-03-22 14:26:48,285 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_face_door_right[e748bef9-1f12-43d5-b4d1-7ae0e284ba3a]  
+2023-03-22 14:26:48,297 celery.worker.strategy INFO     Received task: salle_activite.tasks.start_face_door_left[64471c3e-ea40-451b-8f50-1bee8c5ee0de]  
+2023-03-22 14:26:48,550 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_6[2ed736aa-c33e-48ef-80e1-b27cd1072ce2] succeeded in 0.4867812000002232s: None
+2023-03-22 14:26:48,553 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f7f10843550> (args:('salle_activite.tasks.start_linsten_7', '4545d364-34f7-4d73-92be-f7e365a6e063', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_7', 'id': '4545d364-34f7-4d73-92be-f7e365a6e063', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '4545d364-34f7-4d73-92be-f7e365a6e063', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen758@DESKTOP-ACIBNGT', 'reply_to': 'caf96e50-f89e-3da9-b882-8d4f39e7ca67', 'correlation_id': '4545d364-34f7-4d73-92be-f7e365a6e063', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-22 14:26:48,559 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_7[4545d364-34f7-4d73-92be-f7e365a6e063] pid:769
+2023-03-22 14:26:48,565 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_5[343d383a-3da7-4ae2-95cb-928a2755e6cf] succeeded in 0.5027934999998251s: None
+2023-03-22 14:26:48,568 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f7f10843550> (args:('salle_activite.tasks.start_linsten_8', '5776a6fb-5c0e-4952-9117-db9ff1062eed', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_8', 'id': '5776a6fb-5c0e-4952-9117-db9ff1062eed', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '5776a6fb-5c0e-4952-9117-db9ff1062eed', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen758@DESKTOP-ACIBNGT', 'reply_to': 'caf96e50-f89e-3da9-b882-8d4f39e7ca67', 'correlation_id': '5776a6fb-5c0e-4952-9117-db9ff1062eed', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-22 14:26:48,572 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_8[5776a6fb-5c0e-4952-9117-db9ff1062eed] pid:767
+2023-03-22 14:26:48,782 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_7[4545d364-34f7-4d73-92be-f7e365a6e063] succeeded in 0.22407699999985198s: None
+2023-03-22 14:26:48,783 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_4[faf92890-df13-4517-aeee-d592bec2c67a] succeeded in 0.7664805999997952s: None
+2023-03-22 14:26:48,785 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f7f10843550> (args:('salle_activite.tasks.start_linsten_9', '3b61e89d-f569-48f8-95bc-c3f517ab6e46', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_9', 'id': '3b61e89d-f569-48f8-95bc-c3f517ab6e46', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '3b61e89d-f569-48f8-95bc-c3f517ab6e46', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen758@DESKTOP-ACIBNGT', 'reply_to': 'caf96e50-f89e-3da9-b882-8d4f39e7ca67', 'correlation_id': '3b61e89d-f569-48f8-95bc-c3f517ab6e46', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-22 14:26:48,791 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f7f10843550> (args:('salle_activite.tasks.start_face_door_right', 'e748bef9-1f12-43d5-b4d1-7ae0e284ba3a', {'lang': 'py', 'task': 'salle_activite.tasks.start_face_door_right', 'id': 'e748bef9-1f12-43d5-b4d1-7ae0e284ba3a', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'e748bef9-1f12-43d5-b4d1-7ae0e284ba3a', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen758@DESKTOP-ACIBNGT', 'reply_to': 'caf96e50-f89e-3da9-b882-8d4f39e7ca67', 'correlation_id': 'e748bef9-1f12-43d5-b4d1-7ae0e284ba3a', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-22 14:26:48,796 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_linsten_9[3b61e89d-f569-48f8-95bc-c3f517ab6e46] pid:768
+2023-03-22 14:26:48,804 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_face_door_right[e748bef9-1f12-43d5-b4d1-7ae0e284ba3a] pid:769
+2023-03-22 14:26:48,952 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_8[5776a6fb-5c0e-4952-9117-db9ff1062eed] succeeded in 0.3800151000000369s: None
+2023-03-22 14:26:48,954 celery.pool  DEBUG    TaskPool: Apply <function _fast_trace_task at 0x7f7f10843550> (args:('salle_activite.tasks.start_face_door_left', '64471c3e-ea40-451b-8f50-1bee8c5ee0de', {'lang': 'py', 'task': 'salle_activite.tasks.start_face_door_left', 'id': '64471c3e-ea40-451b-8f50-1bee8c5ee0de', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '64471c3e-ea40-451b-8f50-1bee8c5ee0de', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen758@DESKTOP-ACIBNGT', 'reply_to': 'caf96e50-f89e-3da9-b882-8d4f39e7ca67', 'correlation_id': '64471c3e-ea40-451b-8f50-1bee8c5ee0de', 'hostname': 'celery@DESKTOP-ACIBNGT', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [], 'kwargs': {}}, b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]', 'application/json', 'utf-8') kwargs:{})
+2023-03-22 14:26:48,962 celery.worker.request DEBUG    Task accepted: salle_activite.tasks.start_face_door_left[64471c3e-ea40-451b-8f50-1bee8c5ee0de] pid:767
+2023-03-22 14:26:49,168 celery.app.trace INFO     Task salle_activite.tasks.start_face_door_right[e748bef9-1f12-43d5-b4d1-7ae0e284ba3a] succeeded in 0.37190370000007533s: None
+2023-03-22 14:26:49,341 celery.app.trace INFO     Task salle_activite.tasks.start_face_door_left[64471c3e-ea40-451b-8f50-1bee8c5ee0de] succeeded in 0.37899879999986297s: None
+2023-03-22 14:26:49,503 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_3[d9d2692f-adbd-44d6-b2f0-d729cba1bc2f] succeeded in 1.485987500000192s: None
+2023-03-22 14:26:50,314 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_9[3b61e89d-f569-48f8-95bc-c3f517ab6e46] succeeded in 1.518040700000256s: None
+2023-03-22 14:39:34,242 django.utils.autoreload INFO     /mnt/c/Users/Taki Eddine/Desktop/gym/new_gym/backend/creneau/models.py changed, reloading.
+2023-03-22 14:39:37,715 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-22 14:45:13,672 django.request WARNING  Bad Request: /rest-api/salle-activite/openthedoor/2/
+2023-03-22 14:45:47,996 django.request WARNING  Bad Request: /rest-api/salle-activite/openthedoor/2/
+2023-03-22 14:46:09,675 django.request WARNING  Bad Request: /rest-api/salle-activite/openthedoor/2/
