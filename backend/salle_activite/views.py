@@ -219,7 +219,6 @@ class OpenTheDoor(APIView):
     permission_classes = [IsAdminUser]
 
     def get(self, request, pk, format=None):
-        salle =  Salle.objects.get(pk=pk)
         # serializer = SalleSerialiser(salle)
         # res = open_the_door.delay(salle.door.id)
 
