@@ -30,15 +30,15 @@ class RangeManager(models.Manager):
             return creneaux
         elif datetime.today().weekday() == 2:
             creneaux =Creneau.objects.filter(day='ME')
-            print('les creneaux du lundi sont !:;====>', creneaux)
+            print('les creneaux du MERCREDI sont !:;====>', creneaux)
             return creneaux
         elif datetime.today().weekday() == 3:
             creneaux =Creneau.objects.filter(day='JE')
-            print('les creneaux du lundi sont !:;====>', creneaux)
+            print('les creneaux du JEUDI sont !:;====>', creneaux)
             return creneaux
         elif datetime.today().weekday() == 4:
             creneaux =Creneau.objects.filter(day='VE')
-            print('les creneaux du lundi sont !:;====>', creneaux)
+            print('les creneaux du VENDREDI sont !:;====>', creneaux)
             return creneaux
         elif datetime.today().weekday() == 5:
             creneaux =Creneau.objects.filter(day='SA')
@@ -152,9 +152,6 @@ class Creneau(models.Model):
 
     def __str__(self):
         return str(self.hour_start)
-
-    def get_absolute_url(self):
-        return reverse("Creneau_detail", kwargs={"pk": self.pk})
 
     def get_color(self):
         if self.color:
