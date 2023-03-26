@@ -147,7 +147,7 @@ class Client(models.Model):
     
     def save(self, *args, **kwargs):
         if self._old_picture != self.picture:
-            # self.generate_thumbnail(self.picture, self.picture.name)
+            self.generate_thumbnail(self.picture, self.picture.name)
             print('yess changed picturename', self.picture.name)
             print('yess changed picture url', self.picture.url)
             register_user.delay(self.last_name, self.id, self.picture.name)
@@ -166,6 +166,8 @@ class Client(models.Model):
                 print('the id', the_id)   
                 self.id = the_id
                 if self.picture:  
+                    self.generate_thumbnail(self.picture, self.picture.name)
+
                     register_user.delay(self.last_name, the_id, self.picture.name)
                     print('yess changed picture url', self.picture.url)
                     print('yess changed picturename', self.picture.name)

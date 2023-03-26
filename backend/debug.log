@@ -7211,3 +7211,125 @@ django.template.exceptions.TemplateDoesNotExist: index.html
 2023-03-26 10:20:10,374 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2023-03-26 10:20:17,383 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
 2023-03-26 10:20:19,525 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-26 11:03:07,290 celery.bootsteps DEBUG    | Worker: Preparing bootsteps.
+2023-03-26 11:03:07,318 celery.bootsteps DEBUG    | Worker: Building graph...
+2023-03-26 11:03:07,319 celery.bootsteps DEBUG    | Worker: New boot order: {Timer, Hub, Pool, Autoscaler, Beat, StateDB, Consumer}
+2023-03-26 11:03:07,447 celery.bootsteps DEBUG    | Consumer: Preparing bootsteps.
+2023-03-26 11:03:07,448 celery.bootsteps DEBUG    | Consumer: Building graph...
+2023-03-26 11:03:07,556 celery.bootsteps DEBUG    | Consumer: New boot order: {Connection, Events, Mingle, Gossip, Agent, Heart, Tasks, Control, event loop}
+2023-03-26 11:03:07,634 celery.bootsteps DEBUG    | Worker: Starting Hub
+2023-03-26 11:03:07,634 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-26 11:03:07,635 celery.bootsteps DEBUG    | Worker: Starting Pool
+2023-03-26 11:03:08,372 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-26 11:03:08,373 celery.bootsteps DEBUG    | Worker: Starting Consumer
+2023-03-26 11:03:08,374 celery.bootsteps DEBUG    | Consumer: Starting Connection
+2023-03-26 11:03:08,419 celery.worker.consumer.connection INFO     Connected to redis://localhost:6379//
+2023-03-26 11:03:08,420 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-26 11:03:08,420 celery.bootsteps DEBUG    | Consumer: Starting Events
+2023-03-26 11:03:08,424 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-26 11:03:08,424 celery.bootsteps DEBUG    | Consumer: Starting Mingle
+2023-03-26 11:03:08,424 celery.worker.consumer.mingle INFO     mingle: searching for neighbors
+2023-03-26 11:03:09,435 celery.worker.consumer.mingle INFO     mingle: all alone
+2023-03-26 11:03:09,436 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-26 11:03:09,436 celery.bootsteps DEBUG    | Consumer: Starting Gossip
+2023-03-26 11:03:09,441 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-26 11:03:09,442 celery.bootsteps DEBUG    | Consumer: Starting Heart
+2023-03-26 11:03:09,445 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-26 11:03:09,446 celery.bootsteps DEBUG    | Consumer: Starting Tasks
+2023-03-26 11:03:09,463 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-26 11:03:09,463 celery.bootsteps DEBUG    | Consumer: Starting Control
+2023-03-26 11:03:09,469 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-26 11:03:09,469 celery.bootsteps DEBUG    | Consumer: Starting event loop
+2023-03-26 11:03:09,470 celery.bootsteps DEBUG    | Worker: Hub.register Pool...
+2023-03-26 11:03:09,486 py.warnings  WARNING  /mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/fixups/django.py:203: UserWarning: Using settings.DEBUG leads to a memory
+            leak, never use this setting in production environments!
+  warnings.warn('''Using settings.DEBUG leads to a memory
+
+2023-03-26 11:03:09,487 celery.apps.worker INFO     celery@DESKTOP-PC6U1IH ready.
+2023-03-26 11:03:09,488 kombu.common DEBUG    basic.qos: prefetch_count->32
+2023-03-26 11:03:26,220 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-26 11:13:05,222 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-26 11:13:07,541 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-26 11:57:07,068 PIL.TiffImagePlugin DEBUG    tag: XResolution (282) - type: rational (5) Tag Location: 22 - Data Location: 74 - value: b'\x00\x00\x00H\x00\x00\x00\x01'
+2023-03-26 11:57:07,069 PIL.TiffImagePlugin DEBUG    tag: YResolution (283) - type: rational (5) Tag Location: 34 - Data Location: 82 - value: b'\x00\x00\x00H\x00\x00\x00\x01'
+2023-03-26 11:57:07,069 PIL.TiffImagePlugin DEBUG    tag: ResolutionUnit (296) - type: short (3) - value: b'\x00\x02'
+2023-03-26 11:57:07,070 PIL.TiffImagePlugin DEBUG    tag: YCbCrPositioning (531) - type: short (3) - value: b'\x00\x01'
+2023-03-26 11:57:07,070 PIL.TiffImagePlugin DEBUG    tag: ExifIFD (34665) - type: long (4) - value: b'\x00\x00\x00Z'
+2023-03-26 11:57:07,071 PIL.Image    DEBUG    Importing BlpImagePlugin
+2023-03-26 11:57:07,080 PIL.Image    DEBUG    Importing BmpImagePlugin
+2023-03-26 11:57:07,080 PIL.Image    DEBUG    Importing BufrStubImagePlugin
+2023-03-26 11:57:07,089 PIL.Image    DEBUG    Importing CurImagePlugin
+2023-03-26 11:57:07,099 PIL.Image    DEBUG    Importing DcxImagePlugin
+2023-03-26 11:57:07,113 PIL.Image    DEBUG    Importing DdsImagePlugin
+2023-03-26 11:57:07,120 PIL.Image    DEBUG    Importing EpsImagePlugin
+2023-03-26 11:57:07,130 PIL.Image    DEBUG    Importing FitsImagePlugin
+2023-03-26 11:57:07,137 PIL.Image    DEBUG    Importing FitsStubImagePlugin
+2023-03-26 11:57:07,145 PIL.Image    DEBUG    Importing FliImagePlugin
+2023-03-26 11:57:07,152 PIL.Image    DEBUG    Importing FpxImagePlugin
+2023-03-26 11:57:07,160 PIL.Image    DEBUG    Image: failed to import FpxImagePlugin: No module named 'olefile'
+2023-03-26 11:57:07,160 PIL.Image    DEBUG    Importing FtexImagePlugin
+2023-03-26 11:57:07,169 PIL.Image    DEBUG    Importing GbrImagePlugin
+2023-03-26 11:57:07,176 PIL.Image    DEBUG    Importing GifImagePlugin
+2023-03-26 11:57:07,176 PIL.Image    DEBUG    Importing GribStubImagePlugin
+2023-03-26 11:57:07,184 PIL.Image    DEBUG    Importing Hdf5StubImagePlugin
+2023-03-26 11:57:07,190 PIL.Image    DEBUG    Importing IcnsImagePlugin
+2023-03-26 11:57:07,214 PIL.Image    DEBUG    Importing IcoImagePlugin
+2023-03-26 11:57:07,222 PIL.Image    DEBUG    Importing ImImagePlugin
+2023-03-26 11:57:07,232 PIL.Image    DEBUG    Importing ImtImagePlugin
+2023-03-26 11:57:07,238 PIL.Image    DEBUG    Importing IptcImagePlugin
+2023-03-26 11:57:07,247 PIL.Image    DEBUG    Importing JpegImagePlugin
+2023-03-26 11:57:07,247 PIL.Image    DEBUG    Importing Jpeg2KImagePlugin
+2023-03-26 11:57:07,247 PIL.Image    DEBUG    Importing McIdasImagePlugin
+2023-03-26 11:57:07,254 PIL.Image    DEBUG    Importing MicImagePlugin
+2023-03-26 11:57:07,263 PIL.Image    DEBUG    Image: failed to import MicImagePlugin: No module named 'olefile'
+2023-03-26 11:57:07,263 PIL.Image    DEBUG    Importing MpegImagePlugin
+2023-03-26 11:57:07,270 PIL.Image    DEBUG    Importing MpoImagePlugin
+2023-03-26 11:57:07,278 PIL.Image    DEBUG    Importing MspImagePlugin
+2023-03-26 11:57:07,285 PIL.Image    DEBUG    Importing PalmImagePlugin
+2023-03-26 11:57:07,294 PIL.Image    DEBUG    Importing PcdImagePlugin
+2023-03-26 11:57:07,301 PIL.Image    DEBUG    Importing PcxImagePlugin
+2023-03-26 11:57:07,302 PIL.Image    DEBUG    Importing PdfImagePlugin
+2023-03-26 11:57:07,324 PIL.Image    DEBUG    Importing PixarImagePlugin
+2023-03-26 11:57:07,331 PIL.Image    DEBUG    Importing PngImagePlugin
+2023-03-26 11:57:07,331 PIL.Image    DEBUG    Importing PpmImagePlugin
+2023-03-26 11:57:07,332 PIL.Image    DEBUG    Importing PsdImagePlugin
+2023-03-26 11:57:07,339 PIL.Image    DEBUG    Importing SgiImagePlugin
+2023-03-26 11:57:07,347 PIL.Image    DEBUG    Importing SpiderImagePlugin
+2023-03-26 11:57:07,354 PIL.Image    DEBUG    Importing SunImagePlugin
+2023-03-26 11:57:07,362 PIL.Image    DEBUG    Importing TgaImagePlugin
+2023-03-26 11:57:07,369 PIL.Image    DEBUG    Importing TiffImagePlugin
+2023-03-26 11:57:07,370 PIL.Image    DEBUG    Importing WebPImagePlugin
+2023-03-26 11:57:07,407 PIL.Image    DEBUG    Importing WmfImagePlugin
+2023-03-26 11:57:07,415 PIL.Image    DEBUG    Importing XbmImagePlugin
+2023-03-26 11:57:07,423 PIL.Image    DEBUG    Importing XpmImagePlugin
+2023-03-26 11:57:07,431 PIL.Image    DEBUG    Importing XVThumbImagePlugin
+2023-03-26 11:57:07,513 PIL.TiffImagePlugin DEBUG    tag: XResolution (282) - type: rational (5) Tag Location: 22 - Data Location: 74 - value: b'\x00\x00\x00H\x00\x00\x00\x01'
+2023-03-26 11:57:07,513 PIL.TiffImagePlugin DEBUG    tag: YResolution (283) - type: rational (5) Tag Location: 34 - Data Location: 82 - value: b'\x00\x00\x00H\x00\x00\x00\x01'
+2023-03-26 11:57:07,514 PIL.TiffImagePlugin DEBUG    tag: ResolutionUnit (296) - type: short (3) - value: b'\x00\x02'
+2023-03-26 11:57:07,514 PIL.TiffImagePlugin DEBUG    tag: YCbCrPositioning (531) - type: short (3) - value: b'\x00\x01'
+2023-03-26 11:57:07,514 PIL.TiffImagePlugin DEBUG    tag: ExifIFD (34665) - type: long (4) - value: b'\x00\x00\x00Z'
+2023-03-26 11:57:07,682 celery.worker.strategy INFO     Task client.tasks.register_user[bcd1aa70-50e5-4b31-b27f-07a5344c2d81] received
+2023-03-26 11:57:07,683 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f3f2856fca0> (args:('client.tasks.register_user', 'bcd1aa70-50e5-4b31-b27f-07a5344c2d81', {'lang': 'py', 'task': 'client.tasks.register_user', 'id': 'bcd1aa70-50e5-4b31-b27f-07a5344c2d81', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'bcd1aa70-50e5-4b31-b27f-07a5344c2d81', 'parent_id': None, 'argsrepr': "('scqscsqcsqc', 'C0026', 'photos/23.jpg')", 'kwargsrepr': '{}', 'origin': 'gen1240@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': 'bcd1aa70-50e5-4b31-b27f-07a5344c2d81', 'reply_to': '3e64e7a5-19a1-3860-bf21-cf15b4cb7416', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'e3466b4f-259a-4b26-bfac-de3bb7990197'}, 'reply_to': '3e64e7a5-19a1-3860-bf21-cf15b4cb7416', 'correlation_id': 'bcd1aa70-50e5-4b31-b27f-07a5344c2d81', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority':... kwargs:{})
+2023-03-26 11:57:10,805 celery.app.trace INFO     Task client.tasks.register_user[bcd1aa70-50e5-4b31-b27f-07a5344c2d81] succeeded in 3.110327000000325s: False
+2023-03-26 11:58:43,921 PIL.PngImagePlugin DEBUG    STREAM b'IHDR' 16 13
+2023-03-26 11:58:43,922 PIL.PngImagePlugin DEBUG    STREAM b'sRGB' 41 1
+2023-03-26 11:58:43,922 PIL.PngImagePlugin DEBUG    STREAM b'gAMA' 54 4
+2023-03-26 11:58:43,922 PIL.PngImagePlugin DEBUG    STREAM b'pHYs' 70 9
+2023-03-26 11:58:43,922 PIL.PngImagePlugin DEBUG    STREAM b'IDAT' 91 65445
+2023-03-26 11:58:43,984 PIL.PngImagePlugin DEBUG    STREAM b'IHDR' 16 13
+2023-03-26 11:58:43,985 PIL.PngImagePlugin DEBUG    STREAM b'sRGB' 41 1
+2023-03-26 11:58:43,985 PIL.PngImagePlugin DEBUG    STREAM b'gAMA' 54 4
+2023-03-26 11:58:43,986 PIL.PngImagePlugin DEBUG    STREAM b'pHYs' 70 9
+2023-03-26 11:58:43,986 PIL.PngImagePlugin DEBUG    STREAM b'IDAT' 91 65445
+2023-03-26 11:58:44,042 celery.worker.strategy INFO     Task client.tasks.register_user[c5a1bedb-40ed-4fa7-a041-a5785cae2659] received
+2023-03-26 11:58:44,043 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f3f2856fca0> (args:('client.tasks.register_user', 'c5a1bedb-40ed-4fa7-a041-a5785cae2659', {'lang': 'py', 'task': 'client.tasks.register_user', 'id': 'c5a1bedb-40ed-4fa7-a041-a5785cae2659', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'c5a1bedb-40ed-4fa7-a041-a5785cae2659', 'parent_id': None, 'argsrepr': "('scqscsqcsqc', 'C0026', 'photos/19F2ED1D-6F87-4895-84C2-2E23A2A754D4.png')", 'kwargsrepr': '{}', 'origin': 'gen1240@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': 'c5a1bedb-40ed-4fa7-a041-a5785cae2659', 'reply_to': 'cd84109d-a8c3-3f29-8592-5359747a8940', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '4183e253-474b-45c6-8f11-a4ec588dcf52'}, 'reply_to': 'cd84109d-a8c3-3f29-8592-5359747a8940', 'correlation_id': 'c5a1bedb-40ed-4fa7-a041-a5785cae2659', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '',... kwargs:{})
+2023-03-26 11:58:47,052 celery.app.trace INFO     Task client.tasks.register_user[c5a1bedb-40ed-4fa7-a041-a5785cae2659] succeeded in 3.008016599998882s: False
+2023-03-26 11:59:32,427 PIL.PngImagePlugin DEBUG    STREAM b'IHDR' 16 13
+2023-03-26 11:59:32,427 PIL.PngImagePlugin DEBUG    STREAM b'tEXt' 41 25
+2023-03-26 11:59:32,428 PIL.PngImagePlugin DEBUG    STREAM b'IDAT' 78 278945
+2023-03-26 11:59:32,583 PIL.PngImagePlugin DEBUG    STREAM b'IHDR' 16 13
+2023-03-26 11:59:32,583 PIL.PngImagePlugin DEBUG    STREAM b'tEXt' 41 25
+2023-03-26 11:59:32,584 PIL.PngImagePlugin DEBUG    STREAM b'IDAT' 78 278945
+2023-03-26 11:59:32,645 celery.worker.strategy INFO     Task client.tasks.register_user[f5ff7f58-111e-4bd2-9139-4e3182589a1c] received
+2023-03-26 11:59:32,646 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f3f2856fca0> (args:('client.tasks.register_user', 'f5ff7f58-111e-4bd2-9139-4e3182589a1c', {'lang': 'py', 'task': 'client.tasks.register_user', 'id': 'f5ff7f58-111e-4bd2-9139-4e3182589a1c', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'f5ff7f58-111e-4bd2-9139-4e3182589a1c', 'parent_id': None, 'argsrepr': "('qscsqcsqcq', 'C0027', 'photos/slide03.png')", 'kwargsrepr': '{}', 'origin': 'gen1240@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': 'f5ff7f58-111e-4bd2-9139-4e3182589a1c', 'reply_to': '026bdae3-c237-3e19-b9ed-0af5119df911', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '1dbfc96b-1960-4ac7-b6e5-29e4dca38008'}, 'reply_to': '026bdae3-c237-3e19-b9ed-0af5119df911', 'correlation_id': 'f5ff7f58-111e-4bd2-9139-4e3182589a1c', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery',... kwargs:{})
+2023-03-26 11:59:35,657 celery.app.trace INFO     Task client.tasks.register_user[f5ff7f58-111e-4bd2-9139-4e3182589a1c] succeeded in 3.009663400000136s: False
