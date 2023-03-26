@@ -8,7 +8,7 @@ import time
 
 @shared_task
 def register_user(user_name, user_id, picture_path):
-    print('CALLED') 
+    print('CALLED', user_id) 
     face1 = FaceControl()
     face2 = FaceControl()
     print(' the instance face1', face1)

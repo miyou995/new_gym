@@ -5601,3 +5601,1613 @@ django.db.models.deletion.ProtectedError: ("Cannot delete some instances of mode
 2023-03-22 14:45:13,672 django.request WARNING  Bad Request: /rest-api/salle-activite/openthedoor/2/
 2023-03-22 14:45:47,996 django.request WARNING  Bad Request: /rest-api/salle-activite/openthedoor/2/
 2023-03-22 14:46:09,675 django.request WARNING  Bad Request: /rest-api/salle-activite/openthedoor/2/
+2023-03-26 09:25:36,731 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-26 09:25:37,001 celery.bootsteps DEBUG    | Worker: Preparing bootsteps.
+2023-03-26 09:25:37,041 celery.bootsteps DEBUG    | Worker: Building graph...
+2023-03-26 09:25:37,042 celery.bootsteps DEBUG    | Worker: New boot order: {Timer, Hub, Pool, Autoscaler, Beat, StateDB, Consumer}
+2023-03-26 09:25:37,236 celery.bootsteps DEBUG    | Consumer: Preparing bootsteps.
+2023-03-26 09:25:37,237 celery.bootsteps DEBUG    | Consumer: Building graph...
+2023-03-26 09:25:37,394 celery.bootsteps DEBUG    | Consumer: New boot order: {Connection, Events, Mingle, Tasks, Control, Agent, Heart, Gossip, event loop}
+2023-03-26 09:25:37,503 celery.bootsteps DEBUG    | Worker: Starting Hub
+2023-03-26 09:25:37,504 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-26 09:25:37,504 celery.bootsteps DEBUG    | Worker: Starting Pool
+2023-03-26 09:25:38,871 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-26 09:25:38,876 celery.bootsteps DEBUG    | Worker: Starting Consumer
+2023-03-26 09:25:38,882 celery.bootsteps DEBUG    | Consumer: Starting Connection
+2023-03-26 09:25:38,994 celery.worker.consumer.connection INFO     Connected to redis://localhost:6379//
+2023-03-26 09:25:39,003 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-26 09:25:39,011 celery.bootsteps DEBUG    | Consumer: Starting Events
+2023-03-26 09:25:39,054 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-26 09:25:39,057 celery.bootsteps DEBUG    | Consumer: Starting Mingle
+2023-03-26 09:25:39,059 celery.worker.consumer.mingle INFO     mingle: searching for neighbors
+2023-03-26 09:25:40,101 celery.worker.consumer.mingle INFO     mingle: all alone
+2023-03-26 09:25:40,103 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-26 09:25:40,103 celery.bootsteps DEBUG    | Consumer: Starting Tasks
+2023-03-26 09:25:40,125 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-26 09:25:40,125 celery.bootsteps DEBUG    | Consumer: Starting Control
+2023-03-26 09:25:40,134 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-26 09:25:40,136 celery.bootsteps DEBUG    | Consumer: Starting Heart
+2023-03-26 09:25:40,139 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-26 09:25:40,140 celery.bootsteps DEBUG    | Consumer: Starting Gossip
+2023-03-26 09:25:40,146 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-26 09:25:40,146 celery.bootsteps DEBUG    | Consumer: Starting event loop
+2023-03-26 09:25:40,148 celery.bootsteps DEBUG    | Worker: Hub.register Pool...
+2023-03-26 09:25:40,168 py.warnings  WARNING  /mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/fixups/django.py:203: UserWarning: Using settings.DEBUG leads to a memory
+            leak, never use this setting in production environments!
+  warnings.warn('''Using settings.DEBUG leads to a memory
+
+2023-03-26 09:25:40,169 celery.apps.worker INFO     celery@DESKTOP-PC6U1IH ready.
+2023-03-26 09:25:40,170 kombu.common DEBUG    basic.qos: prefetch_count->32
+2023-03-26 09:27:50,116 PIL.TiffImagePlugin DEBUG    tag: ImageWidth (256) - type: short (3) - value: b'\x03c'
+2023-03-26 09:27:50,116 PIL.TiffImagePlugin DEBUG    tag: ImageLength (257) - type: short (3) - value: b'\x05\xdc'
+2023-03-26 09:27:50,116 PIL.TiffImagePlugin DEBUG    tag: BitsPerSample (258) - type: short (3) Tag Location: 46 - Data Location: 158 - value: b'\x00\x08\x00\x08\x00\x08'
+2023-03-26 09:27:50,117 PIL.TiffImagePlugin DEBUG    tag: PhotometricInterpretation (262) - type: short (3) - value: b'\x00\x02'
+2023-03-26 09:27:50,117 PIL.TiffImagePlugin DEBUG    tag: Orientation (274) - type: short (3) - value: b'\x00\x01'
+2023-03-26 09:27:50,118 PIL.TiffImagePlugin DEBUG    tag: SamplesPerPixel (277) - type: short (3) - value: b'\x00\x03'
+2023-03-26 09:27:50,118 PIL.TiffImagePlugin DEBUG    tag: XResolution (282) - type: rational (5) Tag Location: 94 - Data Location: 164 - value: b"\x00\n\xfc\x80\x00\x00'\x10"
+2023-03-26 09:27:50,118 PIL.TiffImagePlugin DEBUG    tag: YResolution (283) - type: rational (5) Tag Location: 106 - Data Location: 172 - value: b"\x00\n\xfc\x80\x00\x00'\x10"
+2023-03-26 09:27:50,119 PIL.TiffImagePlugin DEBUG    tag: ResolutionUnit (296) - type: short (3) - value: b'\x00\x02'
+2023-03-26 09:27:50,119 PIL.TiffImagePlugin DEBUG    tag: Software (305) - type: string (2) Tag Location: 130 - Data Location: 180 - value: b'Adobe Photoshop 23.2 (Windows)\x00'
+2023-03-26 09:27:50,120 PIL.TiffImagePlugin DEBUG    tag: DateTime (306) - type: string (2) Tag Location: 142 - Data Location: 211 - value: b'2023:01:29 14:44:28\x00'
+2023-03-26 09:27:50,120 PIL.TiffImagePlugin DEBUG    tag: ExifIFD (34665) - type: long (4) - value: b'\x00\x00\x00\xe8'
+2023-03-26 09:27:50,121 PIL.Image    DEBUG    Importing BlpImagePlugin
+2023-03-26 09:27:50,130 PIL.Image    DEBUG    Importing BmpImagePlugin
+2023-03-26 09:27:50,130 PIL.Image    DEBUG    Importing BufrStubImagePlugin
+2023-03-26 09:27:50,137 PIL.Image    DEBUG    Importing CurImagePlugin
+2023-03-26 09:27:50,144 PIL.Image    DEBUG    Importing DcxImagePlugin
+2023-03-26 09:27:50,157 PIL.Image    DEBUG    Importing DdsImagePlugin
+2023-03-26 09:27:50,167 PIL.Image    DEBUG    Importing EpsImagePlugin
+2023-03-26 09:27:50,174 PIL.Image    DEBUG    Importing FitsImagePlugin
+2023-03-26 09:27:50,182 PIL.Image    DEBUG    Importing FitsStubImagePlugin
+2023-03-26 09:27:50,189 PIL.Image    DEBUG    Importing FliImagePlugin
+2023-03-26 09:27:50,197 PIL.Image    DEBUG    Importing FpxImagePlugin
+2023-03-26 09:27:50,204 PIL.Image    DEBUG    Image: failed to import FpxImagePlugin: No module named 'olefile'
+2023-03-26 09:27:50,204 PIL.Image    DEBUG    Importing FtexImagePlugin
+2023-03-26 09:27:50,213 PIL.Image    DEBUG    Importing GbrImagePlugin
+2023-03-26 09:27:50,220 PIL.Image    DEBUG    Importing GifImagePlugin
+2023-03-26 09:27:50,220 PIL.Image    DEBUG    Importing GribStubImagePlugin
+2023-03-26 09:27:50,227 PIL.Image    DEBUG    Importing Hdf5StubImagePlugin
+2023-03-26 09:27:50,235 PIL.Image    DEBUG    Importing IcnsImagePlugin
+2023-03-26 09:27:50,257 PIL.Image    DEBUG    Importing IcoImagePlugin
+2023-03-26 09:27:50,265 PIL.Image    DEBUG    Importing ImImagePlugin
+2023-03-26 09:27:50,272 PIL.Image    DEBUG    Importing ImtImagePlugin
+2023-03-26 09:27:50,279 PIL.Image    DEBUG    Importing IptcImagePlugin
+2023-03-26 09:27:50,286 PIL.Image    DEBUG    Importing JpegImagePlugin
+2023-03-26 09:27:50,287 PIL.Image    DEBUG    Importing Jpeg2KImagePlugin
+2023-03-26 09:27:50,287 PIL.Image    DEBUG    Importing McIdasImagePlugin
+2023-03-26 09:27:50,295 PIL.Image    DEBUG    Importing MicImagePlugin
+2023-03-26 09:27:50,302 PIL.Image    DEBUG    Image: failed to import MicImagePlugin: No module named 'olefile'
+2023-03-26 09:27:50,303 PIL.Image    DEBUG    Importing MpegImagePlugin
+2023-03-26 09:27:50,310 PIL.Image    DEBUG    Importing MpoImagePlugin
+2023-03-26 09:27:50,317 PIL.Image    DEBUG    Importing MspImagePlugin
+2023-03-26 09:27:50,324 PIL.Image    DEBUG    Importing PalmImagePlugin
+2023-03-26 09:27:50,333 PIL.Image    DEBUG    Importing PcdImagePlugin
+2023-03-26 09:27:50,340 PIL.Image    DEBUG    Importing PcxImagePlugin
+2023-03-26 09:27:50,340 PIL.Image    DEBUG    Importing PdfImagePlugin
+2023-03-26 09:27:50,361 PIL.Image    DEBUG    Importing PixarImagePlugin
+2023-03-26 09:27:50,368 PIL.Image    DEBUG    Importing PngImagePlugin
+2023-03-26 09:27:50,369 PIL.Image    DEBUG    Importing PpmImagePlugin
+2023-03-26 09:27:50,369 PIL.Image    DEBUG    Importing PsdImagePlugin
+2023-03-26 09:27:50,376 PIL.Image    DEBUG    Importing SgiImagePlugin
+2023-03-26 09:27:50,384 PIL.Image    DEBUG    Importing SpiderImagePlugin
+2023-03-26 09:27:50,390 PIL.Image    DEBUG    Importing SunImagePlugin
+2023-03-26 09:27:50,397 PIL.Image    DEBUG    Importing TgaImagePlugin
+2023-03-26 09:27:50,404 PIL.Image    DEBUG    Importing TiffImagePlugin
+2023-03-26 09:27:50,405 PIL.Image    DEBUG    Importing WebPImagePlugin
+2023-03-26 09:27:50,439 PIL.Image    DEBUG    Importing WmfImagePlugin
+2023-03-26 09:27:50,447 PIL.Image    DEBUG    Importing XbmImagePlugin
+2023-03-26 09:27:50,454 PIL.Image    DEBUG    Importing XpmImagePlugin
+2023-03-26 09:27:50,462 PIL.Image    DEBUG    Importing XVThumbImagePlugin
+2023-03-26 09:27:50,786 celery.worker.strategy INFO     Task client.tasks.register_user[391072a0-fd6f-4dec-9fc2-df59483a5950] received
+2023-03-26 09:27:50,787 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7fe7c8d8cca0> (args:('client.tasks.register_user', '391072a0-fd6f-4dec-9fc2-df59483a5950', {'lang': 'py', 'task': 'client.tasks.register_user', 'id': '391072a0-fd6f-4dec-9fc2-df59483a5950', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '391072a0-fd6f-4dec-9fc2-df59483a5950', 'parent_id': None, 'argsrepr': "('hello new user', 'C0019', 'rev-r002.jpg')", 'kwargsrepr': '{}', 'origin': 'gen382@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': '391072a0-fd6f-4dec-9fc2-df59483a5950', 'reply_to': 'bfe166d5-cf28-37d9-8c34-4682458c5718', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '336236df-a810-4d70-b3b3-0939fb3e7ac4'}, 'reply_to': 'bfe166d5-cf28-37d9-8c34-4682458c5718', 'correlation_id': '391072a0-fd6f-4dec-9fc2-df59483a5950', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery',... kwargs:{})
+2023-03-26 09:27:53,931 celery.app.trace INFO     Task client.tasks.register_user[391072a0-fd6f-4dec-9fc2-df59483a5950] succeeded in 3.1386059999999816s: False
+2023-03-26 09:36:23,422 PIL.PngImagePlugin DEBUG    STREAM b'IHDR' 16 13
+2023-03-26 09:36:23,423 PIL.PngImagePlugin DEBUG    STREAM b'gAMA' 41 4
+2023-03-26 09:36:23,423 PIL.PngImagePlugin DEBUG    STREAM b'cHRM' 57 32
+2023-03-26 09:36:23,424 PIL.PngImagePlugin DEBUG    STREAM b'bKGD' 101 6
+2023-03-26 09:36:23,424 PIL.PngImagePlugin DEBUG    b'bKGD' 101 6 (unknown)
+2023-03-26 09:36:23,425 PIL.PngImagePlugin DEBUG    STREAM b'tIME' 119 7
+2023-03-26 09:36:23,425 PIL.PngImagePlugin DEBUG    b'tIME' 119 7 (unknown)
+2023-03-26 09:36:23,425 PIL.PngImagePlugin DEBUG    STREAM b'IDAT' 138 12929
+2023-03-26 09:37:48,051 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-26 09:37:50,327 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-26 09:37:58,698 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-26 09:38:00,612 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-26 09:38:13,280 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-26 09:38:15,226 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-26 09:38:34,062 PIL.Image    DEBUG    Importing BlpImagePlugin
+2023-03-26 09:38:34,064 PIL.Image    DEBUG    Importing BmpImagePlugin
+2023-03-26 09:38:34,064 PIL.Image    DEBUG    Importing BufrStubImagePlugin
+2023-03-26 09:38:34,065 PIL.Image    DEBUG    Importing CurImagePlugin
+2023-03-26 09:38:34,066 PIL.Image    DEBUG    Importing DcxImagePlugin
+2023-03-26 09:38:34,069 PIL.Image    DEBUG    Importing DdsImagePlugin
+2023-03-26 09:38:34,071 PIL.Image    DEBUG    Importing EpsImagePlugin
+2023-03-26 09:38:34,072 PIL.Image    DEBUG    Importing FitsImagePlugin
+2023-03-26 09:38:34,073 PIL.Image    DEBUG    Importing FitsStubImagePlugin
+2023-03-26 09:38:34,074 PIL.Image    DEBUG    Importing FliImagePlugin
+2023-03-26 09:38:34,076 PIL.Image    DEBUG    Importing FpxImagePlugin
+2023-03-26 09:38:34,078 PIL.Image    DEBUG    Image: failed to import FpxImagePlugin: No module named 'olefile'
+2023-03-26 09:38:34,078 PIL.Image    DEBUG    Importing FtexImagePlugin
+2023-03-26 09:38:34,080 PIL.Image    DEBUG    Importing GbrImagePlugin
+2023-03-26 09:38:34,081 PIL.Image    DEBUG    Importing GifImagePlugin
+2023-03-26 09:38:34,082 PIL.Image    DEBUG    Importing GribStubImagePlugin
+2023-03-26 09:38:34,083 PIL.Image    DEBUG    Importing Hdf5StubImagePlugin
+2023-03-26 09:38:34,084 PIL.Image    DEBUG    Importing IcnsImagePlugin
+2023-03-26 09:38:34,088 PIL.Image    DEBUG    Importing IcoImagePlugin
+2023-03-26 09:38:34,089 PIL.Image    DEBUG    Importing ImImagePlugin
+2023-03-26 09:38:34,090 PIL.Image    DEBUG    Importing ImtImagePlugin
+2023-03-26 09:38:34,092 PIL.Image    DEBUG    Importing IptcImagePlugin
+2023-03-26 09:38:34,093 PIL.Image    DEBUG    Importing JpegImagePlugin
+2023-03-26 09:38:34,093 PIL.Image    DEBUG    Importing Jpeg2KImagePlugin
+2023-03-26 09:38:34,093 PIL.Image    DEBUG    Importing McIdasImagePlugin
+2023-03-26 09:38:34,094 PIL.Image    DEBUG    Importing MicImagePlugin
+2023-03-26 09:38:34,097 PIL.Image    DEBUG    Image: failed to import MicImagePlugin: No module named 'olefile'
+2023-03-26 09:38:34,100 PIL.Image    DEBUG    Importing MpegImagePlugin
+2023-03-26 09:38:34,102 PIL.Image    DEBUG    Importing MpoImagePlugin
+2023-03-26 09:38:34,104 PIL.Image    DEBUG    Importing MspImagePlugin
+2023-03-26 09:38:34,105 PIL.Image    DEBUG    Importing PalmImagePlugin
+2023-03-26 09:38:34,107 PIL.Image    DEBUG    Importing PcdImagePlugin
+2023-03-26 09:38:34,108 PIL.Image    DEBUG    Importing PcxImagePlugin
+2023-03-26 09:38:34,108 PIL.Image    DEBUG    Importing PdfImagePlugin
+2023-03-26 09:38:34,116 PIL.Image    DEBUG    Importing PixarImagePlugin
+2023-03-26 09:38:34,121 PIL.Image    DEBUG    Importing PngImagePlugin
+2023-03-26 09:38:34,149 PIL.Image    DEBUG    Importing PpmImagePlugin
+2023-03-26 09:38:34,149 PIL.Image    DEBUG    Importing PsdImagePlugin
+2023-03-26 09:38:34,151 PIL.Image    DEBUG    Importing SgiImagePlugin
+2023-03-26 09:38:34,152 PIL.Image    DEBUG    Importing SpiderImagePlugin
+2023-03-26 09:38:34,154 PIL.Image    DEBUG    Importing SunImagePlugin
+2023-03-26 09:38:34,156 PIL.Image    DEBUG    Importing TgaImagePlugin
+2023-03-26 09:38:34,157 PIL.Image    DEBUG    Importing TiffImagePlugin
+2023-03-26 09:38:34,157 PIL.Image    DEBUG    Importing WebPImagePlugin
+2023-03-26 09:38:34,160 PIL.Image    DEBUG    Importing WmfImagePlugin
+2023-03-26 09:38:34,162 PIL.Image    DEBUG    Importing XbmImagePlugin
+2023-03-26 09:38:34,165 PIL.Image    DEBUG    Importing XpmImagePlugin
+2023-03-26 09:38:34,167 PIL.Image    DEBUG    Importing XVThumbImagePlugin
+2023-03-26 09:38:34,475 celery.worker.strategy INFO     Task client.tasks.register_user[063fe88c-6b4f-4a4f-b2f5-80017e5030f4] received
+2023-03-26 09:38:34,476 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7fe7c8d8cca0> (args:('client.tasks.register_user', '063fe88c-6b4f-4a4f-b2f5-80017e5030f4', {'lang': 'py', 'task': 'client.tasks.register_user', 'id': '063fe88c-6b4f-4a4f-b2f5-80017e5030f4', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '063fe88c-6b4f-4a4f-b2f5-80017e5030f4', 'parent_id': None, 'argsrepr': "('cdcd', 'C0021', '231_T0e4oDT.jpg')", 'kwargsrepr': '{}', 'origin': 'gen439@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': '063fe88c-6b4f-4a4f-b2f5-80017e5030f4', 'reply_to': 'b18b3c1b-4b9c-3c8d-931e-7133a9f87953', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'ed1eada4-f3e0-4846-8b1f-45d37ed62513'}, 'reply_to': 'b18b3c1b-4b9c-3c8d-931e-7133a9f87953', 'correlation_id': '063fe88c-6b4f-4a4f-b2f5-80017e5030f4', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0,... kwargs:{})
+2023-03-26 09:38:37,489 celery.app.trace INFO     Task client.tasks.register_user[063fe88c-6b4f-4a4f-b2f5-80017e5030f4] succeeded in 3.01106249999998s: False
+2023-03-26 09:39:04,196 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-26 09:39:06,891 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-26 09:39:32,354 PIL.TiffImagePlugin DEBUG    tag: ImageWidth (256) - type: short (3) - value: b'\x03c'
+2023-03-26 09:39:32,355 PIL.TiffImagePlugin DEBUG    tag: ImageLength (257) - type: short (3) - value: b'\x05\xdc'
+2023-03-26 09:39:32,355 PIL.TiffImagePlugin DEBUG    tag: BitsPerSample (258) - type: short (3) Tag Location: 46 - Data Location: 158 - value: b'\x00\x08\x00\x08\x00\x08'
+2023-03-26 09:39:32,356 PIL.TiffImagePlugin DEBUG    tag: PhotometricInterpretation (262) - type: short (3) - value: b'\x00\x02'
+2023-03-26 09:39:32,356 PIL.TiffImagePlugin DEBUG    tag: Orientation (274) - type: short (3) - value: b'\x00\x01'
+2023-03-26 09:39:32,356 PIL.TiffImagePlugin DEBUG    tag: SamplesPerPixel (277) - type: short (3) - value: b'\x00\x03'
+2023-03-26 09:39:32,357 PIL.TiffImagePlugin DEBUG    tag: XResolution (282) - type: rational (5) Tag Location: 94 - Data Location: 164 - value: b"\x00\n\xfc\x80\x00\x00'\x10"
+2023-03-26 09:39:32,357 PIL.TiffImagePlugin DEBUG    tag: YResolution (283) - type: rational (5) Tag Location: 106 - Data Location: 172 - value: b"\x00\n\xfc\x80\x00\x00'\x10"
+2023-03-26 09:39:32,357 PIL.TiffImagePlugin DEBUG    tag: ResolutionUnit (296) - type: short (3) - value: b'\x00\x02'
+2023-03-26 09:39:32,358 PIL.TiffImagePlugin DEBUG    tag: Software (305) - type: string (2) Tag Location: 130 - Data Location: 180 - value: b'Adobe Photoshop 23.2 (Windows)\x00'
+2023-03-26 09:39:32,358 PIL.TiffImagePlugin DEBUG    tag: DateTime (306) - type: string (2) Tag Location: 142 - Data Location: 211 - value: b'2023:01:29 14:44:28\x00'
+2023-03-26 09:39:32,358 PIL.TiffImagePlugin DEBUG    tag: ExifIFD (34665) - type: long (4) - value: b'\x00\x00\x00\xe8'
+2023-03-26 09:39:32,359 PIL.Image    DEBUG    Importing BlpImagePlugin
+2023-03-26 09:39:32,361 PIL.Image    DEBUG    Importing BmpImagePlugin
+2023-03-26 09:39:32,361 PIL.Image    DEBUG    Importing BufrStubImagePlugin
+2023-03-26 09:39:32,362 PIL.Image    DEBUG    Importing CurImagePlugin
+2023-03-26 09:39:32,363 PIL.Image    DEBUG    Importing DcxImagePlugin
+2023-03-26 09:39:32,365 PIL.Image    DEBUG    Importing DdsImagePlugin
+2023-03-26 09:39:32,367 PIL.Image    DEBUG    Importing EpsImagePlugin
+2023-03-26 09:39:32,368 PIL.Image    DEBUG    Importing FitsImagePlugin
+2023-03-26 09:39:32,369 PIL.Image    DEBUG    Importing FitsStubImagePlugin
+2023-03-26 09:39:32,370 PIL.Image    DEBUG    Importing FliImagePlugin
+2023-03-26 09:39:32,372 PIL.Image    DEBUG    Importing FpxImagePlugin
+2023-03-26 09:39:32,374 PIL.Image    DEBUG    Image: failed to import FpxImagePlugin: No module named 'olefile'
+2023-03-26 09:39:32,375 PIL.Image    DEBUG    Importing FtexImagePlugin
+2023-03-26 09:39:32,376 PIL.Image    DEBUG    Importing GbrImagePlugin
+2023-03-26 09:39:32,377 PIL.Image    DEBUG    Importing GifImagePlugin
+2023-03-26 09:39:32,377 PIL.Image    DEBUG    Importing GribStubImagePlugin
+2023-03-26 09:39:32,378 PIL.Image    DEBUG    Importing Hdf5StubImagePlugin
+2023-03-26 09:39:32,380 PIL.Image    DEBUG    Importing IcnsImagePlugin
+2023-03-26 09:39:32,383 PIL.Image    DEBUG    Importing IcoImagePlugin
+2023-03-26 09:39:32,384 PIL.Image    DEBUG    Importing ImImagePlugin
+2023-03-26 09:39:32,386 PIL.Image    DEBUG    Importing ImtImagePlugin
+2023-03-26 09:39:32,387 PIL.Image    DEBUG    Importing IptcImagePlugin
+2023-03-26 09:39:32,389 PIL.Image    DEBUG    Importing JpegImagePlugin
+2023-03-26 09:39:32,389 PIL.Image    DEBUG    Importing Jpeg2KImagePlugin
+2023-03-26 09:39:32,390 PIL.Image    DEBUG    Importing McIdasImagePlugin
+2023-03-26 09:39:32,391 PIL.Image    DEBUG    Importing MicImagePlugin
+2023-03-26 09:39:32,392 PIL.Image    DEBUG    Image: failed to import MicImagePlugin: No module named 'olefile'
+2023-03-26 09:39:32,393 PIL.Image    DEBUG    Importing MpegImagePlugin
+2023-03-26 09:39:32,393 PIL.Image    DEBUG    Importing MpoImagePlugin
+2023-03-26 09:39:32,395 PIL.Image    DEBUG    Importing MspImagePlugin
+2023-03-26 09:39:32,396 PIL.Image    DEBUG    Importing PalmImagePlugin
+2023-03-26 09:39:32,397 PIL.Image    DEBUG    Importing PcdImagePlugin
+2023-03-26 09:39:32,399 PIL.Image    DEBUG    Importing PcxImagePlugin
+2023-03-26 09:39:32,399 PIL.Image    DEBUG    Importing PdfImagePlugin
+2023-03-26 09:39:32,406 PIL.Image    DEBUG    Importing PixarImagePlugin
+2023-03-26 09:39:32,407 PIL.Image    DEBUG    Importing PngImagePlugin
+2023-03-26 09:39:32,408 PIL.Image    DEBUG    Importing PpmImagePlugin
+2023-03-26 09:39:32,408 PIL.Image    DEBUG    Importing PsdImagePlugin
+2023-03-26 09:39:32,409 PIL.Image    DEBUG    Importing SgiImagePlugin
+2023-03-26 09:39:32,410 PIL.Image    DEBUG    Importing SpiderImagePlugin
+2023-03-26 09:39:32,411 PIL.Image    DEBUG    Importing SunImagePlugin
+2023-03-26 09:39:32,412 PIL.Image    DEBUG    Importing TgaImagePlugin
+2023-03-26 09:39:32,413 PIL.Image    DEBUG    Importing TiffImagePlugin
+2023-03-26 09:39:32,413 PIL.Image    DEBUG    Importing WebPImagePlugin
+2023-03-26 09:39:32,430 PIL.Image    DEBUG    Importing WmfImagePlugin
+2023-03-26 09:39:32,432 PIL.Image    DEBUG    Importing XbmImagePlugin
+2023-03-26 09:39:32,434 PIL.Image    DEBUG    Importing XpmImagePlugin
+2023-03-26 09:39:32,435 PIL.Image    DEBUG    Importing XVThumbImagePlugin
+2023-03-26 09:39:32,653 celery.worker.strategy INFO     Task client.tasks.register_user[0e594a89-d4bc-4c81-bed0-afddcb3840b5] received
+2023-03-26 09:39:32,654 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7fe7c8d8cca0> (args:('client.tasks.register_user', '0e594a89-d4bc-4c81-bed0-afddcb3840b5', {'lang': 'py', 'task': 'client.tasks.register_user', 'id': '0e594a89-d4bc-4c81-bed0-afddcb3840b5', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '0e594a89-d4bc-4c81-bed0-afddcb3840b5', 'parent_id': None, 'argsrepr': "('56564564', 'C0022', 'rev-r002.jpg')", 'kwargsrepr': '{}', 'origin': 'gen449@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': '0e594a89-d4bc-4c81-bed0-afddcb3840b5', 'reply_to': '37936016-269e-37b6-a8e5-302e4c3912f6', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '7b4b9d0b-37f6-4628-a087-10b020c19de9'}, 'reply_to': '37936016-269e-37b6-a8e5-302e4c3912f6', 'correlation_id': '0e594a89-d4bc-4c81-bed0-afddcb3840b5', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0,... kwargs:{})
+2023-03-26 09:39:35,665 celery.app.trace INFO     Task client.tasks.register_user[0e594a89-d4bc-4c81-bed0-afddcb3840b5] succeeded in 3.009516000000076s: False
+2023-03-26 09:39:49,855 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-26 09:39:51,793 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-26 09:39:56,180 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-26 09:39:58,162 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-26 09:40:18,103 PIL.Image    DEBUG    Importing BlpImagePlugin
+2023-03-26 09:40:18,104 PIL.Image    DEBUG    Importing BmpImagePlugin
+2023-03-26 09:40:18,105 PIL.Image    DEBUG    Importing BufrStubImagePlugin
+2023-03-26 09:40:18,106 PIL.Image    DEBUG    Importing CurImagePlugin
+2023-03-26 09:40:18,107 PIL.Image    DEBUG    Importing DcxImagePlugin
+2023-03-26 09:40:18,109 PIL.Image    DEBUG    Importing DdsImagePlugin
+2023-03-26 09:40:18,110 PIL.Image    DEBUG    Importing EpsImagePlugin
+2023-03-26 09:40:18,111 PIL.Image    DEBUG    Importing FitsImagePlugin
+2023-03-26 09:40:18,112 PIL.Image    DEBUG    Importing FitsStubImagePlugin
+2023-03-26 09:40:18,114 PIL.Image    DEBUG    Importing FliImagePlugin
+2023-03-26 09:40:18,115 PIL.Image    DEBUG    Importing FpxImagePlugin
+2023-03-26 09:40:18,117 PIL.Image    DEBUG    Image: failed to import FpxImagePlugin: No module named 'olefile'
+2023-03-26 09:40:18,117 PIL.Image    DEBUG    Importing FtexImagePlugin
+2023-03-26 09:40:18,118 PIL.Image    DEBUG    Importing GbrImagePlugin
+2023-03-26 09:40:18,120 PIL.Image    DEBUG    Importing GifImagePlugin
+2023-03-26 09:40:18,120 PIL.Image    DEBUG    Importing GribStubImagePlugin
+2023-03-26 09:40:18,121 PIL.Image    DEBUG    Importing Hdf5StubImagePlugin
+2023-03-26 09:40:18,123 PIL.Image    DEBUG    Importing IcnsImagePlugin
+2023-03-26 09:40:18,125 PIL.Image    DEBUG    Importing IcoImagePlugin
+2023-03-26 09:40:18,126 PIL.Image    DEBUG    Importing ImImagePlugin
+2023-03-26 09:40:18,128 PIL.Image    DEBUG    Importing ImtImagePlugin
+2023-03-26 09:40:18,129 PIL.Image    DEBUG    Importing IptcImagePlugin
+2023-03-26 09:40:18,130 PIL.Image    DEBUG    Importing JpegImagePlugin
+2023-03-26 09:40:18,131 PIL.Image    DEBUG    Importing Jpeg2KImagePlugin
+2023-03-26 09:40:18,131 PIL.Image    DEBUG    Importing McIdasImagePlugin
+2023-03-26 09:40:18,132 PIL.Image    DEBUG    Importing MicImagePlugin
+2023-03-26 09:40:18,134 PIL.Image    DEBUG    Image: failed to import MicImagePlugin: No module named 'olefile'
+2023-03-26 09:40:18,134 PIL.Image    DEBUG    Importing MpegImagePlugin
+2023-03-26 09:40:18,135 PIL.Image    DEBUG    Importing MpoImagePlugin
+2023-03-26 09:40:18,137 PIL.Image    DEBUG    Importing MspImagePlugin
+2023-03-26 09:40:18,139 PIL.Image    DEBUG    Importing PalmImagePlugin
+2023-03-26 09:40:18,141 PIL.Image    DEBUG    Importing PcdImagePlugin
+2023-03-26 09:40:18,142 PIL.Image    DEBUG    Importing PcxImagePlugin
+2023-03-26 09:40:18,143 PIL.Image    DEBUG    Importing PdfImagePlugin
+2023-03-26 09:40:18,151 PIL.Image    DEBUG    Importing PixarImagePlugin
+2023-03-26 09:40:18,152 PIL.Image    DEBUG    Importing PngImagePlugin
+2023-03-26 09:40:18,152 PIL.Image    DEBUG    Importing PpmImagePlugin
+2023-03-26 09:40:18,152 PIL.Image    DEBUG    Importing PsdImagePlugin
+2023-03-26 09:40:18,154 PIL.Image    DEBUG    Importing SgiImagePlugin
+2023-03-26 09:40:18,155 PIL.Image    DEBUG    Importing SpiderImagePlugin
+2023-03-26 09:40:18,157 PIL.Image    DEBUG    Importing SunImagePlugin
+2023-03-26 09:40:18,158 PIL.Image    DEBUG    Importing TgaImagePlugin
+2023-03-26 09:40:18,159 PIL.Image    DEBUG    Importing TiffImagePlugin
+2023-03-26 09:40:18,159 PIL.Image    DEBUG    Importing WebPImagePlugin
+2023-03-26 09:40:18,162 PIL.Image    DEBUG    Importing WmfImagePlugin
+2023-03-26 09:40:18,164 PIL.Image    DEBUG    Importing XbmImagePlugin
+2023-03-26 09:40:18,166 PIL.Image    DEBUG    Importing XpmImagePlugin
+2023-03-26 09:40:18,167 PIL.Image    DEBUG    Importing XVThumbImagePlugin
+2023-03-26 09:40:18,349 celery.worker.strategy INFO     Task client.tasks.register_user[69bcfa82-c28c-4153-b49c-803891a3c097] received
+2023-03-26 09:40:18,349 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7fe7c8d8cca0> (args:('client.tasks.register_user', '69bcfa82-c28c-4153-b49c-803891a3c097', {'lang': 'py', 'task': 'client.tasks.register_user', 'id': '69bcfa82-c28c-4153-b49c-803891a3c097', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '69bcfa82-c28c-4153-b49c-803891a3c097', 'parent_id': None, 'argsrepr': "('56564564', 'C0022', '2.jpg')", 'kwargsrepr': '{}', 'origin': 'gen463@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': '69bcfa82-c28c-4153-b49c-803891a3c097', 'reply_to': '84b83975-7168-36ef-940d-a2c48507d770', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'c1f2b744-625a-44ef-bf1d-45eaa4b951e9'}, 'reply_to': '84b83975-7168-36ef-940d-a2c48507d770', 'correlation_id': '69bcfa82-c28c-4153-b49c-803891a3c097', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0,... kwargs:{})
+2023-03-26 09:40:21,361 celery.app.trace INFO     Task client.tasks.register_user[69bcfa82-c28c-4153-b49c-803891a3c097] succeeded in 3.0097654000001057s: False
+2023-03-26 09:41:22,407 celery.worker.strategy INFO     Task client.tasks.register_user[27bb8fa3-1a38-48de-97db-8b107110deb6] received
+2023-03-26 09:41:22,408 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7fe7c8d8cca0> (args:('client.tasks.register_user', '27bb8fa3-1a38-48de-97db-8b107110deb6', {'lang': 'py', 'task': 'client.tasks.register_user', 'id': '27bb8fa3-1a38-48de-97db-8b107110deb6', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '27bb8fa3-1a38-48de-97db-8b107110deb6', 'parent_id': None, 'argsrepr': "('sqccsqc', 'C0023', '650A9A45-1EE8-4BF4-883B-5C05F55A76E5.jpg')", 'kwargsrepr': '{}', 'origin': 'gen463@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': '27bb8fa3-1a38-48de-97db-8b107110deb6', 'reply_to': '2087bb65-9f61-3e16-a5f6-2225bcf6c606', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'd3b96d20-bfb4-49b1-8077-a4a3d7ab2151'}, 'reply_to': '2087bb65-9f61-3e16-a5f6-2225bcf6c606', 'correlation_id': '27bb8fa3-1a38-48de-97db-8b107110deb6', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key':... kwargs:{})
+2023-03-26 09:41:25,417 celery.app.trace INFO     Task client.tasks.register_user[27bb8fa3-1a38-48de-97db-8b107110deb6] succeeded in 3.0074448000000302s: False
+2023-03-26 09:41:42,549 PIL.TiffImagePlugin DEBUG    tag: ImageWidth (256) - type: short (3) - value: b'\x03c'
+2023-03-26 09:41:42,550 PIL.TiffImagePlugin DEBUG    tag: ImageLength (257) - type: short (3) - value: b'\x05\xdc'
+2023-03-26 09:41:42,550 PIL.TiffImagePlugin DEBUG    tag: BitsPerSample (258) - type: short (3) Tag Location: 46 - Data Location: 158 - value: b'\x00\x08\x00\x08\x00\x08'
+2023-03-26 09:41:42,551 PIL.TiffImagePlugin DEBUG    tag: PhotometricInterpretation (262) - type: short (3) - value: b'\x00\x02'
+2023-03-26 09:41:42,551 PIL.TiffImagePlugin DEBUG    tag: Orientation (274) - type: short (3) - value: b'\x00\x01'
+2023-03-26 09:41:42,551 PIL.TiffImagePlugin DEBUG    tag: SamplesPerPixel (277) - type: short (3) - value: b'\x00\x03'
+2023-03-26 09:41:42,552 PIL.TiffImagePlugin DEBUG    tag: XResolution (282) - type: rational (5) Tag Location: 94 - Data Location: 164 - value: b"\x00\n\xfc\x80\x00\x00'\x10"
+2023-03-26 09:41:42,552 PIL.TiffImagePlugin DEBUG    tag: YResolution (283) - type: rational (5) Tag Location: 106 - Data Location: 172 - value: b"\x00\n\xfc\x80\x00\x00'\x10"
+2023-03-26 09:41:42,552 PIL.TiffImagePlugin DEBUG    tag: ResolutionUnit (296) - type: short (3) - value: b'\x00\x02'
+2023-03-26 09:41:42,553 PIL.TiffImagePlugin DEBUG    tag: Software (305) - type: string (2) Tag Location: 130 - Data Location: 180 - value: b'Adobe Photoshop 23.2 (Windows)\x00'
+2023-03-26 09:41:42,553 PIL.TiffImagePlugin DEBUG    tag: DateTime (306) - type: string (2) Tag Location: 142 - Data Location: 211 - value: b'2023:01:29 14:44:28\x00'
+2023-03-26 09:41:42,553 PIL.TiffImagePlugin DEBUG    tag: ExifIFD (34665) - type: long (4) - value: b'\x00\x00\x00\xe8'
+2023-03-26 09:41:42,635 celery.worker.strategy INFO     Task client.tasks.register_user[4d005031-2a25-4c5a-9330-c69f0faff79d] received
+2023-03-26 09:41:42,636 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7fe7c8d8cca0> (args:('client.tasks.register_user', '4d005031-2a25-4c5a-9330-c69f0faff79d', {'lang': 'py', 'task': 'client.tasks.register_user', 'id': '4d005031-2a25-4c5a-9330-c69f0faff79d', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '4d005031-2a25-4c5a-9330-c69f0faff79d', 'parent_id': None, 'argsrepr': "('sqccsqc', 'C0023', 'rev-r002.jpg')", 'kwargsrepr': '{}', 'origin': 'gen463@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': '4d005031-2a25-4c5a-9330-c69f0faff79d', 'reply_to': '8d177789-116e-38d2-aa9e-ea60f191bd16', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '5d565280-77e3-4cee-80bc-42f61bca20cd'}, 'reply_to': '8d177789-116e-38d2-aa9e-ea60f191bd16', 'correlation_id': '4d005031-2a25-4c5a-9330-c69f0faff79d', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0,... kwargs:{})
+2023-03-26 09:41:45,649 celery.app.trace INFO     Task client.tasks.register_user[4d005031-2a25-4c5a-9330-c69f0faff79d] succeeded in 3.0121262000000115s: False
+2023-03-26 09:42:36,302 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/tasks.py changed, reloading.
+2023-03-26 09:42:38,672 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-26 09:42:55,714 celery.worker.strategy INFO     Task client.tasks.register_user[68d1990a-a37f-4742-9d99-19c05c72bec0] received
+2023-03-26 09:42:55,714 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7fe7c8d8cca0> (args:('client.tasks.register_user', '68d1990a-a37f-4742-9d99-19c05c72bec0', {'lang': 'py', 'task': 'client.tasks.register_user', 'id': '68d1990a-a37f-4742-9d99-19c05c72bec0', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '68d1990a-a37f-4742-9d99-19c05c72bec0', 'parent_id': None, 'argsrepr': "('qscsqcsqqs', 'C0024', None)", 'kwargsrepr': '{}', 'origin': 'gen478@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': '68d1990a-a37f-4742-9d99-19c05c72bec0', 'reply_to': 'd0fb874c-b902-32ac-8fe2-3e72ad3334ce', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '90a06407-6f56-4964-b45b-3e0c19d3efb9'}, 'reply_to': 'd0fb874c-b902-32ac-8fe2-3e72ad3334ce', 'correlation_id': '68d1990a-a37f-4742-9d99-19c05c72bec0', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0,... kwargs:{})
+2023-03-26 09:42:56,282 django.request ERROR    Internal Server Error: /rest-api/clients/create
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/sqlite3/base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: UNIQUE constraint failed: client_client.id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/mixins.py", line 24, in perform_create
+    serializer.save()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 962, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 453, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py", line 192, in save
+    return super().save(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 739, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 776, in save_base
+    updated = self._save_table(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 881, in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 919, in _do_insert
+    return manager._insert(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1270, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/compiler.py", line 1416, in execute_sql
+    cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/debug_toolbar/panels/sql/tracking.py", line 205, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/debug_toolbar/panels/sql/tracking.py", line 140, in _record
+    return method(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/sqlite3/base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: UNIQUE constraint failed: client_client.id
+2023-03-26 09:42:58,726 celery.app.trace INFO     Task client.tasks.register_user[68d1990a-a37f-4742-9d99-19c05c72bec0] succeeded in 3.010146900000109s: False
+2023-03-26 09:43:00,357 celery.bootsteps DEBUG    | Worker: Closing Hub...
+2023-03-26 09:43:00,358 celery.bootsteps DEBUG    | Worker: Closing Pool...
+2023-03-26 09:43:00,359 celery.bootsteps DEBUG    | Worker: Closing Consumer...
+2023-03-26 09:43:00,359 celery.bootsteps DEBUG    | Worker: Stopping Consumer...
+2023-03-26 09:43:00,360 celery.bootsteps DEBUG    | Consumer: Closing Connection...
+2023-03-26 09:43:00,360 celery.bootsteps DEBUG    | Consumer: Closing Events...
+2023-03-26 09:43:00,360 celery.bootsteps DEBUG    | Consumer: Closing Mingle...
+2023-03-26 09:43:00,361 celery.bootsteps DEBUG    | Consumer: Closing Tasks...
+2023-03-26 09:43:00,361 celery.bootsteps DEBUG    | Consumer: Closing Control...
+2023-03-26 09:43:00,361 celery.bootsteps DEBUG    | Consumer: Closing Heart...
+2023-03-26 09:43:00,362 celery.bootsteps DEBUG    | Consumer: Closing Gossip...
+2023-03-26 09:43:00,362 celery.bootsteps DEBUG    | Consumer: Closing event loop...
+2023-03-26 09:43:00,363 celery.bootsteps DEBUG    | Consumer: Stopping event loop...
+2023-03-26 09:43:00,363 celery.bootsteps DEBUG    | Consumer: Stopping Gossip...
+2023-03-26 09:43:00,366 celery.bootsteps DEBUG    | Consumer: Stopping Heart...
+2023-03-26 09:43:00,367 celery.bootsteps DEBUG    | Consumer: Stopping Control...
+2023-03-26 09:43:00,370 celery.bootsteps DEBUG    | Consumer: Stopping Tasks...
+2023-03-26 09:43:00,370 celery.worker.consumer.tasks DEBUG    Canceling task consumer...
+2023-03-26 09:43:00,371 celery.bootsteps DEBUG    | Consumer: Stopping Mingle...
+2023-03-26 09:43:00,371 celery.bootsteps DEBUG    | Consumer: Stopping Events...
+2023-03-26 09:43:00,372 celery.bootsteps DEBUG    | Consumer: Stopping Connection...
+2023-03-26 09:43:00,372 celery.bootsteps DEBUG    | Worker: Stopping Pool...
+2023-03-26 09:43:00,565 celery.concurrency.asynpool DEBUG    removing tasks from inqueue until task handler finished
+2023-03-26 09:43:04,261 celery.bootsteps DEBUG    | Worker: Preparing bootsteps.
+2023-03-26 09:43:04,266 celery.bootsteps DEBUG    | Worker: Building graph...
+2023-03-26 09:43:04,267 celery.bootsteps DEBUG    | Worker: New boot order: {Beat, Timer, Hub, Pool, Autoscaler, StateDB, Consumer}
+2023-03-26 09:43:04,288 celery.bootsteps DEBUG    | Consumer: Preparing bootsteps.
+2023-03-26 09:43:04,289 celery.bootsteps DEBUG    | Consumer: Building graph...
+2023-03-26 09:43:04,325 celery.bootsteps DEBUG    | Consumer: New boot order: {Connection, Events, Heart, Agent, Mingle, Tasks, Control, Gossip, event loop}
+2023-03-26 09:43:04,365 celery.bootsteps DEBUG    | Worker: Starting Hub
+2023-03-26 09:43:04,366 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-26 09:43:04,366 celery.bootsteps DEBUG    | Worker: Starting Pool
+2023-03-26 09:43:05,129 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-26 09:43:05,131 celery.bootsteps DEBUG    | Worker: Starting Consumer
+2023-03-26 09:43:05,132 celery.bootsteps DEBUG    | Consumer: Starting Connection
+2023-03-26 09:43:05,148 celery.worker.consumer.connection INFO     Connected to redis://localhost:6379//
+2023-03-26 09:43:05,149 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-26 09:43:05,149 celery.bootsteps DEBUG    | Consumer: Starting Events
+2023-03-26 09:43:05,152 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-26 09:43:05,153 celery.bootsteps DEBUG    | Consumer: Starting Heart
+2023-03-26 09:43:05,157 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-26 09:43:05,158 celery.bootsteps DEBUG    | Consumer: Starting Mingle
+2023-03-26 09:43:05,158 celery.worker.consumer.mingle INFO     mingle: searching for neighbors
+2023-03-26 09:43:06,170 celery.worker.consumer.mingle INFO     mingle: all alone
+2023-03-26 09:43:06,170 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-26 09:43:06,171 celery.bootsteps DEBUG    | Consumer: Starting Tasks
+2023-03-26 09:43:06,178 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-26 09:43:06,178 celery.bootsteps DEBUG    | Consumer: Starting Control
+2023-03-26 09:43:06,182 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-26 09:43:06,182 celery.bootsteps DEBUG    | Consumer: Starting Gossip
+2023-03-26 09:43:06,186 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-26 09:43:06,186 celery.bootsteps DEBUG    | Consumer: Starting event loop
+2023-03-26 09:43:06,187 celery.bootsteps DEBUG    | Worker: Hub.register Pool...
+2023-03-26 09:43:06,189 py.warnings  WARNING  /mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/fixups/django.py:203: UserWarning: Using settings.DEBUG leads to a memory
+            leak, never use this setting in production environments!
+  warnings.warn('''Using settings.DEBUG leads to a memory
+
+2023-03-26 09:43:06,190 celery.apps.worker INFO     celery@DESKTOP-PC6U1IH ready.
+2023-03-26 09:43:06,190 kombu.common DEBUG    basic.qos: prefetch_count->32
+2023-03-26 09:43:30,786 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-26 09:43:32,961 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-26 09:43:36,154 celery.worker.strategy INFO     Task client.tasks.register_user[bc70f33c-1a20-42f8-97bd-10f4a195f63b] received
+2023-03-26 09:43:36,154 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f38868adca0> (args:('client.tasks.register_user', 'bc70f33c-1a20-42f8-97bd-10f4a195f63b', {'lang': 'py', 'task': 'client.tasks.register_user', 'id': 'bc70f33c-1a20-42f8-97bd-10f4a195f63b', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'bc70f33c-1a20-42f8-97bd-10f4a195f63b', 'parent_id': None, 'argsrepr': "('qscsqcsqqs', 'C0024', None)", 'kwargsrepr': '{}', 'origin': 'gen524@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': 'bc70f33c-1a20-42f8-97bd-10f4a195f63b', 'reply_to': '49fd4490-8560-3529-831a-3047e2f54ace', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'd0a9f4e0-ac7e-4f70-a010-0bcbdf081771'}, 'reply_to': '49fd4490-8560-3529-831a-3047e2f54ace', 'correlation_id': 'bc70f33c-1a20-42f8-97bd-10f4a195f63b', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0,... kwargs:{})
+2023-03-26 09:43:36,821 django.request ERROR    Internal Server Error: /rest-api/clients/create
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/sqlite3/base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: UNIQUE constraint failed: client_client.id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/mixins.py", line 24, in perform_create
+    serializer.save()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 962, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 453, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py", line 192, in save
+    return super().save(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 739, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 776, in save_base
+    updated = self._save_table(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 881, in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 919, in _do_insert
+    return manager._insert(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1270, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/compiler.py", line 1416, in execute_sql
+    cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/debug_toolbar/panels/sql/tracking.py", line 205, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/debug_toolbar/panels/sql/tracking.py", line 140, in _record
+    return method(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/sqlite3/base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: UNIQUE constraint failed: client_client.id
+2023-03-26 09:43:39,234 celery.app.trace INFO     Task client.tasks.register_user[bc70f33c-1a20-42f8-97bd-10f4a195f63b] succeeded in 3.0771029s: False
+2023-03-26 09:44:04,304 celery.worker.strategy INFO     Task client.tasks.register_user[e0335986-4b0a-4de7-97a0-e8d3cd572afa] received
+2023-03-26 09:44:04,305 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f38868adca0> (args:('client.tasks.register_user', 'e0335986-4b0a-4de7-97a0-e8d3cd572afa', {'lang': 'py', 'task': 'client.tasks.register_user', 'id': 'e0335986-4b0a-4de7-97a0-e8d3cd572afa', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'e0335986-4b0a-4de7-97a0-e8d3cd572afa', 'parent_id': None, 'argsrepr': "('qscsqcsqqs', 'C0024', None)", 'kwargsrepr': '{}', 'origin': 'gen524@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': 'e0335986-4b0a-4de7-97a0-e8d3cd572afa', 'reply_to': 'f9e095a1-0804-308c-944c-4911dbf5d7ae', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '071a6ff3-651f-404b-b2a1-9f457f75bcc7'}, 'reply_to': 'f9e095a1-0804-308c-944c-4911dbf5d7ae', 'correlation_id': 'e0335986-4b0a-4de7-97a0-e8d3cd572afa', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0,... kwargs:{})
+2023-03-26 09:44:04,858 django.request ERROR    Internal Server Error: /rest-api/clients/create
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/sqlite3/base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: UNIQUE constraint failed: client_client.id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/mixins.py", line 24, in perform_create
+    serializer.save()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 962, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 453, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py", line 192, in save
+    return super().save(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 739, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 776, in save_base
+    updated = self._save_table(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 881, in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 919, in _do_insert
+    return manager._insert(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1270, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/compiler.py", line 1416, in execute_sql
+    cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/debug_toolbar/panels/sql/tracking.py", line 205, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/debug_toolbar/panels/sql/tracking.py", line 140, in _record
+    return method(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/sqlite3/base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: UNIQUE constraint failed: client_client.id
+2023-03-26 09:44:07,316 celery.app.trace INFO     Task client.tasks.register_user[e0335986-4b0a-4de7-97a0-e8d3cd572afa] succeeded in 3.0098380000001725s: False
+2023-03-26 09:45:20,342 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-26 09:45:24,136 celery.worker.strategy INFO     Task client.tasks.register_user[5b4145b8-3f0d-4186-8c5f-b8a66d22bbdb] received
+2023-03-26 09:45:24,136 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f38868adca0> (args:('client.tasks.register_user', '5b4145b8-3f0d-4186-8c5f-b8a66d22bbdb', {'lang': 'py', 'task': 'client.tasks.register_user', 'id': '5b4145b8-3f0d-4186-8c5f-b8a66d22bbdb', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '5b4145b8-3f0d-4186-8c5f-b8a66d22bbdb', 'parent_id': None, 'argsrepr': "('qscsqcsqqs', 'C0024', None)", 'kwargsrepr': '{}', 'origin': 'gen630@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': '5b4145b8-3f0d-4186-8c5f-b8a66d22bbdb', 'reply_to': '78a7fdd7-cd68-3149-bd5d-c856d3b58188', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '1e7ba344-55a5-4365-bb5b-0dc228934020'}, 'reply_to': '78a7fdd7-cd68-3149-bd5d-c856d3b58188', 'correlation_id': '5b4145b8-3f0d-4186-8c5f-b8a66d22bbdb', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0,... kwargs:{})
+2023-03-26 09:45:24,647 django.request ERROR    Internal Server Error: /rest-api/clients/create
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/sqlite3/base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: UNIQUE constraint failed: client_client.id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/mixins.py", line 24, in perform_create
+    serializer.save()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 962, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 453, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py", line 192, in save
+    return super().save(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 739, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 776, in save_base
+    updated = self._save_table(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 881, in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 919, in _do_insert
+    return manager._insert(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1270, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/compiler.py", line 1416, in execute_sql
+    cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/debug_toolbar/panels/sql/tracking.py", line 205, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/debug_toolbar/panels/sql/tracking.py", line 140, in _record
+    return method(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/sqlite3/base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: UNIQUE constraint failed: client_client.id
+2023-03-26 09:45:27,147 celery.app.trace INFO     Task client.tasks.register_user[5b4145b8-3f0d-4186-8c5f-b8a66d22bbdb] succeeded in 3.008984000000055s: False
+2023-03-26 09:45:45,452 django.request WARNING  Forbidden: /rest-api/clients/C0019/
+2023-03-26 09:45:45,699 django.request WARNING  Forbidden: /rest-api/clients/C0019/
+2023-03-26 09:47:58,593 celery.worker.strategy INFO     Task client.tasks.register_user[ccbea3b5-9493-474f-a364-53839bff7574] received
+2023-03-26 09:47:58,593 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f38868adca0> (args:('client.tasks.register_user', 'ccbea3b5-9493-474f-a364-53839bff7574', {'lang': 'py', 'task': 'client.tasks.register_user', 'id': 'ccbea3b5-9493-474f-a364-53839bff7574', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'ccbea3b5-9493-474f-a364-53839bff7574', 'parent_id': None, 'argsrepr': "('cqdsqdcbvbb', 'C0024', None)", 'kwargsrepr': '{}', 'origin': 'gen630@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': 'ccbea3b5-9493-474f-a364-53839bff7574', 'reply_to': '46581d59-c368-3b76-802e-73b657dbc87b', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '6c6cd815-4a6b-44fe-a09d-c97805e374b0'}, 'reply_to': '46581d59-c368-3b76-802e-73b657dbc87b', 'correlation_id': 'ccbea3b5-9493-474f-a364-53839bff7574', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0,... kwargs:{})
+2023-03-26 09:47:59,050 django.request ERROR    Internal Server Error: /rest-api/clients/create
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/sqlite3/base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: UNIQUE constraint failed: client_client.id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/mixins.py", line 24, in perform_create
+    serializer.save()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 962, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 453, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py", line 192, in save
+    return super().save(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 739, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 776, in save_base
+    updated = self._save_table(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 881, in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 919, in _do_insert
+    return manager._insert(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1270, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/compiler.py", line 1416, in execute_sql
+    cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/debug_toolbar/panels/sql/tracking.py", line 205, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/debug_toolbar/panels/sql/tracking.py", line 140, in _record
+    return method(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/sqlite3/base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: UNIQUE constraint failed: client_client.id
+2023-03-26 09:48:01,604 celery.app.trace INFO     Task client.tasks.register_user[ccbea3b5-9493-474f-a364-53839bff7574] succeeded in 3.008930500000133s: False
+2023-03-26 09:48:14,790 celery.worker.strategy INFO     Task client.tasks.register_user[608355a8-edf2-421e-baf5-0934f8671979] received
+2023-03-26 09:48:14,791 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f38868adca0> (args:('client.tasks.register_user', '608355a8-edf2-421e-baf5-0934f8671979', {'lang': 'py', 'task': 'client.tasks.register_user', 'id': '608355a8-edf2-421e-baf5-0934f8671979', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '608355a8-edf2-421e-baf5-0934f8671979', 'parent_id': None, 'argsrepr': "('cqdsqdcbvbb', 'C0024', None)", 'kwargsrepr': '{}', 'origin': 'gen630@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': '608355a8-edf2-421e-baf5-0934f8671979', 'reply_to': '46581d59-c368-3b76-802e-73b657dbc87b', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '70b95bb3-31dd-431d-9a31-37968ba8eb95'}, 'reply_to': '46581d59-c368-3b76-802e-73b657dbc87b', 'correlation_id': '608355a8-edf2-421e-baf5-0934f8671979', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0,... kwargs:{})
+2023-03-26 09:48:15,327 django.request ERROR    Internal Server Error: /rest-api/clients/create
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/sqlite3/base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: UNIQUE constraint failed: client_client.id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/mixins.py", line 24, in perform_create
+    serializer.save()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 962, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 453, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py", line 192, in save
+    return super().save(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 739, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 776, in save_base
+    updated = self._save_table(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 881, in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 919, in _do_insert
+    return manager._insert(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1270, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/compiler.py", line 1416, in execute_sql
+    cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/debug_toolbar/panels/sql/tracking.py", line 205, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/debug_toolbar/panels/sql/tracking.py", line 140, in _record
+    return method(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/sqlite3/base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: UNIQUE constraint failed: client_client.id
+2023-03-26 09:48:17,805 celery.app.trace INFO     Task client.tasks.register_user[608355a8-edf2-421e-baf5-0934f8671979] succeeded in 3.0131099000000177s: False
+2023-03-26 09:50:13,133 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-26 09:50:15,439 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-26 09:54:28,233 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-26 09:54:38,372 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-26 09:54:47,742 celery.worker.strategy INFO     Task client.tasks.register_user[57f519ff-faf3-42dc-85a5-c2350007fc74] received
+2023-03-26 09:54:47,743 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f38868adca0> (args:('client.tasks.register_user', '57f519ff-faf3-42dc-85a5-c2350007fc74', {'lang': 'py', 'task': 'client.tasks.register_user', 'id': '57f519ff-faf3-42dc-85a5-c2350007fc74', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '57f519ff-faf3-42dc-85a5-c2350007fc74', 'parent_id': None, 'argsrepr': "('cqdsqdcbvbb', 'C0024', None)", 'kwargsrepr': '{}', 'origin': 'gen702@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': '57f519ff-faf3-42dc-85a5-c2350007fc74', 'reply_to': '32673e11-0a72-335d-91cd-438f676f5a3f', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'd4d05c97-dd50-4650-af03-e01c6e5e6b17'}, 'reply_to': '32673e11-0a72-335d-91cd-438f676f5a3f', 'correlation_id': '57f519ff-faf3-42dc-85a5-c2350007fc74', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0,... kwargs:{})
+2023-03-26 09:54:48,376 django.request ERROR    Internal Server Error: /rest-api/clients/create
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/sqlite3/base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: UNIQUE constraint failed: client_client.id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/mixins.py", line 24, in perform_create
+    serializer.save()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 962, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 453, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py", line 192, in save
+    return super().save(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 739, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 776, in save_base
+    updated = self._save_table(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 881, in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 919, in _do_insert
+    return manager._insert(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1270, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/compiler.py", line 1416, in execute_sql
+    cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/debug_toolbar/panels/sql/tracking.py", line 205, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/debug_toolbar/panels/sql/tracking.py", line 140, in _record
+    return method(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/sqlite3/base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: UNIQUE constraint failed: client_client.id
+2023-03-26 09:54:50,755 celery.app.trace INFO     Task client.tasks.register_user[57f519ff-faf3-42dc-85a5-c2350007fc74] succeeded in 3.0095279000001938s: False
+2023-03-26 09:54:57,390 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-26 09:54:59,348 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-26 09:55:21,293 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-26 09:55:23,202 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-26 09:55:51,633 celery.worker.strategy INFO     Task client.tasks.register_user[ce05306d-c61a-44d8-9bee-d77db78c3ff2] received
+2023-03-26 09:55:51,634 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f38868adca0> (args:('client.tasks.register_user', 'ce05306d-c61a-44d8-9bee-d77db78c3ff2', {'lang': 'py', 'task': 'client.tasks.register_user', 'id': 'ce05306d-c61a-44d8-9bee-d77db78c3ff2', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'ce05306d-c61a-44d8-9bee-d77db78c3ff2', 'parent_id': None, 'argsrepr': "('csqsqcsc', 'C0025', None)", 'kwargsrepr': '{}', 'origin': 'gen727@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': 'ce05306d-c61a-44d8-9bee-d77db78c3ff2', 'reply_to': 'b08284e5-7a88-3a05-90e7-c9d0cb6cb396', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '32f4f9d7-d9fa-4ac0-b5b0-e532ef38505b'}, 'reply_to': 'b08284e5-7a88-3a05-90e7-c9d0cb6cb396', 'correlation_id': 'ce05306d-c61a-44d8-9bee-d77db78c3ff2', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0,... kwargs:{})
+2023-03-26 09:55:52,160 django.request ERROR    Internal Server Error: /rest-api/clients/create
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/sqlite3/base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: UNIQUE constraint failed: client_client.id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/mixins.py", line 24, in perform_create
+    serializer.save()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 962, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 453, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py", line 186, in save
+    return super().save(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 739, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 776, in save_base
+    updated = self._save_table(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 881, in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 919, in _do_insert
+    return manager._insert(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1270, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/compiler.py", line 1416, in execute_sql
+    cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/debug_toolbar/panels/sql/tracking.py", line 205, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/debug_toolbar/panels/sql/tracking.py", line 140, in _record
+    return method(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/sqlite3/base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: UNIQUE constraint failed: client_client.id
+2023-03-26 09:55:54,645 celery.app.trace INFO     Task client.tasks.register_user[ce05306d-c61a-44d8-9bee-d77db78c3ff2] succeeded in 3.009347600000183s: False
+2023-03-26 09:56:04,303 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-26 09:56:06,585 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-26 09:56:12,375 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-26 09:56:14,309 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-26 09:56:19,995 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-26 09:56:22,034 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-26 09:56:23,615 celery.worker.strategy INFO     Task client.tasks.register_user[df2bb56f-7e2f-42d4-b6f0-d067b79ec44e] received
+2023-03-26 09:56:23,616 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f38868adca0> (args:('client.tasks.register_user', 'df2bb56f-7e2f-42d4-b6f0-d067b79ec44e', {'lang': 'py', 'task': 'client.tasks.register_user', 'id': 'df2bb56f-7e2f-42d4-b6f0-d067b79ec44e', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'df2bb56f-7e2f-42d4-b6f0-d067b79ec44e', 'parent_id': None, 'argsrepr': "('csqsqcsc', 'C0025', None)", 'kwargsrepr': '{}', 'origin': 'gen746@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': 'df2bb56f-7e2f-42d4-b6f0-d067b79ec44e', 'reply_to': '3daf0f4f-a654-3671-8208-428a999c190e', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '3a9a50a6-f4d2-4235-96a8-21038bb0cba0'}, 'reply_to': '3daf0f4f-a654-3671-8208-428a999c190e', 'correlation_id': 'df2bb56f-7e2f-42d4-b6f0-d067b79ec44e', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0,... kwargs:{})
+2023-03-26 09:56:24,104 django.request ERROR    Internal Server Error: /rest-api/clients/create
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/sqlite3/base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: UNIQUE constraint failed: client_client.id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/mixins.py", line 24, in perform_create
+    serializer.save()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 962, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 453, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py", line 186, in save
+    return super().save(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 739, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 776, in save_base
+    updated = self._save_table(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 881, in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 919, in _do_insert
+    return manager._insert(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1270, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/compiler.py", line 1416, in execute_sql
+    cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/debug_toolbar/panels/sql/tracking.py", line 205, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/debug_toolbar/panels/sql/tracking.py", line 140, in _record
+    return method(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/sqlite3/base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: UNIQUE constraint failed: client_client.id
+2023-03-26 09:56:26,627 celery.app.trace INFO     Task client.tasks.register_user[df2bb56f-7e2f-42d4-b6f0-d067b79ec44e] succeeded in 3.009400800000094s: False
+2023-03-26 09:56:54,737 celery.bootsteps DEBUG    | Worker: Closing Hub...
+2023-03-26 09:56:54,738 celery.bootsteps DEBUG    | Worker: Closing Pool...
+2023-03-26 09:56:54,738 celery.bootsteps DEBUG    | Worker: Closing Consumer...
+2023-03-26 09:56:54,739 celery.bootsteps DEBUG    | Worker: Stopping Consumer...
+2023-03-26 09:56:54,740 celery.bootsteps DEBUG    | Consumer: Closing Connection...
+2023-03-26 09:56:54,740 celery.bootsteps DEBUG    | Consumer: Closing Events...
+2023-03-26 09:56:54,741 celery.bootsteps DEBUG    | Consumer: Closing Heart...
+2023-03-26 09:56:54,741 celery.bootsteps DEBUG    | Consumer: Closing Mingle...
+2023-03-26 09:56:54,742 celery.bootsteps DEBUG    | Consumer: Closing Tasks...
+2023-03-26 09:56:54,743 celery.bootsteps DEBUG    | Consumer: Closing Control...
+2023-03-26 09:56:54,743 celery.bootsteps DEBUG    | Consumer: Closing Gossip...
+2023-03-26 09:56:54,743 celery.bootsteps DEBUG    | Consumer: Closing event loop...
+2023-03-26 09:56:54,744 celery.bootsteps DEBUG    | Consumer: Stopping event loop...
+2023-03-26 09:56:54,744 celery.bootsteps DEBUG    | Consumer: Stopping Gossip...
+2023-03-26 09:56:54,747 celery.bootsteps DEBUG    | Consumer: Stopping Control...
+2023-03-26 09:56:54,749 celery.bootsteps DEBUG    | Consumer: Stopping Tasks...
+2023-03-26 09:56:54,750 celery.worker.consumer.tasks DEBUG    Canceling task consumer...
+2023-03-26 09:56:54,750 celery.bootsteps DEBUG    | Consumer: Stopping Mingle...
+2023-03-26 09:56:54,751 celery.bootsteps DEBUG    | Consumer: Stopping Heart...
+2023-03-26 09:56:54,752 celery.bootsteps DEBUG    | Consumer: Stopping Events...
+2023-03-26 09:56:54,753 celery.bootsteps DEBUG    | Consumer: Stopping Connection...
+2023-03-26 09:56:54,753 celery.bootsteps DEBUG    | Worker: Stopping Pool...
+2023-03-26 09:56:54,920 celery.concurrency.asynpool DEBUG    removing tasks from inqueue until task handler finished
+2023-03-26 09:56:59,293 celery.bootsteps DEBUG    | Worker: Preparing bootsteps.
+2023-03-26 09:56:59,318 celery.bootsteps DEBUG    | Worker: Building graph...
+2023-03-26 09:56:59,319 celery.bootsteps DEBUG    | Worker: New boot order: {StateDB, Beat, Timer, Hub, Pool, Autoscaler, Consumer}
+2023-03-26 09:56:59,429 celery.bootsteps DEBUG    | Consumer: Preparing bootsteps.
+2023-03-26 09:56:59,430 celery.bootsteps DEBUG    | Consumer: Building graph...
+2023-03-26 09:56:59,488 celery.bootsteps DEBUG    | Consumer: New boot order: {Connection, Events, Mingle, Gossip, Agent, Heart, Tasks, Control, event loop}
+2023-03-26 09:56:59,532 celery.bootsteps DEBUG    | Worker: Starting Hub
+2023-03-26 09:56:59,533 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-26 09:56:59,533 celery.bootsteps DEBUG    | Worker: Starting Pool
+2023-03-26 09:57:00,240 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-26 09:57:00,241 celery.bootsteps DEBUG    | Worker: Starting Consumer
+2023-03-26 09:57:00,241 celery.bootsteps DEBUG    | Consumer: Starting Connection
+2023-03-26 09:57:00,252 celery.worker.consumer.connection INFO     Connected to redis://localhost:6379//
+2023-03-26 09:57:00,252 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-26 09:57:00,253 celery.bootsteps DEBUG    | Consumer: Starting Events
+2023-03-26 09:57:00,255 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-26 09:57:00,256 celery.bootsteps DEBUG    | Consumer: Starting Mingle
+2023-03-26 09:57:00,256 celery.worker.consumer.mingle INFO     mingle: searching for neighbors
+2023-03-26 09:57:01,268 celery.worker.consumer.mingle INFO     mingle: all alone
+2023-03-26 09:57:01,269 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-26 09:57:01,269 celery.bootsteps DEBUG    | Consumer: Starting Gossip
+2023-03-26 09:57:01,274 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-26 09:57:01,274 celery.bootsteps DEBUG    | Consumer: Starting Heart
+2023-03-26 09:57:01,276 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-26 09:57:01,277 celery.bootsteps DEBUG    | Consumer: Starting Tasks
+2023-03-26 09:57:01,290 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-26 09:57:01,290 celery.bootsteps DEBUG    | Consumer: Starting Control
+2023-03-26 09:57:01,295 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-26 09:57:01,296 celery.bootsteps DEBUG    | Consumer: Starting event loop
+2023-03-26 09:57:01,296 celery.bootsteps DEBUG    | Worker: Hub.register Pool...
+2023-03-26 09:57:01,305 py.warnings  WARNING  /mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/fixups/django.py:203: UserWarning: Using settings.DEBUG leads to a memory
+            leak, never use this setting in production environments!
+  warnings.warn('''Using settings.DEBUG leads to a memory
+
+2023-03-26 09:57:01,305 celery.apps.worker INFO     celery@DESKTOP-PC6U1IH ready.
+2023-03-26 09:57:01,306 kombu.common DEBUG    basic.qos: prefetch_count->32
+2023-03-26 09:57:05,159 celery.worker.strategy INFO     Task client.tasks.register_user[d9d06a27-87af-40a2-925f-15fe6ab89799] received
+2023-03-26 09:57:05,160 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f337645cca0> (args:('client.tasks.register_user', 'd9d06a27-87af-40a2-925f-15fe6ab89799', {'lang': 'py', 'task': 'client.tasks.register_user', 'id': 'd9d06a27-87af-40a2-925f-15fe6ab89799', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'd9d06a27-87af-40a2-925f-15fe6ab89799', 'parent_id': None, 'argsrepr': "('csqsqcsc', 'C0025', None)", 'kwargsrepr': '{}', 'origin': 'gen746@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': 'd9d06a27-87af-40a2-925f-15fe6ab89799', 'reply_to': '3daf0f4f-a654-3671-8208-428a999c190e', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'c43ff829-5d20-404d-bb96-83e232d8f444'}, 'reply_to': '3daf0f4f-a654-3671-8208-428a999c190e', 'correlation_id': 'd9d06a27-87af-40a2-925f-15fe6ab89799', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0,... kwargs:{})
+2023-03-26 09:57:05,822 django.request ERROR    Internal Server Error: /rest-api/clients/create
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/sqlite3/base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: UNIQUE constraint failed: client_client.id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/mixins.py", line 24, in perform_create
+    serializer.save()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 962, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 453, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py", line 186, in save
+    return super().save(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 739, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 776, in save_base
+    updated = self._save_table(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 881, in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 919, in _do_insert
+    return manager._insert(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1270, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/compiler.py", line 1416, in execute_sql
+    cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/debug_toolbar/panels/sql/tracking.py", line 205, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/debug_toolbar/panels/sql/tracking.py", line 140, in _record
+    return method(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/sqlite3/base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: UNIQUE constraint failed: client_client.id
+2023-03-26 09:57:08,365 celery.app.trace INFO     Task client.tasks.register_user[d9d06a27-87af-40a2-925f-15fe6ab89799] succeeded in 3.202527199999622s: False
+2023-03-26 10:01:03,120 celery.worker.strategy INFO     Task client.tasks.register_user[f950857e-befa-4c36-945c-99c95c184a33] received
+2023-03-26 10:01:03,121 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f337645cca0> (args:('client.tasks.register_user', 'f950857e-befa-4c36-945c-99c95c184a33', {'lang': 'py', 'task': 'client.tasks.register_user', 'id': 'f950857e-befa-4c36-945c-99c95c184a33', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'f950857e-befa-4c36-945c-99c95c184a33', 'parent_id': None, 'argsrepr': "('csqsqcsc', 'C0025', None)", 'kwargsrepr': '{}', 'origin': 'gen746@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': 'f950857e-befa-4c36-945c-99c95c184a33', 'reply_to': '3daf0f4f-a654-3671-8208-428a999c190e', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'bf87be72-6dcb-4294-be83-c5ae15ef0d53'}, 'reply_to': '3daf0f4f-a654-3671-8208-428a999c190e', 'correlation_id': 'f950857e-befa-4c36-945c-99c95c184a33', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0,... kwargs:{})
+2023-03-26 10:01:03,603 django.request ERROR    Internal Server Error: /rest-api/clients/create
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/sqlite3/base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: UNIQUE constraint failed: client_client.id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/mixins.py", line 24, in perform_create
+    serializer.save()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 962, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 453, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py", line 186, in save
+    return super().save(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 739, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 776, in save_base
+    updated = self._save_table(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 881, in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 919, in _do_insert
+    return manager._insert(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1270, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/compiler.py", line 1416, in execute_sql
+    cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/debug_toolbar/panels/sql/tracking.py", line 205, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/debug_toolbar/panels/sql/tracking.py", line 140, in _record
+    return method(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/sqlite3/base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: UNIQUE constraint failed: client_client.id
+2023-03-26 10:01:06,132 celery.app.trace INFO     Task client.tasks.register_user[f950857e-befa-4c36-945c-99c95c184a33] succeeded in 3.0091683999999077s: False
+2023-03-26 10:01:36,309 celery.worker.strategy INFO     Task client.tasks.register_user[3ba65a95-86cd-4a04-b83b-a85ecbe9529d] received
+2023-03-26 10:01:36,310 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f337645cca0> (args:('client.tasks.register_user', '3ba65a95-86cd-4a04-b83b-a85ecbe9529d', {'lang': 'py', 'task': 'client.tasks.register_user', 'id': '3ba65a95-86cd-4a04-b83b-a85ecbe9529d', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '3ba65a95-86cd-4a04-b83b-a85ecbe9529d', 'parent_id': None, 'argsrepr': "('csqsqcsc', 'C0025', None)", 'kwargsrepr': '{}', 'origin': 'gen746@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': '3ba65a95-86cd-4a04-b83b-a85ecbe9529d', 'reply_to': '3daf0f4f-a654-3671-8208-428a999c190e', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '1f46c8d7-4dd4-49ee-991b-48c0893ee391'}, 'reply_to': '3daf0f4f-a654-3671-8208-428a999c190e', 'correlation_id': '3ba65a95-86cd-4a04-b83b-a85ecbe9529d', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0,... kwargs:{})
+2023-03-26 10:01:36,829 django.request ERROR    Internal Server Error: /rest-api/clients/create
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/sqlite3/base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: UNIQUE constraint failed: client_client.id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/mixins.py", line 24, in perform_create
+    serializer.save()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 962, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 453, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py", line 186, in save
+    return super().save(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 739, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 776, in save_base
+    updated = self._save_table(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 881, in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 919, in _do_insert
+    return manager._insert(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1270, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/compiler.py", line 1416, in execute_sql
+    cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/debug_toolbar/panels/sql/tracking.py", line 205, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/debug_toolbar/panels/sql/tracking.py", line 140, in _record
+    return method(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/sqlite3/base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: UNIQUE constraint failed: client_client.id
+2023-03-26 10:01:39,321 celery.app.trace INFO     Task client.tasks.register_user[3ba65a95-86cd-4a04-b83b-a85ecbe9529d] succeeded in 3.009485600000062s: False
+2023-03-26 10:01:43,964 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-26 10:01:46,028 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-26 10:01:48,204 django.request ERROR    Internal Server Error: /rest-api/clients/create
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/sqlite3/base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: UNIQUE constraint failed: client_client.id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/mixins.py", line 24, in perform_create
+    serializer.save()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 962, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 453, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py", line 186, in save
+    return super().save(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 739, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 776, in save_base
+    updated = self._save_table(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 881, in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/base.py", line 919, in _do_insert
+    return manager._insert(
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 1270, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/sql/compiler.py", line 1416, in execute_sql
+    cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/debug_toolbar/panels/sql/tracking.py", line 205, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/debug_toolbar/panels/sql/tracking.py", line 140, in _record
+    return method(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/backends/sqlite3/base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: UNIQUE constraint failed: client_client.id
+2023-03-26 10:01:53,349 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-26 10:01:55,151 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-26 10:01:59,456 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-26 10:02:01,707 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-26 10:02:44,695 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-26 10:02:46,183 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-26 10:02:50,237 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-26 10:02:51,752 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-26 10:02:54,569 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-26 10:02:56,325 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-26 10:02:59,134 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-26 10:03:01,451 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-26 10:03:05,633 celery.worker.strategy INFO     Task client.tasks.register_user[65456f22-54c9-42a8-ac0a-65fed1edb50e] received
+2023-03-26 10:03:05,634 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f337645cca0> (args:('client.tasks.register_user', '65456f22-54c9-42a8-ac0a-65fed1edb50e', {'lang': 'py', 'task': 'client.tasks.register_user', 'id': '65456f22-54c9-42a8-ac0a-65fed1edb50e', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '65456f22-54c9-42a8-ac0a-65fed1edb50e', 'parent_id': None, 'argsrepr': "('csqsqcsc', 'C0025', None)", 'kwargsrepr': '{}', 'origin': 'gen830@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': '65456f22-54c9-42a8-ac0a-65fed1edb50e', 'reply_to': '49f5d7e5-0b0b-3f25-a2f5-05646512a675', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '1f0b4b2f-1d17-4897-b480-2f7e3730aa69'}, 'reply_to': '49f5d7e5-0b0b-3f25-a2f5-05646512a675', 'correlation_id': '65456f22-54c9-42a8-ac0a-65fed1edb50e', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0,... kwargs:{})
+2023-03-26 10:03:06,028 django.request ERROR    Internal Server Error: /rest-api/clients/create
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/generics.py", line 190, in post
+    return self.create(request, *args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/mixins.py", line 24, in perform_create
+    serializer.save()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/rest_framework/serializers.py", line 962, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/query.py", line 453, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py", line 168, in save
+    print('yess changed picture url', self.picture.url)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/fields/files.py", line 63, in url
+    self._require_file()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/db/models/fields/files.py", line 40, in _require_file
+    raise ValueError("The '%s' attribute has no file associated with it." % self.field.name)
+ValueError: The 'picture' attribute has no file associated with it.
+2023-03-26 10:03:08,644 celery.app.trace INFO     Task client.tasks.register_user[65456f22-54c9-42a8-ac0a-65fed1edb50e] succeeded in 3.0089804999997796s: False
+2023-03-26 10:03:37,672 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-26 10:03:39,700 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-26 10:03:53,902 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-26 10:03:56,090 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-26 10:11:43,847 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-26 10:11:45,658 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-26 10:13:15,009 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-26 10:13:16,851 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-26 10:16:56,731 PIL.Image    DEBUG    Importing BlpImagePlugin
+2023-03-26 10:16:56,740 PIL.Image    DEBUG    Importing BmpImagePlugin
+2023-03-26 10:16:56,741 PIL.Image    DEBUG    Importing BufrStubImagePlugin
+2023-03-26 10:16:56,747 PIL.Image    DEBUG    Importing CurImagePlugin
+2023-03-26 10:16:56,754 PIL.Image    DEBUG    Importing DcxImagePlugin
+2023-03-26 10:16:56,768 PIL.Image    DEBUG    Importing DdsImagePlugin
+2023-03-26 10:16:56,777 PIL.Image    DEBUG    Importing EpsImagePlugin
+2023-03-26 10:16:56,785 PIL.Image    DEBUG    Importing FitsImagePlugin
+2023-03-26 10:16:56,792 PIL.Image    DEBUG    Importing FitsStubImagePlugin
+2023-03-26 10:16:56,800 PIL.Image    DEBUG    Importing FliImagePlugin
+2023-03-26 10:16:56,808 PIL.Image    DEBUG    Importing FpxImagePlugin
+2023-03-26 10:16:56,816 PIL.Image    DEBUG    Image: failed to import FpxImagePlugin: No module named 'olefile'
+2023-03-26 10:16:56,816 PIL.Image    DEBUG    Importing FtexImagePlugin
+2023-03-26 10:16:56,825 PIL.Image    DEBUG    Importing GbrImagePlugin
+2023-03-26 10:16:56,832 PIL.Image    DEBUG    Importing GifImagePlugin
+2023-03-26 10:16:56,833 PIL.Image    DEBUG    Importing GribStubImagePlugin
+2023-03-26 10:16:56,840 PIL.Image    DEBUG    Importing Hdf5StubImagePlugin
+2023-03-26 10:16:56,847 PIL.Image    DEBUG    Importing IcnsImagePlugin
+2023-03-26 10:16:56,870 PIL.Image    DEBUG    Importing IcoImagePlugin
+2023-03-26 10:16:56,878 PIL.Image    DEBUG    Importing ImImagePlugin
+2023-03-26 10:16:56,888 PIL.Image    DEBUG    Importing ImtImagePlugin
+2023-03-26 10:16:56,895 PIL.Image    DEBUG    Importing IptcImagePlugin
+2023-03-26 10:16:56,904 PIL.Image    DEBUG    Importing JpegImagePlugin
+2023-03-26 10:16:56,905 PIL.Image    DEBUG    Importing Jpeg2KImagePlugin
+2023-03-26 10:16:56,905 PIL.Image    DEBUG    Importing McIdasImagePlugin
+2023-03-26 10:16:56,911 PIL.Image    DEBUG    Importing MicImagePlugin
+2023-03-26 10:16:56,919 PIL.Image    DEBUG    Image: failed to import MicImagePlugin: No module named 'olefile'
+2023-03-26 10:16:56,920 PIL.Image    DEBUG    Importing MpegImagePlugin
+2023-03-26 10:16:56,926 PIL.Image    DEBUG    Importing MpoImagePlugin
+2023-03-26 10:16:56,932 PIL.Image    DEBUG    Importing MspImagePlugin
+2023-03-26 10:16:56,940 PIL.Image    DEBUG    Importing PalmImagePlugin
+2023-03-26 10:16:56,948 PIL.Image    DEBUG    Importing PcdImagePlugin
+2023-03-26 10:16:56,956 PIL.Image    DEBUG    Importing PcxImagePlugin
+2023-03-26 10:16:56,956 PIL.Image    DEBUG    Importing PdfImagePlugin
+2023-03-26 10:16:56,977 PIL.Image    DEBUG    Importing PixarImagePlugin
+2023-03-26 10:16:56,984 PIL.Image    DEBUG    Importing PngImagePlugin
+2023-03-26 10:16:56,985 PIL.Image    DEBUG    Importing PpmImagePlugin
+2023-03-26 10:16:56,986 PIL.Image    DEBUG    Importing PsdImagePlugin
+2023-03-26 10:16:56,993 PIL.Image    DEBUG    Importing SgiImagePlugin
+2023-03-26 10:16:57,000 PIL.Image    DEBUG    Importing SpiderImagePlugin
+2023-03-26 10:16:57,008 PIL.Image    DEBUG    Importing SunImagePlugin
+2023-03-26 10:16:57,015 PIL.Image    DEBUG    Importing TgaImagePlugin
+2023-03-26 10:16:57,024 PIL.Image    DEBUG    Importing TiffImagePlugin
+2023-03-26 10:16:57,024 PIL.Image    DEBUG    Importing WebPImagePlugin
+2023-03-26 10:16:57,059 PIL.Image    DEBUG    Importing WmfImagePlugin
+2023-03-26 10:16:57,067 PIL.Image    DEBUG    Importing XbmImagePlugin
+2023-03-26 10:16:57,076 PIL.Image    DEBUG    Importing XpmImagePlugin
+2023-03-26 10:16:57,082 PIL.Image    DEBUG    Importing XVThumbImagePlugin
+2023-03-26 10:16:57,324 celery.worker.strategy INFO     Task client.tasks.register_user[8908611e-e416-418d-8101-6c15ae485908] received
+2023-03-26 10:16:57,325 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f337645cca0> (args:('client.tasks.register_user', '8908611e-e416-418d-8101-6c15ae485908', {'lang': 'py', 'task': 'client.tasks.register_user', 'id': '8908611e-e416-418d-8101-6c15ae485908', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '8908611e-e416-418d-8101-6c15ae485908', 'parent_id': None, 'argsrepr': "('scqscsqcsqc', 'C0026', 'LD0005525968_2.jpg')", 'kwargsrepr': '{}', 'origin': 'gen938@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': '8908611e-e416-418d-8101-6c15ae485908', 'reply_to': '1f267eda-18b7-36c9-b417-de3b88ee1b77', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '3e3387f5-8d22-422a-99c4-6123c9484f64'}, 'reply_to': '1f267eda-18b7-36c9-b417-de3b88ee1b77', 'correlation_id': '8908611e-e416-418d-8101-6c15ae485908', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery',... kwargs:{})
+2023-03-26 10:17:00,337 celery.app.trace INFO     Task client.tasks.register_user[8908611e-e416-418d-8101-6c15ae485908] succeeded in 3.010501099999601s: False
+2023-03-26 10:18:15,848 django.request ERROR    Internal Server Error: /media/photos/LD0005525968_2.jpg
+Traceback (most recent call last):
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 204, in _get_response
+    response = response.render()
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/template/response.py", line 105, in render
+    self.content = self.rendered_content
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/template/response.py", line 81, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/template/response.py", line 63, in resolve_template
+    return select_template(template, using=self.using)
+  File "/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/django/template/loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(', '.join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: index.html
+2023-03-26 10:19:35,699 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2023-03-26 10:19:37,760 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-26 10:19:44,168 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2023-03-26 10:19:46,263 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-26 10:19:49,221 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2023-03-26 10:19:51,405 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-26 10:19:54,403 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2023-03-26 10:19:56,284 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-26 10:19:59,400 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2023-03-26 10:20:01,276 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-26 10:20:08,366 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2023-03-26 10:20:10,374 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-26 10:20:17,383 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2023-03-26 10:20:19,525 django.utils.autoreload INFO     Watching for file changes with StatReloader
