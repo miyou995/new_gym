@@ -13,6 +13,7 @@ from rest_framework.viewsets import ViewSet, ModelViewSet
 from .tasks import ( 
     start_linsten_test_device_1, 
     start_linsten_test_device_2, 
+    start_linsten_2,
     start_linsten_3, 
     start_linsten_4, 
     start_linsten_5, 
@@ -23,6 +24,7 @@ from .tasks import (
     start_face_door_right, 
     start_face_door_left, 
 )
+
 from celery.app import default_app
 from .device import AccessControl
 from rest_framework.views import APIView
@@ -177,6 +179,7 @@ class StartListening(APIView):
             # start_linsten_test_device_1.delay(),
             # start_linsten_test_device_2.delay(),
 
+            start_linsten_2.delay(),
             start_linsten_3.delay(),
             start_linsten_4.delay(),
             start_linsten_5.delay(),

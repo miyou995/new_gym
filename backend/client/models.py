@@ -163,8 +163,12 @@ class Client(models.Model):
                 result  = str(number).zfill(4)
                 print('the result', result)     
                 the_id = f'C{result}'   
-                print('the id', the_id)     
+                print('the id', the_id)   
                 self.id = the_id
+                if self.picture:  
+                    register_user.delay(self.last_name, the_id, self.picture.name)
+                    print('yess changed picture url', self.picture.url)
+                    print('yess changed picturename', self.picture.name)
             except:
                 self.id = "C0001"
 
@@ -361,10 +365,10 @@ class Personnel(models.Model):
     birth_date      = models.DateField(max_length=50, verbose_name='Date de naissance')
     blood           = models.CharField(choices=BLOOD_CHOICES , max_length=3, verbose_name='Groupe sanguin')
     date_added      = models.DateTimeField(auto_now_add=True, verbose_name='Date de recrutement')
-    created      = models.DateTimeField(verbose_name='Date de Création',  auto_now_add=True)
-    updated      = models.DateTimeField(verbose_name='Date de dernière mise à jour',  auto_now=True)
+    created         = models.DateTimeField(verbose_name='Date de Création',  auto_now_add=True)
+    updated         = models.DateTimeField(verbose_name='Date de dernière mise à jour',  auto_now=True)
 
-    history = HistoricalRecords()
+    history         = HistoricalRecords()
     state           = models.CharField(choices=STATE_CHOICES , max_length=3, verbose_name='Etat', default='A')
     note            = models.TextField(blank=True, null=True)
     social_security = models.CharField(max_length=150)
