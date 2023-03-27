@@ -19,6 +19,9 @@ from .tasks import register_user
 from io import BytesIO
 from PIL import Image
 from django.core.files.base import ContentFile
+import threading
+
+lock = threading.Lock()
 
 FTM = '%H:%M:%S'
 
@@ -195,8 +198,7 @@ class Client(models.Model):
         return reverse("client:client-detail", args={"slug": self.slug})
 
     #A VERIF
-
-
+    
     def init_output(self,  exit_hour=None):
         my_presences = Presence.objects.filter(abc__client=self, is_in_salle=True)
         presence = my_presences.first()
@@ -244,67 +246,68 @@ class Client(models.Model):
         return True
 
     def get_access_permission(self, door_ip=None):
-        my_presences = Presence.objects.filter(abc__client=self, hour_sortie__isnull=True)
-        in_salle_presences = Presence.objects.filter(abc__client=self, is_in_salle=True)
-        print('MY presence with hour sortie null=>', my_presences)
-        print('MY presence with is is salle=>', in_salle_presences)
+        with lock:
+            my_presences = Presence.objects.filter(abc__client=self, hour_sortie__isnull=True)
+            in_salle_presences = Presence.objects.filter(abc__client=self, is_in_salle=True)
+            print('MY presence with hour sortie null=>', my_presences)
+            print('MY presence with is is salle=>', in_salle_presences)
 
-        current_time = datetime.now().strftime("%H:%M:%S")
-        # the problem is that it doesn't turn the client is_on_salle to True on entering we can try to make comparison here if it less than 10 s we directly return False
-        if self.is_on_salle or my_presences :
-            print('is on salle')
-            sortie = self.init_output()
-            if not sortie: # if sortie is false this mean that the client passed the card on an interval < 10 secondes
-                print('WAIT 10 SECONDES')  
+            current_time = datetime.now().strftime("%H:%M:%S")
+            # the problem is that it doesn't turn the client is_on_salle to True on entering we can try to make comparison here if it less than 10 s we directly return False
+            if self.is_on_salle or my_presences :
+                print('is on salle')
+                sortie = self.init_output()
+                if not sortie: # if sortie is false this mean that the client passed the card on an interval < 10 secondes
+                    print('WAIT 10 SECONDES')  
+                    return False
+                self.is_on_salle = False 
+                self.save()
+                return sortie
+            door = Door.objects.filter(ip_adress=door_ip).first()
+            salle = door.salle
+            # salle = Salle.objects.filter(door__ip_adress=door_ip).first()
+            print('Adress IP', door_ip)
+            print('SAlle ', salle)
+            abonnements_actives = AbonnementClient.subscription.active_subscription()
+            abonnement_client = abonnements_actives.filter(client=self, type_abonnement__salles=salle).first()
+            creneaux = Creneau.range.get_creneaux_of_day().filter(abonnements=abonnement_client)
+            print('LES CRENEAUX =====', creneaux)
+            if not abonnement_client or not creneaux:
                 return False
-            self.is_on_salle = False 
-            self.save()
-            return sortie
-        door = Door.objects.filter(ip_adress=door_ip).first()
-        salle = door.salle
-        # salle = Salle.objects.filter(door__ip_adress=door_ip).first()
-        print('Adress IP', door_ip)
-        print('SAlle ', salle)
-        abonnements_actives = AbonnementClient.subscription.active_subscription()
-        abonnement_client = abonnements_actives.filter(client=self, type_abonnement__salles=salle).first()
-        creneaux = Creneau.range.get_creneaux_of_day().filter(abonnements=abonnement_client)
-        print('LES CRENEAUX =====', creneaux)
-        if not abonnement_client or not creneaux:
-            return False
-        print('Le TYPE DABONNEMENT CRENEAUX =====', abonnement_client)
+            print('Le TYPE DABONNEMENT CRENEAUX =====', abonnement_client)
 
-        cren_ref = creneaux.first()
-        print('Creneau de reference', cren_ref)
-        if abonnement_client.is_time_volume() and abonnement_client.is_valid():
-            print('abonnement_client.is_time_volume')
-            # with transaction.atomic():
-            Presence.objects.create(abc= abonnement_client, creneau=cren_ref, is_in_list=True, hour_entree=current_time, is_in_salle=True)
-            self.is_on_salle=True
-            self.save()
-            return True
-        elif not abonnement_client.is_time_volume() and abonnement_client.is_valid():
-            print('not abonnement_client.is_time_volum')
-            if creneaux.count() > 1 :
-                dur_ref_time_format = abs(datetime.strptime(str(creneaux[0].hour_start), FTM) - datetime.strptime(current_time, FTM)) #nous avons besoin d'un crenaux Reference pour le comparé au autres
-                dur_ref= timedelta.total_seconds(dur_ref_time_format) 
-                for cr in creneaux:
-                    start = str(cr.hour_start)
-                    print('heure de début', start)
-                    temps = abs(datetime.strptime(start, FTM) - datetime.strptime(current_time, FTM))
-                    duree_seconde = timedelta.total_seconds(temps) 
-                    if dur_ref > duree_seconde:
-                        dur_ref = duree_seconde
-                        cren_ref = cr
-            with transaction.atomic():
-                Presence.objects.create(abc= abonnement_client,  creneau= cren_ref, is_in_list=True, hour_entree=current_time, is_in_salle=True)
+            cren_ref = creneaux.first()
+            print('Creneau de reference', cren_ref)
+            if abonnement_client.is_time_volume() and abonnement_client.is_valid():
+                print('abonnement_client.is_time_volume')
+                # with transaction.atomic():
+                Presence.objects.create(abc= abonnement_client, creneau=cren_ref, is_in_list=True, hour_entree=current_time, is_in_salle=True)
                 self.is_on_salle=True
-                abonnement_client.presence_quantity -= 1
-                abonnement_client.save()
                 self.save()
                 return True
-        else:
-            print('WHATS THE CASE')
-            return False
+            elif not abonnement_client.is_time_volume() and abonnement_client.is_valid():
+                print('not abonnement_client.is_time_volum')
+                if creneaux.count() > 1 :
+                    dur_ref_time_format = abs(datetime.strptime(str(creneaux[0].hour_start), FTM) - datetime.strptime(current_time, FTM)) #nous avons besoin d'un crenaux Reference pour le comparé au autres
+                    dur_ref= timedelta.total_seconds(dur_ref_time_format) 
+                    for cr in creneaux:
+                        start = str(cr.hour_start)
+                        print('heure de début', start)
+                        temps = abs(datetime.strptime(start, FTM) - datetime.strptime(current_time, FTM))
+                        duree_seconde = timedelta.total_seconds(temps) 
+                        if dur_ref > duree_seconde:
+                            dur_ref = duree_seconde
+                            cren_ref = cr
+                with transaction.atomic():
+                    Presence.objects.create(abc= abonnement_client,  creneau= cren_ref, is_in_list=True, hour_entree=current_time, is_in_salle=True)
+                    self.is_on_salle=True
+                    abonnement_client.presence_quantity -= 1
+                    abonnement_client.save()
+                    self.save()
+                    return True
+            else:
+                print('WHATS THE CASE')
+                return False
 
 
     def dettes(self):
