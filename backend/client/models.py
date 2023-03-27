@@ -200,21 +200,23 @@ class Client(models.Model):
     def init_output(self,  exit_hour=None):
         my_presences = Presence.objects.filter(abc__client=self, is_in_salle=True)
         presence = my_presences.first()
-
-
-
-
-        print('LA my_presences', my_presences)
+        
         print('LA PRESENCE', presence)
+        print('LA my_presences', my_presences)
+
+
         current_time = datetime.now().strftime("%H:%M:%S")
+
         if exit_hour:
             current_time = exit_hour
-        if not presence:
+        if not presence and self.is_on_salle:
             """ ecart + de 10 seconde"""
-            return False
+            return True
+        
         presence_time = presence.hour_entree
         
         ecart = abs(datetime.strptime(current_time, FTM) - datetime.strptime(str(presence_time), FTM))
+
         print('ECART', ecart)
         print('ECART TYPE', type(ecart))
 
@@ -275,11 +277,11 @@ class Client(models.Model):
         print('Creneau de reference', cren_ref)
         if abonnement_client.is_time_volume() and abonnement_client.is_valid():
             print('abonnement_client.is_time_volume')
-            with transaction.atomic():
-                Presence.objects.create(abc= abonnement_client, creneau=cren_ref, is_in_list=True, hour_entree=current_time, is_in_salle=True)
-                self.is_on_salle=True
-                self.save()
-                return True
+            # with transaction.atomic():
+            Presence.objects.create(abc= abonnement_client, creneau=cren_ref, is_in_list=True, hour_entree=current_time, is_in_salle=True)
+            self.is_on_salle=True
+            self.save()
+            return True
         elif not abonnement_client.is_time_volume() and abonnement_client.is_valid():
             print('not abonnement_client.is_time_volum')
             if creneaux.count() > 1 :
