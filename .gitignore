@@ -1,16 +1,3 @@
-venv/
-ubvenv/
-node_modules/
-backend.rar
-frontend/frontend.rar
-frontend/node_modules.rar
-
-# Django #
-*.log
-*.pot
-*.pyc
-__pycache__
-db.sqlite3
 # Django #
 *.log
 *.pot
@@ -21,7 +8,9 @@ media
 
 # Backup files # 
 *.bak 
-
+backend/*.log
+frontend/.eslintcache
+backend/*/__pycache__
 # If you are using PyCharm # 
 # User-specific stuff
 .idea/**/workspace.xml
@@ -148,3 +137,4 @@ GitHub.sublime-settings
 !.vscode/launch.json 
 !.vscode/extensions.json 
 .history
+frontend/node_modules/

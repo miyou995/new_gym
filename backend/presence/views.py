@@ -346,7 +346,6 @@ class PresenceCoachEditAPIView(generics.RetrieveUpdateAPIView):
     serializer_class = PresenceEditSerialiser
     def get_object(self):
         obj = get_object_or_404(PresenceCoach.objects.filter(id=self.kwargs["pk"]))
-
         # obj = get_object_or_404(Presence.objects.filter(id=self.kwargs["pk"]))
         # creneaux = Presence.presence_manager.get_presence(30)
         # # abon = abonnement[0].id
@@ -354,7 +353,6 @@ class PresenceCoachEditAPIView(generics.RetrieveUpdateAPIView):
         # #### ce passe dans une fonction
         # prenseces = abon.presence_quantity 
         # print('ceci est labonnement du client ', abon)
-
         # abonnement.update(presence_quantity = prenseces - 1 )
         return obj
 
@@ -387,7 +385,6 @@ class PresenceClientIsInAPI(generics.ListAPIView):
         # client = self.request.query_params.filter('cl', None)
         # print('client', client)
         presences = Presence.objects.filter(is_in_salle=True)
-
         return presences
 
 

@@ -40,7 +40,7 @@ class Presence(models.Model):
     
     created = models.DateTimeField(verbose_name="Date de Création", auto_now_add=True)
     updated = models.DateTimeField(verbose_name="Date de dernière mise à jour", auto_now=True)
-
+    
     objects = models.Manager()
     presence_manager = PresenceManager()
     history = HistoricalRecords(user_model=settings.AUTH_USER_MODEL)
