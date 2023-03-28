@@ -162,6 +162,7 @@ def start_face_door_left():
 
 @shared_task
 def stop_listening_1():
+    # res = app.control.revoke(task_id, terminate=True) #i think it can go on a view directly not celery task because it means it will stop other and starts this one
     device = AccessControl()
     print(' the instance start_linsten_1', device)
     device.get_login_info(ip='192.168.0.145', port=37777, username='admin', password='123456')

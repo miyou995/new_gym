@@ -7333,3 +7333,895 @@ django.template.exceptions.TemplateDoesNotExist: index.html
 2023-03-26 11:59:32,645 celery.worker.strategy INFO     Task client.tasks.register_user[f5ff7f58-111e-4bd2-9139-4e3182589a1c] received
 2023-03-26 11:59:32,646 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f3f2856fca0> (args:('client.tasks.register_user', 'f5ff7f58-111e-4bd2-9139-4e3182589a1c', {'lang': 'py', 'task': 'client.tasks.register_user', 'id': 'f5ff7f58-111e-4bd2-9139-4e3182589a1c', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'f5ff7f58-111e-4bd2-9139-4e3182589a1c', 'parent_id': None, 'argsrepr': "('qscsqcsqcq', 'C0027', 'photos/slide03.png')", 'kwargsrepr': '{}', 'origin': 'gen1240@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': 'f5ff7f58-111e-4bd2-9139-4e3182589a1c', 'reply_to': '026bdae3-c237-3e19-b9ed-0af5119df911', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '1dbfc96b-1960-4ac7-b6e5-29e4dca38008'}, 'reply_to': '026bdae3-c237-3e19-b9ed-0af5119df911', 'correlation_id': 'f5ff7f58-111e-4bd2-9139-4e3182589a1c', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery',... kwargs:{})
 2023-03-26 11:59:35,657 celery.app.trace INFO     Task client.tasks.register_user[f5ff7f58-111e-4bd2-9139-4e3182589a1c] succeeded in 3.009663400000136s: False
+2023-03-28 08:08:48,800 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-28 08:08:50,150 celery.bootsteps DEBUG    | Worker: Preparing bootsteps.
+2023-03-28 08:08:50,177 celery.bootsteps DEBUG    | Worker: Building graph...
+2023-03-28 08:08:50,178 celery.bootsteps DEBUG    | Worker: New boot order: {StateDB, Timer, Hub, Pool, Autoscaler, Beat, Consumer}
+2023-03-28 08:08:50,307 celery.bootsteps DEBUG    | Consumer: Preparing bootsteps.
+2023-03-28 08:08:50,308 celery.bootsteps DEBUG    | Consumer: Building graph...
+2023-03-28 08:08:50,429 celery.bootsteps DEBUG    | Consumer: New boot order: {Connection, Events, Mingle, Gossip, Heart, Tasks, Control, Agent, event loop}
+2023-03-28 08:08:50,511 celery.bootsteps DEBUG    | Worker: Starting Hub
+2023-03-28 08:08:50,511 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 08:08:50,512 celery.bootsteps DEBUG    | Worker: Starting Pool
+2023-03-28 08:08:51,259 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 08:08:51,260 celery.bootsteps DEBUG    | Worker: Starting Consumer
+2023-03-28 08:08:51,260 celery.bootsteps DEBUG    | Consumer: Starting Connection
+2023-03-28 08:08:51,283 celery.worker.consumer.connection INFO     Connected to redis://localhost:6379//
+2023-03-28 08:08:51,284 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 08:08:51,284 celery.bootsteps DEBUG    | Consumer: Starting Events
+2023-03-28 08:08:51,287 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 08:08:51,287 celery.bootsteps DEBUG    | Consumer: Starting Mingle
+2023-03-28 08:08:51,288 celery.worker.consumer.mingle INFO     mingle: searching for neighbors
+2023-03-28 08:08:52,297 celery.worker.consumer.mingle INFO     mingle: all alone
+2023-03-28 08:08:52,297 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 08:08:52,298 celery.bootsteps DEBUG    | Consumer: Starting Gossip
+2023-03-28 08:08:52,303 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 08:08:52,304 celery.bootsteps DEBUG    | Consumer: Starting Heart
+2023-03-28 08:08:52,307 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 08:08:52,307 celery.bootsteps DEBUG    | Consumer: Starting Tasks
+2023-03-28 08:08:52,320 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 08:08:52,321 celery.bootsteps DEBUG    | Consumer: Starting Control
+2023-03-28 08:08:52,326 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 08:08:52,326 celery.bootsteps DEBUG    | Consumer: Starting event loop
+2023-03-28 08:08:52,327 celery.bootsteps DEBUG    | Worker: Hub.register Pool...
+2023-03-28 08:08:52,339 py.warnings  WARNING  /mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/fixups/django.py:203: UserWarning: Using settings.DEBUG leads to a memory
+            leak, never use this setting in production environments!
+  warnings.warn('''Using settings.DEBUG leads to a memory
+
+2023-03-28 08:08:52,341 celery.apps.worker INFO     celery@DESKTOP-PC6U1IH ready.
+2023-03-28 08:08:52,341 kombu.common DEBUG    basic.qos: prefetch_count->32
+2023-03-28 08:09:32,453 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-28 08:09:34,424 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-28 08:11:33,062 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-28 08:11:34,997 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-28 08:12:09,036 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-28 08:12:10,964 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-28 08:12:24,734 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-28 08:12:25,995 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-28 08:12:32,110 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-28 08:12:33,976 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-28 08:12:43,460 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-28 08:12:45,183 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-28 08:12:54,760 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-28 08:12:56,484 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-28 08:15:41,275 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/presence/serializers.py changed, reloading.
+2023-03-28 08:15:43,030 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-28 08:16:01,871 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/presence/views.py changed, reloading.
+2023-03-28 08:16:03,731 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-28 08:17:20,421 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/presence/models.py changed, reloading.
+2023-03-28 08:17:22,344 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-28 08:17:34,431 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/presence/views.py changed, reloading.
+2023-03-28 08:17:36,203 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-28 08:17:48,514 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-28 08:17:50,448 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-28 08:18:01,348 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-28 08:18:03,086 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-28 08:18:05,888 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-28 08:18:07,572 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-28 08:18:10,226 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-28 08:18:12,034 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-28 08:18:18,678 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-28 08:18:20,343 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-28 08:19:15,593 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-28 08:19:17,349 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-28 08:20:59,013 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-28 08:21:00,960 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-28 08:22:24,819 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-28 08:22:26,667 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-28 08:37:27,937 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-28 08:37:29,695 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-28 08:37:39,259 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-28 08:37:41,001 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-28 08:42:39,698 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-28 08:42:41,514 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-28 08:43:08,505 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-28 08:43:10,294 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-28 08:44:00,102 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-28 08:44:01,884 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-28 08:44:59,925 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/creneau/models.py changed, reloading.
+2023-03-28 08:45:01,684 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-28 08:45:08,376 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/creneau/models.py changed, reloading.
+2023-03-28 08:45:10,281 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-28 08:45:13,254 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/creneau/models.py changed, reloading.
+2023-03-28 08:45:14,924 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-28 08:49:46,552 salle_activite_view INFO     Open All The Doors inited...
+2023-03-28 08:49:46,740 celery.worker.strategy INFO     Task salle_activite.tasks.start_linsten_2[2737e671-b621-493e-b82d-5e52976c20a8] received
+2023-03-28 08:49:46,741 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f12d233dca0> (args:('salle_activite.tasks.start_linsten_2', '2737e671-b621-493e-b82d-5e52976c20a8', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_2', 'id': '2737e671-b621-493e-b82d-5e52976c20a8', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '2737e671-b621-493e-b82d-5e52976c20a8', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen14600@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': '2737e671-b621-493e-b82d-5e52976c20a8', 'reply_to': '537cb0be-ffea-3d5e-aabf-ba270970e301', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'bc0d0ce7-a86c-42de-b783-eb70f0ff8e90'}, 'reply_to': '537cb0be-ffea-3d5e-aabf-ba270970e301', 'correlation_id': '2737e671-b621-493e-b82d-5e52976c20a8', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered':... kwargs:{})
+2023-03-28 08:49:46,745 celery.worker.strategy INFO     Task salle_activite.tasks.start_linsten_3[1860db8d-8a0a-42ea-890f-b2c7107d0064] received
+2023-03-28 08:49:46,745 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f12d233dca0> (args:('salle_activite.tasks.start_linsten_3', '1860db8d-8a0a-42ea-890f-b2c7107d0064', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_3', 'id': '1860db8d-8a0a-42ea-890f-b2c7107d0064', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '1860db8d-8a0a-42ea-890f-b2c7107d0064', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen14600@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': '1860db8d-8a0a-42ea-890f-b2c7107d0064', 'reply_to': '537cb0be-ffea-3d5e-aabf-ba270970e301', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '627eebe0-fc82-4118-a1bc-de4659c51496'}, 'reply_to': '537cb0be-ffea-3d5e-aabf-ba270970e301', 'correlation_id': '1860db8d-8a0a-42ea-890f-b2c7107d0064', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered':... kwargs:{})
+2023-03-28 08:49:46,751 celery.worker.strategy INFO     Task salle_activite.tasks.start_linsten_4[01f73296-48dc-4620-867a-900ff76cc75d] received
+2023-03-28 08:49:46,751 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f12d233dca0> (args:('salle_activite.tasks.start_linsten_4', '01f73296-48dc-4620-867a-900ff76cc75d', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_4', 'id': '01f73296-48dc-4620-867a-900ff76cc75d', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '01f73296-48dc-4620-867a-900ff76cc75d', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen14600@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': '01f73296-48dc-4620-867a-900ff76cc75d', 'reply_to': '537cb0be-ffea-3d5e-aabf-ba270970e301', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '24ba5e75-bd22-4221-a663-fc7a054ae2ab'}, 'reply_to': '537cb0be-ffea-3d5e-aabf-ba270970e301', 'correlation_id': '01f73296-48dc-4620-867a-900ff76cc75d', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered':... kwargs:{})
+2023-03-28 08:49:46,756 celery.worker.strategy INFO     Task salle_activite.tasks.start_linsten_5[20a6491e-e152-41e2-89ad-8cb1c521db1b] received
+2023-03-28 08:49:46,756 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f12d233dca0> (args:('salle_activite.tasks.start_linsten_5', '20a6491e-e152-41e2-89ad-8cb1c521db1b', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_5', 'id': '20a6491e-e152-41e2-89ad-8cb1c521db1b', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '20a6491e-e152-41e2-89ad-8cb1c521db1b', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen14600@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': '20a6491e-e152-41e2-89ad-8cb1c521db1b', 'reply_to': '537cb0be-ffea-3d5e-aabf-ba270970e301', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '83132d00-bcd8-4321-aea8-7c55054bb375'}, 'reply_to': '537cb0be-ffea-3d5e-aabf-ba270970e301', 'correlation_id': '20a6491e-e152-41e2-89ad-8cb1c521db1b', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered':... kwargs:{})
+2023-03-28 08:49:46,761 celery.worker.strategy INFO     Task salle_activite.tasks.start_linsten_6[3d9f905d-d821-47ef-9e87-450bdc73aa5b] received
+2023-03-28 08:49:46,762 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f12d233dca0> (args:('salle_activite.tasks.start_linsten_6', '3d9f905d-d821-47ef-9e87-450bdc73aa5b', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_6', 'id': '3d9f905d-d821-47ef-9e87-450bdc73aa5b', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '3d9f905d-d821-47ef-9e87-450bdc73aa5b', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen14600@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': '3d9f905d-d821-47ef-9e87-450bdc73aa5b', 'reply_to': '537cb0be-ffea-3d5e-aabf-ba270970e301', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'd152fc3a-d9ce-4d50-af64-9498d11763c3'}, 'reply_to': '537cb0be-ffea-3d5e-aabf-ba270970e301', 'correlation_id': '3d9f905d-d821-47ef-9e87-450bdc73aa5b', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered':... kwargs:{})
+2023-03-28 08:49:46,771 celery.worker.strategy INFO     Task salle_activite.tasks.start_linsten_7[d1c235ae-e195-4577-bd03-20cb8d58cdcf] received
+2023-03-28 08:49:46,773 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f12d233dca0> (args:('salle_activite.tasks.start_linsten_7', 'd1c235ae-e195-4577-bd03-20cb8d58cdcf', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_7', 'id': 'd1c235ae-e195-4577-bd03-20cb8d58cdcf', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'd1c235ae-e195-4577-bd03-20cb8d58cdcf', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen14600@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': 'd1c235ae-e195-4577-bd03-20cb8d58cdcf', 'reply_to': '537cb0be-ffea-3d5e-aabf-ba270970e301', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'a8b498d3-9d3d-4d3f-9846-82e978cda048'}, 'reply_to': '537cb0be-ffea-3d5e-aabf-ba270970e301', 'correlation_id': 'd1c235ae-e195-4577-bd03-20cb8d58cdcf', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered':... kwargs:{})
+2023-03-28 08:49:46,780 celery.worker.strategy INFO     Task salle_activite.tasks.start_linsten_8[edfbe8ed-2845-434c-a4b8-3872bb2f1dc6] received
+2023-03-28 08:49:46,781 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f12d233dca0> (args:('salle_activite.tasks.start_linsten_8', 'edfbe8ed-2845-434c-a4b8-3872bb2f1dc6', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_8', 'id': 'edfbe8ed-2845-434c-a4b8-3872bb2f1dc6', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'edfbe8ed-2845-434c-a4b8-3872bb2f1dc6', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen14600@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': 'edfbe8ed-2845-434c-a4b8-3872bb2f1dc6', 'reply_to': '537cb0be-ffea-3d5e-aabf-ba270970e301', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'd26883e0-971e-4a7e-ae5b-667bfbc3e4fa'}, 'reply_to': '537cb0be-ffea-3d5e-aabf-ba270970e301', 'correlation_id': 'edfbe8ed-2845-434c-a4b8-3872bb2f1dc6', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered':... kwargs:{})
+2023-03-28 08:49:46,787 celery.worker.strategy INFO     Task salle_activite.tasks.start_linsten_9[8c4ac83b-576c-42de-878c-b19f1794e480] received
+2023-03-28 08:49:46,788 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f12d233dca0> (args:('salle_activite.tasks.start_linsten_9', '8c4ac83b-576c-42de-878c-b19f1794e480', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_9', 'id': '8c4ac83b-576c-42de-878c-b19f1794e480', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '8c4ac83b-576c-42de-878c-b19f1794e480', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen14600@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': '8c4ac83b-576c-42de-878c-b19f1794e480', 'reply_to': '537cb0be-ffea-3d5e-aabf-ba270970e301', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '8dd7c1ad-5758-409c-8c0d-dd75b633b6a8'}, 'reply_to': '537cb0be-ffea-3d5e-aabf-ba270970e301', 'correlation_id': '8c4ac83b-576c-42de-878c-b19f1794e480', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered':... kwargs:{})
+2023-03-28 08:49:46,795 celery.worker.strategy INFO     Task salle_activite.tasks.start_face_door_right[2e1df120-3600-40af-b530-073a4587e600] received
+2023-03-28 08:49:46,800 celery.worker.strategy INFO     Task salle_activite.tasks.start_face_door_left[2baf6d0f-8082-4204-a564-b0cad78f25e4] received
+2023-03-28 08:49:48,402 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_2[2737e671-b621-493e-b82d-5e52976c20a8] succeeded in 1.65531010000268s: None
+2023-03-28 08:49:48,407 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f12d233dca0> (args:('salle_activite.tasks.start_face_door_right', '2e1df120-3600-40af-b530-073a4587e600', {'lang': 'py', 'task': 'salle_activite.tasks.start_face_door_right', 'id': '2e1df120-3600-40af-b530-073a4587e600', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '2e1df120-3600-40af-b530-073a4587e600', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen14600@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': '2e1df120-3600-40af-b530-073a4587e600', 'reply_to': '537cb0be-ffea-3d5e-aabf-ba270970e301', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'c953e576-85fe-402e-b941-09b7980a085c'}, 'reply_to': '537cb0be-ffea-3d5e-aabf-ba270970e301', 'correlation_id': '2e1df120-3600-40af-b530-073a4587e600', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0,... kwargs:{})
+2023-03-28 08:49:48,410 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_4[01f73296-48dc-4620-867a-900ff76cc75d] succeeded in 1.6476707000110764s: None
+2023-03-28 08:49:48,416 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f12d233dca0> (args:('salle_activite.tasks.start_face_door_left', '2baf6d0f-8082-4204-a564-b0cad78f25e4', {'lang': 'py', 'task': 'salle_activite.tasks.start_face_door_left', 'id': '2baf6d0f-8082-4204-a564-b0cad78f25e4', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '2baf6d0f-8082-4204-a564-b0cad78f25e4', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen14600@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': '2baf6d0f-8082-4204-a564-b0cad78f25e4', 'reply_to': '537cb0be-ffea-3d5e-aabf-ba270970e301', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '4137c216-35e0-4c64-8376-994f3a43304d'}, 'reply_to': '537cb0be-ffea-3d5e-aabf-ba270970e301', 'correlation_id': '2baf6d0f-8082-4204-a564-b0cad78f25e4', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0,... kwargs:{})
+2023-03-28 08:49:48,418 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_6[3d9f905d-d821-47ef-9e87-450bdc73aa5b] succeeded in 1.649249600013718s: None
+2023-03-28 08:49:48,418 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_7[d1c235ae-e195-4577-bd03-20cb8d58cdcf] succeeded in 1.6313916000071913s: None
+2023-03-28 08:49:48,419 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_5[20a6491e-e152-41e2-89ad-8cb1c521db1b] succeeded in 1.6567442999803461s: None
+2023-03-28 08:49:48,423 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_3[1860db8d-8a0a-42ea-890f-b2c7107d0064] succeeded in 1.6729966000129934s: None
+2023-03-28 08:49:48,429 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_8[edfbe8ed-2845-434c-a4b8-3872bb2f1dc6] succeeded in 1.642401899996912s: None
+2023-03-28 08:49:48,439 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_9[8c4ac83b-576c-42de-878c-b19f1794e480] succeeded in 1.6367562000232283s: None
+2023-03-28 08:49:49,919 celery.app.trace INFO     Task salle_activite.tasks.start_face_door_right[2e1df120-3600-40af-b530-073a4587e600] succeeded in 1.5071905000077095s: None
+2023-03-28 08:49:49,934 celery.app.trace INFO     Task salle_activite.tasks.start_face_door_left[2baf6d0f-8082-4204-a564-b0cad78f25e4] succeeded in 1.5117869999958202s: None
+2023-03-28 08:50:31,901 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/device.py changed, reloading.
+2023-03-28 08:50:33,702 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-28 08:50:43,327 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/device.py changed, reloading.
+2023-03-28 08:50:45,080 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-28 08:50:47,982 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/device.py changed, reloading.
+2023-03-28 08:50:49,804 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-28 08:50:56,663 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/device.py changed, reloading.
+2023-03-28 08:50:58,499 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-28 08:51:41,924 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/views.py changed, reloading.
+2023-03-28 08:51:43,219 celery.bootsteps DEBUG    | Worker: Closing Hub...
+2023-03-28 08:51:43,219 celery.bootsteps DEBUG    | Worker: Closing Pool...
+2023-03-28 08:51:43,219 celery.bootsteps DEBUG    | Worker: Closing Consumer...
+2023-03-28 08:51:43,219 celery.bootsteps DEBUG    | Worker: Stopping Consumer...
+2023-03-28 08:51:43,219 celery.bootsteps DEBUG    | Consumer: Closing Connection...
+2023-03-28 08:51:43,219 celery.bootsteps DEBUG    | Consumer: Closing Events...
+2023-03-28 08:51:43,220 celery.bootsteps DEBUG    | Consumer: Closing Mingle...
+2023-03-28 08:51:43,220 celery.bootsteps DEBUG    | Consumer: Closing Gossip...
+2023-03-28 08:51:43,221 celery.bootsteps DEBUG    | Consumer: Closing Heart...
+2023-03-28 08:51:43,221 celery.bootsteps DEBUG    | Consumer: Closing Tasks...
+2023-03-28 08:51:43,222 celery.bootsteps DEBUG    | Consumer: Closing Control...
+2023-03-28 08:51:43,222 celery.bootsteps DEBUG    | Consumer: Closing event loop...
+2023-03-28 08:51:43,223 celery.bootsteps DEBUG    | Consumer: Stopping event loop...
+2023-03-28 08:51:43,223 celery.bootsteps DEBUG    | Consumer: Stopping Control...
+2023-03-28 08:51:43,226 celery.bootsteps DEBUG    | Consumer: Stopping Tasks...
+2023-03-28 08:51:43,227 celery.worker.consumer.tasks DEBUG    Canceling task consumer...
+2023-03-28 08:51:43,227 celery.bootsteps DEBUG    | Consumer: Stopping Heart...
+2023-03-28 08:51:43,236 celery.bootsteps DEBUG    | Consumer: Stopping Gossip...
+2023-03-28 08:51:43,238 celery.bootsteps DEBUG    | Consumer: Stopping Mingle...
+2023-03-28 08:51:43,239 celery.bootsteps DEBUG    | Consumer: Stopping Events...
+2023-03-28 08:51:43,240 celery.bootsteps DEBUG    | Consumer: Stopping Connection...
+2023-03-28 08:51:43,240 celery.bootsteps DEBUG    | Worker: Stopping Pool...
+2023-03-28 08:51:43,442 celery.concurrency.asynpool DEBUG    removing tasks from inqueue until task handler finished
+2023-03-28 08:51:44,172 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-28 08:52:04,037 celery.bootsteps DEBUG    | Worker: Preparing bootsteps.
+2023-03-28 08:52:04,042 celery.bootsteps DEBUG    | Worker: Building graph...
+2023-03-28 08:52:04,043 celery.bootsteps DEBUG    | Worker: New boot order: {Timer, Hub, Pool, Autoscaler, StateDB, Beat, Consumer}
+2023-03-28 08:52:04,061 celery.bootsteps DEBUG    | Consumer: Preparing bootsteps.
+2023-03-28 08:52:04,061 celery.bootsteps DEBUG    | Consumer: Building graph...
+2023-03-28 08:52:04,093 celery.bootsteps DEBUG    | Consumer: New boot order: {Connection, Events, Mingle, Tasks, Control, Agent, Heart, Gossip, event loop}
+2023-03-28 08:52:04,130 celery.bootsteps DEBUG    | Worker: Starting Hub
+2023-03-28 08:52:04,130 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 08:52:04,131 celery.bootsteps DEBUG    | Worker: Starting Pool
+2023-03-28 08:52:04,772 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 08:52:04,773 celery.bootsteps DEBUG    | Worker: Starting Consumer
+2023-03-28 08:52:04,774 celery.bootsteps DEBUG    | Consumer: Starting Connection
+2023-03-28 08:52:04,785 celery.worker.consumer.connection INFO     Connected to redis://localhost:6379//
+2023-03-28 08:52:04,786 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 08:52:04,786 celery.bootsteps DEBUG    | Consumer: Starting Events
+2023-03-28 08:52:04,788 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 08:52:04,789 celery.bootsteps DEBUG    | Consumer: Starting Mingle
+2023-03-28 08:52:04,789 celery.worker.consumer.mingle INFO     mingle: searching for neighbors
+2023-03-28 08:52:05,798 celery.worker.consumer.mingle INFO     mingle: all alone
+2023-03-28 08:52:05,798 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 08:52:05,799 celery.bootsteps DEBUG    | Consumer: Starting Tasks
+2023-03-28 08:52:05,804 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 08:52:05,805 celery.bootsteps DEBUG    | Consumer: Starting Control
+2023-03-28 08:52:05,810 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 08:52:05,810 celery.bootsteps DEBUG    | Consumer: Starting Heart
+2023-03-28 08:52:05,813 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 08:52:05,814 celery.bootsteps DEBUG    | Consumer: Starting Gossip
+2023-03-28 08:52:05,819 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 08:52:05,819 celery.bootsteps DEBUG    | Consumer: Starting event loop
+2023-03-28 08:52:05,820 celery.bootsteps DEBUG    | Worker: Hub.register Pool...
+2023-03-28 08:52:05,822 py.warnings  WARNING  /mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/fixups/django.py:203: UserWarning: Using settings.DEBUG leads to a memory
+            leak, never use this setting in production environments!
+  warnings.warn('''Using settings.DEBUG leads to a memory
+
+2023-03-28 08:52:05,823 celery.apps.worker INFO     celery@DESKTOP-PC6U1IH ready.
+2023-03-28 08:52:05,824 kombu.common DEBUG    basic.qos: prefetch_count->32
+2023-03-28 08:52:51,485 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-28 08:53:04,090 celery.bootsteps DEBUG    | Worker: Closing Hub...
+2023-03-28 08:53:04,091 celery.bootsteps DEBUG    | Worker: Closing Pool...
+2023-03-28 08:53:04,091 celery.bootsteps DEBUG    | Worker: Closing Consumer...
+2023-03-28 08:53:04,091 celery.bootsteps DEBUG    | Worker: Stopping Consumer...
+2023-03-28 08:53:04,092 celery.bootsteps DEBUG    | Consumer: Closing Connection...
+2023-03-28 08:53:04,092 celery.bootsteps DEBUG    | Consumer: Closing Events...
+2023-03-28 08:53:04,093 celery.bootsteps DEBUG    | Consumer: Closing Mingle...
+2023-03-28 08:53:04,093 celery.bootsteps DEBUG    | Consumer: Closing Tasks...
+2023-03-28 08:53:04,094 celery.bootsteps DEBUG    | Consumer: Closing Control...
+2023-03-28 08:53:04,094 celery.bootsteps DEBUG    | Consumer: Closing Heart...
+2023-03-28 08:53:04,095 celery.bootsteps DEBUG    | Consumer: Closing Gossip...
+2023-03-28 08:53:04,095 celery.bootsteps DEBUG    | Consumer: Closing event loop...
+2023-03-28 08:53:04,096 celery.bootsteps DEBUG    | Consumer: Stopping event loop...
+2023-03-28 08:53:04,096 celery.bootsteps DEBUG    | Consumer: Stopping Gossip...
+2023-03-28 08:53:04,099 celery.bootsteps DEBUG    | Consumer: Stopping Heart...
+2023-03-28 08:53:04,100 celery.bootsteps DEBUG    | Consumer: Stopping Control...
+2023-03-28 08:53:04,103 celery.bootsteps DEBUG    | Consumer: Stopping Tasks...
+2023-03-28 08:53:04,103 celery.worker.consumer.tasks DEBUG    Canceling task consumer...
+2023-03-28 08:53:04,104 celery.bootsteps DEBUG    | Consumer: Stopping Mingle...
+2023-03-28 08:53:04,104 celery.bootsteps DEBUG    | Consumer: Stopping Events...
+2023-03-28 08:53:04,104 celery.bootsteps DEBUG    | Consumer: Stopping Connection...
+2023-03-28 08:53:04,104 celery.bootsteps DEBUG    | Worker: Stopping Pool...
+2023-03-28 08:53:04,306 celery.concurrency.asynpool DEBUG    removing tasks from inqueue until task handler finished
+2023-03-28 08:53:19,159 celery.bootsteps DEBUG    | Worker: Preparing bootsteps.
+2023-03-28 08:53:19,163 celery.bootsteps DEBUG    | Worker: Building graph...
+2023-03-28 08:53:19,163 celery.bootsteps DEBUG    | Worker: New boot order: {StateDB, Beat, Timer, Hub, Pool, Autoscaler, Consumer}
+2023-03-28 08:53:19,180 celery.bootsteps DEBUG    | Consumer: Preparing bootsteps.
+2023-03-28 08:53:19,181 celery.bootsteps DEBUG    | Consumer: Building graph...
+2023-03-28 08:53:19,209 celery.bootsteps DEBUG    | Consumer: New boot order: {Connection, Events, Mingle, Tasks, Control, Gossip, Agent, Heart, event loop}
+2023-03-28 08:53:19,246 celery.bootsteps DEBUG    | Worker: Starting Hub
+2023-03-28 08:53:19,247 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 08:53:19,247 celery.bootsteps DEBUG    | Worker: Starting Pool
+2023-03-28 08:53:19,921 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 08:53:19,922 celery.bootsteps DEBUG    | Worker: Starting Consumer
+2023-03-28 08:53:19,923 celery.bootsteps DEBUG    | Consumer: Starting Connection
+2023-03-28 08:53:19,931 celery.worker.consumer.connection INFO     Connected to redis://localhost:6379//
+2023-03-28 08:53:19,931 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 08:53:19,932 celery.bootsteps DEBUG    | Consumer: Starting Events
+2023-03-28 08:53:19,935 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 08:53:19,935 celery.bootsteps DEBUG    | Consumer: Starting Mingle
+2023-03-28 08:53:19,936 celery.worker.consumer.mingle INFO     mingle: searching for neighbors
+2023-03-28 08:53:20,945 celery.worker.consumer.mingle INFO     mingle: all alone
+2023-03-28 08:53:20,946 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 08:53:20,946 celery.bootsteps DEBUG    | Consumer: Starting Tasks
+2023-03-28 08:53:20,953 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 08:53:20,953 celery.bootsteps DEBUG    | Consumer: Starting Control
+2023-03-28 08:53:20,959 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 08:53:20,960 celery.bootsteps DEBUG    | Consumer: Starting Gossip
+2023-03-28 08:53:20,965 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 08:53:20,965 celery.bootsteps DEBUG    | Consumer: Starting Heart
+2023-03-28 08:53:20,968 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 08:53:20,969 celery.bootsteps DEBUG    | Consumer: Starting event loop
+2023-03-28 08:53:20,969 celery.bootsteps DEBUG    | Worker: Hub.register Pool...
+2023-03-28 08:53:20,972 py.warnings  WARNING  /mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/fixups/django.py:203: UserWarning: Using settings.DEBUG leads to a memory
+            leak, never use this setting in production environments!
+  warnings.warn('''Using settings.DEBUG leads to a memory
+
+2023-03-28 08:53:20,973 celery.apps.worker INFO     celery@DESKTOP-PC6U1IH ready.
+2023-03-28 08:53:20,974 kombu.common DEBUG    basic.qos: prefetch_count->32
+2023-03-28 08:53:46,517 flower.command INFO     Visit me at http://localhost:5555
+2023-03-28 08:53:46,533 flower.command INFO     Broker: redis://localhost:6379//
+2023-03-28 08:53:46,538 flower.command INFO     Registered tasks: 
+['celery.accumulate',
+ 'celery.backend_cleanup',
+ 'celery.chain',
+ 'celery.chord',
+ 'celery.chord_unlock',
+ 'celery.chunks',
+ 'celery.group',
+ 'celery.map',
+ 'celery.starmap',
+ 'client.tasks.register_user',
+ 'salle_activite.tasks.start_face_door_left',
+ 'salle_activite.tasks.start_face_door_right',
+ 'salle_activite.tasks.start_linsten_2',
+ 'salle_activite.tasks.start_linsten_3',
+ 'salle_activite.tasks.start_linsten_4',
+ 'salle_activite.tasks.start_linsten_5',
+ 'salle_activite.tasks.start_linsten_6',
+ 'salle_activite.tasks.start_linsten_7',
+ 'salle_activite.tasks.start_linsten_8',
+ 'salle_activite.tasks.start_linsten_9',
+ 'salle_activite.tasks.start_linsten_test_device_1',
+ 'salle_activite.tasks.start_linsten_test_device_2',
+ 'salle_activite.tasks.stop_listening_1']
+2023-03-28 08:53:46,542 flower.command DEBUG    Settings: {'cookie_secret': '95l1oa5-XQJn9Xq6iufWGqujWJT9mxEI3vbous2xNCagE6mtRw4Pt51Fya1ueDBwaPy_Ynu64usONUiWsbE5ow',
+ 'debug': False,
+ 'login_url': '/login',
+ 'static_path': '/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/flower/static',
+ 'static_url_prefix': '/static/',
+ 'template_path': '/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/flower/templates'}
+2023-03-28 08:53:46,543 flower.command WARNING  Running without authentication
+2023-03-28 08:53:46,545 flower.events DEBUG    Starting enable events timer...
+2023-03-28 08:53:46,551 flower.events DEBUG    Capturing events...
+2023-03-28 08:53:46,554 kombu.mixins INFO     Connected to redis://localhost:6379//
+2023-03-28 08:53:46,575 flower.inspector DEBUG    Sending stats inspect command
+2023-03-28 08:53:46,575 flower.inspector DEBUG    Sending active_queues inspect command
+2023-03-28 08:53:46,575 flower.inspector DEBUG    Sending registered inspect command
+2023-03-28 08:53:46,575 flower.inspector DEBUG    Sending scheduled inspect command
+2023-03-28 08:53:46,575 flower.inspector DEBUG    Sending active inspect command
+2023-03-28 08:53:46,575 flower.inspector DEBUG    Sending reserved inspect command
+2023-03-28 08:53:46,575 flower.inspector DEBUG    Sending revoked inspect command
+2023-03-28 08:53:46,575 flower.inspector DEBUG    Sending conf inspect command
+2023-03-28 08:53:46,590 kombu.pidbox DEBUG    pidbox received method heartbeat() [reply_to:None ticket:None]
+2023-03-28 08:53:46,590 celery.worker.control DEBUG    Heartbeat requested by remote.
+2023-03-28 08:53:46,598 kombu.pidbox DEBUG    pidbox received method active_queues() [reply_to:{'exchange': 'reply.celery.pidbox', 'routing_key': 'f96c3e20-16e1-38e5-88c3-ed56252192d0'} ticket:efd1919e-27b6-4fe5-8d20-1d10b2adeb44]
+2023-03-28 08:53:46,604 kombu.pidbox DEBUG    pidbox received method registered(taskinfoitems=[]) [reply_to:{'exchange': 'reply.celery.pidbox', 'routing_key': '1291a4db-c624-391e-bf1a-117a5312b882'} ticket:a8ef3fdc-aa4f-4010-9942-da7419935a05]
+2023-03-28 08:53:46,609 kombu.pidbox DEBUG    pidbox received method stats() [reply_to:{'exchange': 'reply.celery.pidbox', 'routing_key': '545c22f1-ed88-358d-81e4-08629d2aa102'} ticket:840da4f3-bc92-4d82-87d4-cf36a855a798]
+2023-03-28 08:53:46,614 kombu.pidbox DEBUG    pidbox received method conf(with_defaults=False) [reply_to:{'exchange': 'reply.celery.pidbox', 'routing_key': '9fdd8030-cd5f-3a6a-b3d8-3410107a6a74'} ticket:f74eb0b2-6998-4206-8e33-6eca5e77e2a4]
+2023-03-28 08:53:46,885 kombu.pidbox DEBUG    pidbox received method revoked() [reply_to:{'exchange': 'reply.celery.pidbox', 'routing_key': '794a2642-52f5-37ad-b191-48a677cb92ae'} ticket:c36e0cf3-7751-4fa7-84d1-99b4dd7db1b4]
+2023-03-28 08:53:46,887 kombu.pidbox DEBUG    pidbox received method scheduled() [reply_to:{'exchange': 'reply.celery.pidbox', 'routing_key': 'a7c6747d-50f4-316c-ba34-db1a44aa4db6'} ticket:7d99469a-38a3-4e8d-a603-6ce295a36031]
+2023-03-28 08:53:46,889 kombu.pidbox DEBUG    pidbox received method reserved() [reply_to:{'exchange': 'reply.celery.pidbox', 'routing_key': '22859cbb-1c86-3d26-8feb-e61ecf17b472'} ticket:ec10d205-3a5b-44b1-b515-1795b1c42912]
+2023-03-28 08:53:46,891 kombu.pidbox DEBUG    pidbox received method active(safe=None) [reply_to:{'exchange': 'reply.celery.pidbox', 'routing_key': 'cf838e51-bf63-3f1f-8114-452ac5b0bbc3'} ticket:fa01fbe5-d19a-4e63-83b4-537076cd5ca7]
+2023-03-28 08:53:47,616 flower.inspector DEBUG    Inspect command active_queues took 1.04s to complete
+2023-03-28 08:53:47,620 flower.inspector DEBUG    Inspect command registered took 1.04s to complete
+2023-03-28 08:53:47,622 flower.inspector DEBUG    Inspect command stats took 1.05s to complete
+2023-03-28 08:53:47,888 flower.inspector DEBUG    Inspect command conf took 1.30s to complete
+2023-03-28 08:53:47,890 flower.inspector DEBUG    Inspect command revoked took 1.31s to complete
+2023-03-28 08:53:47,893 flower.inspector DEBUG    Inspect command scheduled took 1.31s to complete
+2023-03-28 08:53:47,894 flower.inspector DEBUG    Inspect command reserved took 1.31s to complete
+2023-03-28 08:53:47,896 flower.inspector DEBUG    Inspect command active took 1.31s to complete
+2023-03-28 08:53:51,550 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:53:51,550 celery.worker.control INFO     Events of group {task} enabled by remote.
+2023-03-28 08:53:56,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:54:01,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:54:06,551 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:54:11,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:54:12,972 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/config/urls.py changed, reloading.
+2023-03-28 08:54:14,822 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-28 08:54:16,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:54:17,288 django.request WARNING  Not Found: /5500
+2023-03-28 08:54:17,408 django.request WARNING  Not Found: /5500
+2023-03-28 08:54:17,601 django.request WARNING  Not Found: /favicon.ico
+2023-03-28 08:54:21,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:54:26,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:54:29,299 django.request WARNING  Not Found: /5555
+2023-03-28 08:54:29,420 django.request WARNING  Not Found: /5555
+2023-03-28 08:54:31,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:54:36,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:54:41,548 salle_activite_view INFO     Open All The Doors inited...
+2023-03-28 08:54:41,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:54:41,864 celery.worker.strategy INFO     Task salle_activite.tasks.start_linsten_test_device_1[70caca90-bdd7-417e-9909-d98775f0b457] received
+2023-03-28 08:54:41,865 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f4873f7b5e0> (args:('salle_activite.tasks.start_linsten_test_device_1', '70caca90-bdd7-417e-9909-d98775f0b457', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_test_device_1', 'id': '70caca90-bdd7-417e-9909-d98775f0b457', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '70caca90-bdd7-417e-9909-d98775f0b457', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen14934@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': '70caca90-bdd7-417e-9909-d98775f0b457', 'reply_to': 'e1f2a358-f34b-3728-8c8f-6e0d13c00434', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '4ed5d375-8acb-4460-ba56-36191c1965f5'}, 'reply_to': 'e1f2a358-f34b-3728-8c8f-6e0d13c00434', 'correlation_id': '70caca90-bdd7-417e-9909-d98775f0b457', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery',... kwargs:{})
+2023-03-28 08:54:41,871 celery.worker.strategy INFO     Task salle_activite.tasks.start_linsten_test_device_2[98e908b0-c399-490d-a63d-cdaee2a2aec3] received
+2023-03-28 08:54:41,872 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f4873f7b5e0> (args:('salle_activite.tasks.start_linsten_test_device_2', '98e908b0-c399-490d-a63d-cdaee2a2aec3', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_test_device_2', 'id': '98e908b0-c399-490d-a63d-cdaee2a2aec3', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '98e908b0-c399-490d-a63d-cdaee2a2aec3', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen14934@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': '98e908b0-c399-490d-a63d-cdaee2a2aec3', 'reply_to': 'e1f2a358-f34b-3728-8c8f-6e0d13c00434', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'c911a730-2d21-48d7-bac6-91478edf1344'}, 'reply_to': 'e1f2a358-f34b-3728-8c8f-6e0d13c00434', 'correlation_id': '98e908b0-c399-490d-a63d-cdaee2a2aec3', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery',... kwargs:{})
+2023-03-28 08:54:42,172 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_test_device_1[70caca90-bdd7-417e-9909-d98775f0b457] succeeded in 0.2967478999926243s: None
+2023-03-28 08:54:43,452 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_test_device_2[98e908b0-c399-490d-a63d-cdaee2a2aec3] succeeded in 1.5769616999896243s: None
+2023-03-28 08:54:46,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:54:51,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:54:56,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:55:01,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:55:06,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:55:11,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:55:16,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:55:21,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:55:26,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:55:31,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:55:36,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:55:41,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:55:46,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:55:51,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:55:54,515 client.models WARNING  abonnement_client.is_time_volume and is valid
+2023-03-28 08:55:56,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:56:01,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:56:06,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:56:11,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:56:12,620 flower.inspector DEBUG    Sending stats inspect command
+2023-03-28 08:56:12,620 flower.inspector DEBUG    Sending active_queues inspect command
+2023-03-28 08:56:12,620 flower.inspector DEBUG    Sending registered inspect command
+2023-03-28 08:56:12,620 flower.inspector DEBUG    Sending scheduled inspect command
+2023-03-28 08:56:12,620 flower.inspector DEBUG    Sending active inspect command
+2023-03-28 08:56:12,620 flower.inspector DEBUG    Sending reserved inspect command
+2023-03-28 08:56:12,620 flower.inspector DEBUG    Sending revoked inspect command
+2023-03-28 08:56:12,645 kombu.pidbox DEBUG    pidbox received method active_queues() [reply_to:{'exchange': 'reply.celery.pidbox', 'routing_key': '9eb1213d-2cbf-3ccb-9916-bffab0169122'} ticket:6a65dc1d-5f9f-4c76-bfda-f68082ca46a9]
+2023-03-28 08:56:12,620 flower.inspector DEBUG    Sending conf inspect command
+2023-03-28 08:56:12,653 kombu.pidbox DEBUG    pidbox received method registered(taskinfoitems=[]) [reply_to:{'exchange': 'reply.celery.pidbox', 'routing_key': '3f0505db-2918-3651-a316-acb8be2913ff'} ticket:51da52bb-52cf-4af2-aa33-e851b551bc4f]
+2023-03-28 08:56:12,658 kombu.pidbox DEBUG    pidbox received method stats() [reply_to:{'exchange': 'reply.celery.pidbox', 'routing_key': 'e3424f3e-8fb5-3b2b-8b80-0f9f4dff9dfc'} ticket:e917fa41-512c-44ae-b4de-ef868770bafe]
+2023-03-28 08:56:12,662 kombu.pidbox DEBUG    pidbox received method active(safe=None) [reply_to:{'exchange': 'reply.celery.pidbox', 'routing_key': '7dc270df-a4b1-3bdc-b0e8-564aaad98bb1'} ticket:1f187c6d-f39c-4c46-8d80-91cce68e0ff7]
+2023-03-28 08:56:12,669 kombu.pidbox DEBUG    pidbox received method reserved() [reply_to:{'exchange': 'reply.celery.pidbox', 'routing_key': '269bfbf2-f7a6-3074-92d3-df10d953b207'} ticket:e0a16dcf-2723-4433-a241-0f18dfc4e1f7]
+2023-03-28 08:56:12,668 flower.inspector DEBUG    Inspect command active_queues took 0.04s to complete
+2023-03-28 08:56:12,672 kombu.pidbox DEBUG    pidbox received method scheduled() [reply_to:{'exchange': 'reply.celery.pidbox', 'routing_key': 'e01a6e97-d6fa-3b1c-a2b4-c2fe1fc9cd08'} ticket:4aa36e87-dfde-4f90-b3b6-d72a4bd909a8]
+2023-03-28 08:56:12,675 kombu.pidbox DEBUG    pidbox received method conf(with_defaults=False) [reply_to:{'exchange': 'reply.celery.pidbox', 'routing_key': '03418b2b-abf9-3b0b-9852-afdcf0d96545'} ticket:5edb90f2-f931-4f12-a3d6-fd46f617febe]
+2023-03-28 08:56:12,679 flower.inspector DEBUG    Inspect command registered took 0.04s to complete
+2023-03-28 08:56:12,682 flower.inspector DEBUG    Inspect command stats took 0.06s to complete
+2023-03-28 08:56:12,683 flower.inspector DEBUG    Inspect command active took 0.04s to complete
+2023-03-28 08:56:12,688 flower.inspector DEBUG    Inspect command scheduled took 0.05s to complete
+2023-03-28 08:56:12,688 flower.inspector DEBUG    Inspect command reserved took 0.05s to complete
+2023-03-28 08:56:12,692 kombu.pidbox DEBUG    pidbox received method revoked() [reply_to:{'exchange': 'reply.celery.pidbox', 'routing_key': '57817f76-ee8a-3176-a77a-d7854c6e9ff8'} ticket:87912903-ac68-4889-ac19-66183b8b1807]
+2023-03-28 08:56:12,694 flower.inspector DEBUG    Inspect command conf took 0.05s to complete
+2023-03-28 08:56:12,698 flower.inspector DEBUG    Inspect command revoked took 0.05s to complete
+2023-03-28 08:56:12,779 flower.inspector DEBUG    Sending stats inspect command
+2023-03-28 08:56:12,779 flower.inspector DEBUG    Sending active_queues inspect command
+2023-03-28 08:56:12,780 flower.inspector DEBUG    Sending registered inspect command
+2023-03-28 08:56:12,780 flower.inspector DEBUG    Sending scheduled inspect command
+2023-03-28 08:56:12,789 kombu.pidbox DEBUG    pidbox received method stats() [reply_to:{'exchange': 'reply.celery.pidbox', 'routing_key': 'c685fefc-58a7-3edf-abaf-af89e00519c4'} ticket:6bbed554-d613-4a41-bde4-cfc5c268edfd]
+2023-03-28 08:56:12,780 flower.inspector DEBUG    Sending active inspect command
+2023-03-28 08:56:12,793 kombu.pidbox DEBUG    pidbox received method active_queues() [reply_to:{'exchange': 'reply.celery.pidbox', 'routing_key': '6b849fa9-d47c-3af0-9cf1-7ce0f111087c'} ticket:7d44833e-2db1-4f8e-a7cb-8174e186769d]
+2023-03-28 08:56:12,798 kombu.pidbox DEBUG    pidbox received method registered(taskinfoitems=[]) [reply_to:{'exchange': 'reply.celery.pidbox', 'routing_key': '6040f3e6-bd72-3afe-a119-11eee5331585'} ticket:51cb5d04-643b-458f-ade6-445d6d054f68]
+2023-03-28 08:56:12,780 flower.inspector DEBUG    Sending reserved inspect command
+2023-03-28 08:56:12,802 kombu.pidbox DEBUG    pidbox received method scheduled() [reply_to:{'exchange': 'reply.celery.pidbox', 'routing_key': 'be752f35-379b-305d-9824-dd944f4ff868'} ticket:0a872238-b0ae-42d5-9614-69416160b4ee]
+2023-03-28 08:56:12,780 flower.inspector DEBUG    Sending revoked inspect command
+2023-03-28 08:56:12,809 kombu.pidbox DEBUG    pidbox received method active(safe=None) [reply_to:{'exchange': 'reply.celery.pidbox', 'routing_key': 'b23eb88e-d911-324d-a1c7-7a3a64c8352b'} ticket:810c39eb-80eb-44d2-8a7f-3ba23221d160]
+2023-03-28 08:56:12,814 kombu.pidbox DEBUG    pidbox received method reserved() [reply_to:{'exchange': 'reply.celery.pidbox', 'routing_key': '28139141-f882-336f-8ff3-76e0c33a4d6c'} ticket:6fc61d02-dc14-4fb2-ab28-5f9b13813658]
+2023-03-28 08:56:12,781 flower.inspector DEBUG    Sending conf inspect command
+2023-03-28 08:56:12,800 flower.inspector DEBUG    Inspect command stats took 0.02s to complete
+2023-03-28 08:56:12,822 kombu.pidbox DEBUG    pidbox received method revoked() [reply_to:{'exchange': 'reply.celery.pidbox', 'routing_key': 'ef17cdb9-162d-3c77-8486-451a1542c997'} ticket:7fdf3c86-282e-4a22-be09-e8b7e3242fad]
+2023-03-28 08:56:12,816 flower.inspector DEBUG    Inspect command active_queues took 0.03s to complete
+2023-03-28 08:56:12,821 flower.inspector DEBUG    Inspect command registered took 0.04s to complete
+2023-03-28 08:56:12,829 kombu.pidbox DEBUG    pidbox received method conf(with_defaults=False) [reply_to:{'exchange': 'reply.celery.pidbox', 'routing_key': 'df6dba56-991d-35ce-ad6e-69fbf1ace83d'} ticket:b8fa7d16-3372-494f-a39b-2865be2ee3ea]
+2023-03-28 08:56:12,822 flower.inspector DEBUG    Inspect command scheduled took 0.03s to complete
+2023-03-28 08:56:12,831 flower.inspector DEBUG    Inspect command active took 0.04s to complete
+2023-03-28 08:56:12,833 flower.inspector DEBUG    Inspect command revoked took 0.03s to complete
+2023-03-28 08:56:12,833 flower.inspector DEBUG    Inspect command reserved took 0.03s to complete
+2023-03-28 08:56:12,841 flower.inspector DEBUG    Inspect command conf took 0.02s to complete
+2023-03-28 08:56:16,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:56:21,550 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:56:26,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:56:31,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:56:36,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:56:41,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:56:46,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:56:51,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:56:56,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:57:01,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:57:06,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:57:11,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:57:16,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:57:21,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:57:26,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:57:31,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:57:36,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:57:41,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:57:46,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:57:51,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:57:56,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:58:01,550 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:58:06,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:58:11,550 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:58:16,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:58:21,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:58:22,345 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/client/models.py changed, reloading.
+2023-03-28 08:58:24,554 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-28 08:58:26,550 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:58:31,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:58:36,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:58:41,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:58:46,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:58:51,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:58:56,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:59:01,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:59:06,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:59:11,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:59:16,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:59:21,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:59:26,551 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:59:31,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:59:36,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:59:41,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:59:46,550 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:59:51,551 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 08:59:56,550 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:00:01,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:00:06,550 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:00:11,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:00:16,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:00:21,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:00:26,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:00:31,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:00:36,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:00:41,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:00:46,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:00:51,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:00:56,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:01:01,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:01:06,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:01:11,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:01:16,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:01:21,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:01:26,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:01:31,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:01:36,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:01:41,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:01:46,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:01:51,550 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:01:56,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:02:01,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:02:06,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:02:11,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:02:16,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:02:21,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:02:26,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:02:31,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:02:36,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:02:41,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:02:46,551 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:02:51,550 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:02:56,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:03:01,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:03:06,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:03:08,549 celery.bootsteps DEBUG    | Worker: Closing Hub...
+2023-03-28 09:03:08,549 celery.bootsteps DEBUG    | Worker: Closing Pool...
+2023-03-28 09:03:08,550 celery.bootsteps DEBUG    | Worker: Closing Consumer...
+2023-03-28 09:03:08,550 celery.bootsteps DEBUG    | Worker: Stopping Consumer...
+2023-03-28 09:03:08,551 celery.bootsteps DEBUG    | Consumer: Closing Connection...
+2023-03-28 09:03:08,551 celery.bootsteps DEBUG    | Consumer: Closing Events...
+2023-03-28 09:03:08,552 celery.bootsteps DEBUG    | Consumer: Closing Mingle...
+2023-03-28 09:03:08,552 celery.bootsteps DEBUG    | Consumer: Closing Tasks...
+2023-03-28 09:03:08,553 celery.bootsteps DEBUG    | Consumer: Closing Control...
+2023-03-28 09:03:08,553 celery.bootsteps DEBUG    | Consumer: Closing Gossip...
+2023-03-28 09:03:08,554 celery.bootsteps DEBUG    | Consumer: Closing Heart...
+2023-03-28 09:03:08,554 celery.bootsteps DEBUG    | Consumer: Closing event loop...
+2023-03-28 09:03:08,554 celery.bootsteps DEBUG    | Consumer: Stopping event loop...
+2023-03-28 09:03:08,555 celery.bootsteps DEBUG    | Consumer: Stopping Heart...
+2023-03-28 09:03:08,556 celery.bootsteps DEBUG    | Consumer: Stopping Gossip...
+2023-03-28 09:03:08,560 celery.bootsteps DEBUG    | Consumer: Stopping Control...
+2023-03-28 09:03:08,562 celery.bootsteps DEBUG    | Consumer: Stopping Tasks...
+2023-03-28 09:03:08,563 celery.worker.consumer.tasks DEBUG    Canceling task consumer...
+2023-03-28 09:03:08,563 celery.bootsteps DEBUG    | Consumer: Stopping Mingle...
+2023-03-28 09:03:08,564 celery.bootsteps DEBUG    | Consumer: Stopping Events...
+2023-03-28 09:03:08,564 celery.bootsteps DEBUG    | Consumer: Stopping Connection...
+2023-03-28 09:03:08,564 celery.bootsteps DEBUG    | Worker: Stopping Pool...
+2023-03-28 09:03:08,765 celery.concurrency.asynpool DEBUG    removing tasks from inqueue until task handler finished
+2023-03-28 09:03:22,552 celery.bootsteps DEBUG    | Worker: Preparing bootsteps.
+2023-03-28 09:03:22,557 celery.bootsteps DEBUG    | Worker: Building graph...
+2023-03-28 09:03:22,558 celery.bootsteps DEBUG    | Worker: New boot order: {Timer, Hub, Pool, Autoscaler, Beat, StateDB, Consumer}
+2023-03-28 09:03:22,573 celery.bootsteps DEBUG    | Consumer: Preparing bootsteps.
+2023-03-28 09:03:22,574 celery.bootsteps DEBUG    | Consumer: Building graph...
+2023-03-28 09:03:22,597 celery.bootsteps DEBUG    | Consumer: New boot order: {Connection, Events, Mingle, Tasks, Control, Agent, Gossip, Heart, event loop}
+2023-03-28 09:03:22,633 celery.bootsteps DEBUG    | Worker: Starting Hub
+2023-03-28 09:03:22,633 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 09:03:22,634 celery.bootsteps DEBUG    | Worker: Starting Pool
+2023-03-28 09:03:23,298 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 09:03:23,299 celery.bootsteps DEBUG    | Worker: Starting Consumer
+2023-03-28 09:03:23,300 celery.bootsteps DEBUG    | Consumer: Starting Connection
+2023-03-28 09:03:23,310 celery.worker.consumer.connection INFO     Connected to redis://localhost:6379//
+2023-03-28 09:03:23,310 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 09:03:23,311 celery.bootsteps DEBUG    | Consumer: Starting Events
+2023-03-28 09:03:23,315 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 09:03:23,315 celery.bootsteps DEBUG    | Consumer: Starting Mingle
+2023-03-28 09:03:23,315 celery.worker.consumer.mingle INFO     mingle: searching for neighbors
+2023-03-28 09:03:24,325 celery.worker.consumer.mingle INFO     mingle: all alone
+2023-03-28 09:03:24,326 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 09:03:24,326 celery.bootsteps DEBUG    | Consumer: Starting Tasks
+2023-03-28 09:03:24,334 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 09:03:24,334 celery.bootsteps DEBUG    | Consumer: Starting Control
+2023-03-28 09:03:24,338 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 09:03:24,339 celery.bootsteps DEBUG    | Consumer: Starting Gossip
+2023-03-28 09:03:24,344 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 09:03:24,344 celery.bootsteps DEBUG    | Consumer: Starting Heart
+2023-03-28 09:03:24,347 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 09:03:24,348 celery.bootsteps DEBUG    | Consumer: Starting event loop
+2023-03-28 09:03:24,348 celery.bootsteps DEBUG    | Worker: Hub.register Pool...
+2023-03-28 09:03:24,351 py.warnings  WARNING  /mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/fixups/django.py:203: UserWarning: Using settings.DEBUG leads to a memory
+            leak, never use this setting in production environments!
+  warnings.warn('''Using settings.DEBUG leads to a memory
+
+2023-03-28 09:03:24,353 celery.apps.worker INFO     celery@DESKTOP-PC6U1IH ready.
+2023-03-28 09:03:24,353 kombu.common DEBUG    basic.qos: prefetch_count->32
+2023-03-28 09:03:26,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:03:26,550 celery.worker.control INFO     Events of group {task} enabled by remote.
+2023-03-28 09:03:31,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:03:33,936 celery.bootsteps DEBUG    | Worker: Closing Hub...
+2023-03-28 09:03:33,937 celery.bootsteps DEBUG    | Worker: Closing Pool...
+2023-03-28 09:03:33,937 celery.bootsteps DEBUG    | Worker: Closing Consumer...
+2023-03-28 09:03:33,938 celery.bootsteps DEBUG    | Worker: Stopping Consumer...
+2023-03-28 09:03:33,938 celery.bootsteps DEBUG    | Consumer: Closing Connection...
+2023-03-28 09:03:33,939 celery.bootsteps DEBUG    | Consumer: Closing Events...
+2023-03-28 09:03:33,939 celery.bootsteps DEBUG    | Consumer: Closing Mingle...
+2023-03-28 09:03:33,940 celery.bootsteps DEBUG    | Consumer: Closing Tasks...
+2023-03-28 09:03:33,940 celery.bootsteps DEBUG    | Consumer: Closing Control...
+2023-03-28 09:03:33,940 celery.bootsteps DEBUG    | Consumer: Closing Gossip...
+2023-03-28 09:03:33,941 celery.bootsteps DEBUG    | Consumer: Closing Heart...
+2023-03-28 09:03:33,941 celery.bootsteps DEBUG    | Consumer: Closing event loop...
+2023-03-28 09:03:33,941 celery.bootsteps DEBUG    | Consumer: Stopping event loop...
+2023-03-28 09:03:33,942 celery.bootsteps DEBUG    | Consumer: Stopping Heart...
+2023-03-28 09:03:33,943 celery.bootsteps DEBUG    | Consumer: Stopping Gossip...
+2023-03-28 09:03:33,945 celery.bootsteps DEBUG    | Consumer: Stopping Control...
+2023-03-28 09:03:33,947 celery.bootsteps DEBUG    | Consumer: Stopping Tasks...
+2023-03-28 09:03:33,948 celery.worker.consumer.tasks DEBUG    Canceling task consumer...
+2023-03-28 09:03:33,948 celery.bootsteps DEBUG    | Consumer: Stopping Mingle...
+2023-03-28 09:03:33,948 celery.bootsteps DEBUG    | Consumer: Stopping Events...
+2023-03-28 09:03:33,949 celery.bootsteps DEBUG    | Consumer: Stopping Connection...
+2023-03-28 09:03:33,949 celery.bootsteps DEBUG    | Worker: Stopping Pool...
+2023-03-28 09:03:34,152 celery.concurrency.asynpool DEBUG    removing tasks from inqueue until task handler finished
+2023-03-28 09:03:49,567 celery.bootsteps DEBUG    | Worker: Preparing bootsteps.
+2023-03-28 09:03:49,571 celery.bootsteps DEBUG    | Worker: Building graph...
+2023-03-28 09:03:49,572 celery.bootsteps DEBUG    | Worker: New boot order: {StateDB, Timer, Hub, Pool, Autoscaler, Beat, Consumer}
+2023-03-28 09:03:49,589 celery.bootsteps DEBUG    | Consumer: Preparing bootsteps.
+2023-03-28 09:03:49,589 celery.bootsteps DEBUG    | Consumer: Building graph...
+2023-03-28 09:03:49,612 celery.bootsteps DEBUG    | Consumer: New boot order: {Connection, Agent, Events, Mingle, Tasks, Control, Gossip, Heart, event loop}
+2023-03-28 09:03:49,652 celery.bootsteps DEBUG    | Worker: Starting Hub
+2023-03-28 09:03:49,653 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 09:03:49,653 celery.bootsteps DEBUG    | Worker: Starting Pool
+2023-03-28 09:03:50,332 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 09:03:50,333 celery.bootsteps DEBUG    | Worker: Starting Consumer
+2023-03-28 09:03:50,334 celery.bootsteps DEBUG    | Consumer: Starting Connection
+2023-03-28 09:03:50,342 celery.worker.consumer.connection INFO     Connected to redis://localhost:6379//
+2023-03-28 09:03:50,343 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 09:03:50,343 celery.bootsteps DEBUG    | Consumer: Starting Events
+2023-03-28 09:03:50,346 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 09:03:50,346 celery.bootsteps DEBUG    | Consumer: Starting Mingle
+2023-03-28 09:03:50,346 celery.worker.consumer.mingle INFO     mingle: searching for neighbors
+2023-03-28 09:03:51,355 celery.worker.consumer.mingle INFO     mingle: all alone
+2023-03-28 09:03:51,355 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 09:03:51,356 celery.bootsteps DEBUG    | Consumer: Starting Tasks
+2023-03-28 09:03:51,363 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 09:03:51,363 celery.bootsteps DEBUG    | Consumer: Starting Control
+2023-03-28 09:03:51,368 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 09:03:51,368 celery.bootsteps DEBUG    | Consumer: Starting Gossip
+2023-03-28 09:03:51,372 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 09:03:51,372 celery.bootsteps DEBUG    | Consumer: Starting Heart
+2023-03-28 09:03:51,374 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 09:03:51,375 celery.bootsteps DEBUG    | Consumer: Starting event loop
+2023-03-28 09:03:51,375 celery.bootsteps DEBUG    | Worker: Hub.register Pool...
+2023-03-28 09:03:51,377 py.warnings  WARNING  /mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/fixups/django.py:203: UserWarning: Using settings.DEBUG leads to a memory
+            leak, never use this setting in production environments!
+  warnings.warn('''Using settings.DEBUG leads to a memory
+
+2023-03-28 09:03:51,378 celery.apps.worker INFO     celery@DESKTOP-PC6U1IH ready.
+2023-03-28 09:03:51,378 kombu.common DEBUG    basic.qos: prefetch_count->32
+2023-03-28 09:03:51,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:03:51,550 celery.worker.control INFO     Events of group {task} enabled by remote.
+2023-03-28 09:03:56,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:04:01,550 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:04:06,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:04:11,550 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:04:16,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:04:21,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:04:26,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:04:31,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:04:36,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:04:41,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:04:46,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:04:51,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:04:56,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:05:01,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:05:06,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:05:11,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:05:15,270 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2023-03-28 09:05:16,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:05:17,077 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-28 09:05:21,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:05:26,550 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:05:31,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:05:36,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:05:41,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:05:46,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:05:51,550 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:05:56,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:05:57,897 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2023-03-28 09:05:59,742 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-28 09:06:01,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:06:03,932 django.utils.autoreload INFO     /mnt/c/Users/amd/Desktop/Octogym/backend/salle_activite/tasks.py changed, reloading.
+2023-03-28 09:06:06,312 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2023-03-28 09:06:06,550 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:06:11,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:06:16,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:06:21,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:06:26,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:06:31,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:06:36,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:06:41,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:06:46,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:06:51,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:06:56,550 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:07:01,550 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:07:06,551 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:07:11,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:07:16,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:07:21,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:07:26,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:07:31,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:07:36,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:07:41,550 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:07:46,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:07:51,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:07:56,550 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:08:01,550 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:08:06,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:08:11,550 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:08:16,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:08:21,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:08:26,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:08:31,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:08:36,550 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:08:41,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:08:46,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:08:51,550 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:08:56,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:09:01,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:09:06,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:09:11,551 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:09:16,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:09:21,550 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:09:26,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:09:31,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:09:36,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:09:41,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:09:46,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:09:51,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:09:56,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:10:01,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:10:06,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:10:11,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:10:16,550 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:10:21,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:10:26,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:10:31,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:10:36,550 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:10:41,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:10:46,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:10:51,550 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:10:56,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:11:01,551 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:11:06,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:11:11,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:11:16,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:11:21,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:11:26,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:11:31,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:11:36,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:11:41,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:11:46,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:11:51,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:11:56,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:12:01,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:12:06,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:12:11,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:12:15,137 celery.bootsteps DEBUG    | Worker: Closing Hub...
+2023-03-28 09:12:15,137 celery.bootsteps DEBUG    | Worker: Closing Pool...
+2023-03-28 09:12:15,138 celery.bootsteps DEBUG    | Worker: Closing Consumer...
+2023-03-28 09:12:15,139 celery.bootsteps DEBUG    | Worker: Stopping Consumer...
+2023-03-28 09:12:15,140 celery.bootsteps DEBUG    | Consumer: Closing Connection...
+2023-03-28 09:12:15,140 celery.bootsteps DEBUG    | Consumer: Closing Events...
+2023-03-28 09:12:15,141 celery.bootsteps DEBUG    | Consumer: Closing Mingle...
+2023-03-28 09:12:15,141 celery.bootsteps DEBUG    | Consumer: Closing Tasks...
+2023-03-28 09:12:15,141 celery.bootsteps DEBUG    | Consumer: Closing Control...
+2023-03-28 09:12:15,142 celery.bootsteps DEBUG    | Consumer: Closing Gossip...
+2023-03-28 09:12:15,142 celery.bootsteps DEBUG    | Consumer: Closing Heart...
+2023-03-28 09:12:15,143 celery.bootsteps DEBUG    | Consumer: Closing event loop...
+2023-03-28 09:12:15,143 celery.bootsteps DEBUG    | Consumer: Stopping event loop...
+2023-03-28 09:12:15,144 celery.bootsteps DEBUG    | Consumer: Stopping Heart...
+2023-03-28 09:12:15,146 celery.bootsteps DEBUG    | Consumer: Stopping Gossip...
+2023-03-28 09:12:15,149 celery.bootsteps DEBUG    | Consumer: Stopping Control...
+2023-03-28 09:12:15,151 celery.bootsteps DEBUG    | Consumer: Stopping Tasks...
+2023-03-28 09:12:15,152 celery.worker.consumer.tasks DEBUG    Canceling task consumer...
+2023-03-28 09:12:15,152 celery.bootsteps DEBUG    | Consumer: Stopping Mingle...
+2023-03-28 09:12:15,152 celery.bootsteps DEBUG    | Consumer: Stopping Events...
+2023-03-28 09:12:15,153 celery.bootsteps DEBUG    | Consumer: Stopping Connection...
+2023-03-28 09:12:15,153 celery.bootsteps DEBUG    | Worker: Stopping Pool...
+2023-03-28 09:12:15,321 celery.concurrency.asynpool DEBUG    removing tasks from inqueue until task handler finished
+2023-03-28 09:12:21,473 celery.bootsteps DEBUG    | Worker: Preparing bootsteps.
+2023-03-28 09:12:21,478 celery.bootsteps DEBUG    | Worker: Building graph...
+2023-03-28 09:12:21,478 celery.bootsteps DEBUG    | Worker: New boot order: {Beat, Timer, Hub, Pool, Autoscaler, StateDB, Consumer}
+2023-03-28 09:12:21,496 celery.bootsteps DEBUG    | Consumer: Preparing bootsteps.
+2023-03-28 09:12:21,497 celery.bootsteps DEBUG    | Consumer: Building graph...
+2023-03-28 09:12:21,521 celery.bootsteps DEBUG    | Consumer: New boot order: {Connection, Events, Mingle, Tasks, Control, Gossip, Agent, Heart, event loop}
+2023-03-28 09:12:21,559 celery.bootsteps DEBUG    | Worker: Starting Hub
+2023-03-28 09:12:21,560 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 09:12:21,560 celery.bootsteps DEBUG    | Worker: Starting Pool
+2023-03-28 09:12:22,249 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 09:12:22,250 celery.bootsteps DEBUG    | Worker: Starting Consumer
+2023-03-28 09:12:22,250 celery.bootsteps DEBUG    | Consumer: Starting Connection
+2023-03-28 09:12:22,260 celery.worker.consumer.connection INFO     Connected to redis://localhost:6379//
+2023-03-28 09:12:22,261 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 09:12:22,261 celery.bootsteps DEBUG    | Consumer: Starting Events
+2023-03-28 09:12:22,264 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 09:12:22,265 celery.bootsteps DEBUG    | Consumer: Starting Mingle
+2023-03-28 09:12:22,265 celery.worker.consumer.mingle INFO     mingle: searching for neighbors
+2023-03-28 09:12:23,274 celery.worker.consumer.mingle INFO     mingle: all alone
+2023-03-28 09:12:23,275 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 09:12:23,276 celery.bootsteps DEBUG    | Consumer: Starting Tasks
+2023-03-28 09:12:23,284 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 09:12:23,284 celery.bootsteps DEBUG    | Consumer: Starting Control
+2023-03-28 09:12:23,289 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 09:12:23,289 celery.bootsteps DEBUG    | Consumer: Starting Gossip
+2023-03-28 09:12:23,297 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 09:12:23,298 celery.bootsteps DEBUG    | Consumer: Starting Heart
+2023-03-28 09:12:23,301 celery.bootsteps DEBUG    ^-- substep ok
+2023-03-28 09:12:23,302 celery.bootsteps DEBUG    | Consumer: Starting event loop
+2023-03-28 09:12:23,302 celery.bootsteps DEBUG    | Worker: Hub.register Pool...
+2023-03-28 09:12:23,305 py.warnings  WARNING  /mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/celery/fixups/django.py:203: UserWarning: Using settings.DEBUG leads to a memory
+            leak, never use this setting in production environments!
+  warnings.warn('''Using settings.DEBUG leads to a memory
+
+2023-03-28 09:12:23,306 celery.apps.worker INFO     celery@DESKTOP-PC6U1IH ready.
+2023-03-28 09:12:23,306 kombu.common DEBUG    basic.qos: prefetch_count->32
+2023-03-28 09:12:26,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:12:26,550 celery.worker.control INFO     Events of group {task} enabled by remote.
+2023-03-28 09:12:31,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:12:36,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:12:41,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:12:46,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:12:51,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:12:56,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:13:01,548 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:13:06,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:13:11,549 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:13:16,550 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:13:21,550 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:13:23,807 flower.events DEBUG    Stopping enable events timer...
+2023-03-28 09:13:23,808 root         DEBUG    Stopping executors...
+2023-03-28 09:13:23,809 root         DEBUG    Stopping event loop...
+2023-03-28 09:13:27,205 flower.command INFO     Visit me at http://localhost:5555
+2023-03-28 09:13:27,221 flower.command INFO     Broker: redis://localhost:6379//
+2023-03-28 09:13:27,227 flower.command INFO     Registered tasks: 
+['celery.accumulate',
+ 'celery.backend_cleanup',
+ 'celery.chain',
+ 'celery.chord',
+ 'celery.chord_unlock',
+ 'celery.chunks',
+ 'celery.group',
+ 'celery.map',
+ 'celery.starmap',
+ 'client.tasks.register_user',
+ 'salle_activite.tasks.start_face_door_left',
+ 'salle_activite.tasks.start_face_door_right',
+ 'salle_activite.tasks.start_linsten_2',
+ 'salle_activite.tasks.start_linsten_3',
+ 'salle_activite.tasks.start_linsten_4',
+ 'salle_activite.tasks.start_linsten_5',
+ 'salle_activite.tasks.start_linsten_6',
+ 'salle_activite.tasks.start_linsten_7',
+ 'salle_activite.tasks.start_linsten_8',
+ 'salle_activite.tasks.start_linsten_9',
+ 'salle_activite.tasks.start_linsten_test_device_1',
+ 'salle_activite.tasks.start_linsten_test_device_2',
+ 'salle_activite.tasks.stop_listening_1']
+2023-03-28 09:13:27,233 flower.command DEBUG    Settings: {'cookie_secret': 'xYUBmyWlLuZ7QC9_yzsnJ7H0UstaFjpzFox_syl_sBjH7L9-YYelO5heIz7kAqrMv6h8GM3wL2iDnDHNiAsHTg',
+ 'debug': False,
+ 'login_url': '/login',
+ 'static_path': '/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/flower/static',
+ 'static_url_prefix': '/static/',
+ 'template_path': '/mnt/c/Users/amd/Desktop/Octogym/venv/lib/python3.8/site-packages/flower/templates'}
+2023-03-28 09:13:27,234 flower.command WARNING  Running without authentication
+2023-03-28 09:13:27,235 flower.events DEBUG    Starting enable events timer...
+2023-03-28 09:13:27,241 flower.events DEBUG    Capturing events...
+2023-03-28 09:13:27,244 kombu.mixins INFO     Connected to redis://localhost:6379//
+2023-03-28 09:13:27,265 flower.inspector DEBUG    Sending stats inspect command
+2023-03-28 09:13:27,265 flower.inspector DEBUG    Sending active_queues inspect command
+2023-03-28 09:13:27,265 flower.inspector DEBUG    Sending registered inspect command
+2023-03-28 09:13:27,265 flower.inspector DEBUG    Sending scheduled inspect command
+2023-03-28 09:13:27,265 flower.inspector DEBUG    Sending active inspect command
+2023-03-28 09:13:27,265 flower.inspector DEBUG    Sending reserved inspect command
+2023-03-28 09:13:27,265 flower.inspector DEBUG    Sending revoked inspect command
+2023-03-28 09:13:27,265 flower.inspector DEBUG    Sending conf inspect command
+2023-03-28 09:13:27,281 kombu.pidbox DEBUG    pidbox received method heartbeat() [reply_to:None ticket:None]
+2023-03-28 09:13:27,282 celery.worker.control DEBUG    Heartbeat requested by remote.
+2023-03-28 09:13:27,289 kombu.pidbox DEBUG    pidbox received method stats() [reply_to:{'exchange': 'reply.celery.pidbox', 'routing_key': '0cbbf013-6e17-3c23-9d1a-90e8cb81b927'} ticket:b643eac2-a6a1-4c88-b471-43846d34c934]
+2023-03-28 09:13:27,292 kombu.pidbox DEBUG    pidbox received method registered(taskinfoitems=[]) [reply_to:{'exchange': 'reply.celery.pidbox', 'routing_key': '2a46fd47-a784-3cfd-9c3b-07ccd6f41d68'} ticket:09f9471f-8675-4768-9dc9-906ce2a5d376]
+2023-03-28 09:13:27,296 kombu.pidbox DEBUG    pidbox received method scheduled() [reply_to:{'exchange': 'reply.celery.pidbox', 'routing_key': '2d1de317-ae7b-36bf-99f0-0a87faa87f91'} ticket:7623ca66-667e-4e29-ba27-92edbe5a6628]
+2023-03-28 09:13:27,300 kombu.pidbox DEBUG    pidbox received method active(safe=None) [reply_to:{'exchange': 'reply.celery.pidbox', 'routing_key': 'c8df6f09-371d-349f-8303-afd179974302'} ticket:9a9878e3-4d84-493a-ab35-13f3491fbdf7]
+2023-03-28 09:13:27,302 kombu.pidbox DEBUG    pidbox received method active_queues() [reply_to:{'exchange': 'reply.celery.pidbox', 'routing_key': 'e6e19c6c-cad5-3261-92a5-47ef1da695bf'} ticket:68ea322b-65f3-4038-b8e0-005b1c92fd79]
+2023-03-28 09:13:27,304 kombu.pidbox DEBUG    pidbox received method reserved() [reply_to:{'exchange': 'reply.celery.pidbox', 'routing_key': '46e3de14-b8e7-30b0-89ee-43fd90e6f366'} ticket:b9629911-b669-4ec3-b31c-b0442e9ad6a4]
+2023-03-28 09:13:27,307 kombu.pidbox DEBUG    pidbox received method revoked() [reply_to:{'exchange': 'reply.celery.pidbox', 'routing_key': '722e90a6-21a4-33a2-9e1e-6964c1b88b40'} ticket:ed2a800f-259a-40b3-b2f3-dc2f4334fdde]
+2023-03-28 09:13:27,309 kombu.pidbox DEBUG    pidbox received method conf(with_defaults=False) [reply_to:{'exchange': 'reply.celery.pidbox', 'routing_key': '46d151d8-4a6f-3b64-847c-ccb94698c90e'} ticket:ed34979f-ba1b-4ed2-b641-4d24860a8ac9]
+2023-03-28 09:13:28,301 flower.inspector DEBUG    Inspect command stats took 1.04s to complete
+2023-03-28 09:13:28,303 flower.inspector DEBUG    Inspect command registered took 1.03s to complete
+2023-03-28 09:13:28,311 flower.inspector DEBUG    Inspect command scheduled took 1.04s to complete
+2023-03-28 09:13:28,313 flower.inspector DEBUG    Inspect command revoked took 1.04s to complete
+2023-03-28 09:13:28,313 flower.inspector DEBUG    Inspect command active_queues took 1.05s to complete
+2023-03-28 09:13:28,314 flower.inspector DEBUG    Inspect command reserved took 1.04s to complete
+2023-03-28 09:13:28,315 flower.inspector DEBUG    Inspect command active took 1.04s to complete
+2023-03-28 09:13:28,330 flower.inspector DEBUG    Inspect command conf took 1.05s to complete
+2023-03-28 09:13:32,239 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:13:37,238 kombu.pidbox DEBUG    pidbox received method enable_events() [reply_to:None ticket:None]
+2023-03-28 09:13:42,073 flower.events DEBUG    Stopping enable events timer...
+2023-03-28 09:13:42,074 root         DEBUG    Stopping executors...
+2023-03-28 09:13:42,074 root         DEBUG    Stopping event loop...
+2023-03-28 09:14:21,700 salle_activite_view INFO     Open All The Doors inited...
+2023-03-28 09:14:21,801 celery.worker.strategy INFO     Task salle_activite.tasks.start_linsten_test_device_1[27a305aa-6583-4082-9ba2-9c54d0082b30] received
+2023-03-28 09:14:21,801 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f3be4fdd5e0> (args:('salle_activite.tasks.start_linsten_test_device_1', '27a305aa-6583-4082-9ba2-9c54d0082b30', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_test_device_1', 'id': '27a305aa-6583-4082-9ba2-9c54d0082b30', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '27a305aa-6583-4082-9ba2-9c54d0082b30', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen15046@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': '27a305aa-6583-4082-9ba2-9c54d0082b30', 'reply_to': 'c91e2aff-13d9-36c7-bed4-b47fe3594757', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '574d5958-d77d-4142-8e8a-b30a416047ae'}, 'reply_to': 'c91e2aff-13d9-36c7-bed4-b47fe3594757', 'correlation_id': '27a305aa-6583-4082-9ba2-9c54d0082b30', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery',... kwargs:{})
+2023-03-28 09:14:21,805 celery.worker.strategy INFO     Task salle_activite.tasks.start_linsten_test_device_2[75c4e63a-bc36-430f-a7ee-56c3e3337366] received
+2023-03-28 09:14:21,805 celery.pool  DEBUG    TaskPool: Apply <function fast_trace_task at 0x7f3be4fdd5e0> (args:('salle_activite.tasks.start_linsten_test_device_2', '75c4e63a-bc36-430f-a7ee-56c3e3337366', {'lang': 'py', 'task': 'salle_activite.tasks.start_linsten_test_device_2', 'id': '75c4e63a-bc36-430f-a7ee-56c3e3337366', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '75c4e63a-bc36-430f-a7ee-56c3e3337366', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen15046@DESKTOP-PC6U1IH', 'ignore_result': False, 'properties': {'correlation_id': '75c4e63a-bc36-430f-a7ee-56c3e3337366', 'reply_to': 'c91e2aff-13d9-36c7-bed4-b47fe3594757', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'beb6982f-9b62-44f5-b4a2-eff783a0b3ba'}, 'reply_to': 'c91e2aff-13d9-36c7-bed4-b47fe3594757', 'correlation_id': '75c4e63a-bc36-430f-a7ee-56c3e3337366', 'hostname': 'celery@DESKTOP-PC6U1IH', 'delivery_info': {'exchange': '', 'routing_key': 'celery',... kwargs:{})
+2023-03-28 09:14:22,068 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_test_device_1[27a305aa-6583-4082-9ba2-9c54d0082b30] succeeded in 0.2604533999983687s: None
+2023-03-28 09:14:23,373 celery.app.trace INFO     Task salle_activite.tasks.start_linsten_test_device_2[75c4e63a-bc36-430f-a7ee-56c3e3337366] succeeded in 1.5654596999811474s: None
+2023-03-28 09:14:54,770 celery.bootsteps DEBUG    | Worker: Closing Hub...
+2023-03-28 09:14:54,770 celery.bootsteps DEBUG    | Worker: Closing Pool...
+2023-03-28 09:14:54,771 celery.bootsteps DEBUG    | Worker: Closing Consumer...
+2023-03-28 09:14:54,771 celery.bootsteps DEBUG    | Worker: Stopping Consumer...
+2023-03-28 09:14:54,772 celery.bootsteps DEBUG    | Consumer: Closing Connection...
+2023-03-28 09:14:54,772 celery.bootsteps DEBUG    | Consumer: Closing Events...
+2023-03-28 09:14:54,772 celery.bootsteps DEBUG    | Consumer: Closing Mingle...
+2023-03-28 09:14:54,773 celery.bootsteps DEBUG    | Consumer: Closing Tasks...
+2023-03-28 09:14:54,773 celery.bootsteps DEBUG    | Consumer: Closing Control...
+2023-03-28 09:14:54,774 celery.bootsteps DEBUG    | Consumer: Closing Gossip...
+2023-03-28 09:14:54,774 celery.bootsteps DEBUG    | Consumer: Closing Heart...
+2023-03-28 09:14:54,774 celery.bootsteps DEBUG    | Consumer: Closing event loop...
+2023-03-28 09:14:54,775 celery.bootsteps DEBUG    | Consumer: Stopping event loop...
+2023-03-28 09:14:54,775 celery.bootsteps DEBUG    | Consumer: Stopping Heart...
+2023-03-28 09:14:54,777 celery.bootsteps DEBUG    | Consumer: Stopping Gossip...
+2023-03-28 09:14:54,780 celery.bootsteps DEBUG    | Consumer: Stopping Control...
+2023-03-28 09:14:54,794 celery.bootsteps DEBUG    | Consumer: Stopping Tasks...
+2023-03-28 09:14:54,795 celery.worker.consumer.tasks DEBUG    Canceling task consumer...
+2023-03-28 09:14:54,795 celery.bootsteps DEBUG    | Consumer: Stopping Mingle...
+2023-03-28 09:14:54,796 celery.bootsteps DEBUG    | Consumer: Stopping Events...
+2023-03-28 09:14:54,796 celery.bootsteps DEBUG    | Consumer: Stopping Connection...
+2023-03-28 09:14:54,797 celery.bootsteps DEBUG    | Worker: Stopping Pool...
+2023-03-28 09:14:54,946 celery.concurrency.asynpool DEBUG    removing tasks from inqueue until task handler finished

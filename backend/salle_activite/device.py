@@ -65,11 +65,13 @@ class AccessControl:
 
             self.loginID, device_info, error_msg = self.sdk.LoginWithHighLevelSecurity(stuInParam, stuOutParam)
             if self.loginID != 0:
-                print("Login succeed. Channel num:" + str(device_info.nChanNum))
+                print('login succeed ip=>', self.ip)
+
+                # print("Login succeed. Channel num:" + str(device_info.nChanNum))
                 return True
             else:
-                print('ip=>', self.ip)
-                print("Login failed. " + error_msg)
+                print('login failed ip=>', self.ip)
+                # print("Login failed. " + error_msg)
                 return False
 
     def logout(self):
