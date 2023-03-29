@@ -200,6 +200,13 @@ class Client(models.Model):
         return reverse("client:client-detail", args={"slug": self.slug})
 
     #A VERIF
+
+    def remove_duplicate(self):
+        my_presences = Presence.objects.filter(abc__client=self, hour_sortie__isnull=True)
+        if my_presences:
+            first_presence = my_presences.first()
+            my_presences.exclude(pk=first_presence.pk).delete()
+
     def init_output(self,  exit_hour=None):
         my_presences = Presence.objects.filter(abc__client=self, is_in_salle=True)
         presence = my_presences.first()
@@ -301,6 +308,7 @@ class Client(models.Model):
             Presence.objects.create(abc= abonnement_client, creneau=cren_ref, is_in_list=True, hour_entree=current_time, is_in_salle=True)
             self.is_on_salle=True
             self.save()
+            self.remove_duplicate()
             return True
         
         elif not abonnement_client.is_time_volume() and abonnement_client.is_valid():
