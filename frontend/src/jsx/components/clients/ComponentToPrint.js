@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "../../../images/logo.png";
 import atlas from "../../../images/atlas.png";
-
+import "./print.css";
 export const ComponentToPrint = React.forwardRef((props, ref) => {
 //   const { id, date } = props;
 //console.log('PROESSSS', props);
@@ -80,30 +80,55 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
                 </div>
             </div>
         </div> */}
-        <div className="col-12 pt-5 p-3">
-            <div className="row pt-4 p-5">
+        <div className="col-12 pt-5 p-3"  style={{width: "300px"}}>
+             {/* <div className="row pt-4 p-5">
                 <div className="col-12 mb-2 text-left">
                     <img src={atlas} style={{width: "5rem", height: "5rem"}} />
                 </div>
-            </div>   
+            </div>    */}
             <div className="row mb-5 py-3 ">
+                <div className="col-12 text-left font-italic">
+                    <p className="mb-1 mr-5 h3 ">N° : <span className="font-weight-light">#{props.value.id}</span></p>
+                    <p className="mr-5 h3">Date : <span className="font-weight-bold">{props.value.date_creation}</span></p>
+                </div>
                 <div className="col-6">
                     <p className="font-weight-bold mb-4 h2">Adhérant</p>
-                    <p className="mb-1 h3 mb-3">ID : <span className="font-weight-light">{props.value.client_id}</span></p>
-                    <p className="mb-1 h3 mb-2">Nom : <span className="font-weight-light">{props.value.client_last_name}</span></p>
-                </div>
-                <div className="col-6 text-right font-italic">
-                    <p className="mb-1 mr-5 h3 ">N° : <span className="font-weight-light">#{props.value.id}</span></p>
-                    <p className="text-muted mr-5 h3">Date : <span className="font-weight-light">{props.value.date_creation}</span></p>
+                    <p className="mb-1 h3 mb-3">ID :  <span className="font-weight-bold">{props.value.client_id}</span></p>
+                    <p className="mb-1 h3 mb-2">Nom : <span className="font-weight-bold">{props.value.client_last_name}</span></p>
                 </div>
             </div>
             <hr className="mb-2"/>
-            <div className="row d-flex align-items-center px-5 mx-5 pt-5 mb-5">
-                <div className="col-12 justify-content-between align-items-center d-flex mb-3 text-uppercase">
-                    <th><h4 className='h2 mr-5'>Abonnement : </h4></th>
-                    <td><div className="text-left font-weight-lighter mt-1 h2 text-capitalize" >{props.value.abonnement_name}</div></td>
+            <div className="row d-flex align-items-center">
+                <div className="col-12">
+                    <th><h5 className='h2 mr-5'>Abonnement :  {props.value.abonnement_name}</h5></th>
                 </div>
-                <div className="col-12 justify-content-between align-items-center d-flex mb-3 text-uppercase">
+
+                <div className="col-12">
+                    <th><h5 className='h2 mr-5'>Séances : {props.value.quantity}</h5></th>
+                </div>
+                <div className="col-12">
+                    <th><h5 className='h2 mr-5'>Début : {props.value.start_abc}</h5></th>
+                </div>
+
+
+                <div className="col-12">
+                    <th><h5 className='h2 mr-5'>Fin : {props.value.end_abc}</h5></th>
+                </div>
+                <div className="col-12">
+                    <th><h5 className='h2 mr-5'>Montant : {props.value.get_abc_price} DA</h5></th>
+                </div>
+                <div className="col-12">
+                    <th><h5 className='h2 mr-5'>Reçu : {props.value.amount} DA</h5></th>
+                </div>
+                <div className="col-12">
+                    <th><h5 className='h2 mr-5'>Reste : {props.value.get_abc_reste} DA</h5></th>
+                </div>
+
+
+
+
+
+                {/* <div className="col-12 justify-content-between align-items-center d-flex mb-3 text-uppercase">
                     <th><h4 className="h2 mr-5">Séances : </h4></th>
                     <td><div className="text-left font-weight-lighter mt-1 h2" >{props.value.quantity}</div></td>
                 </div>
@@ -126,7 +151,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
                 <div className="col-12 justify-content-between align-items-center d-flex mb-3 text-uppercase">
                     <th><h4 className="h2 mr-5">Reste : </h4></th>
                     <td><div className="text-left font-weight-lighter mt-1 h2" >{props.value.get_abc_reste} DA</div></td>
-                </div>
+                </div> */}
             </div>
             <div className="d-flex flex-row bg-light text-dark p-2 mt-5">
                 <div className="py-2 px-3 d-flex text-left align-items-center">
