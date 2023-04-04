@@ -172,8 +172,9 @@ class Client(models.Model):
                 self.id = the_id
                 if self.picture:  
                     self.generate_thumbnail(self.picture, self.picture.name)
-
                     register_user.delay(self.last_name, the_id, self.picture.name)
+                    print('yess changed picturename', self.picture.name)
+                    print('yess changed picturename', self.picture.name)
                     print('yess changed picture url', self.picture.url)
                     print('yess changed picturename', self.picture.name)
             except:
