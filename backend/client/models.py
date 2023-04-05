@@ -154,7 +154,7 @@ class Client(models.Model):
             self.generate_thumbnail(self.picture, self.picture.name)
             print('yess changed picturename', self.picture.name)
             print('yess changed picture url', self.picture.url)
-            logger.warning('yess changed picture url', self.picture.url)
+            logger.warning('yess changed picture url-{}'.format(str(self.picture.url)))
             register_user.delay(self.last_name, self.id, self.picture.name)
         else:
             print('picture not changed')
@@ -215,8 +215,8 @@ class Client(models.Model):
         print('LA PRESENCE', presence)
         print('LA my_presences', my_presences)
         
-        logger.warning('LA PRESENCE', presence)
-        logger.warning('LA my_presences', my_presences)
+        logger.warning('LA PRESENCE {}'.format(str(presence)))
+        logger.warning('LA my_presences {}'.format(str(my_presences)))
 
 
         current_time = datetime.now().strftime("%H:%M:%S")
@@ -232,12 +232,12 @@ class Client(models.Model):
         ecart = abs(datetime.strptime(current_time, FTM) - datetime.strptime(str(presence_time), FTM))
 
         print('ECART', ecart)
-        logger.warning('ECART', ecart)
+        logger.warning('ECART {}'.format(str(ecart)))
         print('ECART TYPE', type(ecart))
 
         time_diff_seconds = timedelta.total_seconds(ecart)
         print('time_diff_seconds================>', time_diff_seconds)
-        logger.warning('time_diff_seconds================>', time_diff_seconds)
+        logger.warning('time_diff_seconds================> {}'.format(str(time_diff_seconds)))
         if not time_diff_seconds > 10:
             return False
         
@@ -267,8 +267,8 @@ class Client(models.Model):
 
         print('MY presence with hour sortie null=>', my_presences)
         print('MY presence with is is salle=>', in_salle_presences)
-        logger.warning('MY presence with hour sortie null=>', my_presences)
-        logger.warning('MY presence with is is salle=>', in_salle_presences)
+        logger.warning('MY presence with hour sortie null=> {}'.format(str(my_presences)))
+        logger.warning('MY presence with is is salle=>{}'.format(str(in_salle_presences)))
 
         current_time = datetime.now().strftime("%H:%M:%S")
         # the problem is that it doesn't turn the client is_on_salle to True on entering we can try to make comparison here if it less than 10 s we directly return False
@@ -292,8 +292,8 @@ class Client(models.Model):
         creneaux = Creneau.range.get_creneaux_of_day().filter(abonnements=abonnement_client)
         print('LES CRENEAUX =====', creneaux)
         print('Le TYPE DABONNEMENT CRENEAUX =====', abonnement_client)
-        logger.warning('LES CRENEAUX =====', creneaux)
-        logger.warning('Le TYPE DABONNEMENT CRENEAUX =====', abonnement_client)
+        logger.warning('LES CRENEAUX ====={}'.format(str(creneaux)))
+        logger.warning('Le TYPE DABONNEMENT CRENEAUX ====={}'.format(str(abonnement_client)))
 
         if not abonnement_client or not creneaux:
             return False
