@@ -64,7 +64,6 @@ const ComponentToPrintWrapper = ({ item }) => {
     
       />
       <div className="d-none">
-        <style> {getPageMargins()}</style>
         <ComponentToPrint ref={componentRef} value={item}></ComponentToPrint>
       </div>
     </div>

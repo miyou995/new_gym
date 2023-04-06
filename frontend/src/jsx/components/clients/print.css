@@ -1,26 +1,14 @@
-@media all {
-    .page-break {
-      display: none;
+@media print {
+    
+    .css-ohyacs {
+        /* margin: 0px; */
+        font-family: Arial, sans-serif;
+        font-weight: 500!important;
+        font-size: 3.25rem;
+        line-height: 1.6;
+        letter-spacing: 0.0075em;
+        padding: 16px 24px;
+        color: #000!important;
+        flex: 0 0 auto;
     }
-  }
-  
-  @media print {
-    html, body {
-      height: initial !important;
-      overflow: initial !important;
-      -webkit-print-color-adjust: exact;
-    }
-  }
-  
-  @media print {
-    .page-break {
-      margin-top: 1rem;
-      display: block;
-      page-break-before: auto;
-    }
-  }
-  
-  @page {
-    size: auto;
-    margin: 20mm;
-  }
+}
