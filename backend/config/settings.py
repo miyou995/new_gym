@@ -272,10 +272,8 @@ INTERNAL_IPS = [
     "127.0.0.1",
     # ...
 ]
-
   
 # USE_THOUSAND_SEPARATOR = True
-
 
 try:
     from .local_settings import *

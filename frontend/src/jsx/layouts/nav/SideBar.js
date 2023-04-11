@@ -99,7 +99,7 @@ const [path,setPath] = useState("");
                   }
                   <SbNavLinks LinkName="/configuration" Icon={configIcon} Name="configuration" />
                   <SbNavLinks LinkName="/users" Icon={userIcon} Name="Utilisateurs " />
-                  <SbNavLinks LinkName="/history-abc" Icon={agendaIcon} Name="History " />
+                  {/* <SbNavLinks LinkName="/history-abc" Icon={agendaIcon} Name="History " /> */}
                  </MM>
        
                <div className="copyright">
