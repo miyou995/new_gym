@@ -153,7 +153,7 @@ const HandleSubmit = (e) => {
    const presenceData =  api.get(`${process.env.REACT_APP_API_URL}/rest-api/get-client/?cl=${clientId}`).then(async res=> {
       if (res.data.last_presence) {
          setPresenceId(res.data.last_presence)
-         await api.put( `${process.env.REACT_APP_API_URL}/rest-api/presence/edit/${res.data.last_presence}/`)
+         api.put( `${process.env.REACT_APP_API_URL}/rest-api/presence/edit/${res.data.last_presence}/`)
          notifySuccess(`la sortie de ${clientId} a été éffectué Avec Succée`)
          setClientId('')
          return presenceData
@@ -165,9 +165,11 @@ const HandleSubmit = (e) => {
             })
             return presenceData1
          } catch (error) {
+
             notifyError("Erreur, Entrée non autorisée")
          }} 
    }).catch(err => {
+      console.log(err);
       notifyError("Cet ID n'existe pas dans nos fichier")
    })
 }
@@ -190,19 +192,19 @@ const [presenceAuth, loading] = useAuth(presenceAuthorization, 'GET')
          </div> 
 
          <div className="m-5 row">
-            {/* <div className='col- col-md-4'>
+            <div className='col- col-md-4'>
                <form onSubmit={HandleSubmit}>
                   <div className='row'>
                      <div className="col-6">
                      <label htmlFor="entree">Présence Automatique </label>
-                        <input name='entree' type="text" className="form-control" value={clientId} placeholder=" ID Client" onChange={e =>  setClientId(e.target.value)} />
+                        <input name='entree' type="text" className="form-control" value={clientId} placeholder="ID Client" onChange={e =>  setClientId(e.target.value)} />
                      </div>
                      <div className="col-6 mt-auto">
                         <Button  variant="success" type="submit" > Valider</Button>
                      </div>
                   </div>
                </form>
-            </div> */}
+            </div> 
             <div className="col-md-2 mt-auto">
                <Button  variant="primary" type="submit" onClick={e => setPresneceCreateModal(true)}> Présence Manuelle</Button>
             </div>

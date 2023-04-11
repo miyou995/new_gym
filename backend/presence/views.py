@@ -254,6 +254,8 @@ class PresenceEditAPIView(generics.RetrieveUpdateAPIView):
     serializer_class = PresenceManualEditSerialiser
     def get_object(self):
         obj = get_object_or_404(Presence, id=self.kwargs["pk"])
+        client = obj.abc.client
+        client.init_output()
         print('Salle ... ', obj , obj.id)
         return obj
 
@@ -263,6 +265,7 @@ class PresenceManualEditAPIView(generics.RetrieveUpdateAPIView):
     extra_perms_map = {
         "GET": ["presence.view_presence"],
         "PATCH": ["presence.change_presence"],
+        "PUT": ["presence.change_presence"],
         "PUT": ["presence.change_presence"],
     }
     serializer_class = PresencePostSerialiser

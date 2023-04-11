@@ -161,6 +161,8 @@ class PresenceAutoSerialiser(serializers.ModelSerializer):
                     abonnement.presence_quantity -= 1
                 abonnement.save()
                 return presence
+            else:
+                raise serializers.ValidationError("l'adherant n'est pas inscrit aujourd'hui")
         else:
             raise serializers.ValidationError("l'adherant n'est pas inscrit aujourd'hui")
         # abonnement.update(presence_quantity = prenseces - 1 )
