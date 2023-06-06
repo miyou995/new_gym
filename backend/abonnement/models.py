@@ -18,6 +18,7 @@ class SubscriptionQuerySet(models.QuerySet):
         return self.filter(type_abonnement__type_of=="SL")
     def free_access_subscription(self):
         return self.exclude(type_abonnement__type_of=="SF")
+    
     def active_subscription(self):
         today = date.today()
         return self.filter(end_date__gte=today, archiver=False)

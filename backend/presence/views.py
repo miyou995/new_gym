@@ -397,7 +397,8 @@ class PresenceClientAutoCreateAPI(generics.CreateAPIView):
     serializer_class = PresenceAutoSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "POST": ["presence.add_presencecoach"]
+        "POST": ["presence.add_presencecoach"],
+        "POST": ["presence.add_presence"]
     }
 
 

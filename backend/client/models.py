@@ -329,12 +329,13 @@ class Client(models.Model):
                 Presence.objects.create(abc= abonnement_client,  creneau= cren_ref, is_in_list=True, hour_entree=current_time, is_in_salle=True)
                 self.is_on_salle=True
                 self.save()
+                self.remove_duplicate()
                 abonnement_client.presence_quantity -= 1
                 abonnement_client.save()
                 return True
         else:
             print('WHATS THE CASE')
-            logger.warning('WHATS THE CASE')
+            logger.warning('WHATS THE CASE-- {}'.format(str(abonnement_client.type_abonnement)))
             return False
 
     # def init_output(self,  exit_hour=None):
