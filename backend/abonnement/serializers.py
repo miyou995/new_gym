@@ -105,6 +105,7 @@ class AbonnementClientDetailUpdateSerialiser(serializers.ModelSerializer):
 
     def get_activity(self, obj):
         abonnement_id = obj.type_abonnement.id
+        print('abonnement_id TYPE', obj.type_abonnement.type_of)
         abonnement = Abonnement.objects.get(id = abonnement_id)
         salles = abonnement.salles.all() #ERRRRREEEEEEUUUUUUURRRRR
         activitesOfSalles=[] 

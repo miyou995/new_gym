@@ -63,7 +63,7 @@ def get_filtered_abc_history(request):
     return {'qs': qs}
 
 class AbonnementClientCreateAPIView(generics.CreateAPIView):
-    queryset = AbonnementClient.objects.all()
+    queryset = AbonnementClient.objects.prefetch_related('type_abonnement', 'creneaux')
     serializer_class = AbonnementClientSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
@@ -79,7 +79,7 @@ class AbonnementClientRenewAPIView(generics.CreateAPIView):
     }
     
 class AbonnementClientListAPIView(generics.ListAPIView):
-    queryset = AbonnementClient.objects.filter(archiver=False)
+    queryset = AbonnementClient.objects.filter(archiver=False).prefetch_related('type_abonnement', 'creneaux')
     # permission_classes = (IsAuthenticated,)
     serializer_class = AbonnementClientSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
@@ -88,7 +88,7 @@ class AbonnementClientListAPIView(generics.ListAPIView):
     }
 
 class AbonnementClientDetailAPIView(generics.RetrieveUpdateAPIView):
-    queryset = AbonnementClient.objects.all()
+    queryset = AbonnementClient.objects.prefetch_related('creneaux', 'creneaux__activity').select_related('type_abonnement', 'type_abonnement__salles')
     serializer_class = AbonnementClientDetailUpdateSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {

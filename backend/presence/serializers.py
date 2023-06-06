@@ -3,15 +3,17 @@ from rest_framework import serializers
 from creneau.models import Creneau
 from abonnement.models import AbonnementClient
 from client.models import Client
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 from django.utils import timezone
 from django.http import HttpResponse
 from rest_framework.response import Response
 from django.db.models import Sum
 from django.db.models import Q
+import logging
+
+logger = logging.getLogger(__name__)
 now = datetime.now()
 print(now, type(now))
-
 class SimilarCreneauSerializer(serializers.ModelSerializer):
     activity = serializers.SerializerMethodField('get_activity_name', read_only=True)
     class Meta:
@@ -32,6 +34,8 @@ class PresenceManualEditSerialiser(serializers.ModelSerializer):
     class Meta:
         model = Presence
         fields= "__all__"
+
+
 #  presence manuelle non strict
 class PresencePostSerialiser(serializers.ModelSerializer):
     # client = serializers.IntegerField(max_value=None, min_value=None, write_only=True)
@@ -122,7 +126,9 @@ class PresenceAutoSerialiser(serializers.ModelSerializer):
         # client.has_permission()
         creneaux = Creneau.range.get_creneaux_of_day().filter(abonnements__client=client)
         # print('Les creneaux of client=====>',Creneau.objects.filter(abonnements__client=client))
-        print('Les creneaux du Today client=====>', creneaux)
+        print('999999999999999999999999999999999Les creneaux du Today client=====>', creneaux)
+        logger.warning('LOGLes creneaux du Today client=====-{}'.format(str(creneaux)))
+
         # print('CLIENT ID => ', client.id)
         # init_time = 1
         # the_creneau = ''
@@ -138,7 +144,12 @@ class PresenceAutoSerialiser(serializers.ModelSerializer):
                 if dur_ref > duree_seconde:
                     dur_ref = duree_seconde
                     cren_ref = cr
-            abon_list = AbonnementClient.objects.filter(client = client,creneaux = cren_ref, archiver = False )
+            abon_list = AbonnementClient.objects.filter(client = client, end_date__gte=date.today(), archiver = False )
+            if len(abon_list) > 1:
+                abon_list = abon_list.filter(creneaux = cren_ref)
+            # creneaux = cren_ref,
+            # end_date__gte=date.today(),
+            print('ABON LIST', abon_list)
             for ab in abon_list: # si il y'a plusieurs abonnement on previlegie les abonnement normal vu qu'il ne sont pas recuperable
                 # print("abonnement dans la bouvcle", ab.type_abonnement.free_sessions)
                 if not ab.type_abonnement.free_sessions:
@@ -148,9 +159,9 @@ class PresenceAutoSerialiser(serializers.ModelSerializer):
                     print('je suis laaaa')
                     abonnement = ab
             # abonnement = abon_list.first()
-            print('l \'abonnement du client est le :>>>>>>>>>>', abonnement)
             # is_valid = AbonnementClient.validity.is_valid(abonnement.id)
             if abonnement.is_time_volume() and abonnement.presence_quantity > 30:
+                print('IM HEEERE LOG ABONNEMENT==== TIME VOLUUUPME', abonnement.is_time_volume())
                 presence = Presence.objects.create(abc= abonnement, creneau= cren_ref, is_in_list=True, hour_entree=current_time, is_in_salle=True)
                 return presence
 
@@ -162,6 +173,11 @@ class PresenceAutoSerialiser(serializers.ModelSerializer):
                 abonnement.save()
                 return presence
             else:
+                abonnement.presence_quantity
+                logger.warning('LOG abonnement.presence_quantity=====> {}'.format(str(abonnement.presence_quantity)))
+                logger.warning('LOG ABONNEMENT=====-{}'.format(str(abonnement)))
+                logger.warning('LOG ABONNEMENT TYPE=====-{}'.format(str(abonnement.type_abonnement.type_of)))
+                
                 raise serializers.ValidationError("l'adherant n'est pas inscrit aujourd'hui")
         else:
             raise serializers.ValidationError("l'adherant n'est pas inscrit aujourd'hui")
