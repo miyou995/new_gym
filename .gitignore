@@ -4,14 +4,16 @@
 *.pyc
 __pycache__
 db.sqlite3
-# media
+media/*
+backend/*
 *.zip
 *.rar
 # Backup files # 
 *.bak 
 backend/*.log
-frontend/.eslintcache
 backend/*/__pycache__
+backend/picture.jpg
+frontend/.eslintcache
 # If you are using PyCharm # 
 # User-specific stuff
 .idea/**/workspace.xml
@@ -19,7 +21,6 @@ backend/*/__pycache__
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
-
 # AWS User-specific
 .idea/**/aws.xml
 
