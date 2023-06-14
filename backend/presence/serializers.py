@@ -114,6 +114,7 @@ class PresenceAutoSerialiser(serializers.ModelSerializer):
         fields= ('client',)
         
 
+
     def create(self, validated_data):
         FTM = '%H:%M:%S'
         current_time = datetime.now().strftime("%H:%M:%S")
@@ -124,7 +125,7 @@ class PresenceAutoSerialiser(serializers.ModelSerializer):
             card = cd_client.decode("utf-8")
             client = Client.objects.get(hex_card=card)
         # client.has_permission()
-        creneaux = Creneau.range.get_creneaux_of_day().filter(abonnements__client=client)
+        creneaux = Creneau.range.get_creneaux_of_day().filter(abonnements__client=client).distinct()
         # print('Les creneaux of client=====>',Creneau.objects.filter(abonnements__client=client))
         print('999999999999999999999999999999999Les creneaux du Today client=====>', creneaux)
         logger.warning('LOGLes creneaux du Today client=====-{}'.format(str(creneaux)))
@@ -145,6 +146,8 @@ class PresenceAutoSerialiser(serializers.ModelSerializer):
                     dur_ref = duree_seconde
                     cren_ref = cr
             abon_list = AbonnementClient.objects.filter(client = client, end_date__gte=date.today(), archiver = False )
+            if not abon_list:
+                raise serializers.ValidationError("l'adherant n'est pas inscrit aujourd'hui")
             if len(abon_list) > 1:
                 abon_list = abon_list.filter(creneaux = cren_ref)
             # creneaux = cren_ref,
@@ -229,7 +232,7 @@ class PresenceSerialiser(serializers.ModelSerializer):
     def get_activity(self, obj):
         # activite = obj.creneau.activity.name
         try:
-            print('le type de lactivity', type(obj.creneau.activity), ' le je sais pas quoi',obj.creneau.activity)
+            # print('le type de lactivity', type(obj.creneau.activity), ' le je sais pas quoi',obj.creneau.activity)
             return obj.creneau.activity.name
         except:
             return False

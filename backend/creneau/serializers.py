@@ -56,7 +56,11 @@ class CreneauxSimpleSerialiser(serializers.ModelSerializer):
         # queryset = acti.salle.name
         # return SalleSerialiser(queryset, many=False).data
         return acti
-
+    
+class CreneauOnlySerialiser(serializers.ModelSerializer):
+    class Meta:
+        model = Creneau
+        fields= ('id', 'name','hour_start', 'hour_finish', 'day', 'planning', 'activity', 'color',  'coach',  )
 
 class CreneauSerialiser(serializers.ModelSerializer):
     # color       = serializers.CharField(source='coach.color',read_only=True)

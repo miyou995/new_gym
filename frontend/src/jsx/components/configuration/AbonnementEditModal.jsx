@@ -162,7 +162,7 @@ return (
                     label="Seances Libre"
                     labelPlacement="start"
                     onClick={e => {
-                        setLength("Nombre  de séances")
+                        setLength("Nombre de séances")
                         setDisplayLength(true)
                         setHelpText("Abonnement limité par un nombre de seance avec des horaires fléxible")
                     }}

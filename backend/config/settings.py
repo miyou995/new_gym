@@ -233,6 +233,60 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'UTC'
 
+from celery.schedules import crontab
+from datetime import datetime
+if DEBUG == True:
+    CELERY_BEAT_SCHEDULE = {  
+        'Task_one_schedule' : {   
+            'task': 'salle_activite.tasks.start_linsten_test_device_1', 
+            'schedule': crontab(minute=0, hour=6), 
+        },
+        'Task_one_schedule' : {   
+            'task': 'salle_activite.tasks.start_linsten_test_device_2', 
+            'schedule': crontab(minute=0, hour=6), 
+        },
+    }
+else:
+    CELERY_BEAT_SCHEDULE = {  
+        'Task_one_schedule' : {   
+            'task': 'salle_activite.tasks.start_linsten_2', 
+            'schedule': crontab(minute=0, hour=6), 
+        },
+        'Task_one_schedule' : {   
+            'task': 'salle_activite.tasks.start_linsten_3', 
+            'schedule': crontab(minute=0, hour=6), 
+        },
+        'Task_one_schedule' : {   
+            'task': 'salle_activite.tasks.start_linsten_4', 
+            'schedule': crontab(minute=0, hour=6), 
+        },
+        'Task_one_schedule' : {   
+            'task': 'salle_activite.tasks.start_linsten_5', 
+            'schedule': crontab(minute=0, hour=6), 
+        },
+        'Task_one_schedule' : {   
+            'task': 'salle_activite.tasks.start_linsten_6', 
+            'schedule': crontab(minute=0, hour=6), 
+        },
+        'Task_one_schedule' : {   
+            'task': 'salle_activite.tasks.start_linsten_7', 
+            'schedule': crontab(minute=0, hour=6), 
+        },
+        'Task_one_schedule' : {   
+            'task': 'salle_activite.tasks.start_linsten_8', 
+            'schedule': crontab(minute=0, hour=6), 
+        },
+        'Task_one_schedule' : {   
+            'task': 'salle_activite.tasks.start_linsten_9', 
+            'schedule': crontab(minute=0, hour=6), 
+        },
+    }
+
+
+
+
+
+
 
 
 

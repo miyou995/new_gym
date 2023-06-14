@@ -70,6 +70,7 @@ const handleSubmit = e => {
   e.preventDefault();
   if (handleValidation()) {
     const newCreneau = {
+      name:name,
       hour_start :newStartHour,
       hour_finish :newEndHour,
       day :newDay,
