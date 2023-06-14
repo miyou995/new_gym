@@ -3,7 +3,7 @@ from rest_framework import generics
 from .models import Creneau
 from salle_activite.models import Salle
 from planning.models import Planning
-from .serializers import CreneauSerialiser, CreneauxSimpleSerialiser, CreneauClientSerialiser
+from .serializers import CreneauSerialiser, CreneauxSimpleSerialiser, CreneauClientSerialiser, CreneauOnlySerialiser
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser, DjangoModelPermissions
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -25,7 +25,7 @@ class BaseModelPerm(DjangoModelPermissions):
 
 class CreneauAPIView(generics.CreateAPIView):
     queryset = Creneau.objects.all()
-    serializer_class = CreneauSerialiser
+    serializer_class = CreneauOnlySerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
         "POST": ["creneau.add_creneau"]

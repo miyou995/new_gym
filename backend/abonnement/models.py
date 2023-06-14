@@ -9,24 +9,25 @@ from django.db.models import Q
 
 class SubscriptionQuerySet(models.QuerySet):
     def time_volume(self):
-        return self.filter(type_abonnement__type_of=="VH")
+        return self.filter(type_abonnement__type_of="VH")
     def free_access(self):
-        return self.filter(type_abonnement__type_of=="AL")
+        return self.filter(type_abonnement__type_of = "AL")
     def fixed_sessions(self):
-        return self.filter(type_abonnement__type_of=="SF")
+        return self.filter(type_abonnement__type_of = "SF")
     def free_sessions(self):
-        return self.filter(type_abonnement__type_of=="SL")
+        return self.filter(type_abonnement__type_of = "SL")
     def free_access_subscription(self):
-        return self.exclude(type_abonnement__type_of=="SF")
+        return self.exclude(type_abonnement__type_of = "SF")
     
     def active_subscription(self):
         today = date.today()
         return self.filter(end_date__gte=today, archiver=False)
 
     def valid_presences(self, limite_presence=0):
-        return self.exclude(type_abonnement__type_of == "VH").filter(seances_quantity__gte=limite_presence, archiver=False)
+        return self.exclude(type_abonnement__type_of = "VH").filter(seances_quantity__gte=limite_presence, archiver=False)
+    
     def valid_time(self, hlimit=30):
-        return self.filter(Q(type_abonnement__type_of == "VH") & Q(seances_quantity__gte=hlimit) & Q(archiver=False))  
+        return self.filter(Q(type_abonnement__type_of = "VH") & Q(seances_quantity__gte=hlimit) & Q(archiver=False))  
 
 class SubscriptionManager(models.Manager):
     def get_queryset(self):
@@ -123,10 +124,13 @@ class AbonnementClient(models.Model):
 
     def is_time_volume(self):
         return True if self.type_abonnement.type_of == "VH" else False
+    
     def is_free_access(self):
         return True if self.type_abonnement.type_of == "AL" else False
+    
     def is_fixed_sessions(self):
         return True if self.type_abonnement.type_of == "SF" else False
+    
     def is_free_sessions(self):
         return True if self.type_abonnement.type_of == "SL" else False
 
@@ -214,7 +218,7 @@ class AbonnementClient(models.Model):
 
     def get_planning(self):
         try:
-            print('creneaaaau', self.creneaux.first().planning)
+            # print('creneaaaau', self.creneaux.first().planning)
             return self.creneaux.first().planning
         except:
             return None
@@ -223,6 +227,11 @@ class AbonnementClient(models.Model):
         activities = Activity.objects.filter(salle__abonnements__type_abonnement_client=self)
         # activites = self.type_abonnement.salles.activities
         print('les activité de cet abc ', activities)
+        print('SELF ABONNE ID', self.id)
+        print('SELF type_abonnement ID', self.type_abonnement)
+        
+        # activities2 = self.type_abonnement.salles.all()
+        # print('ACTI 2-----------------------------------------------', activities2)
         return activities
 
     def renew_abc(self, renew_start_date):
@@ -311,17 +320,26 @@ class AbonnementClient(models.Model):
 def creneau_created_signal(sender, instance, created,**kwargs):
     if created:
         # get abc that have free access VH, AL, SL - 
-        abonnements = AbonnementClient.objects.all()
-        # abonnements = AbonnementClient.subscription_type.free_access_subscription()
-        # get abc that has same activities as creneaux abonnements 
+        # .select_related('type_abonnement__salles__actvities')
         activity = instance.activity
+        planning =instance.planning
+        print('type_abonnement__salles__actvities = activity',  activity)
+        print('creneaux__planning = planning',  planning)
+
+        abonnements = AbonnementClient.subscription.time_volume().filter(type_abonnement__salles__actvities = activity, creneaux__planning = planning ).prefetch_related('creneaux', 'creneaux__planning').distinct()
+        # abonnements = AbonnementClient.subscription_type.free_access_subscription()
+        print('ABONNEMENT', abonnements.count())
+        # get abc that has same activities as creneaux abonnements 
+        # new_abc =abonnements.filter(type_abonnement__salles__actvities = activity)
+        # print(' THE NEWABCSSS', new_abc.count())
         for abonnement in abonnements:
-            if abonnement.get_planning() == instance.planning:
-                if activity in abonnement.get_activites():
-                    abonnement.creneaux.add(instance)
-                    abonnement.save()
-        instance.save()
+            # if abonnement.get_planning() == instance.planning:
+            #     if activity in abonnement.get_activites():
+            abonnement.creneaux.add(instance)
+            abonnement.save()
+        # instance.save()
 post_save.connect(creneau_created_signal, sender=Creneau)
+
 
 
 # def dette_signal(sender, instance, **kwargs):

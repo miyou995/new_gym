@@ -177,7 +177,9 @@ class Client(models.Model):
                     print('yess changed picturename', self.picture.name)
                     print('yess changed picture url', self.picture.url)
                     print('yess changed picturename', self.picture.name)
-            except:
+            except Exception as e:
+                print('THE EXCEPTION ON save client', e)
+                logger.warning('THE EXCEPTION ON save client-{}'.format(str(e)))
                 self.id = "C0001"
 
         if self.carte:
@@ -244,6 +246,10 @@ class Client(models.Model):
         presence.hour_sortie = current_time
         presence.is_in_salle = False
         presence.save()
+
+
+
+
 
         # update abc
         # presence.save(commit=False)

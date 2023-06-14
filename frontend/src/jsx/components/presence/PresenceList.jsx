@@ -122,6 +122,7 @@ const getCurrentDay = (PresneceDate) => {
       return 'Samedi'
    }
 } 
+
 const [presenceStatus, setPresenceStatus] = useState(null);
 
    
@@ -166,7 +167,6 @@ const HandleSubmit = (e) => {
             })
             return presenceData1
          } catch (error) {
-
             notifyError("Erreur, Entrée non autorisée")
          }} 
    }).catch(err => {

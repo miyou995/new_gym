@@ -5,7 +5,8 @@
 __pycache__
 db.sqlite3
 # media
-
+*.zip
+*.rar
 # Backup files # 
 *.bak 
 backend/*.log
