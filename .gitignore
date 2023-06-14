@@ -22,7 +22,7 @@ frontend/.eslintcache
 .idea/**/shelf
 # AWS User-specific
 .idea/**/aws.xml
-
+backend/assets/*
 # Generated files
 .idea/**/contentModel.xml
 
