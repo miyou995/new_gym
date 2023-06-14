@@ -108,6 +108,7 @@ SIMPLE_JWT = {
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',# third party
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware', #DJango debug toolbar
     'django.middleware.common.CommonMiddleware',
@@ -116,7 +117,6 @@ MIDDLEWARE = [
     'simple_history.middleware.HistoryRequestMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 # CORS_ALLOWED_ORIGINS = [
@@ -125,7 +125,7 @@ MIDDLEWARE = [
 
 CORS_ORIGIN_ALLOW_ALL = True
 ROOT_URLCONF = 'config.urls'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 TEMPLATES = [
     {
@@ -302,6 +302,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'assets'
 STATICFILES_DIRS = [
    BASE_DIR / 'build/static',
+
 #    BASE_DIR,
 ]
 
