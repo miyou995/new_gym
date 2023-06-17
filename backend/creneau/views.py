@@ -2,7 +2,8 @@ from django.shortcuts import render, get_object_or_404
 from rest_framework import generics
 from .models import Creneau
 from salle_activite.models import Salle
-from .serializers import CreneauSerialiser, CreneauxSimpleSerialiser, CreneauClientSerialiser
+from planning.models import Planning
+from .serializers import CreneauSerialiser, CreneauxSimpleSerialiser, CreneauClientSerialiser, CreneauOnlySerialiser
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser, DjangoModelPermissions
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -24,10 +25,10 @@ class BaseModelPerm(DjangoModelPermissions):
 
 class CreneauAPIView(generics.CreateAPIView):
     queryset = Creneau.objects.all()
-    serializer_class = CreneauSerialiser
+    serializer_class = CreneauOnlySerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["creneau.add_creneau"]
+        "POST": ["creneau.add_creneau"]
     }
 
 class CreneauListAPIView(generics.ListAPIView):
@@ -105,7 +106,9 @@ class CreneauDetailAPIView(generics.RetrieveUpdateAPIView):
     queryset = Creneau.objects.all()
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["creneau.change_creneau"]
+        "GET": ["creneau.view_creneau"],
+        "PUT": ["creneau.change_creneau"],
+        "PATCH": ["creneau.change_creneau"],
     }
 
     serializer_class = CreneauSerialiser
@@ -123,7 +126,8 @@ class CreneauDestroyAPIView(generics.DestroyAPIView):
     serializer_class = CreneauSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["creneau.delete_creneau"]
+        "POST": ["creneau.delete_creneau"],
+        "DELETE": ["creneau.delete_creneau"],
     }
 
     
@@ -135,8 +139,16 @@ class CreneauByAbonnement(generics.ListAPIView):
         "GET": ["creneau.delete_creneau"]
     }
     def get_queryset(self):
-        abonnement = self.request.query_params.get('ab', None)
-        creneaux = Creneau.objects.filter(activity__salle__abonnements__id = abonnement)
+        abonnement_id = self.request.query_params.get('ab', None)
+        abc_id = self.request.query_params.get('abc', None)
+        abonnement_client = AbonnementClient.objects.get(id=abc_id)
+        # planning = Planning.objects.get()
+        try:
+            planning_id = abonnement_client.creneaux.first().planning.id
+            print('PLANNNING ID', planning_id)
+            creneaux = Creneau.objects.filter(activity__salle__abonnements__id = abonnement_id,  planning__id=planning_id)
+        except:
+            creneaux = Creneau.objects.filter(activity__salle__abonnements__id = abonnement_id)
         # print('les ceneaux', creneaux.count())
         return creneaux
 
@@ -170,7 +182,7 @@ class CreneauCoachListAPIView(generics.ListAPIView):
     def get_queryset(self):
         coach = self.request.query_params.get('cl', None)
         print('cliiiientr', coach)
-        creneaux = Creneau.objects.filter(coach=coach)
+        creneaux = Creneau.objects.filter(coach=coach).distinct()
         return creneaux
 
 class CreneauAbcListAPIView(generics.ListAPIView):

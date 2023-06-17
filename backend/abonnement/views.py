@@ -4,12 +4,19 @@ from django.db.models import Q
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser, DjangoModelPermissions
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework import generics
+from rest_framework import pagination
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from datetime import timedelta, date
 from .serializers import AbonnementClientSerialiser, AbonnementSerialiser, AbonnementClientDetailUpdateSerialiser, AbonnementClientDetailSerializer, AbonnementClientTransactionsSerializer, ABCCreneauSerializer, AbonnementClientRenewSerializer, AbonnementClientAllSerializer, AbonnementClientHistorySerializer
 from client.models import Client
 from .models import Abonnement,  AbonnementClient
+from django.db.models import Prefetch
+
+class StandardResultsSetPagination(pagination.PageNumberPagination):
+    page_size = 15
+    page_size_query_param = 'page_size'
+    max_page_size = 100
 
 class BaseModelPerm(DjangoModelPermissions):
     def get_custom_perms(self, method, view):
@@ -28,18 +35,20 @@ def is_valid_queryparam(param):
     return param != '' and param is not None
 
 def get_filtered_abc_history(request):
-    qs = AbonnementClient.history.all()
+    qs = AbonnementClient.history.select_related('type_abonnement', 'client', 'history_user')
+    # qs  =  AbonnementClient.history.select_related(Prefetch('abonnements', queryset=qs))
+    # qs = qs.prefetch_related('creneaux')
     start_from = request.query_params.get('start', None)
     end_from = request.query_params.get('end', None)
     usr = request.query_params.get('usr', None)
     cl = request.query_params.get('cl', None)
     abc = request.query_params.get('abc', None)
     if is_valid_queryparam(start_from):
-        qs = qs.filter(history_date__gte=start_from).distinct()
+        qs = qs.filter(history_date__gte=start_from).select_related('type_abonnement', 'client', 'history_user')
     if is_valid_queryparam(end_from):
-        qs = qs.filter(history_date__lte=end_from).distinct()
+        qs = qs.filter(history_date__lte=end_from).select_related('type_abonnement', 'client', 'history_user')
     if is_valid_queryparam(abc):
-        qs = qs.filter(id=abc).distinct()  
+        qs = qs.filter(id=abc).select_related('type_abonnement', 'client', 'history_user')  
     if is_valid_queryparam(cl):
         try:
             client = Client.objects.get(id=cl) 
@@ -47,14 +56,14 @@ def get_filtered_abc_history(request):
             client =  get_object_or_404(Client, carte=cl)
         # client = Q( Client.objects.get(id=cl) | Client.objects.get(carte=cl) )
         if client:
-            qs = qs.filter(client=client).distinct()
+            qs = qs.filter(client=client).select_related('type_abonnement', 'client', 'history_user')
 
     if is_valid_queryparam(usr):
-        qs = qs.filter(history_user=usr).distinct()
+        qs = qs.filter(history_user=usr).select_related('type_abonnement', 'client', 'history_user')
     return {'qs': qs}
 
 class AbonnementClientCreateAPIView(generics.CreateAPIView):
-    queryset = AbonnementClient.objects.all()
+    queryset = AbonnementClient.objects.prefetch_related('type_abonnement', 'creneaux')
     serializer_class = AbonnementClientSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
@@ -68,8 +77,9 @@ class AbonnementClientRenewAPIView(generics.CreateAPIView):
     extra_perms_map = {
         "POST": ["abonnement.view_abonnementclient"]
     }
+    
 class AbonnementClientListAPIView(generics.ListAPIView):
-    queryset = AbonnementClient.objects.filter(archiver=False)
+    queryset = AbonnementClient.objects.filter(archiver=False).prefetch_related('type_abonnement', 'creneaux')
     # permission_classes = (IsAuthenticated,)
     serializer_class = AbonnementClientSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
@@ -78,11 +88,13 @@ class AbonnementClientListAPIView(generics.ListAPIView):
     }
 
 class AbonnementClientDetailAPIView(generics.RetrieveUpdateAPIView):
-    queryset = AbonnementClient.objects.all()
+    queryset = AbonnementClient.objects.prefetch_related('creneaux', 'creneaux__activity').select_related('type_abonnement', 'type_abonnement__salles')
     serializer_class = AbonnementClientDetailUpdateSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["abonnement.view_abonnementclient"]
+        "GET": ["abonnement.view_abonnementclient"],
+        "PUT": ["abonnement.change_abonnementclient"],
+        "PATCH": ["abonnement.change_abonnementclient"],
     }
 
     def get_object(self):
@@ -97,7 +109,7 @@ class AbonnementClientDestroyAPIView(generics.DestroyAPIView):
     serializer_class = AbonnementClientAllSerializer
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["abonnement.delete_abonnementclient"]
+        "DELETE": ["abonnement.delete_abonnementclient"]
     }
 
 
@@ -109,7 +121,7 @@ class AbonnementAPIView(generics.CreateAPIView):
     serializer_class = AbonnementSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["abonnement.add_abonnementclient"]
+        "POST": ["abonnement.add_abonnementclient"]
     }
 
 class AbonnementListAPIView(generics.ListAPIView):
@@ -126,7 +138,10 @@ class AbonnementDetailAPIView(generics.RetrieveUpdateAPIView):
     serializer_class = AbonnementSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["abonnement.change_abonnementclient"]
+        "GET": ["abonnement.change_abonnementclient"],
+        "PUT": ["abonnement.change_abonnementclient"],
+        "PATCH": ["abonnement.change_abonnementclient"],
+
     }
     def get_object(self):
         obj = get_object_or_404(Abonnement.objects.filter(id=self.kwargs["pk"]))
@@ -138,13 +153,19 @@ class AbonnementDestroyAPIView(generics.DestroyAPIView):
     serializer_class = AbonnementSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["abonnement.delete_abonnementclient"]
+        "DELETE": ["abonnement.delete_abonnementclient"]
     }
 
 
 class DeactivateAbcView(generics.RetrieveUpdateDestroyAPIView):
     queryset = AbonnementClient.objects.all()
     serializer_class = AbonnementClientRenewSerializer
+    permission_classes = (IsAdminUser,BaseModelPerm)
+    extra_perms_map = {
+        "GET": ["abonnement.change_abonnementclient"],
+        "PUT": ["abonnement.change_abonnementclient"],
+        "PATCH": ["abonnement.change_abonnementclient"],
+    }
 
 # class DeactivateAbcView(APIView):
 #     def get(self, request, pk, format=None):
@@ -159,7 +180,10 @@ class RenewABCView(APIView):
 
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["abonnement.change_abonnementclient"]
+        "GET": ["abonnement.change_abonnementclient"],
+        "POST": ["abonnement.change_abonnementclient"],
+        "PUT": ["abonnement.change_abonnementclient"],
+        "PATCH": ["abonnement.change_abonnementclient"],
     }
     def get_object(self, pk):
         try:
@@ -227,9 +251,11 @@ class RenewABCView(APIView):
 #     return Response({'new date' : abc.end_date, 'seances': abc.presence_quantity})
 
 class AbonnementClientHistoryListAPIView(generics.ListAPIView):
-    queryset = AbonnementClient.history.all()
+    queryset = AbonnementClient.history.select_related('type_abonnement', 'client', 'history_user')
     # print('queryset', queryset.count())
     # permission_classes = (IsAuthenticated,)
+    pagination_class = StandardResultsSetPagination
+
     serializer_class = AbonnementClientHistorySerializer
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
@@ -237,8 +263,8 @@ class AbonnementClientHistoryListAPIView(generics.ListAPIView):
     }
     def get_queryset(self):
         queryset = get_filtered_abc_history(self.request)['qs']
-        print('queryset', queryset.count())
-        print('queryset', queryset)                                                                                     
+
+        print('queryset HISTOYYYYYYYYYYYYYYYYYYYYYYYY', queryset)
         return queryset
 
 class AbonnementClientAllDetailListApi(generics.ListAPIView):
@@ -261,6 +287,7 @@ class AbonnementClientAllDetailListApi(generics.ListAPIView):
 
 class AbonnementClientActifsDetailListApi(generics.ListAPIView):
     queryset = AbonnementClient.objects.all()
+    # pagination_class = StandardResultsSetPagination
 
     serializer_class = AbonnementClientDetailSerializer 
     permission_classes = (IsAdminUser,BaseModelPerm)

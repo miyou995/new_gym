@@ -84,7 +84,7 @@ import Tresorie from "./components/tresorie/Tresorie"
 /// Dashboard
 import Home from "./components/Dashboard/Home";
 import Configuration from './components/configuration/Configuration'
-import UpdateModal from "./components/users/UpdateModal";
+import UserDetail from "./components/users/UserDetail";
 const Markup = () => {
   let path = window.location.pathname;
   path = path.split("/");
@@ -117,6 +117,8 @@ const Markup = () => {
     // trésorie
     { url: "tresorie", component: Tresorie },
     { url: "users", component: UserList },
+    { url: "users/:id", component: UserDetail },
+
     // Transactions
     // { url: "transaction", component: CoinDetails },
     // clients
@@ -160,7 +162,6 @@ const Markup = () => {
     { url: "coach/:id", component: CoachDetail },
     { url: "coach/edit/:id", component: CoachEdit },
 
-    { url: "user/edit/:id", component: UpdateModal },
 
 
     /// Transactions CREATION
@@ -214,7 +215,8 @@ const Markup = () => {
             !pagePath ? "content-body" : ""
           }`}
         >
-          <div className={`${!pagePath ? "container-fluid" : ""}`}style={{ minHeight: window.screen.height - 60 }}>
+            {/* style={{ minHeight: window.screen.height - 60 }} */}
+          <div className={`${!pagePath ? "container-fluid" : ""}`}>
             <Switch>
               <Route exact component={Login} path="/login" />
               {routes.map((data, i) => (

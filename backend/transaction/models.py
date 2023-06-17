@@ -47,6 +47,13 @@ class Paiement(Transaction):
             return abonnement_client.client.id
         except:
             return ""
+    @property
+    def get_abc_price(self):
+        return self.abonnement_client.type_abonnement.price
+    
+    @property
+    def get_abc_reste(self):
+        return self.abonnement_client.reste
 class Autre(Transaction):
     history = HistoricalRecords()
     name = models.CharField(max_length=200, null=True, blank=True)

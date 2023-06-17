@@ -16,7 +16,6 @@ import {
 } from "react-bootstrap"
 
 import PerfectScrollbar from "react-perfect-scrollbar";
-import product1 from "../../../images/product/1.jpg";
 import Search from "../../layouts/Search";
 import { createContext } from "react";
 import ABCCreateModal from './ABCCreateModal';
@@ -30,12 +29,14 @@ import PaiementEditModal from './PaiementEditModal';
 import RenewAbonnementModal from './RenewAbonnementModal';
 import AbonnementClientModal from './AbonnementClientModal';
 import femaleImg from "../../../images/profile/female.png";
+import plusIcon from "../../../images/icons/plus.png";
+
 import useAxios from "../useAxios";
 import ReactToPrint from 'react-to-print';
 import { ComponentToPrint } from './ComponentToPrint';
 
 const ComponentToPrintWrapper = ({ item }) => {
-  console.log('iteMM', item);
+  //console.log('iteMM', item);
   const componentRef = useRef();
 
   const marginTop="40px"
@@ -58,12 +59,11 @@ const ComponentToPrintWrapper = ({ item }) => {
     <div style={{ display: "flex"}}>
      
       <ReactToPrint
-        trigger={() =>   <div > Imprimer <i className="fa la-print text-danger mr-2 h5" /> </div>}
+        trigger={() => <div> Imprimer <i className="fa la-print text-danger mr-2 h5" /> </div>}
         content={() => componentRef.current }
     
       />
       <div className="d-none">
-        <style> {getPageMargins()}</style>
         <ComponentToPrint ref={componentRef} value={item}></ComponentToPrint>
       </div>
     </div>
@@ -104,13 +104,14 @@ const ProductDetail = (props) => {
    const [clientPresencesModal, setClientPresencesModal] = useState(false);
    const [clientAbcModal, setClientAbcModal] = useState(false);
    const [renewAbcModal, setRenewAbcModal] = useState(false);
+   const [isOnSalle, setIsOnSalle] = useState(null);
    
    const clientId = props.match.params.id;
    const presenceCreateEND = `${process.env.REACT_APP_API_URL}/rest-api/presence/create`
    const transactionClientEND = `${process.env.REACT_APP_API_URL}/rest-api/transactions/paiement-by-client/?cl=${clientId}`
   const creneauClientEND = `${process.env.REACT_APP_API_URL}/rest-api/creneau/by-client?cl=${clientId}`
-  // console.log('les trnasactions ',transactions);
-  // console.log('le id de labonnd client est ', abonnementClientCreneaux);
+  // //console.log('les trnasactions ',transactions);
+  // //console.log('le id de labonnd client est ', abonnementClientCreneaux);
   const api = useAxios();
 
   const addPresence = async () => {
@@ -166,7 +167,7 @@ const ProductDetail = (props) => {
   //         //  let result = (creneaux) => creneaux.filter((v,i) => creneaux.indexOf(v) === i)
   //          setCreneauxClient(creneaux)
  
-  //           // console.log('ghirrrr =creneauxClient', creneauxClient);
+  //           // //console.log('ghirrrr =creneauxClient', creneauxClient);
   //       } catch (error) {
   //          console.log(error, 'erreur presneces');
   //       }
@@ -178,6 +179,8 @@ const ProductDetail = (props) => {
         try {
            const res = await api.get(`${process.env.REACT_APP_API_URL}/rest-api/clients/${clientId}/`);
            setClient(res.data);
+           setIsOnSalle(res.data.is_on_salle)
+           console.log("Clien res.data.is_on_sallet", res.data.is_on_salle);
         } catch (error) {
            console.log(error);
         }
@@ -235,18 +238,17 @@ const populatePaimentData = (e) => {
   setPaiementABCInfo(e.target.abonnement_name)
   setPaiementDateInfo(e.target.date_creation)
   setPaiementEditModal(true)
-  console.log('TRHE RRRREEEE', e.target);
+  //console.log('TRHE RRRREEEE', e.target);
 }
 useEffect(() => {
-  try {
-    populatePaimentData()
-  } catch (error) {
-    
+    try {
+      populatePaimentData()
+    } catch (error) {
   }
 }, [populatePaimentData]);
   return (
     <>
-     <Helmet>
+        <Helmet>
           <title>{String(clientId)} - {String(client.last_name)} </title>
         </Helmet>
       <div className="testimonial-one owl-right-nav owl-carousel owl-loaded owl-drag mb-4">
@@ -277,7 +279,10 @@ useEffect(() => {
               <p>ID: <span className='text-danger'>{client.id}</span></p>
             </div>
             <div className="social-icons">
+              {
+                client.id &&
                 <Link to={`/client/edit/${client.id}`} className="btn-xs btn-primary light" > Modifier Profile </Link>
+              }
             </div>
           </div>
             <div className="profile-email px-2 pt-2">
@@ -299,8 +304,14 @@ useEffect(() => {
             </div>
             <div className="profile-email text-danger pt-2" style={{marginLeft: 'auto'}}>
               <h3 className="text-danger mb-0">
-                Dettes :{dettesClient}             
+                Dettes :{dettesClient}              {client.is_on_salle}
               </h3>
+              {isOnSalle
+                ?
+                  <Button className="btn-xs  btn-success light m-3 ml-auto" >Est en salle</Button>
+                :
+                  <Button className="btn-xs  btn-danger light m-3 ml-auto" >N'est pas en salle</Button>
+              }
             </div>
             <Dropdown className="dropdown ml-auto">
               <Dropdown.Toggle  variant="primary"  className="btn btn-primary light sharp i-false"  data-toggle="dropdown"  aria-expanded="true" >
@@ -319,18 +330,18 @@ useEffect(() => {
                     Modifier profile
                   </Dropdown.Item>
                   <Dropdown.Item className="dropdown-item" onClick= { e => addPresence(true)}>
-                  <i className="fa fa-plus text-primary mr-2" />
-                    Ajouter Presence
+                  <img src={plusIcon} width="16" /> 
+                     Presence
                   </Dropdown.Item>
                   
                   <Dropdown.Item className="dropdown-item" onClick= { e => setABCModalCreate(true)}>
-                    <i className="fa fa-plus text-primary mr-2" />
-                    Ajouter Abonnement 
+                    <img src={plusIcon} width="16" /> 
+                     Abonnement 
                   </Dropdown.Item>
 
                   <Dropdown.Item className="dropdown-item" onClick= { e => setPaiementModal(true)}>
-                    <i className="fa fa-plus text-primary mr-2" />
-                    Ajouter Paiement 
+                    <img src={plusIcon} width="16" /> 
+                     Paiement 
                   </Dropdown.Item>
                   <Dropdown.Item className="dropdown-item" onClick= { e => setClientPresencesModal(true)}>
                     <i className="fa fa-list text-primary mr-2" />
@@ -341,7 +352,7 @@ useEffect(() => {
             </Dropdown>
         </div>
       </div>
-          {/* <div className="row d-flex justify-content-start mb-3 ml-4">
+          {/* <div className="row d-flex justify-content-start mb-3 ml-4"ff>
               <div className="btn btn-success ml-4" onClick={e => setPaiementModal(true) }>
                   + Paiement 
               </div>
@@ -352,7 +363,7 @@ useEffect(() => {
       <div className="container-fluid" style={{padding: '0px'}}>
 
       <div className="row d-flex no-gutters ">
-      <div className='col-6 col-md-2'>
+      <div className='col-6 col-md-4 col-xl-3'>
           <Card >
             <Card.Header style={{padding :'10px 30px'}}>
               <Card.Title>
@@ -360,14 +371,14 @@ useEffect(() => {
               </Card.Title>
             </Card.Header>
             <Card.Body>
-              <h6 className='text-primary' style={{fontSize: '0.9rem'}}>Civilité: <a className="item text-light"> {client.civility_display}</a> </h6>
-              <h6 className='text-primary' style={{fontSize: '0.9rem'}}>Téléphone:                  <span className="item text-light"><a href={`tel:${client.phone}`}> {client.phone}</a></span></h6>
-              <h6 className='text-primary' style={{fontSize: '0.9rem'}}>email:                      <span className="item text-light"><a href={`mailto:${client.email}`}> {client.email}</a></span></h6>
+              <h6 className='text-primary' style={{fontSize: '0.9rem'}}>Civilité: <a className="item text-dark"> {client.civility_display}</a> </h6>
+              <h6 className='text-primary' style={{fontSize: '0.9rem'}}>Téléphone:                  <span className="item text-dark"><a href={`tel:${client.phone}`}> {client.phone}</a></span></h6>
+              <h6 className='text-primary' style={{fontSize: '0.9rem'}}>email:                      <span className="item text-dark"><a href={`mailto:${client.email}`}> {client.email}</a></span></h6>
               <h6 className='text-primary' style={{fontSize: '0.9rem'}}>Groupe sanguin:&nbsp;&nbsp; <span className="badge badge-danger light">{client.blood}</span> </h6>
-              <h6 className='text-primary' style={{fontSize: '0.9rem'}}>Nationalité:                <span className="item text-light">{client.nationality}</span> </h6>
-              <h6 className='text-primary' style={{fontSize: '0.9rem'}}>Date de naissance:          <span className="item text-light">{client.birth_date}</span> </h6>
-              <h6 className='text-primary' style={{fontSize: '0.9rem'}}>Age:                        <span className="item text-light">{client.age}</span> </h6>
-              <h6 className='text-primary' style={{fontSize: '0.9rem'}}>Profession :                <span className="item text-light">{client.profession}</span> </h6>
+              <h6 className='text-primary' style={{fontSize: '0.9rem'}}>Nationalité:                <span className="item text-dark">{client.nationality}</span> </h6>
+              <h6 className='text-primary' style={{fontSize: '0.9rem'}}>Date de naissance:          <span className="item text-dark">{client.birth_date}</span> </h6>
+              <h6 className='text-primary' style={{fontSize: '0.9rem'}}>Age:                        <span className="item text-dark">{client.age}</span> </h6>
+              <h6 className='text-primary' style={{fontSize: '0.9rem'}}>Profession :                <span className="item text-dark">{client.profession}</span> </h6>
               <h5 className='text-primary' style={{fontSize: '0.9rem'}}>Maladies:</h5>
               <ul>
                 {client.maladie_name && client.maladie_name.map(maladie =>(
@@ -381,14 +392,14 @@ useEffect(() => {
             </Card.Body>
           </Card>
         </div>
-        <div className='col-6 col-md-4'>
+        <div className='col-6 col-md-8 col-xl-5'>
           <Card >
             <Card.Header style={{padding :'10px 30px'}}>
               <Card.Title>
                   <div className='ajouter' onClick={e => setClientAbcModal(true)}>Abonnements</div>
            </Card.Title>
                <Card.Title>
-                  <div className=' ajouter' onClick= { e => setABCModalCreate(true)}> <i className="fa fa-plus text-primary mr-2" /></div>
+                  <div className=' ajouter' onClick= { e => setABCModalCreate(true)}> <img src={plusIcon} width="16" /></div>
               </Card.Title>
             </Card.Header>
             <Card.Body>
@@ -405,21 +416,21 @@ useEffect(() => {
                 </thead>
                 <tbody>
                 {abonClient.map( abonnement => (
-                    <tr  className='cursor-abonnement' key={abonnement.id} onClick={e => {
-                      setAbonDetailModal(true)
-                      setAbonClientID(abonnement.id)
-                      setAbonClientType(abonnement.type_abonnement)
-                      setAbonClientTypeName(abonnement.type_abonnement_name)
-                      setAbonClientEnd(abonnement.end_date)
-                      setAbonClientpresences(abonnement.presence_quantity)
-                      setAbonnementClientCreneaux(abonnement.creneaux)
-                      setAbonClientReste(abonnement.reste)
+                      <tr className='cursor-abonnement' key={abonnement.id} onClick={e => {
+                        setAbonDetailModal(true)
+                        setAbonClientID(abonnement.id)
+                        setAbonClientType(abonnement.type_abonnement)
+                        setAbonClientTypeName(abonnement.type_abonnement_name)
+                        setAbonClientEnd(abonnement.end_date)
+                        setAbonClientpresences(abonnement.presence_quantity)
+                        setAbonnementClientCreneaux(abonnement.creneaux)
+                        setAbonClientReste(abonnement.reste)
                       }}>
                       <td className="text-left">{abonnement.type_abonnement_name}</td>
                       <td>{abonnement.is_time_volume ? abonnement.left_minutes : abonnement.is_free_access ? 'Forfait': abonnement.presence_quantity }</td>
-                      <td className="text-right">{abonnement.start_date}</td>
-                      <td className="text-right">{abonnement.end_date}</td>
-                      <td className="text-right">{abonnement.price}</td>
+                      <td className="text-left">{abonnement.start_date}</td>
+                      <td className="text-left">{abonnement.end_date}</td>
+                      <td className="text-left">{abonnement.price}</td>
                       <td className="text-left">{abonnement.reste}</td>
                     </tr>
                 ))}
@@ -428,14 +439,14 @@ useEffect(() => {
             </Card.Body>
           </Card>
           </div>
-          <div className='col-6 col-md-3'>
+          <div className='col-6 col-md-3 col-lg-6 col-xl-4'>
           <Card >
             <Card.Header style={{padding :'10px 30px'}}>
               <Card.Title >
                   <div className=' ajouter' onClick={e => setClientPaiementsModal(true)}> Paiements </div>
               </Card.Title>
               <Card.Title>
-                  <div className=' ajouter' onClick= { e => setPaiementModal(true)}>  <i className="fa fa-plus text-primary mr-2" /></div>
+                  <div className=' ajouter' onClick= { e => setPaiementModal(true)}>   <img src={plusIcon} width="16" /></div>
               </Card.Title>
             </Card.Header>
             <Card.Body>
@@ -453,6 +464,7 @@ useEffect(() => {
                     <tr className="ajouter" key={trans.id} onClick={ e => {
                         setPaiementIdInfo(trans.id)
                         setPaiementAmountInfo(trans.amount)
+                        // setPaiementAmountInfo(trans.amount)
                         setPaiementABCInfo(trans.abc_id)
                         setPaiementABCName(trans.abonnement_name)
                         setPaiementDateInfo(trans.date_creation)
@@ -469,14 +481,14 @@ useEffect(() => {
             </Card.Body>
           </Card>
           </div>
-          <div className='col-6 col-md-3'>
+          <div className='col-6 col-md-3 col-lg-6'>
             <Card >
               <Card.Header style={{padding :'10px 30px'}}>
                 <Card.Title >
                   <div className='ajouter' onClick= { e => setClientPresencesModal(true)}> <h4>Seances / Presences</h4> </div>
                 </Card.Title>
                 <Card.Title>
-                    <div className=' ajouter'  onClick= { e => addPresence(true)}> <i className="fa fa-plus text-primary mr-2" /></div>
+                    <div className=' ajouter'  onClick= { e => addPresence(true)}> <img src={plusIcon} width="16" /></div>
                 </Card.Title>
               </Card.Header>
               <Card.Body>
@@ -503,13 +515,13 @@ useEffect(() => {
               </Card.Body>
             </Card>
         </div>
-        <ABCCreateModal show={aBCmodalCreate} onShowShange={setABCModalCreate} clientData={{clientId: clientId}} />
-        <RenewAbonnementModal show={renewAbcModal} onShowShange={setRenewAbcModal} clientData={{clientId: clientId}}/>
-        <PaiementsClientModal show={clientPaiementsModal} onShowShange={setClientPaiementsModal} paiementsData={{clientId: clientId}} />
-        <PresencesClientModal show={clientPresencesModal} onShowShange={setClientPresencesModal} presencesData={{clientId: clientId}} />
-        <AbonnementClientModal show={clientAbcModal} onShowShange={setClientAbcModal} abcData={{clientId: clientId}} />
-        <PaiementModal show={paiementModal} onShowShange={setPaiementModal} clientData={{clientId: clientId, abcs :abonClient}} />
-        <PaiementEditModal show={paiementEditModal} onShowShange={setPaiementEditModal} paiementData={{clientId: clientId,
+        <ABCCreateModal show={aBCmodalCreate} onShowChange={setABCModalCreate} clientData={{clientId: clientId}} />
+        <RenewAbonnementModal show={renewAbcModal} onShowChange={setRenewAbcModal} clientData={{clientId: clientId}}/>
+        <PaiementsClientModal show={clientPaiementsModal} onShowChange={setClientPaiementsModal} paiementsData={{clientId: clientId}} />
+        <PresencesClientModal show={clientPresencesModal} onShowChange={setClientPresencesModal} presencesData={{clientId: clientId}} />
+        <AbonnementClientModal show={clientAbcModal} onShowChange={setClientAbcModal} abcData={{clientId: clientId}} />
+        <PaiementModal show={paiementModal} onShowChange={setPaiementModal} clientData={{clientId: clientId, abcs :abonClient}} />
+        <PaiementEditModal show={paiementEditModal} onShowChange={setPaiementEditModal} paiementData={{clientId: clientId,
           abcs :abonClient,
           paiementIdInfo: paiementIdInfo,
           paiementAmountInfo: paiementAmountInfo,
@@ -518,8 +530,7 @@ useEffect(() => {
           paiementNotesInfo: paiementNotesInfo,
           paiementABCName : paiementABCName,
         }} />
-        
-        <ABCDetailModal show={abonDetailModal} onShowShange={setAbonDetailModal} abonnementData={{
+        <ABCDetailModal show={abonDetailModal} onShowChange={setAbonDetailModal} abonnementData={{
           clientId: clientId, 
           abonClientID: abonClientID,
           abonClientType : abonClientType,
@@ -529,8 +540,8 @@ useEffect(() => {
           abonnementClientCreneaux :abonnementClientCreneaux,
           abonClientReste :abonClientReste
           }} />
-          <AssuranceCreateModal show={assuranceModal} onShowShange={setAssuranceModal} clientData={{clientId: clientId}}/>
-          {/* <AssuranceCreateModal show={assuranceModal} onShowShange={setAssuranceModal} clientData={{clientId: clientId}}/> */}
+          <AssuranceCreateModal show={assuranceModal} onShowChange={setAssuranceModal} clientData={{clientId: clientId}}/>
+          {/* <AssuranceCreateModal show={assuranceModal} onShowChange={setAssuranceModal} clientData={{clientId: clientId}}/> */}
       </div>
       </div>
     </>

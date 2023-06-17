@@ -79,11 +79,11 @@ const getmaladiesNames = (actiAbon) => {
     for (let i = 0; i < actiAbon.length; i++) {
       const acti = actiAbon[i];
       const index = provActiId.indexOf(acti) 
-      // console.log('indexes', index);
+      // //console.log('indexes', index);
       indexesList.push(maladies[index])
 
     }
-    console.log('indesxxxd', indexesList);
+    //console.log('indesxxxd', indexesList);
     return indexesList    
 }
   useEffect(() => {
@@ -103,7 +103,7 @@ const getmaladiesNames = (actiAbon) => {
       setEtat(res.data.etat)
       setDette(res.data.dette)
       setCarte(res.data.carte)
-      // console.log('the real maladies', realMaladies);
+      // //console.log('the real maladies', realMaladies);
       setGotResult(true)
     })
   }
@@ -174,8 +174,8 @@ const handleImage = (e) => {
       image: e.target.files,
       });
     // setPicture(e.target.files[0])
-      console.log('e.target.files',e.target.files);
-      console.log('e.target.name', e.target.name);
+      //console.log('e.target.files',e.target.files);
+      //console.log('e.target.name', e.target.name);
   // }
 };
 // const deletClient =async () => {
@@ -214,7 +214,7 @@ const getSelectedMaladies = () => {
       const newMaladies = []
     //   for (let i = 0; i < selectedMaladies.length; i++) {
     //     // setRealMaladies([...realMaladies, selectedMaladies[i]['id']])
-    //     console.log('les the sleected madaldie',selectedMaladies);
+    //     //console.log('les the sleected madaldie',selectedMaladies);
     //     const maladie = Number(selectedMaladies[i]['id'])
     //     newMaladies.push(maladie) 
     // }
@@ -243,7 +243,10 @@ const getSelectedMaladies = () => {
             notifySuccess('Profile Modifier avec succés')
           }, 100)
           history.push(`/client/${currentClientId}`)
-        }).catch((err) => notifyError('Modification profile échoué') )
+        }).catch((err) => {
+          notifyError('Modification profile échoué, veuillez vérifié les champs')
+        
+        } )
       }
 
   return (
@@ -261,11 +264,11 @@ const getSelectedMaladies = () => {
                 <form onSubmit={HandleSubmit}>
                   <div className="form-row">
                     <div className="form-group  col-md-4 col-xl-3">
-                      <label>Carte </label>
+                      <label>Carte (uniquement des chiffres) *</label>
                       <input type="text" name="last_name" className="form-control"value={carte}  onChange={e => setCarte(e.target.value)}/>
                     </div>
                     <div className="form-group  col-md-4 col-xl-3">
-                      <label>Nom </label>
+                      <label>Nom *</label>
                       <input type="text" name="last_name" className="form-control"value={lastName}  onChange={e => setLastName(e.target.value)}/>
                     </div>
                     <div className="form-group col-md-4 col-xl-3">
@@ -285,7 +288,7 @@ const getSelectedMaladies = () => {
                       <input type="text"name="adress" className="form-control"value={adress} onChange={e => setAdress(e.target.value)}/>
                     </div>
                     <div className="form-group col-md-4 col-xl-3">
-                      <label>Date de naissance </label>
+                      <label>Date de naissance * </label>
                       <input type="date" name="birth_date" max="2099-01-01"  className="form-control" value={birthDate}onChange={e => setBirthDate(e.target.value)}/>
                     </div>
                     <div className="form-group col-md-4 col-xl-3">
@@ -297,7 +300,7 @@ const getSelectedMaladies = () => {
                       <input type="text" name="phone" className="form-control" value={phone}onChange={e => setPhone(e.target.value)} />
                     </div>
                     <div className="form-group col-md-2 col-xl-2">
-                      <label>Civilité</label>
+                      <label>Civilité *</label>
                       <select defaultValue={"option"} name="civility"  className="form-control" value={civility}onChange={e => setCivility(e.target.value)}>
                       <option value="option" disabled>Cliquez pour choisir</option>
                         <option value="MLL" >Mlle</option>
@@ -306,7 +309,7 @@ const getSelectedMaladies = () => {
                       </select>
                     </div>
                     <div className="form-group col-md-2">
-                      <label>Groupe sanguin</label>
+                      <label>Groupe sanguin  *</label>
                       <select name="blood" className="form-control" value={blood} onChange={e => setBlood(e.target.value)}>
                       <option value="option" disabled>Cliquez pour choisir</option>
                         <option value='A-' >A-</option>
@@ -322,18 +325,19 @@ const getSelectedMaladies = () => {
                     <div className="form-group col-md-4">
                     <label>Maladies</label>
                     <Autocomplete
+                      className="form-group"
                       style={{backgroundColor:'#ffffff'}}
                       multiple
                       onChange={((event, value) =>  
                         {
                           setSelectedMaladies(value)
-                        console.log('the valueee', value);
+                        //console.log('the valueee', value);
                     }
                         )} 
                       value={selectedMaladies}
                       options={maladies}
                       getOptionLabel={(option) => (option['name'])}
-                      renderInput={(params) => (<TextField {...params} name="maladies" variant="outlined" fullWidth />)} />
+                      renderInput={(params) => (<TextField {...params}  className="form-group" name="maladies" variant="outlined" fullWidth />)} />
                     </div>
                   </div>
                   <div className="form-row mb-4">

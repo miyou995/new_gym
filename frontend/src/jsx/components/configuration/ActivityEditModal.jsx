@@ -5,10 +5,11 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import useAxios from "../useAxios";
 import PageTitle from "../../layouts/PageTitle";
+import {notifySuccess, notifyError} from '../Alert'
 
-const ActivityEditModal = ({show, onShowShange, activityData}) => {
+const ActivityEditModal = ({show, onShowChange, activityData}) => {
   const api = useAxios();
-  const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+  const handleShow = useCallback( () => {onShowChange(false)}, [onShowChange])
   const activityEditEND = `${process.env.REACT_APP_API_URL}/rest-api/salle-activite/activite/${activityData['activityId']}/`
  
   const sallesActivite = activityData['salles']
@@ -21,8 +22,8 @@ const ActivityEditModal = ({show, onShowShange, activityData}) => {
   const [color, setColor] = useState("");
   const [newSalle, setNewSalle] = useState(selectedSalle)
   
-  console.log('selectedSalle',selectedSalle);
-  console.log('sallesActivite',sallesActivite);
+  //console.log('selectedSalle',selectedSalle);
+  //console.log('sallesActivite',sallesActivite);
 
 useEffect(() => {
   if (activityData['activityId']) {
@@ -31,8 +32,8 @@ useEffect(() => {
     setAllSalles(activityData['salles'])
     setSalle(sallesActivite[activityData['salleId']])
     setNewSalle(sallesActivite[selectedSalle].id)
-    console.log('la couleuuuuur', activityData['color']);
-    console.log('la setNewSalle', newSalle);
+    //console.log('la couleuuuuur', activityData['color']);
+    //console.log('la setNewSalle', newSalle);
   }
 }, [ activityData['activityId']]);
 
@@ -44,12 +45,16 @@ const handleSubmit = async e => {
       salle : Number(newSalle),
       color: color
   }
-  await api.patch(activityEditEND, activityFormData)
-  handleShow()
+  await api.patch(activityEditEND, activityFormData).then( res => {
+    notifySuccess('Activité modifier avec succés')
+        handleShow()
+    }).catch(err => {
+        notifyError("Erreur lors de la modification de l'activité")
+    })
 }
 
-console.log('sallesActivit', sallesActivite);
-console.log('newSalle', newSalle);
+//console.log('sallesActivit', sallesActivite);
+//console.log('newSalle', newSalle);
 
 return ( 
   <div>
@@ -72,7 +77,11 @@ return (
               <div className="col-sm-9">
                   <Autocomplete
                       onChange={((event, value) =>  {
-                        setNewSalle(value.id)
+                        try {
+                          setNewSalle(value.id)
+                        }catch {
+                          setNewSalle("")
+                        }
 
                       }
                         )}

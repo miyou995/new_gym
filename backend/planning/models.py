@@ -26,11 +26,10 @@ class Planning(models.Model):
     def __str__(self):
         return self.name
 
-    def get_absolute_url(self):
-        return reverse("Planning_detail", kwargs={"pk": self.pk})
+
 
     def save(self, *args, **kwargs):
         if self.is_default:
             self.is_default = True
-            update_default = Planning.objects.all().exclude(id=self.id).update(is_default=False)
+            Planning.objects.all().exclude(id=self.id).update(is_default=False)
         super(Planning, self).save(*args, **kwargs)

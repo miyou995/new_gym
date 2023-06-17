@@ -3,7 +3,7 @@ import { Dropdown, Tab, Nav, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
- 
+import DoorModal from './DoorModal'
 import ShortCuts from "../ShortCuts";
 
 import { ToastContainer } from 'react-toastify'
@@ -24,7 +24,7 @@ import PlanningEditModal from './PlanningEditModal'
 import AbonnementListModal from './AbonnementListModal'
 import MaladieCreateModal from './MaladieCreateModal'
 import MaladieEditModal from './MaladieEditModal'
-import DoorModal from './DoorModal'
+// import DoorModal from './DoorModal'
 const Configuration = (props) => {
   const api = useAxios();
   const abonnementsListEND = `${process.env.REACT_APP_API_URL}/rest-api/abonnement/`
@@ -33,9 +33,9 @@ const Configuration = (props) => {
     const activitiesEND = `${process.env.REACT_APP_API_URL}/rest-api/salle-activite/activite/`
     const salleActivitiesEND = `${process.env.REACT_APP_API_URL}/rest-api/salle-activite/`
     const planningsEND = `${process.env.REACT_APP_API_URL}/rest-api/planning/`
-    const startListenEND = `${process.env.REACT_APP_API_URL}/rest-api/salle-activite/start_listening`
-    const stopListenEND = `${process.env.REACT_APP_API_URL}/rest-api/salle-activite/stop_listening`
-    
+    const startListenEND = `${process.env.REACT_APP_API_URL}/rest-api/salle-activite/start_listening/`
+    const stopListenEND = `${process.env.REACT_APP_API_URL}/rest-api/salle-activite/stop_listening/`
+    const [ doorModal, setDoorModal] = useState(false)
     const [ abonnements , setAbonnements] =useState([])
     const [ maladies , setMaladies] =useState([])
     const [ doors , setDoors] =useState([])
@@ -52,7 +52,7 @@ const Configuration = (props) => {
     const [ activityEditModal, setActivityEditModal] = useState(false)
     const [ maladieCreateModal, setMaladieCreateModal] = useState(false)
     const [ maladieEditModal, setMaladieEditModal] = useState(false)
-    const [ doorModal, setDoorModal] = useState(false)
+    // const [ doorModal, setDoorModal] = useState(false)
 
     const [abonnementId, setAbonnementId] = useState('')
     const [activityId, setActivityId] = useState('')
@@ -68,6 +68,7 @@ const Configuration = (props) => {
     const [doorIp, setDoorIp] = useState('')
     const [doorUsername, setDoorUsername] = useState('')
     const [doorPassword, setDoorPassword] = useState('')
+    const [doorSalle, setDoorSalle] = useState('')
 
     const [color, setColor] = useState("")
     const [salle, setSalle] = useState("")
@@ -99,7 +100,7 @@ const Configuration = (props) => {
     useEffect(() => {
         api.get(maladiesEnd).then(res =>{
             setMaladies(res.data)
-            console.log('Maladies', res.data);
+            //console.log('Maladies', res.data);
         })
     }, [maladieCreateModal, maladieEditModal, maladiesEnd]);
 
@@ -113,24 +114,24 @@ const Configuration = (props) => {
         api.get(salleActivitiesEND).then(res =>{
             setSalllesActivities(res.data)
         })
-    }, [salleActiviteCreateModal, salleActivitiesEND, salleActiviteEditModal]);
+    }, [salleActiviteCreateModal, salleActiviteEditModal]);
 
     useEffect(() => {
         api.get(doorsEnd).then(res =>{
             setDoors(res.data)
         })
     }, [doorModal]);
-    // useEffect(() => {
-    //     setDureeInd(DureeAb.findIndex(x => x.jours === Number(abDuree)))
-    //     console.log('dureee de labonnement', DureeAb.findIndex(x => x.jours === Number(abDuree)));
-    //  }, [abDuree, abonnementCreateModal]);
+
+    useEffect(() => {
+        //console.log('dureee de labonnement', DureeAb.findIndex(x => x.jours === Number(abDuree)));
+     }, [abDuree, abonnementCreateModal]);
 
     // const salllesActivities = useGetAPI(salleActivitiesEND)
     const [plannings, setPlannings] = useState([]);
     useEffect(() => {
     api.get(planningsEND).then(res => {
         setPlannings(res.data)
-        console.log('plannings', res.data);
+        //console.log('plannings', res.data);
     })
     }, [planningEditModal, planningCreateModal, planningsEND]);
 
@@ -145,18 +146,18 @@ const Configuration = (props) => {
         for (let i = 0; i < actiAbon.length; i++) {
           const acti = actiAbon[i];
           const index = provActiId.indexOf(acti) 
-          // console.log('indexes', indexes);
+          // //console.log('indexes', indexes);
           indexesList.push(salllesActivities[index])
         }
         return indexesList    
     }
-    const setSelectedSalle = (salles, salleId ) => {
-        for (let i = 0; i < salles.length; i++) {
-            if (salleId == salles[i].id){
-               return i
-            }            
-        }
-    }
+    // const setSelectedSalle = (salles, salleId ) => {
+    //     for (let i = 0; i < salles.length; i++) {
+    //         if (salleId == salles[i].id){
+    //            return i
+    //         }            
+    //     }
+    // }
     const openTheGym = () => {
         if (gymStatus === false) {
             api.get(startListenEND).then(res => {
@@ -185,7 +186,7 @@ const Configuration = (props) => {
     const getFkIndex = (list,selctedItem) => {
         for (let i = 0; i < list.length; i++) {
           if (selctedItem === list[i].id){
-              console.log('the activiti salle ID',i);
+              //console.log('the activiti salle ID',i);
              return i
             }            
         }
@@ -203,7 +204,7 @@ const Configuration = (props) => {
 
     const getDureeIndex = (duree) => {
         const laDuree =DureeAb.findIndex(x => x.jours === duree)
-        console.log('selected duree', duree);
+        //console.log('selected duree', duree);
         return laDuree
     }
     useEffect(() => {
@@ -212,14 +213,14 @@ const Configuration = (props) => {
             try {
                const res = await api.get(abonnementsListEND);
                setAbonnements(res.data)
-                console.log('ghirrrr =creneauxClient', abonnements);
+                //console.log('ghirrrr =creneauxClient', abonnements);
             } catch (error) {
                console.log(error, 'erreur presneces');
             }
          }
          fetchData();
       }, [props.match.params.id, abonnementEditModal, abonnementCreateModal] );
-      console.log('selected activities', selectedActivities);
+      //console.log('selected activities', selectedActivities);
    return (
       <Fragment>
          <>
@@ -246,8 +247,8 @@ const Configuration = (props) => {
                 {/* <Button onClick={ closeTheGym()}>fermé La salle</Button> */}
                 </div>
             </div>
-            <div className="row no-gutters">
-                <div className="col-lg-2 col-sm-6">
+            <div className="row r">
+                <div className="col-sm-12 col-md-6 col-xl-4 ">
                     <div className="card">
                         <div className="card-header">
                             <h4 className="card-title">Planning</h4>
@@ -278,7 +279,7 @@ const Configuration = (props) => {
                         </div>
                     </div>
                 </div>
-                <div className="col-lg-2 col-sm-6">
+                <div className="col-sm-12 col-md-6 col-xl-4">
                     <div className="card">
                         <div className="card-header">
                             <h4 className="card-title">Salle</h4>
@@ -292,7 +293,6 @@ const Configuration = (props) => {
                   <thead>
                     <tr>
                       <th>Nom de la salle </th>
-                      <th>Adresse IP</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -318,7 +318,7 @@ const Configuration = (props) => {
                     </div>
                 </div>
                 {/* type abonnement va au modal */}
-                <div className="col-xl-4 col-lg-4">
+                <div className="col-sm-12  col-lg-5 col-xl-4 ">
                     <div className="card">
                         <div className="card-header">
                             <h4 className="card-title">Activitées</h4>
@@ -355,7 +355,7 @@ const Configuration = (props) => {
                     </div>
                 </div>
                 {/* DEBUT MALADIES */}
-                <div className="col-xl-4 col-lg-4">
+                <div className="col-lg-4 col-xl-3 ">
                     <div className="card">
                         <div className="card-header">
                             <h4 className="card-title">Maladies</h4>
@@ -389,37 +389,42 @@ const Configuration = (props) => {
                 </div>
                 {/* FIN MALADIES */}
                  {/* DEBUT portes */}
-                 <div className="col-xl-4 col-lg-4">
+                 <div className="col-lg-3 col-xl-3 ">
                     <div className="card">
                         <div className="card-header">
                             <h4 className="card-title">Portes</h4>
                             <Button onClick={e => { 
-                                setDoorModal(true)
                                 setDoorId('')
                                 setDoorIp('')
+                                setDoorSalle('')
                                 setDoorUsername('')
                                 setDoorPassword('')
+                                setDoorModal(true)
                                 }}>Ajouter</Button>
                         </div>
                         <div className="card-body">
-                            <PerfectScrollbar   style={{ height: "370px" }}   id="DZ_W_TimeLine" className="widget-timeline dz-scroll height370 ps ps--active-y" >
+                            <PerfectScrollbar style={{ height: "370px" }} id="DZ_W_TimeLine" className="widget-timeline dz-scroll height370 ps ps--active-y" >
                                 <div className="table-responsive card-table">
                                     <table className="table text-center bg-warning-hover">
                                         <thead>
                                             <tr>
-                                                <th className="text-left">Nom</th>
+                                                <th className="text-left">Adresse IP</th>
+                                                <th>Salle</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                         {doors.map( door => (
                                             <tr className='cursor-abonnement' key={door.id} onClick={e => {
-                                                setDoorModal(true)
                                                 setDoorId(door.id)
+                                                console.log("the door id", door);
                                                 setDoorIp(door.ip_adress)
+                                                setDoorSalle(door.salle)
                                                 setDoorUsername(door.username)
                                                 setDoorPassword(door.password)
+                                                setDoorModal(true)
                                             }}>
                                                 <td className="text-left">{door.ip_adress}</td>
+                                                <td >{door.salle}</td>
                                             </tr>
                                         ))}
                                         </tbody>
@@ -428,9 +433,9 @@ const Configuration = (props) => {
                             </PerfectScrollbar>
                         </div>
                     </div>
-                </div>
+                </div> 
                 {/* FIN portes */}
-                <div className=" col-lg-6 config-tableaux">
+                <div className="col-sm-12 col-xl-6 config-tableaux">
                     <div className="card">
                         <div className="card-header">
                             <h4  className="card-title ajouter">Type D'abonnement</h4>
@@ -444,7 +449,7 @@ const Configuration = (props) => {
                                             <tr>
                                                 <th className="text-left">Abonnement</th>
                                                 <th>Durée <br /> <small>(seances/ heures)</small></th>
-                                                <th className="text-right">Nombre d'activités'</th>
+                                                <th className="text-right">Nombre d'activités</th>
                                                 <th >Inscrits</th>
                                             </tr>
                                         </thead>
@@ -454,9 +459,9 @@ const Configuration = (props) => {
                                                 setAbonnementEditModal(true)
                                                 setAbonnementId(abonnement.id)
                                                 setSelectedActivities(getAbonnementsActitivties(abonnement.salles))
-                                                setAbDuree(abonnement.number_of_days)
+                                                setAbDuree(abonnement.length)
                                                 setTypeOf(abonnement.type_of)
-                                                await setDureeInd(getDureeIndex(abonnement.number_of_days))
+                                                setDureeInd(getDureeIndex(abonnement.length))
                                             }}>
                                                 <td className="text-left">{abonnement.name}</td>
                                                 <td>{abonnement.seances_quantity}</td>
@@ -474,7 +479,7 @@ const Configuration = (props) => {
             </div>
         <div className="row">
             
-        {/* <div className="col-xl-6 col-lg-12">
+                {/* <div className="col-xl-6 col-lg-12">
                     <div className="card">
                         <div className="card-header">
                             <h4 className="card-title">Activités</h4>
@@ -500,14 +505,13 @@ const Configuration = (props) => {
                         </div>
                     </div>
                 </div> */}
-                
         </div>
-        <AbonnementCreateModal show={abonnementCreateModal} onShowShange={setAbonnementCreateModal} abonnementData={{abonnementId: abonnementId}} />
-        <ActivityCreateModal show={activityCreateModal} onShowShange={setActivityCreateModal} activityData={{
+        <AbonnementCreateModal show={abonnementCreateModal} onShowChange={setAbonnementCreateModal} abonnementData={{abonnementId: abonnementId}} />
+        <ActivityCreateModal show={activityCreateModal} onShowChange={setActivityCreateModal} activityData={{
             activityId: activityId, 
             salllesActivities : salllesActivities
             }} />
-        <ActivityEditModal show={activityEditModal} onShowShange={setActivityEditModal} activityData={{
+        <ActivityEditModal show={activityEditModal} onShowChange={setActivityEditModal} activityData={{
             activityId: activityId, 
             salllesActivities : salllesActivities, 
             color:color, 
@@ -515,28 +519,28 @@ const Configuration = (props) => {
             activityName: activityName, 
             salles: salllesActivities, 
             salleId:salleId}} />
-        <SalleActiviteCreateModal  show={salleActiviteCreateModal} onShowShange={setSalleActiviteCreateModal}  salleData={{doors : doors}} />
-        <PlanningCreateModal  show={planningCreateModal} onShowShange={setPlanningCreateModal}  />
-        <MaladieCreateModal  show={maladieCreateModal} onShowShange={setMaladieCreateModal}  />
-        <MaladieEditModal  show={maladieEditModal} onShowShange={setMaladieEditModal} maladieData={{
+        <SalleActiviteCreateModal  show={salleActiviteCreateModal} onShowChange={setSalleActiviteCreateModal}  salleData={{doors : doors}} />
+        <PlanningCreateModal  show={planningCreateModal} onShowChange={setPlanningCreateModal}  />
+        <MaladieCreateModal  show={maladieCreateModal} onShowChange={setMaladieCreateModal}  />
+        <MaladieEditModal  show={maladieEditModal} onShowChange={setMaladieEditModal} maladieData={{
             maladieId : maladieId,
             maladieName : maladieName
         }} />
-        <DoorModal  show={doorModal} onShowShange={setDoorModal} doorData={{
+         <DoorModal  show={doorModal} onShowChange={setDoorModal} doorData={{
             doorId : doorId,
             doorIp : doorIp,
             doorUsername: doorUsername,
-            doorPassword: doorPassword
-        }} />
-        <PlanningEditModal  show={planningEditModal} onShowShange={setPlanningEditModal} planningData={{
+            doorPassword: doorPassword,
+            salllesActivities : salllesActivities,
+            doorSalle : doorSalle
+        }} /> 
+        <PlanningEditModal  show={planningEditModal} onShowChange={setPlanningEditModal} planningData={{
             planId : planId,
             planName :planName,
             isDefaultPlanning: isDefaultPlanning,
         }}  />
-        < AbonnementListModal  show={abonnementListModal} onShowShange={setAbonnementListModal} abonnementData={TestFunc} />
-        
-
-        < SalleActiviteEditModal  show={salleActiviteEditModal} onShowShange={setSalleActiviteEditModal}  salleData={{
+        < AbonnementListModal  show={abonnementListModal} onShowChange={setAbonnementListModal} abonnementData={TestFunc} />
+        < SalleActiviteEditModal  show={salleActiviteEditModal} onShowChange={setSalleActiviteEditModal}  salleData={{
             salleId : salleId,
             salleName : salleName,
             isDefaultSalle : isDefaultSalle,
@@ -544,7 +548,7 @@ const Configuration = (props) => {
             doorId : doorId,
             doorIp : doorIp,
             }} />
-        <AbonnementEditModal show={abonnementEditModal} onShowShange={setAbonnementEditModal} 
+        <AbonnementEditModal show={abonnementEditModal} onShowChange={setAbonnementEditModal} 
         abonnementData={
             {
             abonnementId: abonnementId,

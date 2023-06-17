@@ -14,6 +14,9 @@ import PresenceEditModal from './PresenceEditModal'
 import PresenceCreateModal from './PresenceCreateModal'
 import TextField from '@material-ui/core/TextField';
 import useAxios from "../useAxios";
+import useAuth from "../useAuth";
+import Error403 from "../../pages/Error403";
+
 // import axiosInstance from "../../axiosApi";
 
 export const ClientContext = React.createContext()
@@ -61,7 +64,7 @@ const PresenceList = () => {
    //    return word.charAt(0).toUpperCase() + word.slice(1);
    //    return '';
    // };
-   // console.log('le clieeeeen RFID', client);
+   // //console.log('le clieeeeen RFID', client);
 // 
 
    const formatDate = (date) => {
@@ -119,19 +122,23 @@ const getCurrentDay = (PresneceDate) => {
       return 'Samedi'
    }
 } 
+
 const [presenceStatus, setPresenceStatus] = useState(null);
 
+   
    useEffect(() => {
       const presenceDateDate = async () => {
          const dateDebut = formatDate(startDate)
          const dateFin = formatDate(endDate)
+         const endpoint = `${process.env.REACT_APP_API_URL}/rest-api/presence/?page=${nextpage}&start_date=${dateDebut}&end_date=${dateFin}&abc__client_id=${searchValue}&creneau__activity__salle=${salleId}&hour=${startHour}&creneau__activity=${filterActivity}`
+
          // const result =  await api.get(`${process.env.REACT_APP_API_URL}/rest-api/presence/?page=${nextpage}&start_date=${dateDebut}&end_date=${dateFin}&abc__client_id=${searchValue}&creneau__activity__salle=${salleId}&hour=${startHour}&creneau__activity=${filterActivity}`)
-         // console.log('cest un result ', result);
+         // //console.log('cest un result ', result);
          // setPresenceData(result.data.results)
          // setPresencesCount(result.data.count)
-         await api.get(`${process.env.REACT_APP_API_URL}/rest-api/presence/?page=${nextpage}&start_date=${dateDebut}&end_date=${dateFin}&abc__client_id=${searchValue}&creneau__activity__salle=${salleId}&hour=${startHour}&creneau__activity=${filterActivity}`)
+         await api.get(endpoint)
          .then(res => {
-            console.log('cest un result ', res);
+            //console.log('cest un result ', res);
             setPresenceData(res.data.results)
             setPresencesCount(res.data.count)
             setPresenceStatus(res.status)
@@ -148,7 +155,7 @@ const HandleSubmit = (e) => {
    const presenceData =  api.get(`${process.env.REACT_APP_API_URL}/rest-api/get-client/?cl=${clientId}`).then(async res=> {
       if (res.data.last_presence) {
          setPresenceId(res.data.last_presence)
-         await api.put( `${process.env.REACT_APP_API_URL}/rest-api/presence/edit/${res.data.last_presence}/`)
+         api.put( `${process.env.REACT_APP_API_URL}/rest-api/presence/edit/${res.data.last_presence}/`)
          notifySuccess(`la sortie de ${clientId} a été éffectué Avec Succée`)
          setClientId('')
          return presenceData
@@ -163,34 +170,42 @@ const HandleSubmit = (e) => {
             notifyError("Erreur, Entrée non autorisée")
          }} 
    }).catch(err => {
+      console.log(err);
       notifyError("Cet ID n'existe pas dans nos fichier")
    })
 }
+const presenceAuthorization = `${process.env.REACT_APP_API_URL}/rest-api/presence/`
+
+const [presenceAuth, loading] = useAuth(presenceAuthorization, 'GET')
+
 
    return (
       <Fragment>
+      { loading &&
+         <>
+         {presenceAuth ? (
+         <>
          <Link target="_blank" to={`/client/${clientId}`} >
             <ToastContainer position='top-right' autoClose={5000} hideProgressBar={false} newestOnTop closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
          </Link>
          <div className="testimonial-one owl-right-nav owl-carousel owl-loaded owl-drag mb-4">
             <ShortCuts />
          </div> 
-         {presenceStatus == 200 && (
-         <>
+
          <div className="m-5 row">
             <div className='col- col-md-4'>
                <form onSubmit={HandleSubmit}>
                   <div className='row'>
                      <div className="col-6">
                      <label htmlFor="entree">Présence Automatique </label>
-                        <input name='entree' type="text" className="form-control" value={clientId} placeholder=" ID Client" onChange={e =>  setClientId(e.target.value)} />
+                        <input name='entree' type="text" className="form-control" value={clientId} placeholder="ID Client" onChange={e =>  setClientId(e.target.value)} />
                      </div>
                      <div className="col-6 mt-auto">
                         <Button  variant="success" type="submit" > Valider</Button>
                      </div>
                   </div>
                </form>
-            </div>
+            </div> 
             <div className="col-md-2 mt-auto">
                <Button  variant="primary" type="submit" onClick={e => setPresneceCreateModal(true)}> Présence Manuelle</Button>
             </div>
@@ -253,7 +268,7 @@ const HandleSubmit = (e) => {
             </div>
             <div className="form-group col-md-2">
                <label style={{color:'#000000'}} htmlFor="birth_date">Date début </label>
-               <input type="date" name="start_date" className="form-control" value={startDate}  onChange={e => setStartDate(e.target.value)}/>
+               <input type="date" name="start_date" className="form-control" value={startDate}  pattern="\d{1,2}/\d{1,2}/\d{4}" onChange={e => setStartDate(e.target.value)}/>
             </div>
             <div className="form-group col-md-2">
                <label style={{color:'#000000'}} htmlFor="end_date">Date Fin </label>
@@ -324,8 +339,8 @@ const HandleSubmit = (e) => {
                   </div>
                </div>
             </div>
-            <PresenceEditModal show={editModal} onShowShange={setEditModal} presenceData={{presenceId:presenceId, client:client, hourIn:hourIn, hourOut: hourOut, creneau:creneau, note:note, clientId:clientId, date:date, activity:activity}}/>
-            <PresenceCreateModal show={presneceCreateModal} onShowShange={setPresneceCreateModal} />
+            <PresenceEditModal show={editModal} onShowChange={setEditModal} presenceData={{presenceId:presenceId, client:client, hourIn:hourIn, hourOut: hourOut, creneau:creneau, note:note, clientId:clientId, date:date, activity:activity}}/>
+            <PresenceCreateModal show={presneceCreateModal} onShowChange={setPresneceCreateModal} />
          </div>
          {
             !searchBarActivated &&
@@ -362,7 +377,9 @@ const HandleSubmit = (e) => {
               </div>
          }
          </>
-         )}
+         ) : <Error403 />}
+      </>
+      }
       </Fragment>
    );
 };

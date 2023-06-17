@@ -36,11 +36,11 @@ const AbonnementCreate = (props) => {
   //     setAbActivity(res.data.activity)
   //     setAbName(res.data.name)
   //     setabPrice(res.data.price)
-  //     setAbNumDays(res.data.number_of_days)
+  //     setAbNumDays(res.data.length)
   //     setAbSeancesQuantity(res.data.seances_quantity)
   //     setAbActivityName(res.data.activity_name)
   //     setAbNumClients(res.data.clients_number)
-  //     console.log('the Presence instance is ======>', res.data);
+  //     //console.log('the Presence instance is ======>', res.data);
   // })
   // }, []);
 
@@ -66,7 +66,7 @@ const handleCheckbox = (event) => {
   const activity = event.target.name
     if ( event.target.checked){
       setSelectedActivities(checkedActivities => [...checkedActivities, Number(activity)])
-      console.log('maladiieiieiis=======>', selectedActivities);
+      // //console.log('maladiieiieiis=======>', selectedActivities);
     }else {
       for ( var i = 0 ; i < selectedActivities.length; i++){
         if (selectedActivities[i] === Number(activity)){
@@ -74,28 +74,28 @@ const handleCheckbox = (event) => {
         } 
       }
       selectedActivities.splice(Number(activity) , 1)
-      console.log('unchecked=======>', selectedActivities);
+      // //console.log('unchecked=======>', selectedActivities);
   }
 }
 
 
   const HandleSubmit = async e => {
   
-    console.log("setSelectedMaladie=======> ", selectedActivities);
+    // console.log("setSelectedMaladie=======> ", selectedActivities);
 
-  // console.log('les maladiiiies', maladies);
+  // //console.log('les maladiiiies', maladies);
   let endpoint = `${process.env.REACT_APP_API_URL}/rest-api/abonnement/create`
   e.preventDefault();
   const newAbonnement = {
     activity:selectedActivities,
     name:abName,
     price:abPrice,
-    number_of_days:abNumDays,
+    length:abNumDays,
     seances_quantity:abSeancesQuantity,
   }
     api.post(endpoint, newAbonnement).then( () => {
       history.push("/client")
-      console.log('THE NEW CLIENT ', newAbonnement);
+      // //console.log('THE NEW CLIENT ', newAbonnement);
 
     })
   }

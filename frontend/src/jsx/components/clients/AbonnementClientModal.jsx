@@ -6,7 +6,7 @@ import useAxios from "../useAxios";
 function refreshPage() {
   window.location.reload(false);
 }
-const AbonnementClientModal = ({show, onShowShange, abcData}) => {
+const AbonnementClientModal = ({show, onShowChange, abcData}) => {
   const api = useAxios();
   const formatDate = (date) => {
       return new Date(date).toISOString().slice(0, 10)
@@ -14,7 +14,7 @@ const AbonnementClientModal = ({show, onShowShange, abcData}) => {
    const today = new Date()
    var before = today.setDate(today.getDate() - 60);
    var after = today.setDate(today.getDate() + 120);
-    const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+    const handleShow = useCallback( () => {onShowChange(false)}, [onShowChange])
     const [startDate, setStartDate] = useState(formatDate(before));
     const [endDate, setEndDate] = useState(formatDate(after));
   

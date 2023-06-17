@@ -41,7 +41,9 @@ class PlanningDetailAPIView(generics.RetrieveUpdateAPIView):
     # permission_classes = (IsAuthenticated,)
     serializer_class = PlanningSerialiser
     extra_perms_map = {
-        "GET": ["planning.change_planning"]
+        "GET": ["planning.change_planning"],
+        "PUT": ["planning.change_planning"],
+        "PATCH": ["planning.change_planning"],
     }
     def get_object(self):
         obj = get_object_or_404(Planning.objects.filter(id=self.kwargs["pk"]))
@@ -62,7 +64,8 @@ class PlanningDestroyAPIView(generics.DestroyAPIView):
     queryset = Planning.objects.all()
     serializer_class = PlanningSerialiser
     extra_perms_map = {
-        "GET": ["planning.delete_planning"]
+        "POST": ["planning.delete_planning"],
+        "DELETE": ["planning.delete_planning"],
     }
 
 @api_view(['GET'])

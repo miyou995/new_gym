@@ -5,18 +5,51 @@ from creneau.models import Creneau
 # Signals imports
 from django.db.models.signals import post_save, pre_save
 from simple_history.models import HistoricalRecords
+from django.db.models import Q
+
+class SubscriptionQuerySet(models.QuerySet):
+    def time_volume(self):
+        return self.filter(type_abonnement__type_of="VH")
+    def free_access(self):
+        return self.filter(type_abonnement__type_of = "AL")
+    def fixed_sessions(self):
+        return self.filter(type_abonnement__type_of = "SF")
+    def free_sessions(self):
+        return self.filter(type_abonnement__type_of = "SL")
+    def free_access_subscription(self):
+        return self.exclude(type_abonnement__type_of = "SF")
+    
+    def active_subscription(self):
+        today = date.today()
+        return self.filter(end_date__gte=today, archiver=False)
+
+    def valid_presences(self, limite_presence=0):
+        return self.exclude(type_abonnement__type_of = "VH").filter(seances_quantity__gte=limite_presence, archiver=False)
+    
+    def valid_time(self, hlimit=30):
+        return self.filter(Q(type_abonnement__type_of = "VH") & Q(seances_quantity__gte=hlimit) & Q(archiver=False))  
 
 class SubscriptionManager(models.Manager):
+    def get_queryset(self):
+        return SubscriptionQuerySet(self.model, using=self._db)
     def time_volume(self):
-        return self.filter(type_abonnement__type_of=="VH")
+        return self.get_queryset().time_volume()
     def free_access(self):
-        return self.filter(type_abonnement__type_of=="AL")
+        return self.get_queryset().free_access()
     def fixed_sessions(self):
-        return self.filter(type_abonnement__type_of=="SF")
+        return self.get_queryset().fixed_sessions()
     def free_sessions(self):
-        return self.filter(type_abonnement__type_of=="SL")
+        return self.get_queryset().free_sessions()
     def free_access_subscription(self):
-        return self.exclude(type_abonnement__type_of=="SF")
+        return self.get_queryset().free_access_subscription()
+    def active_subscription(self):
+        return self.get_queryset().active_subscription()
+    def valid_presences(self):
+        return self.get_queryset().valid_presences()
+    def valid_time(self):
+        return self.get_queryset().valid_time()
+
+
 
 
 # class ManagerValidity(models.Manager):
@@ -59,10 +92,13 @@ class Abonnement(models.Model):
 
     def time_volume(self):
         return True if self.type_of == "VH" else False
+    
     def free_access(self):
         return True if self.type_of == "AL" else False
+    
     def fixed_sessions(self):
         return True if self.type_of == "SF" else False
+    
     def free_sessions(self):
         return True if self.type_of == "SL" else False
 
@@ -79,9 +115,24 @@ class AbonnementClient(models.Model):
     archiver            = models.BooleanField(default=False)
     created_date_time   = models.DateTimeField(auto_now_add=True)
     updated_date_time   = models.DateTimeField(auto_now=True)
-    history = HistoricalRecords()
-    objects             = models.Manager()
-    subscription_type   = SubscriptionManager()
+    history             = HistoricalRecords()
+    objects         = models.Manager()
+    subscription    = SubscriptionManager()
+    
+    def __str__(self):
+        return  str(self.id)
+
+    def is_time_volume(self):
+        return True if self.type_abonnement.type_of == "VH" else False
+    
+    def is_free_access(self):
+        return True if self.type_abonnement.type_of == "AL" else False
+    
+    def is_fixed_sessions(self):
+        return True if self.type_abonnement.type_of == "SF" else False
+    
+    def is_free_sessions(self):
+        return True if self.type_abonnement.type_of == "SL" else False
 
     def put_archiver(self):
         self.archiver = True 
@@ -90,14 +141,7 @@ class AbonnementClient(models.Model):
         self.save()
         print("ABCCCCC DELETEEDDDD")
         return self
-    def is_time_volume(self):
-        return True if self.type_abonnement.type_of == "VH" else False
-    def is_free_access(self):
-        return True if self.type_abonnement.type_of == "AL" else False
-    def is_fixed_sessions(self):
-        return True if self.type_abonnement.type_of == "SF" else False
-    def is_free_sessions(self):
-        return True if self.type_abonnement.type_of == "SL" else False
+
     def get_day_index(self, day):
         if day == 'DI':
             return 6
@@ -115,6 +159,7 @@ class AbonnementClient(models.Model):
             return 5
         else:
             return False
+
     def get_next_date(self, given_start_date, day):
         today = date.today()
         formated_start_date = datetime.strptime(given_start_date, "%Y-%m-%d")
@@ -157,23 +202,23 @@ class AbonnementClient(models.Model):
         else:
             return False 
 
-    def is_actif(self):
+    def is_valid(self):
         today = date.today()
         # print('today', today)
         # print('end_date', self.end_date)
         if today <= self.end_date:
-            return True
-        else:
-            return False 
+            if self.get_rest_quantity() > self.get_limit() :
+                return True
+        return False 
 
-    def __str__(self):
-        return  str(self.id)
+
+
     def get_type(self):
         return self.type_abonnement.type_of
 
     def get_planning(self):
         try:
-            print('creneaaaau', self.creneaux.first().planning)
+            # print('creneaaaau', self.creneaux.first().planning)
             return self.creneaux.first().planning
         except:
             return None
@@ -182,6 +227,11 @@ class AbonnementClient(models.Model):
         activities = Activity.objects.filter(salle__abonnements__type_abonnement_client=self)
         # activites = self.type_abonnement.salles.activities
         print('les activité de cet abc ', activities)
+        print('SELF ABONNE ID', self.id)
+        print('SELF type_abonnement ID', self.type_abonnement)
+        
+        # activities2 = self.type_abonnement.salles.all()
+        # print('ACTI 2-----------------------------------------------', activities2)
         return activities
 
     def renew_abc(self, renew_start_date):
@@ -205,7 +255,12 @@ class AbonnementClient(models.Model):
         # abc_id = self.id
         return self
 
-
+    def get_limit(self):
+        if self.is_time_volume():
+            limit = 30
+        else: 
+            limit = 0
+        return limit
 
     def get_quantity_str(self):
         if self.is_time_volume():
@@ -218,6 +273,11 @@ class AbonnementClient(models.Model):
         else:
             return self.presence_quantity
 
+    def get_rest_quantity(self):
+        if self.is_time_volume():
+            return self.presence_quantity
+        else:
+            return self.presence_quantity
 
     # def renew_abc(self, renew_start_date):
     #     type_abonnement = self.type_abonnement
@@ -260,17 +320,26 @@ class AbonnementClient(models.Model):
 def creneau_created_signal(sender, instance, created,**kwargs):
     if created:
         # get abc that have free access VH, AL, SL - 
-        abonnements = AbonnementClient.objects.all()
-        # abonnements = AbonnementClient.subscription_type.free_access_subscription()
-        # get abc that has same activities as creneaux abonnements 
+        # .select_related('type_abonnement__salles__actvities')
         activity = instance.activity
+        planning =instance.planning
+        print('type_abonnement__salles__actvities = activity',  activity)
+        print('creneaux__planning = planning',  planning)
+
+        abonnements = AbonnementClient.subscription.time_volume().filter(type_abonnement__salles__actvities = activity, creneaux__planning = planning ).prefetch_related('creneaux', 'creneaux__planning').distinct()
+        # abonnements = AbonnementClient.subscription_type.free_access_subscription()
+        print('ABONNEMENT', abonnements.count())
+        # get abc that has same activities as creneaux abonnements 
+        # new_abc =abonnements.filter(type_abonnement__salles__actvities = activity)
+        # print(' THE NEWABCSSS', new_abc.count())
         for abonnement in abonnements:
-            if abonnement.get_planning() == instance.planning:
-                if activity in abonnement.get_activites():
-                    abonnement.creneaux.add(instance)
-                    abonnement.save()
-        instance.save()
+            # if abonnement.get_planning() == instance.planning:
+            #     if activity in abonnement.get_activites():
+            abonnement.creneaux.add(instance)
+            abonnement.save()
+        # instance.save()
 post_save.connect(creneau_created_signal, sender=Creneau)
+
 
 
 # def dette_signal(sender, instance, **kwargs):

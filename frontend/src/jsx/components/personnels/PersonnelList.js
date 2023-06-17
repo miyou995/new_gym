@@ -11,6 +11,7 @@ import avartar5 from "../../../images/avatar/5.png";
 import avartar1 from "../../../images/avatar/1.png";
 import { Link } from "react-router-dom";
 import useAuth from "../useAuth";
+import Error403 from "../../pages/Error403";
 
 
 function refreshPage() {
@@ -59,19 +60,22 @@ const PersonnelList = () => {
       const personnels = savedPersonnel
       setPersonnelData(personnels)
    }, [savedPersonnel]);
-   // console.log('els clieeents', savedClients);
+   // //console.log('els clieeents', savedClients);
 
- const personnelAuth = useAuth(endpoint, 'GET')
+ const [personnelAuth, loading] = useAuth(endpoint, 'GET')
 
 
    return (
       <Fragment>
-               <div className="testimonial-one owl-right-nav owl-carousel owl-loaded owl-drag mb-4">
-        <ShortCuts />
-      </div>
-      {personnelAuth && (
-        <>
-         <Search name= 'Employé' lien= "/personnel/create"/>
+      {loading &&
+      <>
+         { personnelAuth ? (
+         <>
+         <div className="testimonial-one owl-right-nav owl-carousel owl-loaded owl-drag mb-4">
+            <ShortCuts />
+         </div>
+
+         <Search name= 'Employé' lien= "/personnel/create" placeholder="Rechercher un employé"/>
          <div className="row">
             <div className="col-lg-12">
                <div className="card">
@@ -86,7 +90,7 @@ const PersonnelList = () => {
                                  <th>Téléphone</th>
                                  <th className="pl-5 width200"> Addresse </th>
                                  <th>Adhesion</th>
-                                 <th></th>
+                                 {/* <th></th> */}
                               </tr>
                            </thead>
                            <tbody id="customers">
@@ -117,9 +121,9 @@ const PersonnelList = () => {
                                  </td>
                                  <td className="py-2 pl-5 wspace-no"> {pers.adress} </td>
                                  <td className="py-2">30/03/2018</td>
-                                 <td className="py-2 text-right">
+                                 {/* <td className="py-2 text-right">
                                     <Drop id={pers.id}/>
-                                 </td>
+                                 </td> */}
                               </tr>
                               ))}
                               </tbody>
@@ -130,8 +134,9 @@ const PersonnelList = () => {
             </div>
          </div>
         </> 
-      )}
-        
+      ) : <Error403 />}
+      </>
+      }
       </Fragment>
    );
 };

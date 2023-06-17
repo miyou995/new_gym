@@ -4,6 +4,7 @@ from .models import SalleSport
 from .serializers import SalleSportSerialiser
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser, DjangoModelPermissions
 from rest_framework.decorators import api_view
+
 class BaseModelPerm(DjangoModelPermissions):
     def get_custom_perms(self, method, view):
         app_name =  view.queryset.model._meta.app_label
@@ -24,7 +25,7 @@ class SalleSportAPIView(generics.CreateAPIView):
     serializer_class = SalleSportSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["salle_sport.add_sallesport"]
+        "POST": ["salle_sport.add_sallesport"]
     }
 
 
@@ -43,7 +44,9 @@ class SalleSportDetailAPIView(generics.RetrieveUpdateAPIView):
     serializer_class = SalleSportSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["salle_sport.change_sallesport"]
+        "GET": ["salle_sport.view_sallesport"],
+        "PUT": ["salle_sport.change_sallesport"],
+        "PATCH": ["salle_sport.change_sallesport"],
     }
     def get_object(self):
         obj = get_object_or_404(SalleSport.objects.filter(id=self.kwargs["pk"]))
@@ -55,7 +58,8 @@ class SalleSportDestroyAPIView(generics.DestroyAPIView):
     serializer_class = SalleSportSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["salle_sport.delete_sallesport"]
+        "POST": ["salle_sport.delete_sallesport"],
+        "DELETE": ["salle_sport.delete_sallesport"],
     } 
 
 @api_view(['GET'])

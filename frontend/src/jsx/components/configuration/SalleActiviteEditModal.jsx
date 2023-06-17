@@ -15,9 +15,9 @@ import createPalette from "@material-ui/core/styles/createPalette";
 function refreshPage() {
   window.location.reload(false);
 }
-const SalleActiviteEditModal = ({show, onShowShange, salleData}) => {
-  const api = useAxios();
-  const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+    const SalleActiviteEditModal = ({show, onShowChange, salleData}) => {
+    const api = useAxios();
+    const handleShow = useCallback( () => {onShowChange(false)}, [onShowChange])
     // const creneauPerAbonnementEND = `${process.env.REACT_APP_API_URL}/rest-api/abonnement/`
     const salleActiviteUpdateEnd = `${process.env.REACT_APP_API_URL}/rest-api/salle-activite/${salleData['salleId']}/`
     const doors = salleData['doors']
@@ -28,20 +28,22 @@ const SalleActiviteEditModal = ({show, onShowShange, salleData}) => {
     const [door, setDoor] = useState([])
 
 
-    console.log('doors doors', doors);
-    console.log('selected DOOR', salleData['doorId']);
+    //console.log('doors doors', doors);
+    //console.log('selected DOOR', salleData['doorId']);
+    
 
     useEffect(() => {
     if (show == true) {
         setName(salleData['salleName'])
+        setDoor(salleData['doorId'])
         setDefault(salleData['isDefaultSalle'])
+        console.log("racct", salleData);
     }
-    }, [salleData['salleId']]);
+    }, [salleData, show]);
     const HandleSubmit = e => {
         e.preventDefault();
         const salleFormData = {
             name : name,
-            door : Number(door),
             is_default : is_default
         }
         console.log(" =================> salleFormData ", salleFormData);
@@ -49,6 +51,9 @@ const SalleActiviteEditModal = ({show, onShowShange, salleData}) => {
             notifySuccess('Salle modifier avec succés')
                 handleShow()
             }).catch(err => {
+                console.log("err  salle modif===>", err);
+                console.log(" =================> salleFormData ", salleFormData);
+
                 notifyError("Erreur lors de la modification de la salle")
             })
       } 
@@ -69,33 +74,13 @@ return (
                 </div>
             </div>
             <div className="form-group row">
-              <label className="col-sm-3 col-form-label">Salle </label>
-              <div className="col-sm-9">
-                  <Autocomplete
-                      onChange={((event, value) =>  {
-                        setDoor(value.id)
-                    }
-                        )} 
-                    //   value={salles}
-                      options={salleData['doors']}
-                      defaultValue={doors[selectedDoor]}
-                      getOptionSelected={(option) =>  option['id']}
-
-                      id="size-small-standard-multi"
-                      getOptionLabel={(option) =>  ( option['ip_adress'])}
-                      renderInput={(params) =>
-                  (<TextField {...params} name="door" label="Porte" variant="outlined" fullWidth />)}
-                />
-              </div>
-            </div>
-            <div className="form-group row">
                 <FormControlLabel
                     control={
                         <Checkbox 
                             checked={is_default}
                             onChange={e=> {
                             setDefault(!is_default)
-                                console.log('target value', e.target.value);
+                                //console.log('target value', e.target.value);
                             }}
                             name="checkedB"
                             color="primary"
@@ -111,6 +96,7 @@ return (
                     Valider
                 </button>
             </div>
+
             <div className="m-3">
                 <button type="button" className="btn btn-danger" onClick={ async () => {
                 await api.delete(`${process.env.REACT_APP_API_URL}/rest-api/salle-activite/delete/${salleData['salleId']}/`)
@@ -120,6 +106,7 @@ return (
                     Supprimer
                 </button>
             </div>
+          
           </div>
       </form>
      </Modal.Body>

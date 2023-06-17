@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404
 from rest_framework import generics, serializers
 from .models import Paiement, Autre, AssuranceTransaction, Remuneration, RemunerationProf, Transaction
 import json
+from client.models import  Coach
+
 from .serializers import PaiementSerialiser, AutreSerialiser, AssuranceSerialiser, RemunerationSerialiser, RemunerationProfSerialiser, TransactionSerialiser, RemunerationProfPostSerialiser,PaiementPostSerialiser, AssurancePostSerialiser, RemunerationPostSerialiser, PaiementFiltersSerialiser, PaiementHistorySerialiser
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser, DjangoModelPermissions
 from drf_multiple_model.views import FlatMultipleModelAPIView, ObjectMultipleModelAPIView
@@ -27,7 +29,7 @@ class StandardResultsSetPagination(pagination.PageNumberPagination):
 
 
 class LimitPagination(MultipleModelLimitOffsetPagination):
-    default_limit = 20
+    default_limit = 15
 
 class BaseModelPerm(DjangoModelPermissions):
     def get_custom_perms(self, method, view):
@@ -48,7 +50,7 @@ class PaiementAPIView(generics.CreateAPIView):
     serializer_class = PaiementPostSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["transaction.add_paiement"]
+        "POST": ["transaction.add_paiement"]
     }
 
 class PaiementListAPIView(generics.ListAPIView):
@@ -63,6 +65,7 @@ class PaiementHistoryListAPIView(generics.ListAPIView):
     queryset = Paiement.history.all()
     # permission_classes = (IsAuthenticated,)
     serializer_class = PaiementHistorySerialiser
+    pagination_class = StandardResultsSetPagination
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
         "GET": ["transaction.can_view_history"]
@@ -79,7 +82,9 @@ class PaiementDetailAPIView(generics.RetrieveUpdateAPIView):
     serializer_class = PaiementPostSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["transaction.change_paiement"]
+        "GET": ["transaction.view_paiement"],
+        "PUT": ["transaction.change_paiement"],
+        "PATCH": ["transaction.change_paiement"],
     }
     def get_object(self): 
         obj = get_object_or_404(Paiement.objects.filter(id=self.kwargs["pk"]))
@@ -91,7 +96,8 @@ class PaiementDestroyAPIView(generics.DestroyAPIView):
     serializer_class = PaiementSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["transaction.delete_paiement"]
+        "POST": ["transaction.delete_paiement"],
+        "DELETE": ["transaction.delete_paiement"],
     }
 # fin des paiement 
 
@@ -101,7 +107,7 @@ class AutreAPIView(generics.CreateAPIView):
     serializer_class = AutreSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["transaction.add_autre"]
+        "POST": ["transaction.add_autre"]
     }
 
 class AutreListAPIView(generics.ListAPIView):
@@ -119,7 +125,9 @@ class AutreDetailAPIView(generics.RetrieveUpdateAPIView):
     serializer_class = AutreSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["transaction.change_autre"]
+        "GET": ["transaction.view_autre"],
+        "PUT": ["transaction.change_autre"],
+        "PATCH": ["transaction.change_autre"],
     }
     def get_object(self):
         obj = get_object_or_404(Autre.objects.filter(id=self.kwargs["pk"]))
@@ -131,7 +139,8 @@ class AutreDestroyAPIView(generics.DestroyAPIView):
     serializer_class = AutreSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["transaction.delete_autre"]
+        "POST": ["transaction.delete_autre"],
+        "DELETE": ["transaction.delete_autre"],
     }
 # FIN AUTRE#########
 
@@ -140,7 +149,7 @@ class AssuranceAPIView(generics.CreateAPIView):
     serializer_class = AssurancePostSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["transaction.add_assurancetransaction"]
+        "POST": ["transaction.add_assurancetransaction"]
     }
 
 class AssuranceListAPIView(generics.ListAPIView):
@@ -158,8 +167,11 @@ class AssuranceDetailAPIView(generics.RetrieveUpdateAPIView):
     serializer_class = AssurancePostSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["transaction.change_assurancetransaction"]
+        "GET": ["transaction.view_assurancetransaction"],
+        "PUT": ["transaction.change_assurancetransaction"],
+        "PATCH": ["transaction.change_assurancetransaction"],
     }
+
     def get_object(self):
         obj = get_object_or_404(AssuranceTransaction.objects.filter(id=self.kwargs["pk"]))
         return obj
@@ -170,7 +182,8 @@ class AssuranceDestroyAPIView(generics.DestroyAPIView):
     serializer_class = AssuranceSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["transaction.delete_assurancetransaction"]
+        "POST": ["transaction.delete_assurancetransaction"],
+        "DELETE": ["transaction.delete_assurancetransaction"],
     }
 # FIN ASSURANCE#########
 
@@ -179,7 +192,7 @@ class RemunerationAPIView(generics.CreateAPIView):
     serializer_class = RemunerationPostSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["transaction.add_remuneration"]
+        "POST": ["transaction.add_remuneration"]
     }
 
 class RemunerationListAPIView(generics.ListAPIView):
@@ -197,7 +210,9 @@ class RemunerationDetailAPIView(generics.RetrieveUpdateAPIView):
     serializer_class = RemunerationPostSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["transaction.change_remuneration"]
+        "GET": ["transaction.view_remuneration"],
+        "PUT": ["transaction.change_remuneration"],
+        "PATCH": ["transaction.change_remuneration"],
     }
     def get_object(self):
         obj = get_object_or_404(Remuneration.objects.filter(id=self.kwargs["pk"]))
@@ -212,16 +227,17 @@ class PaiementEmployeListAPIView(generics.ListAPIView):
     }
     def get_queryset(self):
         employe_id = self.request.query_params.get('em', None)
-        print('cliiiientr', employe_id)
-        creneaux = Remuneration.objects.filter(nom_id=employe_id)
-        return creneaux
+        transactions = Remuneration.objects.filter(nom__id=employe_id)
+        print('cliiiientr transactions', transactions)
+        return transactions
 
 class RemunerationDestroyAPIView(generics.DestroyAPIView):
     queryset = Remuneration.objects.all()
     serializer_class = RemunerationSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["transaction.delete_remuneration"]
+        "POST": ["transaction.delete_remuneration"],
+        "DELETE": ["transaction.delete_remuneration"],
     }
 
 # FIN ASSURANCE#########
@@ -230,7 +246,7 @@ class RemunerationProfAPIView(generics.CreateAPIView):
     serializer_class = RemunerationProfPostSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["transaction.add_remunerationprof"]
+        "POST": ["transaction.add_remunerationprof"]
     }
 
 
@@ -246,7 +262,9 @@ class RemunerationProfDetailAPIView(generics.RetrieveUpdateAPIView):
     queryset = RemunerationProf.objects.all()
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["transaction.change_remunerationprof"]
+        "GET": ["transaction.view_remunerationprof"],
+        "PUT": ["transaction.change_remunerationprof"],
+        "PATCH": ["transaction.change_remunerationprof"],
     }
     serializer_class = RemunerationProfPostSerialiser
     def get_object(self):
@@ -259,14 +277,14 @@ class RemunerationProfDestroyAPIView(generics.DestroyAPIView):
     serializer_class = RemunerationProfSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["transaction.delete_remunerationprof"]
+        "POST": ["transaction.delete_remunerationprof"],
+        "PATCH": ["transaction.delete_remunerationprof"],
     }
-
 
 
 class TransactionListAPIView(FlatMultipleModelAPIView):
     queryset = Transaction.objects.all()
-    sorting_fields = ['-last_modified']
+    sorting_fields = ['-id']
     filter_backends = (filters.SearchFilter,)
     flat = True
     pagination_class = LimitPagination
@@ -280,27 +298,27 @@ class TransactionListAPIView(FlatMultipleModelAPIView):
         end_date = self.request.query_params.get('end_date', None)
         querylist = (
             {
-                'queryset': Paiement.objects.filter(date_creation__range=[start_date, end_date]).order_by('-last_modified'),
+                'queryset': Paiement.objects.filter(date_creation__range=[start_date, end_date]).select_related('abonnement_client').order_by('-date_creation'),
                 'serializer_class': PaiementSerialiser,
                 'label': 'paiement',
             },
             {
-                'queryset': Remuneration.objects.filter(date_creation__range=[start_date, end_date]).order_by('-last_modified'),
+                'queryset': Remuneration.objects.filter(date_creation__range=[start_date, end_date]).select_related('nom').order_by('-date_creation'),
                 'serializer_class': RemunerationSerialiser,# il ya un problem
                 'label': 'remuneration',
             },
             {
-                'queryset': Autre.objects.filter(date_creation__range=[start_date, end_date]).order_by('-last_modified'),
+                'queryset': Autre.objects.filter(date_creation__range=[start_date, end_date]).order_by('-date_creation'),
                 'serializer_class': AutreSerialiser,
                 'label': 'autre',
             },
             {
-                'queryset': RemunerationProf.objects.filter(date_creation__range=[start_date, end_date]).order_by('-last_modified'),
+                'queryset': RemunerationProf.objects.filter(date_creation__range=[start_date, end_date]).select_related('coach').order_by('-date_creation'),
                 'serializer_class': RemunerationProfSerialiser,
                 'label': 'remunerationProf',
             },
             {
-                'queryset': AssuranceTransaction.objects.filter(date_creation__range=[start_date, end_date]).order_by('-last_modified'),
+                'queryset': AssuranceTransaction.objects.filter(date_creation__range=[start_date, end_date]).select_related('client').order_by('-date_creation'),
                 'serializer_class': AssuranceSerialiser,
                 'label': 'assurance',
             },
@@ -309,30 +327,30 @@ class TransactionListAPIView(FlatMultipleModelAPIView):
 
 
 # class TransactionListAPIView(FlatMultipleModelAPIView):
-#     sorting_fields = ['-last_modified']
+#     sorting_fields = ['-date_creation']
 #     querylist = [
 #         {
-#             'queryset': Paiement.objects.all().order_by('-last_modified'),
+#             'queryset': Paiement.objects.all().order_by('-date_creation'),
 #             'serializer_class': PaiementSerialiser,
 #             'label': 'paiement',
 #         },
 #         {
-#             'queryset': Remuneration.objects.all().order_by('-last_modified'),
+#             'queryset': Remuneration.objects.all().order_by('-date_creation'),
 #             'serializer_class': RemunerationSerialiser,# il ya un problem
 #             'label': 'remuneration',
 #         },
 #         {
-#             'queryset': Autre.objects.all().order_by('-last_modified'),
+#             'queryset': Autre.objects.all().order_by('-date_creation'),
 #             'serializer_class': AutreSerialiser,
 #             'label': 'autre',
 #         },
 #         {
-#             'queryset': RemunerationProf.objects.all().order_by('-last_modified'),
+#             'queryset': RemunerationProf.objects.all().order_by('-date_creation'),
 #             'serializer_class': RemunerationProfSerialiser,
 #             'label': 'remunerationProf',
 #         },
 #         {
-#             'queryset': AssuranceTransaction.objects.all().order_by('-last_modified'),
+#             'queryset': AssuranceTransaction.objects.all().order_by('-date_creation'),
 #             'serializer_class': AssuranceSerialiser,
 #             'label': 'assurance',
 #         },
@@ -357,7 +375,9 @@ class TransactionDetailAPIView(generics.RetrieveUpdateAPIView):
     queryset = Transaction.objects.all()
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["transaction.change_transaction"]
+        "GET": ["transaction.view_transaction"],
+        "PUT": ["transaction.change_transaction"],
+        "PATCH": ["transaction.change_transaction"],
     }
     serializer_class = TransactionSerialiser
 
@@ -366,17 +386,19 @@ class TransactionDetailAPIView(generics.RetrieveUpdateAPIView):
         return obj
     
 class PaiementCoachListAPIView(generics.ListAPIView):
-    quertset = RemunerationProf.objects.all()
+    queryset = RemunerationProf.objects.all()
     serializer_class = RemunerationProfPostSerialiser
     permission_classes = (IsAdminUser, BaseModelPerm)
     extra_perms_map = {
         "GET": ["transaction.view_remunerationprof"]
     }
     def get_queryset(self):
-        coach = self.request.query_params.get('cl', None)
+        coach_id = self.request.query_params.get('cl', None)
+        coach = get_object_or_404(Coach, id=coach_id)
         print('cliiiientr', coach)
-        creneaux = RemunerationProf.objects.filter(coach=coach)
-        return creneaux
+        transactions = RemunerationProf.objects.filter(coach=coach)
+        print(' TRansaction coach -------------------------->', transactions)
+        return transactions
 
 @api_view(['GET'])
 def total_charges(request):
@@ -403,10 +425,10 @@ class MyModelViewSet(generics.ListAPIView):
         """
     model = Abonnement
     serializer_class = AbonnementTestSerializer
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "GET": ["transaction.view_client"]
-    }
+    # permission_classes = (IsAdminUser,BaseModelPerm)
+    # extra_perms_map = {
+    #     "GET": ["transaction.view_client"]
+    # }
     def list(self, request):
         queryset = self.get_queryset()
         serializer = AbonnementTestSerializer(list(queryset), many=True)
@@ -504,34 +526,34 @@ def chiffre_affaire(request):
 class TransToday(FlatMultipleModelAPIView):
     queryset = Transaction.objects.all()
     today = date.today()
-    sorting_fields = ['-last_modified']
+    sorting_fields = ['-date_creation']
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
         "GET": ["transaction.view_transaction"]
     }
     querylist = [
         {
-            'queryset': Paiement.objects.filter(date_creation = today).order_by('-last_modified'),
+            'queryset': Paiement.objects.filter(date_creation = today).order_by('-date_creation'),
             'serializer_class': PaiementSerialiser,
             'label': 'paiement',
         },
         {
-            'queryset': Remuneration.objects.filter(date_creation = today).order_by('-last_modified'),
+            'queryset': Remuneration.objects.filter(date_creation = today).order_by('-date_creation'),
             'serializer_class': RemunerationSerialiser,
             'label': 'remuneration',
         },
         {
-            'queryset': Autre.objects.filter(date_creation = today).order_by('-last_modified'),
+            'queryset': Autre.objects.filter(date_creation = today).order_by('-date_creation'),
             'serializer_class': AutreSerialiser,
             'label': 'autre',
         },
         {
-            'queryset': RemunerationProf.objects.filter(date_creation = today).order_by('-last_modified'),
+            'queryset': RemunerationProf.objects.filter(date_creation = today).order_by('-date_creation'),
             'serializer_class': RemunerationProfSerialiser,
             'label': 'remunerationProf',
         },
         {
-            'queryset': AssuranceTransaction.objects.filter(date_creation = today).order_by('-last_modified'),
+            'queryset': AssuranceTransaction.objects.filter(date_creation = today).order_by('-date_creation'),
             'serializer_class': AssuranceSerialiser,
             'label': 'assurance',
         },

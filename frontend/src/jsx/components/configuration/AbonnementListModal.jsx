@@ -14,9 +14,9 @@ import createPalette from "@material-ui/core/styles/createPalette";
 function refreshPage() {
   window.location.reload(false);
 }
-const AbonnementListModal = ({show, onShowShange, abonnementData}) => {
+const AbonnementListModal = ({show, onShowChange, abonnementData}) => {
   const api = useAxios();
-  const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+  const handleShow = useCallback( () => {onShowChange(false)}, [onShowChange])
     // const abonnementEditEND = `${process.env.REACT_APP_API_URL}/rest-api/abonnement/`
     // const creneauPerAbonnementEND = `${process.env.REACT_APP_API_URL}/rest-api/abonnement/`
 
@@ -41,13 +41,14 @@ useEffect(() => {
       setAbonnements(res.data)
       // setName(res.data.name)
       // setPrice(res.data.price)
-      // setNumberOfDays(res.data.number_of_days)
-      console.log('fedfef', res.data);
+      // setNumberOfDays(res.data.length)
+      //console.log('fedfef', res.data);
     })
   }
+  
 }, [show]);
 
-// const openCloseModal = useCallback( (abID) => {} ,[onShowShange])
+// const openCloseModal = useCallback( (abID) => {} ,[onShowChange])
 //  had el useEffect trigli probleme ta3 retard hata ikounou 3andha les valeurs bach t3ayet la fonctions
   useEffect(() => { 
     abonnementData(abId, acti)
@@ -109,7 +110,7 @@ return (
                   } >
                       <td className="text-left">{abonnement.name}</td>
                       <td>{abonnement.seances_quantity}</td>
-                      <td >{abonnement.number_of_days}</td>
+                      <td >{abonnement.length}</td>
                       <td className="text-right">{abonnement.salles.length}</td>
                       <td className="text-right">{abonnement.clients_number}</td>
                   </tr>

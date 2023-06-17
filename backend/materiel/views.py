@@ -38,7 +38,9 @@ class MaterielDetailAPIView(generics.RetrieveUpdateAPIView):
     serializer_class = MaterielSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["materiel.change_materiel"]
+        "GET": ["materiel.view_materiel"],
+        "PUT": ["materiel.change_materiel"],
+        "PATCH": ["materiel.change_materiel"],
     }
     def get_object(self):
         obj = get_object_or_404(Materiel.objects.filter(id=self.kwargs["pk"]))
@@ -50,7 +52,8 @@ class MaterielDestroyAPIView(generics.DestroyAPIView):
     serializer_class = MaterielSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["materiel.delete_materiel"]
+        "POST": ["materiel.delete_materiel"],
+        "DELETE": ["materiel.delete_materiel"],
     }
     
 @api_view(['GET'])

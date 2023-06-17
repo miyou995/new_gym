@@ -12,8 +12,8 @@ import {notifySuccess, notifyError} from '../Alert'
 // import { Link } from "react-router-dom";
 
 
-const PaiementEditModal = ({show, onShowShange, paiementData}) => {
-    const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+const PaiementEditModal = ({show, onShowChange, paiementData}) => {
+    const handleShow = useCallback( () => {onShowChange(false)}, [onShowChange])
   const api = useAxios();
   
   const clientId = paiementData['clientId']
@@ -38,8 +38,8 @@ const PaiementEditModal = ({show, onShowShange, paiementData}) => {
    const [paiementABCNameReceived, setPaiementABCNameReceived] = useState("");
    const [selectedAbc, setSelectedAbc] = useState("");
     
-    console.log('Paimeent selectedAbc',selectedAbc)
-    console.log('Paimeent paiementDatpaiementABCInfo]',paiementData['paiementABCInfo'])
+    //console.log('Paimeent selectedAbc',selectedAbc)
+    //console.log('Paimeent paiementDatpaiementABCInfo]',paiementData['paiementABCInfo'])
     const paiementCreateEND =`${process.env.REACT_APP_API_URL}/rest-api/transactions/paiement/${paiementIdReceived}/` 
     const paiementDeleteEND = `${process.env.REACT_APP_API_URL}/rest-api/transactions/paiement/delete/${paiementIdReceived}/`
 

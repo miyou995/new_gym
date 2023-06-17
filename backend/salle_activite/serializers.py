@@ -5,12 +5,12 @@ from rest_framework import serializers
 class DoorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Door
-        fields= '__all__'
+        fields= ('id', 'ip_adress','salle','username','password','salle_name',)
 
 class SalleSerialiser(serializers.ModelSerializer):
     class Meta:
         model = Salle
-        fields=  ('id', 'name', 'door', 'is_default', 'get_door')
+        fields=  ('id', 'name','is_default', 'get_door')
 
 class ActivitySerialiser(serializers.ModelSerializer):
     salle_name = serializers.SerializerMethodField('get_salle_name', read_only=True)

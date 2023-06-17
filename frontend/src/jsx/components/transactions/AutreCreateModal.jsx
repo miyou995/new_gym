@@ -8,8 +8,8 @@ import { Dropdown, Tab, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
  
 
-const AutreCreateModal = ({show, onShowShange, transactionData}) => {
-    const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+const AutreCreateModal = ({show, onShowChange, transactionData}) => {
+    const handleShow = useCallback( () => {onShowChange(false)}, [onShowChange])
     const api = useAxios();
 
     let endpoint = `${process.env.REACT_APP_API_URL}/rest-api/transactions/autre/create`
@@ -32,7 +32,7 @@ const AutreCreateModal = ({show, onShowShange, transactionData}) => {
       // refreshPage()
       handleShow()
     }
-  console.log('creneaux detail');
+  //console.log('creneaux detail');
 
 return ( 
 

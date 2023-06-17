@@ -4,12 +4,15 @@ from creneau.models import Creneau
 from django.db.models.signals import pre_save, post_save, post_delete, pre_delete
 # Create your models here.
 from django.db.models import Q
-from datetime import timedelta, datetime, timezone
+from datetime import timedelta, datetime, timezone, date
 from decimal import Decimal
 from django.utils import timezone
 from abonnement.models import AbonnementClient
 from simple_history.models import HistoricalRecords
 from django.conf import settings
+
+FTM = '%H:%M:%S'
+
 
 class PresenceManager(models.Manager):
     def get_presence(self, client_id):
@@ -35,6 +38,9 @@ class Presence(models.Model):
     is_in_salle = models.BooleanField(default=False)
     note        = models.CharField(max_length=200, blank=True, null=True)
     
+    created = models.DateTimeField(verbose_name="Date de Création", auto_now_add=True)
+    updated = models.DateTimeField(verbose_name="Date de dernière mise à jour", auto_now=True)
+    
     objects = models.Manager()
     presence_manager = PresenceManager()
     history = HistoricalRecords(user_model=settings.AUTH_USER_MODEL)
@@ -52,6 +58,38 @@ class Presence(models.Model):
         if not self.date:
             self.date = timezone.now()
         return super().save(*args, **kwargs)
+    
+    def get_time_consumed(self, sortie=None):
+        today = date.today()
+        print(' THE today', today)
+        # time = timezone.now().strptime('09:30', '%H:%M').time()
+        # time = datetime.now().strftime("%H:%M:%S")
+        time = datetime.now().time()
+        print(' THE timezone.now()',time)
+        if sortie:
+            print('LA SORTIE TIME', sortie)
+            print('LA SORTIE TIME TYPE =>', type(sortie))
+            d_end = datetime.combine(today, sortie)
+        else:
+            d_end = datetime.combine(today, time)
+
+        print(' THE D_end0', d_end)
+        if self.abc.is_time_volume():
+            d_start = datetime.combine(today, self.hour_entree)
+            print(' THE d_start', d_start)
+
+            diff =  d_end - d_start 
+            diff_secondes = diff.total_seconds() 
+            minutes = diff_secondes / 60
+            ecart = int(minutes)
+            print(' THE ECART', ecart)
+        else :
+            ecart = 1
+        print('THE FINAL DEND', d_end)
+        self.hour_sortie = d_end.time()
+        self.is_in_salle = False
+        self.save()
+        return ecart
 
 
 class PresenceCoach(models.Model):

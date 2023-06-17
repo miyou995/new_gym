@@ -17,11 +17,19 @@ import stafImg from "../../images/profile/waiter.png";
 import { Link } from "react-router-dom";
 import useAxios from "./useAxios";
 import useAuth from "./useAuth"
+
+// ICONS
+import leftArrow from "../../images/icons/left-arrow.png";
+import righttArrow from "../../images/icons/right-arrow.png";
+
+
+
 function SampleNextArrow(props) {
   const { onClick } = props;
   return (
     <div className="conteact-next c-pointer" onClick={onClick}>
-      <i className="las la-long-arrow-alt-right" />
+      <img src={righttArrow} width="40" />
+      {/* <i className="las la-long-arrow-alt-right" /> */}
     </div>
   );
 }
@@ -79,25 +87,27 @@ const ShortCuts = () => {
 
 
 
-
-//  const clientAuthorizationEnd = `${process.env.REACT_APP_API_URL}/rest-api/clients-name/?page=${nextpage}`
-
  const clientAuthorizationEnd = `${process.env.REACT_APP_API_URL}/rest-api/get_client_authorization/`
- const transactionAuthorization = `${process.env.REACT_APP_API_URL}/rest-api/get_transaction_authorization/`;
+ const transactionAuthorization = `${process.env.REACT_APP_API_URL}/rest-api/transactions/get_transaction_authorization/`;
  const coachAuthorizationEnd = `${process.env.REACT_APP_API_URL}/rest-api/get_coach_authorization/`
-//  let personnelAuthorization = `${process.env.REACT_APP_API_URL}/rest-api/personnel/`
-
- const clientAuth = useAuth(clientAuthorizationEnd, 'GET')
- const coachAuth = useAuth(coachAuthorizationEnd, 'GET')
-//  const persoAuth = useAuth(personnelAuthorization, 'GET')
- const transactionAuth = useAuth(transactionAuthorization, 'GET')
+ let personnelAuthorization = `${process.env.REACT_APP_API_URL}/rest-api/get_personnel_authorization/`
+ let presenceAuthorization = `${process.env.REACT_APP_API_URL}/rest-api/presence/get_presence_authorization/`
 
 
+ const [clientAuth] = useAuth(clientAuthorizationEnd, 'GET')
+ const [coachAuth] = useAuth(coachAuthorizationEnd, 'GET')
+ const [transactionAuth] = useAuth(transactionAuthorization, 'GET')
+ const [persoAuth] = useAuth(personnelAuthorization, 'GET')
+ const [presenceAuth] = useAuth(presenceAuthorization, 'GET')
 
 
-console.log("clientAuth=========================>", useAuth(clientAuthorizationEnd, 'GET'));
-console.log("transactionAuth=========================>", useAuth(transactionAuthorization, 'GET'));
-console.log("coachAuth=========================>", useAuth(coachAuthorizationEnd, 'GET'));
+
+
+
+
+// console.log("clientAuth=========================>", useAuth(clientAuthorizationEnd, 'GET'));
+// console.log("transactionAuth=========================>", useAuth(transactionAuthorization, 'GET'));
+// console.log("coachAuth=========================>", useAuth(coachAuthorizationEnd, 'GET'));
 
 
 //  const [clientAuth, setClientAuth] = useState(useAuth(clientAuthoprizationEnd, 'GET'), null)
@@ -142,7 +152,6 @@ console.log("coachAuth=========================>", useAuth(coachAuthorizationEnd
           </div>
         </Link> 
       } 
-     
 
       {/* <Link to="/Abonnements">
          <div className="items">
@@ -152,6 +161,7 @@ console.log("coachAuth=========================>", useAuth(coachAuthorizationEnd
             </div>
          </div>
          </Link> */}
+
       {clientAuth  &&
         <Link to="/client">
           <div className="items">
@@ -163,37 +173,42 @@ console.log("coachAuth=========================>", useAuth(coachAuthorizationEnd
           </div>
         </Link>
       }
+      
       {coachAuth &&
         <Link to="/coach">
         <div className="items">
           <div>
             <img className="mb-3 ml-auto mr-auto" src={cochsImg}  />
             <h6 className=" mb-0 text-center">Coachs </h6>
-            {/* <span className="fs-12">Gestion des coachs</span> */}
           </div>
         </div>
       </Link>
       }
-      
-          <Link to="/personnel">
+
+      {persoAuth && 
+        <Link to="/personnel">
           <div className="items">
             <div>
-              <img className="mb-3 ml-auto mr-auto" src={stafImg}  />
+              <img className="mb-3 ml-auto mr-auto" src={stafImg} />
               <h6 className=" mb-0 text-center">Personnels </h6>
               {/* <span className="fs-12">Gestion des coachs</span> */}
             </div>
           </div>
         </Link>
+      }
 
-      <Link to="/presences">
-        <div className="items">
-          <div>
-            <img className="mb-3 ml-auto mr-auto" src={presencesImg}  />
-            <h6 className=" mb-0 text-center">Présences </h6>
-            {/* <span className="fs-12">Gestion des présences</span> */}
+      {presenceAuth &&
+        <Link to="/presences">
+          <div className="items">
+            <div>
+              <img className="mb-3 ml-auto mr-auto" src={presencesImg} />
+              <h6 className=" mb-0 text-center">Présences </h6>
+              {/* <span className="fs-12">Gestion des présences</span> */}
+            </div>
           </div>
-        </div>
-      </Link>
+        </Link>
+      }
+      
       <Link to="/tresorie">
         <div className="items">
           <div>

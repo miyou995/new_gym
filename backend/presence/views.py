@@ -48,7 +48,7 @@ class PresencePostAPIView(generics.CreateAPIView):
     serializer_class = PresencePostSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["presence.add_presence"]
+        "POST": ["presence.add_presence"]
     }
     # def create(self, request, format =''):
     #     serializer = self.get_serializer(data=request.data)
@@ -76,6 +76,7 @@ class PresencePostAPIView(generics.CreateAPIView):
 
 class PresenceHistoryListAPIView(generics.ListAPIView):
     queryset = Presence.history.all()
+    pagination_class = StandardResultsSetPagination
     # print('queryset', queryset.count())
     # permission_classes = (IsAuthenticated,)
     serializer_class = PresenceHistorySerialiser
@@ -101,9 +102,7 @@ class AllPresenceListAPIView(generics.ListAPIView):
 
 
 
-
-
-    
+     
 class PresenceListAPIView(generics.ListAPIView):
     queryset = Presence.objects.all()
     # permission_classes = (IsAuthenticated,)
@@ -119,7 +118,7 @@ class PresenceListAPIView(generics.ListAPIView):
 
     def get_queryset(self):
         FTM = '%H:%M'
-        queryset = Presence.objects.all()
+        queryset = Presence.objects.select_related('creneau', 'creneau', 'abc__client' , 'creneau__activity__salle')
         start_date = self.request.query_params.get('start_date', None)
         end_date = self.request.query_params.get('end_date', None)
         hour = self.request.query_params.get('hour', None) 
@@ -135,11 +134,11 @@ class PresenceListAPIView(generics.ListAPIView):
             end_time = i_end_time.time()
         try:
             print('ONE²')
-            queryset = Presence.objects.filter(date__range=[start_date, end_date], creneau__hour_start__range=[start_time, end_time])
+            queryset = queryset.filter(date__range=[start_date, end_date], creneau__hour_start__range=[start_time, end_time])
             return queryset.order_by('-id')
         except:
             print('deuxeme')
-            queryset = Presence.objects.filter(date__range=[start_date, end_date])
+            queryset = queryset.filter(date__range=[start_date, end_date])
             return queryset.order_by('-id')
         else:
             print('FINLMENT')
@@ -228,7 +227,9 @@ class PresenceDetailAPIView(generics.RetrieveUpdateAPIView):
     serializer_class = PresenceSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["presence.change_presence"]
+        "GET": ["presence.view_presence"],
+        "PATCH": ["presence.change_presence"],
+        "PUT": ["presence.change_presence"],
     }
     # def get_object(self):
     #     obj = get_object_or_404(Presence.objects.filter(id=self.kwargs["pk"]))
@@ -246,11 +247,15 @@ class PresenceEditAPIView(generics.RetrieveUpdateAPIView):
     queryset = Presence.objects.all()
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["presence.change_presence"]
+        "GET": ["presence.view_presence"],
+        "PATCH": ["presence.change_presence"],
+        "PUT": ["presence.change_presence"],
     }
     serializer_class = PresenceManualEditSerialiser
     def get_object(self):
         obj = get_object_or_404(Presence, id=self.kwargs["pk"])
+        client = obj.abc.client
+        client.init_output()
         print('Salle ... ', obj , obj.id)
         return obj
 
@@ -258,7 +263,10 @@ class PresenceManualEditAPIView(generics.RetrieveUpdateAPIView):
     queryset = Presence.objects.all()
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["presence.change_presence"]
+        "GET": ["presence.view_presence"],
+        "PATCH": ["presence.change_presence"],
+        "PUT": ["presence.change_presence"],
+        "PUT": ["presence.change_presence"],
     }
     serializer_class = PresencePostSerialiser
     def get_object(self):
@@ -272,7 +280,8 @@ class PresenceDestroyAPIView(generics.DestroyAPIView):
     serializer_class = PresenceSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["presence.delete_presence"]
+        "POST": ["presence.delete_presence"],
+        "DELETE": ["presence.delete_presence"],
     }
 
 class PresenceCoachCreateAPI(generics.CreateAPIView):
@@ -280,7 +289,7 @@ class PresenceCoachCreateAPI(generics.CreateAPIView):
     serializer_class = PresenceCoachSerializer
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["presence.add_presencecoach"]
+        "POST": ["presence.add_presencecoach"]
     }
 class PresenceCoachListAPI(generics.ListAPIView):
     queryset = PresenceCoach.objects.all()
@@ -291,7 +300,6 @@ class PresenceCoachListAPI(generics.ListAPIView):
     }
 class PresenceByCoachListAPI(generics.ListAPIView):
     queryset = PresenceCoach.objects.all()
-
     serializer_class = PresenceCoachSerializer
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
@@ -301,7 +309,7 @@ class PresenceByCoachListAPI(generics.ListAPIView):
         
         coach = self.request.query_params.get('cl', None)
         print('cliiiientr', coach)
-        presences = PresenceCoach.objects.filter(coach=coach)
+        presences = PresenceCoach.objects.filter(coach=coach).distinct()
         return presences
 
 
@@ -311,7 +319,9 @@ class PresenceCoachDetailUpdateAPI(generics.RetrieveUpdateAPIView):
     serializer_class = PresenceCoachSerializer
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["presence.change_presencecoach"]
+        "GET": ["presence.view_presencecoach"],
+        "PUT": ["presence.change_presencecoach"],
+        "PATCH": ["presence.change_presencecoach"],
     }
     def get_object(self):
         obj = get_object_or_404(PresenceCoach.objects.filter(id=self.kwargs["pk"]))
@@ -323,7 +333,8 @@ class PresenceCoachDestroyAPI(generics.DestroyAPIView):
     serializer_class = PresenceCoachSerializer
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["presence.delete_presencecoach"]
+        "POST": ["presence.delete_presencecoach"],
+        "DELETE": ["presence.delete_presencecoach"],
     }
 
     
@@ -331,12 +342,13 @@ class PresenceCoachEditAPIView(generics.RetrieveUpdateAPIView):
     queryset = Presence.objects.all()
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["presence.change_presence"]
+        "GET": ["presence.view_presence"],
+        "PUT": ["presence.change_presence"],
+        "PATCH": ["presence.change_presence"],
     }
     serializer_class = PresenceEditSerialiser
     def get_object(self):
         obj = get_object_or_404(PresenceCoach.objects.filter(id=self.kwargs["pk"]))
-
         # obj = get_object_or_404(Presence.objects.filter(id=self.kwargs["pk"]))
         # creneaux = Presence.presence_manager.get_presence(30)
         # # abon = abonnement[0].id
@@ -344,7 +356,6 @@ class PresenceCoachEditAPIView(generics.RetrieveUpdateAPIView):
         # #### ce passe dans une fonction
         # prenseces = abon.presence_quantity 
         # print('ceci est labonnement du client ', abon)
-
         # abonnement.update(presence_quantity = prenseces - 1 )
         return obj
 
@@ -377,7 +388,6 @@ class PresenceClientIsInAPI(generics.ListAPIView):
         # client = self.request.query_params.filter('cl', None)
         # print('client', client)
         presences = Presence.objects.filter(is_in_salle=True)
-
         return presences
 
 
@@ -387,7 +397,8 @@ class PresenceClientAutoCreateAPI(generics.CreateAPIView):
     serializer_class = PresenceAutoSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["presence.add_presencecoach"]
+        "POST": ["presence.add_presencecoach"],
+        "POST": ["presence.add_presence"]
     }
 
 

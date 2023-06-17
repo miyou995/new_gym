@@ -35,7 +35,6 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractUser):
-
     username        = None
     email           = models.EmailField('email address', unique=True)
     first_name      = models.CharField(max_length=70, verbose_name="Nom", blank=True, null=True)
@@ -61,4 +60,8 @@ class User(AbstractUser):
     @property
     def is_content_creator(self):
         return self.is_active and (self.is_superuser or self.is_staff and self.groups.filter(name="Content_creator").exists())
-
+    @property
+    def get_first_group(self):
+        with self.groups.first() as group:
+            if group :
+                return group.name

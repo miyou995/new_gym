@@ -30,15 +30,15 @@ class RangeManager(models.Manager):
             return creneaux
         elif datetime.today().weekday() == 2:
             creneaux =Creneau.objects.filter(day='ME')
-            print('les creneaux du lundi sont !:;====>', creneaux)
+            print('les creneaux du MERCREDI sont !:;====>', creneaux)
             return creneaux
         elif datetime.today().weekday() == 3:
             creneaux =Creneau.objects.filter(day='JE')
-            print('les creneaux du lundi sont !:;====>', creneaux)
+            print('les creneaux du JEUDI sont !:;====>', creneaux)
             return creneaux
         elif datetime.today().weekday() == 4:
             creneaux =Creneau.objects.filter(day='VE')
-            print('les creneaux du lundi sont !:;====>', creneaux)
+            print('les creneaux du VENDREDI sont !:;====>', creneaux)
             return creneaux
         elif datetime.today().weekday() == 5:
             creneaux =Creneau.objects.filter(day='SA')
@@ -133,28 +133,25 @@ class RangeManager(models.Manager):
 
 
 class Creneau(models.Model):
-    hour_start = models.TimeField()
-    hour_finish= models.TimeField()
-    day  = models.CharField(choices=DAYS_CHOICES , max_length=2, default='DI', verbose_name='Jour')
-    name  = models.CharField(verbose_name="nom du creneau", max_length=100,blank=True, null=True)
-    planning = models.ForeignKey(Planning, on_delete=models.CASCADE)
-    color           = models.CharField( max_length=50, blank=True, null=True) 
-    activity  = models.ForeignKey(Activity, verbose_name="activities", related_name="creneaux", on_delete=models.CASCADE)
-    coach  = models.ForeignKey('client.Coach' , on_delete=models.CASCADE, related_name='creneaux', blank=True, null=True)
-    objects = models.Manager()
-    range = RangeManager()
-    created = models.DateTimeField(verbose_name='Date de Création', auto_now_add=True)
-    updated = models.DateTimeField(verbose_name='Date de dernière mise à jour', auto_now=True)
-    history = HistoricalRecords()
+    hour_start  = models.TimeField()
+    hour_finish = models.TimeField()
+    day         = models.CharField(choices=DAYS_CHOICES , max_length=2, default='DI', verbose_name='Jour')
+    name        = models.CharField(verbose_name="nom du creneau", max_length=100,blank=True, null=True)
+    planning    = models.ForeignKey(Planning, on_delete=models.CASCADE)
+    color       = models.CharField( max_length=50, blank=True, null=True) 
+    activity    = models.ForeignKey(Activity, verbose_name="activities", related_name="creneaux", on_delete=models.CASCADE)
+    coach       = models.ForeignKey('client.Coach' , on_delete=models.CASCADE, related_name='creneaux', blank=True, null=True)
+    created     = models.DateTimeField(verbose_name='Date de Création', auto_now_add=True)
+    updated     = models.DateTimeField(verbose_name='Date de dernière mise à jour', auto_now=True)
+    objects     = models.Manager()
+    range       = RangeManager()
+    history     = HistoricalRecords()
 
     class Meta:
         ordering = ['hour_start']
 
     def __str__(self):
         return str(self.hour_start)
-
-    def get_absolute_url(self):
-        return reverse("Creneau_detail", kwargs={"pk": self.pk})
 
     def get_color(self):
         if self.color:

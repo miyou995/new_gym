@@ -10,7 +10,6 @@ urlpatterns = [
     # path('detail/<int:pk>/', TransactionDetailAPIView.as_view(),  name="transaction-detail"),
     path('paiement/create', PaiementAPIView.as_view(),  name="paiement-create"),
     path('paiement/', PaiementListAPIView.as_view(),  name="paiement"),
-    path('paiement/', PaiementListAPIView.as_view(),  name="paiement"),
     path('paiement/by_test', MyModelViewSet.as_view(),  name="paiement"),
     path('paiement/ca-by-salle', ca_by_salle,  name="ca-by-filters"),
     path('paiement/ca-by-abonnement', ca_by_ab,  name="ca-by-filters"),
@@ -29,10 +28,10 @@ urlpatterns = [
     path('assurance/', AssuranceListAPIView.as_view(),  name="assurance"),
     path('assurance/<int:pk>/', AssuranceDetailAPIView.as_view(), name="assurance-delete"),
     path('assurance/delete/<int:pk>/', AssuranceDestroyAPIView.as_view(), name="assurance-delete"),
-
+                                                                                            
     path('remuneration/create', RemunerationAPIView.as_view(),  name="remuneration-create"),
     path('remuneration/', RemunerationListAPIView.as_view(),  name="remuneration"),
-    path('remunerationProf-by-coach/', PaiementEmployeListAPIView.as_view(),  name="remunerationProf-create"),
+    path('remunerationProf-by-id/', PaiementEmployeListAPIView.as_view(),  name="remunerationProf-create"),
     path('remuneration/<int:pk>/', RemunerationDetailAPIView.as_view(), name="remuneration-delete"),
     path('remuneration/delete/<int:pk>/', RemunerationDestroyAPIView.as_view(), name="remuneration-delete"),
     path('get_transaction_authorization/', get_transaction_authorization, name="get_transaction_authorization"),

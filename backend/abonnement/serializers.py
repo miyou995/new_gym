@@ -105,6 +105,7 @@ class AbonnementClientDetailUpdateSerialiser(serializers.ModelSerializer):
 
     def get_activity(self, obj):
         abonnement_id = obj.type_abonnement.id
+        print('abonnement_id TYPE', obj.type_abonnement.type_of)
         abonnement = Abonnement.objects.get(id = abonnement_id)
         salles = abonnement.salles.all() #ERRRRREEEEEEUUUUUUURRRRR
         activitesOfSalles=[] 
@@ -236,7 +237,7 @@ class AbonnementClientDetailSerializer(serializers.ModelSerializer):
     price       = serializers.CharField(source='type_abonnement.price', read_only=True)
     class Meta:
         model = AbonnementClient
-        fields =('id', 'start_date','end_date', 'type_abonnement' , 'type_abonnement_name','presence_quantity', 'creneaux',  'reste', 'price', 'left_minutes', 'is_time_volume', 'is_free_access', 'is_fixed_sessions', 'is_free_sessions', 'is_actif')
+        fields =('id', 'start_date','end_date', 'type_abonnement' , 'type_abonnement_name','presence_quantity', 'creneaux',  'reste', 'price', 'left_minutes', 'is_time_volume', 'is_free_access', 'is_fixed_sessions', 'is_free_sessions', 'is_valid')
 
     def get_type_abonnement_name(self, obj):
         return obj.type_abonnement.name

@@ -8,9 +8,9 @@ import useAxios from "../useAxios";
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
-const PlanningEditModal = ({show, onShowShange, planningData}) => {
+const PlanningEditModal = ({show, onShowChange, planningData}) => {
   const api = useAxios();
-  const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+  const handleShow = useCallback( () => {onShowChange(false)}, [onShowChange])
     // const creneauPerAbonnementEND = `${process.env.REACT_APP_API_URL}/rest-api/abonnement/`
     
     const [is_default, setDefault] = useState(false)
@@ -23,7 +23,7 @@ const PlanningEditModal = ({show, onShowShange, planningData}) => {
             name : planName,
             is_default : is_default
         }
-        console.log('the form', planningForm);
+        //console.log('the form', planningForm);
         await api.put(planningEditEnd, planningForm).then( res => {
             notifySuccess('Planning modifier avec succés')
                 handleShow()
@@ -65,7 +65,7 @@ return (
                         checked={is_default}
                         onChange={e=> {
                         setDefault(!is_default)
-                            console.log('target value', e.target.value);
+                            //console.log('target value', e.target.value);
                         }}
 
                         name="checkedB"
