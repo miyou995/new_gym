@@ -373,6 +373,7 @@ class FaceControl:
         base_path =  Path(__file__).resolve().parent.parent
         media_path = base_path / 'media'
         image_path = base_path / f'media/{picture_path}'
+
         print(' base_path--->',picture_path)
         print(' media_path--->',media_path)
         print(' image_path--->',image_path)
