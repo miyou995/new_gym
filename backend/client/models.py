@@ -209,22 +209,17 @@ class Client(models.Model):
         if my_presences:
             first_presence = my_presences.first()
             my_presences.exclude(pk=first_presence.pk).delete()
-
     def init_output(self,  exit_hour=None):
         my_presences = Presence.objects.filter(abc__client=self, is_in_salle=True)
         presence = my_presences.first()
-        
         print('LA PRESENCE', presence)
         print('LA my_presences', my_presences)
-        
         logger.warning('LA PRESENCE {}'.format(str(presence)))
         logger.warning('LA my_presences {}'.format(str(my_presences)))
-
-
         current_time = datetime.now().strftime("%H:%M:%S")
-
         if exit_hour:
             current_time = exit_hour
+
         if not presence and self.is_on_salle:
             """ ecart + de 10 seconde"""
             return True
@@ -232,24 +227,33 @@ class Client(models.Model):
         presence_time = presence.hour_entree
         
         ecart = abs(datetime.strptime(current_time, FTM) - datetime.strptime(str(presence_time), FTM))
-
-        print('ECART', ecart)
-        logger.warning('ECART {}'.format(str(ecart)))
-        print('ECART TYPE', type(ecart))
-
         time_diff_seconds = timedelta.total_seconds(ecart)
+
+        print('presence_time', presence_time)
+        print('current_time', current_time)
+        print('presence_time TIMEEEEE', presence_time)
+        print('current_time TIEEEEEMEEEE', current_time)
+        print('ECART', ecart)
         print('time_diff_seconds================>', time_diff_seconds)
+
+        logger.warning('presence_time ================> {}'.format(str(presence_time)))
+        logger.warning('current_time ================> {}'.format(str(current_time)))
+
+        logger.warning('ECART {}'.format(str(ecart)))
         logger.warning('time_diff_seconds================> {}'.format(str(time_diff_seconds)))
-        if not time_diff_seconds > 10:
+        logger.warning('time_diff_seconds INT================> {}'.format(int(time_diff_seconds)))
+
+        if int(time_diff_seconds) <= 200:
+            logger.warning('SORTIE COULD NOT BE done  ================> ')
             return False
+        else:
+            logger.warning('SORTIE AUTORISEE ================> ')
+
         
         presence.hour_sortie = current_time
         presence.is_in_salle = False
         presence.save()
-
-
-
-
+    
 
         # update abc
         # presence.save(commit=False)
@@ -262,6 +266,8 @@ class Client(models.Model):
         # else:
         #     abc.presence_quantity -= 1
         print('la sorite--------------- ', presence.hour_sortie)
+        logger.warning('la sorite--------------- {}'.format(str(presence.hour_sortie)))
+
         print('la presence.is_in_salle--------------- ', presence.is_in_salle)
         return True
 

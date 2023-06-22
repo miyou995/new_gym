@@ -10,6 +10,7 @@ media/*
 # Backup files # 
 *.bak 
 backend/*.log
+backend/media/*
 backend/*/__pycache__
 backend/picture.jpg
 frontend/.eslintcache
