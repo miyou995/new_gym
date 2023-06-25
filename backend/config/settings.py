@@ -247,6 +247,9 @@ if DEBUG == True:
         },
     }
 else:
+    pass
+    """
+    
     CELERY_BEAT_SCHEDULE = {  
         'Task_one_schedule' : {   
             'task': 'salle_activite.tasks.start_linsten_2', 
@@ -281,7 +284,7 @@ else:
             'schedule': crontab(minute=0, hour=6), 
         },
     }
-
+"""
 
 
 

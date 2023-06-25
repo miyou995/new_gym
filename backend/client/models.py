@@ -250,26 +250,26 @@ class Client(models.Model):
             logger.warning('SORTIE AUTORISEE ================> ')
 
         
-        presence.hour_sortie = current_time
-        presence.is_in_salle = False
-        presence.save()
-    
+            presence.hour_sortie = current_time
+            presence.is_in_salle = False
+            presence.save()
+        
 
-        # update abc
-        # presence.save(commit=False)
-        abc = presence.abc
-        if abc.is_time_volume():
-            ecart = presence.get_time_consumed() 
-            abc.presence_quantity -= ecart 
-            abc.save()
-            # ecart = abs(datetime.strptime(str(hour_start), FTM) - datetime.strptime(current_time, FTM))
-        # else:
-        #     abc.presence_quantity -= 1
-        print('la sorite--------------- ', presence.hour_sortie)
-        logger.warning('la sorite--------------- {}'.format(str(presence.hour_sortie)))
+            # update abc
+            # presence.save(commit=False)
+            abc = presence.abc
+            if abc.is_time_volume():
+                ecart = presence.get_time_consumed() 
+                abc.presence_quantity -= ecart 
+                abc.save()
+                # ecart = abs(datetime.strptime(str(hour_start), FTM) - datetime.strptime(current_time, FTM))
+            # else:
+            #     abc.presence_quantity -= 1
+            print('la sorite--------------- ', presence.hour_sortie)
+            logger.warning('la sorite--------------- {}'.format(str(presence.hour_sortie)))
 
-        print('la presence.is_in_salle--------------- ', presence.is_in_salle)
-        return True
+            print('la presence.is_in_salle--------------- ', presence.is_in_salle)
+            return True
 
     def get_access_permission(self, door_ip=None):
         my_presences = Presence.objects.filter(abc__client=self, hour_sortie__isnull=True)
