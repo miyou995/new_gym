@@ -243,7 +243,7 @@ class Client(models.Model):
         logger.warning('time_diff_seconds================> {}'.format(str(time_diff_seconds)))
         logger.warning('time_diff_seconds INT================> {}'.format(int(time_diff_seconds)))
 
-        if int(time_diff_seconds) <= 200:
+        if int(time_diff_seconds) <= 2:
             logger.warning('SORTIE COULD NOT BE done  ================> ')
             return False
         else:
@@ -286,14 +286,22 @@ class Client(models.Model):
         # the problem is that it doesn't turn the client is_on_salle to True on entering we can try to make comparison here if it less than 10 s we directly return False
         
         if self.is_on_salle or my_presences or in_salle_presences:
+            logger.warning('MY presence is_on_salle=> {}'.format(str(self.is_on_salle)))
+            logger.warning('MY presence in_salle_presences=> {}'.format(str(in_salle_presences)))
+            logger.warning('MY presence my_presences=> {}'.format(str(my_presences)))
+
             print('is on salle')
             sortie = self.init_output()
             if not sortie: # if sortie is false this mean that the client passed the card on an interval < 10 secondes
                 print('WAIT 10 SECONDES')  
+                logger.warning('sortie??   should be false => {}'.format(str(sortie)))
                 return False
             self.is_on_salle = False 
             self.save()
             return sortie
+
+        logger.warning('check for presence creation => ')
+
         door = Door.objects.filter(ip_adress=door_ip).first()
         salle = door.salle
         # salle = Salle.objects.filter(door__ip_adress=door_ip).first()
