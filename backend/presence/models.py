@@ -10,6 +10,7 @@ from django.utils import timezone
 from abonnement.models import AbonnementClient
 from simple_history.models import HistoricalRecords
 from django.conf import settings
+from django.core.exceptions import ValidationError
 
 FTM = '%H:%M:%S'
 
@@ -49,14 +50,31 @@ class Presence(models.Model):
 
     # def __str__(self):
     #     return str(f' le client {self.client}, {self.date}')
+#     def clean(self):
+
+        # Call the parent's clean method to ensure any parent validation is carried out
+     #    super().clean()
+        # Check if both hour_entree and hour_sortie are set
+     #    if self.hour_entree and self.hour_sortie:
+            # Calculate the time difference
+          #   time_diff = datetime.combine(date.min, self.hour_sortie) - datetime.combine(date.min, self.hour_entree)
+            # Check if the time difference is less than 2 minutes
+         # #    if time_diff < timedelta(minutes=4):
+           #      raise ValidationError('The difference between hour_entree and hour_sortie should be at least 2 minutes.')
+
+
+    # def __str__(self):
+    #     return str(f' le client {self.client}, {self.date}')
 
     class Meta:
         ordering  = ['-date']
 
     def save(self, *args, **kwargs):
+
         # print(' Save() on Presence class ( model)')
         if not self.date:
             self.date = timezone.now()
+        self.full_clean()
         return super().save(*args, **kwargs)
     
     def get_time_consumed(self, sortie=None):
