@@ -214,6 +214,7 @@ AUTH_USER_MODEL = 'authentication.User'
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'Africa/Algiers'
+# TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
@@ -231,7 +232,7 @@ CELERY_TASK_TRACK_STARTED = True
 # CELERY_TASK_TIME_LIMIT = 30 * 60
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TIMEZONE = 'UTC'
+CELERY_TIMEZONE = TIME_ZONE
 
 from celery.schedules import crontab
 from datetime import datetime
