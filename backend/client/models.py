@@ -209,6 +209,8 @@ class Client(models.Model):
         if my_presences:
             first_presence = my_presences.first()
             my_presences.exclude(pk=first_presence.pk).delete()
+
+            
     def init_output(self,  exit_hour=None):
         my_presences = Presence.objects.filter(abc__client=self, is_in_salle=True)
         presence = my_presences.first()
@@ -317,6 +319,7 @@ class Client(models.Model):
 
         if not abonnement_client or not creneaux:
             return False
+        
         
 
         cren_ref = creneaux.first()

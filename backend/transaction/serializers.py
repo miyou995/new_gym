@@ -51,7 +51,11 @@ class AssuranceSerialiser(serializers.ModelSerializer):
         fields= ('id', 'amount', 'client', 'last_modified', 'notes', 'date_creation')
 
     def get_client_name(self, obj):
-        return Response({'id' : obj.client.id, 'name' : obj.client.last_name}).data
+        try:
+            response = Response({'id' : obj.client.id, 'name' : obj.client.last_name}).data 
+        except : 
+            response = Response({'id' : "-", 'name' : '-'}).data 
+        return response
 
 
 class PaiementHistorySerialiser(serializers.ModelSerializer):
