@@ -323,6 +323,7 @@ def creneau_created_signal(sender, instance, created,**kwargs):
         # .select_related('type_abonnement__salles__actvities')
         activity = instance.activity
         planning =instance.planning
+        # planning =instance.planning
         print('type_abonnement__salles__actvities = activity',  activity)
         print('creneaux__planning = planning',  planning)
 

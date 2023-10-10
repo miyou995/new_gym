@@ -70,10 +70,9 @@ class Presence(models.Model):
         ordering  = ['-date']
 
     def save(self, *args, **kwargs):
-
         # print(' Save() on Presence class ( model)')
         if not self.date:
-            self.date = timezone.now()
+            self.date = datetime.now().date()
         self.full_clean()
         return super().save(*args, **kwargs)
     

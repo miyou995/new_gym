@@ -33,7 +33,10 @@ class PresenceHistorySerialiser(serializers.ModelSerializer):
 class PresenceManualEditSerialiser(serializers.ModelSerializer):
     class Meta:
         model = Presence
+        # fields= ('id', )
+        # exclude = ("abc","date","hour_entree", )
         fields= "__all__"
+        
 
 
 #  presence manuelle non strict
@@ -222,7 +225,6 @@ class PresenceSerialiser(serializers.ModelSerializer):
     seances = serializers.RelatedField(source='client.abonnement_client.presence_quantity', read_only=True)
     class Meta:
         model = Presence
-        print('PresenceSerialiser')
         fields= ('id', 'abc', 'creneau', 'client', 'is_in_list', 'client_last_name', 'note', 'hour_entree', 'hour_sortie', 'is_in_salle', 'note', 'activity', 'date', 'seances', 'dettes')
 
     def get_client_name(self, obj):

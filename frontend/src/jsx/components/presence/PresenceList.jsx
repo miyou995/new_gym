@@ -158,6 +158,7 @@ const HandleSubmit = (e) => {
          api.put( `${process.env.REACT_APP_API_URL}/rest-api/presence/edit/${res.data.last_presence}/`)
          notifySuccess(`la sortie de ${clientId} a été éffectué Avec Succée`)
          setClientId('')
+         // console.log('presenceData', presenceData);
          return presenceData
       } else {
          try {
@@ -345,14 +346,14 @@ const [presenceAuth, loading] = useAuth(presenceAuthorization, 'GET')
          {
             !searchBarActivated &&
             <div className='d-flex text-center justify-content-end'>
-                <div className='dataTables_info text-black' id='example5_info '>
+               <div className='dataTables_info text-black' id='example5_info '>
                   {/* Showing {activePag.current * sort + 1} to{' '}
                   {data.length > (activePag.current + 1) * sort
                     ? (activePag.current + 1) * sort
                     : data.length}{' '}
                   of {data.length} entries{' '} */}
-                </div>
-                <div className='dataTables_paginate paging_simple_numbers' id='example5_paginate' >
+               </div>
+               <div className='dataTables_paginate paging_simple_numbers' id='example5_paginate' >
                   <Button
                     onClick={() =>
                      nextpage > 0 && setNextpage(nextpage - 1)
@@ -363,18 +364,16 @@ const [presenceAuth, loading] = useAuth(presenceAuthorization, 'GET')
                   <span >
                       <input to='/transactions' type='number' className='paginate_button_client' onChange={e => setNextpage(e.target.value)} value={nextpage} style={{width: '100px', border: 'none', height:'99%', textAlign: 'center', fontSize:'15px', backgroundColor: '#ffffff'}}/>
                   </span>
-                  <Button 
-                  style={{width: '100px', border: 'none', height:'48px', color:'#ffffff',textAlign: 'center', fontSize:'15px', padding:'2px'}}
-
+                  <Button style={{width: '100px', border: 'none', height:'48px', color:'#ffffff',textAlign: 'center', fontSize:'15px', padding:'2px'}}
                     onClick={() =>
                      nextpage > 0 && setNextpage(Number(nextpage) + 1)
                     }
                   >
                     Suivant
                   </Button>
-                </div>
+               </div>
 
-              </div>
+            </div>
          }
          </>
          ) : <Error403 />}
