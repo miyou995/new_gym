@@ -202,17 +202,17 @@ class Client(models.Model):
     def get_absolute_url(self):
         return reverse("client:client-detail", args={"slug": self.slug})
 
-    #A VERIF
 
     def remove_duplicate(self):
         my_presences = Presence.objects.filter(abc__client=self, hour_sortie__isnull=True)
+        logger.warning('remove_duplicated presences ================> {}'.format(str(self.carte)))
         if my_presences:
             first_presence = my_presences.first()
             my_presences.exclude(pk=first_presence.pk).delete()
 
             
     def init_output(self,  exit_hour=None):
-        my_presences = Presence.objects.filter(abc__client=self, is_in_salle=True)
+        my_presences = Presence.objects.filter(abc__client=self, hour_sortie__isnull=True)
         presence = my_presences.first()
         print('LA PRESENCE', presence)
         print('LA my_presences', my_presences)
@@ -222,7 +222,7 @@ class Client(models.Model):
         if exit_hour:
             current_time = exit_hour
 
-        if not presence and self.is_on_salle:
+        if not presence:
             """ ecart + de 10 seconde"""
             return True
         
@@ -249,13 +249,9 @@ class Client(models.Model):
             logger.warning('SORTIE COULD NOT BE done  ================> ')
             return False
         else:
-            logger.warning('SORTIE AUTORISEE ================> ')
-
-        
             presence.hour_sortie = current_time
-            presence.is_in_salle = False
+            logger.warning('SORTIE AUTORISEE ================> {}'.format(str(presence.hour_sortie)))
             presence.save()
-        
 
             # update abc
             # presence.save(commit=False)
@@ -269,13 +265,11 @@ class Client(models.Model):
             #     abc.presence_quantity -= 1
             print('la sorite--------------- ', presence.hour_sortie)
             logger.warning('la sorite--------------- {}'.format(str(presence.hour_sortie)))
-
-            print('la presence.is_in_salle--------------- ', presence.is_in_salle)
             return True
 
     def get_access_permission(self, door_ip=None):
         my_presences = Presence.objects.filter(abc__client=self, hour_sortie__isnull=True)
-        in_salle_presences = Presence.objects.filter(abc__client=self, is_in_salle=True)
+        in_salle_presences = Presence.objects.filter(abc__client=self, hour_sortie__isnull=True)
 
         presence = my_presences.first()
 
@@ -329,7 +323,7 @@ class Client(models.Model):
             print('abonnement_client.is_time_volume')
             logger.warning('abonnement_client.is_time_volume and is valid')
             # with transaction.atomic():
-            Presence.objects.create(abc= abonnement_client, creneau=cren_ref, is_in_list=True, hour_entree=current_time, is_in_salle=True)
+            Presence.objects.create(abc= abonnement_client, creneau=cren_ref,  hour_entree=current_time)
             self.is_on_salle=True
             self.save()
             self.remove_duplicate()
@@ -349,7 +343,7 @@ class Client(models.Model):
                         dur_ref = duree_seconde
                         cren_ref = cr
             with transaction.atomic():
-                Presence.objects.create(abc= abonnement_client,  creneau= cren_ref, is_in_list=True, hour_entree=current_time, is_in_salle=True)
+                Presence.objects.create(abc= abonnement_client,  creneau= cren_ref,  hour_entree=current_time)
                 self.is_on_salle=True
                 self.save()
                 self.remove_duplicate()
@@ -360,116 +354,6 @@ class Client(models.Model):
             print('WHATS THE CASE')
             logger.warning('WHATS THE CASE-- {}'.format(str(abonnement_client.type_abonnement)))
             return False
-
-    # def init_output(self,  exit_hour=None):
-    #     my_presences = Presence.objects.filter(abc__client=self, is_in_salle=True)
-    #     presence = my_presences.first()
-        
-    #     print('LA PRESENCE', presence)
-    #     print('LA my_presences', my_presences)
-
-
-    #     current_time = datetime.now().strftime("%H:%M:%S")
-
-    #     if exit_hour:
-    #         current_time = exit_hour
-    #     if not presence and self.is_on_salle:
-    #         """ ecart + de 10 seconde"""
-    #         return True
-        
-    #     presence_time = presence.hour_entree
-        
-    #     ecart = abs(datetime.strptime(current_time, FTM) - datetime.strptime(str(presence_time), FTM))
-
-    #     print('ECART', ecart)
-    #     print('ECART TYPE', type(ecart))
-
-    #     time_diff_seconds = timedelta.total_seconds(ecart)
-    #     print('time_diff_seconds================>', time_diff_seconds)
-    #     if not time_diff_seconds > 10:
-    #         return False
-        
-    #     presence.hour_sortie = current_time
-    #     presence.is_in_salle = False
-    #     presence.save()
-
-    #     # update abc
-    #     # presence.save(commit=False)
-    #     abc = presence.abc
-    #     if abc.is_time_volume():
-    #         ecart = presence.get_time_consumed() 
-    #         abc.presence_quantity -= ecart 
-    #         abc.save()
-    #         # ecart = abs(datetime.strptime(str(hour_start), FTM) - datetime.strptime(current_time, FTM))
-    #     # else:
-    #     #     abc.presence_quantity -= 1
-    #     print('la sorite--------------- ', presence.hour_sortie)
-    #     print('la presence.is_in_salle--------------- ', presence.is_in_salle)
-    #     return True
-
-    # def get_access_permission(self, door_ip=None):
-    #     with lock:
-    #         my_presences = Presence.objects.filter(abc__client=self, hour_sortie__isnull=True)
-    #         in_salle_presences = Presence.objects.filter(abc__client=self, is_in_salle=True)
-    #         print('MY presence with hour sortie null=>', my_presences)
-    #         print('MY presence with is is salle=>', in_salle_presences)
-
-    #         current_time = datetime.now().strftime("%H:%M:%S")
-    #         # the problem is that it doesn't turn the client is_on_salle to True on entering we can try to make comparison here if it less than 10 s we directly return False
-    #         if self.is_on_salle or my_presences :
-    #             print('is on salle')
-    #             sortie = self.init_output()
-    #             if not sortie: # if sortie is false this mean that the client passed the card on an interval < 10 secondes
-    #                 print('WAIT 10 SECONDES')  
-    #                 return False
-    #             self.is_on_salle = False 
-    #             self.save()
-    #             return sortie
-    #         door = Door.objects.filter(ip_adress=door_ip).first()
-    #         salle = door.salle
-    #         # salle = Salle.objects.filter(door__ip_adress=door_ip).first()
-    #         print('Adress IP', door_ip)
-    #         print('SAlle ', salle)
-    #         abonnements_actives = AbonnementClient.subscription.active_subscription()
-    #         abonnement_client = abonnements_actives.filter(client=self, type_abonnement__salles=salle).first()
-    #         creneaux = Creneau.range.get_creneaux_of_day().filter(abonnements=abonnement_client)
-    #         print('LES CRENEAUX =====', creneaux)
-    #         if not abonnement_client or not creneaux:
-    #             return False
-    #         print('Le TYPE DABONNEMENT CRENEAUX =====', abonnement_client)
-
-    #         cren_ref = creneaux.first()
-    #         print('Creneau de reference', cren_ref)
-    #         if abonnement_client.is_time_volume() and abonnement_client.is_valid():
-    #             print('abonnement_client.is_time_volume')
-    #             # with transaction.atomic():
-    #             Presence.objects.create(abc= abonnement_client, creneau=cren_ref, is_in_list=True, hour_entree=current_time, is_in_salle=True)
-    #             self.is_on_salle=True
-    #             self.save()
-    #             return True
-    #         elif not abonnement_client.is_time_volume() and abonnement_client.is_valid():
-    #             print('not abonnement_client.is_time_volum')
-    #             if creneaux.count() > 1 :
-    #                 dur_ref_time_format = abs(datetime.strptime(str(creneaux[0].hour_start), FTM) - datetime.strptime(current_time, FTM)) #nous avons besoin d'un crenaux Reference pour le comparé au autres
-    #                 dur_ref= timedelta.total_seconds(dur_ref_time_format) 
-    #                 for cr in creneaux:
-    #                     start = str(cr.hour_start)
-    #                     print('heure de début', start)
-    #                     temps = abs(datetime.strptime(start, FTM) - datetime.strptime(current_time, FTM))
-    #                     duree_seconde = timedelta.total_seconds(temps) 
-    #                     if dur_ref > duree_seconde:
-    #                         dur_ref = duree_seconde
-    #                         cren_ref = cr
-    #             with transaction.atomic():
-    #                 Presence.objects.create(abc= abonnement_client,  creneau= cren_ref, is_in_list=True, hour_entree=current_time, is_in_salle=True)
-    #                 self.is_on_salle=True
-    #                 abonnement_client.presence_quantity -= 1
-    #                 abonnement_client.save()
-    #                 self.save()
-    #                 return True
-    #         else:
-    #             print('WHATS THE CASE')
-    #             return False
 
 
     def dettes(self):

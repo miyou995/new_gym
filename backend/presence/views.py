@@ -70,7 +70,6 @@ class PresencePostAPIView(generics.CreateAPIView):
         # presence = serializer.instance
         # print('ppresence validate data', presence)
         # if not presence.hour_sortie:
-        #     presence.is_in_salle = True
         #     serializer.save()
         # return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
@@ -122,12 +121,8 @@ class PresenceListAPIView(generics.ListAPIView):
         start_date = self.request.query_params.get('start_date', None)
         end_date = self.request.query_params.get('end_date', None)
         hour = self.request.query_params.get('hour', None) 
-        # salle = self.request.query_params.get('salle', None)
-        # activity = self.request.query_params.get('act', None) 
-        # print('" lhaKT §§§')
         if hour:
             i_start_time = datetime.strptime(hour, FTM)
-            # print('staaaart', i_start_time)
             i_end_time = i_start_time + timedelta(minutes=20)
 
             start_time = i_start_time.time() 
@@ -140,84 +135,8 @@ class PresenceListAPIView(generics.ListAPIView):
             print('deuxeme')
             queryset = queryset.filter(date__range=[start_date, end_date])
             return queryset.order_by('-id')
-        else:
-            print('FINLMENT')
-            return queryset.order_by('-id')
+
                 
-            # print('end_time', end_time)
-        # else : 
-        #     start_time = '01:00:01'
-        #     end_time ='23:59:00'
-        #     print('sayit b kelech')
-        #     try:
-        #         print('avec du temps')
-        #         print('premier start',start_time)
-        #         print('premier start',end_time)
-        #         print('je suis queryset', self.request)
-
-        #         return Presence.objects.filter(date__range=[start_date, end_date], creneau__hour_start__range=[start_time, end_time])
-        #     except:
-        #         print('ALLLL')
-        #         print('je suis queryset', self.request)
-        # else :
-        #     return Presence.objects.all()
-
-        # try:    #HADI LI MCHAT MAIS SANS HEURES
-        #     # print('sayit b start_time', start_time)
-        #     print('sayit b end_time')
-        #     # queryset = Presence.objects.filter(date__range=[start_date, end_date], creneau__hour_start__range=[start_time, end_time], creneau__activity__salle=salle, creneau__activity=activity)
-        #     queryset = Presence.objects.filter(date__range=[start_date, end_date])
-        #     return queryset.order_by('-id')
-
-        # except:
-        #     try:
-        #         queryset = Presence.objects.filter(date__range=[start_date, end_date], creneau__activity__salle=salle, creneau__activity=activity)
-        #         return queryset.order_by('-id')
-        #     except:
-        #         try:
-        #             # print('sayit sans acti')
-        #             if hour:
-        #                 if not activity and not salle:
-        #                     queryset = Presence.objects.filter(date__range=[start_date, end_date], creneau__hour_start__range=[start_time, end_time])
-        #                     # print(' queryyy', queryset)
-        #                     return queryset.order_by('-id')
-        #                 if not activity:
-        #                     # print('sans activité')
-        #                     queryset = Presence.objects.filter(date__range=[start_date, end_date], creneau__hour_start__range=[start_time, end_time], creneau__activity__salle=salle)
-        #                     # queryset = Presence.objects.filter(
-        #                     #     Q(date__range=[start_date, end_date]) &
-        #                     #     Q(creneau__activity__salle=salle) &
-        #                     #     Q(creneau__hour_start__range=[start_time, end_time]) 
-        #                     #     )
-        #                     # print('sayit b start_time', start_time)
-        #                     # print('sayit b end_time', end_time)
-        #                     return queryset.order_by('-id')
-        #                 elif not salle:
-        #                     # print('sans SALLE')
-        #                     queryset = Presence.objects.filter(date__range=[start_date, end_date], creneau__hour_start__range=[start_time, end_time], creneau__activity=activity)
-        #                     # print('sayit b start_time', start_time)
-        #                     # print('sayit b end_time', end_time)
-        #                     return queryset.order_by('-id')
-        #             else:
-        #                 if not activity:
-        #                     # print('sans activité')
-        #                     queryset = Presence.objects.filter(date__range=[start_date, end_date], creneau__activity__salle=salle)
-        #                     # print('sayit b start_time', start_time)
-        #                     # print('sayit b end_time', end_time)
-        #                     return queryset.order_by('-id')
-        #                 elif not salle:
-        #                     # print('sans SALLE')
-        #                     queryset = Presence.objects.filter(date__range=[start_date, end_date], creneau__activity=activity)
-        #                     # print('sayit b start_time', start_time)
-        #                     # print('sayit b end_time', end_time)
-        #                     return queryset.order_by('-id')
-        #         except:
-        #             # print('je suis maaaaaaa')
-        #             # queryset = Presence.objects.filter(creneau__activity__salle=1) 
-        #             # print('je suis queryset', self.request)
-        #             return queryset.order_by('-id')
-
-
 
         
 
@@ -231,17 +150,6 @@ class PresenceDetailAPIView(generics.RetrieveUpdateAPIView):
         "PATCH": ["presence.change_presence"],
         "PUT": ["presence.change_presence"],
     }
-    # def get_object(self):
-    #     obj = get_object_or_404(Presence.objects.filter(id=self.kwargs["pk"]))
-    #     creneaux = Presence.presence_manager.get_presence(30)
-    #     # abon = abonnement[0].id
-    #     print('get_abonnement..................0....', creneaux)
-    #     # #### ce passe dans une fonction
-    #     # prenseces = abon.presence_quantity 
-    #     # print('ceci est labonnement du client ', abon)
-
-    #     # abonnement.update(presence_quantity = prenseces - 1 )
-    #     return obj
 
 class PresenceEditAPIView(generics.RetrieveUpdateAPIView):
     queryset = Presence.objects.all()
@@ -252,12 +160,19 @@ class PresenceEditAPIView(generics.RetrieveUpdateAPIView):
         "PUT": ["presence.change_presence"],
     }
     serializer_class = PresenceManualEditSerialiser
-    def get_object(self):
+    
+    def put(self, request, *args, **kwargs):
+        print(
+            self.kwargs
+        )
         obj = get_object_or_404(Presence, id=self.kwargs["pk"])
+        print('Presence ... ', obj , obj.id)
         client = obj.abc.client
         client.init_output()
-        print('Salle ... ', obj , obj.id)
-        return obj
+        return Response(status=200)
+
+    
+
 
 class PresenceManualEditAPIView(generics.RetrieveUpdateAPIView):
     queryset = Presence.objects.all()
@@ -349,14 +264,7 @@ class PresenceCoachEditAPIView(generics.RetrieveUpdateAPIView):
     serializer_class = PresenceEditSerialiser
     def get_object(self):
         obj = get_object_or_404(PresenceCoach.objects.filter(id=self.kwargs["pk"]))
-        # obj = get_object_or_404(Presence.objects.filter(id=self.kwargs["pk"]))
-        # creneaux = Presence.presence_manager.get_presence(30)
-        # # abon = abonnement[0].id
-        # print('get_abonnement..................0....', creneaux)
-        # #### ce passe dans une fonction
-        # prenseces = abon.presence_quantity 
-        # print('ceci est labonnement du client ', abon)
-        # abonnement.update(presence_quantity = prenseces - 1 )
+
         return obj
 
 class PresenceClientDetailAPI(generics.ListAPIView):
@@ -387,7 +295,7 @@ class PresenceClientIsInAPI(generics.ListAPIView):
     def get_queryset(self):
         # client = self.request.query_params.filter('cl', None)
         # print('client', client)
-        presences = Presence.objects.filter(is_in_salle=True)
+        presences = Presence.objects.filter(hour_sortie__isnull=True)
         return presences
 
 
