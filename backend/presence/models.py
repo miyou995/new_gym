@@ -18,7 +18,7 @@ FTM = '%H:%M:%S'
 class PresenceManager(models.Manager):
     def get_presence(self, client_id):
         # client = Client.objects.get(id=client_id)
-        presences = Presence.objects.filter(abc__client__id=client_id, is_in_salle=True)
+        presences = Presence.objects.filter(abc__client__id=client_id, hour_sortie__isnull=True)
         print('TRUEEEEEEEEEEEE', presences)
         print('client_id', client_id)
         try :
@@ -48,24 +48,6 @@ class Presence(models.Model):
 
 
 
-    # def __str__(self):
-    #     return str(f' le client {self.client}, {self.date}')
-#     def clean(self):
-
-        # Call the parent's clean method to ensure any parent validation is carried out
-     #    super().clean()
-        # Check if both hour_entree and hour_sortie are set
-     #    if self.hour_entree and self.hour_sortie:
-            # Calculate the time difference
-          #   time_diff = datetime.combine(date.min, self.hour_sortie) - datetime.combine(date.min, self.hour_entree)
-            # Check if the time difference is less than 2 minutes
-         # #    if time_diff < timedelta(minutes=4):
-           #      raise ValidationError('The difference between hour_entree and hour_sortie should be at least 2 minutes.')
-
-
-    # def __str__(self):
-    #     return str(f' le client {self.client}, {self.date}')
-
     class Meta:
         ordering  = ['-date']
 
@@ -73,14 +55,13 @@ class Presence(models.Model):
         # print(' Save() on Presence class ( model)')
         if not self.date:
             self.date = datetime.now().date()
-        self.full_clean()
+        # self.full_clean()
         return super().save(*args, **kwargs)
     
     def get_time_consumed(self, sortie=None):
         today = date.today()
         print(' THE today', today)
-        # time = timezone.now().strptime('09:30', '%H:%M').time()
-        # time = datetime.now().strftime("%H:%M:%S")
+
         time = datetime.now().time()
         print(' THE timezone.now()',time)
         if sortie:
@@ -89,7 +70,6 @@ class Presence(models.Model):
             d_end = datetime.combine(today, sortie)
         else:
             d_end = datetime.combine(today, time)
-
         print(' THE D_end0', d_end)
         if self.abc.is_time_volume():
             d_start = datetime.combine(today, self.hour_entree)
@@ -104,8 +84,7 @@ class Presence(models.Model):
             ecart = 1
         print('THE FINAL DEND', d_end)
         self.hour_sortie = d_end.time()
-        self.is_in_salle = False
-        self.save()
+        # self.save() # i commented this because it should not save only calculate 
         return ecart
 
 
@@ -113,7 +92,6 @@ class PresenceCoach(models.Model):
     coach      = models.ForeignKey('client.Coach', on_delete=models.CASCADE,related_name='presencesCoach', null=True, blank=True)
     date        = models.DateField(auto_now_add=True)
     # creneau     = models.ForeignKey(Creneau, on_delete=models.CASCADE,related_name='presencesCoach', null=True, blank=True)
-    # is_in_list  = models.BooleanField(default=True) # check if the person is in the list of client that should be in this creneau
     hour_entree = models.TimeField()
     hour_sortie = models.TimeField(auto_now_add=False, null=True, blank=True)
     is_in_salle = models.BooleanField(default=False)

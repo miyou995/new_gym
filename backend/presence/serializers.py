@@ -35,7 +35,8 @@ class PresenceManualEditSerialiser(serializers.ModelSerializer):
         model = Presence
         # fields= ('id', )
         # exclude = ("abc","date","hour_entree", )
-        fields= "__all__"
+        fields= ("id",)
+        # fields= "__all__"
         
 
 
@@ -47,65 +48,17 @@ class PresencePostSerialiser(serializers.ModelSerializer):
         fields= ('id','creneau', 'hour_entree', 'hour_sortie', 'note', 'abc', 'date')
 
     def create(self, validated_data):
-        print('la premeire des choses ====>', validated_data)
         abc = validated_data['abc']
         creneau = validated_data['creneau']
         presence_date = validated_data['date']
-        # print('CLIENT ID => ', client.id)
-        # client_id = client.id
-        client = Client.objects.get(abonnement_client=abc)
-        # abonnement = AbonnementClient.objects.get(id=abc)
-        # print('l \'abonnement du client est le :>>>>>>>>>>', abonnement)
-        current_time = now.strftime("%H:%M:%S")
-        he = current_time
         hour_in = validated_data['hour_entree']
         hour_out = validated_data['hour_sortie']
-        presence = Presence.objects.create(abc= abc, creneau= creneau, hour_entree=hour_in , hour_sortie=hour_out,is_in_list=True, is_in_salle=False, date=presence_date)
-        # client.init_presence(dict(abc= abc, creneau= creneau, hour_in=hour_in , hour_sortie=hour_out,is_in_list=True, is_in_salle=False, date=presence_date))
-        client.is_on_salle=False
+        presence = Presence.objects.create(abc= abc, creneau= creneau, hour_entree=hour_in , hour_sortie=hour_out, date=presence_date)
         ecart = presence.get_time_consumed(hour_out)
-         
         abc.presence_quantity -= ecart
-
         abc.save() 
-        # prenseces = abon.presence_quantity 
-        # try:
-        #     # THIS IS A SORTIE
-        #     hour_out = validated_data['hour_sortie']
-        #     presence = Presence.objects.create(abc= abc, creneau= creneau, hour_entree=hour_in , hour_sortie=hour_out,is_in_list=True, is_in_salle=False, date=presence_date)
-        #     client.init_presence(dict(abc= abc, creneau= creneau, hour_in=hour_in , hour_sortie=hour_out,is_in_list=True, is_in_salle=False, date=presence_date))
-        #     client.is_on_salle=False
-        #     abc.presence_quantity -= 1 
-        # except :
-        #     # THIS IS A ENTREE
-
-        #     presence = Presence.objects.create(abc= abc, creneau= creneau, hour_entree=hour_in , is_in_list=True, is_in_salle=True, date=presence_date)
-        #     abc.presence_quantity -= 1
-        #     client.is_on_salle=True
         return presence
        
-    # def create(self, validated_data):
-    #     # creneaux_actuel = Creneau.range.get_creneau()
-    #     # creneau = Creneau.range.get_creneau()[0]
-    #     # print('validate ...................................data ', request)
-    #     print('validate ::::::::::::::::::::::::::::::::::::::::::::::::::::data ', validated_data)
-    #     client = validated_data['client']
-    #     # client_id = client.id
-    #     # abonnement = Client.abonnement_manager.get_abonnement(client)
-    #     selected_abonnement = validated_data['abc']
-    #     hour_in = validated_data['hour_entree']
-    #     presence_date = validated_data['date']
-    #     creneau = validated_data['creneau']
-    #     # abc = AbonnementClient.objects.get(id=selected_abonnement)
-    #     try:
-    #         hour_out = validated_data['hour_sortie']
-    #         presence = Presence.objects.create(abc= selected_abonnement, creneau= creneau, hour_entree=hour_in , hour_sortie=hour_out,is_in_list=True, is_in_salle=False, date=presence_date)
-    #     except :
-    #         presence = Presence.objects.create(abc= selected_abonnement, creneau= creneau, hour_entree=hour_in , is_in_list=True, is_in_salle=True, date=presence_date)
-    #     selected_abonnement.presence_quantity -= 1 
-    #     selected_abonnement.save() 
-    #     print('presendvffdsbvfdsbvces ', selected_abonnement.presence_quantity)
-    #     return presence
 
 # presence auto NON - stricte ( souple )
 class PresenceAutoSerialiser(serializers.ModelSerializer):
@@ -113,7 +66,7 @@ class PresenceAutoSerialiser(serializers.ModelSerializer):
     client = serializers.CharField(source = "abc.client")
     class Meta:
         model = Presence
-        read_only_fields = ('creneau', 'is_in_list', 'hor_entree', 'hour_sortie', 'is_in_salle')
+        read_only_fields = ('creneau', 'hor_entree', 'hour_sortie')
         fields= ('client',)
         
 
@@ -168,12 +121,12 @@ class PresenceAutoSerialiser(serializers.ModelSerializer):
             # is_valid = AbonnementClient.validity.is_valid(abonnement.id)
             if abonnement.is_time_volume() and abonnement.presence_quantity > 30:
                 print('IM HEEERE LOG ABONNEMENT==== TIME VOLUUUPME', abonnement.is_time_volume())
-                presence = Presence.objects.create(abc= abonnement, creneau= cren_ref, is_in_list=True, hour_entree=current_time, is_in_salle=True)
+                presence = Presence.objects.create(abc= abonnement, creneau= cren_ref,  hour_entree=current_time )
                 return presence
 
             if abonnement.presence_quantity > -2:
             # AbonnementClient.validity.is_valid(obj.id)
-                presence = Presence.objects.create(abc= abonnement, creneau= cren_ref, is_in_list=True, hour_entree=current_time, is_in_salle=True)
+                presence = Presence.objects.create(abc= abonnement, creneau= cren_ref,  hour_entree=current_time )
                 if abonnement.is_fixed_sessions() or abonnement.is_free_sessions():
                     abonnement.presence_quantity -= 1
                 abonnement.save()
@@ -213,7 +166,6 @@ class PresenceEditSerialiser(serializers.ModelSerializer):
             abonnement.presence_quantity -= difference_minutes
             abonnement.save()
 
-        instance.is_in_salle = False
         instance.save()
         return instance
 
@@ -225,7 +177,7 @@ class PresenceSerialiser(serializers.ModelSerializer):
     seances = serializers.RelatedField(source='client.abonnement_client.presence_quantity', read_only=True)
     class Meta:
         model = Presence
-        fields= ('id', 'abc', 'creneau', 'client', 'is_in_list', 'client_last_name', 'note', 'hour_entree', 'hour_sortie', 'is_in_salle', 'note', 'activity', 'date', 'seances', 'dettes')
+        fields= ('id', 'abc', 'creneau', 'client',  'client_last_name', 'note', 'hour_entree', 'hour_sortie', 'note', 'activity', 'date', 'seances', 'dettes')
 
     def get_client_name(self, obj):
         nom = f"{obj.abc.client.last_name} {obj.abc.client.first_name}"
@@ -239,14 +191,6 @@ class PresenceSerialiser(serializers.ModelSerializer):
         except:
             return False
 
-    # def get_similar_creneaux( self, obj):
-    #     cren = []
-    #     try:
-    #         creneau_id = obj.creneau.id
-    #         creneaux = Creneau.range.get_similar_creneaux(creneau_id)
-    #         return SimilarCreneauSerializer(creneaux, many=True).data
-    #     except:
-    #         return cren
     def get_dettes_client(self, obj):
         # print('id ', obj.id)
         client_id = obj.abc.client
@@ -267,7 +211,7 @@ class PresenceClientSerialiser(serializers.ModelSerializer):
 
     class Meta:
         model = Presence
-        fields= ('id','abc','abc_name','client','creneau', 'is_in_list', 'hour_entree', 'dettes','hour_sortie', 'is_in_salle','client_activity', 'client_last_name','date')
+        fields= ('id','abc','abc_name','client','creneau',  'hour_entree', 'dettes','hour_sortie', 'client_activity', 'client_last_name','date')
 
 
     def get_activity(self, obj):
@@ -284,63 +228,24 @@ class PresenceClientSerialiser(serializers.ModelSerializer):
 
 
 
-#  presence automatique stricte
-# class PresenceCreateSerialiser(serializers.ModelSerializer):
-#     client_last_name = serializers.RelatedField(source='last_name', read_only=True)
-
-#     class Meta:
-#         model = Presence
-#         read_only_fields = ('creneau', 'is_in_list','client_last_name', 'hour_entree', 'hour_sortie', 'is_in_salle')
-#         fields= ('abc','client_last_name')
-      
-
-#     def create(self, validated_data):
-#         print('la premeire des choses ====>', validated_data)
-#         abc = validated_data['abc']
-#         print('CLIENT ID => ', client.id)
-#         client_id = client.id
-#         abonnement = Client.abonnement_manager.get_abonnement(client_id)
-#         print('l \'abonnement du client est le :>>>>>>>>>>', abonnement)
-
-#         current_time = now.strftime("%H:%M:%S")
-#         he = current_time
-
-#         prenseces = abon.presence_quantity 
-#         # print('ceci est labonnement du client ', abon)
-#             # print('il est dans la liste')
-#         presence = Presence.objects.create(abc= abc, creneau= creneau, hour_entree=he ,is_in_list=True, is_in_salle=True)
-#         # abonnement = Client.abonnement_manager.get_abonnement(client_id)
-#         # abonnement.update(presence_quantity -= 1 )
-#         abon.presence_quantity -= 1
-#         return presence
-#         else:
-#             print('le clients nest pas inscrit dans ce cours')
-
-#     def update(self, instance, validate_data):
-#         current_time = now.strftime("%H:%M:%S")
-#         instance.hour_sortie = current_time
-#         instance.is_in_salle = False
-#         instance.save()
-#         return instance
     
 
 class PresenceCoachSerializer(serializers.ModelSerializer):
     class Meta:
         model = PresenceCoach
-        read_only_fields = ('date', 'hour_entree', 'hour_sortie', 'is_in_salle')
+        read_only_fields = ('date', 'hour_entree', 'hour_sortie')
 
-        fields= ('coach', 'date', 'hour_entree', 'hour_sortie', 'is_in_salle')  
+        fields= ('coach', 'date', 'hour_entree', 'hour_sortie')  
     
     def create(self, validated_data):
         coach = validated_data['coach']
         current_time = now.strftime("%H:%M:%S")
         print('heure===============================', coach)
-        presence = PresenceCoach.objects.create(coach= coach, hour_entree=current_time , is_in_salle=True)
+        presence = PresenceCoach.objects.create(coach= coach, hour_entree=current_time )
         return presence
 
     def update(self, instance, validated_data):
         current_time = now.strftime("%H:%M:%S")
         instance.hour_sortie = current_time
-        instance.is_in_salle = False
         instance.save()
         return instance

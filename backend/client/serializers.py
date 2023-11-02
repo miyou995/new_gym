@@ -108,7 +108,7 @@ class ClientSerialiser(serializers.ModelSerializer):
 
     def get_last_presence(self, obj):
         try :
-            presence = Presence.objects.filter(abc__client=obj, is_in_salle=True).last().id   # a decommenter juste poiur le test de related lookups
+            presence = Presence.objects.filter(abc__client=obj, hour_sortie__isnull=True).last().id   # a decommenter juste poiur le test de related lookups
             return presence
         except:
             presence = False
@@ -132,8 +132,7 @@ class ClientLastPresenceSerializer(serializers.ModelSerializer):
         
     def get_last_presence(self, obj):
         try :
-            # presence = client.presences.filter(is_in_salle=True).last().id
-            presence = Presence.objects.filter(abc__client=obj, is_in_salle=True).last().id
+            presence = Presence.objects.filter(abc__client=obj, hour_sortie__isnull=True).last().id
             # print(presence, ' JJJJJJJJJJJJJJJJJJJJJJ')
             return presence
         except:
