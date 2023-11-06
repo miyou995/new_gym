@@ -227,6 +227,7 @@ LOCALE_PATHS = [BASE_DIR / "locale"]
 # real port : 6379
 CELERY_BROKER_URL = 'redis://localhost:6379'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+# CELERY_RESULT_BACKEND = 'django-db'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_TRACK_STARTED = True
 # CELERY_TASK_TIME_LIMIT = 30 * 60
@@ -236,62 +237,99 @@ CELERY_TIMEZONE = TIME_ZONE
 
 from celery.schedules import crontab
 from datetime import datetime
+
+
+STOP_HOUR   = 4
+STOP_MINUTE = 1
+
+
+START_HOUR   = 4
+START_MINUTE = 11
 if DEBUG == True:
     CELERY_BEAT_SCHEDULE = {  
-        'Task_one_schedule' : {   
-            'task': 'salle_activite.tasks.start_linsten_test_device_1', 
-            'schedule': crontab(minute=0, hour=6), 
+        'start_linsten_test_device_2': {
+            'task': 'salle_activite.tasks.start_linsten_test_device_2',
+            'schedule': crontab(hour=START_HOUR, minute=START_MINUTE),
         },
-        'Task_one_schedule' : {   
-            'task': 'salle_activite.tasks.start_linsten_test_device_2', 
-            'schedule': crontab(minute=0, hour=6), 
-        },
-    }
-else:
-    pass
-    """
-    
-    CELERY_BEAT_SCHEDULE = {  
-        'Task_one_schedule' : {   
-            'task': 'salle_activite.tasks.start_linsten_2', 
-            'schedule': crontab(minute=0, hour=6), 
-        },
-        'Task_one_schedule' : {   
-            'task': 'salle_activite.tasks.start_linsten_3', 
-            'schedule': crontab(minute=0, hour=6), 
-        },
-        'Task_one_schedule' : {   
-            'task': 'salle_activite.tasks.start_linsten_4', 
-            'schedule': crontab(minute=0, hour=6), 
-        },
-        'Task_one_schedule' : {   
-            'task': 'salle_activite.tasks.start_linsten_5', 
-            'schedule': crontab(minute=0, hour=6), 
-        },
-        'Task_one_schedule' : {   
-            'task': 'salle_activite.tasks.start_linsten_6', 
-            'schedule': crontab(minute=0, hour=6), 
-        },
-        'Task_one_schedule' : {   
-            'task': 'salle_activite.tasks.start_linsten_7', 
-            'schedule': crontab(minute=0, hour=6), 
-        },
-        'Task_one_schedule' : {   
-            'task': 'salle_activite.tasks.start_linsten_8', 
-            'schedule': crontab(minute=0, hour=6), 
-        },
-        'Task_one_schedule' : {   
-            'task': 'salle_activite.tasks.start_linsten_9', 
-            'schedule': crontab(minute=0, hour=6), 
+        'start_linsten_test_device_1': {
+            'task': 'salle_activite.tasks.start_linsten_test_device_1',
+            'schedule': crontab(hour=START_HOUR, minute=START_MINUTE),
         },
     }
-"""
+if DEBUG == False:
+    CELERY_BEAT_SCHEDULE = {
+        'start_linsten_2': {
+            'task': 'salle_activite.tasks.start_linsten_2',
+            'schedule': crontab(hour=START_HOUR, minute=START_MINUTE),
+        },
+        'start_linsten_3': {
+            'task': 'salle_activite.tasks.start_linsten_3',
+            'schedule': crontab(hour=START_HOUR, minute=START_MINUTE),
+        },
+        'start_linsten_4': {
+            'task': 'salle_activite.tasks.start_linsten_4',
+            'schedule': crontab(hour=START_HOUR, minute=START_MINUTE),
+        },
+        'start_linsten_5': {
+            'task': 'salle_activite.tasks.start_linsten_5',
+            'schedule': crontab(hour=START_HOUR, minute=START_MINUTE),
+        },
+        'start_linsten_6': {
+            'task': 'salle_activite.tasks.start_linsten_6',
+            'schedule': crontab(hour=START_HOUR, minute=START_MINUTE),
+        },
+        'start_linsten_7': {
+            'task': 'salle_activite.tasks.start_linsten_7',
+            'schedule': crontab(hour=START_HOUR, minute=START_MINUTE),
+        },
+        'start_linsten_8': {
+            'task': 'salle_activite.tasks.start_linsten_8',
+            'schedule': crontab(hour=START_HOUR, minute=START_MINUTE),
+        },
+        'start_linsten_9': {
+            'task': 'salle_activite.tasks.start_linsten_9',
+            'schedule': crontab(hour=START_HOUR, minute=START_MINUTE),
+        },
+        'start_face_door_right': {
+            'task': 'salle_activite.tasks.start_face_door_right',
+            'schedule': crontab(hour=START_HOUR, minute=START_MINUTE),
+        },
+        'start_face_door_left': {
+            'task': 'salle_activite.tasks.start_face_door_left',
+            'schedule': crontab(hour=START_HOUR, minute=START_MINUTE),
+        },
+
+}
 
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+# if DEBUG == True:
+#     CELERY_BEAT_SCHEDULE = {  
+#         'stop_restart_tasks_daily' : {   
+#             'task': 'salle_activite.tasks.stop_and_restart_tasks', 
+#             'schedule': timedelta(seconds=10),
+
+#         },
+#     }
+# else:
+#     CELERY_BEAT_SCHEDULE = {  
+#         'stop_restart_tasks_daily': {
+#             'task': 'salle_activite.tasks.stop_and_restart_tasks',
+#             'schedule': crontab(hour=3, minute=0),
+#         },
+#     }
 
 
 MEDIA_URL = "/media/" 

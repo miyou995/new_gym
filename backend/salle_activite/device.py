@@ -19,6 +19,7 @@ def SDKLogCallBack(szLogBuffer, nLogSize, dwUser):
     #     print(e)
     return 1
 
+
 class AccessControl:
     def __init__(self):
 
@@ -66,11 +67,13 @@ class AccessControl:
             self.loginID, device_info, error_msg = self.sdk.LoginWithHighLevelSecurity(stuInParam, stuOutParam)
             if self.loginID != 0:
                 print('login succeed ip=>', self.ip)
-
+                print('login succeed self.loginID=>', self.loginID)
+                print('login succeed self.playID=>', self.playID)
                 # print("Login succeed. Channel num:" + str(device_info.nChanNum))
                 return True
             else:
                 print('login failed ip=>', self.ip)
+                print('login failed self.loginID=>', self.loginID)
                 # print("Login failed. " + error_msg)
                 return False
 
@@ -87,7 +90,7 @@ class AccessControl:
                 self.lAnalyzerHandle = 0
             self.sdk.Logout(self.loginID)
             self.loginID = 0
-        print("Logout succeed")
+        print("Logout succeed for door ip====>", self.ip)
 
     def DisConnectCallBack(self, lLoginID, pchDVRIP, nDVRPort, dwUser):
         print("Device-OffLine")
@@ -111,6 +114,7 @@ class AccessControl:
         # if card_n:
         card = card_n.decode("utf-8")
         print(' la carte est ', card)
+        print(' la card_n est ', str(int(card, 16)).zfill(8))
         print(' la door_ip  ', door_ip)
         #0099F9AB
         # 10126599
@@ -145,12 +149,25 @@ class AccessControl:
                 if client : 
                     self.open_door()
                     # client.init_presence()
-
                     # self.logout()
                     # self.login()
                     # self.alarm_listen()
                 print('get_authorization => ', client)
         return 
+
+    def reboot_device(self):
+        if self.loginID:
+            result = self.sdk.RebootDev(self.loginID)
+            print('Devide Rebooted')
+            return result
+
+    # def deactivate_alarm(self):
+    #     stuInParam = NET_CTRL_ALARMBELL()
+    #     stuInParam.dwSize = sizeof(NET_CTRL_ALARMBELL)
+    #     stuInParam.nChannelID = 0 # channel
+    #     result = self.sdk.ControlDeviceEx(self.loginID, CtrlType.STOP_ALARMBELL, stuInParam, c_char(), 5000)
+    #     print('RESULT<', result)
+    #     return result
 
     def alarm_listen(self):
         if self.alarmEvent == 0:
