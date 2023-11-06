@@ -716,9 +716,11 @@ class NetClient(metaclass=Singleton):
         :return:result:成功：1，失败：0；succeed：1，failed：0
         """
         login_id = C_LLONG(login_id)
+        print('login_id---->', login_id)
         result = cls.sdk.CLIENT_Logout(login_id)
+        print('NestSDK NetClient Logout resulkt====', result)
         if result == 0:
-            print(cls.GetLastErrorMessage())
+            print("whanho",cls.GetLastErrorMessage())
         return result
 
     @classmethod

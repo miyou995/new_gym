@@ -10,6 +10,7 @@ app = Celery('config' )
 # - namespace='CELERY' means all celery-related configuration keys
 # should have a `CELERY_` prefix.
 app.config_from_object('django.conf:settings' , namespace='CELERY' )
+
 @setup_logging.connect
 def config_loggers(*args, **kwargs):
     from logging.config import dictConfig  # noqa

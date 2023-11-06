@@ -104,7 +104,7 @@ class FaceControl:
     def get_authorization(self, user_id, door_ip):
         try:
             client  = Client.objects.get(id=user_id)
-            print('Client=>', client)
+            print('Face Control Client is ===>', client)
             if client:
                 return client.get_access_permission(door_ip)
             else: 

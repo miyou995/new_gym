@@ -159,8 +159,9 @@ class PresenceEditAPIView(generics.RetrieveUpdateAPIView):
         "PATCH": ["presence.change_presence"],
         "PUT": ["presence.change_presence"],
     }
-    serializer_class = PresenceManualEditSerialiser
     
+    serializer_class = PresenceManualEditSerialiser
+
     def put(self, request, *args, **kwargs):
         print(
             self.kwargs

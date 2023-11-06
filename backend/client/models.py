@@ -147,7 +147,7 @@ class Client(models.Model):
 
         # set save=False, otherwise it will run in an infinite loop
         # picture.save(instance.picture.name,ContentFile(temp_thumb.read()),save=False)
-    
+    # C0
     
     def save(self, *args, **kwargs):
         if self._old_picture != self.picture:
@@ -204,20 +204,20 @@ class Client(models.Model):
 
 
     def remove_duplicate(self):
-        my_presences = Presence.objects.filter(abc__client=self, hour_sortie__isnull=True)
+        presences = Presence.objects.filter(abc__client=self, hour_sortie__isnull=True)
         logger.warning('remove_duplicated presences ================> {}'.format(str(self.carte)))
-        if my_presences:
-            first_presence = my_presences.first()
-            my_presences.exclude(pk=first_presence.pk).delete()
+        if presences:
+            first_presence = presences.first()
+            presences.exclude(pk=first_presence.pk).delete()
 
             
     def init_output(self,  exit_hour=None):
-        my_presences = Presence.objects.filter(abc__client=self, hour_sortie__isnull=True)
-        presence = my_presences.first()
+        presences = Presence.objects.filter(abc__client=self, hour_sortie__isnull=True)
+        presence = presences.first()
         print('LA PRESENCE', presence)
-        print('LA my_presences', my_presences)
+        print('LA presences', presences)
         logger.warning('LA PRESENCE {}'.format(str(presence)))
-        logger.warning('LA my_presences {}'.format(str(my_presences)))
+        logger.warning('LA presences {}'.format(str(presences)))
         current_time = datetime.now().strftime("%H:%M:%S")
         if exit_hour:
             current_time = exit_hour
@@ -253,8 +253,7 @@ class Client(models.Model):
             logger.warning('SORTIE AUTORISEE ================> {}'.format(str(presence.hour_sortie)))
             presence.save()
 
-            # update abc
-            # presence.save(commit=False)
+
             abc = presence.abc
             if abc.is_time_volume():
                 ecart = presence.get_time_consumed() 
@@ -268,54 +267,40 @@ class Client(models.Model):
             return True
 
     def get_access_permission(self, door_ip=None):
-        my_presences = Presence.objects.filter(abc__client=self, hour_sortie__isnull=True)
-        in_salle_presences = Presence.objects.filter(abc__client=self, hour_sortie__isnull=True)
-
-        presence = my_presences.first()
-
-        print('MY presence with hour sortie null=>', my_presences)
-        print('MY presence with is is salle=>', in_salle_presences)
-        logger.warning('MY presence with hour sortie null=> {}'.format(str(my_presences)))
-        logger.warning('MY presence with is is salle=>{}'.format(str(in_salle_presences)))
-
+        logger.warning('Client requested Door Auth ===> {}'.format(str(self.id)))
+        presences = Presence.objects.filter(abc__client=self, hour_sortie__isnull=True)
+        print('Nombre de presence en cours=>', presences)
+        logger.warning('Nombre de presence en cours=> {}'.format(str(presences.count())))
         current_time = datetime.now().strftime("%H:%M:%S")
         # the problem is that it doesn't turn the client is_on_salle to True on entering we can try to make comparison here if it less than 10 s we directly return False
-        
-        if self.is_on_salle or my_presences or in_salle_presences:
-            logger.warning('MY presence is_on_salle=> {}'.format(str(self.is_on_salle)))
-            logger.warning('MY presence in_salle_presences=> {}'.format(str(in_salle_presences)))
-            logger.warning('MY presence my_presences=> {}'.format(str(my_presences)))
-
-            print('is on salle')
+        if presences:
+            logger.warning('MY presence presences=> {}'.format(str(presences)))
             sortie = self.init_output()
             if not sortie: # if sortie is false this mean that the client passed the card on an interval < 10 secondes
-                print('WAIT 10 SECONDES')  
                 logger.warning('sortie??   should be false => {}'.format(str(sortie)))
                 return False
-            self.is_on_salle = False 
             self.save()
             return sortie
-
         logger.warning('check for presence creation => ')
-
         door = Door.objects.filter(ip_adress=door_ip).first()
         salle = door.salle
-        # salle = Salle.objects.filter(door__ip_adress=door_ip).first()
+
         print('Adress IP', door_ip)
         print('SAlle ', salle)
+
         abonnements_actives = AbonnementClient.subscription.active_subscription()
         abonnement_client = abonnements_actives.filter(client=self, type_abonnement__salles=salle).first()
         creneaux = Creneau.range.get_creneaux_of_day().filter(abonnements=abonnement_client)
+
+        print('LES abonnements_actives  =====', abonnements_actives)
+        print('Le abonnement_client Choisi =====', abonnement_client)
         print('LES CRENEAUX =====', creneaux)
-        print('Le TYPE DABONNEMENT CRENEAUX =====', abonnement_client)
+
         logger.warning('LES CRENEAUX ====={}'.format(str(creneaux)))
         logger.warning('Le TYPE DABONNEMENT CRENEAUX ====={}'.format(str(abonnement_client)))
 
         if not abonnement_client or not creneaux:
             return False
-        
-        
-
         cren_ref = creneaux.first()
         print('Creneau de reference', cren_ref)
 
@@ -324,7 +309,6 @@ class Client(models.Model):
             logger.warning('abonnement_client.is_time_volume and is valid')
             # with transaction.atomic():
             Presence.objects.create(abc= abonnement_client, creneau=cren_ref,  hour_entree=current_time)
-            self.is_on_salle=True
             self.save()
             self.remove_duplicate()
             return True
@@ -344,7 +328,6 @@ class Client(models.Model):
                         cren_ref = cr
             with transaction.atomic():
                 Presence.objects.create(abc= abonnement_client,  creneau= cren_ref,  hour_entree=current_time)
-                self.is_on_salle=True
                 self.save()
                 self.remove_duplicate()
                 abonnement_client.presence_quantity -= 1

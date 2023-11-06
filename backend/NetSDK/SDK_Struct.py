@@ -7796,3 +7796,15 @@ class NET_OUT_ACCESS_CARD_SERVICE_CLEAR(Structure):
         ('dwSize', C_DWORD),  # 结构体大小;struct size;
     ]
 
+class NET_CTRL_ALARMBELL(Structure):
+    """
+    删除所有卡片信息出参
+    output of clear card
+    """
+    _fields_ = [
+        ('nChannelID', c_int),              # 通道号;ChannelId
+        ('dwSize', C_DWORD),  # 结构体大小;struct size;
+    ]
+
+
+
