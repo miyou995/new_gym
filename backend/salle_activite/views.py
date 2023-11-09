@@ -176,6 +176,10 @@ class StartListening(APIView):
 			Open All The Doors
 		"""
 		logger.info("Open All The Doors inited...")
+		taks_group = group(
+			start_linsten_test_device_1.delay(),
+			start_linsten_test_device_2.delay(),
+		)
 		if settings.DEBUG == True:
 
 			taks_group = group(
