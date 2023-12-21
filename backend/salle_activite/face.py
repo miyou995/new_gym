@@ -134,7 +134,6 @@ class FaceControl:
                     self.access_operate()
                 print('user_data => ', user_data)
 
-
     def MessCallBackEx1(self, lCommand, lLoginID, pBuf, dwBufLen, pchDVRIP, nDVRPort, bAlarmAckFlag, nEventID, dwUser):
         if (lLoginID != self.loginID):
             return

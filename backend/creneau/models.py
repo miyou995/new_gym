@@ -17,6 +17,7 @@ DAYS_CHOICES = (
     ('VE', 'Vendredi'),
 )
 
+
 class RangeManager(models.Manager):
     now = datetime.now().time()
     def get_creneaux_of_day(self):

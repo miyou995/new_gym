@@ -104,6 +104,23 @@ class GETClientDetailAPIView(generics.RetrieveAPIView):
     #     # obj = get_object_or_404(Client.objects.filter(id=self.kwargs["pk"]))
     #     ax = self.serializer_class(client)
     #     return Response(ax.data)
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from client.models import Client
+from django.db.models import Q
+
+class ClientAutoPresenceView(APIView):
+    def get(self, request, value):
+        print('value', value)
+        try:
+            client = Client.objects.get(Q(id=value) | Q(carte=value) | Q(hex_card=value))
+            presence = client.auto_presence()
+            print('THE RETURN', presence["level"], presence["message"])
+            return Response({"status": presence["level"], "message": presence["message"]})
+        except Client.DoesNotExist:
+            print('NO CLIENT FOR', value)
+            return Response({"status": "error", "error": "Client does not exist"}, status=status.HTTP_404_NOT_FOUND)
 
 class ClientDetailAPIView(generics.RetrieveUpdateAPIView):
     queryset = Client.objects.all()

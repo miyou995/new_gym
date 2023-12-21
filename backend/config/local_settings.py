@@ -3,7 +3,7 @@ from datetime import datetime
 
 
 SECRET_KEY = 'QCqcqscrtgjczvgrezg0hzd6t%82b3ol#^)6(94^o+nto(5h#kg#f7z!yh8'
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*'] # a modifier apres l'integration du nom de domaine
 

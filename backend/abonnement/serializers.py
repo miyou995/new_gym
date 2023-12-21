@@ -30,7 +30,7 @@ class AbonnementClientAllSerializer(serializers.ModelSerializer):
         fields= '__all__'
 
 class AbonnementClientHistorySerializer(serializers.ModelSerializer):
-    left_minutes = serializers.SerializerMethodField('get_left_minutes', read_only=True)
+    left_minutes = serializers.CharField(source='get_left_minutes', read_only=True)
     history_user_name = serializers.CharField(source= 'history_user')
     history_ab_type = serializers.CharField(source= 'type_abonnement.type_of')
     is_time_volume = serializers.SerializerMethodField()
@@ -46,13 +46,7 @@ class AbonnementClientHistorySerializer(serializers.ModelSerializer):
         # fields =('id', 'start_date','end_date', 'type_abonnement' , 'presence_quantity', 'reste', 'left_minutes', 'is_time_volume', 'is_free_access', 'is_fixed_sessions', 'is_free_sessions', 'history_user_name', 'history_ab_type')
         fields= '__all__'
         # fields= ('id','client','presence_quantity', 'history','creneaux','reste')
-    def get_left_minutes(self, obj):
-        minutes = obj.presence_quantity
-        time = divmod(minutes, 60)
-        # print('en heures', time)
-        time_string = "{}H: {}M".format(time[0], time[1])
-        # print('en time_string', time_string)
-        return time_string
+
 
     def get_is_time_volume(self, obj):
         abc = get_object_or_404(AbonnementClient, id=obj.id)
@@ -231,7 +225,7 @@ class AbonnementClientSerialiser(serializers.ModelSerializer):
         # return AbonnementClient.objects.create(end_date=end_date,presence_quantity=presence_quantity**validated_data)
 class AbonnementClientDetailSerializer(serializers.ModelSerializer):
     # is_volume = serializers.BooleanField(source='is_time_volume')
-    left_minutes = serializers.SerializerMethodField('get_left_minutes', read_only=True)
+    left_minutes = serializers.CharField(source='get_left_minutes', read_only=True)
     type_abonnement_name = serializers.SerializerMethodField('get_type_abonnement_name', read_only=True)
     # cochage       = serializers.CharField(source='type_abonnement.systeme_cochage', read_only=True)
     price       = serializers.CharField(source='type_abonnement.price', read_only=True)
@@ -242,13 +236,6 @@ class AbonnementClientDetailSerializer(serializers.ModelSerializer):
     def get_type_abonnement_name(self, obj):
         return obj.type_abonnement.name
 
-    def get_left_minutes(self, obj):
-        minutes = obj.presence_quantity
-        time = divmod(minutes, 60)
-        # print('en heures', time)
-        time_string = "{}H: {}M".format(time[0], time[1])
-        # print('en time_string', time_string)
-        return time_string
 
 class AbonnementSerialiser(serializers.ModelSerializer):   
     clients_number = serializers.SerializerMethodField('get_clients_number', read_only=True)

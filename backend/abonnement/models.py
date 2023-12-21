@@ -100,7 +100,7 @@ class Abonnement(models.Model):
         return True if self.type_of == "SF" else False
     
     def free_sessions(self):
-        return True if self.type_of == "SL" else False
+        return self.type_of == "SL"
 
 
         
@@ -123,16 +123,16 @@ class AbonnementClient(models.Model):
         return  str(self.id)
 
     def is_time_volume(self):
-        return True if self.type_abonnement.type_of == "VH" else False
+        return self.type_abonnement.type_of == "VH"
     
     def is_free_access(self):
-        return True if self.type_abonnement.type_of == "AL" else False
+        return self.type_abonnement.type_of == "AL"
     
     def is_fixed_sessions(self):
-        return True if self.type_abonnement.type_of == "SF" else False
+        return self.type_abonnement.type_of == "SF"
     
     def is_free_sessions(self):
-        return True if self.type_abonnement.type_of == "SL" else False
+        return self.type_abonnement.type_of == "SL"
 
     def put_archiver(self):
         self.archiver = True 
@@ -193,6 +193,20 @@ class AbonnementClient(models.Model):
             # print('get_end_date calculated_end_date 2 => ', calculated_end_date)
         return calculated_end_date
 
+    def get_left_minutes(self):
+        minutes = self.presence_quantity
+        # time = divmod(minutes, 60)
+        # print('en heures', time)
+        # time_string = "{}H: {}M".format(time[0], time[1])
+        # print('en time_string', time_string)
+        # return time_string
+        if minutes < 0:
+            abs_minutes = abs(minutes)
+            hours, minutes = divmod(abs_minutes, 60)
+            return "-{}H: {:02d}M".format(hours, minutes)
+        else:
+            hours, minutes = divmod(minutes, 60)
+            return "{}H: {:02d}M".format(hours, minutes)
 
 
     def is_no_more_actif(self):
@@ -214,7 +228,7 @@ class AbonnementClient(models.Model):
 
 
     def get_type(self):
-        return self.type_abonnement.type_of
+        return self.type_abonnement.get_type_of_display()
 
     def get_planning(self):
         try:

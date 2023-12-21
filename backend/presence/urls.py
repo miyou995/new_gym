@@ -4,7 +4,6 @@ from .views import PresenceListAPIView, PresenceDetailAPIView, PresenceDestroyAP
 
 app_name = 'presence'
 
-
 urlpatterns = [
 
     path('', PresenceListAPIView.as_view(),  name="presence"),

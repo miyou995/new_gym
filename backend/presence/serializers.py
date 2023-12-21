@@ -6,6 +6,7 @@ from client.models import Client
 from datetime import datetime, timedelta, date
 from django.utils import timezone
 from django.http import HttpResponse
+from django.contrib import messages
 from rest_framework.response import Response
 from django.db.models import Sum
 from django.db.models import Q
@@ -60,30 +61,30 @@ class PresencePostSerialiser(serializers.ModelSerializer):
         return presence
        
 
+
 # presence auto NON - stricte ( souple )
 class PresenceAutoSerialiser(serializers.ModelSerializer):
+
     # client_last_name = serializers.RelatedField(source='last_name', read_only=True)
     client = serializers.CharField(source = "abc.client")
     class Meta:
         model = Presence
-        read_only_fields = ('creneau', 'hor_entree', 'hour_sortie')
+        read_only_fields = ('creneau', 'hour_entree', 'hour_sortie')
         fields= ('client',)
-        
-
 
     def create(self, validated_data):
         FTM = '%H:%M:%S'
         current_time = datetime.now().strftime("%H:%M:%S")
         cd_client = validated_data['abc']['client']
         try:
-            client = Client.objects.get(Q(id=cd_client) | Q(carte=cd_client  ))
+            client = Client.objects.get(Q(id=cd_client) | Q(carte=cd_client))
         except:
             card = cd_client.decode("utf-8")
             client = Client.objects.get(hex_card=card)
         # client.has_permission()
         creneaux = Creneau.range.get_creneaux_of_day().filter(abonnements__client=client).distinct()
         # print('Les creneaux of client=====>',Creneau.objects.filter(abonnements__client=client))
-        print('999999999999999999999999999999999Les creneaux du Today client=====>', creneaux)
+        print('creneaux du Today client=====>', creneaux)
         logger.warning('LOGLes creneaux du Today client=====-{}'.format(str(creneaux)))
 
         # print('CLIENT ID => ', client.id)
@@ -136,10 +137,11 @@ class PresenceAutoSerialiser(serializers.ModelSerializer):
                 logger.warning('LOG abonnement.presence_quantity=====> {}'.format(str(abonnement.presence_quantity)))
                 logger.warning('LOG ABONNEMENT=====-{}'.format(str(abonnement)))
                 logger.warning('LOG ABONNEMENT TYPE=====-{}'.format(str(abonnement.type_abonnement.type_of)))
-                
                 raise serializers.ValidationError("l'adherant n'est pas inscrit aujourd'hui")
         else:
-            raise serializers.ValidationError("l'adherant n'est pas inscrit aujourd'hui")
+            messages.error(self.request, "l'adherant n'est pas inscrit aujourd'hui")
+            # raise serializers.ValidationError("l'adherant n'est pas inscrit aujourd'hui")
+            return self
         # abonnement.update(presence_quantity = prenseces - 1 )
 
 class PresenceEditSerialiser(serializers.ModelSerializer):
@@ -184,6 +186,8 @@ class PresenceSerialiser(serializers.ModelSerializer):
         return nom
 
     def get_activity(self, obj):
+        print('abc', obj.creneau.planning)
+        # print('GET ACTI', obj.creneau.activity)
         # activite = obj.creneau.activity.name
         try:
             # print('le type de lactivity', type(obj.creneau.activity), ' le je sais pas quoi',obj.creneau.activity)
