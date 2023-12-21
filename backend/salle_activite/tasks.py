@@ -27,7 +27,7 @@ def manage_door(ip, port, username, password):
     if result:
         print('device.loginid===========================', device.loginID)
         logger.warning('Device started with Ip=======>{}'.format(ip))
-    device.alarm_listen()
+        device.alarm_listen()
     while True:
         if is_time_to_stop():
             if device.loginID:
@@ -44,7 +44,7 @@ def manage_door(ip, port, username, password):
 def start_linsten_test_device_1(self):
     manage_door(ip='192.168.0.145', port=37777, username='admin', password='123456')
     app.control.revoke(self.request.id, terminate=True)
-   
+
 
 @shared_task(bind=True)
 def start_linsten_test_device_2(self):

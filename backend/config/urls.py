@@ -40,8 +40,8 @@ urlpatterns = [
     path('rest-api/api-auth/', include('rest_framework.urls')),
     # path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
 
-    path ('',TemplateView.as_view(template_name="index.html"), name='index'),
-    re_path(r'^(?:.*)/?$', TemplateView.as_view(template_name="index.html"), name='index'),
+    # path ('',TemplateView.as_view(template_name="index.html"), name='index'),
+    # re_path(r'^(?:.*)/?$', TemplateView.as_view(template_name="index.html"), name='index'),
 
     # path('markdownx/', include('markdownx.urls')),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) 

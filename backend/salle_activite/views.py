@@ -176,18 +176,13 @@ class StartListening(APIView):
 			Open All The Doors
 		"""
 		logger.info("Open All The Doors inited...")
-		taks_group = group(
-			start_linsten_test_device_1.delay(),
-			start_linsten_test_device_2.delay(),
-		)
 		if settings.DEBUG == True:
-
-			taks_group = group(
+			group(
 				start_linsten_test_device_1.delay(),
 				start_linsten_test_device_2.delay(),
 			)
 		else:
-			taks_group = group(
+			group(
 				start_linsten_2.delay(),
 				#start_linsten_3.delay(),
 			# start_linsten_4.delay(),
@@ -196,10 +191,8 @@ class StartListening(APIView):
 			#  start_linsten_7.delay(),
 			#  start_linsten_8.delay(),
 			#  start_linsten_9.delay(),
-
 				start_face_door_right.delay(),
 				start_face_door_left.delay()
-				
 			)
 		return Response(status=200)
 
@@ -212,7 +205,7 @@ class StartListening(APIView):
 #         Open All The Doors
 #         """
 #         logger.info("View inited...")
-#         taks_group = group(
+#         group(
 #             start_linsten_test_device_1.delay(),
 #             start_linsten_test_device_2.delay(),
 #             start_linsten_3.delay(),

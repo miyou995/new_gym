@@ -1,15 +1,15 @@
 from django.urls import path, include
-from .views import ClientAPIView, ClientListAPIView, ClientDestroyAPIView, ClientDetailAPIView, PersonnelCreateAPIView, PersonnelListAPIView, PersonnelDetailAPIView, PersonnelDestroyAPIView ,CoachCreateAPIView ,CoachListAPIView ,CoachDetailAPIView ,CoachDestroyAPIView, MaladieCreateAPIView, MaladieViewSet, ClientNameViewAPI,  total_dettes, total_abonnes, ClientPresenceViewAPI, ClientNamesDropListAPIView, MaladieDetailViewAPI, GETClientDetailAPIView, get_client_authorization, get_coach_authorization, get_personnel_authorization
 from django.views.generic import TemplateView
+from .views import ClientAPIView, ClientListAPIView, ClientDestroyAPIView, ClientDetailAPIView, PersonnelCreateAPIView, PersonnelListAPIView, PersonnelDetailAPIView, PersonnelDestroyAPIView ,CoachCreateAPIView ,CoachListAPIView ,CoachDetailAPIView ,CoachDestroyAPIView, MaladieCreateAPIView, MaladieViewSet, ClientNameViewAPI,  total_dettes, total_abonnes, ClientPresenceViewAPI, ClientNamesDropListAPIView, MaladieDetailViewAPI, GETClientDetailAPIView, get_client_authorization, get_coach_authorization, get_personnel_authorization, ClientAutoPresenceView
 
 app_name = 'client'
-
 
 urlpatterns = [
     # Clients paths
     # path('', TemplateView.as_view(template_name="index.html")),
     path('clients/', ClientListAPIView.as_view(),  name="client"),
     path('clients/<str:pk>/', ClientDetailAPIView.as_view(), name="client-detail"),
+    path('client-auto-presence/<str:value>/', ClientAutoPresenceView.as_view(), name="client-auto-presence"),
     # path('clients-transactions/', ClientPaeiementsViewAPI.as_view(),  name="client-transactions"),
     path('clients-dettes/', total_dettes,  name="client-dettes"),
     path('clients-count/', total_abonnes,  name="client-nombre"),

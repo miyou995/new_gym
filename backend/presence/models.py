@@ -30,7 +30,7 @@ class PresenceManager(models.Manager):
 
 
 class Presence(models.Model):
-    abc      = models.ForeignKey(AbonnementClient, on_delete=models.CASCADE,related_name='presences')
+    abc         = models.ForeignKey(AbonnementClient, on_delete=models.CASCADE,related_name='presences')
     date        = models.DateField()
     creneau     = models.ForeignKey(Creneau, on_delete=models.CASCADE,related_name='presenses', null=True, blank=True)
     is_in_list  = models.BooleanField(default=True) # check if the person is in the list of client that should be in this creneau
@@ -60,32 +60,29 @@ class Presence(models.Model):
     
     def get_time_consumed(self, sortie=None):
         today = date.today()
-        print(' THE today', today)
-
-        time = datetime.now().time()
-        print(' THE timezone.now()',time)
+        now_time = datetime.now().time()
         if sortie:
-            print('LA SORTIE TIME', sortie)
-            print('LA SORTIE TIME TYPE =>', type(sortie))
             d_end = datetime.combine(today, sortie)
         else:
-            d_end = datetime.combine(today, time)
-        print(' THE D_end0', d_end)
+            d_end = datetime.combine(today, now_time)
         if self.abc.is_time_volume():
             d_start = datetime.combine(today, self.hour_entree)
-            print(' THE d_start', d_start)
-
             diff =  d_end - d_start 
             diff_secondes = diff.total_seconds() 
             minutes = diff_secondes / 60
             ecart = int(minutes)
-            print(' THE ECART', ecart)
         else :
             ecart = 1
-        print('THE FINAL DEND', d_end)
-        self.hour_sortie = d_end.time()
-        # self.save() # i commented this because it should not save only calculate 
+        self.hour_sortie = now_time
         return ecart
+
+    # def get_time_consumed(self, sortie=None):
+    #     if not sortie :
+    #         sortie = datetime.now().time()
+    #     ecart = timedelta(sortie) - timedelta(self.hour_entree)
+    #     print('ECART', ecart)
+    #     return ecart
+
 
 
 class PresenceCoach(models.Model):

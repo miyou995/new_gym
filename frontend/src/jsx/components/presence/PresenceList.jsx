@@ -138,7 +138,6 @@ const [presenceStatus, setPresenceStatus] = useState(null);
          // setPresencesCount(result.data.count)
          await api.get(endpoint)
          .then(res => {
-            //console.log('cest un result ', res);
             setPresenceData(res.data.results)
             setPresencesCount(res.data.count)
             setPresenceStatus(res.status)
@@ -150,32 +149,57 @@ const [presenceStatus, setPresenceStatus] = useState(null);
       presenceDateDate()
    }, [startDate, endDate, clientId,nextpage, searchValue, client, presenceCreatedSuccess, presenceupdatedSuccess, salleId, editModal, presneceCreateModal, startHour, filterActivity]);
 
+// const HandleSubmit = (e) => {
+//    e.preventDefault();
+//    const presenceData =  api.get(`${process.env.REACT_APP_API_URL}/rest-api/get-client/?cl=${clientId}`).then(
+//       res=> {
+//       if (res.data.last_presence) {
+//          setPresenceId(res.data.last_presence)
+//          api.put( `${process.env.REACT_APP_API_URL}/rest-api/presence/edit/${res.data.last_presence}/`)
+//          notifySuccess(`la sortie de ${clientId} a été éffectué Avec Succée`)
+//          setClientId('')
+//          // console.log('presenceData', presenceData);
+//          return presenceData
+//       } else {
+//          try {
+//             const presenceData1 = api.post(presenceCreateEND,{client: clientId}).then(res => {
+//                notifySuccess(`Entrée autorisée, ${clientId}`)
+//                setClientId('')
+//             })
+//             return presenceData1
+//          } catch (error) {
+//             notifyError("Erreur, Entrée non autorisée")
+//          }} 
+//    }).catch(err => {
+//       console.log(err);
+//       notifyError("Cet ID n'existe pas dans nos fichier")
+//    })
+// }
+
 const HandleSubmit = (e) => {
    e.preventDefault();
-   const presenceData =  api.get(`${process.env.REACT_APP_API_URL}/rest-api/get-client/?cl=${clientId}`).then(
-      res=> {
-      if (res.data.last_presence) {
-         setPresenceId(res.data.last_presence)
-         api.put( `${process.env.REACT_APP_API_URL}/rest-api/presence/edit/${res.data.last_presence}/`)
-         notifySuccess(`la sortie de ${clientId} a été éffectué Avec Succée`)
-         setClientId('')
-         // console.log('presenceData', presenceData);
-         return presenceData
-      } else {
-         try {
-            const presenceData1 = api.post(presenceCreateEND,{client: clientId}).then(res => {
-               notifySuccess(`Entrée autorisée, ${clientId}`)
-               setClientId('')
-            })
-            return presenceData1
-         } catch (error) {
-            notifyError("Erreur, Entrée non autorisée")
-         }} 
-   }).catch(err => {
-      console.log(err);
-      notifyError("Cet ID n'existe pas dans nos fichier")
+   const presenceData =  api.get( `${process.env.REACT_APP_API_URL}/rest-api/client-auto-presence/${clientId}`).then(res=> {
+         console.log("24 kara ", res.data);
+         if (res.data.status === "error") {
+            console.log("res.data.message", res.data.message);
+            setClientId('')
+            //          notifySuccess(`la sortie de ${clientId} a été éffectué Avec Succée`)
+            notifyError(res.data.message)
+         }else{
+            console.log("erhaba a baba", res.data.message);
+            //          notifySuccess(`la sortie de ${clientId} a été éffectué Avec Succée`)
+            notifySuccess(res.data.message)
+            setClientId('')
+         }
+      }).catch(error  => {
+         console.log("24 error .data ", error );
+         console.log("Error: ", error.response.data.error);
+         // console.log(res.error);
+         notifyError(error.response.data.error)
    })
 }
+
+
 const presenceAuthorization = `${process.env.REACT_APP_API_URL}/rest-api/presence/`
 
 const [presenceAuth, loading] = useAuth(presenceAuthorization, 'GET')
