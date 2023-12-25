@@ -143,7 +143,7 @@ const [presenceStatus, setPresenceStatus] = useState(null);
             setPresenceStatus(res.status)
          }).catch(err => {
             console.log(err);
-            setPresenceStatus(err.response.status)
+            setPresenceStatus(err.status)
          })
       }
       presenceDateDate()
@@ -354,7 +354,7 @@ const [presenceAuth, loading] = useAuth(presenceAuthorization, 'GET')
                                     <td >{presence.hour_sortie}</td>
                                     <td className=" text-left">{presence.note}</td>
                                     
-                                    <td className=" text-right text-danger">{presence.dettes.reste__sum}</td>
+                                    <td className=" text-right text-danger">{presence.dettes}</td>
                                  </tr>
                               ))}
                               </tbody>
