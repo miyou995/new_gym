@@ -178,7 +178,7 @@ const [presenceStatus, setPresenceStatus] = useState(null);
 
 const HandleSubmit = (e) => {
    e.preventDefault();
-   api.get( `${process.env.REACT_APP_API_URL}/rest-api/client-auto-presence/${clientId}`).then(res=> {
+   api.get( `${process.env.REACT_APP_API_URL}/rest-api/client-auto-presence/${clientId}/`).then(res=> {
          if (res.data.status === "error") {
             setClientId('')
             notifyError(res.data.message)
