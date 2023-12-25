@@ -36,6 +36,16 @@ CELERY_BEAT_SCHEDULE = {
         'schedule': crontab(hour=START_HOUR, minute=START_MINUTE),
     },
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': "octogym_db",
+#         'USER': "octopus",
+#         'PASSWORD': "miyou0209",
+#         'HOST': "localhost",
+#         'PORT': "5432",
+#     }
+# }
 
 # if DEBUG == True:
 #     CELERY_BEAT_SCHEDULE = {  
@@ -92,3 +102,6 @@ CELERY_BEAT_SCHEDULE = {
 #         },
 
 # }
+
+
+
