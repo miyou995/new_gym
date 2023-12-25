@@ -83,7 +83,6 @@ const Home = () => {
    const ToFicheClient = (clientID) => {
       history.push(`/client/${clientID}`)
    }
-   const hello = "sdvsv"
 
    const HandlePresenceSubmit = (e) => {
       e.preventDefault();

@@ -73,6 +73,8 @@ const ComponentToPrintWrapper = ({ item }) => {
 
 const ProductDetail = (props) => {
   const [client, setClient] = useState({});
+  const [abonnementData, setAbonnementData] = useState({});
+  
   const [aBCmodalCreate, setABCModalCreate] = useState(false);
   const [paiementModal, setPaiementModal] = useState(false);
   const [abonDetailModal, setAbonDetailModal] = useState(false);
@@ -92,12 +94,14 @@ const ProductDetail = (props) => {
    const [paiementDateInfo, setPaiementDateInfo] = useState("");
    const [paiementEditModal, setPaiementEditModal] = useState(false);
    const [paiementIdInfo, setPaiementIdInfo] = useState("");
-   
+   const [isLocked, setIsLocked] = useState(false);
+
    
    const [abonClientEnd, setAbonClientEnd] = useState("");
    const [abonClientpresences, setAbonClientpresences] = useState("");
    const [paiementNotesInfo, setPaiementNotesInfo] = useState("");
    const [abonClientReste, setAbonClientReste] = useState("");
+   
    const [abonnementClientCreneaux, setAbonnementClientCreneaux] = useState([]);
    const [assuranceModal, setAssuranceModal] = useState(false);
    const [clientPaiementsModal, setClientPaiementsModal] = useState(false);
@@ -219,6 +223,7 @@ const ProductDetail = (props) => {
         try {
            const res = await api.get(`${process.env.REACT_APP_API_URL}/rest-api/abonnement-by-client/?cl=${clientId}`);
            setAbonClient(res.data)
+           console.log("IS ABONNEMENT LOCKED?<<<>>>", res.data.is_locked);
         } catch (error) {
            console.log(error);
         }
@@ -304,7 +309,7 @@ useEffect(() => {
             </div>
             <div className="profile-email text-danger pt-2" style={{marginLeft: 'auto'}}>
               <h3 className="text-danger mb-0">
-                Dettes :{dettesClient}              {client.is_on_salle}
+                Dettes :{dettesClient} {client.is_on_salle}
               </h3>
               {isOnSalle
                 ?
@@ -418,6 +423,7 @@ useEffect(() => {
                 {abonClient.map( abonnement => (
                       <tr className='cursor-abonnement' key={abonnement.id} onClick={e => {
                         setAbonDetailModal(true)
+                        setAbonnementData(abonnement)
                         setAbonClientID(abonnement.id)
                         setAbonClientType(abonnement.type_abonnement)
                         setAbonClientTypeName(abonnement.type_abonnement_name)
@@ -425,6 +431,7 @@ useEffect(() => {
                         setAbonClientpresences(abonnement.presence_quantity)
                         setAbonnementClientCreneaux(abonnement.creneaux)
                         setAbonClientReste(abonnement.reste)
+                        setIsLocked(abonnement.is_abc_locked)
                       }}>
                       <td className="text-left">{abonnement.type_abonnement_name}</td>
                       <td>{abonnement.is_time_volume ? abonnement.left_minutes : abonnement.is_free_access ? 'Forfait': abonnement.presence_quantity }</td>
@@ -473,6 +480,7 @@ useEffect(() => {
                         <td className="text-left" onClick={e => setPaiementEditModal(true)}>{trans.amount}</td>
                         <td>{trans.date_creation}</td>
                         <td className="text-left">{trans.abonnement_name}</td>
+                        
                         <td><ComponentToPrintWrapper item={trans} /></td>
                     </tr>
                   ))}
@@ -531,6 +539,7 @@ useEffect(() => {
           paiementABCName : paiementABCName,
         }} />
         <ABCDetailModal show={abonDetailModal} onShowChange={setAbonDetailModal} abonnementData={{
+          abonnementData : abonnementData,
           clientId: clientId, 
           abonClientID: abonClientID,
           abonClientType : abonClientType,
@@ -538,7 +547,8 @@ useEffect(() => {
           abonClientpresences : abonClientpresences,
           abonClientTypeName : abonClientTypeName,
           abonnementClientCreneaux :abonnementClientCreneaux,
-          abonClientReste :abonClientReste
+          abonClientReste :abonClientReste,
+          isLocked : isLocked,
           }} />
           <AssuranceCreateModal show={assuranceModal} onShowChange={setAssuranceModal} clientData={{clientId: clientId}}/>
           {/* <AssuranceCreateModal show={assuranceModal} onShowChange={setAssuranceModal} clientData={{clientId: clientId}}/> */}

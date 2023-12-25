@@ -292,7 +292,7 @@ class MaladieViewSet(viewsets.ViewSet):
 
 
 class ClientNameViewAPI(generics.ListAPIView):
-    queryset = Client.objects.all().order_by('-id')
+    queryset = Client.objects.annotate(dettes=Sum("abonnement_client__reste")).order_by('-id')
     pagination_class = StandardResultsSetPagination
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {

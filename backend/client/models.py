@@ -375,13 +375,13 @@ class Client(models.Model):
             return False
 
 
-    def dettes(self):
-        try:
-            # dettes = AbonnementClient.objects.filter(client =self.id).aggregate(Sum('reste'))
-            dettes = self.abonnement_client.all().aggregate(Sum('reste'))
-        except:
-            dettes = 0
-        return dettes['reste__sum']
+    # def dettes(self):
+    #     try:
+    #         # dettes = AbonnementClient.objects.filter(client =self.id).aggregate(Sum('reste'))
+    #         dettes = self.abonnement_client.all().aggregate(Sum('reste'))
+    #     except:
+    #         dettes = 0
+    #     return dettes['reste__sum']
 
 
 class Coach(models.Model):

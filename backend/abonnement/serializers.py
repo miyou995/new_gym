@@ -22,7 +22,7 @@ class AbonnementTestSerializer(serializers.ModelSerializer):
 class ClientDropSerializer(serializers.ModelSerializer):
     class Meta:
         model = Client
-        fields = '__all__'
+        fields = ('id', 'last_name', 'first_name', 'phone')
         
 class AbonnementClientAllSerializer(serializers.ModelSerializer):
     class Meta:
@@ -229,9 +229,10 @@ class AbonnementClientDetailSerializer(serializers.ModelSerializer):
     type_abonnement_name = serializers.SerializerMethodField('get_type_abonnement_name', read_only=True)
     # cochage       = serializers.CharField(source='type_abonnement.systeme_cochage', read_only=True)
     price       = serializers.CharField(source='type_abonnement.price', read_only=True)
+    # is_locked = serializers.CharField(source="is_locked", read_only=True)
     class Meta:
         model = AbonnementClient
-        fields =('id', 'start_date','end_date', 'type_abonnement' , 'type_abonnement_name','presence_quantity', 'creneaux',  'reste', 'price', 'left_minutes', 'is_time_volume', 'is_free_access', 'is_fixed_sessions', 'is_free_sessions', 'is_valid')
+        fields =('id', 'start_date','end_date', 'type_abonnement' , 'type_abonnement_name','presence_quantity', 'creneaux',  'reste', 'price', 'left_minutes', 'is_time_volume', 'is_free_access', 'is_fixed_sessions', 'is_free_sessions', 'is_valid', 'blocking_date','is_abc_locked')
 
     def get_type_abonnement_name(self, obj):
         return obj.type_abonnement.name
@@ -247,8 +248,8 @@ class AbonnementSerialiser(serializers.ModelSerializer):
 
     def get_clients_number(self, obj):
         try:
-            queryset = Abonnement.objects.get(id = obj.id)
-            number = queryset.type_abonnement_client.count()
+            # queryset = Abonnement.objects.get(id = obj.id)
+            number = obj.type_abonnement_client.count()
             return number 
         except:
             return False
@@ -285,7 +286,9 @@ class ABCCreneauSerializer(serializers.ModelSerializer):
     def get_client_name(self, obj):
         client= obj.client
         return ClientDropSerializer(client).data
-
+    # def get_client_name(self, obj):
+    #     client= obj.client
+    #     return client.last_name
 
     # def get_abonnement(self, obj):
     #     creneau = self.context['creneau']

@@ -1,7 +1,6 @@
 from rest_framework.fields import ReadOnlyField
 from .models import Paiement, Autre, AssuranceTransaction, Remuneration, RemunerationProf, Transaction
 from rest_framework import serializers
-from client.serializers import ClientNameSerializer
 from rest_framework.response import Response
 
 class PaiementSerialiser(serializers.ModelSerializer):

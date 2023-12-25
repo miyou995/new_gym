@@ -12,6 +12,7 @@ from .serializers import AbonnementClientSerialiser, AbonnementSerialiser, Abonn
 from client.models import Client
 from .models import Abonnement,  AbonnementClient
 from django.db.models import Prefetch
+from rest_framework import status
 
 class StandardResultsSetPagination(pagination.PageNumberPagination):
     page_size = 15
@@ -99,8 +100,8 @@ class AbonnementClientDetailAPIView(generics.RetrieveUpdateAPIView):
 
     def get_object(self):
         obj = get_object_or_404(AbonnementClient.objects.filter(id=self.kwargs["pk"]))
-        abon = AbonnementClient.objects.get(id = obj.id)
-        print('Test de get client =======> ', abon.transactions.all().aggregate )
+        # abon = AbonnementClient.objects.get(id = obj.id)
+        # print('Test de get client =======> ', abon.transactions.all().aggregate )
         return obj
     
 
@@ -125,7 +126,7 @@ class AbonnementAPIView(generics.CreateAPIView):
     }
 
 class AbonnementListAPIView(generics.ListAPIView):
-    queryset = Abonnement.objects.filter(actif=True)
+    queryset = Abonnement.objects.filter(actif=True).prefetch_related('type_abonnement_client','salles')
     serializer_class = AbonnementSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
@@ -186,10 +187,8 @@ class RenewABCView(APIView):
         "PATCH": ["abonnement.change_abonnementclient"],
     }
     def get_object(self, pk):
-        try:
-            return AbonnementClient.objects.get(pk=pk)
-        except AbonnementClient.DoesNotExist:
-            raise Http404
+        abc = get_object_or_404(AbonnementClient, pk=pk)
+        return abc
 
     def get(self, request, pk, format=None):
         abc = self.get_object(pk)
@@ -206,8 +205,12 @@ class RenewABCView(APIView):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
+    
+class ABCToggleSuspensionAPIView(APIView):
+    def post(self, request, pk):
+        abc = get_object_or_404(AbonnementClient, pk=pk)
+        abc.toggle_lock()
+        return Response({'status': 'success'}, status=status.HTTP_200_OK)
 # @api_view(['GET'])
 # def renew_api_view(request, pk):
 #     abc  = AbonnementClient.objects.get( id = pk)
@@ -326,7 +329,8 @@ class ABClientByCreneauListAPIView(generics.ListAPIView):
     def get_queryset(self):
         try:
             creneau = self.request.query_params.get('cr', 1)
-            clients = AbonnementClient.objects.filter(creneaux=creneau)
+            clients = AbonnementClient.subscription.active_subscription().filter(creneaux=creneau).select_related('client', 'type_abonnement').prefetch_related('creneaux').distinct()
+            # clients = AbonnementClient.objects.filter(creneaux=creneau)[:2]
             return clients
         except:
             return None

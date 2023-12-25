@@ -121,7 +121,7 @@ class ActivityAPIView(generics.CreateAPIView):
 
 
 class ActivityListAPIView(generics.ListAPIView):
-	queryset = Activity.objects.all()
+	queryset = Activity.objects.select_related('salle')
 	# permission_classes = (IsAuthenticated,)
 	serializer_class = ActivitySerialiser
 	permission_classes = (IsAdminUser,BaseModelPerm)

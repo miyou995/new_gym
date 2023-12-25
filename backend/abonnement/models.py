@@ -105,8 +105,9 @@ class Abonnement(models.Model):
 
         
 class AbonnementClient(models.Model):
-    start_date          = models.DateField()# number of days
-    end_date            = models.DateField()# number of days
+    start_date          = models.DateField()
+    end_date            = models.DateField()
+    blocking_date       = models.DateField(null=True)
     client              = models.ForeignKey('client.Client', related_name="abonnement_client", on_delete=models.PROTECT)
     type_abonnement     = models.ForeignKey(Abonnement, related_name="type_abonnement_client", on_delete=models.CASCADE)
     presence_quantity   = models.IntegerField(blank=True, null=True)
@@ -142,6 +143,38 @@ class AbonnementClient(models.Model):
         print("ABCCCCC DELETEEDDDD")
         return self
 
+    def lock(self):
+        today = date.today()
+        self.blocking_date = today
+        self.save()
+        print('LOCKING DONE')
+
+    def unlock(self):
+        today = date.today()
+
+        if self.blocking_date:
+            locked_days = self.end_date - self.blocking_date
+            print('locked_days', locked_days)
+            print('OLD_end_date', self.end_date)
+            self.end_date = today + locked_days
+            print('new_end_date', self.end_date)
+            self.blocking_date = None
+            self.save()
+            print('UNLOCKING DONE')
+
+    def toggle_lock(self):
+        if self.is_abc_locked():
+            self.unlock()
+        else:
+            self.lock()
+
+
+    def is_abc_locked(self):
+        print('self.blocking_date ?>>>>>', self.blocking_date)
+        print('self.blocking_date BOOL?>>>>>', True if self.blocking_date else False)
+        
+        return True if self.blocking_date else False
+    
     def get_day_index(self, day):
         if day == 'DI':
             return 6
@@ -161,7 +194,6 @@ class AbonnementClient(models.Model):
             return False
 
     def get_next_date(self, given_start_date, day):
-        today = date.today()
         formated_start_date = datetime.strptime(given_start_date, "%Y-%m-%d")
         weekday = formated_start_date.weekday()
         print('TODAY DE TODAY', weekday)
@@ -221,7 +253,7 @@ class AbonnementClient(models.Model):
         # print('today', today)
         # print('end_date', self.end_date)
         if today <= self.end_date:
-            if self.get_rest_quantity() > self.get_limit() :
+            if self.presence_quantity > self.get_limit() :
                 return True
         return False 
 
@@ -252,7 +284,7 @@ class AbonnementClient(models.Model):
         type_abonnement = self.type_abonnement
         delta = timedelta(days = type_abonnement.length)
         creneaux = self.creneaux.all()
-        creneaux_ids = self.creneaux.all().values_list('id', flat=True)
+        # creneaux_ids = self.creneaux.all().values_list('id', flat=True)
         new_end_date = self.get_end_date(renew_start_date, creneaux)
         print('the renew_start_date', renew_start_date)
         print('the new_end_date', new_end_date)
@@ -287,11 +319,13 @@ class AbonnementClient(models.Model):
         else:
             return self.presence_quantity
 
-    def get_rest_quantity(self):
-        if self.is_time_volume():
-            return self.presence_quantity
-        else:
-            return self.presence_quantity
+    def is_red(self):
+        if self.presence_quantity <= self.get_limit():
+            return "text-danger"
+        return ""
+
+    def get_reste(self):
+        return sum()
 
     # def renew_abc(self, renew_start_date):
     #     type_abonnement = self.type_abonnement
@@ -338,18 +372,9 @@ def creneau_created_signal(sender, instance, created,**kwargs):
         activity = instance.activity
         planning =instance.planning
         # planning =instance.planning
-        print('type_abonnement__salles__actvities = activity',  activity)
-        print('creneaux__planning = planning',  planning)
 
-        abonnements = AbonnementClient.subscription.time_volume().filter(type_abonnement__salles__actvities = activity, creneaux__planning = planning ).prefetch_related('creneaux', 'creneaux__planning').distinct()
-        # abonnements = AbonnementClient.subscription_type.free_access_subscription()
-        print('ABONNEMENT', abonnements.count())
-        # get abc that has same activities as creneaux abonnements 
-        # new_abc =abonnements.filter(type_abonnement__salles__actvities = activity)
-        # print(' THE NEWABCSSS', new_abc.count())
+        abonnements = AbonnementClient.subscription.active_subscription().time_volume().filter(type_abonnement__salles__actvities = activity, creneaux__planning = planning ).prefetch_related('creneaux', 'creneaux__planning').distinct()
         for abonnement in abonnements:
-            # if abonnement.get_planning() == instance.planning:
-            #     if activity in abonnement.get_activites():
             abonnement.creneaux.add(instance)
             abonnement.save()
         # instance.save()

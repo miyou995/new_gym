@@ -128,32 +128,32 @@ const [clientAuth, loading] = useAuth(clientAuthorizationEnd, 'GET')
                                      <tbody id="customers">
                                         {clientData.map(client => (
                                            <tr role="row" key={client.id} className="btn-reveal-trigger">
-                                              <td className="customer_shop_single"> {client.id} </td>
-                                              <td className="py-3">
-                                                 <Link to={`/client/${client.id}`}>
-                                                    <div className="media d-flex align-items-center">
-                                                       <div className="avatar avatar-xl mr-2">
-                                                          <div className="">
-                                                             <img className="rounded-circle img-fluid" src={avartar5} width="30" alt="" />
-                                                          </div>
-                                                       </div>
-                                                       <div className="media-body">
-                                                          <h5 className="mb-0 fs--1">
-                                                             {capitalizeFirstLetter(client.last_name)}
-                                                          </h5>
-                                                       </div>
-                                                    </div>
-                                                 </Link>
-                                              </td>
-                                              <td className="py-2">
-                                                 {capitalizeFirstLetter(client.first_name)}
-                                              </td>
-                                              <td className="py-2">
-                                                 <a href="tel:{client.phone}">{client.phone}</a>
-                                              </td>
-                                              <td className="py-2 pl-5 wspace-no"> {client.adress} </td>
-                                              <td className="py-2">{client.date_added}</td>
-                                              <td className="py-2  text-danger">{client.dettes.reste__sum}</td>
+                                                <td className="customer_shop_single"> {client.id} </td>
+                                                <td className="py-3">
+                                                   <Link to={`/client/${client.id}`}>
+                                                      <div className="media d-flex align-items-center">
+                                                         <div className="avatar avatar-xl mr-2">
+                                                            <div className="">
+                                                               <img className="rounded-circle img-fluid" src={avartar5} width="30" alt="" />
+                                                            </div>
+                                                         </div>
+                                                         <div className="media-body">
+                                                            <h5 className="mb-0 fs--1">
+                                                               {capitalizeFirstLetter(client.last_name)}
+                                                            </h5>
+                                                         </div>
+                                                      </div>
+                                                   </Link>
+                                                </td>
+                                                <td className="py-2">
+                                                   {capitalizeFirstLetter(client.first_name)}
+                                                </td>
+                                                <td className="py-2">
+                                                   <a href="tel:{client.phone}">{client.phone}</a>
+                                                </td>
+                                                <td className="py-2 pl-5 wspace-no"> {client.adress} </td>
+                                                <td className="py-2">{client.date_added}</td>
+                                                <td className="py-2  text-danger">{client.dettes}</td>
                                            </tr>
                                         ))}
                                      </tbody>
