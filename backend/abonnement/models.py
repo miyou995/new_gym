@@ -414,17 +414,19 @@ post_save.connect(creneau_created_signal, sender=Creneau)
 
     # def create(self, validated_data):
     #     print('validated_data =====>', validated_data)
+
     #     # return AbonnementClient.objects.create(**validated_data)
     #     abon = validated_data['type_abonnement']
     #     number = Abonnement.objects.get(id = abon.id).length
+
     #     delta = timedelta(days = number)
     #     end_date = datetime.now().date() + delta
     #     presence_quantity = Abonnement.objects.get(id = abon.id).seances_quantity
 
     #     abonnement_client = AbonnementClient.objects.create(end_date=end_date,presence_quantity=presence_quantity, **validated_data)
     #     return abonnement_client
-
-
     # 0561 64 40 67 aymen bencherchali
+
+
 
 
