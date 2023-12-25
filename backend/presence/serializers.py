@@ -193,7 +193,7 @@ class PresenceSerialiser(serializers.ModelSerializer):
         return nom
 
     def get_activity(self, obj):
-        print('abc', obj.creneau.planning)
+        # print('abc', obj.creneau.planning)
         # print('GET ACTI', obj.creneau.activity)
         # activite = obj.creneau.activity.name
         try:
