@@ -97,8 +97,6 @@ const Markup  = () => {
     const handleKeyPress = (event) => {
       if (event.key === 'F1') {
         event.preventDefault();
-        history.push('/presences');
-        console.log("BOOM FPRESSED"); 
         if (window.location.pathname === '/presences') {
           const input = document.getElementById('presenceInput');
           if (input) {
