@@ -141,3 +141,10 @@ GitHub.sublime-settings
 .history
 frontend/node_modules/
 *.json
+
+
+backend/config/local_settings.py
+backend/debug.log
+
+*.zip
+backend/*.json

@@ -340,7 +340,6 @@ const [presenceAuth, loading] = useAuth(presenceAuthorization, 'GET')
                                     setActivity(presence.activity)
                                  }}>
                                     <td className="customer_shop_single"> {presence.client} </td>
-                                    <td className={`text-left ${presence.is_red}`}>{presence.seances}</td>
 
                                     <td className="">
                                        {/* <Link to={`/presence/detail/${presence.id}`}> */}
@@ -353,6 +352,7 @@ const [presenceAuth, loading] = useAuth(presenceAuthorization, 'GET')
                                           </div>
                                        {/* </Link> */}
                                     </td>
+                                    <td className={`text-left ${presence.is_red}`}>{presence.seances}</td>
                                     <td >{presence.activity}</td>
                                     <td >{presence.date}</td>
                                     <td >{getCurrentDay(presence.date)}</td>
