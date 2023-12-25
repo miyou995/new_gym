@@ -178,23 +178,17 @@ const [presenceStatus, setPresenceStatus] = useState(null);
 
 const HandleSubmit = (e) => {
    e.preventDefault();
-   const presenceData =  api.get( `${process.env.REACT_APP_API_URL}/rest-api/client-auto-presence/${clientId}`).then(res=> {
-         console.log("24 kara ", res.data);
+   api.get( `${process.env.REACT_APP_API_URL}/rest-api/client-auto-presence/${clientId}`).then(res=> {
          if (res.data.status === "error") {
-            console.log("res.data.message", res.data.message);
             setClientId('')
-            //          notifySuccess(`la sortie de ${clientId} a été éffectué Avec Succée`)
             notifyError(res.data.message)
+            notifyError(res.data.error)
          }else{
-            console.log("erhaba a baba", res.data.message);
-            //          notifySuccess(`la sortie de ${clientId} a été éffectué Avec Succée`)
             notifySuccess(res.data.message)
+            notifyError(res.error)
             setClientId('')
          }
       }).catch(error  => {
-         console.log("24 error .data ", error );
-         console.log("Error: ", error.response.data.error);
-         // console.log(res.error);
          notifyError(error.response.data.error)
    })
 }

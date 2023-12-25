@@ -120,8 +120,9 @@ class ClientAutoPresenceView(APIView):
             return Response({"status": presence["level"], "message": presence["message"]})
         except Client.DoesNotExist:
             print('NO CLIENT FOR', value)
-            return Response({"status": "error", "error": "Client does not exist"}, status=status.HTTP_404_NOT_FOUND)
+            return Response({"status": "error", "error": "Client does not exist"}, status=200)
 
+# return Response({"status":"error", "message":"Le numéro de carte ou d'identification n'est pas valide"}, status
 class ClientDetailAPIView(generics.RetrieveUpdateAPIView):
     queryset = Client.objects.all()
     # permission_classes = (IsAuthenticated,)
