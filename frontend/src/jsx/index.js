@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AuthProvider } from "./context/AuthContext";
 /// React router dom
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
-/// Css
+import { BrowserRouter as Router, Switch, Route, Redirect, useHistory } from "react-router-dom";
+
 import "./index.css";
 import "./chart.css";
 import PrivateRoute from "./utils/PrivateRoute";
@@ -85,13 +85,45 @@ import Tresorie from "./components/tresorie/Tresorie"
 import Home from "./components/Dashboard/Home";
 import Configuration from './components/configuration/Configuration'
 import UserDetail from "./components/users/UserDetail";
-const Markup = () => {
+const Markup  = () => {
   let path = window.location.pathname;
   path = path.split("/");
   path = path[path.length - 1];
   let pagePath = path.split("-").includes("login");
   
   const [activeEvent, setActiveEvent] = useState(!path);
+  let history = useHistory();
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      if (event.key === 'F1') {
+        event.preventDefault();
+        history.push('/presences');
+        console.log("BOOM FPRESSED"); 
+        if (window.location.pathname === '/presences') {
+          const input = document.getElementById('presenceInput');
+          if (input) {
+            input.focus();
+          }
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyPress);
+    };
+  }, [history]);
+
+
+  // useEffect(() => {
+  //   if (window.location.pathname === '/presences') {
+  //     const input = document.getElementById('presenceInput');
+  //     if (input) {
+  //       input.focus();
+  //     }
+  //   }
+  // }, [/* dependencies, if any */]);
 
   const routes = [
     /// Dashboard

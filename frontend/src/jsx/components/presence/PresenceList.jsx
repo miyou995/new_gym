@@ -224,7 +224,7 @@ const [presenceAuth, loading] = useAuth(presenceAuthorization, 'GET')
                   <div className='row'>
                      <div className="col-6">
                      <label htmlFor="entree">Présence Automatique </label>
-                        <input name='entree' type="text" className="form-control" value={clientId} placeholder="ID Client" onChange={e =>  setClientId(e.target.value)} />
+                        <input id="presenceInput" name='entree' type="text" className="form-control" value={clientId} placeholder="ID Client" onChange={e =>  setClientId(e.target.value)} />
                      </div>
                      <div className="col-6 mt-auto">
                         <Button  variant="success" type="submit" > Valider</Button>
@@ -315,6 +315,7 @@ const [presenceAuth, loading] = useAuth(presenceAuthorization, 'GET')
                               <tr>
                                  <th className="customer_shop"> ID </th>
                                  <th>Nom</th>
+                                 <th>Reste AB</th>
                                  <th>Activité</th>
                                  <th> Date </th>
                                  <th> Jour </th>
@@ -326,7 +327,7 @@ const [presenceAuth, loading] = useAuth(presenceAuthorization, 'GET')
                            </thead>
                            <tbody id="customers">
                               {presenceData.map(presence => (
-                                 <tr role="row presences" key={presence.id} className="btn-reveal-trigger cursor-abonnement presences p-0"onClick={e => {
+                                 <tr key={presence.id} className="btn-reveal-trigger cursor-abonnement presences p-0" onClick={e => {
                                     setEditModal(true)
                                     setClient(presence.client_last_name)
                                     setClientId(presence.client)
@@ -339,6 +340,8 @@ const [presenceAuth, loading] = useAuth(presenceAuthorization, 'GET')
                                     setActivity(presence.activity)
                                  }}>
                                     <td className="customer_shop_single"> {presence.client} </td>
+                                    <td className={`text-left ${presence.is_red}`}>{presence.seances}</td>
+
                                     <td className="">
                                        {/* <Link to={`/presence/detail/${presence.id}`}> */}
                                           <div className="media d-flex align-items-center">
@@ -356,6 +359,7 @@ const [presenceAuth, loading] = useAuth(presenceAuthorization, 'GET')
                                     <td className=" pl-5 wspace-no"> {presence.hour_entree} </td>
                                     <td >{presence.hour_sortie}</td>
                                     <td className=" text-left">{presence.note}</td>
+                                    
                                     <td className=" text-right text-danger">{presence.dettes.reste__sum}</td>
                                  </tr>
                               ))}

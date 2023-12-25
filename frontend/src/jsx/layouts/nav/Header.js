@@ -58,7 +58,6 @@ const Header = ({ textTab, onNote, toggle, onProfile, onNotification, onClick })
 // const response = axiosInstance.post('rest-api/auth/logout/blacklist', {
 //   refresh_token: localStorage.getItem('refresh_token'),
 // });
-  let history = useHistory();
 
   return (
     <div className="header">

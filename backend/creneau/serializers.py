@@ -70,7 +70,7 @@ class CreneauSerialiser(serializers.ModelSerializer):
     salle       = serializers.SerializerMethodField('get_salle', read_only=True)
     # presences   = serializers.SerializerMethodField('get_presences', read_only= True)
     # clients   = serializers.SerializerMethodField('get_clients', read_only= True)
-    clients_count   = serializers.SerializerMethodField('get_clients_count', read_only= True)
+    clients_count   = serializers.IntegerField(read_only= True)
     activity_name   = serializers.SerializerMethodField('get_activity_name', read_only= True)
     class Meta:
         model = Creneau
@@ -114,11 +114,12 @@ class CreneauSerialiser(serializers.ModelSerializer):
         
     def get_clients_count(self, obj):
         # abc = obj.abonnements.all()
-        cr_id = obj.id
         clients = Client.objects.filter(abonnement_client__creneaux=obj).count()
+        return clients
+        # print('COUNT CLIENT OLD', clients)
+        # print('try new count', obj.abonnements.client.count())
         # print(clients)
         # print('les client seont ', clients)
-        return clients
         # client = Client.abonnement_client.all()
         # clients = abc.objects.filter(client=)
         # return ClientCreneauxSerializer(abc, many=True).data

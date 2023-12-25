@@ -21,13 +21,13 @@ from datetime import date, timedelta, datetime
 
 class BaseModelPerm(DjangoModelPermissions):
     def get_custom_perms(self, method, view):
-        app_name =  view.queryset.model._meta.app_label
+        # app_name =  view.queryset.model._meta.app_label
         if hasattr(view, 'extra_perms_map'):
             return [perms for perms in view.extra_perms_map.get(method, [])]
         else:
             return []
 
-    def has_permission(self, request, view):
+    def has_permission(self, request, view, model=None):
         perms = self.get_required_permissions(request.method, view.queryset.model)
         perms.extend(self.get_custom_perms(request.method, view))
         return ( request.user and request.user.has_perms(perms) )
@@ -103,7 +103,7 @@ class AllPresenceListAPIView(generics.ListAPIView):
 
      
 class PresenceListAPIView(generics.ListAPIView):
-    queryset = Presence.objects.all()
+    queryset = Presence.objects.select_related('abc', 'abc__client','creneau')
     # permission_classes = (IsAuthenticated,)
     serializer_class = PresenceSerialiser
     pagination_class = StandardResultsSetPagination
@@ -117,7 +117,9 @@ class PresenceListAPIView(generics.ListAPIView):
 
     def get_queryset(self):
         FTM = '%H:%M'
-        queryset = Presence.objects.select_related('creneau', 'creneau', 'abc__client' , 'creneau__activity__salle')
+        queryset = Presence.objects.select_related('creneau', 'abc', 'abc__client', 'abc__type_abonnement', 'creneau__activity__salle', 'creneau__planning').annotate(
+            total_dette=Sum('abc__client__abonnement_client__reste')
+        )        
         start_date = self.request.query_params.get('start_date', None)
         end_date = self.request.query_params.get('end_date', None)
         hour = self.request.query_params.get('hour', None) 
@@ -135,9 +137,45 @@ class PresenceListAPIView(generics.ListAPIView):
             print('deuxeme')
             queryset = queryset.filter(date__range=[start_date, end_date])
             return queryset.order_by('-id')
+        
+# from django.utils.dateparse import parse_datetime
 
-                
+# class PresenceListAPIView(generics.ListAPIView):
+#     serializer_class = PresenceSerialiser
+#     pagination_class = StandardResultsSetPagination
+#     filter_backends = [DjangoFilterBackend]
+#     # permission_classes = (IsAdminUser, BaseModelPerm)
+#     permission_classes = (IsAdminUser, )
+#     extra_perms_map = {
+#         "GET": ["presence.view_presence"]
+#     }
+#     filterset_fields = ['creneau__activity', 'abc__client_id', 'creneau__activity__salle']
 
+#     def get_queryset(self):
+#         FTM = '%H:%M'
+#         queryset = Presence.objects.select_related('creneau', 'abc', 'abc__client', 'abc__type_abonnement', 'creneau__activity__salle', 'creneau__planning').annotate(
+#             total_dette=Sum('abc__client__abonnement_client__reste')  # Annotate with the total 'reste'
+#         )
+#         start_date = self.request.query_params.get('start_date', None)
+#         end_date = self.request.query_params.get('end_date', None)
+#         hour = self.request.query_params.get('hour', None)
+
+#         if start_date:
+#             start_date = parse_datetime(start_date)
+#         if end_date:
+#             end_date = parse_datetime(end_date)
+#         print('self.request.query_params', self.request.query_params.dict())
+#         if hour:
+#             i_start_time = datetime.strptime(hour, FTM)
+#             i_end_time = i_start_time + timedelta(minutes=20)
+#             start_time = i_start_time.time()
+#             end_time = i_end_time.time()
+#             queryset = queryset.filter(creneau__hour_start__range=[start_time, end_time])
+
+#         if start_date and end_date:
+#             queryset = queryset.filter(date__range=[start_date, end_date])
+
+#         return queryset.order_by('-id')
         
 
 class PresenceDetailAPIView(generics.RetrieveUpdateAPIView):
@@ -280,9 +318,10 @@ class PresenceClientDetailAPI(generics.ListAPIView):
         client = self.request.query_params.get('cl', None)
         start_date = self.request.query_params.get('start_date', None)
         end_date = self.request.query_params.get('end_date', None)
-        presences = Presence.objects.filter(abc__client_id=client, date__range=[start_date, end_date])
+        presences = Presence.objects.filter(abc__client_id=client, date__range=[start_date, end_date]).select_related('creneau', 'abc', 'abc__client', 'abc__type_abonnement', 'creneau__activity__salle', 'creneau__planning').annotate(
+            total_dette=Sum('abc__client__abonnement_client__reste')
+        )        
         # if start_date and end_date:
-        print('presences', presences)
         return presences
     
 
@@ -296,7 +335,7 @@ class PresenceClientIsInAPI(generics.ListAPIView):
     def get_queryset(self):
         # client = self.request.query_params.filter('cl', None)
         # print('client', client)
-        presences = Presence.objects.filter(hour_sortie__isnull=True)
+        presences = Presence.objects.filter(hour_sortie__isnull=True).select_related('creneau', 'abc', 'abc__client', 'abc__type_abonnement', 'creneau__activity__salle', 'creneau__planning')
         return presences
 
 

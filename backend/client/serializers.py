@@ -184,21 +184,23 @@ class MaladieSerializer(serializers.ModelSerializer):
         
 
 class ClientNameSerializer(serializers.ModelSerializer):
-    dettes = serializers.SerializerMethodField('get_dettes_client', read_only=True)
+    # dettes = serializers.SerializerMethodField('get_dettes_client', read_only=True)
+    # dettes = serializers.CharField(source='dettes', read_only=True)
+    dettes = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = Client
         fields = ('id', 'last_name', 'first_name', 'adress', 'phone', 'date_added', 'dettes')
 
-    def get_dettes_client(self, obj):
-        # print('id ', obj.id)
-        client_id = str(obj.id)
-        try:
-            dettes = AbonnementClient.objects.filter(client =client_id).aggregate(Sum('reste'))
-        except:
-            dettes = 0
-        # print(dettes)
-        return dettes
+    # def get_dettes_client(self, obj):
+    #     # print('id ', obj.id)
+    #     client_id = str(obj.id)
+    #     try:
+    #         dettes = AbonnementClient.objects.filter(client =client_id).aggregate(Sum('reste'))
+    #     except:
+    #         dettes = 0
+    #     # print(dettes)
+    #     return dettes
 
 class ClientNameDropSerializer(serializers.ModelSerializer):
 

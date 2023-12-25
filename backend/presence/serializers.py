@@ -175,11 +175,18 @@ class PresenceSerialiser(serializers.ModelSerializer):
     client_last_name = serializers.SerializerMethodField('get_client_name', read_only=True)
     activity = serializers.SerializerMethodField('get_activity', read_only=True)
     client = serializers.CharField(source="abc.client" , read_only=True)
-    dettes = serializers.SerializerMethodField('get_dettes_client', read_only=True)
-    seances = serializers.RelatedField(source='client.abonnement_client.presence_quantity', read_only=True)
+    # dettes = serializers.SerializerMethodField('get_dettes_client', read_only=True)
+    # dettes = serializers.CharField(source='abc.client.dettes', read_only=True)
+    dettes = serializers.IntegerField(source='total_dette', read_only=True)
+
+    seances = serializers.CharField(source='abc.get_quantity_str', read_only=True)
+    is_red = serializers.CharField(source='abc.is_red', read_only=True)
+    
+
+    # quantity_str = serializers.CharField(source="abc.client" , read_only=True)
     class Meta:
         model = Presence
-        fields= ('id', 'abc', 'creneau', 'client',  'client_last_name', 'note', 'hour_entree', 'hour_sortie', 'note', 'activity', 'date', 'seances', 'dettes')
+        fields= ('id', 'abc', 'creneau', 'client',  'client_last_name', 'note', 'hour_entree', 'hour_sortie', 'note', 'activity', 'date', 'seances', 'is_red', 'dettes')
 
     def get_client_name(self, obj):
         nom = f"{obj.abc.client.last_name} {obj.abc.client.first_name}"
@@ -195,15 +202,15 @@ class PresenceSerialiser(serializers.ModelSerializer):
         except:
             return False
 
-    def get_dettes_client(self, obj):
-        # print('id ', obj.id)
-        client_id = obj.abc.client
-        try:
-            dettes = AbonnementClient.objects.filter(client =client_id).aggregate(Sum('reste'))
-        except:
-            dettes = 0
-        # print(dettes)
-        return dettes
+    # def get_dettes_client(self, obj):
+    #     # print('id ', obj.id)
+    #     client_id = obj.abc.client
+    #     try:
+    #         dettes = AbonnementClient.objects.filter(client =client_id).aggregate(Sum('reste'))
+    #     except:
+    #         dettes = 0
+    #     # print(dettes)
+    #     return dettes
 
 
 class PresenceClientSerialiser(serializers.ModelSerializer):

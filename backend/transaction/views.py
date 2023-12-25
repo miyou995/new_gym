@@ -298,7 +298,7 @@ class TransactionListAPIView(FlatMultipleModelAPIView):
         end_date = self.request.query_params.get('end_date', None)
         querylist = (
             {
-                'queryset': Paiement.objects.filter(date_creation__range=[start_date, end_date]).select_related('abonnement_client').order_by('-date_creation'),
+                'queryset': Paiement.objects.filter(date_creation__range=[start_date, end_date]).select_related('abonnement_client', 'abonnement_client__type_abonnement', 'abonnement_client__client').order_by('-date_creation'),
                 'serializer_class': PaiementSerialiser,
                 'label': 'paiement',
             },
@@ -538,7 +538,7 @@ class TransToday(FlatMultipleModelAPIView):
             'label': 'paiement',
         },
         {
-            'queryset': Remuneration.objects.filter(date_creation = today).order_by('-date_creation'),
+            'queryset': Remuneration.objects.filter(date_creation = today).select_related('nom').order_by('-date_creation'),
             'serializer_class': RemunerationSerialiser,
             'label': 'remuneration',
         },
@@ -548,7 +548,7 @@ class TransToday(FlatMultipleModelAPIView):
             'label': 'autre',
         },
         {
-            'queryset': RemunerationProf.objects.filter(date_creation = today).order_by('-date_creation'),
+            'queryset': RemunerationProf.objects.filter(date_creation = today).select_related('coach').order_by('-date_creation'),
             'serializer_class': RemunerationProfSerialiser,
             'label': 'remunerationProf',
         },
@@ -572,7 +572,7 @@ class PaiementClientListAPIView(generics.ListAPIView):
     }
     def get_queryset(self):
         client = self.request.query_params.get('cl', None)
-        transactions = Paiement.objects.filter(abonnement_client__client=client)
+        transactions = Paiement.objects.filter(abonnement_client__client=client).select_related('abonnement_client__client','abonnement_client', 'abonnement_client__type_abonnement')
         return  transactions
 
 

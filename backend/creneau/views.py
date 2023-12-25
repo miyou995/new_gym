@@ -8,7 +8,8 @@ from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser, D
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from abonnement.models import AbonnementClient
-
+from django.db.models import Count, Q
+from django.utils.timezone import now
 class BaseModelPerm(DjangoModelPermissions):
     def get_custom_perms(self, method, view):
         app_name =  view.queryset.model._meta.app_label
@@ -70,12 +71,17 @@ class CreneauBySalleAndPlanningListAPIView(generics.ListAPIView):
     extra_perms_map = {
         "GET": ["creneau.view_creneau"]
     }
-
     def get_queryset(self):
+        today = now().date()
         salle = self.request.query_params.get('sa', None)
         planning = self.request.query_params.get('pl', None)
         try:
-            creneaux = Creneau.objects.filter(activity__salle=salle, planning=planning)
+            creneaux = Creneau.objects.filter(activity__salle=salle, planning=planning).select_related('activity', 'coach', 'activity__salle').prefetch_related('abonnements').annotate(
+                clients_count=Count(
+                    'abonnements__client', 
+                    filter=Q(abonnements__end_date__gte=today, abonnements__archiver=False)
+                )
+            ).distinct()
         except:
             creneaux = Creneau.objects.none()
         return creneaux
@@ -98,7 +104,7 @@ class CreneauByAbndPlanListAPIView(generics.ListAPIView):
         planning = self.request.query_params.get('pl', None)
         type_ab = self.request.query_params.get('ab', None)
         # salle = Salle.objects.get(activities__activities_id= type_ab)
-        return Creneau.objects.filter(activity__salle__abonnements__id = type_ab, planning=planning)
+        return Creneau.objects.filter(activity__salle__abonnements__id = type_ab, planning=planning).select_related('planning', 'coach', 'activity', 'activity__salle').prefetch_related('abonnements', 'abonnements__client')
 
 
 
@@ -130,7 +136,8 @@ class CreneauDestroyAPIView(generics.DestroyAPIView):
         "DELETE": ["creneau.delete_creneau"],
     }
 
-    
+from django.db.models import Prefetch, F, Q
+from django.db.models import Count
 class CreneauByAbonnement(generics.ListAPIView):
     queryset = Creneau.objects.all()
     serializer_class = CreneauxSimpleSerialiser
@@ -138,20 +145,54 @@ class CreneauByAbonnement(generics.ListAPIView):
     extra_perms_map = {
         "GET": ["creneau.delete_creneau"]
     }
+    # def get_queryset(self):
+    #     abonnement_id = self.request.query_params.get('ab', None)
+    #     abc_id = self.request.query_params.get('abc', None)
+    #     abonnement_client = AbonnementClient.objects.get(id=abc_id)
+    #     if not abonnement_id or not abc_id:
+    #         return Creneau.objects.none()
+    #     # planning = Planning.objects.get()
+    #     # try:
+    #     planning_id = abonnement_client.creneaux.first().planning.id
+    #     print('PLANNNING ID', planning_id)
+    #     creneaux = Creneau.objects.filter(activity__salle__abonnements__id = abonnement_id,  planning__id=planning_id).select_related(
+    #         'planning', 'activity','coach', 'activity__salle'
+    #         ).prefetch_related(
+    #             'abonnements'
+    #         )
+    #     # except:
+    #     creneaux = Creneau.objects.filter(activity__salle__abonnements__id = abonnement_id).annotate(abc_planning=
+    #                                                                                                  ).select_related(
+    #             'planning', 'activity','coach', 'activity__salle'
+    #             ).prefetch_related(
+    #                 'abonnements'
+    #             )
+    #     # print('les ceneaux', creneaux.count())
+    #     return creneaux
     def get_queryset(self):
         abonnement_id = self.request.query_params.get('ab', None)
         abc_id = self.request.query_params.get('abc', None)
         abonnement_client = AbonnementClient.objects.get(id=abc_id)
+        if not abonnement_id or not abc_id:
+            return Creneau.objects.none()
         # planning = Planning.objects.get()
-        try:
-            planning_id = abonnement_client.creneaux.first().planning.id
-            print('PLANNNING ID', planning_id)
-            creneaux = Creneau.objects.filter(activity__salle__abonnements__id = abonnement_id,  planning__id=planning_id)
-        except:
-            creneaux = Creneau.objects.filter(activity__salle__abonnements__id = abonnement_id)
+        # try:
+        planning_id = abonnement_client.creneaux.first().planning.id
+        print('PLANNNING ID', planning_id)
+        creneaux = Creneau.objects.filter(Q(activity__salle__abonnements__id = abonnement_id) & Q(planning__id=planning_id) ).select_related(
+            'planning', 'activity','coach', 'activity__salle'
+            ).prefetch_related(
+                'abonnements'
+            ).annotate(clients_count=Count('abonnements__client')).distinct()
+        # except:
+        # creneaux = Creneau.objects.filter(activity__salle__abonnements__id = abonnement_id).annotate(abc_planning=
+        #                                                                                              ).select_related(
+        #         'planning', 'activity','coach', 'activity__salle'
+        #         ).prefetch_related(
+        #             'abonnements'
+        #         )
         # print('les ceneaux', creneaux.count())
         return creneaux
-
 
 
 class CreneauClientListAPIView(generics.ListAPIView):
@@ -164,11 +205,9 @@ class CreneauClientListAPIView(generics.ListAPIView):
 
     def get_queryset(self):
         client = self.request.query_params.get('cl', None)
-        print('cliiiientr', client)
-        abc = AbonnementClient.objects.filter(client= client)
         # abc = AbonnementClient.objects.filter(client= client, type_abonnement__systeme_cochage=False)
         # creneaux = Creneau.objects.filter(abonnements__client=client, abonnements__type_abonnement__systeme_cochage=False)
-        creneaux = Creneau.objects.filter(abonnements__client=client).distinct()
+        creneaux = Creneau.objects.filter(abonnements__client=client).select_related('activity').distinct()
         return creneaux
 
 class CreneauCoachListAPIView(generics.ListAPIView):
