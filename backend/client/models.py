@@ -157,6 +157,7 @@ class Client(models.Model):
             logger.warning('yess changed picture url-{}'.format(str(self.picture.url)))
             register_user.delay(self.last_name, self.id, self.picture.name)
         else:
+            logger.warning('picture not changed photo url-{}'.format(str(self.id)))
             print('picture not changed')
         if not self.id:
             try :
@@ -210,7 +211,9 @@ class Client(models.Model):
             first_presence = presences.first()
             presences.exclude(pk=first_presence.pk).delete()
 
-    def auto_presence(self):
+    def auto_presence(self, door_ip=None):
+        logger.warning('Client requested Door Auth ===> {}'.format(str(self.id)))
+
         FTM = '%H:%M:%S'
         erreur = {"level": "error", "message": "Ce client n'a pas accés maintenant"}
         sortie = {"level": "success", "message": f"la sortie de {self.id} a été éffectué Avec Succée"}
@@ -248,11 +251,12 @@ class Client(models.Model):
             if not abonnement:
                 abonnement = abon_list.first()
             print('ABONNEMENT<<<<<<<<<<>>>>>>>>>>>>>>>>',abonnement.get_type())
-            if abonnement.is_time_volume() and abonnement.presence_quantity > 30:
+
+            if abonnement.is_valid() and abonnement.is_time_volume():
                 print('IM HEEERE LOG ABONNEMENT==== TIME VOLUUUPME', abonnement.is_time_volume())
                 Presence.objects.create(abc= abonnement, creneau= cren_ref,  hour_entree=current_time )
                 return entree
-            elif abonnement.presence_quantity > 0:
+            elif abonnement.is_valid() and abonnement.presence_quantity > 0:
                 Presence.objects.create(abc= abonnement, creneau= cren_ref,  hour_entree=current_time )
                 if abonnement.is_fixed_sessions() or abonnement.is_free_sessions():
                     abonnement.presence_quantity -= 1
@@ -274,7 +278,6 @@ class Client(models.Model):
     def init_output(self,  exit_hour=None):
         presences = Presence.objects.filter(abc__client=self, hour_sortie__isnull=True)
         presence = presences.first()
-        logger.warning('LA PRESENCE {}'.format(str(presence)))
         current_time = datetime.now().strftime("%H:%M:%S")
         if exit_hour:
             current_time = exit_hour
@@ -282,6 +285,7 @@ class Client(models.Model):
             """ ecart + de 10 seconde"""
             return False
             
+        logger.warning('LA PRESENCE de{}'.format(str(self.id)))
         presence_time = presence.hour_entree
         ecart = abs(datetime.strptime(current_time, FTM) - datetime.strptime(str(presence_time), FTM))
         time_diff_seconds = timedelta.total_seconds(ecart)

@@ -1,20 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
-import jwt_decode from "jwt-decode";
+import React from "react";
 
 import { Link } from "react-router-dom";
 /// Scroll
-import PerfectScrollbar from "react-perfect-scrollbar";
-import { Dropdown } from "react-bootstrap";
 // import { LogoutUser } from "../../utils/auth";
-import { set } from "js-cookie";
 // import { axiosInstance } from "../../utils/auth";
-  import AuthContext from "../../context/AuthContext";
+  import axios from "axios";
 import { useContext } from "react";
-import axios from "axios";
+import AuthContext from "../../context/AuthContext";
 // import {notifySuccess, notifyError} from '../Alert'
-import {notifySuccess, notifyError} from '../../components/Alert'
-import ShortCuts from "../../components/ShortCuts";
+import { notifyError } from '../../components/Alert';
 
 
 
@@ -29,11 +23,11 @@ const Header = ({ textTab, onNote, toggle, onProfile, onNotification, onClick })
     : filterName.includes("ui")
     ? filterName.filter((f) => f !== "app")
     : filterName;
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  // const [isLoggedIn, setIsLoggedIn] = useState(true);
   const { user, logoutUser } = useContext(AuthContext);
 
-  const [token, setToken] = useState("");
-  const [username, SetUsername] = useState("");
+  // const [token, setToken] = useState("");
+  // const [username, SetUsername] = useState("");
   
   const Logout = async e => {
     let endpoint = `${process.env.REACT_APP_API_URL}/rest-api/auth/logout/blacklist`

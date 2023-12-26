@@ -15,7 +15,7 @@ from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
 
 from .models import Presence, PresenceCoach
-from .serializers import PresenceSerialiser,  PresenceEditSerialiser, PresenceCoachSerializer, PresenceClientSerialiser, PresencePostSerialiser, PresenceAutoSerialiser, PresenceHistorySerialiser, PresenceManualEditSerialiser
+from .serializers import PresenceSerialiser,  PresenceEditSerialiser, PresenceCoachSerializer, PresenceClientSerialiser, PresencePostSerialiser, PresenceAutoSerialiser, PresenceHistorySerialiser, PresenceManualEditSerialiser, PresenceNotificationSerialiser
 
 from datetime import date, timedelta, datetime
 
@@ -83,6 +83,21 @@ class PresenceHistoryListAPIView(generics.ListAPIView):
     extra_perms_map = {
         "GET": ["presence.view_presence"]
     }
+
+class NotifyPresenceListAPIView(generics.ListAPIView):
+
+
+    serializer_class = PresenceNotificationSerialiser
+    def get_queryset(self):
+        # Get the current time minus 3 seconds
+        three_seconds_ago = datetime.now() - timedelta(seconds=3)
+        # print('three_seconds_ago', three_seconds_ago)
+        queryset = Presence.objects.filter(updated__gte=three_seconds_ago, hour_sortie__isnull=False)
+        # permission_classes = (IsAuthenticated,)
+        return queryset
+    
+
+
 
 class AllPresenceListAPIView(generics.ListAPIView):
     queryset = Presence.objects.all()

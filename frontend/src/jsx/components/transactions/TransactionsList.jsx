@@ -1,27 +1,19 @@
-import React, { Fragment , useState, useEffect} from "react";
-import PageTitle from "../../layouts/PageTitle";
-import { Dropdown, Button } from "react-bootstrap";
-import Search from "../../layouts/Search";
+import React, { Fragment, useEffect, useState } from "react";
+import { Button } from "react-bootstrap";
+import { ToastContainer } from 'react-toastify';
 import ShortCuts from "../ShortCuts";
-import { ToastContainer, toast } from 'react-toastify'
+import useAxios from "../useAxios";
+import AutreCreateModal from './AutreCreateModal';
 import PaiementCreateModal from './PaiementCreateModal';
 import RemunerationCoachModal from './RemunerationCoachModal';
 import RemunerationPersonnelModal from './RemunerationPersonnelModal';
-import useAxios from "../useAxios";
-import AutreCreateModal from './AutreCreateModal';
 // import DetteCreateModal from './DetteCreateModal';
 /// images 
 
 
 import { Link, useHistory } from "react-router-dom";
-import { transformToNestObject } from "react-hook-form";
 
-import {
-   MuiPickersUtilsProvider,KeyboardDatePicker
- } from '@material-ui/pickers';
- import DateFnsUtils from '@date-io/date-fns';
 import useAuth from "../useAuth";
-import Error403 from "../../pages/Error403";
  
 
 

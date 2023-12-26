@@ -38,7 +38,15 @@ class PresenceManualEditSerialiser(serializers.ModelSerializer):
         # exclude = ("abc","date","hour_entree", )
         fields= ("id",)
         # fields= "__all__"
-        
+
+class PresenceNotificationSerialiser(serializers.ModelSerializer):
+    client = serializers.CharField(source='abc.client', read_only=True)
+    class Meta:
+        model = Presence
+        # fields= ('id', )
+        # exclude = ("abc","date","hour_entree", )
+        fields= ("id","client")
+        # fields= "__all__"
 
 
 #  presence manuelle non strict

@@ -121,7 +121,7 @@ class FaceControl:
         if (lLoginID != self.loginID):
             return
         if (lCommand == SDK_ALARM_TYPE.ALARM_ACCESS_CTL_EVENT):
-            print("ALARM_ACCESS_CTL_EVENT")  # 门禁事件; Access control event
+            print("ALARM_ACCESS_CTL_EVENT MessCallBackEx1")  # 门禁事件; Access control event
             alarm_info = cast(pBuf, POINTER(NET_A_ALARM_ACCESS_CTL_EVENT_INFO)).contents
             print("nDoor:%d" % alarm_info.nDoor)
             print("alarm_info:" , alarm_info)

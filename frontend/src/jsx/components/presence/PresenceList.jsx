@@ -20,9 +20,9 @@ import Error403 from "../../pages/Error403";
 // import axiosInstance from "../../axiosApi";
 
 export const ClientContext = React.createContext()
-function refreshPage() {
-   window.location.reload(false);
- }
+// function refreshPage() {
+//    window.location.reload(false);
+//  }
 
 
 const PresenceList = () => {
@@ -83,10 +83,41 @@ const PresenceList = () => {
    const [startHour, setStartHour] = useState('');
    // const sallesData = useGetAPI(`${process.env.REACT_APP_API_URL}/rest-api/salle-activite/`)
    // const activities = useGetAPI(`${process.env.REACT_APP_API_URL}/rest-api/salle-activite/activite/`)
-   let presenceCreateEND =  `${process.env.REACT_APP_API_URL}/rest-api/presence/auto-create`
+   let presenceNotificationEND =  `${process.env.REACT_APP_API_URL}/rest-api/presence/notification_outputs`
    
    const [salleStatus, setSalleStatus] = useState(null)
+   // useEffect(() => {
+   //    api.get(presenceNotificationEND).then(res => {
+   //       const notifications = res.data  
+   //       for (let index = 0; index < notifications.length; index++) {
+   //          const notification = notifications[index];
+   //          notifySuccess(`la sortie de ${notification.client} a été éffectué Avec Succée`)
+
+   //       }
+   //    })
    
+
+   // }, [])
+   useEffect(() => {
+   const interval = setInterval(() => {
+      api.get(presenceNotificationEND).then(res => {
+         const notifications = res.data;
+         for (let index = 0; index < notifications.length; index++) {
+            const notification = notifications[index];
+            notifySuccess(`la sortie de ${notification.client} a été éffectué Avec Succée`);
+         }
+      }).catch(error => {
+         // Handle the error here
+         console.error("API call failed", error);
+      });
+   }, 3000); // 3000 milliseconds = 3 seconds
+   // Clear interval on component unmount
+   return () => clearInterval(interval);
+}, []);
+
+
+
+
    useEffect(() => {
       api.get(`${process.env.REACT_APP_API_URL}/rest-api/salle-activite/`).then( res=> {
          setSallesData(res.data)
