@@ -18,27 +18,61 @@ def is_time_to_stop():
     current_time = datetime.now()
     return current_time.hour == stop_hour and current_time.minute == stop_minute
 
+def is_reboot_day():
+    current_datetime = datetime.now()
+    print('IS REBOOT DAY FUNC', current_datetime.weekday())
+    return current_datetime.weekday() == 4  # Monday is 0, so Friday is 4
 
-def manage_door(ip, port, username, password):
+
+# def manage_door(ip, port, username, password): # PROD
+#     device = AccessControl()
+#     device.get_login_info(ip=ip, port=port, username=username, password=password)
+#     print(f' the instance device ip {ip}', device)
+#     result = device.login()
+#     if result:
+#         print('device.loginid===========================', device.loginID)
+#         logger.warning('Device started with Ip=======>{}'.format(ip))
+#         device.alarm_listen()
+#     while True:
+#         if is_time_to_stop():
+#             if device.loginID:
+#                 device.logout()
+#                 device.sdk.Logout(device.loginID)
+#                 device.sdk.Cleanup()
+#                 if is_reboot_day():
+#                     device.reboot_device()
+#                     print('IS REBOOT DAY REBVOTEEEED')
+#                 logger.warning('Device Stopped with Ip--------->{}'.format(device.ip))
+#             else:
+#                 logger.warning('Could not stop device ERROR ON  Ip--------->{}'.format(device.ip))
+#             break
+#         time.sleep(15)
+def manage_door(ip, port, username, password): # PROD
     device = AccessControl()
-    print(' the instance start_linsten_test_device_1', device)
     device.get_login_info(ip=ip, port=port, username=username, password=password)
+    print(f' the instance device ip {ip}', device)
     result = device.login()
     if result:
         print('device.loginid===========================', device.loginID)
-        logger.warning('Device started with Ip=======>{}'.format(ip))
+        # logger.warning('Device started with Ip=======>{}'.format(ip))
         device.alarm_listen()
     while True:
+        # logger.warning('Device started with Ip=======>{}'.format(ip))
+        time.sleep(15)
         if is_time_to_stop():
+            if is_reboot_day():
+                device.reboot_device()
+                print('IS REBOOT DAY REBVOTEEEED')
+                logger.warning('DEVICE rebooted---------> {}'.format(device.ip))
             if device.loginID:
+                # logger.warning('Device Stopped with Ip--------->{}'.format(ip))
                 device.logout()
                 device.sdk.Logout(device.loginID)
                 device.sdk.Cleanup()
-                logger.warning('Device Stopped with Ip--------->{}',format(device.ip))
             else:
-                logger.warning('Could not stop device ERROR ON  Ip--------->{}',format(device.ip))
+                logger.warning('Could not stop device ERROR ON  Ip--------->{}'.format(device.ip))
+                # logger.warning('Could not stop device ERROR ON  Ip--------->{}'.format(ip))
             break
-        time.sleep(15)
 
 @shared_task(bind=True)
 def start_linsten_test_device_1(self):
@@ -115,9 +149,9 @@ def start_face_door_right(self):
                 device.logout()
                 device.sdk.Logout(device.loginID)
                 device.sdk.Cleanup()
-                logger.warning('Device Stopped with Ip--------->{}',format(device.ip))
+                logger.warning('Device Stopped with Ip--------->{}'.format(device.ip))
             else:
-                logger.warning('Could not stop device ERROR ON  Ip--------->{}',format(device.ip))
+                logger.warning('Could not stop device ERROR ON  Ip--------->{}'.format(device.ip))
             break
         time.sleep(15)
 
@@ -140,8 +174,8 @@ def start_face_door_left(self):
                 device.logout()
                 device.sdk.Logout(device.loginID)
                 device.sdk.Cleanup()
-                logger.warning('Device Stopped with Ip--------->{}',format(device.ip))
+                logger.warning('Device Stopped with Ip--------->{}'.format(device.ip))
             else:
-                logger.warning('Could not stop device ERROR ON  Ip--------->{}',format(device.ip))
+                logger.warning('Could not stop device ERROR ON  Ip--------->{}'.format(device.ip))
             break
         time.sleep(15)

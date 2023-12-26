@@ -6,7 +6,6 @@ from creneau.models import Creneau
 from django.db.models.signals import post_save, pre_save
 from simple_history.models import HistoricalRecords
 from django.db.models import Q
-
 class SubscriptionQuerySet(models.QuerySet):
     def time_volume(self):
         return self.filter(type_abonnement__type_of="VH")
@@ -250,12 +249,15 @@ class AbonnementClient(models.Model):
 
     def is_valid(self):
         today = date.today()
-        # print('today', today)
+        # print('self.blocking_date', self.blocking_date)
         # print('end_date', self.end_date)
-        if today <= self.end_date:
+         
+        if today <= self.end_date and not self.blocking_date:
+            # print('makach blocking', self.blocking_date)
             if self.presence_quantity > self.get_limit() :
                 return True
         return False 
+
 
 
 

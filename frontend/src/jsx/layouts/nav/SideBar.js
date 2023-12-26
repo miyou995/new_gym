@@ -1,24 +1,21 @@
-import React,  {useState, Component, useEffect } from "react";
+import React, { Component, useEffect } from "react";
 
 /// Link
-import { Link } from "react-router-dom";
 
 /// Scroll
 import PerfectScrollbar from "react-perfect-scrollbar";
 
 /// Menu
 import MetisMenu from "metismenujs";
-import useAxios from "../../components/useAxios";
-import useAuth from "../../components/useAuth"
-import SbNavLinks from "./SbNavLinks";
-import agendaIcon from "../../../images/icons/agenda.png";
 import presenceIcon from "../../../images/icons/attendance.png";
 import planningIcon from "../../../images/icons/calendar.png";
 import coachIcon from "../../../images/icons/coach.png";
 import clientIcon from "../../../images/icons/people.png";
+import configIcon from "../../../images/icons/setting.png";
 import transactionIcon from "../../../images/icons/transaction.png";
 import userIcon from "../../../images/icons/user.png";
-import configIcon from "../../../images/icons/setting.png";
+import useAuth from "../../components/useAuth";
+import SbNavLinks from "./SbNavLinks";
 
 // import useAaxios from "../../components/useAaxios";
 ///
@@ -46,7 +43,6 @@ class MM extends Component {
 
 const SideBar =  () => {
 //       this.mm = new MetisMenu(this.$el);
-const [path,setPath] = useState("");
    useEffect(()=>{
       var btn = document.querySelector(".nav-control");
       var aaa = document.querySelector("#main-wrapper");
@@ -59,7 +55,6 @@ const [path,setPath] = useState("");
    },[]) 
    
 
-   const api = useAxios();
    const baseURL = `${process.env.REACT_APP_API_URL}`
 
 

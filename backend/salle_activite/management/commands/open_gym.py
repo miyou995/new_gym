@@ -1,5 +1,7 @@
 from django.core.management.base import BaseCommand
 from django.conf import settings
+from celery import group
+from salle_activite.utils import revoke_all_tasks, output_all_clients
 from salle_activite.tasks import ( 
     start_linsten_test_device_1, 
     start_linsten_test_device_2, 
@@ -14,7 +16,6 @@ from salle_activite.tasks import (
     start_face_door_right, 
     start_face_door_left, 
 )
-from celery import group
 
 
 class Command(BaseCommand):
@@ -27,6 +28,8 @@ class Command(BaseCommand):
             help='Name of the tenant schema',
         )
     def handle(self, *args,**kwargs):
+        revoke_all_tasks()
+        output_all_clients()
         if settings.DEBUG == True:
             group(
                 start_linsten_test_device_1.delay(),

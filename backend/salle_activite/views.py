@@ -1,3 +1,4 @@
+import logging
 
 
 from django.shortcuts import render, get_object_or_404
@@ -11,6 +12,11 @@ from rest_framework import status
 from django.db.models import Count
 from rest_framework.decorators import api_view
 from rest_framework.viewsets import ViewSet, ModelViewSet
+
+from rest_framework.views import APIView
+from .device import AccessControl
+from .utils import revoke_all_tasks
+from celery import group
 from .tasks import ( 
 	start_linsten_test_device_1, 
 	start_linsten_test_device_2, 
@@ -25,12 +31,6 @@ from .tasks import (
 	start_face_door_right, 
 	start_face_door_left, 
 )
-
-from celery.app import default_app
-from .device import AccessControl
-from rest_framework.views import APIView
-from celery import group
-import logging
 logger = logging.getLogger('salle_activite_view')
 
 class BaseModelPerm(DjangoModelPermissions):
@@ -67,7 +67,7 @@ class SalleAPIView(generics.CreateAPIView):
 	}
 
 class SalleListAPIView(generics.ListAPIView):
-	queryset = Salle.objects.all()
+	queryset = Salle.objects.prefetch_related("doors", )
 	# permission_classes = (IsAuthenticated,)
 	serializer_class = SalleSerialiser
 	permission_classes = (IsAdminUser,BaseModelPerm)
@@ -176,6 +176,7 @@ class StartListening(APIView):
 			Open All The Doors
 		"""
 		logger.info("Open All The Doors inited...")
+		revoke_all_tasks()
 		if settings.DEBUG == True:
 			group(
 				start_linsten_test_device_1.delay(),
@@ -258,19 +259,7 @@ class OpenTheDoor(APIView):
 	
 @api_view(['GET'])
 def stop_listening(request):
-	default_app.control.revoke[
-		start_linsten_test_device_1,
-		start_linsten_test_device_2,
-		start_linsten_3,
-		start_linsten_4,
-		start_linsten_5,
-		start_linsten_6,
-		start_linsten_7,
-		start_linsten_8,
-		start_linsten_9,
-		start_face_door_right,
-		start_face_door_left
-	]
+	revoke_all_tasks()
 	print(' AFTER delay')
 	return Response( "hello")
 

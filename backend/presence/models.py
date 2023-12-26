@@ -37,6 +37,7 @@ class Presence(models.Model):
     hour_entree = models.TimeField()
     hour_sortie = models.TimeField(auto_now_add=False, null=True, blank=True)
     is_in_salle = models.BooleanField(default=False)
+    # remote_device = models.BooleanField(default=False)
     note        = models.CharField(max_length=200, blank=True, null=True)
     
     created = models.DateTimeField(verbose_name="Date de Création", auto_now_add=True)

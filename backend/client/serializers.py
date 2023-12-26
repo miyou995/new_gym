@@ -60,7 +60,6 @@ class ClientSerialiser(serializers.ModelSerializer):
     maladies= serializers.PrimaryKeyRelatedField(many=True, queryset=Maladie.objects.all())
     maladie_name= serializers.SerializerMethodField('get_maladie_name', read_only=True)
     abonnement_detail = serializers.SerializerMethodField('get_abonnement_detail')
-    presences = serializers.SerializerMethodField('get_presences')
     last_presence = serializers.SerializerMethodField('get_last_presence', read_only=True)
     age = serializers.SerializerMethodField('calculate_age', read_only=True)
     debut_assurance = serializers.SerializerMethodField('get_debut_assurance', read_only=True)
@@ -68,7 +67,7 @@ class ClientSerialiser(serializers.ModelSerializer):
     class Meta:
         model = Client
         read_only_fields = ('id','date_added','abonnement_detail')
-        fields= ('id', 'picture','carte','hex_card','civility','civility_display', 'last_name', 'first_name', 'adress', 'phone', 'email', 'nationality', 'birth_date', 'blood', 'state_display','note', 'is_on_salle','dette', 'date_added', 'maladies', 'maladie_name','abonnement_detail', 'presences', 'last_presence', 'age', 'debut_assurance', 'fin_assurance','profession')
+        fields= ('id', 'picture','carte','hex_card','civility','civility_display', 'last_name', 'first_name', 'adress', 'phone', 'email', 'nationality', 'birth_date', 'blood', 'state_display','note', 'is_on_salle','dette', 'date_added', 'maladies', 'maladie_name','abonnement_detail', 'last_presence', 'age', 'debut_assurance', 'fin_assurance','profession')
  
     def get_maladie_name(self, obj):
         maladies_queryset = obj.maladies.all()
@@ -92,19 +91,6 @@ class ClientSerialiser(serializers.ModelSerializer):
     #     # abonnement_queryset = obj.abonnement_client.all()
     #     return AbonnementDetailSerialiser(abon, many=True).data
 
-    def get_presences(self, obj):
-        # query = obj.presences.all()
-        presences = Client.objects.prefetch_related('abonnement_client__presences')
-
-
-        # query = Presence.objects.select_related(
-        #     Prefetch('abc__client', queryset=Client.objects.prefetch_related('abonnement_client__presences')))
-
-        query = Presence.objects.filter(abc__client=obj)
-        
-        
-        # print('ceci sont les presneces', obj.presences.all())
-        return PresencesClientSerializers(query , many= True).data
 
     def get_last_presence(self, obj):
         try :

@@ -171,16 +171,13 @@ const Configuration = (props) => {
         }
     }
     const closeTheGym = () => {
-        if (gymStatus === true) {
-            api.get(stopListenEND).then(res => {
-                notifySuccess('Toutes les Portes sont Désactivé')
-                setGymStatus(true)
-              }).catch( err => {
-                notifyError("Erreur lors de la fermeture des portes, veuillez contacter le support'")
-              })
-        }else{
-            notifyError('Toutes les Portes sont déja Désactivé')
-        }
+        api.get(stopListenEND).then(res => {
+            notifySuccess('Salle de sport fermé')
+            setGymStatus(true)
+            }).catch( err => {
+            notifyError("Erreur lors de la fermeture des portes, veuillez contacter le support'")
+            })
+       
     }
 
     const getFkIndex = (list,selctedItem) => {

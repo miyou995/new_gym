@@ -8,6 +8,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser, D
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from abonnement.models import AbonnementClient
+from django.db import transaction
 from django.db.models import Count, Q
 from django.utils.timezone import now
 class BaseModelPerm(DjangoModelPermissions):
@@ -169,6 +170,7 @@ class CreneauByAbonnement(generics.ListAPIView):
     #             )
     #     # print('les ceneaux', creneaux.count())
     #     return creneaux
+    transaction.atomic()
     def get_queryset(self):
         abonnement_id = self.request.query_params.get('ab', None)
         abc_id = self.request.query_params.get('abc', None)
@@ -178,7 +180,6 @@ class CreneauByAbonnement(generics.ListAPIView):
         # planning = Planning.objects.get()
         # try:
         planning_id = abonnement_client.creneaux.first().planning.id
-        print('PLANNNING ID', planning_id)
         creneaux = Creneau.objects.filter(Q(activity__salle__abonnements__id = abonnement_id) & Q(planning__id=planning_id) ).select_related(
             'planning', 'activity','coach', 'activity__salle'
             ).prefetch_related(
