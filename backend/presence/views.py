@@ -85,8 +85,6 @@ class PresenceHistoryListAPIView(generics.ListAPIView):
     }
 
 class NotifyPresenceListAPIView(generics.ListAPIView):
-
-
     serializer_class = PresenceNotificationSerialiser
     def get_queryset(self):
         # Get the current time minus 3 seconds
@@ -96,7 +94,6 @@ class NotifyPresenceListAPIView(generics.ListAPIView):
         # permission_classes = (IsAuthenticated,)
         return queryset
     
-
 
 
 class AllPresenceListAPIView(generics.ListAPIView):
