@@ -275,7 +275,7 @@ class Client(models.Model):
         
         
     def init_output(self,  exit_hour=None):
-        presences = Presence.objects.select_for_update().filter(abc__client=self, hour_sortie__isnull=True)
+        presences = Presence.objects.select_for_update(of=("self", "abc")).filter(abc__client=self, hour_sortie__isnull=True)
         with transaction.atomic():
             presence = presences.first()
             
