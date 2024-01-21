@@ -42,22 +42,15 @@ const ClientList = () => {
    const [endDate, setEndDate] = useState(formatDate(new Date()));
 
    const [searchBarActivated, setSearchBarActivated] = useState(false)
-   var endpoint = `${process.env.REACT_APP_API_URL}/rest-api/clients-name/?page=${nextpage}`
-   var searchEndpoint = `${process.env.REACT_APP_API_URL}/rest-api/clients-name/?search=${searchValue}`
+   var searchEndpoint = `${process.env.REACT_APP_API_URL}/rest-api/clients-name/?search=${searchValue}&page=${nextpage}`
    const clientAuthorizationEnd = `${process.env.REACT_APP_API_URL}/rest-api/get_client_authorization/`
 
    
 useEffect(() =>  {
-   if (searchValue !== '') {
-      api.get(searchEndpoint).then(res => {
-         setclientData(res.data.results)
-         //console.log('le resultat des clients est ', res.data);
-      })
-   }else {
-      api.get(endpoint).then(res => {
-         setclientData(res.data.results)
-         //console.log('le resultat des clients est ', res.data);
-      })}
+   api.get(searchEndpoint).then(res => {
+      setclientData(res.data.results)
+      console.log('le resultat des clients est ', res.data);
+   })
 }, [nextpage, searchValue]);
 
 // const loading = true
