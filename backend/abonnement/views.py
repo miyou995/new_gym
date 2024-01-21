@@ -301,7 +301,7 @@ class AbonnementClientActifsDetailListApi(generics.ListAPIView):
         client = self.request.query_params.get('cl', None)
         print('cliiiientr', client)
         today = date.today()
-        abonnements = AbonnementClient.objects.filter(client=client, archiver=False, end_date__gte=today)
+        abonnements = AbonnementClient.objects.filter(client=client)[:15]
         return abonnements
 
 class AbonnementClientTransactionsDetailListApi(generics.ListAPIView):

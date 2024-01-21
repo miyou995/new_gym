@@ -274,37 +274,38 @@ class Client(models.Model):
             # return self
         
         
-    @transaction.atomic
     def init_output(self,  exit_hour=None):
-        presences = Presence.objects.filter(abc__client=self, hour_sortie__isnull=True)
-        presence = presences.first()
-        current_time = datetime.now().strftime("%H:%M:%S")
-        if exit_hour:
-            current_time = exit_hour
-        if not presence:
-            """ ecart + de 10 seconde"""
-            return False
+        presences = Presence.objects.select_for_update().filter(abc__client=self, hour_sortie__isnull=True)
+        with transaction.atomic():
+            presence = presences.first()
             
-        logger.warning('LA PRESENCE de{}'.format(str(self.id)))
-        presence_time = presence.hour_entree
-        ecart = abs(datetime.strptime(current_time, FTM) - datetime.strptime(str(presence_time), FTM))
-        time_diff_seconds = timedelta.total_seconds(ecart)
-        if int(time_diff_seconds) <= 2:
-            logger.warning('SORTIE COULD NOT BE done  ================> ')
-            return False
-        else:
-            presence.hour_sortie = current_time
-            logger.warning('SORTIE AUTORISEE ================> {}'.format(str(presence.hour_sortie)))
-            presence.save()
-            abc = presence.abc
-            if abc.is_time_volume():
-                ecart = presence.get_time_consumed() 
-                print('ecart presence>>>>', ecart)
-                abc.presence_quantity -= ecart 
-                abc.save()
-            print('la sorite--------------- ', presence.hour_sortie)
-            logger.warning('la sorite--------------- {}'.format(str(presence.hour_sortie)))
-            return True
+            current_time = datetime.now().strftime("%H:%M:%S")
+            if exit_hour:
+                current_time = exit_hour
+            if not presence:
+                """ ecart + de 10 seconde"""
+                return False
+                
+            logger.warning('LA PRESENCE de{}'.format(str(self.id)))
+            presence_time = presence.hour_entree
+            ecart = abs(datetime.strptime(current_time, FTM) - datetime.strptime(str(presence_time), FTM))
+            time_diff_seconds = timedelta.total_seconds(ecart)
+            if int(time_diff_seconds) <= 2:
+                logger.warning('SORTIE COULD NOT BE done  ================> ')
+                return False
+            else:
+                presence.hour_sortie = current_time
+                logger.warning('SORTIE AUTORISEE ================> {}'.format(str(presence.hour_sortie)))
+                presence.save()
+                abc = presence.abc
+                if abc.is_time_volume():
+                    ecart = presence.get_time_consumed() 
+                    print('ecart presence>>>>', ecart)
+                    abc.presence_quantity -= ecart 
+                    abc.save()
+                print('la sorite--------------- ', presence.hour_sortie)
+                logger.warning('la sorite--------------- {}'.format(str(presence.hour_sortie)))
+                return True
 
     def get_access_permission(self, door_ip=None):
         logger.warning('Client requested Door Auth ===> {}'.format(str(self.id)))
