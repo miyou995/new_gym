@@ -375,7 +375,8 @@ def creneau_created_signal(sender, instance, created,**kwargs):
         planning =instance.planning
         # planning =instance.planning
 
-        abonnements = AbonnementClient.subscription.active_subscription().time_volume().filter(type_abonnement__salles__actvities = activity, creneaux__planning = planning ).prefetch_related('creneaux', 'creneaux__planning').distinct()
+        abonnements = AbonnementClient.subscription.active_subscription().filter(Q(type_abonnement__type_of="VH") | Q(type_abonnement__type_of="AL")).filter(type_abonnement__salles__actvities = activity, creneaux__planning = planning ).prefetch_related('creneaux', 'creneaux__planning').distinct()
+        print('Abonnements Client a updater', abonnements.values('client__id'))
         for abonnement in abonnements:
             abonnement.creneaux.add(instance)
             abonnement.save()
