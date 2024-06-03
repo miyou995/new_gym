@@ -14,12 +14,15 @@ import PresenceEditModal from './PresenceEditModal'
 import PresenceCreateModal from './PresenceCreateModal'
 import TextField from '@material-ui/core/TextField';
 import useAxios from "../useAxios";
+import useAuth from "../useAuth";
+import Error403 from "../../pages/Error403";
+
 // import axiosInstance from "../../axiosApi";
 
 export const ClientContext = React.createContext()
-function refreshPage() {
-   window.location.reload(false);
- }
+// function refreshPage() {
+//    window.location.reload(false);
+//  }
 
 
 const PresenceList = () => {
@@ -61,7 +64,7 @@ const PresenceList = () => {
    //    return word.charAt(0).toUpperCase() + word.slice(1);
    //    return '';
    // };
-   // console.log('le clieeeeen RFID', client);
+   // //console.log('le clieeeeen RFID', client);
 // 
 
    const formatDate = (date) => {
@@ -80,10 +83,41 @@ const PresenceList = () => {
    const [startHour, setStartHour] = useState('');
    // const sallesData = useGetAPI(`${process.env.REACT_APP_API_URL}/rest-api/salle-activite/`)
    // const activities = useGetAPI(`${process.env.REACT_APP_API_URL}/rest-api/salle-activite/activite/`)
-   let presenceCreateEND =  `${process.env.REACT_APP_API_URL}/rest-api/presence/auto-create`
+   let presenceNotificationEND =  `${process.env.REACT_APP_API_URL}/rest-api/presence/notification_outputs`
    
    const [salleStatus, setSalleStatus] = useState(null)
+   // useEffect(() => {
+   //    api.get(presenceNotificationEND).then(res => {
+   //       const notifications = res.data  
+   //       for (let index = 0; index < notifications.length; index++) {
+   //          const notification = notifications[index];
+   //          notifySuccess(`la sortie de ${notification.client} a été éffectué Avec Succée`)
+
+   //       }
+   //    })
    
+
+   // }, [])
+   useEffect(() => {
+   const interval = setInterval(() => {
+      api.get(presenceNotificationEND).then(res => {
+         const notifications = res.data;
+         for (let index = 0; index < notifications.length; index++) {
+            const notification = notifications[index];
+            notifySuccess(`la sortie de ${notification.client} a été éffectué Avec Succée`);
+         }
+      }).catch(error => {
+         // Handle the error here
+         console.error("API call failed", error);
+      });
+   }, 3000); // 3000 milliseconds = 3 seconds
+   // Clear interval on component unmount
+   return () => clearInterval(interval);
+}, []);
+
+
+
+
    useEffect(() => {
       api.get(`${process.env.REACT_APP_API_URL}/rest-api/salle-activite/`).then( res=> {
          setSallesData(res.data)
@@ -119,78 +153,110 @@ const getCurrentDay = (PresneceDate) => {
       return 'Samedi'
    }
 } 
+
 const [presenceStatus, setPresenceStatus] = useState(null);
 
+   
    useEffect(() => {
       const presenceDateDate = async () => {
          const dateDebut = formatDate(startDate)
          const dateFin = formatDate(endDate)
+         const endpoint = `${process.env.REACT_APP_API_URL}/rest-api/presence/?page=${nextpage}&start_date=${dateDebut}&end_date=${dateFin}&abc__client_id=${searchValue}&creneau__activity__salle=${salleId}&hour=${startHour}&creneau__activity=${filterActivity}`
+
          // const result =  await api.get(`${process.env.REACT_APP_API_URL}/rest-api/presence/?page=${nextpage}&start_date=${dateDebut}&end_date=${dateFin}&abc__client_id=${searchValue}&creneau__activity__salle=${salleId}&hour=${startHour}&creneau__activity=${filterActivity}`)
-         // console.log('cest un result ', result);
+         // //console.log('cest un result ', result);
          // setPresenceData(result.data.results)
          // setPresencesCount(result.data.count)
-         await api.get(`${process.env.REACT_APP_API_URL}/rest-api/presence/?page=${nextpage}&start_date=${dateDebut}&end_date=${dateFin}&abc__client_id=${searchValue}&creneau__activity__salle=${salleId}&hour=${startHour}&creneau__activity=${filterActivity}`)
+         await api.get(endpoint)
          .then(res => {
-            console.log('cest un result ', res);
             setPresenceData(res.data.results)
             setPresencesCount(res.data.count)
             setPresenceStatus(res.status)
          }).catch(err => {
             console.log(err);
-            setPresenceStatus(err.response.status)
+            setPresenceStatus(err.status)
          })
       }
       presenceDateDate()
    }, [startDate, endDate, clientId,nextpage, searchValue, client, presenceCreatedSuccess, presenceupdatedSuccess, salleId, editModal, presneceCreateModal, startHour, filterActivity]);
 
+// const HandleSubmit = (e) => {
+//    e.preventDefault();
+//    const presenceData =  api.get(`${process.env.REACT_APP_API_URL}/rest-api/get-client/?cl=${clientId}`).then(
+//       res=> {
+//       if (res.data.last_presence) {
+//          setPresenceId(res.data.last_presence)
+//          api.put( `${process.env.REACT_APP_API_URL}/rest-api/presence/edit/${res.data.last_presence}/`)
+//          notifySuccess(`la sortie de ${clientId} a été éffectué Avec Succée`)
+//          setClientId('')
+//          // console.log('presenceData', presenceData);
+//          return presenceData
+//       } else {
+//          try {
+//             const presenceData1 = api.post(presenceCreateEND,{client: clientId}).then(res => {
+//                notifySuccess(`Entrée autorisée, ${clientId}`)
+//                setClientId('')
+//             })
+//             return presenceData1
+//          } catch (error) {
+//             notifyError("Erreur, Entrée non autorisée")
+//          }} 
+//    }).catch(err => {
+//       console.log(err);
+//       notifyError("Cet ID n'existe pas dans nos fichier")
+//    })
+// }
+
 const HandleSubmit = (e) => {
    e.preventDefault();
-   const presenceData =  api.get(`${process.env.REACT_APP_API_URL}/rest-api/get-client/?cl=${clientId}`).then(async res=> {
-      if (res.data.last_presence) {
-         setPresenceId(res.data.last_presence)
-         await api.put( `${process.env.REACT_APP_API_URL}/rest-api/presence/edit/${res.data.last_presence}/`)
-         notifySuccess(`la sortie de ${clientId} a été éffectué Avec Succée`)
-         setClientId('')
-         return presenceData
-      } else {
-         try {
-            const presenceData1 = await api.post(presenceCreateEND,{client: clientId}).then(res => {
-               notifySuccess(`Entrée autorisée, ${clientId}`)
-               setClientId('')
-            })
-            return presenceData1
-         } catch (error) {
-            notifyError("Erreur, Entrée non autorisée")
-         }} 
-   }).catch(err => {
-      notifyError("Cet ID n'existe pas dans nos fichier")
+   api.get( `${process.env.REACT_APP_API_URL}/rest-api/client-auto-presence/${clientId}/`).then(res=> {
+         if (res.data.status === "error") {
+            setClientId('')
+            notifyError(res.data.message)
+            notifyError(res.data.error)
+         }else{
+            notifySuccess(res.data.message)
+            notifyError(res.error)
+            setClientId('')
+         }
+      }).catch(error  => {
+         notifyError(error.response.data.error)
    })
 }
 
+
+const presenceAuthorization = `${process.env.REACT_APP_API_URL}/rest-api/presence/`
+
+const [presenceAuth, loading] = useAuth(presenceAuthorization, 'GET')
+
+
    return (
       <Fragment>
+      { loading &&
+         <>
+         {presenceAuth ? (
+         <>
          <Link target="_blank" to={`/client/${clientId}`} >
             <ToastContainer position='top-right' autoClose={5000} hideProgressBar={false} newestOnTop closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
          </Link>
          <div className="testimonial-one owl-right-nav owl-carousel owl-loaded owl-drag mb-4">
             <ShortCuts />
          </div> 
-         {presenceStatus == 200 && (
-         <>
+
          <div className="m-5 row">
             <div className='col- col-md-4'>
                <form onSubmit={HandleSubmit}>
                   <div className='row'>
                      <div className="col-6">
                      <label htmlFor="entree">Présence Automatique </label>
-                        <input name='entree' type="text" className="form-control" value={clientId} placeholder=" ID Client" onChange={e =>  setClientId(e.target.value)} />
+                        <input id="presenceInput" name='entree' type="text" className="form-control" value={clientId} placeholder="ID Client" onChange={e =>  setClientId(e.target.value)} />
                      </div>
                      <div className="col-6 mt-auto">
                         <Button  variant="success" type="submit" > Valider</Button>
                      </div>
                   </div>
                </form>
-            </div>
+            </div> 
             <div className="col-md-2 mt-auto">
                <Button  variant="primary" type="submit" onClick={e => setPresneceCreateModal(true)}> Présence Manuelle</Button>
             </div>
@@ -253,7 +319,7 @@ const HandleSubmit = (e) => {
             </div>
             <div className="form-group col-md-2">
                <label style={{color:'#000000'}} htmlFor="birth_date">Date début </label>
-               <input type="date" name="start_date" className="form-control" value={startDate}  onChange={e => setStartDate(e.target.value)}/>
+               <input type="date" name="start_date" className="form-control" value={startDate}  pattern="\d{1,2}/\d{1,2}/\d{4}" onChange={e => setStartDate(e.target.value)}/>
             </div>
             <div className="form-group col-md-2">
                <label style={{color:'#000000'}} htmlFor="end_date">Date Fin </label>
@@ -274,6 +340,7 @@ const HandleSubmit = (e) => {
                               <tr>
                                  <th className="customer_shop"> ID </th>
                                  <th>Nom</th>
+                                 <th>Reste AB</th>
                                  <th>Activité</th>
                                  <th> Date </th>
                                  <th> Jour </th>
@@ -285,7 +352,7 @@ const HandleSubmit = (e) => {
                            </thead>
                            <tbody id="customers">
                               {presenceData.map(presence => (
-                                 <tr role="row presences" key={presence.id} className="btn-reveal-trigger cursor-abonnement presences p-0"onClick={e => {
+                                 <tr key={presence.id} className="btn-reveal-trigger cursor-abonnement presences p-0" onClick={e => {
                                     setEditModal(true)
                                     setClient(presence.client_last_name)
                                     setClientId(presence.client)
@@ -298,6 +365,7 @@ const HandleSubmit = (e) => {
                                     setActivity(presence.activity)
                                  }}>
                                     <td className="customer_shop_single"> {presence.client} </td>
+
                                     <td className="">
                                        {/* <Link to={`/presence/detail/${presence.id}`}> */}
                                           <div className="media d-flex align-items-center">
@@ -309,13 +377,15 @@ const HandleSubmit = (e) => {
                                           </div>
                                        {/* </Link> */}
                                     </td>
+                                    <td className={`text-left ${presence.is_red}`}>{presence.seances}</td>
                                     <td >{presence.activity}</td>
                                     <td >{presence.date}</td>
                                     <td >{getCurrentDay(presence.date)}</td>
                                     <td className=" pl-5 wspace-no"> {presence.hour_entree} </td>
                                     <td >{presence.hour_sortie}</td>
                                     <td className=" text-left">{presence.note}</td>
-                                    <td className=" text-right text-danger">{presence.dettes.reste__sum}</td>
+                                    
+                                    <td className=" text-right text-danger">{presence.dettes}</td>
                                  </tr>
                               ))}
                               </tbody>
@@ -324,20 +394,20 @@ const HandleSubmit = (e) => {
                   </div>
                </div>
             </div>
-            <PresenceEditModal show={editModal} onShowShange={setEditModal} presenceData={{presenceId:presenceId, client:client, hourIn:hourIn, hourOut: hourOut, creneau:creneau, note:note, clientId:clientId, date:date, activity:activity}}/>
-            <PresenceCreateModal show={presneceCreateModal} onShowShange={setPresneceCreateModal} />
+            <PresenceEditModal show={editModal} onShowChange={setEditModal} presenceData={{presenceId:presenceId, client:client, hourIn:hourIn, hourOut: hourOut, creneau:creneau, note:note, clientId:clientId, date:date, activity:activity}}/>
+            <PresenceCreateModal show={presneceCreateModal} onShowChange={setPresneceCreateModal} />
          </div>
          {
             !searchBarActivated &&
             <div className='d-flex text-center justify-content-end'>
-                <div className='dataTables_info text-black' id='example5_info '>
+               <div className='dataTables_info text-black' id='example5_info '>
                   {/* Showing {activePag.current * sort + 1} to{' '}
                   {data.length > (activePag.current + 1) * sort
                     ? (activePag.current + 1) * sort
                     : data.length}{' '}
                   of {data.length} entries{' '} */}
-                </div>
-                <div className='dataTables_paginate paging_simple_numbers' id='example5_paginate' >
+               </div>
+               <div className='dataTables_paginate paging_simple_numbers' id='example5_paginate' >
                   <Button
                     onClick={() =>
                      nextpage > 0 && setNextpage(nextpage - 1)
@@ -348,21 +418,21 @@ const HandleSubmit = (e) => {
                   <span >
                       <input to='/transactions' type='number' className='paginate_button_client' onChange={e => setNextpage(e.target.value)} value={nextpage} style={{width: '100px', border: 'none', height:'99%', textAlign: 'center', fontSize:'15px', backgroundColor: '#ffffff'}}/>
                   </span>
-                  <Button 
-                  style={{width: '100px', border: 'none', height:'48px', color:'#ffffff',textAlign: 'center', fontSize:'15px', padding:'2px'}}
-
+                  <Button style={{width: '100px', border: 'none', height:'48px', color:'#ffffff',textAlign: 'center', fontSize:'15px', padding:'2px'}}
                     onClick={() =>
                      nextpage > 0 && setNextpage(Number(nextpage) + 1)
                     }
                   >
                     Suivant
                   </Button>
-                </div>
+               </div>
 
-              </div>
+            </div>
          }
          </>
-         )}
+         ) : <Error403 />}
+      </>
+      }
       </Fragment>
    );
 };

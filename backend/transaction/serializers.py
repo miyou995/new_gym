@@ -1,7 +1,6 @@
 from rest_framework.fields import ReadOnlyField
 from .models import Paiement, Autre, AssuranceTransaction, Remuneration, RemunerationProf, Transaction
 from rest_framework import serializers
-from client.serializers import ClientNameSerializer
 from rest_framework.response import Response
 
 class PaiementSerialiser(serializers.ModelSerializer):
@@ -13,10 +12,11 @@ class PaiementSerialiser(serializers.ModelSerializer):
     client_id = serializers.CharField(source='abonnement_client.client.id', read_only=True)
     abc_id = serializers.IntegerField(source='abonnement_client.id', read_only=True)
     quantity = serializers.CharField(source='abonnement_client.get_quantity_str', read_only=True)
+    # get_abc_price = serializers.CharField(source='abonnement_client.price', read_only=True)
 
     class Meta:
         model = Paiement
-        fields= ('id', 'amount', 'abonnement_client', 'last_modified', 'notes', 'abonnement_name', 'date_creation', 'client_last_name', 'client_id', 'abc_id', 'start_abc', 'end_abc', 'quantity')
+        fields= ('id', 'amount', 'abonnement_client', 'last_modified', 'notes', 'abonnement_name', 'date_creation', 'client_last_name', 'client_id', 'abc_id', 'start_abc', 'end_abc', 'quantity', 'get_abc_price', 'get_abc_reste')
 
 
 class PaiementFiltersSerialiser(serializers.ModelSerializer):
@@ -50,7 +50,11 @@ class AssuranceSerialiser(serializers.ModelSerializer):
         fields= ('id', 'amount', 'client', 'last_modified', 'notes', 'date_creation')
 
     def get_client_name(self, obj):
-        return Response({'id' : obj.client.id, 'name' : obj.client.last_name}).data
+        try:
+            response = Response({'id' : obj.client.id, 'name' : obj.client.last_name}).data 
+        except : 
+            response = Response({'id' : "-", 'name' : '-'}).data 
+        return response
 
 
 class PaiementHistorySerialiser(serializers.ModelSerializer):

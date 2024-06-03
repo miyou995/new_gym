@@ -7343,7 +7343,6 @@ class NET_A_ALARM_ACCESS_CTL_EVENT_INFO(Structure):
         ('stuHSJCInfo', NET_HSJC_INFO),  # 核酸信息;Nucleic acid detection information;
         ('stuAntigenInfo', NET_ANTIGEN_INFO),  # 抗原检测信息;Antigen Test Information;
     ]
-
 class NET_CTRL_ACCESS_OPEN(Structure):
     """
     CLIENT_ControlDevice接口的 CTRL_ACCESS_OPEN 命令参数
@@ -7795,4 +7794,7 @@ class NET_OUT_ACCESS_CARD_SERVICE_CLEAR(Structure):
     _fields_ = [
         ('dwSize', C_DWORD),  # 结构体大小;struct size;
     ]
+
+
+
 

@@ -1,6 +1,5 @@
-import React, { Fragment , useState, useEffect} from "react";
-import { Dropdown, Tab, Nav, Row } from "react-bootstrap";
-import { Link, Router, useHistory } from "react-router-dom";
+import React, { Fragment, useEffect, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
  
 import useAxios from "../useAxios";
 
@@ -45,11 +44,11 @@ const Home = () => {
    const [salle, setSalle] = useState([]);
    // const dettes = useGetAPI(dettesAND)
    // setDettesglobal(dettes)
-   // console.log('dettesglobal', dettes);
+   // //console.log('dettesglobal', dettes);
    
    useEffect(() => {
     api.get(dettesAND).then((res) => {
-      console.log('respojnnnnnnnnn', res);
+      //console.log('respojnnnnnnnnn', res);
          setDettesglobal(res.data['totales_dettes']['reste__sum'])
       })  
       api.get(chargesAND).then((res) => {
@@ -63,27 +62,26 @@ const Home = () => {
       })
       api.get(transactionsTodayEND).then((res) => {
          setTransClient(res.data)
-         console.log('res trans clients', res.data);
+         //console.log('res trans clients', res.data);
       })
       api.get(presencesTodayEND).then((res) => {
          setPresnecesClient(res.data)
-         console.log('les clients actuellement en salle', res.data);
+         //console.log('les clients actuellement en salle', res.data);
       })
       // api.get(coachsEND).then((res) => {
       //    setCoachData(res.data)
       // })
-   }, []);
+   }, [dettesAND, chargesAND, ttcAND, clientCount, transactionsTodayEND, presencesTodayEND]);
    useEffect(() => {
       api.get(presencesParSalleEnd).then( res => {
          setSalle(res.data.presences)
-         console.log('presenEEEESSSSS', res.data);
+         //console.log('presenEEEESSSSS', res.data);
       })
    }, []);
    let history = useHistory()
    const ToFicheClient = (clientID) => {
       history.push(`/client/${clientID}`)
    }
-   const hello = "sdvsv"
 
    const HandlePresenceSubmit = (e) => {
       e.preventDefault();
@@ -92,9 +90,9 @@ const Home = () => {
       api.get(`${process.env.REACT_APP_API_URL}/rest-api/clients/${client}/`).then(res=> {
          if (res.data.last_presence) {
             
-            console.log('id de la presence', res.data.last_presence);
+            //console.log('id de la presence', res.data.last_presence);
             setPresenceId(res.data.last_presence)
-            console.log('erreur lors du cposr ligne 85', presenceId);
+            //console.log('erreur lors du cposr ligne 85', presenceId);
             api.patch( `${process.env.REACT_APP_API_URL}/rest-api/presence/edit/${res.data.last_presence}/`)
          }else {
 
@@ -102,7 +100,7 @@ const Home = () => {
          }
       }).catch( err => {
 
-         console.log('erreur lors du cposr',err);
+         //console.log('erreur lors du cposr',err);
       }
    )}
    return (
@@ -179,8 +177,8 @@ const Home = () => {
                   <thead>
                     <tr>
                       <th className="text-left"><h5>Mantant</h5></th>
-                      <th><h5>type</h5></th>
-                      <th><h5>nom</h5></th>
+                      <th><h5>Type</h5></th>
+                      <th><h5>Nom</h5></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -193,30 +191,29 @@ const Home = () => {
                         {tran.type === 'remunerationProf' ? 'Rémuneration Coach' : tran.type} 
                      </td>
                            { tran.coach &&
-                           <td className="py-2 pl-5 wspace-no">
-                              <Link to={`/coach/${tran.coach.id}`} >
-                                 {tran.coach.name} 
-                              </Link> 
-                           </td>
+                            <td className="py-2 pl-5 wspace-no">
+                                <Link to={`/coach/${tran.coach.id}`} >
+                                  {tran.coach.name} 
+                                </Link> 
+                            </td>
                            }
-
                            {tran.client && 
-                           <td className="py-2 pl-5 wspace-no"> 
-                              <Link to={`/client/${tran.client.id}`} >
-                                 {tran.client.name}  
-                              </Link> 
-                           </td>
+                            <td className="py-2 pl-5 wspace-no"> 
+                                <Link to={`/client/${tran.client.id}`} >
+                                  {tran.client.name}  
+                                </Link> 
+                            </td>
                            }
                            {tran.client_last_name && 
-                           <td className="py-2 pl-5 wspace-no"> 
-                              <Link to={`/client/${tran.client_id}`} >
-                                 {tran.client_last_name} - {tran.client_id}  
-                              </Link> 
-                           </td>
+                            <td className="py-2 pl-5 wspace-no"> 
+                                <Link to={`/client/${tran.client_id}`} >
+                                  {tran.client_last_name} - {tran.client_id}  
+                                </Link> 
+                            </td>
                            }
                            {tran.type === 'autre' &&
                               <td className="py-2 pl-5 wspace-no"> 
-                              --
+                                {tran.name}
                               </td>
                            }
                     </tr>

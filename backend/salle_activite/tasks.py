@@ -1,107 +1,181 @@
-from celery import shared_task
+from celery import shared_task, group
+from config.celery import app
+# from celery.app.control import Inspect
+from celery.utils.log import get_task_logger
+
 from .device import AccessControl
+from .face import FaceControl
 from .models import Door
-from celery.signals import celeryd_init
 import time
+from datetime import datetime
+import logging
+from django.conf import settings
+logger = logging.getLogger(__name__)
 
-@shared_task
-def start_linsten_1():
-    print('CALLED') 
-    device = AccessControl()
-    print(' the instance start_linsten_1', device)
-    device.get_login_info(ip='192.168.1.230', port=37777, username='admin', password='123456')
-    result = device.login()
-    device.alarm_listen()
-    if result:
-        device.alarm_listen()
-    #     # card= device.card_infos
-    #     # print(' card', card)
-    #     # if message:
-    #     #     print('one jaaat',message, ' ------')
-    #     print('DONEEEEEE')
-    # else:
-    #     device_1_1 = AccessControl()
-    #     print(' the instance start_linsten_1', device_1_1)
-    #     device_1_1.get_login_info(ip='192.168.1.2', port=37777, username='admin', password='123456')
-    #     result = device_1_1.login()
-    #     device_1_1.alarm_listen()
+def is_time_to_stop():
+    stop_hour  = settings.STOP_HOUR
+    stop_minute = settings.STOP_MINUTE
+    current_time = datetime.now()
+    return current_time.hour == stop_hour and current_time.minute == stop_minute
 
-    # device_2 = AccessControl()
-    # print(' the instance start_linsten_2', device_2)
-    # device_2.get_login_info(ip='192.168.1.3', port=37777, username='admin', password='123456')
-    # result = device_2.login()
-    # device_2.alarm_listen()
-    # if result:
-    #     result = device_2.alarm_listen()
-    #     # card= device_2.card_infos
-    #     # print(' card', card)
-    #     # if message:
-    #     #     print('one jaaat',message, ' ------')
-    # else:
-    #     device_2_2 = AccessControl()
-    #     print(' the instance start_linsten_1', device_2_2)
-    #     device_2_2.get_login_info(ip='192.168.1.2', port=37777, username='admin', password='123456')
-    #     result = device_2_2.login()
-    #     device_2_2.alarm_listen()
+def is_reboot_day():
+    current_datetime = datetime.now()
+    print('IS REBOOT DAY FUNC', current_datetime.weekday())
+    return current_datetime.weekday() == 4  # Monday is 0, so Friday is 4
 
 
-@shared_task
-def start_linsten_2():
-    print('CALLED') 
-    device_2 = AccessControl()
-    print(' the instance start_linsten_2', device_2)
-    device_2.get_login_info(ip='192.168.1.3', port=37777, username='admin', password='123456')
-    result = device_2.login()
-    device_2.alarm_listen()
-    if result:
-        device_2.alarm_listen()
-    #     # card= device_2.card_infos
-    #     # print(' card', card)
-    #     # if message:
-    #     #     print('one jaaat',message, ' ------')
-    # else:
-    #     device_2.logout()
-    #     device_2.login()
-    #     print('DONEEEEEE')
-# i want to run this shared_task automaticly 
-# not from the frontend
-
-@shared_task
-def stop_listening_1():
-    print('CALLED') 
-    device = AccessControl()
-    print(' the instance start_linsten_1', device)
-    device.get_login_info(ip='192.168.1.2', port=37777, username='admin', password='123456')
-    result = device.login()
-    result = device.logout()
-
-# @shared_task
-# def stop_listening_2():
-#     print('CALLED') 
-#     device_2 = AccessControl()
-#     print(' the instance start_linsten_2', device_2)
-#     device_2.get_login_info(ip='192.168.1.3', port=37777, username='admin', password='123456')
-#     result = device_2.login()
-#     result = device_2.logout()
-
-
-
-
-
-# @shared_task
-# def open_door2():
-#     # premission ckeck
-#     print('CALLED')
-#     for i in range(2):
-#         device = AccessControl()
-#         device.get_login_info(ip='192.168.1.2', port=37777, username='admin', password='123456')
-#         result = device.login()
+# def manage_door(ip, port, username, password): # PROD
+#     device = AccessControl()
+#     device.get_login_info(ip=ip, port=port, username=username, password=password)
+#     print(f' the instance device ip {ip}', device)
+#     result = device.login()
+#     if result:
+#         print('device.loginid===========================', device.loginID)
+#         logger.warning('Device started with Ip=======>{}'.format(ip))
 #         device.alarm_listen()
-#         if result:
-#             result = device.open_door()
-#             # card= device.card_infos()
-#             mess = messCallBackEx1()
-#             print(' card', card)
-#             # if message:
-#             #     print('one jaaat',message, ' ------')
-#         print('DONEEEEEE')
+#     while True:
+#         if is_time_to_stop():
+#             if device.loginID:
+#                 device.logout()
+#                 device.sdk.Logout(device.loginID)
+#                 device.sdk.Cleanup()
+#                 if is_reboot_day():
+#                     device.reboot_device()
+#                     print('IS REBOOT DAY REBVOTEEEED')
+#                 logger.warning('Device Stopped with Ip--------->{}'.format(device.ip))
+#             else:
+#                 logger.warning('Could not stop device ERROR ON  Ip--------->{}'.format(device.ip))
+#             break
+#         time.sleep(15)
+def manage_door(ip, port, username, password): # PROD
+    device = AccessControl()
+    device.get_login_info(ip=ip, port=port, username=username, password=password)
+    print(f' the instance device ip {ip}', device)
+    result = device.login()
+    if result:
+        print('device.loginid===========================', device.loginID)
+        # logger.warning('Device started with Ip=======>{}'.format(ip))
+        device.alarm_listen()
+    while True:
+        # logger.warning('Device started with Ip=======>{}'.format(ip))
+        time.sleep(15)
+        if is_time_to_stop():
+            if is_reboot_day():
+                device.reboot_device()
+                print('IS REBOOT DAY REBVOTEEEED')
+                logger.warning('DEVICE rebooted---------> {}'.format(device.ip))
+            if device.loginID:
+                # logger.warning('Device Stopped with Ip--------->{}'.format(ip))
+                device.logout()
+                device.sdk.Logout(device.loginID)
+                device.sdk.Cleanup()
+            else:
+                logger.warning('Could not stop device ERROR ON  Ip--------->{}'.format(device.ip))
+                # logger.warning('Could not stop device ERROR ON  Ip--------->{}'.format(ip))
+            break
+
+@shared_task(bind=True)
+def start_linsten_test_device_1(self):
+    manage_door(ip='192.168.0.145', port=37777, username='admin', password='123456')
+    app.control.revoke(self.request.id, terminate=True)
+
+
+@shared_task(bind=True)
+def start_linsten_test_device_2(self):
+    # tennis 237
+    manage_door(ip='192.168.0.146', port=37777, username='admin', password='123456')
+    app.control.revoke(self.request.id, terminate=True)
+
+
+@shared_task(bind=True)
+def start_linsten_2(self):
+
+    manage_door(ip='192.168.1.230', port=37777, username='admin', password='123456')
+    app.control.revoke(self.request.id, terminate=True)
+        
+@shared_task(bind=True)
+def start_linsten_3(self):
+
+    manage_door(ip='192.168.1.232', port=37777, username='admin', password='123456')
+    app.control.revoke(self.request.id, terminate=True)
+
+@shared_task(bind=True)
+def start_linsten_4(self):
+
+    manage_door(ip='192.168.1.233', port=37777, username='admin', password='123456')
+    app.control.revoke(self.request.id, terminate=True)
+
+@shared_task(bind=True)
+def start_linsten_5(self):
+
+    manage_door(ip='192.168.1.234', port=37777, username='admin', password='123456')
+    app.control.revoke(self.request.id, terminate=True)
+
+@shared_task(bind=True)
+def start_linsten_6(self):
+
+    manage_door(ip='192.168.1.235', port=37777, username='admin', password='123456')
+    app.control.revoke(self.request.id, terminate=True)
+
+@shared_task(bind=True)
+def start_linsten_7(self):
+    
+    manage_door(ip='192.168.1.236', port=37777, username='admin', password='123456')
+    app.control.revoke(self.request.id, terminate=True)
+
+@shared_task(bind=True)
+def start_linsten_8(self):
+    manage_door(ip='192.168.1.237', port=37777, username='admin', password='123456')
+    app.control.revoke(self.request.id, terminate=True)
+
+@shared_task(bind=True)
+def start_linsten_9(self):
+    manage_door(ip='192.168.1.238', port=37777, username='admin', password='123456')
+    app.control.revoke(self.request.id, terminate=True)
+
+
+@shared_task(bind=True)
+def start_face_door_right(self):
+    device = FaceControl()
+    device.get_login_info(ip='192.168.1.220', port=37777, username='admin', password='mc091924')
+    result = device.login()
+    if result:
+        device.intelligent_operate()
+        print('device.loginid===========================', device.loginID)
+        logger.warning('Device started with Ip=======>{}'.format(device.ip))
+    while True:
+        if is_time_to_stop():
+            if device.loginID:
+                device.logout()
+                device.sdk.Logout(device.loginID)
+                device.sdk.Cleanup()
+                logger.warning('Device Stopped with Ip--------->{}'.format(device.ip))
+            else:
+                logger.warning('Could not stop device ERROR ON  Ip--------->{}'.format(device.ip))
+            break
+        time.sleep(15)
+
+
+    # if result:
+    #     device.intelligent_operate()
+ 
+@shared_task(bind=True)
+def start_face_door_left(self):
+    device = FaceControl()
+    device.get_login_info(ip='192.168.1.221', port=37777, username='admin', password='mc091924')
+    result = device.login()
+    if result:
+        device.intelligent_operate()
+        print('device.loginid===========================', device.loginID)
+        logger.warning('Device started with Ip=======>{}'.format(device.ip))
+    while True:
+        if is_time_to_stop():
+            if device.loginID:
+                device.logout()
+                device.sdk.Logout(device.loginID)
+                device.sdk.Cleanup()
+                logger.warning('Device Stopped with Ip--------->{}'.format(device.ip))
+            else:
+                logger.warning('Could not stop device ERROR ON  Ip--------->{}'.format(device.ip))
+            break
+        time.sleep(15)

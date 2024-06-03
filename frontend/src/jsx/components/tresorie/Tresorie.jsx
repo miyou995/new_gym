@@ -43,7 +43,7 @@ useEffect(() => {
      })
     api.get(caEND).then((res) => {
       setChiffre(res.data)
-      console.log('resulta ca', res.data);
+      //console.log('resulta ca', res.data);
    })
      
 }, [startDate, endDate]);

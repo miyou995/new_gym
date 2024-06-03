@@ -19,9 +19,9 @@ function refreshPage() {
   window.location.reload(false);
 }
 
-const AbonnementEditModal = ({show, onShowShange, abonnementData}) => {
+const AbonnementEditModal = ({show, onShowChange, abonnementData}) => {
   const api = useAxios();
-  const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+  const handleShow = useCallback( () => {onShowChange(false)}, [onShowChange])
     // const abonnementEditEND = `${process.env.REACT_APP_API_URL}/rest-api/abonnement/`
     // const creneauPerAbonnementEND = `${process.env.REACT_APP_API_URL}/rest-api/abonnement/`
 
@@ -70,7 +70,7 @@ useEffect(() => {
     api.get(abonnementEditEND).then(res => {
       setName(res.data.name)
       setPrice(res.data.price)
-      setNumberOfDays(res.data.number_of_days)
+      setNumberOfDays(res.data.length)
       setSeancesQuantity(res.data.seances_quantity)
       setSystemeCochage(res.data.systeme_cochage)
       setAbnIndex(abonnementData['dureeInd'])
@@ -162,7 +162,7 @@ return (
                     label="Seances Libre"
                     labelPlacement="start"
                     onClick={e => {
-                        setLength("Nombre  de séances")
+                        setLength("Nombre de séances")
                         setDisplayLength(true)
                         setHelpText("Abonnement limité par un nombre de seance avec des horaires fléxible")
                     }}
@@ -208,7 +208,7 @@ return (
                         defaultValue={DureeAb[abonnementData['dureeInd']]}
                         options={DureeAb}
                         getOptionLabel={(option) =>  option['mois']}
-                        renderInput={(params) => <TextField {...params} label="Mois" variant="outlined" />}
+                        renderInput={(params) => <TextField {...params} label="Mois" variant="outlined" required/>}
                         />
                 </div>
             </div>
@@ -229,13 +229,13 @@ return (
                       onChange={((event, value) =>  
                         {
                         setActivity(value)
-                        console.log('the valueee', value);
+                        //console.log('the valueee', value);
                     }
                         )} 
                       value={activity}
                       options={abonnementData['salles']}
                       id="size-small-standard-multi"
-                      getOptionLabel={(option) =>  ( option['name'])}
+                      getOptionLabel={(option) => (option['name'])}
                       renderInput={(params) =>
                   (<TextField {...params} name="salles" label="Salles" variant="outlined" fullWidth />)}
                 />

@@ -13,10 +13,6 @@ import PaiementModal from './PaiementModal'
 
 
 
-
-
-
-
 const PersonnelDetail = (props) => {
   const api = useAxios();
   const [paiementModal, setPaiementModal] = useState(false);
@@ -26,7 +22,7 @@ const PersonnelDetail = (props) => {
   const employeId = props.match.params.id;
 
   let PersonnelDetailEndpoint = `${process.env.REACT_APP_API_URL}/rest-api/personnel/${employeId}`;
-  const transactionsEmployeEnd = `${process.env.REACT_APP_API_URL}/rest-api/transactions/remuneration/${employeId}`;
+  const transactionsEmployeEnd = `${process.env.REACT_APP_API_URL}/rest-api/transactions/remunerationProf-by-id?em=${employeId}`;
   const [personnelData, setPersonnelData] = useState([])
   //FK 
   useEffect(() => {
@@ -46,6 +42,7 @@ const PersonnelDetail = (props) => {
   useEffect(() => {
     //  const clientId = props.match.params.id;
      api.get(transactionsEmployeEnd).then( res => {
+      console.log("res.data: TransactionsEmploye=>", res.data);
       setTransactionsEmploye(res.data)
            })
   }, [props.match.params.id] );
@@ -185,7 +182,7 @@ const PersonnelDetail = (props) => {
             </div>
           </div>
         </div>
-        <PaiementModal show={paiementModal} onShowShange={setPaiementModal} coachData={{employeId: employeId, emplyeName:employe.first_name}} />
+        <PaiementModal show={paiementModal} onShowChange={setPaiementModal} coachData={{employeId: employeId, emplyeName:employe.first_name}} />
       </div>
     </>
   );

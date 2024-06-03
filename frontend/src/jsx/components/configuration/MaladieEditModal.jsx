@@ -12,8 +12,8 @@ import {notifySuccess, notifyError} from '../Alert'
 import useForm from 'react-hook-form';
 import createPalette from "@material-ui/core/styles/createPalette";
 
-const MaladieEditModal = ({show, onShowShange, maladieData}) => {
-    const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+const MaladieEditModal = ({show, onShowChange, maladieData}) => {
+    const handleShow = useCallback( () => {onShowChange(false)}, [onShowChange])
   const api = useAxios();
   // const creneauPerAbonnementEND = `${process.env.REACT_APP_API_URL}/rest-api/abonnement/`
     const maladieUpdateEnd = `${process.env.REACT_APP_API_URL}/rest-api/maladie/${maladieData['maladieId']}`

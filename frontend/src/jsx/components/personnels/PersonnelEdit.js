@@ -17,11 +17,11 @@ const PersonnelEdit = (props) => {
   const [creneaux, setCreneaux] = useState([])
   
   //FK 
-  useEffect(() => {
-    api.get(personnelURI).then((res) => {
-      setCreneaux(res.data)
-    })
-  }, []);
+  // useEffect(() => {
+  //   api.get(personnelURI).then((res) => {
+  //     setCreneaux(res.data)
+  //   })
+  // }, []);
 
   const history = useHistory();
 
@@ -41,7 +41,7 @@ const PersonnelEdit = (props) => {
   //FK
   // const [creneau, setCreneau] = useState("");
   useEffect(() => {
-    axios.get(personnelURI).then((res) => {
+    api.get(personnelURI).then((res) => {
       setCivility(res.data.civility);
       setLastName(res.data.last_name);
       setFirstName(res.data.first_name);

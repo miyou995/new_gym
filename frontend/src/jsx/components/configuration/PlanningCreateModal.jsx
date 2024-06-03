@@ -13,9 +13,9 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 // import useForm from 'react-hook-form';
 // import createPalette from "@material-ui/core/styles/createPalette";
 
-const PlanningCreateModal = ({show, onShowShange}) => {
+const PlanningCreateModal = ({show, onShowChange}) => {
   const api = useAxios();
-  const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+  const handleShow = useCallback( () => {onShowChange(false)}, [onShowChange])
     // const creneauPerAbonnementEND = `${process.env.REACT_APP_API_URL}/rest-api/abonnement/`
     const planningCreateEnd = `${process.env.REACT_APP_API_URL}/rest-api/planning/create`
 
@@ -64,7 +64,7 @@ return (
                         checked={is_default}
                         onChange={e=> {
                         setDefault(!is_default)
-                            console.log('target value', e.target.value);
+                            //console.log('target value', e.target.value);
                         }}
 
                         name="checkedB"

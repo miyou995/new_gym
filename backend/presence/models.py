@@ -4,17 +4,21 @@ from creneau.models import Creneau
 from django.db.models.signals import pre_save, post_save, post_delete, pre_delete
 # Create your models here.
 from django.db.models import Q
-from datetime import timedelta, datetime, timezone
+from datetime import timedelta, datetime, timezone, date
 from decimal import Decimal
 from django.utils import timezone
 from abonnement.models import AbonnementClient
 from simple_history.models import HistoricalRecords
 from django.conf import settings
+from django.core.exceptions import ValidationError
+
+FTM = '%H:%M:%S'
+
 
 class PresenceManager(models.Manager):
     def get_presence(self, client_id):
         # client = Client.objects.get(id=client_id)
-        presences = Presence.objects.filter(abc__client__id=client_id, is_in_salle=True)
+        presences = Presence.objects.filter(abc__client__id=client_id, hour_sortie__isnull=True)
         print('TRUEEEEEEEEEEEE', presences)
         print('client_id', client_id)
         try :
@@ -26,14 +30,18 @@ class PresenceManager(models.Manager):
 
 
 class Presence(models.Model):
-    abc      = models.ForeignKey(AbonnementClient, on_delete=models.CASCADE,related_name='presences')
+    abc         = models.ForeignKey(AbonnementClient, on_delete=models.CASCADE,related_name='presences')
     date        = models.DateField()
     creneau     = models.ForeignKey(Creneau, on_delete=models.CASCADE,related_name='presenses', null=True, blank=True)
     is_in_list  = models.BooleanField(default=True) # check if the person is in the list of client that should be in this creneau
     hour_entree = models.TimeField()
     hour_sortie = models.TimeField(auto_now_add=False, null=True, blank=True)
     is_in_salle = models.BooleanField(default=False)
+    # remote_device = models.BooleanField(default=False)
     note        = models.CharField(max_length=200, blank=True, null=True)
+    
+    created = models.DateTimeField(verbose_name="Date de Création", auto_now_add=True)
+    updated = models.DateTimeField(verbose_name="Date de dernière mise à jour", auto_now=True)
     
     objects = models.Manager()
     presence_manager = PresenceManager()
@@ -41,24 +49,47 @@ class Presence(models.Model):
 
 
 
-    # def __str__(self):
-    #     return str(f' le client {self.client}, {self.date}')
-
     class Meta:
         ordering  = ['-date']
 
     def save(self, *args, **kwargs):
         # print(' Save() on Presence class ( model)')
         if not self.date:
-            self.date = timezone.now()
+            self.date = datetime.now().date()
+        # self.full_clean()
         return super().save(*args, **kwargs)
+    
+    def get_time_consumed(self, sortie=None):
+        today = date.today()
+        now_time = datetime.now().time()
+        if sortie:
+            d_end = datetime.combine(today, sortie)
+        else:
+            d_end = datetime.combine(today, now_time)
+        if self.abc.is_time_volume():
+            d_start = datetime.combine(today, self.hour_entree)
+            diff =  d_end - d_start 
+            diff_secondes = diff.total_seconds() 
+            minutes = diff_secondes / 60
+            ecart = int(minutes)
+        else :
+            ecart = 1
+        self.hour_sortie = now_time
+        return ecart
+
+    # def get_time_consumed(self, sortie=None):
+    #     if not sortie :
+    #         sortie = datetime.now().time()
+    #     ecart = timedelta(sortie) - timedelta(self.hour_entree)
+    #     print('ECART', ecart)
+    #     return ecart
+
 
 
 class PresenceCoach(models.Model):
     coach      = models.ForeignKey('client.Coach', on_delete=models.CASCADE,related_name='presencesCoach', null=True, blank=True)
     date        = models.DateField(auto_now_add=True)
     # creneau     = models.ForeignKey(Creneau, on_delete=models.CASCADE,related_name='presencesCoach', null=True, blank=True)
-    # is_in_list  = models.BooleanField(default=True) # check if the person is in the list of client that should be in this creneau
     hour_entree = models.TimeField()
     hour_sortie = models.TimeField(auto_now_add=False, null=True, blank=True)
     is_in_salle = models.BooleanField(default=False)

@@ -15,19 +15,19 @@ from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
 
 from .models import Presence, PresenceCoach
-from .serializers import PresenceSerialiser,  PresenceEditSerialiser, PresenceCoachSerializer, PresenceClientSerialiser, PresencePostSerialiser, PresenceAutoSerialiser, PresenceHistorySerialiser, PresenceManualEditSerialiser
+from .serializers import PresenceSerialiser,  PresenceEditSerialiser, PresenceCoachSerializer, PresenceClientSerialiser, PresencePostSerialiser, PresenceAutoSerialiser, PresenceHistorySerialiser, PresenceManualEditSerialiser, PresenceNotificationSerialiser
 
 from datetime import date, timedelta, datetime
 
 class BaseModelPerm(DjangoModelPermissions):
     def get_custom_perms(self, method, view):
-        app_name =  view.queryset.model._meta.app_label
+        # app_name =  view.queryset.model._meta.app_label
         if hasattr(view, 'extra_perms_map'):
             return [perms for perms in view.extra_perms_map.get(method, [])]
         else:
             return []
 
-    def has_permission(self, request, view):
+    def has_permission(self, request, view, model=None):
         perms = self.get_required_permissions(request.method, view.queryset.model)
         perms.extend(self.get_custom_perms(request.method, view))
         return ( request.user and request.user.has_perms(perms) )
@@ -48,7 +48,7 @@ class PresencePostAPIView(generics.CreateAPIView):
     serializer_class = PresencePostSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["presence.add_presence"]
+        "POST": ["presence.add_presence"]
     }
     # def create(self, request, format =''):
     #     serializer = self.get_serializer(data=request.data)
@@ -70,12 +70,12 @@ class PresencePostAPIView(generics.CreateAPIView):
         # presence = serializer.instance
         # print('ppresence validate data', presence)
         # if not presence.hour_sortie:
-        #     presence.is_in_salle = True
         #     serializer.save()
         # return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
 class PresenceHistoryListAPIView(generics.ListAPIView):
     queryset = Presence.history.all()
+    pagination_class = StandardResultsSetPagination
     # print('queryset', queryset.count())
     # permission_classes = (IsAuthenticated,)
     serializer_class = PresenceHistorySerialiser
@@ -83,6 +83,18 @@ class PresenceHistoryListAPIView(generics.ListAPIView):
     extra_perms_map = {
         "GET": ["presence.view_presence"]
     }
+
+class NotifyPresenceListAPIView(generics.ListAPIView):
+    serializer_class = PresenceNotificationSerialiser
+    def get_queryset(self):
+        # Get the current time minus 3 seconds
+        three_seconds_ago = datetime.now() - timedelta(seconds=3)
+        # print('three_seconds_ago', three_seconds_ago)
+        queryset = Presence.objects.filter(updated__gte=three_seconds_ago, hour_sortie__isnull=False)
+        # permission_classes = (IsAuthenticated,)
+        return queryset
+    
+
 
 class AllPresenceListAPIView(generics.ListAPIView):
     queryset = Presence.objects.all()
@@ -101,11 +113,9 @@ class AllPresenceListAPIView(generics.ListAPIView):
 
 
 
-
-
-    
+     
 class PresenceListAPIView(generics.ListAPIView):
-    queryset = Presence.objects.all()
+    queryset = Presence.objects.select_related('abc', 'abc__client','creneau')
     # permission_classes = (IsAuthenticated,)
     serializer_class = PresenceSerialiser
     pagination_class = StandardResultsSetPagination
@@ -119,107 +129,65 @@ class PresenceListAPIView(generics.ListAPIView):
 
     def get_queryset(self):
         FTM = '%H:%M'
-        queryset = Presence.objects.all()
+        queryset = Presence.objects.select_related('creneau', 'abc', 'abc__client', 'abc__type_abonnement', 'creneau__activity__salle', 'creneau__planning').annotate(
+            total_dette=Sum('abc__client__abonnement_client__reste')
+        )        
         start_date = self.request.query_params.get('start_date', None)
         end_date = self.request.query_params.get('end_date', None)
         hour = self.request.query_params.get('hour', None) 
-        # salle = self.request.query_params.get('salle', None)
-        # activity = self.request.query_params.get('act', None) 
-        # print('" lhaKT §§§')
         if hour:
             i_start_time = datetime.strptime(hour, FTM)
-            # print('staaaart', i_start_time)
             i_end_time = i_start_time + timedelta(minutes=20)
 
             start_time = i_start_time.time() 
             end_time = i_end_time.time()
         try:
             print('ONE²')
-            queryset = Presence.objects.filter(date__range=[start_date, end_date], creneau__hour_start__range=[start_time, end_time])
+            queryset = queryset.filter(date__range=[start_date, end_date], creneau__hour_start__range=[start_time, end_time])
             return queryset.order_by('-id')
         except:
             print('deuxeme')
-            queryset = Presence.objects.filter(date__range=[start_date, end_date])
+            queryset = queryset.filter(date__range=[start_date, end_date])
             return queryset.order_by('-id')
-        else:
-            print('FINLMENT')
-            return queryset.order_by('-id')
-                
-            # print('end_time', end_time)
-        # else : 
-        #     start_time = '01:00:01'
-        #     end_time ='23:59:00'
-        #     print('sayit b kelech')
-        #     try:
-        #         print('avec du temps')
-        #         print('premier start',start_time)
-        #         print('premier start',end_time)
-        #         print('je suis queryset', self.request)
+        
+# from django.utils.dateparse import parse_datetime
 
-        #         return Presence.objects.filter(date__range=[start_date, end_date], creneau__hour_start__range=[start_time, end_time])
-        #     except:
-        #         print('ALLLL')
-        #         print('je suis queryset', self.request)
-        # else :
-        #     return Presence.objects.all()
+# class PresenceListAPIView(generics.ListAPIView):
+#     serializer_class = PresenceSerialiser
+#     pagination_class = StandardResultsSetPagination
+#     filter_backends = [DjangoFilterBackend]
+#     # permission_classes = (IsAdminUser, BaseModelPerm)
+#     permission_classes = (IsAdminUser, )
+#     extra_perms_map = {
+#         "GET": ["presence.view_presence"]
+#     }
+#     filterset_fields = ['creneau__activity', 'abc__client_id', 'creneau__activity__salle']
 
-        # try:    #HADI LI MCHAT MAIS SANS HEURES
-        #     # print('sayit b start_time', start_time)
-        #     print('sayit b end_time')
-        #     # queryset = Presence.objects.filter(date__range=[start_date, end_date], creneau__hour_start__range=[start_time, end_time], creneau__activity__salle=salle, creneau__activity=activity)
-        #     queryset = Presence.objects.filter(date__range=[start_date, end_date])
-        #     return queryset.order_by('-id')
+#     def get_queryset(self):
+#         FTM = '%H:%M'
+#         queryset = Presence.objects.select_related('creneau', 'abc', 'abc__client', 'abc__type_abonnement', 'creneau__activity__salle', 'creneau__planning').annotate(
+#             total_dette=Sum('abc__client__abonnement_client__reste')  # Annotate with the total 'reste'
+#         )
+#         start_date = self.request.query_params.get('start_date', None)
+#         end_date = self.request.query_params.get('end_date', None)
+#         hour = self.request.query_params.get('hour', None)
 
-        # except:
-        #     try:
-        #         queryset = Presence.objects.filter(date__range=[start_date, end_date], creneau__activity__salle=salle, creneau__activity=activity)
-        #         return queryset.order_by('-id')
-        #     except:
-        #         try:
-        #             # print('sayit sans acti')
-        #             if hour:
-        #                 if not activity and not salle:
-        #                     queryset = Presence.objects.filter(date__range=[start_date, end_date], creneau__hour_start__range=[start_time, end_time])
-        #                     # print(' queryyy', queryset)
-        #                     return queryset.order_by('-id')
-        #                 if not activity:
-        #                     # print('sans activité')
-        #                     queryset = Presence.objects.filter(date__range=[start_date, end_date], creneau__hour_start__range=[start_time, end_time], creneau__activity__salle=salle)
-        #                     # queryset = Presence.objects.filter(
-        #                     #     Q(date__range=[start_date, end_date]) &
-        #                     #     Q(creneau__activity__salle=salle) &
-        #                     #     Q(creneau__hour_start__range=[start_time, end_time]) 
-        #                     #     )
-        #                     # print('sayit b start_time', start_time)
-        #                     # print('sayit b end_time', end_time)
-        #                     return queryset.order_by('-id')
-        #                 elif not salle:
-        #                     # print('sans SALLE')
-        #                     queryset = Presence.objects.filter(date__range=[start_date, end_date], creneau__hour_start__range=[start_time, end_time], creneau__activity=activity)
-        #                     # print('sayit b start_time', start_time)
-        #                     # print('sayit b end_time', end_time)
-        #                     return queryset.order_by('-id')
-        #             else:
-        #                 if not activity:
-        #                     # print('sans activité')
-        #                     queryset = Presence.objects.filter(date__range=[start_date, end_date], creneau__activity__salle=salle)
-        #                     # print('sayit b start_time', start_time)
-        #                     # print('sayit b end_time', end_time)
-        #                     return queryset.order_by('-id')
-        #                 elif not salle:
-        #                     # print('sans SALLE')
-        #                     queryset = Presence.objects.filter(date__range=[start_date, end_date], creneau__activity=activity)
-        #                     # print('sayit b start_time', start_time)
-        #                     # print('sayit b end_time', end_time)
-        #                     return queryset.order_by('-id')
-        #         except:
-        #             # print('je suis maaaaaaa')
-        #             # queryset = Presence.objects.filter(creneau__activity__salle=1) 
-        #             # print('je suis queryset', self.request)
-        #             return queryset.order_by('-id')
+#         if start_date:
+#             start_date = parse_datetime(start_date)
+#         if end_date:
+#             end_date = parse_datetime(end_date)
+#         print('self.request.query_params', self.request.query_params.dict())
+#         if hour:
+#             i_start_time = datetime.strptime(hour, FTM)
+#             i_end_time = i_start_time + timedelta(minutes=20)
+#             start_time = i_start_time.time()
+#             end_time = i_end_time.time()
+#             queryset = queryset.filter(creneau__hour_start__range=[start_time, end_time])
 
+#         if start_date and end_date:
+#             queryset = queryset.filter(date__range=[start_date, end_date])
 
-
+#         return queryset.order_by('-id')
         
 
 class PresenceDetailAPIView(generics.RetrieveUpdateAPIView):
@@ -228,37 +196,43 @@ class PresenceDetailAPIView(generics.RetrieveUpdateAPIView):
     serializer_class = PresenceSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["presence.change_presence"]
+        "GET": ["presence.view_presence"],
+        "PATCH": ["presence.change_presence"],
+        "PUT": ["presence.change_presence"],
     }
-    # def get_object(self):
-    #     obj = get_object_or_404(Presence.objects.filter(id=self.kwargs["pk"]))
-    #     creneaux = Presence.presence_manager.get_presence(30)
-    #     # abon = abonnement[0].id
-    #     print('get_abonnement..................0....', creneaux)
-    #     # #### ce passe dans une fonction
-    #     # prenseces = abon.presence_quantity 
-    #     # print('ceci est labonnement du client ', abon)
-
-    #     # abonnement.update(presence_quantity = prenseces - 1 )
-    #     return obj
 
 class PresenceEditAPIView(generics.RetrieveUpdateAPIView):
     queryset = Presence.objects.all()
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["presence.change_presence"]
+        "GET": ["presence.view_presence"],
+        "PATCH": ["presence.change_presence"],
+        "PUT": ["presence.change_presence"],
     }
+    
     serializer_class = PresenceManualEditSerialiser
-    def get_object(self):
+
+    def put(self, request, *args, **kwargs):
+        print(
+            self.kwargs
+        )
         obj = get_object_or_404(Presence, id=self.kwargs["pk"])
-        print('Salle ... ', obj , obj.id)
-        return obj
+        print('Presence ... ', obj , obj.id)
+        client = obj.abc.client
+        client.init_output()
+        return Response(status=200)
+
+    
+
 
 class PresenceManualEditAPIView(generics.RetrieveUpdateAPIView):
     queryset = Presence.objects.all()
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["presence.change_presence"]
+        "GET": ["presence.view_presence"],
+        "PATCH": ["presence.change_presence"],
+        "PUT": ["presence.change_presence"],
+        "PUT": ["presence.change_presence"],
     }
     serializer_class = PresencePostSerialiser
     def get_object(self):
@@ -272,7 +246,8 @@ class PresenceDestroyAPIView(generics.DestroyAPIView):
     serializer_class = PresenceSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["presence.delete_presence"]
+        "POST": ["presence.delete_presence"],
+        "DELETE": ["presence.delete_presence"],
     }
 
 class PresenceCoachCreateAPI(generics.CreateAPIView):
@@ -280,7 +255,7 @@ class PresenceCoachCreateAPI(generics.CreateAPIView):
     serializer_class = PresenceCoachSerializer
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["presence.add_presencecoach"]
+        "POST": ["presence.add_presencecoach"]
     }
 class PresenceCoachListAPI(generics.ListAPIView):
     queryset = PresenceCoach.objects.all()
@@ -291,7 +266,6 @@ class PresenceCoachListAPI(generics.ListAPIView):
     }
 class PresenceByCoachListAPI(generics.ListAPIView):
     queryset = PresenceCoach.objects.all()
-
     serializer_class = PresenceCoachSerializer
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
@@ -301,7 +275,7 @@ class PresenceByCoachListAPI(generics.ListAPIView):
         
         coach = self.request.query_params.get('cl', None)
         print('cliiiientr', coach)
-        presences = PresenceCoach.objects.filter(coach=coach)
+        presences = PresenceCoach.objects.filter(coach=coach).distinct()
         return presences
 
 
@@ -311,7 +285,9 @@ class PresenceCoachDetailUpdateAPI(generics.RetrieveUpdateAPIView):
     serializer_class = PresenceCoachSerializer
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["presence.change_presencecoach"]
+        "GET": ["presence.view_presencecoach"],
+        "PUT": ["presence.change_presencecoach"],
+        "PATCH": ["presence.change_presencecoach"],
     }
     def get_object(self):
         obj = get_object_or_404(PresenceCoach.objects.filter(id=self.kwargs["pk"]))
@@ -323,7 +299,8 @@ class PresenceCoachDestroyAPI(generics.DestroyAPIView):
     serializer_class = PresenceCoachSerializer
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["presence.delete_presencecoach"]
+        "POST": ["presence.delete_presencecoach"],
+        "DELETE": ["presence.delete_presencecoach"],
     }
 
     
@@ -331,21 +308,14 @@ class PresenceCoachEditAPIView(generics.RetrieveUpdateAPIView):
     queryset = Presence.objects.all()
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["presence.change_presence"]
+        "GET": ["presence.view_presence"],
+        "PUT": ["presence.change_presence"],
+        "PATCH": ["presence.change_presence"],
     }
     serializer_class = PresenceEditSerialiser
     def get_object(self):
         obj = get_object_or_404(PresenceCoach.objects.filter(id=self.kwargs["pk"]))
 
-        # obj = get_object_or_404(Presence.objects.filter(id=self.kwargs["pk"]))
-        # creneaux = Presence.presence_manager.get_presence(30)
-        # # abon = abonnement[0].id
-        # print('get_abonnement..................0....', creneaux)
-        # #### ce passe dans une fonction
-        # prenseces = abon.presence_quantity 
-        # print('ceci est labonnement du client ', abon)
-
-        # abonnement.update(presence_quantity = prenseces - 1 )
         return obj
 
 class PresenceClientDetailAPI(generics.ListAPIView):
@@ -360,9 +330,10 @@ class PresenceClientDetailAPI(generics.ListAPIView):
         client = self.request.query_params.get('cl', None)
         start_date = self.request.query_params.get('start_date', None)
         end_date = self.request.query_params.get('end_date', None)
-        presences = Presence.objects.filter(abc__client_id=client, date__range=[start_date, end_date])
+        presences = Presence.objects.filter(abc__client_id=client, date__range=[start_date, end_date]).select_related('creneau', 'abc', 'abc__client', 'abc__type_abonnement', 'creneau__activity__salle', 'creneau__planning').annotate(
+            total_dette=Sum('abc__client__abonnement_client__reste')
+        )        
         # if start_date and end_date:
-        print('presences', presences)
         return presences
     
 
@@ -376,8 +347,7 @@ class PresenceClientIsInAPI(generics.ListAPIView):
     def get_queryset(self):
         # client = self.request.query_params.filter('cl', None)
         # print('client', client)
-        presences = Presence.objects.filter(is_in_salle=True)
-
+        presences = Presence.objects.filter(hour_sortie__isnull=True).select_related('creneau', 'abc', 'abc__client', 'abc__type_abonnement', 'creneau__activity__salle', 'creneau__planning')
         return presences
 
 
@@ -387,7 +357,8 @@ class PresenceClientAutoCreateAPI(generics.CreateAPIView):
     serializer_class = PresenceAutoSerialiser
     permission_classes = (IsAdminUser,BaseModelPerm)
     extra_perms_map = {
-        "GET": ["presence.add_presencecoach"]
+        "POST": ["presence.add_presencecoach"],
+        "POST": ["presence.add_presence"]
     }
 
 

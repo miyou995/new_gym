@@ -11,10 +11,10 @@ import {notifySuccess, notifyError} from '../Alert'
 // function refreshPage() {
 //   window.location.reload(false);
 // }
-const PresenceEditModal = ({show, onShowShange, presenceData}) => {
+const PresenceEditModal = ({show, onShowChange, presenceData}) => {
    const api = useAxios();
 
-    const handleShow = useCallback( () => {onShowShange(false)}, [onShowShange])
+    const handleShow = useCallback( () => {onShowChange(false)}, [onShowChange])
     const client  =presenceData['client']
     const clientID  =presenceData['clientId']
     const hourIn  =presenceData['hourIn']
@@ -41,10 +41,10 @@ const PresenceEditModal = ({show, onShowShange, presenceData}) => {
          setHourOut2(hourOut)
          setNote(notes)
          setPresenceDate(presenceData['date'])
-           console.log('THE NEW CLIENT ONEEE ');
+           //console.log('THE NEW CLIENT ONEEE ');
       }
-        console.log('rani hab naafer creneau DATAAA============>', note,
-        hourOut);
+        //console.log('rani hab naafer creneau DATAAA============>', note,
+      //   hourOut);
     }, [presenceData['presenceId']])
 
 
@@ -62,8 +62,9 @@ const PresenceEditModal = ({show, onShowShange, presenceData}) => {
          notifySuccess('Présence modifié avec succées ')
          handleShow()
       }
-      ).catch(
+      ).catch(err => {
          notifyError('erreur lors de la modification')
+      }
       )
     }
 

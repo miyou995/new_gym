@@ -5,18 +5,50 @@ from creneau.models import Creneau
 # Signals imports
 from django.db.models.signals import post_save, pre_save
 from simple_history.models import HistoricalRecords
+from django.db.models import Q
+class SubscriptionQuerySet(models.QuerySet):
+    def time_volume(self):
+        return self.filter(type_abonnement__type_of="VH")
+    def free_access(self):
+        return self.filter(type_abonnement__type_of = "AL")
+    def fixed_sessions(self):
+        return self.filter(type_abonnement__type_of = "SF")
+    def free_sessions(self):
+        return self.filter(type_abonnement__type_of = "SL")
+    def free_access_subscription(self):
+        return self.exclude(type_abonnement__type_of = "SF")
+    
+    def active_subscription(self):
+        today = date.today()
+        return self.filter(end_date__gte=today, archiver=False)
+
+    def valid_presences(self, limite_presence=0):
+        return self.exclude(type_abonnement__type_of = "VH").filter(seances_quantity__gte=limite_presence, archiver=False)
+    
+    def valid_time(self, hlimit=30):
+        return self.filter(Q(type_abonnement__type_of = "VH") & Q(seances_quantity__gte=hlimit) & Q(archiver=False))  
 
 class SubscriptionManager(models.Manager):
+    def get_queryset(self):
+        return SubscriptionQuerySet(self.model, using=self._db)
     def time_volume(self):
-        return self.filter(type_abonnement__type_of=="VH")
+        return self.get_queryset().time_volume()
     def free_access(self):
-        return self.filter(type_abonnement__type_of=="AL")
+        return self.get_queryset().free_access()
     def fixed_sessions(self):
-        return self.filter(type_abonnement__type_of=="SF")
+        return self.get_queryset().fixed_sessions()
     def free_sessions(self):
-        return self.filter(type_abonnement__type_of=="SL")
+        return self.get_queryset().free_sessions()
     def free_access_subscription(self):
-        return self.exclude(type_abonnement__type_of=="SF")
+        return self.get_queryset().free_access_subscription()
+    def active_subscription(self):
+        return self.get_queryset().active_subscription()
+    def valid_presences(self):
+        return self.get_queryset().valid_presences()
+    def valid_time(self):
+        return self.get_queryset().valid_time()
+
+
 
 
 # class ManagerValidity(models.Manager):
@@ -59,18 +91,22 @@ class Abonnement(models.Model):
 
     def time_volume(self):
         return True if self.type_of == "VH" else False
+    
     def free_access(self):
         return True if self.type_of == "AL" else False
+    
     def fixed_sessions(self):
         return True if self.type_of == "SF" else False
+    
     def free_sessions(self):
-        return True if self.type_of == "SL" else False
+        return self.type_of == "SL"
 
 
         
 class AbonnementClient(models.Model):
-    start_date          = models.DateField()# number of days
-    end_date            = models.DateField()# number of days
+    start_date          = models.DateField()
+    end_date            = models.DateField()
+    blocking_date       = models.DateField(null=True)
     client              = models.ForeignKey('client.Client', related_name="abonnement_client", on_delete=models.PROTECT)
     type_abonnement     = models.ForeignKey(Abonnement, related_name="type_abonnement_client", on_delete=models.CASCADE)
     presence_quantity   = models.IntegerField(blank=True, null=True)
@@ -79,9 +115,24 @@ class AbonnementClient(models.Model):
     archiver            = models.BooleanField(default=False)
     created_date_time   = models.DateTimeField(auto_now_add=True)
     updated_date_time   = models.DateTimeField(auto_now=True)
-    history = HistoricalRecords()
-    objects             = models.Manager()
-    subscription_type   = SubscriptionManager()
+    history             = HistoricalRecords()
+    objects         = models.Manager()
+    subscription    = SubscriptionManager()
+    
+    def __str__(self):
+        return  str(self.id)
+
+    def is_time_volume(self):
+        return self.type_abonnement.type_of == "VH"
+    
+    def is_free_access(self):
+        return self.type_abonnement.type_of == "AL"
+    
+    def is_fixed_sessions(self):
+        return self.type_abonnement.type_of == "SF"
+    
+    def is_free_sessions(self):
+        return self.type_abonnement.type_of == "SL"
 
     def put_archiver(self):
         self.archiver = True 
@@ -90,14 +141,39 @@ class AbonnementClient(models.Model):
         self.save()
         print("ABCCCCC DELETEEDDDD")
         return self
-    def is_time_volume(self):
-        return True if self.type_abonnement.type_of == "VH" else False
-    def is_free_access(self):
-        return True if self.type_abonnement.type_of == "AL" else False
-    def is_fixed_sessions(self):
-        return True if self.type_abonnement.type_of == "SF" else False
-    def is_free_sessions(self):
-        return True if self.type_abonnement.type_of == "SL" else False
+
+    def lock(self):
+        today = date.today()
+        self.blocking_date = today
+        self.save()
+        print('LOCKING DONE')
+
+    def unlock(self):
+        today = date.today()
+
+        if self.blocking_date:
+            locked_days = self.end_date - self.blocking_date
+            print('locked_days', locked_days)
+            print('OLD_end_date', self.end_date)
+            self.end_date = today + locked_days
+            print('new_end_date', self.end_date)
+            self.blocking_date = None
+            self.save()
+            print('UNLOCKING DONE')
+
+    def toggle_lock(self):
+        if self.is_abc_locked():
+            self.unlock()
+        else:
+            self.lock()
+
+
+    def is_abc_locked(self):
+        print('self.blocking_date ?>>>>>', self.blocking_date)
+        print('self.blocking_date BOOL?>>>>>', True if self.blocking_date else False)
+        
+        return True if self.blocking_date else False
+    
     def get_day_index(self, day):
         if day == 'DI':
             return 6
@@ -115,8 +191,8 @@ class AbonnementClient(models.Model):
             return 5
         else:
             return False
+
     def get_next_date(self, given_start_date, day):
-        today = date.today()
         formated_start_date = datetime.strptime(given_start_date, "%Y-%m-%d")
         weekday = formated_start_date.weekday()
         print('TODAY DE TODAY', weekday)
@@ -148,6 +224,20 @@ class AbonnementClient(models.Model):
             # print('get_end_date calculated_end_date 2 => ', calculated_end_date)
         return calculated_end_date
 
+    def get_left_minutes(self):
+        minutes = self.presence_quantity
+        # time = divmod(minutes, 60)
+        # print('en heures', time)
+        # time_string = "{}H: {}M".format(time[0], time[1])
+        # print('en time_string', time_string)
+        # return time_string
+        if minutes < 0:
+            abs_minutes = abs(minutes)
+            hours, minutes = divmod(abs_minutes, 60)
+            return "-{}H: {:02d}M".format(hours, minutes)
+        else:
+            hours, minutes = divmod(minutes, 60)
+            return "{}H: {:02d}M".format(hours, minutes)
 
 
     def is_no_more_actif(self):
@@ -157,23 +247,26 @@ class AbonnementClient(models.Model):
         else:
             return False 
 
-    def is_actif(self):
+    def is_valid(self):
         today = date.today()
-        # print('today', today)
+        # print('self.blocking_date', self.blocking_date)
         # print('end_date', self.end_date)
-        if today <= self.end_date:
-            return True
-        else:
-            return False 
+         
+        if today <= self.end_date and not self.blocking_date:
+            # print('makach blocking', self.blocking_date)
+            if self.presence_quantity > self.get_limit() :
+                return True
+        return False 
 
-    def __str__(self):
-        return  str(self.id)
+
+
+
     def get_type(self):
-        return self.type_abonnement.type_of
+        return self.type_abonnement.get_type_of_display()
 
     def get_planning(self):
         try:
-            print('creneaaaau', self.creneaux.first().planning)
+            # print('creneaaaau', self.creneaux.first().planning)
             return self.creneaux.first().planning
         except:
             return None
@@ -182,13 +275,18 @@ class AbonnementClient(models.Model):
         activities = Activity.objects.filter(salle__abonnements__type_abonnement_client=self)
         # activites = self.type_abonnement.salles.activities
         print('les activité de cet abc ', activities)
+        print('SELF ABONNE ID', self.id)
+        print('SELF type_abonnement ID', self.type_abonnement)
+        
+        # activities2 = self.type_abonnement.salles.all()
+        # print('ACTI 2-----------------------------------------------', activities2)
         return activities
 
     def renew_abc(self, renew_start_date):
         type_abonnement = self.type_abonnement
         delta = timedelta(days = type_abonnement.length)
         creneaux = self.creneaux.all()
-        creneaux_ids = self.creneaux.all().values_list('id', flat=True)
+        # creneaux_ids = self.creneaux.all().values_list('id', flat=True)
         new_end_date = self.get_end_date(renew_start_date, creneaux)
         print('the renew_start_date', renew_start_date)
         print('the new_end_date', new_end_date)
@@ -205,7 +303,12 @@ class AbonnementClient(models.Model):
         # abc_id = self.id
         return self
 
-
+    def get_limit(self):
+        if self.is_time_volume():
+            limit = 30
+        else: 
+            limit = 0
+        return limit
 
     def get_quantity_str(self):
         if self.is_time_volume():
@@ -218,6 +321,13 @@ class AbonnementClient(models.Model):
         else:
             return self.presence_quantity
 
+    def is_red(self):
+        if self.presence_quantity <= self.get_limit():
+            return "text-danger"
+        return ""
+
+    def get_reste(self):
+        return sum()
 
     # def renew_abc(self, renew_start_date):
     #     type_abonnement = self.type_abonnement
@@ -260,17 +370,19 @@ class AbonnementClient(models.Model):
 def creneau_created_signal(sender, instance, created,**kwargs):
     if created:
         # get abc that have free access VH, AL, SL - 
-        abonnements = AbonnementClient.objects.all()
-        # abonnements = AbonnementClient.subscription_type.free_access_subscription()
-        # get abc that has same activities as creneaux abonnements 
+        # .select_related('type_abonnement__salles__actvities')
         activity = instance.activity
+        planning =instance.planning
+        # planning =instance.planning
+
+        abonnements = AbonnementClient.subscription.active_subscription().filter(Q(type_abonnement__type_of="VH") | Q(type_abonnement__type_of="AL")).filter(type_abonnement__salles__actvities = activity, creneaux__planning = planning ).prefetch_related('creneaux', 'creneaux__planning').distinct()
+        print('Abonnements Client a updater', abonnements.values('client__id'))
         for abonnement in abonnements:
-            if abonnement.get_planning() == instance.planning:
-                if activity in abonnement.get_activites():
-                    abonnement.creneaux.add(instance)
-                    abonnement.save()
-        instance.save()
+            abonnement.creneaux.add(instance)
+            abonnement.save()
+        # instance.save()
 post_save.connect(creneau_created_signal, sender=Creneau)
+
 
 
 # def dette_signal(sender, instance, **kwargs):
@@ -305,17 +417,19 @@ post_save.connect(creneau_created_signal, sender=Creneau)
 
     # def create(self, validated_data):
     #     print('validated_data =====>', validated_data)
+
     #     # return AbonnementClient.objects.create(**validated_data)
     #     abon = validated_data['type_abonnement']
     #     number = Abonnement.objects.get(id = abon.id).length
+
     #     delta = timedelta(days = number)
     #     end_date = datetime.now().date() + delta
     #     presence_quantity = Abonnement.objects.get(id = abon.id).seances_quantity
 
     #     abonnement_client = AbonnementClient.objects.create(end_date=end_date,presence_quantity=presence_quantity, **validated_data)
     #     return abonnement_client
-
-
     # 0561 64 40 67 aymen bencherchali
+
+
 
 

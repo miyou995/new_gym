@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AuthProvider } from "./context/AuthContext";
 /// React router dom
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
-/// Css
+import { BrowserRouter as Router, Switch, Route, Redirect, useHistory } from "react-router-dom";
+
 import "./index.css";
 import "./chart.css";
 import PrivateRoute from "./utils/PrivateRoute";
@@ -84,14 +84,44 @@ import Tresorie from "./components/tresorie/Tresorie"
 /// Dashboard
 import Home from "./components/Dashboard/Home";
 import Configuration from './components/configuration/Configuration'
-import UpdateModal from "./components/users/UpdateModal";
-const Markup = () => {
+import UserDetail from "./components/users/UserDetail";
+const Markup  = () => {
   let path = window.location.pathname;
   path = path.split("/");
   path = path[path.length - 1];
   let pagePath = path.split("-").includes("login");
   
   const [activeEvent, setActiveEvent] = useState(!path);
+  let history = useHistory();
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      if (event.key === 'F1') {
+        event.preventDefault();
+        if (window.location.pathname === '/presences') {
+          const input = document.getElementById('presenceInput');
+          if (input) {
+            input.focus();
+          }
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyPress);
+    };
+  }, [history]);
+
+
+  // useEffect(() => {
+  //   if (window.location.pathname === '/presences') {
+  //     const input = document.getElementById('presenceInput');
+  //     if (input) {
+  //       input.focus();
+  //     }
+  //   }
+  // }, [/* dependencies, if any */]);
 
   const routes = [
     /// Dashboard
@@ -117,6 +147,8 @@ const Markup = () => {
     // trésorie
     { url: "tresorie", component: Tresorie },
     { url: "users", component: UserList },
+    { url: "users/:id", component: UserDetail },
+
     // Transactions
     // { url: "transaction", component: CoinDetails },
     // clients
@@ -160,7 +192,6 @@ const Markup = () => {
     { url: "coach/:id", component: CoachDetail },
     { url: "coach/edit/:id", component: CoachEdit },
 
-    { url: "user/edit/:id", component: UpdateModal },
 
 
     /// Transactions CREATION
@@ -214,7 +245,8 @@ const Markup = () => {
             !pagePath ? "content-body" : ""
           }`}
         >
-          <div className={`${!pagePath ? "container-fluid" : ""}`}style={{ minHeight: window.screen.height - 60 }}>
+            {/* style={{ minHeight: window.screen.height - 60 }} */}
+          <div className={`${!pagePath ? "container-fluid" : ""}`}>
             <Switch>
               <Route exact component={Login} path="/login" />
               {routes.map((data, i) => (

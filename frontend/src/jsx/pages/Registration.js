@@ -4,10 +4,8 @@ import { Link } from "react-router-dom";
 import useAxios from "../components/useAxios";
 
 // import { axiosInstance } from "../utils/auth";
-import { useHistory } from 'react-router-dom';
 const Register = () => {
   const api = useAxios();
-  const history = useHistory();
   const initialFormData = Object.freeze({
   email: "",
     first_name: "",

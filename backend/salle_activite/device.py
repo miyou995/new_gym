@@ -19,6 +19,7 @@ def SDKLogCallBack(szLogBuffer, nLogSize, dwUser):
     #     print(e)
     return 1
 
+
 class AccessControl:
     def __init__(self):
 
@@ -65,10 +66,15 @@ class AccessControl:
 
             self.loginID, device_info, error_msg = self.sdk.LoginWithHighLevelSecurity(stuInParam, stuOutParam)
             if self.loginID != 0:
-                print("Login succeed. Channel num:" + str(device_info.nChanNum))
+                print('login succeed ip=>', self.ip)
+                print('login succeed self.loginID=>', self.loginID)
+                print('login succeed self.playID=>', self.playID)
+                # print("Login succeed. Channel num:" + str(device_info.nChanNum))
                 return True
             else:
-                print("Login failed. " + error_msg)
+                print('login failed ip=>', self.ip)
+                print('login failed self.loginID=>', self.loginID)
+                # print("Login failed. " + error_msg)
                 return False
 
     def logout(self):
@@ -84,7 +90,7 @@ class AccessControl:
                 self.lAnalyzerHandle = 0
             self.sdk.Logout(self.loginID)
             self.loginID = 0
-        print("Logout succeed")
+        print("Logout succeed for door ip====>", self.ip)
 
     def DisConnectCallBack(self, lLoginID, pchDVRIP, nDVRPort, dwUser):
         print("Device-OffLine")
@@ -102,43 +108,29 @@ class AccessControl:
                 with open('./picture.jpg', 'wb+') as f:
                     f.write(pic_buf)
 
-    def card_infos(self, card_n, door_ip):
-        dictio = {'card' : card_n, 'door' : door_ip}
-        print("dictioooo",dictio)
-        has_perm = False
+    def get_authorization(self, card_n, door_ip):
+        # dictio = {'card' : card_n, 'door' : door_ip}
+        # print("dictioooo",dictio)
         # if card_n:
         card = card_n.decode("utf-8")
         print(' la carte est ', card)
-        print(' la carte type ', type(card))
-        client  = Client.objects.get(hex_card=card)
+        print(' la card_n est ', str(int(card, 16)).zfill(8))
+        print(' la door_ip  ', door_ip)
+        #0099F9AB
+        # 10126599
         try:
-
-            if client :
-                has_perm = client.has_permission(door_ip)
-        except:
-            print('client doesnt exist or doesnt have permission to get in')
-            return has_perm
-        print(' la has_perm has_perm>>>>> ', has_perm)
-        return has_perm
-            # if has_perm :
-            #     return True
-            # else:  
-            #     return False
-   
-            # self.open_door()
-    #check from db if this card has access 
-            # self.get_login_info(ip='192.168.1.2', port=37777, username='admin', password='123456')
-            # login_result = self.login()
-            # if login_result:
-            #     print(' yes')
-      
-            #     self.open_door()
-            # else:
-            #     print('NOOOO')
-
-
-
-
+            client=  Client.objects.get(hex_card=card)
+            print(' le client est ', client)
+            if client:
+                print('le client la la permission dentree ')
+                return client.get_access_permission(door_ip)
+            else: 
+                print('rani fel else')
+                return False
+        except Client.DoesNotExist:
+            return False
+        #     print('client doesnt exist or doesnt have permission to get in')
+        # print(' la has_perm has_perm>>>>> ', has_perm)
 
     def messCallBackEx1(self, lCommand, lLoginID, pBuf, dwBufLen, pchDVRIP, nDVRPort, bAlarmAckFlag, nEventID, dwUser):
         # print('rani SELF lLoginID' , self.loginID)
@@ -146,22 +138,36 @@ class AccessControl:
         if (lLoginID != self.loginID):
             print('le code et la clé sont different')
             return
-
             # return
         if (lCommand == SDK_ALARM_TYPE.ALARM_ACCESS_CTL_EVENT):
             print("ALARM_ACCESS_CTL_EVENT")  # 门禁事件; Access control event
             alarm_info = cast(pBuf, POINTER(NET_A_ALARM_ACCESS_CTL_EVENT_INFO)).contents
             card_n = alarm_info.szCardNo
-            door = self.ip
-            # print(' the door one door', door)
-            # print(' the door one nDoor', alarm_info.nPort)
-            card_infos = self.card_infos(card_n,door)
-            if card_infos : 
-                self.open_door()
-                # self.logout()
-                # self.login()
-                # self.alarm_listen()
-            print('card_infos => ', card_infos)
+            if card_n != b'00000000':
+                door = self.ip
+                client = self.get_authorization(card_n,door)
+                if client : 
+                    self.open_door()
+                    # client.init_presence()
+                    # self.logout()
+                    # self.login()
+                    # self.alarm_listen()
+                print('get_authorization => ', client)
+        return 
+
+    def reboot_device(self):
+        if self.loginID:
+            result = self.sdk.RebootDev(self.loginID)
+            print('Devide Rebooted')
+            return result
+
+    # def deactivate_alarm(self):
+    #     stuInParam = NET_CTRL_ALARMBELL()
+    #     stuInParam.dwSize = sizeof(NET_CTRL_ALARMBELL)
+    #     stuInParam.nChannelID = 0 # channel
+    #     result = self.sdk.ControlDeviceEx(self.loginID, CtrlType.STOP_ALARMBELL, stuInParam, c_char(), 5000)
+    #     print('RESULT<', result)
+    #     return result
 
     def alarm_listen(self):
         if self.alarmEvent == 0:

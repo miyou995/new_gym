@@ -56,7 +56,11 @@ class CreneauxSimpleSerialiser(serializers.ModelSerializer):
         # queryset = acti.salle.name
         # return SalleSerialiser(queryset, many=False).data
         return acti
-
+    
+class CreneauOnlySerialiser(serializers.ModelSerializer):
+    class Meta:
+        model = Creneau
+        fields= ('id', 'name','hour_start', 'hour_finish', 'day', 'planning', 'activity', 'color',  'coach',  )
 
 class CreneauSerialiser(serializers.ModelSerializer):
     # color       = serializers.CharField(source='coach.color',read_only=True)
@@ -66,7 +70,7 @@ class CreneauSerialiser(serializers.ModelSerializer):
     salle       = serializers.SerializerMethodField('get_salle', read_only=True)
     # presences   = serializers.SerializerMethodField('get_presences', read_only= True)
     # clients   = serializers.SerializerMethodField('get_clients', read_only= True)
-    clients_count   = serializers.SerializerMethodField('get_clients_count', read_only= True)
+    clients_count   = serializers.IntegerField(read_only= True)
     activity_name   = serializers.SerializerMethodField('get_activity_name', read_only= True)
     class Meta:
         model = Creneau
@@ -110,11 +114,12 @@ class CreneauSerialiser(serializers.ModelSerializer):
         
     def get_clients_count(self, obj):
         # abc = obj.abonnements.all()
-        cr_id = obj.id
         clients = Client.objects.filter(abonnement_client__creneaux=obj).count()
+        return clients
+        # print('COUNT CLIENT OLD', clients)
+        # print('try new count', obj.abonnements.client.count())
         # print(clients)
         # print('les client seont ', clients)
-        return clients
         # client = Client.abonnement_client.all()
         # clients = abc.objects.filter(client=)
         # return ClientCreneauxSerializer(abc, many=True).data
@@ -144,12 +149,15 @@ class CreneauClientSerialiser(serializers.ModelSerializer):
     coach_name  = serializers.SerializerMethodField('get_coach_name', read_only=True)
     activity_name  = serializers.SerializerMethodField('get_activity_name', read_only=True)
     color       = serializers.CharField(source='coach.color', read_only=True)
+    creneau_color       = serializers.SerializerMethodField('get_color', read_only=True)
 
     class Meta:
         model = Creneau
-        fields = ('id', 'hour_start', 'hour_finish', 'day', 'activity_name',  'coach_name', 'coach', 'color')
+        fields = ('id', 'hour_start', 'hour_finish', 'day', 'activity_name', 'creneau_color', 'coach_name', 'coach', 'color')
 
-
+    def get_color(self, obj):
+        # print('la couleur ===>', obj.activity)
+        return obj.get_color()
     def get_coach_name(self, obj):
         try:
             coach = obj.coach.first_name

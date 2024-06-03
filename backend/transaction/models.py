@@ -13,10 +13,9 @@ class Transaction(models.Model):
     date_creation   = models.DateField(default=date.today)
     notes           = models.TextField(blank=True, null=True)
     last_modified   = models.DateTimeField(auto_now=True)
-
+    
     def __str__(self):
         return str(self.amount)
-
     class Meta:
         ordering = ['-last_modified']
         permissions = [('can_view_history', 'Can View history')]
@@ -33,20 +32,27 @@ class Paiement(Transaction):
 
     def get_abonnement_name(self):
         try:
-            return abonnement_client.type_abonnement
+            return self.abonnement_client.type_abonnement
         except:
             return ""
 
     def get_client_last_name(self):
         try:
-            return abonnement_client.client.last_name
+            return self.abonnement_client.client.last_name
         except:
             return ""
     def get_client_id(self):
         try:
-            return abonnement_client.client.id
+            return self.abonnement_client.client.id
         except:
             return ""
+    @property
+    def get_abc_price(self):
+        return self.abonnement_client.type_abonnement.price
+    
+    @property
+    def get_abc_reste(self):
+        return self.abonnement_client.reste
 class Autre(Transaction):
     history = HistoricalRecords()
     name = models.CharField(max_length=200, null=True, blank=True)
@@ -110,20 +116,6 @@ def paiement_delete_signal(sender, instance, **kwargs):
     client.save()
     abc.save()
 
-
-# def paiement_assurance_signal(sender, instance, **kwargs):
-#     id_client = instance.abonnement_client.client.id
-#     id_abc = instance.abonnement_client.id
-#     client = Client.objects.get(id=id_client)
-#     abc = AbonnementClient.objects.get(id=id_abc)
-#     price = instance.amount
-#     try:
-#         client.dette -= price
-#         abc.reste -= price
-#     except:
-#         client.dette = price
-#         abc.reste = 0
-#     client.save()
 
 post_save.connect(paiement_signal, sender=Paiement)
 post_delete.connect(paiement_delete_signal, sender=Paiement)

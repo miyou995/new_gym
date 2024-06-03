@@ -41,14 +41,14 @@ const AbonnementEdit = (props) => {
       setSelectedActivities(res.data.activity)//fzefzefezfezf
       setAbName(res.data.name)
       setabPrice(res.data.price)
-      setAbNumDays(res.data.number_of_days)
+      setAbNumDays(res.data.length)
       setAbSeancesQuantity(res.data.seances_quantity)
       setAbActivityName(res.data.activity_name)
       setAbNumClients(res.data.clients_number)
     })
   }, []);
   
-  console.log('the Presence instance is ======>',selectedActivities, abActivity);
+  //console.log('the Presence instance is ======>',selectedActivities, abActivity);
 
 // const setNewAbonnement = () => {
 //   if (creneau  === '') {
@@ -71,7 +71,7 @@ const AbonnementEdit = (props) => {
 
   //   for (let i = 0; i < activities.length; i++) {
   //     if ( activities[i] === selAct.id){
-  //       console.log('activities[i] === selAct.id', activities[i],selAct.id);
+  //       //console.log('activities[i] === selAct.id', activities[i],selAct.id);
   //       return isSelected ? true : false
   //     }
   //   }
@@ -84,14 +84,14 @@ const AbonnementEdit = (props) => {
   //     selectedActivities[activity] = false;
   //     return selectedActivities;
   //   }, {})
-  //   console.log('the initial state ', initialIsChecked);
+  //   //console.log('the initial state ', initialIsChecked);
   //   setIsSelected(initialIsChecked)
-  //   console.log('the initial state ', initialIsChecked);
+  //   //console.log('the initial state ', initialIsChecked);
   // }, [])
   const getSelected = (activity )=> {
     for (let i = 0; i < selectedActivities.length; i++) {
       if ( selectedActivities[i] === activity){
-        console.log('activities[i] === selAct.id', selectedActivities[i],selectedActivities, activity);
+        //console.log('activities[i] === selAct.id', selectedActivities[i],selectedActivities, activity);
         return true 
       }
     }
@@ -103,7 +103,7 @@ const handleCheckbox = (event) => {
     if ( event.target.checked){
       setSelectedActivities(checkedActivities => [...checkedActivities, Number(activity)])
       // setAbActivity(checkedActivities => [...checkedActivities, Number(activity)])
-      console.log('maladiieiieiis=======>', selectedActivities);
+      //console.log('maladiieiieiis=======>', selectedActivities);
       // setIsSelected(true)
     }else {
       // setIsSelected(false)
@@ -116,23 +116,23 @@ const handleCheckbox = (event) => {
       }
 
       selectedActivities.splice(Number(activity) , 1)
-      console.log('unchecked=======>', selectedActivities);
+      //console.log('unchecked=======>', selectedActivities);
   }
 }
   const HandleSubmit = async e => {
-    console.log('unchecked=======>', selectedActivities);
+    //console.log('unchecked=======>', selectedActivities);
 
       e.preventDefault();
       const newAbonnement = {
         name:abName,
         price:abPrice,
-        number_of_days:abNumDays,
+        length:abNumDays,
         activity:selectedActivities,
         seances_quantity:abSeancesQuantity,
       }
       api.put(presenceEditURI, newAbonnement).then( () => {
         history.push("/client")
-        console.log('THE NEW CLIENT ', newAbonnement);
+        //console.log('THE NEW CLIENT ', newAbonnement);
   
       })
       // history.push("/abonnements")

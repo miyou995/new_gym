@@ -1,21 +1,21 @@
 from django.urls import path, include
-from .views import ClientAPIView, ClientListAPIView, ClientDestroyAPIView, ClientDetailAPIView, PersonnelCreateAPIView, PersonnelListAPIView, PersonnelDetailAPIView, PersonnelDestroyAPIView ,CoachCreateAPIView ,CoachListAPIView ,CoachDetailAPIView ,CoachDestroyAPIView, MaladieCreateAPIView, MaladieViewSet, ClientNameViewAPI,  total_dettes, total_abonnes, ClientPresenceViewAPI, ClientNamesDropListAPIView, MaladieDetailViewAPI, GETClientDetailAPIView, get_client_authorization, get_coach_authorization
 from django.views.generic import TemplateView
+from .views import ClientAPIView, ClientListAPIView, ClientDestroyAPIView, ClientDetailAPIView, PersonnelCreateAPIView, PersonnelListAPIView, PersonnelDetailAPIView, PersonnelDestroyAPIView ,CoachCreateAPIView ,CoachListAPIView ,CoachDetailAPIView ,CoachDestroyAPIView, MaladieCreateAPIView, MaladieViewSet, ClientNameViewAPI,  total_dettes, total_abonnes, ClientPresenceViewAPI, ClientNamesDropListAPIView, MaladieDetailViewAPI, GETClientDetailAPIView, get_client_authorization, get_coach_authorization, get_personnel_authorization, ClientAutoPresenceView
 
 app_name = 'client'
-
 
 urlpatterns = [
     # Clients paths
     # path('', TemplateView.as_view(template_name="index.html")),
     path('clients/', ClientListAPIView.as_view(),  name="client"),
+    path('clients/<str:pk>/', ClientDetailAPIView.as_view(), name="client-detail"),
+    path('client-auto-presence/<str:value>/', ClientAutoPresenceView.as_view(), name="client-auto-presence"),
     # path('clients-transactions/', ClientPaeiementsViewAPI.as_view(),  name="client-transactions"),
     path('clients-dettes/', total_dettes,  name="client-dettes"),
     path('clients-count/', total_abonnes,  name="client-nombre"),
     path('clients-name/', ClientNameViewAPI.as_view(),  name="client-name"),
     path('clients-name-drop/', ClientNamesDropListAPIView.as_view(),  name="client-name"),
     path('clients-presence/', ClientPresenceViewAPI.as_view(),  name="client-presence"),
-    path('clients/<str:pk>/', ClientDetailAPIView.as_view(), name="client-detail"),
     path('get-client/', GETClientDetailAPIView.as_view(), name="client-detail"),
 
     path('clients/create', ClientAPIView.as_view(),  name="client-create"),
@@ -37,6 +37,7 @@ urlpatterns = [
     path('maladie/<int:pk>', MaladieDetailViewAPI.as_view(), name="maladie-detail"),
     path('get_client_authorization/', get_client_authorization, name="get_client_authorization"),
     path('get_coach_authorization/', get_coach_authorization, name="get_coach_authorization"),
+    path('get_personnel_authorization/', get_personnel_authorization, name="get_personnel_authorization"),
 ]
 
 
