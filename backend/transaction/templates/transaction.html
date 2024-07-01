@@ -1,0 +1,240 @@
+{% extends "base.html" %} 
+{% load static %} 
+{% load i18n %}
+{% load render_table from django_tables2 %}
+{% block content %}
+{% load widget_tweaks %}
+   
+
+	<div class="app-main flex-column flex-row-fluid" id="kt_app_main">
+		<div class="d-flex flex-column flex-column-fluid">
+			<div id="kt_app_content" class="app-content">
+				<div class="card card-flush">
+					<div class="card-header align-items-center py-5 gap-2 gap-md-1">
+						<div class="card-title">
+							
+							<div class="card-toolbar flex-row-fluid justify-content-end gap-5">
+								<button
+									type="button"
+									class="btn btn-success btn-sm"
+									data-bs-toggle="modal"
+									data-bs-target="#kt_modal"
+									hx-get="{% url 'transactions:paiement_name' %}"
+									hx-target="#kt_modal_content"
+									hx-trigger="click"
+									hx-swap="innerHTML"
+								>
+									<i class="ki-exit-up fs-2"></i>Paiement
+								</button>
+
+								<button
+									type="button"
+									class="btn btn btn-danger btn-sm"
+									data-bs-toggle="modal"
+									data-bs-target="#kt_modal"
+									hx-get="{% url 'transactions:Remuneration_Personnel_name' %}"
+									hx-target="#kt_modal_content"
+									hx-trigger="click"
+									data-bs-toggle="tooltip" 
+									hx-swap="innerHTML"
+								>
+									<i class="ki-exit-up fs-2"></i> Rémuneration Personnel
+								</button>
+
+								<button
+									type="button"
+									class="btn btn-primary btn-sm"
+									data-bs-toggle="modal"
+									data-bs-target="#kt_modal"
+									hx-get="{% url 'transactions:Remuneration_Coach_name' %}"
+									hx-target="#kt_modal_content"
+									hx-trigger="click"
+									data-bs-toggle="tooltip" 
+									hx-swap="innerHTML"
+								>
+								<i class="ki-exit-up fs-2"></i>Remunération Coach
+								</button>
+								
+								<button
+									type="button"
+									class="btn btn-info btn-sm"
+									data-bs-toggle="modal"
+									data-bs-target="#kt_modal"
+									hx-get="{% url 'transactions:Autre_Transaction_name' %}"
+									hx-target="#kt_modal_content"
+									hx-trigger="click"
+									data-bs-toggle="tooltip" 
+									hx-swap="innerHTML"
+								>
+									<i class="ki-exit-up fs-2"></i>Autre Transaction
+								</button>
+							</div>
+						</div>
+					</div>
+					
+					<div class="card-body pt-0" id="table" >
+
+						<ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bold">
+							<li class="nav-item mt-2" role="presentation">
+								<a  class="nav-link text-active-primary pb-4 active"
+									data-bs-toggle="tab"
+									href="#kt_user_view_Client"
+									aria-selected="false"
+									role="tab"
+									tabindex="-1"
+									hx-get="{% url 'transactions:transaction_name'  %}"
+									hx-swap="innerHTML"
+									hx-trigger="refresh_table from:body,click"
+									hx-target="#table1"
+                                >{% trans 'Client' %}</a>
+							</li>
+						
+							<li class="nav-item mt-2" role="presentation">
+
+									<a  class="nav-link text-active-primary pb-4"
+										data-bs-toggle="tab"
+										href="#kt_user_view_Personnel" 
+										aria-selected="false"
+										role="tab"
+										tabindex="-1"
+										hx-get="{% url 'transactions:RemunerationPersonnelTable_name'  %}"
+										hx-swap="innerHTML"
+										hx-trigger="refresh_table from:body,click"
+										hx-target="#table2"
+									>
+									{% trans 'Personnel' %}</a>
+							</li>
+							<li class="nav-item mt-2" role="presentation">
+
+								<a  class="nav-link text-active-primary pb-4"
+									data-bs-toggle="tab"
+									href="#kt_user_view_Coach" 
+									aria-selected="false"
+									role="tab"
+									tabindex="-1"
+									hx-get="{% url 'transactions:RemunerationProfTable_name'  %}"
+									hx-swap="innerHTML"
+									hx-trigger="refresh_table from:body,click"
+									hx-target="#table3"
+								>
+								{% trans 'Coach' %}</a>
+						</li>
+					
+						</ul>
+						<div class="d-flex flex-column flex-lg-row">
+							<div class="flex-lg-row-fluid ">
+								<div class="tab-content" id="myTabContent">
+									<div class="tab-pane fade active show" id="kt_user_view_Client" role="tabpanel">
+										<div id="kt_app_content_container" >
+											<div class="card ">
+												 <div class="card-header border-0 pt-6">
+													<form  
+													hx-get="{% url 'transactions:transaction_name'  %}"  
+													hx-target="#table1" 
+													hx-swap="innerHTML" 
+													hx-trigger="keyup delay:900ms"
+													hx-push-url='true'
+													>
+														<div class="card-title">
+															<div class="d-flex align-items-center position-relative my-1">
+																<!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
+																<span class="svg-icon svg-icon-1 position-absolute ms-4">
+																	<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+																		<rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor" />
+																		<path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor" />
+																	</svg>
+																</span>
+																<input type="text" name="search"  data-kt-ecommerce-order-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Recherche...." />
+															</div>
+														</div>
+												   </form>
+											
+											   </div> 
+
+											   {% comment %} <form method="get">
+												{{ filter.form.as_p }}
+												<button type="submit">Search</button>
+											</form> {% endcomment %}
+											
+													<div class="card-body pt-0 table-responsive" id="table1">
+															{% render_table table %}
+													</div>
+											</div>
+										</div>
+									</div>							
+									<div class="tab-pane fade" id="kt_user_view_Personnel" role="tabpanel">
+										<div id="kt_app_content_container" >
+											<div class="card ">
+												<div class="card-header border-0 pt-6">
+													<form  
+													hx-get="{{request.path}}"
+													hx-target="#table2" 
+													hx-swap="innerHTML" 
+													hx-trigger="keyup delay:900ms"
+													hx-push-url='true'
+													>
+														<div class="card-title">
+															<div class="d-flex align-items-center position-relative my-1">
+																<!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
+																<span class="svg-icon svg-icon-1 position-absolute ms-4">
+																	<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+																		<rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor" />
+																		<path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor" />
+																	</svg>
+																</span>
+																<input type="text" name="search"  data-kt-ecommerce-order-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Recherche...." />
+															</div>
+														</div>
+												   </form>
+											
+											   </div>
+												<div class="card-body pt-0 table-responsive" id="table2">
+													{% render_table table %}
+												</div>
+									     </div>
+								</div>
+							</div>
+									<div class="tab-pane fade" id="kt_user_view_Coach" role="tabpanel">
+										<div id="kt_app_content_container" >
+											<div class="card ">
+												<div class="card-header border-0 pt-6">
+													<form  
+													hx-get="{{request.path}}"
+													hx-target="#table3" 
+													hx-swap="innerHTML" 
+													hx-trigger="keyup delay:900ms"
+													hx-push-url='true'
+													>
+														<div class="card-title">
+															<div class="d-flex align-items-center position-relative my-1">
+																<!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
+																<span class="svg-icon svg-icon-1 position-absolute ms-4">
+																	<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+																		<rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor" />
+																		<path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor" />
+																	</svg>
+																</span>
+																<input type="text" name="search"  data-kt-ecommerce-order-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Recherche...." />
+															</div>
+														</div>
+												   </form>
+											
+											   </div>
+												<div class="card-body pt-0 table-responsive" id="table3">
+													{% render_table table %}
+												</div>
+									       </div>
+								       </div>
+							        </div>
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	{% endblock content %}
+
+

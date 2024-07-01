@@ -3,6 +3,7 @@ from abonnement.models import Abonnement, AbonnementClient
 from client.models import Personnel, Coach, Client
 from assurance.models import Assurance
 from datetime import date, datetime
+from django.urls import reverse
 # Create your models here.
 from django.db.models.signals import post_save, post_delete
 import calendar
@@ -53,6 +54,19 @@ class Paiement(Transaction):
     @property
     def get_abc_reste(self):
         return self.abonnement_client.reste
+    
+
+    # def get_view_url(self):
+    #     return reverse("client:personnel_detail", kwargs={"pk": self.pk})
+    
+    def get_url(self):
+        return reverse('transactions:paiement_update', kwargs={'pk':str(self.id)})
+    def get_edit_url(self):
+        return reverse('transactions:paiement_update', kwargs={'pk': str(self.id)})
+
+    def get_delete_url(self):
+        return reverse('transactions:PaiementDeleteView_name', kwargs={'pk': str(self.id)})
+
 class Autre(Transaction):
     history = HistoricalRecords()
     name = models.CharField(max_length=200, null=True, blank=True)

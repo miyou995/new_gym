@@ -1,0 +1,284 @@
+{% extends "base.html" %} 
+{% load static %}
+
+{% block content %}
+
+<div class="row g-5 g-xl-10 mb-xl-10" id="table_board">
+    <!--begin::Col-->
+    <div class="col-md-6 ">
+        <!--begin::Card widget 16-->
+        <div class="card card-flush bgi-no-repeat bgi-size-contain bgi-position-x-center border-0 h-md-50 mb-5 mb-xl-10" style="background-color: #080655">
+            <!--begin::Header-->
+            <div class="card-header pt-5">
+                <!--begin::Title-->
+                <div class="card-title d-flex flex-column">
+                    <!--begin::Amount-->
+                    <span class="fs-2hx fw-bold text-white me-2 lh-1 ls-n2">Chiffre D'affaire Global</span>
+                    <!--end::Amount-->
+                    <!--begin::Subtitle-->
+                    <span class="fs-2hx fw-bold text-white me-2 lh-2 ls-n2">200</span>
+                    <!--end::Subtitle-->
+                </div>
+                <!--end::Title-->
+            </div>
+            <!--end::Header-->
+            <!--begin::Card body-->
+          
+            <!--end::Card body-->
+        </div>
+        <!--end::Card widget 16-->
+        <!--begin::Card widget 7-->
+        <div class="card card-flush bgi-no-repeat bgi-size-contain bgi-position-x-center border-0 h-md-50 mb-5 mb-xl-10" style="background-color: #FFC0CB">
+            <!--begin::Header-->
+            <div class="card-header pt-5">
+                <!--begin::Title-->
+                <div class="card-title d-flex flex-column">
+                    <!--begin::Amount-->
+                    <span class="fs-2hx fw-bold text-white me-2 lh-1 ls-n2">Total dattes</span>
+                    <!--end::Amount-->
+                    <!--begin::Subtitle-->
+                    <span class="fs-2hx fw-bold text-white me-2 lh-2 ls-n2">10</span>
+                    <!--end::Subtitle-->
+                </div>
+                <!--end::Title-->
+            </div>
+            <!--end::Header-->
+            <!--begin::Card body-->
+          
+            <!--end::Card body-->
+        </div>
+        <!--end::Card widget 7-->
+    </div>
+    <!--end::Col-->
+    <!--begin::Col-->
+    <div class="col-md-6 " >
+        <!--begin::Card widget 17-->
+        <div class="card card-flush h-md-50 mb-5 mb-xl-10" style="background-color: #009999">
+            <!--begin::Header-->
+            <div class="card-header pt-5">
+                <!--begin::Title-->
+                <div class="card-title d-flex flex-column">
+                    <!--begin::Info-->
+                    <div class="d-flex align-items-center">
+                        <!--begin::Currency-->
+                      
+                    </div>
+                    <!--end::Info-->
+                    <!--begin::Subtitle-->
+                    <span class="text-white lh-1 fw-bold  fs-2hx ">Total Dépenses</span>
+                    <span class="text-white lh-2 fw-bold  fs-2hx ">80</span>
+
+                    <!--end::Subtitle-->
+                </div>
+                
+                <!--end::Title-->
+            </div>
+            <!--end::Header-->
+            <!--begin::Card body-->
+            <div class="card-body pt-2 pb-4 d-flex flex-wrap align-items-center">
+                <!--begin::Chart-->
+                <div class="d-flex flex-center me-5 pt-2">
+                    
+                </div>
+                <!--end::Chart-->
+                <!--begin::Labels-->
+                <div class="d-flex flex-column content-justify-center flex-row-fluid">
+                
+                   
+                    <!--end::Label-->
+                </div>
+                <!--end::Labels-->
+            </div>
+            <!--end::Card body-->
+        </div>
+        <!--end::Card widget 17-->
+        <!--begin::List widget 25-->
+        <div class="card card-flush h-lg-50" style="background-color: #ff9999"  >
+            <!--begin::Header-->
+
+            
+            <div class="card-header pt-5 flex-column">
+                <!--begin::Title-->
+                <h3 class="text-white lh-1 fw-bold fs-2hx lh-2 ">Total Adherants</h3>
+                <h3 class="text-white lh-2 fw-bold fs-2hx lh-2 ">125</h3>
+               
+            
+
+                <!--end::Title-->
+                <!--begin::Toolbar-->
+                
+                <!--end::Toolbar-->
+            </div>
+         
+        </div>
+        
+      
+        
+    </div>
+    <!--end::Col-->
+    <!--begin::Col-->
+   
+    <!--end::Col-->
+</div>
+
+<div id="kt_app_content" class="app-content">
+    <!--begin::Row-->
+    
+    <div class="row" >
+        <div class="col-sm-4"  >
+            <div class="card" >
+                <div class="card-body">
+                    <div class="card card-flush" style="background-color: #F6E5CA">
+                        <div class="card-header align-items-center py-5 gap-2 gap-md-5">
+                            <div class="card-title">
+                                <div class="d-flex align-items-center position-relative my-1">
+                                    </h3 class="card-title">Transactions du jour</h3>
+                                </div>
+                                <div id="kt_ecommerce_report_sales_export" class="d-none"></div>
+                            </div>
+                        
+                          
+                        </div>
+                        <div class="card-body pt-0">
+                        
+                            <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_ecommerce_report_sales_table">
+                                <thead>
+                                    <tr class="text-start text-gray-900 fw-bold fs-7 text-uppercase gs-0">
+                                        <th >Montant</th>
+                                        <th >Type</th>
+                                        <th >Dettes</th>
+                                     
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody class="fw-semibold text-gray-900">
+                                    
+                                
+                                    <tr>
+                                        <td>2000</td>
+                                        <td >yousra</td>
+                                        <td >123000</td>
+                                    
+                                    </tr>
+                                
+                                </tbody>
+                            </table>
+                            <div class="menu-item px-3">
+                                <div class="menu-content px-3 py-3">
+                                    <a class="bi bi-caret-right-fill btn btn-primary btn-sm px-4 " href="#"> Transactions</a>
+                                </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card" >
+                <div class="card-body" >
+                    <div class="card card-flush"  style="background-color: #F3D6EF">
+                        <div class="card-header align-items-center py-5 gap-2 gap-md-5">
+                            <div class="card-title">
+                                <div class="d-flex align-items-center position-relative my-1">
+                                    </h3 class="card-title">Présences par salle</h3>
+                                </div>
+                                <div id="kt_ecommerce_report_sales_export" class="d-none"></div>
+                            </div>
+                        
+                          
+                        </div>
+                        <div class="card-body pt-0">
+                        
+                            <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_ecommerce_report_sales_table">
+                                <thead>
+                                    <tr class="text-start text-gray-900 fw-bold fs-7 text-uppercase gs-0">
+                                        <th class="min-w-100px">Salle</th>
+                                        <th class="text-end min-w-100px">Présences</th>
+                                       
+                                     
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody class="fw-semibold text-gray-900">
+                                    
+                                
+                                    <tr>
+                                        <td>2000</td>
+                                        <td class="text-end pe-0">yousra</td>
+                                      
+                                    
+                                    </tr>
+                                
+                                </tbody>
+                            </table>
+                            <div class="menu-item px-3">
+                                <div class="menu-content px-3 py-3">
+                                    <a class="bi bi-caret-right-fill btn btn-primary btn-sm px-4 " href="#"> Présences</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+        </div>
+        <div class="col-sm-4" >
+            <div class="card" >
+                <div class="card-body">
+                    <div class="card card-flush" style="background-color: #BFDDE3" >
+                        <div class="card-header align-items-center py-5 gap-2 gap-md-5">
+                            <div class="card-title">
+                                <div class="d-flex align-items-center position-relative my-1">
+                                    </h3 class="card-title">Actuellement en salle</h3>
+                                </div>
+                                <div id="kt_ecommerce_report_sales_export" class="d-none"></div>
+                            </div>
+                        
+                          
+                        </div>
+                        <div class="card-body pt-0">
+                        
+                            <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_ecommerce_report_sales_table">
+                                <thead>
+                                    <tr class="text-start text-gray-900 fw-bold fs-7 text-uppercase gs-0">
+                                        <th class="min-w-50px">ID</th>
+                                        <th class="text-end min-w-75px">Nom</th>
+                                        <th class="text-end min-w-75px">Activité</th>
+                                        <th class="text-end min-w-75px">Dettes</th>
+                                     
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody class="fw-semibold text-gray-900">
+                                    
+                                
+                                    <tr>
+                                        <td>2000</td>
+                                        <td class="text-end pe-0">yousra</td>
+                                        <td class="text-end pe-0">123000</td>
+                                        <td class="text-end pe-0">123000</td>
+                                    
+                                    </tr>
+                                
+                                </tbody>
+                            </table>
+                            <div class="menu-item px-3">
+                                <div class="menu-content px-3 py-3">
+                                    <a class="bi bi-caret-right-fill btn btn-primary btn-sm px-4 " href="#"> Présences</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+{% endblock content %}
+
