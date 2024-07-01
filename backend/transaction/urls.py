@@ -1,58 +1,44 @@
+
 from django.urls import path, include
-from .views import PaiementAPIView, PaiementListAPIView, PaiementDetailAPIView, PaiementDestroyAPIView, AutreAPIView, AutreListAPIView, AutreDetailAPIView, AutreDestroyAPIView, AssuranceAPIView, AssuranceListAPIView, AssuranceDetailAPIView, AssuranceDestroyAPIView, RemunerationAPIView, RemunerationListAPIView, RemunerationDetailAPIView, RemunerationDestroyAPIView, RemunerationProfAPIView, RemunerationProfListAPIView, RemunerationProfDetailAPIView, RemunerationProfDestroyAPIView, TransactionListAPIView, TransactionDetailAPIView, PaiementCoachListAPIView, total_charges, chiffre_affaire,  TransToday, PaiementClientListAPIView, ca_by_salle, ca_by_ab, MyModelViewSet, ca_by_date, PaiementEmployeListAPIView, PaiementHistoryListAPIView, get_transaction_authorization
+from .views import (
+                    TransactionView,Chiffre_affaireView,Remuneration_Personnel,paiement,Remuneration_Coach,Autre_Transaction,
+                    PaiementUpdateView,RemunerationProfTable,
+                    RemunerationPersonnelTable,PaiementDeleteView,RemuPersonnelUpdateView,Remuneration_CoachUpdateView,RemuPersonnelDeleteView,RemCoachDeleteView)
 # RemunerationEmployeListAPIView, RemunerationEmployeDetailAPIView, RemunerationEmployeAPIView, PaiementEmployeListAPIView
 
 app_name = 'transactions'
 
 
 urlpatterns = [
-    path('', TransactionListAPIView.as_view(),  name="transaction"),
-    # path('detail/<int:pk>/', TransactionDetailAPIView.as_view(),  name="transaction-detail"),
-    path('paiement/create', PaiementAPIView.as_view(),  name="paiement-create"),
-    path('paiement/', PaiementListAPIView.as_view(),  name="paiement"),
-    path('paiement/by_test', MyModelViewSet.as_view(),  name="paiement"),
-    path('paiement/ca-by-salle', ca_by_salle,  name="ca-by-filters"),
-    path('paiement/ca-by-abonnement', ca_by_ab,  name="ca-by-filters"),
-    # path('paiement/ca-by-activity', ca_by_activity,  name="ca-by-filters"),
-    path('paiement-by-client/', PaiementClientListAPIView.as_view(),  name="paiement"),
-    path('paiement/<int:pk>/', PaiementDetailAPIView.as_view(), name="paiement-delete"),
-    path('paiement/delete/<int:pk>/', PaiementDestroyAPIView.as_view(), name="paiement-delete"),
-    path('paiement/history/', PaiementHistoryListAPIView.as_view(),  name="paiement-history"),
 
-    path('autre/create', AutreAPIView.as_view(),  name="autre-create"),
-    path('autre/', AutreListAPIView.as_view(),  name="autre"),
-    path('autre/<int:pk>/', AutreDetailAPIView.as_view(), name="autre-delete"),
-    path('autre/delete/<int:pk>/', AutreDestroyAPIView.as_view(), name="autre-delete"),
+        path('transaction/',TransactionView.as_view(), name='transaction_name'),
+        path('chiffre_affaire/',Chiffre_affaireView.as_view(), name='chiffre_affaire_name'),
+        path('transaction/paiement_name',paiement, name='paiement_name'),
+        path('transaction/Remuneration_Personnel',Remuneration_Personnel, name='Remuneration_Personnel_name'), 
+        path('transaction/Remuneration_Coach',Remuneration_Coach, name='Remuneration_Coach_name'), 
+        path('transaction/Autre_Transaction',Autre_Transaction, name='Autre_Transaction_name'), 
 
-    path('assurance/create', AssuranceAPIView.as_view(),  name="assurance-create"),
-    path('assurance/', AssuranceListAPIView.as_view(),  name="assurance"),
-    path('assurance/<int:pk>/', AssuranceDetailAPIView.as_view(), name="assurance-delete"),
-    path('assurance/delete/<int:pk>/', AssuranceDestroyAPIView.as_view(), name="assurance-delete"),
-                                                                                            
-    path('remuneration/create', RemunerationAPIView.as_view(),  name="remuneration-create"),
-    path('remuneration/', RemunerationListAPIView.as_view(),  name="remuneration"),
-    path('remunerationProf-by-id/', PaiementEmployeListAPIView.as_view(),  name="remunerationProf-create"),
-    path('remuneration/<int:pk>/', RemunerationDetailAPIView.as_view(), name="remuneration-delete"),
-    path('remuneration/delete/<int:pk>/', RemunerationDestroyAPIView.as_view(), name="remuneration-delete"),
-    path('get_transaction_authorization/', get_transaction_authorization, name="get_transaction_authorization"),
+        # updateView
+        path("transaction/update/<int:pk>", PaiementUpdateView.as_view(), name="paiement_update"),
+        path("transaction/Remuneration_Personnel/update/<int:pk>", RemuPersonnelUpdateView.as_view(), name="Remuneration_Personnel_update"),
+        path("transaction/Remuneration_Coach/update/<int:pk>", Remuneration_CoachUpdateView.as_view(), name="Remuneration_Coach_update"),
 
 
-    # path('remunerationProf/', RemunerationEmployeListAPIView.as_view(),  name="remunerationEmploye"),
-    # path('remunerationEmploye/<int:pk>/', RemunerationEmployeDetailAPIView.as_view(), name="remunerationEmploye-delete"),
-    # path('remunerationEmploye/create', RemunerationEmployeAPIView.as_view(),  name="remunerationEmploye-create"),
-    # path('remunerationEmploye-by-coach/', PaiementEmployeListAPIView.as_view(),  name="remunerationEmploye-create"),
+        path('transaction/RemunerationProfTable',RemunerationProfTable.as_view(), name='RemunerationProfTable_name'),
+        path('transaction/RemunerationPersonnelTable',RemunerationPersonnelTable.as_view(), name='RemunerationPersonnelTable_name'),
 
-    path('remunerationProf/', RemunerationProfListAPIView.as_view(),  name="remunerationProf"),
-    path('remunerationProf/<int:pk>/', RemunerationProfDetailAPIView.as_view(), name="remunerationProf-delete"),
-    path('remunerationProf/create', RemunerationProfAPIView.as_view(),  name="remunerationProf-create"),
-    path('remunerationProf-by-coach/', PaiementCoachListAPIView.as_view(),  name="remunerationProf-create"),
-    path('remunerationProf/delete/<int:pk>/', RemunerationProfDestroyAPIView.as_view(), name="remunerationProf-delete"),
-    path('total-charges/', total_charges, name="total-charges"),
-    path('chiffre-affaire/', chiffre_affaire, name="chiffre-affaire"),
-    path('ca_by_date', ca_by_date, name="ca_by_date"),
-    # path('trans-today/', trans_today, name="trans-today"),
-    
-    path('trans-today/', TransToday.as_view(), name="trans-today"),
+      
+#       deleteview
+        path("transaction/delete/<int:pk>", PaiementDeleteView.as_view(), name="PaiementDeleteView_name"),
+        path("transaction/Remuneration_Personnel/delete/<int:pk>", RemuPersonnelDeleteView.as_view(), name="RemuPersonnelDeleteView_name"),
+        path("transaction/Remuneration_Coach/delete/<int:pk>", RemCoachDeleteView.as_view(), name="RemCoachDeleteView_name"),
+
+
+        # path('transaction/ProductHTMxTableView',ProductHTMxTableView.as_view(), name='product_htmx'), 
+       
+
+
+
 ]
 
 

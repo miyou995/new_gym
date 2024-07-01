@@ -14,6 +14,7 @@ from datetime import datetime, timedelta, date
 from django.db import transaction
 from django.utils import timezone
 from .tasks import register_user
+from django.utils.translation import gettext as _
 
 
 from io import BytesIO
@@ -83,7 +84,7 @@ class Client(models.Model):
     id          = models.CharField(max_length=50, primary_key=True)
     carte       = models.CharField(max_length=100, unique=True, blank=True, null=True)
     hex_card    = models.CharField(max_length=100, unique=True, blank=True, null=True)
-    last_name   = models.CharField(max_length=50, verbose_name='Nom')
+    last_name   = models.CharField(max_length=50, verbose_name='Nom',blank=True, null=True)
     first_name  = models.CharField(max_length=50, verbose_name='Prénom')
     civility    = models.CharField(choices=CIVILITY_CHOICES , max_length=3, default='MME', verbose_name='Civilité', blank=True, null=True)
     adress      = models.CharField(max_length=200, verbose_name='Adresse', blank=True, null=True)
@@ -200,8 +201,14 @@ class Client(models.Model):
     def full_name(self):
         return str(self.last_name)+ " " +str(self.first_name)
 
-    def get_absolute_url(self):
-        return reverse("client:client-detail", args={"slug": self.slug})
+    def get_view_url(self):
+        return reverse("client:client_detail",kwargs={'pk': str(self.id)})
+    
+    def get_edit_url(self):
+        return reverse('client:client_update', kwargs={'pk': str(self.id)})
+
+    def get_delete_url(self):
+        return reverse('client:client_delete', kwargs={'pk': str(self.id)})
 
 
     def remove_duplicate(self):
@@ -424,8 +431,14 @@ class Coach(models.Model):
     def get_salaire(self):
         return self.heures_done * self.pay_per_hour
 
-    def get_absolute_url(self):
+    def get_view_url(self):
         return reverse("client:coach_detail", kwargs={"pk": self.pk})
+    
+    def get_edit_url(self):
+        return reverse('client:coach_update', kwargs={'pk': str(self.id)})
+
+    def get_delete_url(self):
+        return reverse('client:coach_delete', kwargs={'pk': str(self.id)})
 
 
 
@@ -453,8 +466,18 @@ class Personnel(models.Model):
 
     def __str__(self):
         return self.first_name
-    def get_absolute_url(self):
+    
+
+    def get_view_url(self):
         return reverse("client:personnel_detail", kwargs={"pk": self.pk})
+    
+    def get_edit_url(self):
+        return reverse('client:personnel_update', kwargs={'pk': str(self.id)})
+
+    def get_delete_url(self):
+        return reverse('client:personnel_delete', kwargs={'pk': str(self.id)})
+
+
 
 
 # @receiver(post_save, sender=Client)

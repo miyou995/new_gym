@@ -1,0 +1,156 @@
+from django import forms
+from .models import Client,Coach,Personnel
+from django.utils.translation import gettext_lazy as _
+import re
+from django.core.exceptions import ValidationError
+
+
+class ClientModelForm(forms.ModelForm):
+    last_name = forms.CharField(required=False, label="Nom")
+    class Meta:
+        model  = Client
+        
+        fields = ( 
+        "carte",
+        "last_name",
+        "first_name",
+        "picture",
+        "email",
+        "adress",
+        "phone",
+        "civility",
+        "nationality",
+        "birth_date",
+        "blood",
+        'maladies',
+        'note')
+        widgets = {
+           
+            'birth_date': forms.DateInput(attrs={'type': 'date'})
+        }
+
+    def clean(self):
+        cleaned_data = super().clean()
+        last_name = cleaned_data.get('last_name')
+        first_name=cleaned_data.get('first_name')
+        phone=cleaned_data.get('phone')
+        blood=cleaned_data.get('blood')
+        maladies=cleaned_data.get('maladies')
+      
+        if not last_name :
+            self.add_error('last_name',_("Veuillez renseigner ce champ "))
+        if not first_name :
+            self.add_error('first_name',_("Veuillez renseigner ce champ "))
+        if not phone :
+            self.add_error('phone',_("Veuillez renseigner ce champ "))
+        if not blood :
+            self.add_error('blood',_("Veuillez renseigner ce champ "))
+        if not maladies :
+            self.add_error('maladies',_("veuillez choisir. "))
+        if phone:
+            phone_pattern = re.compile(r'^(0)(5|6|7)[0-9]{8}$')
+            if not phone_pattern.match(phone):
+                self.add_error('phone',_("Veuillez entrer un numéro de téléphone valide "))  
+        return cleaned_data
+
+    
+
+   
+
+
+class CoachModelForm(forms.ModelForm):
+    
+    class Meta:
+        model  = Coach
+        
+        fields = ( 
+        "last_name",
+        "first_name",
+        "email",
+        "adress",
+        "birth_date",
+        "nationality",
+        "phone",
+        "civility",
+        "blood",
+        'color',
+        'pay_per_hour',
+        'note')
+        widgets = {
+           
+            'birth_date': forms.DateInput(attrs={'type': 'date'})
+        }
+
+    def clean(self):
+        cleaned_data = super().clean()
+        last_name = cleaned_data.get('last_name')
+        first_name=cleaned_data.get('first_name')
+        phone=cleaned_data.get('phone')
+        blood=cleaned_data.get('blood')
+        nationality=cleaned_data.get("nationality")
+      
+        if not last_name :
+            self.add_error('last_name',_("Veuillez renseigner ce champ "))
+        if not first_name :
+            self.add_error('first_name',_("Veuillez renseigner ce champ "))
+        if not phone :
+            self.add_error('phone',_("Veuillez renseigner ce champ "))
+        if not blood :
+            self.add_error('blood',_("Veuillez renseigner ce champ "))
+        if not nationality :
+            self.add_error('nationality',_("Veuillez renseigner ce champ "))
+        if phone:
+            phone_pattern = re.compile(r'^(0)(5|6|7)[0-9]{8}$')
+            if not phone_pattern.match(phone):
+                self.add_error('phone',_("Veuillez entrer un numéro de téléphone valide "))  
+        return cleaned_data
+   
+
+
+class PersonnelModelForm(forms.ModelForm):
+    
+    class Meta:
+        model  = Personnel
+        
+        fields = ( 
+        "last_name",
+        "first_name",
+        "function",
+        "adress",
+        "birth_date",
+        "nationality",
+        "phone",
+        "civility",
+        "blood",
+        "state",
+        'note')
+
+        widgets = {
+           
+            'birth_date': forms.DateInput(attrs={'type': 'date'})
+        }
+
+    def clean(self):
+        cleaned_data = super().clean()
+        last_name = cleaned_data.get('last_name')
+        first_name=cleaned_data.get('first_name')
+        phone=cleaned_data.get('phone')
+        blood=cleaned_data.get('blood')
+        nationality=cleaned_data.get("nationality")
+      
+        if not last_name :
+            self.add_error('last_name',_("Veuillez renseigner ce champ "))
+        if not first_name :
+            self.add_error('first_name',_("Veuillez renseigner ce champ "))
+        if not phone :
+            self.add_error('phone',_("Veuillez renseigner ce champ "))
+        if not blood :
+            self.add_error('blood',_("Veuillez renseigner ce champ "))
+        if not nationality :
+            self.add_error('nationality',_("Veuillez renseigner ce champ "))
+        if phone:
+            phone_pattern = re.compile(r'^(0)(5|6|7)[0-9]{8}$')
+            if not phone_pattern.match(phone):
+                self.add_error('phone',_("Veuillez entrer un numéro de téléphone valide "))  
+        return cleaned_data
+   

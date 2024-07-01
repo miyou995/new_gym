@@ -30,21 +30,22 @@ ALLOWED_HOSTS = ["*"]
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
-    'authentication.apps.AuthenticationConfig',
+    'authentication',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'client.apps.ClientConfig',
-    'assurance.apps.AssuranceConfig',
-    'abonnement.apps.AbonnementConfig',
-    'materiel.apps.MaterielConfig',
-    'salle_activite.apps.SalleActiviteConfig',
-    'creneau.apps.CreneauConfig',
-    'presence.apps.PresenceConfig',
-    'salle_sport.apps.SalleSportConfig',
-    'planning.apps.PlanningConfig',
-    'transaction.apps.TransactionConfig',
+    'client',
+    'assurance',
+    'abonnement',
+    'materiel',
+    'salle_activite',
+    'creneau',
+    'presence',
+    'salle_sport',
+    'planning',
+    'transaction',
+    
     
     #third party app
     'rest_framework',
@@ -65,6 +66,13 @@ INSTALLED_APPS = [
     # 'allauth.account', 
     # 'allauth.socialaccount', 
     # 'rest_auth.registration', 
+    "core",
+    "NetSDK",
+    "django_tables2",
+    "widget_tweaks",
+    "crispy_forms",
+    "crispy_bootstrap4",
+    "django_htmx",
 ]
 
 REST_FRAMEWORK = {
@@ -112,6 +120,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware', #DJango debug toolbar
     'django.middleware.common.CommonMiddleware',
+    "django_htmx.middleware.HtmxMiddleware",
     # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'simple_history.middleware.HistoryRequestMiddleware',
@@ -131,7 +140,11 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         # 'DIRS': [BASE_DIR / 'build'],
-        'DIRS': [BASE_DIR / 'build'],
+          "DIRS": [
+            BASE_DIR / "templates", 
+            # BASE_DIR / 'build', 
+           
+    ],
         'APP_DIRS': True,
         'OPTIONS': { 
             'context_processors': [
@@ -268,22 +281,12 @@ CELERY_TIMEZONE = TIME_ZONE
 #     }
 
 
-MEDIA_URL = "/media/" 
-
+STATIC_URL = "static/"
+STATIC_ROOT = BASE_DIR / "assets"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
-
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-### 
-STATIC_URL = '/static/'
-# STATICFILES_DIR = [ BASE_DIR / 'static' ]
-STATIC_ROOT = BASE_DIR / 'assets'
-STATICFILES_DIRS = [
-   BASE_DIR / 'build/static',
-
-#    BASE_DIR,
-]
-
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/' 

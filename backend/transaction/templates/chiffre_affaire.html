@@ -1,0 +1,132 @@
+{% extends "base.html" %} 
+{% load static %}
+
+{% block content %}
+<div class="app-main flex-column flex-row-fluid" id="kt_app_main">
+    <div class="d-flex flex-column flex-column-fluid">
+        
+        <div id="kt_app_content" class="app-content">
+            <div class="card card-flush">
+                <div class="card-header align-items-center py-5 gap-2 gap-md-5">
+                    <div class="card-title">
+                        <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
+                            <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
+                    
+                                <div class="col-md-5">
+                                    <span class="card-label fw-bold fs-4 text-grey-800">Date Début</span>
+                                    <input type="date" class="form-control"  />
+                                 </div>
+                                 <div class=" col-md-5">
+                                    <span class="card-label fw-bold fs-4 text-grey-800">Date Fin</span>
+
+                                    <input type="date"  class="form-control"  />
+                                 </div>
+                            
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
+                        <span class="card-label fw-bold fs-1 text-danger">Résultat: 0 DA</span>
+                    </div>
+
+
+
+
+
+                </div>
+                <div class="row" >
+                    <div class="col-sm-6" >
+                        <div class="card" style="background-color: #F6E5CA">
+                            <div class="card-body">
+                                <div class="card card-flush">
+                                    <div class="card-header align-items-center py-5 gap-2 gap-md-5">
+                                        <div class="card-title">
+                                            <div class="d-flex align-items-center position-relative my-1">
+                                                </h3 class="card-title">Chiffre d'affaire par salle</h3>
+                                            </div>
+                                            <div id="kt_ecommerce_report_sales_export" class="d-none"></div>
+                                        </div>
+                                    
+                                      
+                                    </div>
+                                    <div class="card-body pt-0">
+                                    
+                                        <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_ecommerce_report_sales_table">
+                                            <thead>
+                                                <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
+                                                    <th class="min-w-100px">Nom</th>
+                                                    <th class="text-end min-w-75px">Montant</th>
+                                               
+                                                </tr>
+                                            </thead>
+                                            <tbody class="fw-semibold text-gray-600">
+                                                <tr>
+                                                    <td>C00102</td>
+                                                    <td class="text-end">141 </td>
+                                                  
+                                                </tr>    
+                                            </tbody>
+                                        </table>
+                                        <div class="menu-item px-3">
+                                            <div class="menu-content px-3 py-3">
+                                                <a class="bi bi-caret-right-fill btn btn-primary btn-sm px-4 " href="#"> Afficher tout</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card" style="background-color: #F6E5CA">
+                            <div class="card-body">
+                                <div class="card card-flush">
+                                    <div class="card-header align-items-center py-5 gap-2 gap-md-5">
+                                        <div class="card-title">
+                                            <div class="d-flex align-items-center position-relative my-1">
+                                                </h3 class="card-title">Chiffre d'affaire par Abonnement</h3>
+                                            </div>
+                                            <div id="kt_ecommerce_report_sales_export" class="d-none"></div>
+                                        </div>
+                                    
+                                      
+                                    </div>
+                                    <div class="card-body pt-0">
+                                    
+                                        <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_ecommerce_report_sales_table">
+                                            <thead>
+                                                <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
+                                                    <th class="min-w-100px">Nom</th>
+                                                    <th class="text-end min-w-75px">Montant</th>
+                                               
+                                                </tr>
+                                            </thead>
+                                            <tbody class="fw-semibold text-gray-600">
+                                                <tr>
+                                                    <td>C00102</td>
+                                                    <td class="text-end">141 </td>
+                                                  
+                                                </tr>    
+                                            </tbody>
+                                        </table>
+                                        <div class="menu-item px-3">
+                                            <div class="menu-content px-3 py-3">
+                                                <a class="bi bi-caret-right-fill btn btn-primary btn-sm px-4 " href="#"> Transactions</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+
+                
+              
+            </div>
+            
+        </div>
+    </div>
+
+</div>
+{% endblock content %}

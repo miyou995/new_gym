@@ -10,5 +10,5 @@ class SalleSport(models.Model):
     def __str__(self):
         return self.name
 
-    def get_absolute_url(self):
+    def get_view_url(self):
         return reverse("SalleSport_detail", kwargs={"pk": self.pk})
