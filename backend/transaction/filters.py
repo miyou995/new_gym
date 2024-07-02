@@ -22,10 +22,10 @@ class ProductFilter(django_filters.FilterSet):
 
         # Check if the search value is numeric (possibly an ID)
         if value.replace(".", "", 1).isdigit():
-            queryset = queryset.filter(Q(id=value) | Q(abonnement_client__type_abonnement=value) )
+            queryset = queryset.filter(Q(abonnement_client__client__id=value) | Q(abonnement_client__type_abonnement=value) )
         else:
             # Check if the search value matches any location names
-            queryset = queryset.filter(Q(id__icontains=value)  )
+            queryset = queryset.filter(Q(abonnement_client__client__id__icontains=value)  )
 
 
         print('Filtered queryset:', queryset)
@@ -46,6 +46,9 @@ class PersonnelFilter(django_filters.FilterSet):
         
         if value.replace(".", "", 1).isdigit():
             queryset = queryset.filter(Q(id = value) | Q(nom= value) )
+        else:
+            # Check if the search value matches any location names
+            queryset = queryset.filter(Q(nom__last_name__icontains=value)  )
 
         print('YESS AFTER FILTERING queryset', queryset)
         return queryset.distinct()
@@ -67,6 +70,9 @@ class CoachFilter(django_filters.FilterSet):
         
         if value.replace(".", "", 1).isdigit():
             queryset = queryset.filter(Q(id = value) | Q(coach= value) )
+        else:
+            # Check if the search value matches any location names
+            queryset = queryset.filter(Q(coach__last_name__icontains=value)  )
 
         print('YESS AFTER FILTERING queryset', queryset)    
         return queryset.distinct()

@@ -72,7 +72,7 @@ STATE_CHOICES = (
 
 # def generate_pk():
 class Maladie(models.Model):
-    name = models.CharField(max_length=150)
+    name = models.CharField(max_length=150,blank=True, null=True)
     # client = models.ForeignKey(Client, related_name="maladies", on_delete=models.CASCADE, null=True, blank=True)
     def __str__(self):
         return self.name
@@ -101,7 +101,7 @@ class Client(models.Model):
     note        = models.TextField(blank=True, null=True)
     dette       = models.DecimalField(max_digits=10, decimal_places=0, blank=True, null=True,default=0)
     is_on_salle = models.BooleanField(default=False)
-    maladies    = models.ManyToManyField(Maladie)
+    maladies    = models.ManyToManyField(Maladie,blank=True)
     # date_added  = models.DateTimeField(auto_now_add=True, verbose_name='Date d\'inscription')
     # state       = models.CharField(choices=STATE_CHOICES , max_length=3, verbose_name='Etat', blank=True, null=True)
     dette_assurance      = models.DecimalField(max_digits=10, decimal_places=0, blank=True, null=True,default=0)

@@ -17,6 +17,7 @@ class ClientHTMxTable(tables.Table):
                 'first_name', 
                 'phone',
                 'notes',
+               'maladies',
                 'date_added',
                 'action',
         )

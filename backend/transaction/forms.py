@@ -81,6 +81,17 @@ class Remuneration_PersonnelModelForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields["nom"].widget.attrs.update()
 
+        self.fields['nom'].error_messages = {
+            'required': 'veuillez choisir.',
+            'invalid': 'Custom error message for field1 is invalid.',
+            # Add more custom error messages for different errors if needed
+        }
+        self.fields['amount'].error_messages = {
+            'required': 'veuillez choisir.',
+            'invalid': 'Custom error message for field2 is invalid.',
+        }
+
+
     def clean(self):
         cleaned_data = super().clean()
         nom = cleaned_data.get('nom')
