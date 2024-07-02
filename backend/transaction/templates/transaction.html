@@ -84,7 +84,7 @@
 									tabindex="-1"
 									hx-get="{% url 'transactions:transaction_name'  %}"
 									hx-swap="innerHTML"
-									hx-trigger="refresh_table from:body,click"
+									hx-trigger="refresh_table from:body,click,revealed"
 									hx-target="#table1"
                                 >{% trans 'Client' %}</a>
 							</li>
@@ -127,7 +127,7 @@
 									<div class="tab-pane fade active show" id="kt_user_view_Client" role="tabpanel">
 										<div id="kt_app_content_container" >
 											<div class="card ">
-												 <div class="card-header border-0 pt-6">
+												 {% comment %} <div class="card-header border-0 pt-6">
 													<form  
 													hx-get="{% url 'transactions:transaction_name'  %}"  
 													hx-target="#table1" 
@@ -149,7 +149,7 @@
 														</div>
 												   </form>
 											
-											   </div> 
+											   </div>  {% endcomment %}
 
 											   {% comment %} <form method="get">
 												{{ filter.form.as_p }}
@@ -165,7 +165,7 @@
 									<div class="tab-pane fade" id="kt_user_view_Personnel" role="tabpanel">
 										<div id="kt_app_content_container" >
 											<div class="card ">
-												<div class="card-header border-0 pt-6">
+												{% comment %} <div class="card-header border-0 pt-6">
 													<form  
 													hx-get="{{request.path}}"
 													hx-target="#table2" 
@@ -187,7 +187,7 @@
 														</div>
 												   </form>
 											
-											   </div>
+											   </div> {% endcomment %}
 												<div class="card-body pt-0 table-responsive" id="table2">
 													{% render_table table %}
 												</div>
@@ -197,7 +197,7 @@
 									<div class="tab-pane fade" id="kt_user_view_Coach" role="tabpanel">
 										<div id="kt_app_content_container" >
 											<div class="card ">
-												<div class="card-header border-0 pt-6">
+												{% comment %} <div class="card-header border-0 pt-6">
 													<form  
 													hx-get="{{request.path}}"
 													hx-target="#table3" 
@@ -219,7 +219,7 @@
 														</div>
 												   </form>
 											
-											   </div>
+											   </div> {% endcomment %}
 												<div class="card-body pt-0 table-responsive" id="table3">
 													{% render_table table %}
 												</div>

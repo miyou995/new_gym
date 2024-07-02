@@ -31,12 +31,15 @@ class TransactionView(SingleTableMixin, FilterView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context["target_url"]   = reverse('transactions:transaction_name')
+        context["target"]       = "#table1"
+        context["render_filter"]=ProductFilter(self.request.GET)
         return context
     
     
     def get_template_names(self):
         if self.request.htmx:
-            template_name = "tables/product_table_partial.html"
+            template_name = "tables/transactions_table_partial.html"
         else:
             template_name = "transaction.html" 
         return template_name 
@@ -44,7 +47,6 @@ class TransactionView(SingleTableMixin, FilterView):
 
 class RemunerationProfTable(SingleTableMixin, FilterView):
     table_class = RemunerationProfHTMxTable
-    queryset = RemunerationProf.objects.all()
     filterset_class = CoachFilter
     paginate_by = 15
     def get_context_data(self, **kwargs):
@@ -52,11 +54,10 @@ class RemunerationProfTable(SingleTableMixin, FilterView):
         context["target_url"]   = reverse('transactions:RemunerationProfTable_name')
         context["target"]       = "#table3"
         context["render_filter"]=CoachFilter(self.request.GET)
-
         return context
     def get_template_names(self):
         if self.request.htmx:
-            template_name = "tables/product_table_partial.html"
+            template_name = "tables/transactions_table_partial.html"
         else:
             template_name = "transaction.html"
         return template_name 
@@ -64,7 +65,6 @@ class RemunerationProfTable(SingleTableMixin, FilterView):
 
 class RemunerationPersonnelTable(SingleTableMixin, FilterView):
     table_class = RemunerationPersonnelHTMxTable
-    queryset = Remuneration.objects.all()
     filterset_class = PersonnelFilter
     paginate_by = 15
     def get_context_data(self, **kwargs):
@@ -75,7 +75,7 @@ class RemunerationPersonnelTable(SingleTableMixin, FilterView):
         return context
     def get_template_names(self):
         if self.request.htmx:
-            template_name = "tables/product_table_partial.html"
+            template_name = "tables/transactions_table_partial.html"
         else:
             template_name = "transaction.html"
         return template_name 
@@ -98,7 +98,7 @@ def paiement(request):
             print("is valide")
             product = form.save()
             message = _("un paiement a été créé avec succès.")
-            messages.success(request, str(message))
+            messages.success(request, str(message),extra_tags="toastr")
             return HttpResponse(status=204,
                 headers={
                     'HX-Trigger': json.dumps({
@@ -133,7 +133,7 @@ class PaiementUpdateView(UpdateView):
     def form_valid(self, form):
         paiement =form.save()
         print('IS FORM VALID', paiement.id)
-        messages.success(self.request, "paiement Mis a jour avec Succés")
+        messages.success(self.request, "paiement Mis a jour avec Succés",extra_tags="toastr")
         return HttpResponse(status=204,
             headers={
                 'HX-Trigger': json.dumps({
@@ -162,7 +162,7 @@ class PaiementDeleteView(DeleteView):
     def form_valid(self, form):
         success_url = self.get_success_url()
         self.object.delete()
-        messages.success(self.request, "Paiement Supprimer avec Succés")
+        messages.success(self.request, "Paiement Supprimer avec Succés",extra_tags="toastr")
         return HttpResponseRedirect(success_url)
 
 
@@ -181,7 +181,7 @@ def Remuneration_Personnel(request):
             print('is valide')
             product=form.save()
             message=_("une Remuneration Personnel a été créé avec succès")
-            messages.success(request,str(message))
+            messages.success(request,str(message),extra_tags="toastr")
             return HttpResponse(status=204,
                                 headers={
                                     'HX-Trigger':json.dumps({
@@ -212,7 +212,7 @@ class RemuPersonnelUpdateView(UpdateView):
     def form_valid(self,form):
         remuneration=form.save()
         print("is from valid",remuneration.id)
-        messages.success(self.request,"remuniration Personnel Mis a jour avec Succés")
+        messages.success(self.request,"remuniration Personnel Mis a jour avec Succés",extra_tags="toastr")
         return HttpResponse(status=204,
             headers={
                 "HX-Trigger":json.dumps({
@@ -239,7 +239,7 @@ class RemuPersonnelDeleteView(DeleteView):
     def form_valid(self,form):
         success_url = self.get_success_url()
         self.object.delete()
-        messages.success(self.request, "Remuniration Personnel Supprimer avec Succés")
+        messages.success(self.request, "Remuniration Personnel Supprimer avec Succés",extra_tags="toastr")
         return HttpResponseRedirect(success_url)
 
 
@@ -256,7 +256,7 @@ def Remuneration_Coach(request):
             print("is valide")
             remuniration=form.save()
             message=_("Remuniration Coach a été créé avec succès")
-            messages.success(request,str(message))
+            messages.success(request,str(message),extra_tags="toastr")
             return HttpResponse(status=204,
                 headers={
                     'HX-Trigger' :json.dumps({
@@ -288,7 +288,7 @@ class Remuneration_CoachUpdateView(UpdateView):
     def form_valid(self, form):
         remuCoach=form.save()
         print('is from valid',remuCoach.id)
-        messages.success(self.request,"Remuneration Coach Mis a jour avec Succés ")
+        messages.success(self.request,"Remuneration Coach Mis a jour avec Succés ",extra_tags="toastr")
         return HttpResponse(status=204,
             headers={
                 "HX-Trigger":json.dumps({
@@ -316,7 +316,7 @@ class RemCoachDeleteView(DeleteView):
     def form_valid(self,form):
         success_url = self.get_success_url()
         self.object.delete()
-        messages.success(self.request, "Remuniration Coach Supprimer avec Succés")
+        messages.success(self.request, "Remuniration Coach Supprimer avec Succés",extra_tags="toastr")
         return HttpResponseRedirect(success_url)
 
 
@@ -333,7 +333,7 @@ def Autre_Transaction(request):
             print("is valide")
             remuniration=form.save()
             message=_("Autre transaction created successfully")
-            messages.success(request,str(message))
+            messages.success(request,str(message),extra_tags="toastr")
             return HttpResponse(status=204,
                 headers={
                     'HX-Trigger' :json.dumps({
@@ -367,7 +367,7 @@ class Autre_TransactionUpdateView(UpdateView):
     def form_valid(self,form):
         autre=form.save()
         print('is form valide',Autre.id)
-        messages.success(self.request,"Autre transactions Mis A Jour avec Succés")
+        messages.success(self.request,"Autre transactions Mis A Jour avec Succés",extra_tags="toastr")
         return HttpResponse(statu=204,
                 headers={
                     'HX-Trigger':json.dumps({
@@ -384,18 +384,6 @@ class Autre_TransactionUpdateView(UpdateView):
 
     
 
-# def Autre_Transaction(request):
-#     template_name ="snippets/_autre_Transaction_form.html"
-#     form_class = Autre_TransactionForm
-
-#     form = form_class
-#     if request.method == 'POST':
-#         form = form_class(request.POST)
-#         if form.is_valid():
-#             form.save()
-        
-
-#     return render(request, template_name, {'form': form})
 
     
 

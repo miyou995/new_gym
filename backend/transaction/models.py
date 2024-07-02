@@ -86,6 +86,8 @@ class AssuranceTransaction(Transaction):
     class Meta:
         ordering = ['-date_creation']
 
+    
+
 
 class Remuneration(Transaction):
     history = HistoricalRecords()
@@ -94,6 +96,14 @@ class Remuneration(Transaction):
         return str(self.amount)
     class Meta:
         ordering = ['-date_creation']
+
+    def get_url(self):
+        return reverse('client:client_detail')
+    def get_edit_url(self):
+        return reverse('transactions:Remuneration_Personnel_update', kwargs={'pk': str(self.id)})
+    def get_delete_url(self):
+        return reverse('transactions:RemuPersonnelDeleteView_name', kwargs={'pk': str(self.id)})
+    
         
 class RemunerationProf(Transaction):
     history = HistoricalRecords()
@@ -102,6 +112,13 @@ class RemunerationProf(Transaction):
         return str(self.amount)
     class Meta:
         ordering = ['-date_creation']
+
+    def get_url(self):
+        return reverse('client:client_detail')
+    def get_edit_url(self):
+        return reverse('transactions:Remuneration_Coach_update', kwargs={'pk': str(self.id)})
+    def get_delete_url(self):
+        return reverse('transactions:RemCoachDeleteView_name', kwargs={'pk': str(self.id)})
 
 def paiement_signal(sender, instance, **kwargs):
     id_client = instance.abonnement_client.client.id
