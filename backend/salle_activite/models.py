@@ -10,7 +10,6 @@ class SalleManager(models.Manager):
 
 
 
-
 class Salle(models.Model):
     name = models.CharField(max_length=50, verbose_name="nom de la salle d'activité")
     is_default      = models.BooleanField(default=False)

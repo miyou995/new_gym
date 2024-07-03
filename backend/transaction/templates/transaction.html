@@ -127,67 +127,18 @@
 									<div class="tab-pane fade active show" id="kt_user_view_Client" role="tabpanel">
 										<div id="kt_app_content_container" >
 											<div class="card ">
-												 {% comment %} <div class="card-header border-0 pt-6">
-													<form  
-													hx-get="{% url 'transactions:transaction_name'  %}"  
-													hx-target="#table1" 
-													hx-swap="innerHTML" 
-													hx-trigger="keyup delay:900ms"
-													hx-push-url='true'
-													>
-														<div class="card-title">
-															<div class="d-flex align-items-center position-relative my-1">
-																<!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
-																<span class="svg-icon svg-icon-1 position-absolute ms-4">
-																	<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-																		<rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor" />
-																		<path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor" />
-																	</svg>
-																</span>
-																<input type="text" name="search"  data-kt-ecommerce-order-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Recherche...." />
-															</div>
-														</div>
-												   </form>
+							
 											
-											   </div>  {% endcomment %}
-
-											   {% comment %} <form method="get">
-												{{ filter.form.as_p }}
-												<button type="submit">Search</button>
-											</form> {% endcomment %}
-											
-													<div class="card-body pt-0 table-responsive" id="table1">
-															{% render_table table %}
-													</div>
+												<div class="card-body pt-0 table-responsive" id="table1">
+														{% render_table table %}
+												</div>
 											</div>
 										</div>
 									</div>							
 									<div class="tab-pane fade" id="kt_user_view_Personnel" role="tabpanel">
 										<div id="kt_app_content_container" >
 											<div class="card ">
-												{% comment %} <div class="card-header border-0 pt-6">
-													<form  
-													hx-get="{{request.path}}"
-													hx-target="#table2" 
-													hx-swap="innerHTML" 
-													hx-trigger="keyup delay:900ms"
-													hx-push-url='true'
-													>
-														<div class="card-title">
-															<div class="d-flex align-items-center position-relative my-1">
-																<!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
-																<span class="svg-icon svg-icon-1 position-absolute ms-4">
-																	<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-																		<rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor" />
-																		<path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor" />
-																	</svg>
-																</span>
-																<input type="text" name="search"  data-kt-ecommerce-order-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Recherche...." />
-															</div>
-														</div>
-												   </form>
-											
-											   </div> {% endcomment %}
+									
 												<div class="card-body pt-0 table-responsive" id="table2">
 													{% render_table table %}
 												</div>
@@ -197,29 +148,7 @@
 									<div class="tab-pane fade" id="kt_user_view_Coach" role="tabpanel">
 										<div id="kt_app_content_container" >
 											<div class="card ">
-												{% comment %} <div class="card-header border-0 pt-6">
-													<form  
-													hx-get="{{request.path}}"
-													hx-target="#table3" 
-													hx-swap="innerHTML" 
-													hx-trigger="keyup delay:900ms"
-													hx-push-url='true'
-													>
-														<div class="card-title">
-															<div class="d-flex align-items-center position-relative my-1">
-																<!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
-																<span class="svg-icon svg-icon-1 position-absolute ms-4">
-																	<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-																		<rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor" />
-																		<path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor" />
-																	</svg>
-																</span>
-																<input type="text" name="search"  data-kt-ecommerce-order-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Recherche...." />
-															</div>
-														</div>
-												   </form>
-											
-											   </div> {% endcomment %}
+										
 												<div class="card-body pt-0 table-responsive" id="table3">
 													{% render_table table %}
 												</div>

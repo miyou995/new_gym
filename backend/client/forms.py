@@ -2,7 +2,6 @@ from django import forms
 from .models import Client,Coach,Personnel,Maladie
 from django.utils.translation import gettext_lazy as _
 import re
-from django.core.exceptions import ValidationError
 
 
 class ClientModelForm(forms.ModelForm):
@@ -127,22 +126,11 @@ class CoachModelForm(forms.ModelForm):
 
     def clean(self):
         cleaned_data = super().clean()
-        last_name = cleaned_data.get('last_name')
-        first_name=cleaned_data.get('first_name')
         phone=cleaned_data.get('phone')
-        blood=cleaned_data.get('blood')
-        nationality=cleaned_data.get("nationality")
+   
       
-        # if not last_name :
-        #     self.add_error('last_name',_("Veuillez renseigner ce champ "))
-        # if not first_name :
-        #     self.add_error('first_name',_("Veuillez renseigner ce champ "))
         if not phone :
             self.add_error('phone',_("Veuillez renseigner ce champ "))
-        # if not blood :
-        #     self.add_error('blood',_("Veuillez renseigner ce champ "))
-        # if not nationality :
-        #     self.add_error('nationality',_("Veuillez renseigner ce champ "))
         if phone:
             phone_pattern = re.compile(r'^(0)(5|6|7)[0-9]{8}$')
             if not phone_pattern.match(phone):
