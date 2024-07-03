@@ -1,6 +1,5 @@
 from django.db import models
-# from client.models import Coach
-# Create your models here.
+from django.urls import reverse
 class SalleSport(models.Model):
     name    = models.CharField( max_length=50)
     adresse = models.CharField( max_length=50)

@@ -42,6 +42,9 @@ class clientAdmin(admin.ModelAdmin):
         "birth_date",
         
        )
+    
+
+
   
 
 
