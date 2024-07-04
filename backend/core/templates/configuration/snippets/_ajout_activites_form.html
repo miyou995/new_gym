@@ -7,14 +7,14 @@
         id="sg_create_store_form" 
         class="form"  
         {% if form.instance.id %}
-        hx-post="{% url 'core:PorteUpdateView' form.instance.id %}" 
-        {% else %} hx-post="{% url 'core:PorteCreateView' %}"
+        hx-post="{% url 'core:ActiviteUpdateView' form.instance.id %}" 
+        {% else %} hx-post="{% url 'core:ActiviteCreateView' %}"
         {% endif %}
         hx-target="#kt_modal_content"
         novalidate 
     >
         <div class="mb-13 text-center">
-            <h1 class="mb-3">{% trans "Créer une nouvelle Porte " %}</h1>
+            <h1 class="mb-3">{% trans "Créer une nouvelle Activite " %}</h1>
         </div>
         {% with WIDGET_ERROR_CLASS='is-invalid' %}         
             {% for field in form %}

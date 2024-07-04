@@ -76,6 +76,10 @@ class Maladie(models.Model):
     # client = models.ForeignKey(Client, related_name="maladies", on_delete=models.CASCADE, null=True, blank=True)
     def __str__(self):
         return self.name
+    
+    def get_delete_url(self):
+        return reverse('core:MaladieDeleteView', kwargs={'pk': str(self.id)})
+    
     class Meta:
         verbose_name = 'Maladie'
         verbose_name_plural = 'Maladies'
