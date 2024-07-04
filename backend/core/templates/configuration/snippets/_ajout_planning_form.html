@@ -42,7 +42,7 @@
             <button type="reset" id="sg_create_store_form" class="btn btn-light me-3" data-bs-dismiss="modal">{% trans "Annulé" %}</button>
             <button type="submit" class="btn btn-primary">{% trans "Confirmer" %}</button>
             {% if form.instance.id %}  
-                {% include 'buttons/delete.html' with object=form.instance %}
+                {% include 'popups/delete_model.html' with object=form.instance %}
             {% endif %}
           </div>
     </form>

@@ -6,6 +6,9 @@ from creneau.models import Creneau
 from django.db.models.signals import post_save, pre_save
 from simple_history.models import HistoricalRecords
 from django.db.models import Q
+from django.urls import reverse
+
+
 class SubscriptionQuerySet(models.QuerySet):
     def time_volume(self):
         return self.filter(type_abonnement__type_of="VH")
@@ -100,6 +103,9 @@ class Abonnement(models.Model):
     
     def free_sessions(self):
         return self.type_of == "SL"
+    
+    def get_delete_url(self):
+        return reverse('core:TypeAbonnementDeleteView', kwargs={'pk': str(self.id)})
 
 
         

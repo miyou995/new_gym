@@ -1,5 +1,6 @@
 from django.db import models
 # Create your models here.
+from django.urls import reverse
 
 class SalleManager(models.Manager):
     def default_salle(self):
@@ -21,6 +22,9 @@ class Salle(models.Model):
         # unique together
     def __str__(self):
         return self.name
+    
+    def get_delete_url(self):
+        return reverse('core:SalleDeleteView', kwargs={'pk': str(self.id)})
         
     @property
     def get_door(self):
@@ -33,13 +37,17 @@ class Salle(models.Model):
             update_default = Salle.objects.all().exclude(id=self.id).update(is_default=False)
         super(Salle, self).save(*args, **kwargs)
         
+
 class Door(models.Model):
-    ip_adress = models.CharField(max_length=20, verbose_name="Adresse ip de la porte")
+    ip_adress = models.CharField(max_length=20, verbose_name="Adresse ip ")
     salle      = models.ForeignKey(Salle, on_delete=models.CASCADE, related_name='doors', blank=True, null=True)
-    username  = models.CharField(max_length=50, verbose_name="username de la porte")
-    password  = models.CharField(max_length=30, verbose_name="password de la porte")
+    username  = models.CharField(max_length=50, verbose_name="username")
+    password  = models.CharField(max_length=30, verbose_name="password")
     def __str__(self):
         return self.ip_adress
+    
+    def get_delete_url(self):
+        return reverse('core:PorteDeleteView', kwargs={'pk': str(self.id)})
     
     @property
     def salle_name(self):
@@ -52,6 +60,9 @@ class Activity(models.Model):
     
     def __str__(self):
         return self.name
+    
+    def get_delete_url(self):
+        return reverse('core:ActiviteDeleteView', kwargs={'pk': str(self.id)})
 
 
 
