@@ -60,7 +60,7 @@ class Paiement(Transaction):
     #     return reverse("client:personnel_detail", kwargs={"pk": self.pk})
     
     def get_url(self):
-        return reverse('transactions:paiement_update', kwargs={'pk':str(self.id)})
+        return reverse('client:client_detail', kwargs={'pk':str(self.id)})
     def get_edit_url(self):
         return reverse('transactions:paiement_update', kwargs={'pk': str(self.id)})
 

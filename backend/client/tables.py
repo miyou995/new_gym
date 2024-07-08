@@ -1,5 +1,7 @@
 import django_tables2 as tables
 from .models import Client,Coach,Personnel
+from abonnement.models import AbonnementClient
+from transaction.models import Paiement
 from django.urls import reverse
 
 
@@ -80,3 +82,40 @@ class PersonnelHTMxTable(tables.Table):
             "get_url": lambda: reverse("client:personnels_name"),
             "htmx_container": "#TablePersonnel",
         }
+
+class AbonnementClientHTMxTable(tables.Table):
+    action = tables.TemplateColumn(
+            '''{% include 'buttons/action.html' with object=record modal_edit="true" %}''',
+            verbose_name='Actions',
+            orderable=False )
+
+    class Meta:
+        fields  = (
+                'type_abonnement',
+                'start_date', 
+                'end_date',
+                'type_abonnement__prix',
+                'reste',
+                'action',
+        )
+        model = AbonnementClient
+        template_name = "tables/bootstrap_htmx.html"
+
+class PaiementHTMxTable(tables.Table):
+    action = tables.TemplateColumn(
+            '''{% include 'buttons/action.html' with object=record modal_edit="true" %}''',
+            verbose_name='Actions',
+            orderable=False )
+
+    class Meta:
+        fields  = (
+                'type_abonnement',
+                'start_date', 
+                'end_date',
+                'type_abonnement__prix',
+                'reste',
+                'action',
+        )
+        model = Paiement
+        template_name = "tables/bootstrap_htmx.html"
+

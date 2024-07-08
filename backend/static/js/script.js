@@ -48,5 +48,3 @@ document.addEventListener('htmx:afterRequest', (event) => {
         window.location.reload();
     }
 });
-
-
