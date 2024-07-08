@@ -3,6 +3,7 @@ from planning.models import Planning
 from salle_activite.models import Salle ,Activity,Door
 from client.models import Maladie
 from abonnement.models import Abonnement
+from django.urls import reverse
 
 
 
@@ -118,6 +119,14 @@ class PortesHTMxTable(tables.Table):
         )
         model = Door
         template_name = "tables/bootstrap_htmx.html"
+        # row_attrs = {
+        #     'data-hx-get': lambda record: reverse('core:PorteUpdateView', args=[record.id]),
+        #     'data-hx-target': '#kt_modal_content',
+        #     'data-hx-swap': 'innerHTML',
+        #     'data-bs-toggle': 'modal',
+        #     'data-bs-target': '#kt_modal',
+        #     'class': 'row-clickable',
+        # }
 
 class AbonnementHTMxTable(tables.Table):
     name = tables.TemplateColumn(

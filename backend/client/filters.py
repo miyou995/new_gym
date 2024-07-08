@@ -3,7 +3,7 @@ from django.db.models import Q
 import django_filters
 import django_filters.widgets
 from .models import Client,Coach,Personnel
-
+# from abonnement.models import AbonnementClient
 
 class ClientFilter(django_filters.FilterSet):
     search = django_filters.CharFilter(method='universal_search', label="")
@@ -76,3 +76,6 @@ class PersonnelFilter(django_filters.FilterSet):
         print('Filtered queryset:', queryset)
         return queryset.distinct()
     
+
+
+

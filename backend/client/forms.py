@@ -8,7 +8,6 @@ class ClientModelForm(forms.ModelForm):
     maladies = forms.ModelMultipleChoiceField(
         queryset=Maladie.objects.all(),
         required=False,
-        
     )
     class Meta:
         model  = Client
@@ -52,7 +51,6 @@ class ClientModelForm(forms.ModelForm):
         }
 
 
-
     def clean(self):
         cleaned_data = super().clean()
         phone=cleaned_data.get('phone')
@@ -69,12 +67,7 @@ class ClientModelForm(forms.ModelForm):
             if not phone_pattern.match(phone):
                 self.add_error('phone',_("Veuillez entrer un numéro de téléphone valide "))  
         return cleaned_data
-
     
-
-   
-
-
 class CoachModelForm(forms.ModelForm):
     
     class Meta:
@@ -162,8 +155,6 @@ class PersonnelModelForm(forms.ModelForm):
             'birth_date': forms.DateInput(attrs={'type': 'date'})
         }
 
-
-
     def __init__(self, ticket=None, *args, **kwargs):   
         super().__init__(*args, **kwargs)
         self.fields["last_name"].widget.attrs.update()
@@ -192,22 +183,10 @@ class PersonnelModelForm(forms.ModelForm):
 
     def clean(self):
         cleaned_data = super().clean()
-        last_name = cleaned_data.get('last_name')
-        first_name=cleaned_data.get('first_name')
         phone=cleaned_data.get('phone')
-        blood=cleaned_data.get('blood')
-        nationality=cleaned_data.get("nationality")
-      
-        # if not last_name :
-        #     self.add_error('last_name',_("Veuillez renseigner ce champ "))
-        # if not first_name :
-        #     self.add_error('first_name',_("Veuillez renseigner ce champ "))
+  
         if not phone :
             self.add_error('phone',_("Veuillez renseigner ce champ "))
-        # if not blood :
-        #     self.add_error('blood',_("Veuillez renseigner ce champ "))
-        # if not nationality :
-        #     self.add_error('nationality',_("Veuillez renseigner ce champ "))
         if phone:
             phone_pattern = re.compile(r'^(0)(5|6|7)[0-9]{8}$')
             if not phone_pattern.match(phone):

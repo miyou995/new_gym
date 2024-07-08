@@ -89,6 +89,15 @@ class ActiviteModelForm(forms.ModelForm):
             'invalid': 'Custom error message for field1 is invalid.',
           
         }
+        self.fields['salle'].error_messages = {
+            'required': 'Veuillez renseigner ce champ.',
+            'invalid': 'Custom error message for field1 is invalid.',
+          
+        }
+        self.fields['color'].widget = forms.TextInput(attrs={'type': 'color'})
+
+        
+
 
 class DoorModelForm(forms.ModelForm):
     

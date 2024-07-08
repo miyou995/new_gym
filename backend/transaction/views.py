@@ -1,13 +1,9 @@
-
-
-
-
 from typing import Dict
 from django.shortcuts import render
 from django.urls import reverse
 from django.views.generic.base import TemplateView
 from django.views.generic import (CreateView, DeleteView,DetailView,
-                                  ListView, UpdateView)
+                                 ListView, UpdateView)
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.contrib import messages
@@ -23,7 +19,6 @@ from .filters import ProductFilter,PersonnelFilter,CoachFilter
 
 
 # tables views
-
 class TransactionView(SingleTableMixin, FilterView):
     table_class = PiaementHTMxTable
     filterset_class = ProductFilter
@@ -35,8 +30,7 @@ class TransactionView(SingleTableMixin, FilterView):
         context["target"]       = "#table1"
         context["render_filter"]=ProductFilter(self.request.GET)
         return context
-    
-    
+
     def get_template_names(self):
         if self.request.htmx:
             template_name = "tables/transactions_table_partial.html"
@@ -84,8 +78,7 @@ class RemunerationPersonnelTable(SingleTableMixin, FilterView):
 class Chiffre_affaireView(TemplateView):
     template_name = "chiffre_affaire.html"
 
-
-# paiement transactions
+# paiement transactions------------------------------------------------------------------------------------------
 def paiement(request):
     context = {}
     template_name = "snippets/_transaction_paiement_form.html"
@@ -116,7 +109,6 @@ def paiement(request):
     context["form"] = form
     return render(request, template_name=template_name, context=context)
   
-
 class PaiementUpdateView(UpdateView):
     model = Paiement 
     template_name = "snippets/_transaction_paiement_form.html"
@@ -147,7 +139,6 @@ class PaiementUpdateView(UpdateView):
         messages.success(self.request, form.errors)
         return self.render_to_response(self.get_context_data(form=form))   
 
-
 class PaiementDeleteView(DeleteView):
     model = Paiement
     template_name = "snippets/delete_modal.html"
@@ -164,11 +155,9 @@ class PaiementDeleteView(DeleteView):
         self.object.delete()
         messages.success(self.request, "Paiement Supprimer avec Succés",extra_tags="toastr")
         return HttpResponseRedirect(success_url)
+ 
 
-
-
-# remuneration personnel 
-
+#remuneration personnel ------------------------------------------------------------------------------------------
 def Remuneration_Personnel(request):
     context={} 
     template_name="snippets/_remu_personnel_form.html"
@@ -224,13 +213,11 @@ class RemuPersonnelUpdateView(UpdateView):
         messages.success(self.request, form.errors)
         return self.render_to_response(self.get_context_data(form=form))   
 
-
 class RemuPersonnelDeleteView(DeleteView):
     model =Remuneration
     template_name="snippets/delete_modal.html"
     success_url=reverse_lazy("transactions:RemunerationPersonnelTable_name")
  
-
     def get_context_data(self,**kwargs):
         context=super().get_context_data(**kwargs)
         context["title"]= f"Personnel"
@@ -242,8 +229,7 @@ class RemuPersonnelDeleteView(DeleteView):
         messages.success(self.request, "Remuniration Personnel Supprimer avec Succés",extra_tags="toastr")
         return HttpResponseRedirect(success_url)
 
-
-
+#remuneration Coach ------------------------------------------------------------------------------------------
 def Remuneration_Coach(request):
     context={}
     template_name="snippets/_remu_Coach_form.html"
@@ -319,7 +305,7 @@ class RemCoachDeleteView(DeleteView):
         messages.success(self.request, "Remuniration Coach Supprimer avec Succés",extra_tags="toastr")
         return HttpResponseRedirect(success_url)
 
-
+# Auter Transaction------------------------------------------------------------------------------------------
 def Autre_Transaction(request):
     context={}
     template_name="snippets/_autre_Transaction_form.html"
@@ -349,8 +335,6 @@ def Autre_Transaction(request):
             return render(request,template_name="snippets/_autre_Transaction_form.html",context=context)
     context["form"]=form
     return render(request,template_name=template_name,context=context)
-
-
 
 class Autre_TransactionUpdateView(UpdateView):
     model=Autre
