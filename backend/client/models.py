@@ -423,7 +423,7 @@ class Coach(models.Model):
     # salle_sport     = models.ManyToManyField("Salle", verbose_name="salle de sport")
     # maladies        = models.ManyToManyField(Maladie)
     heures_done     = models.IntegerField( blank=True, null=True)
-    pay_per_hour    = models.IntegerField( blank=True, null=True, default=1)
+    pay_per_hour    = models.IntegerField( blank=True, null=True, default=1,verbose_name='Salaire par heure')
     created      = models.DateTimeField(verbose_name='Date de Création',  auto_now_add=True)
 
     updated      = models.DateTimeField(verbose_name='Date de dernière mise à jour',  auto_now=True)
@@ -436,7 +436,7 @@ class Coach(models.Model):
         return self.heures_done * self.pay_per_hour
 
     def get_view_url(self):
-        return reverse("client:coach_detail", kwargs={"pk": self.pk})
+        return reverse("client:CoachDetail", kwargs={"pk": self.pk})
     
     def get_edit_url(self):
         return reverse('client:coach_update', kwargs={'pk': str(self.id)})

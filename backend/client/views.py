@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.http import HttpResponse,HttpResponseRedirect
 import json
 from django.urls import reverse_lazy
-from transaction.models import Paiement
+from transaction.models import Paiement,RemunerationProf
 
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
@@ -14,11 +14,13 @@ from django_tables2 import SingleTableMixin
 from django_filters.views import FilterView
 from .models import Client,Coach,Personnel
 from .filters import ClientFilter,CoachFilter,PersonnelFilter
-from .tables import ClientHTMxTable,CoachHTMxTable,PersonnelHTMxTable,AbonnementClientHTMxTable,PaiementHTMxTable
+from .tables import (ClientHTMxTable,CoachHTMxTable,PersonnelHTMxTable,AbonnementClientHTMxTable,PaiementHTMxTable,
+                     CoachDetailHTMxTable,VirementsHTMxTable)
 from abonnement.models import AbonnementClient
+from creneau.models import Creneau
 
 
-#  tables views
+#client-------------------------------------------------------------------------------------------------------------
 class ClientView(SingleTableMixin, FilterView):
     table_class = ClientHTMxTable
     filterset_class = ClientFilter
@@ -35,41 +37,6 @@ class ClientView(SingleTableMixin, FilterView):
             template_name = "client.html" 
         return template_name 
     
-
-class CoachsView(SingleTableMixin,FilterView):
-    table_class=CoachHTMxTable
-    filterset_class = CoachFilter
-    paginate_by = 15
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
-    
-    def get_template_names(self):
-        
-        if self.request.htmx:
-            template_name = "tables/product_table_partial.html"
-        else:
-            template_name = "coach.html" 
-        return template_name 
-
-
-class PersonnelsView(SingleTableMixin,FilterView):
-    table_class=PersonnelHTMxTable
-    filterset_class = PersonnelFilter
-    paginate_by = 15
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
-    
-    def get_template_names(self):
-        
-        if self.request.htmx:
-            template_name = "tables/product_table_partial.html"
-        else:
-            template_name = "personnels.html" 
-        return template_name 
-
-
 def ClientCreateView(request):
     context = {}
     template_name = "snippets/_client_form.html"
@@ -97,7 +64,6 @@ def ClientCreateView(request):
             return render(request, template_name="snippets/_client_form.html", context=context)
     context["form"] = form
     return render(request, template_name=template_name, context=context)
-
 
 class ClientUpdateView(UpdateView):
     model = Client
@@ -152,9 +118,23 @@ class ClientDeleteView(DeleteView):
         self.object.delete()
         messages.success(self.request,"Client Supprimier avec Succés",extra_tags="toastr")
         return HttpResponseRedirect(success_url)
+       
+#Coach-------------------------------------------------------------------------------------------------------------
+class CoachsView(SingleTableMixin,FilterView):
+    table_class=CoachHTMxTable
+    filterset_class = CoachFilter
+    paginate_by = 15
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
     
-
-
+    def get_template_names(self):
+        
+        if self.request.htmx:
+            template_name = "tables/product_table_partial.html"
+        else:
+            template_name = "coach.html" 
+        return template_name 
 
 def CoachCreateView(request):
     context={}
@@ -184,7 +164,6 @@ def CoachCreateView(request):
     context["form"] = form
     return render(request, template_name=template_name, context=context)
     
-
 
 class CoachUpdateView(UpdateView):
     model = Coach
@@ -238,6 +217,23 @@ class CoachDeleteView(DeleteView):
         messages.success(self.request,"Coach Supprimier avec Succés",extra_tags="toastr")
         return HttpResponseRedirect(success_url)
       
+# Personnel------------------------------------------------------------------------------------------------------
+class PersonnelsView(SingleTableMixin,FilterView):
+    table_class=PersonnelHTMxTable
+    filterset_class = PersonnelFilter
+    paginate_by = 15
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+    
+    def get_template_names(self):
+        
+        if self.request.htmx:
+            template_name = "tables/product_table_partial.html"
+        else:
+            template_name = "personnels.html" 
+        return template_name 
+    
 
 def PersonnelCreateView(request):
     context={}
@@ -267,7 +263,6 @@ def PersonnelCreateView(request):
     context["form"] = form
     return render(request, template_name=template_name, context=context)
     
-
 class PersonnelUpdateView(UpdateView):
     model = Personnel
     template_name="snippets/_personnels_form.html"
@@ -350,25 +345,18 @@ class AbonnementClientDetail(SingleTableMixin, FilterView):
         return template_name
     
 
-    class PaiementClientDetail(SingleTableMixin, FilterView):
+class PaiementClientDetail(SingleTableMixin, FilterView):
         table_class =   PaiementHTMxTable
         paginate_by = 15
         model = Paiement
-
-        def get_context_data(self, **kwargs):
-            context = super(AbonnementClientDetail, self).get_context_data(**kwargs)
-            context["client"] = Client.objects.get(pk=self.kwargs['pk'])
-
-            return context
         
         def get_queryset(self):
-            queryset = AbonnementClient.objects.select_related('client', "type_abonnement").order_by("-created_date_time")
+            queryset = Paiement.objects.order_by("-date_creation")
             abonnement_client_pk = self.kwargs.get('pk')
             print("abonnement_client_pk  -------------", abonnement_client_pk)
             if abonnement_client_pk:
-                queryset = queryset.filter(client_id=abonnement_client_pk)
-
-            return queryset
+                queryset = queryset.filter(abonnement_client__client=abonnement_client_pk)
+                return queryset
         
         def get_template_names(self):
             if self.request.htmx:
@@ -376,6 +364,63 @@ class AbonnementClientDetail(SingleTableMixin, FilterView):
             else:
                 template_name = "snippets/client_detail.html"
             return template_name
+
+# coach detail ------------------------------------------------------------------------------------------
+
+class CoachDetail(SingleTableMixin, FilterView):
+    table_class =   CoachDetailHTMxTable
+    paginate_by = 15
+    model = Creneau
+
+    def get_context_data(self, **kwargs):
+        context = super(CoachDetail, self).get_context_data(**kwargs)
+        context["coach"] =  Coach.objects.get(pk=self.kwargs['pk'])
+
+        return context
+    
+    def get_queryset(self):
+         queryset = Creneau.objects.select_related('coach').order_by("-created")
+         coach_pk = self.kwargs.get('pk')
+         print("abonnement_client_pk  -------------", coach_pk)
+         if coach_pk:
+            queryset = queryset.filter(coach_id=coach_pk)
+
+         return queryset
+    
+    def get_template_names(self):
+        if self.request.htmx:
+            template_name = "tables/product_table_partial.html"
+        else:
+            template_name = "snippets/coach_detail.html"
+        return template_name
+    
+class VirementsDetail(SingleTableMixin, FilterView):
+    table_class =   VirementsHTMxTable
+    paginate_by = 15
+    model = RemunerationProf
+
+    # def get_context_data(self, **kwargs):
+    #     context = super(CoachDetail, self).get_context_data(**kwargs)
+    #     context["coach"] =  Coach.objects.get(pk=self.kwargs['pk'])
+
+    #     return context
+    
+    def get_queryset(self):
+         queryset = RemunerationProf.objects.order_by("-date_creation")
+         coach_pk = self.kwargs.get('pk')
+         print("coach_pk  -------------", coach_pk)
+         if coach_pk:
+            queryset = queryset.filter(coach_id=coach_pk)
+
+         return queryset
+    
+    def get_template_names(self):
+        if self.request.htmx:
+            template_name = "tables/product_table_partial.html"
+        else:
+            template_name = "snippets/coach_detail.html"
+        return template_name
+
 
 
 

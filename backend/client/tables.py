@@ -1,8 +1,9 @@
 import django_tables2 as tables
 from .models import Client,Coach,Personnel
 from abonnement.models import AbonnementClient
-from transaction.models import Paiement
+from transaction.models import Paiement,RemunerationProf
 from django.urls import reverse
+from creneau.models import Creneau
 
 
 class ClientHTMxTable(tables.Table):
@@ -33,7 +34,7 @@ class ClientHTMxTable(tables.Table):
 
 class CoachHTMxTable(tables.Table):
     # client = tables.Column(accessor="abonnement_client__client", verbose_name="Client", orderable=True ,linkify= lambda record: record.get_url())
-#     last_name = tables.Column(accessor="last_name", verbose_name="Nom", orderable=True ,linkify= lambda record: record.get_view_url())
+    last_name = tables.Column(accessor="last_name", verbose_name="Nom", orderable=True ,linkify= lambda record: record.get_view_url())
 
     action = tables.TemplateColumn(
             '''{% include 'buttons/action.html' with object=record modal_edit="true" %}''',
@@ -83,39 +84,72 @@ class PersonnelHTMxTable(tables.Table):
             "htmx_container": "#TablePersonnel",
         }
 
+# client details ------------------------------------------------------------------------------------------
 class AbonnementClientHTMxTable(tables.Table):
-    action = tables.TemplateColumn(
-            '''{% include 'buttons/action.html' with object=record modal_edit="true" %}''',
-            verbose_name='Actions',
-            orderable=False )
+    Séances = tables.Column(accessor="type_abonnement__seances_quantity", verbose_name="Séances", orderable=True )
+    prix    =tables.Column(accessor="type_abonnement__price", verbose_name="Prix", orderable=True )
+
 
     class Meta:
         fields  = (
                 'type_abonnement',
+                'Séances',
                 'start_date', 
                 'end_date',
-                'type_abonnement__prix',
+                'prix',
                 'reste',
-                'action',
         )
         model = AbonnementClient
         template_name = "tables/bootstrap_htmx.html"
 
 class PaiementHTMxTable(tables.Table):
-    action = tables.TemplateColumn(
+    
+    recu = tables.TemplateColumn(
             '''{% include 'buttons/action.html' with object=record modal_edit="true" %}''',
             verbose_name='Actions',
             orderable=False )
 
     class Meta:
         fields  = (
-                'type_abonnement',
-                'start_date', 
-                'end_date',
-                'type_abonnement__prix',
-                'reste',
-                'action',
+                'amount',
+                'date_creation', 
+                'abonnement_client',
+                'recu',
+         
         )
         model = Paiement
+        template_name = "tables/bootstrap_htmx.html"
+
+
+# coach details ------------------------------------------------------------------------------------------------
+
+class CoachDetailHTMxTable(tables.Table):
+#     Séances = tables.Column(accessor="type_abonnement__seances_quantity", verbose_name="Séances", orderable=True )
+#     prix    =tables.Column(accessor="type_abonnement__price", verbose_name="Prix", orderable=True )
+
+
+    class Meta:
+        fields  = (
+                'hour_start',
+                'hour_finish',
+                'day', 
+                'activity',
+                
+        )
+        model = Creneau
+        template_name = "tables/bootstrap_htmx.html"
+
+class VirementsHTMxTable(tables.Table):
+#     Séances = tables.Column(accessor="type_abonnement__seances_quantity", verbose_name="Séances", orderable=True )
+#     prix    =tables.Column(accessor="type_abonnement__price", verbose_name="Prix", orderable=True )
+
+
+    class Meta:
+        fields  = (
+               'amount',
+               'date_creation', 
+                
+        )
+        model = RemunerationProf
         template_name = "tables/bootstrap_htmx.html"
 
