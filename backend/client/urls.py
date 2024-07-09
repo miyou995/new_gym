@@ -3,7 +3,8 @@ from django.urls import path
 from .views import (ClientCreateView,ClientView,CoachsView,CoachCreateView,
                     PersonnelsView,PersonnelCreateView,AbonnementClientDetail,
                     ClientUpdateView,ClientDeleteView,CoachUpdateView,CoachDeleteView,
-                    PersonnelUpdateView,PersonnelDeleteView)
+                    PersonnelUpdateView,PersonnelDeleteView,PaiementClientDetail,
+                    VirementsDetail, CoachDetail)
 
 
 app_name= 'client'
@@ -29,9 +30,13 @@ urlpatterns = [
     
     
 
-    path('client/client_detail/<str:pk>',AbonnementClientDetail.as_view(),name='client_detail')
+    path('client/client_detail/<str:pk>',AbonnementClientDetail.as_view(),name='client_detail'),
+    path('client/PaiementClientDetail/<str:pk>',PaiementClientDetail.as_view(),name='PaiementClientDetail'),
 
- 
+
+
+    path('client/CoachDetail/<str:pk>',CoachDetail.as_view(),name='CoachDetail'),
+    path('client/VirementsDetail/<str:pk>',VirementsDetail.as_view(),name='VirementsDetail')
    
 
 ]

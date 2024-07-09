@@ -37,10 +37,10 @@
 														</div>
 														<!--end::Avatar-->
 														<!--begin::Name-->
-														<a href="#" class="fs-3 text-gray-800 text-hover-primary fw-bold mb-1">{{client.last_name}}  {{client.first_name}}</a>
+														<a href="#" class="fs-3 text-gray-800 text-hover-primary fw-bold mb-1">{{coach.last_name}}  {{coach.first_name}}</a>
 														<!--end::Name-->
 														<!--begin::Position-->
-														<div class="fs-5 fw-semibold text-muted mb-6">ID: {{client.id}}</div>
+														<div class="fs-5 fw-semibold text-muted mb-6">ID: {{coach.id}}</div>
 														<!--end::Position-->
 														<!--begin::Info-->
 													
@@ -60,7 +60,7 @@
 																data-bs-placement="right" 
 																data-bs-toggle="tooltip" 
 																hx-target="#kt_modal_content" 
-																hx-get="{% url 'client:client_update' client.pk %}"
+																hx-get="{% url 'client:coach_update' coach.pk %}"
 																hx-swap="innerHTML">
 															 Modification</a>
 														</span>
@@ -72,26 +72,26 @@
 														<div class="py-5 fs-6">
 													
 															<div class="fw-bold mt-5">Téléphone</div>
-															<div class="text-gray-600">{{client.phone}}</div>
+															<div class="text-gray-600">{{coach.phone}}</div>
 												
 															<div class="fw-bold mt-5">Email</div>
-															<div class="text-gray-600">{{client.email}}</div>
+															<div class="text-gray-600">{{coach.email}}</div>
 															
 													
 															<div class="fw-bold mt-5">Groupe sanguin</div>
-															<div class="text-gray-600">{{client.blood}}</div>
+															<div class="text-gray-600">{{coach.blood}}</div>
 													
 															<div class="fw-bold mt-5">Civilité</div>
-															<div class="text-gray-600">{{client.civility}}</div>
+															<div class="text-gray-600">{{coach.civility}}</div>
 													
 															<div class="fw-bold mt-5">Date de naissance</div>
-															<div class="text-gray-600">{{client.birth_date}}</div>
+															<div class="text-gray-600">{{coach.birth_date}}</div>
 															
-															<div class="fw-bold mt-5">Maladies</div>
-															<div class="text-gray-600">{{client.maladies}}</div>
+															<div class="fw-bold mt-5">Salaire par heure</div>
+															<div class="text-gray-600">{{coach.pay_per_hour}}</div>
 
 															<div class="fw-bold mt-5">Adresse</div>
-															<div class="text-gray-600">{{client.adress}}</div>
+															<div class="text-gray-600">{{coach.adress}}</div>
 														
 														</div>
 													</div>
@@ -108,31 +108,31 @@
 												<li class="nav-item mt-2" role="presentation">
 													<a  class="nav-link text-active-primary pb-4 active"
 														data-bs-toggle="tab"
-														href="#kt_user_view_Abonnements"
+														href="#kt_user_view_Creneaux"
 														aria-selected="false"
 														role="tab"
 														tabindex="-1"
-														hx-get="{% url 'client:client_detail' client.pk %}"
+														hx-get="{% url 'client:CoachDetail' coach.pk %}"
 														hx-swap="innerHTML"
 														hx-trigger="refresh_table from:body,click,revealed"
-														hx-target="#AbonnementClientTable"
-													>{% trans 'Abonnements' %}</a>
+														hx-target="#CreneauxTable"
+													>{% trans 'Creneaux' %}</a>
 												</li>
 											
 												<li class="nav-item mt-2" role="presentation">
 					
 														<a  class="nav-link text-active-primary pb-4"
 															data-bs-toggle="tab"
-															href="#kt_user_view_Paiements" 
+															href="#kt_user_view_Virements" 
 															aria-selected="false"
 															role="tab"
 															tabindex="-1"
-															hx-get="{% url 'client:PaiementClientDetail' client.pk %}" 
+															hx-get="{% url 'client:VirementsDetail' coach.pk %}" 
 															hx-swap="innerHTML"
 															hx-trigger="refresh_table from:body,click"
-															hx-target="#PaiementsTable"
+															hx-target="#VirementsTable"
 														>
-														{% trans 'Paiements' %}</a>
+														{% trans 'Virements' %}</a>
 												</li>
 												<li class="nav-item mt-2" role="presentation">
 													<a  class="nav-link text-active-primary pb-4 "
@@ -153,7 +153,7 @@
 											<div class="d-flex flex-column flex-lg-row">
 												<div class="flex-lg-row-fluid ">
 													<div class="tab-content" id="myTabContent">
-														<div class="tab-pane fade active show" id="kt_user_view_Abonnements" role="tabpanel">
+														<div class="tab-pane fade active show" id="kt_user_view_Creneaux" role="tabpanel">
 															<div id="kt_app_content_container" class="app-container container-xxl">
 																<div class="card ">
 																	<div class="card-header border-0 pt-6">
@@ -179,19 +179,19 @@
 																	   </form>
 																
 																   </div>
-																		<div class="card-body pt-0 table-responsive" id="AbonnementClientTable">
+																		<div class="card-body pt-0 table-responsive" id="CreneauxTable">
 																			
 																		</div>
 																</div>
 															</div>
 														</div>							
-														<div class="tab-pane fade" id="kt_user_view_Paiements" role="tabpanel">
+														<div class="tab-pane fade" id="kt_user_view_Virements" role="tabpanel">
 															<div id="kt_app_content_container" class="app-container container-xxl">
 																<div class="card ">
 																	<div class="card-header border-0 pt-6">
 																		<form  
 																		{% comment %} hx-get="{% url 'inventory:StoreProductTableView' store.pk %}" {% endcomment %}
-																		hx-target="#PaiementsTable" 
+																		hx-target="#VirementsTable" 
 																		hx-swap="innerHTML" 
 																		hx-trigger="keyup delay:900ms"
 																		hx-push-url='true'
@@ -211,7 +211,7 @@
 																	   </form>
 																
 																   </div>
-																<div class="card-body pt-0 table-responsive" id="PaiementsTable">
+																<div class="card-body pt-0 table-responsive" id="VirementsTable">
 																	{% comment %} {% render_table table %} {% endcomment %}
 																</div>
 														</div>
