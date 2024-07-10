@@ -103,6 +103,60 @@
 										</div>
 								
 										<div class="flex-lg-row-fluid ms-lg-15">
+											<div class="card-header align-items-center py-5 gap-2 gap-md-1">
+												<div class="card-title">
+													
+													<div class="card-toolbar flex-row-fluid justify-content-end gap-5">
+														<button
+															type="button"
+															class="btn btn-success btn-sm"
+															hx-get="{% url 'client:enter_coach' coach.pk %}"
+														>  
+														<i class="ki-exit-up fs-2">Entré</i>
+														<img src="{% static 'images/enter.png' %}" style="width: 25px; height: 25px; margin-right: 5px;">
+														</button>
+						
+														<button
+															type="button"
+															class="btn btn btn-danger btn-sm"
+															hx-get="{% url 'transactions:Remuneration_Personnel_name' %}"
+														>
+															<i class="ki-exit-up fs-2">Sortié</i>
+															<img src="{% static 'images/exit1.png' %}" style="width: 25px; height: 25px; margin-right: 5px;">
+														</button>
+						
+
+														
+														<button
+															type="button"
+															class="btn btn-primary btn-sm"
+															data-bs-toggle="modal"
+															data-bs-target="#kt_modal"
+															hx-get="{% url 'transactions:Remuneration_Coach_name' %}"
+															hx-target="#kt_modal_content"
+															hx-trigger="click"
+															data-bs-toggle="tooltip" 
+															hx-swap="innerHTML"
+														>
+														<i class="ki-exit-up fs-2"></i>Ajouter Virement
+														</button>
+														
+														<button
+															type="button"
+															class="btn btn-info btn-sm"
+															data-bs-toggle="modal"
+															data-bs-target="#kt_modal"
+															hx-get="{% url 'transactions:Autre_Transaction_name' %}"
+															hx-target="#kt_modal_content"
+															hx-trigger="click"
+															data-bs-toggle="tooltip" 
+															hx-swap="innerHTML"
+														>
+															<i class="ki-exit-up fs-2"></i>Autre Transaction
+														</button>
+													</div>
+												</div>
+											</div>
 					
 											<ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bold">
 												<li class="nav-item mt-2" role="presentation">
@@ -127,7 +181,7 @@
 															aria-selected="false"
 															role="tab"
 															tabindex="-1"
-															hx-get="{% url 'client:VirementsDetail' coach.pk %}" 
+															hx-get="{% url 'client:VirementsCoachDetail' coach.pk %}" 
 															hx-swap="innerHTML"
 															hx-trigger="refresh_table from:body,click"
 															hx-target="#VirementsTable"
@@ -137,14 +191,14 @@
 												<li class="nav-item mt-2" role="presentation">
 													<a  class="nav-link text-active-primary pb-4 "
 														data-bs-toggle="tab"
-														href="#kt_user_view_orders"
+														href="#kt_user_view_Presence"
 														aria-selected="false"
 														role="tab"
 														tabindex="-1"
-														{% comment %} hx-get="{% url 'inventory:store_detail' store.pk %}" {% endcomment %}
+														hx-get="{% url 'client:PresenceCoachDetail' coach.pk %}"
 														hx-swap="innerHTML"
 														hx-trigger="refresh_table from:body,click"
-														hx-target="#StoreOrderTable"
+														hx-target="#PresenceTable"
 													>{% trans 'Seances / Presences' %}</a>
 												</li>
 										
@@ -153,69 +207,74 @@
 											<div class="d-flex flex-column flex-lg-row">
 												<div class="flex-lg-row-fluid ">
 													<div class="tab-content" id="myTabContent">
+														<!-- Tab Pane 1 -->
 														<div class="tab-pane fade active show" id="kt_user_view_Creneaux" role="tabpanel">
 															<div id="kt_app_content_container" class="app-container container-xxl">
-																<div class="card ">
+																<div class="card">
 																	<div class="card-header border-0 pt-6">
-																		<form  
-																		hx-get="{{request.path}}"  
-																		hx-target="#StoreOrderTable" 
-																		hx-swap="innerHTML" 
-																		hx-trigger="keyup delay:900ms"
-																		hx-push-url='true'
-																		>
+																		<form hx-get="{{request.path}}" hx-target="#CreneauxTable" hx-swap="innerHTML" hx-trigger="keyup delay:900ms" hx-push-url="true">
 																			<div class="card-title">
 																				<div class="d-flex align-items-center position-relative my-1">
-																					<!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
 																					<span class="svg-icon svg-icon-1 position-absolute ms-4">
-																						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-																							<rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor" />
-																							<path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor" />
-																						</svg>
+																						<!-- SVG Icon -->
 																					</span>
-																					<input type="text" name="search"  data-kt-ecommerce-order-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Recherche...." />
+																					<input type="text" name="search" data-kt-ecommerce-order-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Recherche...." />
 																				</div>
 																			</div>
-																	   </form>
-																
-																   </div>
-																		<div class="card-body pt-0 table-responsive" id="CreneauxTable">
-																			
-																		</div>
+																		</form>
+																	</div>
+																	<div class="card-body pt-0 table-responsive" id="CreneauxTable">
+																		<!-- Creneaux Table Content -->
+																	</div>
 																</div>
 															</div>
-														</div>							
+														</div>
+														<!-- Tab Pane 2 -->
 														<div class="tab-pane fade" id="kt_user_view_Virements" role="tabpanel">
 															<div id="kt_app_content_container" class="app-container container-xxl">
-																<div class="card ">
+																<div class="card">
 																	<div class="card-header border-0 pt-6">
-																		<form  
-																		{% comment %} hx-get="{% url 'inventory:StoreProductTableView' store.pk %}" {% endcomment %}
-																		hx-target="#VirementsTable" 
-																		hx-swap="innerHTML" 
-																		hx-trigger="keyup delay:900ms"
-																		hx-push-url='true'
-																		>
+																		<form hx-get="{{request.path}}" hx-target="#VirementsTable" hx-swap="innerHTML" hx-trigger="keyup delay:900ms" hx-push-url="true">
 																			<div class="card-title">
 																				<div class="d-flex align-items-center position-relative my-1">
-																					<!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
 																					<span class="svg-icon svg-icon-1 position-absolute ms-4">
-																						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-																							<rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor" />
-																							<path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor" />
-																						</svg>
+																						<!-- SVG Icon -->
 																					</span>
-																					<input type="text" name="search"  data-kt-ecommerce-order-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Recherche...." />
+																					<input type="text" name="search" data-kt-ecommerce-order-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Recherche...." />
 																				</div>
 																			</div>
-																	   </form>
-																
-																   </div>
-																<div class="card-body pt-0 table-responsive" id="VirementsTable">
-																	{% comment %} {% render_table table %} {% endcomment %}
+																		</form>
+																	</div>
+																	<div class="card-body pt-0 table-responsive" id="VirementsTable">
+																		<!-- Virements Table Content -->
+																	</div>
 																</div>
+															</div>
+														</div>
+														<!-- Tab Pane 3 -->
+														<div class="tab-pane fade" id="kt_user_view_Presence" role="tabpanel">
+															<div id="kt_app_content_container" class="app-container container-xxl">
+																<div class="card">
+																	<div class="card-header border-0 pt-6">
+																		<form hx-get="{{request.path}}" hx-target="#PresenceTable" hx-swap="innerHTML" hx-trigger="keyup delay:900ms" hx-push-url="true">
+																			<div class="card-title">
+																				<div class="d-flex align-items-center position-relative my-1">
+																					<span class="svg-icon svg-icon-1 position-absolute ms-4">
+																						<!-- SVG Icon -->
+																					</span>
+																					<input type="text" name="search" data-kt-ecommerce-order-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Recherche...." />
+																				</div>
+																			</div>
+																		</form>
+																	</div>
+																	<div class="card-body pt-0 table-responsive" id="PresenceTable">
+																		<!-- Presence Table Content -->
+																	</div>
+																</div>
+															</div>
 														</div>
 													</div>
+													
 												</div>
 											</div>
 									

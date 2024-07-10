@@ -4,6 +4,7 @@ from abonnement.models import AbonnementClient
 from transaction.models import Paiement,RemunerationProf
 from django.urls import reverse
 from creneau.models import Creneau
+from presence.models import PresenceCoach
 
 
 class ClientHTMxTable(tables.Table):
@@ -153,3 +154,15 @@ class VirementsHTMxTable(tables.Table):
         model = RemunerationProf
         template_name = "tables/bootstrap_htmx.html"
 
+
+class PresenceHTMxTable(tables.Table):
+
+    class Meta:
+        fields  = (
+               'hour_entree',
+               'hour_sortie',
+               'date' 
+                
+        )
+        model = PresenceCoach
+        template_name = "tables/bootstrap_htmx.html"
