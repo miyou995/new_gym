@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import  Presence
+from .models import  Presence,PresenceCoach
 from client.models import Client
 from import_export.admin import ImportExportModelAdmin
 from import_export import fields, resources
@@ -12,3 +12,7 @@ class PresencenAdmin(ImportExportModelAdmin):
         attribute='client',
         widget=ForeignKeyWidget(Client, 'id'))
 
+
+
+
+admin.site.register(PresenceCoach)

@@ -1,26 +1,29 @@
 from django.shortcuts import render
 from django.views.generic.base import TemplateView
 from django.views.generic import (TemplateView,UpdateView,DeleteView)
+from django.shortcuts import get_object_or_404
+from presence.models import PresenceCoach
 from .forms import ClientModelForm,CoachModelForm, PersonnelModelForm
 from django.contrib import messages
 from django.http import HttpResponse,HttpResponseRedirect
 import json
 from django.urls import reverse_lazy
 from transaction.models import Paiement,RemunerationProf
-
+from datetime import datetime
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
 from django_tables2 import SingleTableMixin
 from django_filters.views import FilterView
 from .models import Client,Coach,Personnel
+
 from .filters import ClientFilter,CoachFilter,PersonnelFilter
 from .tables import (ClientHTMxTable,CoachHTMxTable,PersonnelHTMxTable,AbonnementClientHTMxTable,PaiementHTMxTable,
-                     CoachDetailHTMxTable,VirementsHTMxTable)
+                     CoachDetailHTMxTable,VirementsHTMxTable,PresenceHTMxTable)
 from abonnement.models import AbonnementClient
 from creneau.models import Creneau
 
 
-#client-------------------------------------------------------------------------------------------------------------
+#-------------------------------------------------client------------------------------------------------------------
 class ClientView(SingleTableMixin, FilterView):
     table_class = ClientHTMxTable
     filterset_class = ClientFilter
@@ -119,7 +122,7 @@ class ClientDeleteView(DeleteView):
         messages.success(self.request,"Client Supprimier avec Succés",extra_tags="toastr")
         return HttpResponseRedirect(success_url)
        
-#Coach-------------------------------------------------------------------------------------------------------------
+#-----------------------------------------------Coach--------------------------------------------------------------
 class CoachsView(SingleTableMixin,FilterView):
     table_class=CoachHTMxTable
     filterset_class = CoachFilter
@@ -217,7 +220,7 @@ class CoachDeleteView(DeleteView):
         messages.success(self.request,"Coach Supprimier avec Succés",extra_tags="toastr")
         return HttpResponseRedirect(success_url)
       
-# Personnel------------------------------------------------------------------------------------------------------
+# ---------------------------------------------Personnel---------------------------------------------------------
 class PersonnelsView(SingleTableMixin,FilterView):
     table_class=PersonnelHTMxTable
     filterset_class = PersonnelFilter
@@ -316,7 +319,7 @@ class PersonnelDeleteView(DeleteView):
     
 
 
-# client detail ------------------------------------------------------------------------------------------
+# ----------------------------------------------client detail-----------------------------------------
 class AbonnementClientDetail(SingleTableMixin, FilterView):
     table_class =   AbonnementClientHTMxTable
     paginate_by = 15
@@ -365,8 +368,7 @@ class PaiementClientDetail(SingleTableMixin, FilterView):
                 template_name = "snippets/client_detail.html"
             return template_name
 
-# coach detail ------------------------------------------------------------------------------------------
-
+# ----------------------------------------coach detail --------------------------------------------------
 class CoachDetail(SingleTableMixin, FilterView):
     table_class =   CoachDetailHTMxTable
     paginate_by = 15
@@ -381,7 +383,7 @@ class CoachDetail(SingleTableMixin, FilterView):
     def get_queryset(self):
          queryset = Creneau.objects.select_related('coach').order_by("-created")
          coach_pk = self.kwargs.get('pk')
-         print("abonnement_client_pk  -------------", coach_pk)
+         print("coach_pk -------------", coach_pk)
          if coach_pk:
             queryset = queryset.filter(coach_id=coach_pk)
 
@@ -394,21 +396,15 @@ class CoachDetail(SingleTableMixin, FilterView):
             template_name = "snippets/coach_detail.html"
         return template_name
     
-class VirementsDetail(SingleTableMixin, FilterView):
+class VirementsCoachDetail(SingleTableMixin, FilterView):
     table_class =   VirementsHTMxTable
     paginate_by = 15
     model = RemunerationProf
-
-    # def get_context_data(self, **kwargs):
-    #     context = super(CoachDetail, self).get_context_data(**kwargs)
-    #     context["coach"] =  Coach.objects.get(pk=self.kwargs['pk'])
-
-    #     return context
     
     def get_queryset(self):
          queryset = RemunerationProf.objects.order_by("-date_creation")
          coach_pk = self.kwargs.get('pk')
-         print("coach_pk  -------------", coach_pk)
+         print("coach_pk virements  -------------", coach_pk)
          if coach_pk:
             queryset = queryset.filter(coach_id=coach_pk)
 
@@ -421,7 +417,52 @@ class VirementsDetail(SingleTableMixin, FilterView):
             template_name = "snippets/coach_detail.html"
         return template_name
 
+class PresenceCoachDetail(SingleTableMixin, FilterView):
+    table_class =   PresenceHTMxTable
+    paginate_by = 15
+    model = PresenceCoach
+    
+    def get_queryset(self):
+         queryset = PresenceCoach.objects.order_by("-date")
+         coach_pk = self.kwargs.get('pk')
+         print("coach_pk presences -------------", coach_pk)
+         if coach_pk:
+            queryset = queryset.filter(coach_id=coach_pk)
+            print("quey-----------------",queryset)
+         return queryset
+    
+    def get_template_names(self):
+        if self.request.htmx:
+            template_name = "tables/product_table_partial.html"
+        else:
+            template_name = "snippets/coach_detail.html"
+        return template_name
 
+def enter_coach(request, pk):
+    coach_pk = get_object_or_404(Coach, pk=pk)
+    print("coach_pk------------------------", coach_pk)
+    pending_presence =PresenceCoach.objects.filter(coach=coach_pk, hour_sortie__isnull=True)
+    # in_salle = pending_presence.exists()
+    print("in_salle------------------------", pending_presence)
+    
+    if  pending_presence :
+        # coach_presence = not_in_salle.first()
+        pending_presence = PresenceCoach(
+                coach=coach_pk,
+                is_in_salle = True,
+                hour_entree = datetime.now().time()
+                )
+    else:
+            # pending_presence=PresenceCoach.objects.filter(is_in_salle=True)
+            pending_presence = PresenceCoach(
+                coach=coach_pk,
+                is_in_salle=False,
+                hour_sortie=datetime.now().time()
+            )
+    
+    pending_presence.save()
 
+    messages.success(request, "Entrée Coach Enregistrée", extra_tags="toastr")
+    return HttpResponse(status=204)
 
 

@@ -90,10 +90,14 @@ class PresenceCoach(models.Model):
     coach      = models.ForeignKey('client.Coach', on_delete=models.CASCADE,related_name='presencesCoach', null=True, blank=True)
     date        = models.DateField(auto_now_add=True)
     # creneau     = models.ForeignKey(Creneau, on_delete=models.CASCADE,related_name='presencesCoach', null=True, blank=True)
-    hour_entree = models.TimeField()
+    hour_entree = models.TimeField(auto_now_add=False,null=True, blank=True)
     hour_sortie = models.TimeField(auto_now_add=False, null=True, blank=True)
-    is_in_salle = models.BooleanField(default=False)
+    is_in_salle = models.BooleanField(default=False) #TODO remove this
     history = HistoricalRecords()
+
+
+
+
 
 
 def presence_coach_create_signal(sender, instance, created,**kwargs):
