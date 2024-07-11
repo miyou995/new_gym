@@ -15,6 +15,7 @@ from django.db import transaction
 from django.utils import timezone
 from .tasks import register_user
 from django.utils.translation import gettext as _
+from presence.models import PresenceCoach
 
 
 from io import BytesIO
@@ -429,8 +430,11 @@ class Coach(models.Model):
     updated      = models.DateTimeField(verbose_name='Date de dernière mise à jour',  auto_now=True)
     objects = models.Manager()
     custom_manager = PresenceManager()
+
+    
     def __str__(self):
         return self.last_name
+    
 
     def get_salaire(self):
         return self.heures_done * self.pay_per_hour
@@ -443,6 +447,64 @@ class Coach(models.Model):
 
     def get_delete_url(self):
         return reverse('client:coach_delete', kwargs={'pk': str(self.id)})
+
+
+    def enter_sotrie_coach(self):
+        pending_presence = PresenceCoach.objects.filter(coach=self, hour_sortie__isnull=True)
+        print("in_salle ------------------------", pending_presence)
+        
+        if not pending_presence:
+            pending_presence = PresenceCoach.objects.get_or_create(
+                coach=self,
+                hour_entree=timezone.now().time()
+            )
+        else:
+            pending_presence = pending_presence.first()
+            pending_presence.hour_sortie = timezone.now().time()
+        
+            pending_presence.save()   
+            
+        context = {'pending_presence': pending_presence}
+        print("context*******************", context)
+        # print('hour_sortie --------------', pending_presence.hour_sortie)
+        return self
+    
+    # def enter(self):
+    #     pending_presence = self.get_pending_presence()
+    #     print("in_salle ------------------------", pending_presence)
+        
+    #     if  pending_presence:
+    #         pending_presence = PresenceCoach.objects.get_or_create(
+    #             coach=self,
+    #             hour_entree=timezone.now().time()
+    #         )
+    #     else:
+    #         pending_presence.hour_sortie = timezone.now().time()
+        
+    #     context = {'pending_presence': pending_presence}
+    #     print("context*******************", context)
+    #     # print('hour_sortie --------------', pending_presence.hour_sortie)
+    #     return self
+
+    # def sortie(self):
+    #     pending_presence = self.get_pending_presence()
+    #     print("in_salle ------------------------", pending_presence)
+    #     if  pending_presence:
+    #         pending_presence = pending_presence.first()
+    #         pending_presence.hour_sortie = timezone.now().time()
+    #         pending_presence.save()  
+
+    #     context = {'pending_presence': pending_presence}
+    #     print("context*******************", context)
+    #     # print('hour_sortie --------------', pending_presence.hour_sortie)
+    #     return self 
+
+    def get_pending_presence(self):
+        return PresenceCoach.objects.filter(coach=self, hour_sortie__isnull=True)
+        
+
+
+
 
 
 
