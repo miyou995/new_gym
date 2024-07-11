@@ -7,6 +7,8 @@ from .forms import ClientModelForm,CoachModelForm, PersonnelModelForm
 from django.contrib import messages
 from django.http import HttpResponse,HttpResponseRedirect
 import json
+from django.utils import timezone
+
 from django.urls import reverse_lazy
 from transaction.models import Paiement,RemunerationProf
 from datetime import datetime
@@ -437,32 +439,55 @@ class PresenceCoachDetail(SingleTableMixin, FilterView):
         else:
             template_name = "snippets/coach_detail.html"
         return template_name
+    
 
-def enter_coach(request, pk):
+def presence_coach(request, pk):
+    context={}
     coach_pk = get_object_or_404(Coach, pk=pk)
-    print("coach_pk------------------------", coach_pk)
-    pending_presence =PresenceCoach.objects.filter(coach=coach_pk, hour_sortie__isnull=True)
-    # in_salle = pending_presence.exists()
-    print("in_salle------------------------", pending_presence)
+    print("coach_pk enter ------------------------", coach_pk)
+    in_salle=coach_pk.enter_sotrie_coach()
+    print("is_salle from view*****************************",in_salle)
+    presnce =PresenceCoach.objects.filter(coach=in_salle).first()
     
-    if  pending_presence :
-        # coach_presence = not_in_salle.first()
-        pending_presence = PresenceCoach(
-                coach=coach_pk,
-                is_in_salle = True,
-                hour_entree = datetime.now().time()
-                )
-    else:
-            # pending_presence=PresenceCoach.objects.filter(is_in_salle=True)
-            pending_presence = PresenceCoach(
-                coach=coach_pk,
-                is_in_salle=False,
-                hour_sortie=datetime.now().time()
-            )
-    
-    pending_presence.save()
-
-    messages.success(request, "Entrée Coach Enregistrée", extra_tags="toastr")
+    print('presnece view///////////////////////////',presnce)
+    context["presence"]=presnce
+    if in_salle :
+        messages.success(request, "Entrée Coach Enregistrée", extra_tags="toastr")
+    else :
+        messages.error(request, "Coach ", extra_tags="toastr")
     return HttpResponse(status=204)
+
+
+# def enter_coach(request,pk):
+#     context={}
+#     coach_pk = get_object_or_404(Coach, pk=pk)
+#     print("coach_pk enter ------------------------", coach_pk)
+#     in_salle=coach_pk.enter()
+#     if in_salle :
+#          messages.success(request, "Entrée Coach Enregistrée", extra_tags="toastr")
+#     else :
+#         message = _("not canceled.")
+#         messages.success(request, str(message), extra_tags="toastr")
+#     context["presence"]=in_salle
+#     return HttpResponse(status=204)
+
+# def sortie_coach(request,pk):
+#     context={}
+#     coach_pk = get_object_or_404(Coach, pk=pk)
+#     print("coach_pk enter ------------------------", coach_pk)
+#     in_salle=coach_pk.enter()
+#     if in_salle :
+#          messages.success(request, "Entrée Coach Enregistrée", extra_tags="toastr")
+#     else :
+#         message = _("not canceled.")
+#         messages.success(request, str(message), extra_tags="toastr")
+
+#     context["presence"]=in_salle
+#     return HttpResponse(status=204)
+
+    
+
+    
+
 
 

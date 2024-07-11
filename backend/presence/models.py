@@ -98,8 +98,6 @@ class PresenceCoach(models.Model):
 
 
 
-
-
 def presence_coach_create_signal(sender, instance, created,**kwargs):
     FTM = '%H:%M:%S'
     if created :
