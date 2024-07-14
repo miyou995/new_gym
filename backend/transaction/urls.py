@@ -13,9 +13,11 @@ urlpatterns = [
 
         path('transaction/',TransactionView.as_view(), name='transaction_name'),
         path('chiffre_affaire/',Chiffre_affaireView.as_view(), name='chiffre_affaire_name'),
-        path('transaction/paiement_name',paiement, name='paiement_name'),
+        path('transaction/paiement_name',paiement.as_view(), name='paiement_name'),
+        path('transaction/paiement_name/<str:pk>',paiement.as_view(), name='client_paiement_name'),
         path('transaction/Remuneration_Personnel',Remuneration_Personnel, name='Remuneration_Personnel_name'), 
-        path('transaction/Remuneration_Coach',Remuneration_Coach, name='Remuneration_Coach_name'), 
+        path('transaction/Remuneration_Coach',Remuneration_Coach.as_view(), name='Remuneration_Coach_name'),
+        path('transaction/Remuneration_Coach/<int:pk>',Remuneration_Coach.as_view(), name='coach_Remuneration_Coach'),  
         path('transaction/Autre_Transaction',Autre_Transaction, name='Autre_Transaction_name'), 
 
         # updateView

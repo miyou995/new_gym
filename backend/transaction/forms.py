@@ -29,6 +29,21 @@ class PaiementModelForm(forms.ModelForm):
       
     def __init__(self, ticket=None, *args, **kwargs):   
         super().__init__(*args, **kwargs)
+
+        initial= kwargs.get('initial',{})
+        client_pk=initial.get('client_pk')
+        if client_pk :
+            try :
+                initial['client']=Client.objects.get(pk=client_pk)
+                # initial['abonnement_client']=AbonnementClient.objects.filter(client=client_pk)
+            except Client.DoesNotExist:
+                pass
+        kwargs['initial']=initial
+        super(PaiementModelForm,self).__init__(*args,**kwargs)
+        
+
+
+
         self.fields["abonnement_client"].widget.attrs.update({'id' : 'abcSelectId' })
         self.fields["client"].widget.attrs.update({
             "hx-get": reverse('abonnement:abc_htmx_view'),
@@ -45,11 +60,10 @@ class PaiementModelForm(forms.ModelForm):
             self.fields['abonnement_client'].queryset = self.instance.client.abonnement_client
 
       
-        # Define custom error messages for specific fields
         self.fields['client'].error_messages = {
             'required': 'veuillez choisir.',
             'invalid': 'Custom error message for field1 is invalid.',
-            # Add more custom error messages for different errors if needed
+          
         }
         self.fields['abonnement_client'].error_messages = {
             'required': 'veuillez choisir.',
@@ -113,6 +127,23 @@ class Remunération_CoachModelForm(forms.ModelForm):
                 'amount', 
                 'notes',
                  )
+   
+    def __init__(self, *args, **kwargs):
+        initial = kwargs.get('initial', {})
+        coach_pk = initial.get('coach_pk')
+        if coach_pk:
+            try:
+                initial['coach'] = Coach.objects.get(pk=coach_pk)
+            except Coach.DoesNotExist:
+                pass
+        kwargs['initial'] = initial  # Update kwargs with the modified initial
+        super(Remunération_CoachModelForm, self).__init__(*args, **kwargs)
+
+        self.fields["coach"].widget.attrs.update()
+        self.fields['coach'].error_messages = {
+            'required': 'veuillez choisir.',
+            'invalid': 'Custom error message for field1 is invalid.',
+        }
         
     def clean_amount(self):
         amount = self.cleaned_data.get('amount')
@@ -122,17 +153,7 @@ class Remunération_CoachModelForm(forms.ModelForm):
             raise forms.ValidationError(_('Montant doit être supérieur à zéro'))
         return amount
     
-    def __init__(self, ticket=None, *args, **kwargs):   
-        super().__init__(*args, **kwargs)
-        self.fields["coach"].widget.attrs.update()
-      
-      
-        # Define custom error messages for specific fields
-        self.fields['coach'].error_messages = {
-            'required': 'veuillez choisir.',
-            'invalid': 'Custom error message for field1 is invalid.',
-            # Add more custom error messages for different errors if needed
-        }
+ 
     
 
     
