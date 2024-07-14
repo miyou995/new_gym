@@ -79,36 +79,47 @@ class Chiffre_affaireView(TemplateView):
     template_name = "chiffre_affaire.html"
 
 # paiement transactions------------------------------------------------------------------------------------------
-def paiement(request):
-    context = {}
+class paiement(CreateView):
     template_name = "snippets/_transaction_paiement_form.html"
-    form = PaiementModelForm(data=request.POST or None) 
-    if request.method == "POST":
-        form = PaiementModelForm(data=request.POST) 
-        posted_data= "\n".join(f'{key} {value}' for key, value in request.POST.items())
-        print('POSTED DATA=========\n', posted_data, '\n========')
+    form_class =PaiementModelForm
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        client_pk = self.kwargs.get('pk')
+        if client_pk:
+            kwargs['initial'] = {'client_pk': client_pk}
+        return kwargs
+
+    def get(self, request, *args, **kwargs):
+        form = self.form_class(**self.get_form_kwargs())
+        context = {"form": form}
+        return render(request, self.template_name, context)
+
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(data=request.POST)
+        posted_data = "\n.".join(f'{key} {value}' for key, value in request.POST.items())
+        print('POSTED DATA =========\n', posted_data, '\n==========')
+        
         if form.is_valid():
             print("is valide")
-            product = form.save()
-            message = _("un paiement a été créé avec succès.")
-            messages.success(request, str(message),extra_tags="toastr")
-            return HttpResponse(status=204,
-                headers={
-                    'HX-Trigger': json.dumps({
-                        "closeModal": "kt_modal",
-                        "refresh_table": None
-                         
-                    })
-                }) 
+            paiement = form.save()
+            message = _("un paiement a été créé avec succès")
+            messages.success(request, str(message), extra_tags="toastr")
+            return HttpResponse(status=204, headers={
+                'HX-Trigger': json.dumps({
+                    "closeModal": "kt_modal",
+                    "refresh_table": None
+                })
+            })
         else:
-            print("is not valide", form.errors.as_data())
+            print('is not valide', form.errors.as_data())
             client = request.POST.get('client')
             abcs= AbonnementClient.objects.filter(client=client)
-            context["form"] = PaiementModelForm(data=request.POST or None) 
-            return render(request, template_name="snippets/_transaction_paiement_form.html", context=context)
-    context["form"] = form
-    return render(request, template_name=template_name, context=context)
-  
+            context = {'form': form}
+            return render(request, self.template_name, context)
+
+ 
+          
 class PaiementUpdateView(UpdateView):
     model = Paiement 
     template_name = "snippets/_transaction_paiement_form.html"
@@ -230,34 +241,43 @@ class RemuPersonnelDeleteView(DeleteView):
         return HttpResponseRedirect(success_url)
 
 #remuneration Coach ------------------------------------------------------------------------------------------
-def Remuneration_Coach(request):
-    context={}
-    template_name="snippets/_remu_Coach_form.html"
-    form=Remunération_CoachModelForm(data=request.POST or None)
-    if request.method=="POST":
-        form=Remunération_CoachModelForm(data=request.POST)
-        posted_data="\n.".join(f'{key} {value}' for key,value in request.POST.items())
-        print('POSTED DATA =========\n',posted_data, '\n==========')
+class Remuneration_Coach(CreateView):
+    template_name = "snippets/_remu_Coach_form.html"
+    form_class = Remunération_CoachModelForm
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        coach_pk = self.kwargs.get('pk')
+        if coach_pk:
+            kwargs['initial'] = {'coach_pk': coach_pk}
+        return kwargs
+
+    def get(self, request, *args, **kwargs):
+        form = self.form_class(**self.get_form_kwargs())
+        context = {"form": form}
+        return render(request, self.template_name, context)
+
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(data=request.POST)
+        posted_data = "\n.".join(f'{key} {value}' for key, value in request.POST.items())
+        print('POSTED DATA =========\n', posted_data, '\n==========')
+        
         if form.is_valid():
             print("is valide")
-            remuniration=form.save()
-            message=_("Remuniration Coach a été créé avec succès")
-            messages.success(request,str(message),extra_tags="toastr")
-            return HttpResponse(status=204,
-                headers={
-                    'HX-Trigger' :json.dumps({
-                        "closeModal":"kt_modal",
-                        "refresh_table":None
-
-                    })
+            remuneration = form.save()
+            message = _("Remuniration Coach a été créé avec succès")
+            messages.success(request, str(message), extra_tags="toastr")
+            return HttpResponse(status=204, headers={
+                'HX-Trigger': json.dumps({
+                    "closeModal": "kt_modal",
+                    "refresh_table": None
                 })
+            })
         else:
-            print('is not valide',form.errors.as_data())
-            coach=request.POST.get("coach")
-            context['form']=Remunération_CoachModelForm(data=request.POST or None)
-            return render(request,template_name="snippets/_remu_Coach_form.html",context=context)
-    context["form"]=form
-    return render(request,template_name=template_name,context=context)
+            print('is not valide', form.errors.as_data())
+            coach = request.POST.get("coach")
+            context = {'form': form}
+            return render(request, self.template_name, context)
 
     
 class Remuneration_CoachUpdateView(UpdateView):

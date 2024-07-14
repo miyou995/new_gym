@@ -78,50 +78,12 @@
 											<div class="card-header align-items-center py-5 gap-2 gap-md-1">
 												<div class="card-title">
 		
-													<div class="card-toolbar flex-row-fluid justify-content-end gap-5">
-												
-														{% if   not coach.get_pending_presence  %}
-														<button
-															type="button"
-															class="btn btn-success btn-sm"
-															hx-get="{% url 'client:presence_coach' coach.pk %}"
-														>  
-														<i class="ki-exit-up fs-2">Entré</i>
-														<img src="{% static 'images/enter.png' %}" style="width: 25px; height: 25px; margin-right: 5px;">
-														</button>		
-														{% else %}
-														<button
-															type="button"
-															class="btn btn btn-danger btn-sm"
-															hx-get="{% url 'client:presence_coach' coach.pk %}"
-														>
-															<i class="ki-exit-up fs-2">Sortié</i>
-															<img src="{% static 'images/exit1.png' %}" style="width: 25px; height: 25px; margin-right: 5px;">
-														</button>
-														{% endif %}
-					
-														<button
-															type="button"
-															class="btn btn-primary btn-sm"
-															data-bs-toggle="modal"
-															data-bs-target="#kt_modal"
-															hx-get="{% url 'transactions:Remuneration_Coach_name' %}"
-															hx-target="#kt_modal_content"
-															hx-trigger="click"
-															data-bs-toggle="tooltip" 
-															hx-swap="innerHTML"
-														>
-														<i class="ki-exit-up fs-2">Ajouter Virement</i>
-														</button>
-														
-														<button
-															type="button"
-															class="btn btn-info btn-sm"
-															hx-get="{% url 'transactions:Autre_Transaction_name' %}"
-														>
-															<i class="ki-exit-up fs-2">Reste du salaire :</i>
-														</button>
-													</div>
+													<div class="card-toolbar d-flex flex-row justify-content-end align-items-center gap-3">
+														<div class="salary-display p-3 rounded text-white bg-danger d-flex align-items-center">
+															<i class="ki-exit-up fs-2 me-2"></i>
+															<span>Reste du salaire :</span>
+															<span class="fw-bold ms-2">{{coach.salaire}}</span>
+														</div>
 												</div>
 											</div>
 
@@ -172,128 +134,81 @@
 													</div>
 												</div>
 											</div>
-					
 
-
-											<ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bold">
-												<li class="nav-item mt-2" role="presentation">
-													<a  class="nav-link text-active-primary pb-4 active"
-														data-bs-toggle="tab"
-														href="#kt_user_view_Creneaux"
-														aria-selected="false"
-														role="tab"
-														tabindex="-1"
-														hx-get="{% url 'client:CoachDetail' coach.pk %}"
-														hx-swap="innerHTML"
-														hx-trigger="refresh_table from:body,click,revealed"
-														hx-target="#CreneauxTable"
-													>{% trans 'Creneaux' %}</a>
-												</li>
-											
-												<li class="nav-item mt-2" role="presentation">
-					
-														<a  class="nav-link text-active-primary pb-4"
-															data-bs-toggle="tab"
-															href="#kt_user_view_Virements" 
-															aria-selected="false"
-															role="tab"
-															tabindex="-1"
-															hx-get="{% url 'client:VirementsCoachDetail' coach.pk %}" 
+											<div class="card-body">
+												<div class="card card-flush">
+													<div class="card-header align-items-center py-5 gap-2 gap-md-5">
+														<div class="card-title">
+															<div class="d-flex align-items-center position-relative my-1">
+																<h3 class="card-title">Virements</h3>
+															</div>
+															<div id="kt_ecommerce_report_sales_export" class="d-none"></div>
+														</div>
+													
+														<div class="card-toolbar flex-row-fluid justify-content-end gap-5">
+															<button
+															type="button"
+															class="btn btn-primary btn-sm"
+															data-bs-toggle="modal"
+															data-bs-target="#kt_modal"
+															hx-get="{% url 'transactions:coach_Remuneration_Coach' coach.pk %}"
+															hx-target="#kt_modal_content"
+															hx-trigger="click"
+															data-bs-toggle="tooltip" 
 															hx-swap="innerHTML"
-															hx-trigger="refresh_table from:body,click"
-															hx-target="#VirementsTable"
 														>
-														{% trans 'Virements' %}</a>
-												</li>
-												<li class="nav-item mt-2" role="presentation">
-													<a  class="nav-link text-active-primary pb-4 "
-														data-bs-toggle="tab"
-														href="#kt_user_view_Presence"
-														aria-selected="false"
-														role="tab"
-														tabindex="-1"
-														hx-get="{% url 'client:PresenceCoachDetail' coach.pk %}"
-														hx-swap="innerHTML"
-														hx-trigger="refresh_table from:body,click"
-														hx-target="#PresenceTable"
-													>{% trans 'Seances / Presences' %}</a>
-												</li>
-										
-											</ul>
-										
-											<div class="d-flex flex-column flex-lg-row">
-												<div class="flex-lg-row-fluid ">
-													<div class="tab-content" id="myTabContent">
-														<!-- Tab Pane 1 -->
-														<div class="tab-pane fade active show" id="kt_user_view_Creneaux" role="tabpanel">
-															<div id="kt_app_content_container" class="app-container container-xxl">
-																<div class="card">
-																	<div class="card-header border-0 pt-6">
-																		<form hx-get="{{request.path}}" hx-target="#CreneauxTable" hx-swap="innerHTML" hx-trigger="keyup delay:900ms" hx-push-url="true">
-																			<div class="card-title">
-																				<div class="d-flex align-items-center position-relative my-1">
-																					<span class="svg-icon svg-icon-1 position-absolute ms-4">
-																						<!-- SVG Icon -->
-																					</span>
-																					<input type="text" name="search" data-kt-ecommerce-order-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Recherche...." />
-																				</div>
-																			</div>
-																		</form>
-																	</div>
-																	<div class="card-body pt-0 table-responsive" id="CreneauxTable">
-																	
-																	</div>
-																</div>
-															</div>
+														<i class="ki-exit-up fs-2">Ajouter Virement</i>
+														</button>
 														</div>
-														<!-- Tab Pane 2 -->
-														<div class="tab-pane fade" id="kt_user_view_Virements" role="tabpanel">
-															<div id="kt_app_content_container" class="app-container container-xxl">
-																<div class="card">
-																	<div class="card-header border-0 pt-6">
-																		<form hx-get="{{request.path}}" hx-target="#VirementsTable" hx-swap="innerHTML" hx-trigger="keyup delay:900ms" hx-push-url="true">
-																			<div class="card-title">
-																				<div class="d-flex align-items-center position-relative my-1">
-																					<span class="svg-icon svg-icon-1 position-absolute ms-4">
-																						<!-- SVG Icon -->
-																					</span>
-																					<input type="text" name="search" data-kt-ecommerce-order-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Recherche...." />
-																				</div>
-																			</div>
-																		</form>
-																	</div>
-																	<div class="card-body pt-0 table-responsive" id="VirementsTable">
-																		<!-- Virements Table Content -->
-																	</div>
-																</div>
-															</div>
-														</div>
-														<!-- Tab Pane 3 -->
-														<div class="tab-pane fade" id="kt_user_view_Presence" role="tabpanel">
-															<div id="kt_app_content_container" class="app-container container-xxl">
-																<div class="card">
-																	<div class="card-header border-0 pt-6">
-																		<form hx-get="{{request.path}}" hx-target="#PresenceTable" hx-swap="innerHTML" hx-trigger="keyup delay:900ms" hx-push-url="true">
-																			<div class="card-title">
-																				<div class="d-flex align-items-center position-relative my-1">
-																					<span class="svg-icon svg-icon-1 position-absolute ms-4">
-																						<!-- SVG Icon -->
-																					</span>
-																					<input type="text" name="search" data-kt-ecommerce-order-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Recherche...." />
-																				</div>
-																			</div>
-																		</form>
-																	</div>
-																	<div class="card-body pt-0 table-responsive" id="PresenceTable">
-																		<!-- Presence Table Content -->
-																	</div>
-																</div>
+													</div>
+													<div class="card-scroll h-250px card-body pt-0">
+														<div class="nav-link active text-gray-800 fs-5 fw-bold"
+															hx-get="{% url 'client:VirementsCoachDetail' coach.pk %}"
+															hx-trigger="revealed"
+															hx-swap="innerHTML"
+															hx-target="#VirementsTable"
+															data-bs-toggle="tab"
+														>
+															<div class="card-body pt-0 table-responsive" id="VirementsTable">
 															</div>
 														</div>
 													</div>
-													
 												</div>
 											</div>
+											<div class="card-body">
+												<div class="card card-flush">
+													<div class="card-header align-items-center py-5 gap-2 gap-md-5">
+														<div class="card-title">
+															<div class="d-flex align-items-center position-relative my-1">
+																<h3 class="card-title">Creneaux</h3>
+															</div>
+															<div id="kt_ecommerce_report_sales_export" class="d-none"></div>
+														</div>
+													
+														<div class="card-toolbar flex-row-fluid justify-content-end gap-5">
+													
+														</div>
+													</div>
+													<div class="card-scroll h-250px card-body pt-0">
+														<div class="nav-link active text-gray-800 fs-5 fw-bold"
+															hx-get="{% url 'client:CoachDetail' coach.pk %}"
+															hx-trigger="revealed"
+															hx-swap="innerHTML"
+															hx-target="#CreneauxTable"
+															data-bs-toggle="tab"
+														>
+															<div class="card-body pt-0 table-responsive" id="CreneauxTable">
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+
+
+
+								
+										
+									
 									
 										</div>
 								
