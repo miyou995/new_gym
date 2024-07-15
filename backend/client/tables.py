@@ -4,7 +4,7 @@ from abonnement.models import AbonnementClient
 from transaction.models import Paiement,RemunerationProf
 from django.urls import reverse
 from creneau.models import Creneau
-from presence.models import PresenceCoach
+from presence.models import PresenceCoach,Presence
 
 
 class ClientHTMxTable(tables.Table):
@@ -121,6 +121,26 @@ class PaiementHTMxTable(tables.Table):
         model = Paiement
         template_name = "tables/bootstrap_htmx.html"
 
+class PresenceClientHTMxTable(tables.Table):
+    
+    recu = tables.TemplateColumn(
+            '''{% include 'buttons/action.html' with object=record modal_edit="true" %}''',
+            verbose_name='Actions',
+            orderable=False )
+
+    class Meta:
+        fields  = (
+                'amount',
+                'date_creation', 
+                'abonnement_client',
+                'recu',
+         
+        )
+        model = Presence
+        template_name = "tables/bootstrap_htmx.html"
+
+
+
 
 # coach details ------------------------------------------------------------------------------------------------
 
@@ -155,7 +175,7 @@ class VirementsHTMxTable(tables.Table):
         template_name = "tables/bootstrap_htmx.html"
 
 
-class PresenceHTMxTable(tables.Table):
+class PresenceCoachHTMxTable(tables.Table):
 
     class Meta:
         fields  = (

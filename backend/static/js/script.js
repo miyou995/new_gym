@@ -48,3 +48,27 @@ document.addEventListener('htmx:afterRequest', (event) => {
         window.location.reload();
     }
 });
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const barcodeInput = document.getElementById('barcode-input');
+    if (barcodeInput) {
+        
+    barcodeInput.addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            e.preventDefault(); // Prevent the default action (form submission)
+            handleSubmit();
+        }
+    });
+
+    function handleSubmit() {
+        const barcode = barcodeInput.value.trim();
+        if (barcode) {
+            // Trigger the HTMX request manually
+            barcodeInput.dispatchEvent(new Event('keyup', { 'bubbles': true }));
+        }
+    }
+}
+
+});

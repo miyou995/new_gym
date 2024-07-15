@@ -20,7 +20,8 @@ from .models import Client,Coach,Personnel
 
 from .filters import ClientFilter,CoachFilter,PersonnelFilter
 from .tables import (ClientHTMxTable,CoachHTMxTable,PersonnelHTMxTable,AbonnementClientHTMxTable,PaiementHTMxTable,
-                     CoachDetailHTMxTable,VirementsHTMxTable,PresenceHTMxTable)
+                     CoachDetailHTMxTable,VirementsHTMxTable,PresenceCoachHTMxTable,
+                     PresenceClientHTMxTable)
 from abonnement.models import AbonnementClient
 from creneau.models import Creneau
 
@@ -370,6 +371,26 @@ class PaiementClientDetail(SingleTableMixin, FilterView):
                 template_name = "snippets/client_detail.html"
             return template_name
 
+class PresenceClientDetail(SingleTableMixin, FilterView):
+        table_class =   PresenceClientHTMxTable
+        paginate_by = 15
+        model = Paiement
+        
+        def get_queryset(self):
+            queryset = Paiement.objects.order_by("-date_creation")
+            abonnement_client_pk = self.kwargs.get('pk')
+            print("abonnement_client_pk  -------------", abonnement_client_pk)
+            if abonnement_client_pk:
+                queryset = queryset.filter(abonnement_client__client=abonnement_client_pk)
+                return queryset
+        
+        def get_template_names(self):
+            if self.request.htmx:
+                template_name = "tables/product_table_partial.html"
+            else:
+                template_name = "snippets/client_detail.html"
+            return template_name
+
 # ----------------------------------------coach detail --------------------------------------------------
 class CoachDetail(SingleTableMixin, FilterView):
     table_class =   CoachDetailHTMxTable
@@ -420,7 +441,7 @@ class VirementsCoachDetail(SingleTableMixin, FilterView):
         return template_name
 
 class PresenceCoachDetail(SingleTableMixin, FilterView):
-    table_class =   PresenceHTMxTable
+    table_class =   PresenceCoachHTMxTable
     paginate_by = 15
     model = PresenceCoach
     

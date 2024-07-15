@@ -263,6 +263,8 @@ class Client(models.Model):
             if not abonnement:
                 abonnement = abon_list.first()
             print('ABONNEMENT<<<<<<<<<<>>>>>>>>>>>>>>>>',abonnement.get_type())
+            print('ABONNEMENT is valid<<<<<<<<<<>>>>>>>>>>>>>>>>',abonnement.is_valid())
+            print('ABONNEMENT presence qnt<<<<<<<<<<>>>>>>>>>>>>>>>>',abonnement.presence_quantity)
 
             if abonnement.is_valid() and abonnement.is_time_volume():
                 print('IM HEEERE LOG ABONNEMENT==== TIME VOLUUUPME', abonnement.is_time_volume())
@@ -290,7 +292,6 @@ class Client(models.Model):
         presences = Presence.objects.select_for_update().filter(abc__client=self, hour_sortie__isnull=True)
         with transaction.atomic():
             presence = presences.first()
-            
             current_time = datetime.now().strftime("%H:%M:%S")
             if exit_hour:
                 current_time = exit_hour
