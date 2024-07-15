@@ -112,7 +112,7 @@ class Abonnement(models.Model):
 class AbonnementClient(models.Model):
     start_date          = models.DateField()
     end_date            = models.DateField()
-    blocking_date       = models.DateField(null=True)
+    blocking_date       = models.DateField(null=True,blank=True)
     client              = models.ForeignKey('client.Client', related_name="abonnement_client", on_delete=models.PROTECT)
     type_abonnement     = models.ForeignKey(Abonnement, related_name="type_abonnement_client", on_delete=models.CASCADE)
     presence_quantity   = models.IntegerField(blank=True, null=True)
@@ -255,11 +255,12 @@ class AbonnementClient(models.Model):
 
     def is_valid(self):
         today = date.today()
-        # print('self.blocking_date', self.blocking_date)
-        # print('end_date', self.end_date)
+        print('self.blocking_date', self.blocking_date)
+        print('end_date', self.end_date)
+        print('end_datoday <= self.end_datete', today <= self.end_date)
          
         if today <= self.end_date and not self.blocking_date:
-            # print('makach blocking', self.blocking_date)
+            print('makach blocking', self.blocking_date)
             if self.presence_quantity > self.get_limit() :
                 return True
         return False 

@@ -14,10 +14,22 @@
                             <span class="card-label fw-bold fs-4 text-grey-800">Présence Automatique</span>
                             <i class=" ki-magnifier fs-3 position-absolute ms-4"></i>
                             
+                            <form  >
+                           
+                                                <input
+                                                hx-get='{% url "presence:presence_client" %}' 
+                                                hx-trigger="keyup changed delay:900ms"
+                                                type="text"
+                                                name="search"
+                                                class='form-control fw-bold pe-5' 
+                                                placeholder='scanner le code a barre ici '
+                                                {% comment %} hx-target="#correctionsId" {% endcomment %}
+                                                hx-swap="innerHTML"
+                                                hx-refresh="true" 
+                                                id="barcode-input"
+                                                autofocus  />
                             
-                            <input type="text" data-kt-ecommerce-order-filter="search" class="form-control form-control-solid w-250px ps-12" placeholder="ID client" />
-                            <button type="button" class="btn btn-success" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                                <i class=" ki-exit-up fs-2"></i>Valide</button>
+                        </form>
                             <button type="button" class="btn btn-info" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
                                 <i class=" ki-exit-up fs-2"></i>Présence Manuellement</button> 
                         </div>
