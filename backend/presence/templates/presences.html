@@ -1,7 +1,9 @@
 {% extends "base.html" %} 
 {% load static %}
+{% load i18n %}
 {% load render_table from django_tables2 %}
 {% block content %}
+{% load widget_tweaks %}
 <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
     <div class="d-flex flex-column flex-column-fluid">
         
@@ -29,9 +31,20 @@
                                                 id="barcode-input"
                                                 autofocus  />
                             
-                        </form>
-                            <button type="button" class="btn btn-info" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                                <i class=" ki-exit-up fs-2"></i>Présence Manuellement</button> 
+                            </form>
+                                        <button
+                                            type="button"
+                                            class="btn btn-info"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#kt_modal"
+                                            hx-get="{% url 'presence:PresenceManuelleClient' %}"
+                                            hx-target="#kt_modal_content"
+                                            hx-trigger="click"
+                                            hx-swap="innerHTML"
+                                        >
+                                            <i class="ki-exit-up fs-2">Présence Manuellement</i>
+                                        </button>
+                           
                         </div>
                     </div>
                         <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
@@ -95,6 +108,7 @@
 					<div id="kt_app_content_container">
 						<div class="card card-flush">
 							<div class="card-header align-items-center py-5 gap-2 gap-md-5">
+                                {% with WIDGET_ERROR_CLASS='my_error' WIDGET_REQUIRED_CLASS='my_required' %}
 								<form  
 								hx-get="{{request.path}}"  
 								hx-target="#TablePresence" 
@@ -112,9 +126,55 @@
 											</svg>
 										</span>
 										<input type="text" name="search"  data-kt-ecommerce-order-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Recherche...." />
-									</div>
+                                        {% render_field render_filter.form.search class="form-control form-control-solid w-250px ps-14" placeholder="Rechercher " %}
+
+                                    </div>
+                                        <div class="col-md-auto">
+                                            <label class="form-label card-label fw-bold fs-4 text-grey-800 mb-0">Salle d'activité</label>
+                                            <select 
+                                                name="salle" 
+                                                id="salleSelect" 
+                                                class="form-select form-select-solid salle-select"
+                                                data-control="select2" 
+                                                data-allow-clear="true"
+                                                data-placeholder="{% trans 'Salles' %}" 
+                                        >												
+                                                <option></option>
+                                                {% for salle in salles %}
+                                                <option value="{{salle.id}}"  {% if salle == sl %}selected{% endif %}>{{salle.name}}</option>
+                                                {% endfor %}                   
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-5">
+                                            <select 
+                                                name="activites" 
+                                                id="activitesSelect" 
+                                                class="form-select form-select-solid activites-select"
+                                                data-control="select2" 
+                                                data-allow-clear="true"
+                                                data-placeholder="{% trans 'activites' %}" 
+                                                >												
+                                                <option></option>
+                                                <option value=""></option>
+                                                {% for activite in activites %}
+                                                <option value="{{activite.id}}" {% if activite == ac %}selected{% endif %}>{{activite.name}}</option>
+                                                {% endfor %}
+        
+                                            </select>
+                                        </div>
+                                        <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
+                                            {% for field in render_filter.form %}
+                                                {% if field.name != "search" %}
+                                                    {% render_field field class="form-control form-control-solid w-250px ps-14" placeholder="Search Order"  %}
+                                                {% endif %}
+                                            {% endfor %} 
+                                        </div>  
+
 								</div>
 							</form>
+                            {% endwith %}
+                            
+
 							
 							</div>
 							<div class="card-body pt-0 table-responsive" id="TablePresence">

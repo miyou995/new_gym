@@ -30,7 +30,7 @@ class PresenceManager(models.Manager):
 
 
 class Presence(models.Model):
-    abc         = models.ForeignKey(AbonnementClient, on_delete=models.CASCADE,related_name='presences')
+    abc         = models.ForeignKey(AbonnementClient, on_delete=models.CASCADE,related_name='presences',verbose_name='Abonnement client')
     date        = models.DateField()
     creneau     = models.ForeignKey(Creneau, on_delete=models.CASCADE,related_name='presenses', null=True, blank=True)
     is_in_list  = models.BooleanField(default=True) # check if the person is in the list of client that should be in this creneau
