@@ -91,3 +91,37 @@ class PresenceManuelleClient(CreateView):
 
 
 
+
+class PresenceManuelleUpdateClient(UpdateView):
+    model = Presence 
+    template_name = "snippets/_presence_Manuelle_form.html"
+    fields = [
+      
+                'abc',
+                'hour_entree',
+                'hour_sortie',
+                'date',
+                'note',
+    ]
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        print('yeah form instance', self.object)
+        return super().get(request, *args, **kwargs)
+    def form_valid(self, form):
+        presence =form.save()
+        print('IS FORM VALID', presence.id)
+        messages.success(self.request, "Presence Mis a jour avec Succés",extra_tags="toastr")
+        return HttpResponse(status=204,
+            headers={
+                'HX-Trigger': json.dumps({
+                    "closeModal": "kt_modal",
+                    "refresh_table": None,
+                    "selected_client": f"{presence.id}",
+                })
+            }) 
+    
+    def form_invalid(self, form):
+        messages.success(self.request, form.errors)
+        return self.render_to_response(self.get_context_data(form=form)) 
+
+

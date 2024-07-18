@@ -9,7 +9,7 @@
         
         <div id="kt_app_content" class="app-content">
             <div class="card card-flush">
-                <div class="card-header align-items-center py-5 gap-2 gap-md-5">
+                <div class="card-header align-items-center py-1 gap-2 gap-md-5">
 
                     <div class="card-title">
                         <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
@@ -47,139 +47,64 @@
                            
                         </div>
                     </div>
-                        <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
+                        {% comment %} <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
                             <span class="card-label fw-bold fs-1 text-danger">Total : 0</span>
-                        </div>
-
-
-
-                        <div class="card-header align-items-center py-5 gap-2 gap-md-5">
-                            <div class="card-title">
-                                <div class="row g-3 align-items-center">
-                                    <div class="col-md-auto">
-                                        <label class="form-label card-label fw-bold fs-4 text-grey-800 mb-0">ID Adhérant</label>
-                                        <input type="text" class="form-control form-control-solid w-100" data-kt-ecommerce-order-filter="search" placeholder="Rechercher par ID" />
-                                    </div>
-                        
-                                    <div class="col-md-auto">
-                                        <label class="form-label card-label fw-bold fs-4 text-grey-800 mb-0">Salle d'activité</label>
-                                        <select class="form-select" aria-label="Salle d'activité">
-                                            <option selected>Salles</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
-                                        </select>
-                                    </div>
-                        
-                                    <div class="col-md-auto">
-                                        <label class="form-label card-label fw-bold fs-4 text-grey-800 mb-0">Activité</label>
-                                        <select class="form-select" aria-label="Activité">
-                                            <option selected>Activités</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
-                                        </select>
-                                    </div>
-                        
-                                    <div class="col-md-auto">
-                                        <label class="form-label card-label fw-bold fs-4 text-grey-800 mb-0">Date Début</label>
-                                        <input type="date" class="form-control" />
-                                    </div>
-                        
-                                    <div class="col-md-auto">
-                                        <label class="form-label card-label fw-bold fs-4 text-grey-800 mb-0">Date Fin</label>
-                                        <input type="date" class="form-control" />
-                                    </div>
-                        
-                                    <div class="col-md-auto">
-                                        <label class="form-label card-label fw-bold fs-4 text-grey-800 mb-0">Heure du créneau</label>
-                                        <input type="time" class="form-control" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        
-
+                        </div> {% endcomment %}
 
                 </div>
                 
-                <div id="kt_app_content" class="app-content flex-column-fluid fw-bold text-gray-800 fs-5">
+                <div id="kt_app_content" class="app-content flex-column-fluid fw-bold text-gray-800 fs-5 py-1">
 					<div id="kt_app_content_container">
 						<div class="card card-flush">
-							<div class="card-header align-items-center py-5 gap-2 gap-md-5">
+							<div class="card-header align-items-center py-4 gap-2 gap-md-5">
                                 {% with WIDGET_ERROR_CLASS='my_error' WIDGET_REQUIRED_CLASS='my_required' %}
 								<form  
-								hx-get="{{request.path}}"  
-								hx-target="#TablePresence" 
-								hx-swap="innerHTML" 
-								hx-trigger="keyup delay:900ms"
-								hx-push-url='true'
-							>
-								<div class="card-title">
-									<div class="d-flex align-items-center position-relative my-1">
-										<!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
-										<span class="svg-icon svg-icon-1 position-absolute ms-4">
-											<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-												<rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor" />
-												<path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor" />
-											</svg>
-										</span>
-										<input type="text" name="search"  data-kt-ecommerce-order-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Recherche...." />
-                                        {% render_field render_filter.form.search class="form-control form-control-solid w-250px ps-14" placeholder="Rechercher " %}
+                                    hx-get="{{request.path}}"  
+                                    hx-target="#TablePresence" 
+                                    hx-swap="innerHTML" 
+                                    hx-trigger="change, changed,keyup delay:900ms"
+                                    hx-push-url='true'
+                                >
 
+                                <div class="card-title">
+                                    <div class="row">
+                                        {% for field in filter.form %}
+                                            {% if field.name != "date" and field.name != "search" %}
+                                                <div class="col-auto ms-4">
+                                                    <label class="form-label card-label fw-bold fs-4 text-grey-800 mb-0">{{ field.label }}</label>
+                                                    {% render_field field class="form-control" %}
+                                                </div>
+                                            {% elif field.name == "search" %}
+                                                <div class="col-auto ms-4">
+                                                    <label class="form-label card-label fw-bold fs-4 text-grey-800 mb-0">{{ field.label }}</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-text"><i class="bi bi-search"></i></span>
+                                                        {% render_field field class="form-control" placeholder="Rechercher par ID" %}
+                                                    </div>
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                
+                                        <div class="col-md-auto ms-4">
+                                            <label class="form-label card-label fw-bold fs-4 text-grey-800 mb-0">Date Début</label>
+                                            <input type="date" name="date_min" class="form-control" />
+                                        </div>
+                                
+                                        <div class="col-md-auto ms-4">
+                                            <label class="form-label card-label fw-bold fs-4 text-grey-800 mb-0">Date Fin</label>
+                                            <input type="date" name="date_max" class="form-control" />
+                                        </div>
                                     </div>
-                                        <div class="col-md-auto">
-                                            <label class="form-label card-label fw-bold fs-4 text-grey-800 mb-0">Salle d'activité</label>
-                                            <select 
-                                                name="salle" 
-                                                id="salleSelect" 
-                                                class="form-select form-select-solid salle-select"
-                                                data-control="select2" 
-                                                data-allow-clear="true"
-                                                data-placeholder="{% trans 'Salles' %}" 
-                                        >												
-                                                <option></option>
-                                                {% for salle in salles %}
-                                                <option value="{{salle.id}}"  {% if salle == sl %}selected{% endif %}>{{salle.name}}</option>
-                                                {% endfor %}                   
-                                            </select>
-                                        </div>
-                                        <div class="col-lg-5">
-                                            <select 
-                                                name="activites" 
-                                                id="activitesSelect" 
-                                                class="form-select form-select-solid activites-select"
-                                                data-control="select2" 
-                                                data-allow-clear="true"
-                                                data-placeholder="{% trans 'activites' %}" 
-                                                >												
-                                                <option></option>
-                                                <option value=""></option>
-                                                {% for activite in activites %}
-                                                <option value="{{activite.id}}" {% if activite == ac %}selected{% endif %}>{{activite.name}}</option>
-                                                {% endfor %}
-        
-                                            </select>
-                                        </div>
-                                        <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
-                                            {% for field in render_filter.form %}
-                                                {% if field.name != "search" %}
-                                                    {% render_field field class="form-control form-control-solid w-250px ps-14" placeholder="Search Order"  %}
-                                                {% endif %}
-                                            {% endfor %} 
-                                        </div>  
-
-								</div>
-							</form>
-                            {% endwith %}
-                            
-
-							
+                                </div>
+                                
+                                
+                                
+							   </form>
+                               {% endwith %}
 							</div>
-							<div class="card-body pt-0 table-responsive" id="TablePresence">
-								{% render_table table %}
-							</div>
+                                <div class="card-body pt-0 table-responsive" id="TablePresence">
+                                    {% render_table table %}
+                                </div>
 						</div>
 					</div>
 				</div>

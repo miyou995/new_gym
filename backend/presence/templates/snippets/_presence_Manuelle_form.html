@@ -7,7 +7,7 @@
 			id="sg_create_store_form" 
 			class="form"  
 			{% if form.instance.id %}
-			hx-post="{% url 'transactions:paiement_update' form.instance.id %}" 
+			hx-post="{% url 'presence:PresenceManuelleUpdateClient' form.instance.id %}" 
 			{% else %} hx-post="{% url 'presence:PresenceManuelleClient' %}"
 			{% endif %}
 			hx-target="#kt_modal_content"
