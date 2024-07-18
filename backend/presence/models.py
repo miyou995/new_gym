@@ -11,6 +11,7 @@ from abonnement.models import AbonnementClient
 from simple_history.models import HistoricalRecords
 from django.conf import settings
 from django.core.exceptions import ValidationError
+from django.urls import reverse
 
 FTM = '%H:%M:%S'
 
@@ -76,6 +77,11 @@ class Presence(models.Model):
             ecart = 1
         self.hour_sortie = now_time
         return ecart
+    
+    def get_edit_url(self):
+        return reverse('presence:PresenceManuelleUpdateClient', kwargs={'pk': str(self.id)})
+
+    
 
     # def get_time_consumed(self, sortie=None):
     #     if not sortie :
