@@ -62,11 +62,12 @@ urlpatterns = [
     path('', include("abonnement.urls")),
     # path('', include("NetSDK.urls")), 
     path('', include("assurance.urls")),
+    path('', include("accounts.urls")),
 
 
 
-    path("__debug__/", include("debug_toolbar.urls")),
-    path('', include("core.urls")),
+    # path("__debug__/", include("debug_toolbar.urls")),
+    # path('', include("core.urls")),
    
    
 
@@ -82,11 +83,11 @@ urlpatterns = [
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
 
-if settings.DEBUG:
-    import debug_toolbar
-    urlpatterns += [
-        path('__debug__/', include(debug_toolbar.urls)),
-        ] 
+# if settings.DEBUG:
+#     import debug_toolbar
+#     urlpatterns += [
+#         path('__debug__/', include(debug_toolbar.urls)),
+#         ] 
 # else:
 #     urlpatterns += [
 #         path ('',TemplateView.as_view(template_name="index.html"), name='index'),

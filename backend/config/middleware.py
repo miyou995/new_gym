@@ -11,9 +11,9 @@ from config import settings
 from django.contrib.auth.middleware import AuthenticationMiddleware
 from django.urls import NoReverseMatch, resolve, reverse
 
-EXEMPT_URLS = [re.compile(settings.LOGIN_URL.lstrip('/'))]
-if hasattr(settings, 'LOGIN_EXEMPT_URLS'):
-    EXEMPT_URLS += [re.compile(url) for url in settings.LOGIN_EXEMPT_URLS]
+# EXEMPT_URLS = [re.compile(settings.LOGIN_URL.lstrip('/'))]
+# if hasattr(settings, 'LOGIN_EXEMPT_URLS'):
+#     EXEMPT_URLS += [re.compile(url) for url in settings.LOGIN_EXEMPT_URLS]
 
 
 
@@ -68,7 +68,7 @@ IGNORE_PATHS += [
 ]
 
 IGNORE_VIEW_NAMES = [
-    name for name in getattr(settings, 'LOGIN_REQUIRED_IGNORE_VIEW_NAMES', [])
+    name for name in getattr(settings, 'LOGIN_EXEMPT_URLS', [])
 ]
 class LoginRequiredMiddleware(AuthenticationMiddleware):
     """
@@ -76,6 +76,7 @@ class LoginRequiredMiddleware(AuthenticationMiddleware):
     """
     def process_view(self, request, view_func, view_args, view_kwargs):
         path = request.path
+        
 
         if not settings.LOGIN_REQUIRED or request.user.is_authenticated:
             return
@@ -91,10 +92,6 @@ class LoginRequiredMiddleware(AuthenticationMiddleware):
             except NoReverseMatch:
                 login_url = settings.LOGIN_URL
             return redirect(f'{login_url}?next={path}')
-
-
-
-
 
 
 
