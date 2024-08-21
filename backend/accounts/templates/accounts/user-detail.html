@@ -1,0 +1,265 @@
+{% extends "base.html" %} {% load static %} {% block content %} {% block title
+%} {% load i18n %}
+{% load l10n %}
+<title>Compte</title>
+{% endblock %} {% load render_table from django_tables2 %}
+
+
+<div class="d-flex flex-column flex-column-fluid">
+  <div id="kt_app_content" class="app-content flex-column-fluid">
+    <div id="kt_app_content_container" class="app-container container-xxl">
+      <div class="card mb-5 mb-xl-10">
+        <div class="card-body pt-9 pb-0">
+          <div class="d-flex flex-wrap flex-sm-nowrap mb-3">
+            <div class="me-7 mb-4">
+              <div
+                class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative"
+              >
+                {% if store.logo %}
+                <img src="{{store.logo.url}}" alt="image" />
+                {% else %}
+                <span
+                  class="symbol-label fs-2x fw-semibold text-primary bg-light-primary"
+                  >{{ user.get_username|slice:1 }}</span
+                >
+                {% endif %}
+              </div>
+            </div>
+            <div class="flex-grow-1">
+              <div
+                class="d-flex justify-content-between align-items-start flex-wrap"
+              >
+                <div class="d-flex flex-column">
+                  <div class="d-flex align-items-center mb-2">
+                    <a
+                      href="#"
+                      class="text-gray-900 text-hover-primary fs-2 fw-bold me-1"
+                      >{{ user.get_username}}</a
+                    >
+                    {% if store.is_admin %}
+                    <a
+                      href="#"
+                      class="btn btn-sm btn-light-success fw-bold ms-2 fs-8 py-1 px-3"
+                      data-bs-toggle="modal"
+                      data-bs-target="#kt_modal_upgrade_plan"
+                      >{% trans 'Default' %}</a
+                    >
+                    {% endif %} {% if store.is_active %}
+                    <a
+                      href="#"
+                      class="btn btn-sm btn-light-success fw-bold ms-2 fs-8 py-1 px-3"
+                      data-bs-toggle="modal"
+                      data-bs-target="#kt_modal_upgrade_plan"
+                      >{% trans 'Active' %}</a
+                    >
+                    {% endif %}
+                  </div>
+                  <div class="d-flex flex-wrap fw-semibold fs-6 mb-4 pe-2">
+                    <a
+                      href="#"
+                      class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2"
+                      >{{store.address}}</a
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <div class="tab-content" id="myTabContent"></div>
+            </div>
+          </div>
+          <ul
+            class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bold"
+          >
+            <li class="nav-item mt-2" role="presentation">
+              <a
+                class="nav-link text-active-primary pb-4 active"
+                data-bs-toggle="tab"
+                href="#kt_user_view_overview"
+                aria-selected="false"
+                role="tab"
+                tabindex="-1"
+                {% comment %} hx-get="{% url 'inventory:store_detail' store.pk %}"{% endcomment %}
+                hx-swap="innerHTML"
+                hx-trigger="refresh_table from:body,click"
+                hx-target="#OverviewTable"
+                >{% trans 'Overview' %}</a
+              >
+            </li>
+
+            <li class="nav-item mt-2" role="presentation">
+              
+              {% if perms.auth.view_permission %}
+                   
+              <a
+              class="nav-link text-active-primary pb-4"
+              data-bs-toggle="tab"
+              href="#kt_user_view_permissons"
+              aria-selected="false"
+              role="tab"
+              tabindex="-1"              
+              hx-swap="innerHTML"
+              hx-trigger="refresh_table from:body,click"
+              hx-target="#PermissionsTable"
+              >
+              {% trans 'Permissions' %}</a
+              >
+              {% endif %}
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="d-flex flex-column flex-lg-row">
+        <div class="flex-lg-row-fluid">
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade active show" id="kt_user_view_overview" role="tabpanel">
+              <div id="kt_app_content_container" class="app-container container-xxl">
+                <div class="card">
+                  <div class="card-header border-0 pt-6">
+                  </div>
+                  <div  class="card-body pt-0 table-responsive" id="OverviewTable">
+                      <div class="card mb-5 mb-xl-10" id="kt_profile_details_view">
+                        <div class="card-header cursor-pointer">
+                          <div class="card-title m-0">
+                            <h3 class="fw-bold m-0">Profile</h3>
+                          </div>
+                          <div class="d-flex align-items-center gap-2 gap-lg-3">
+                            
+                            {% if perms.accounts.change_user %}   
+                              <a
+                              href="#"
+                              class="btn btn-sm fw-bold btn-primary d-block"
+                              data-bs-toggle="modal"
+                              data-bs-target="#sg_create_modal"
+                              data-bs-toggle="tooltip"
+                              data-bs-placement="right"
+                              hx-get="{% url 'accounts:edituser' user.pk %}"
+                              hx-target="#sg_create_modal_content"
+                              hx-swap="innerHTML"
+                              >Modifier</a
+                              >
+                            {% endif %}
+                          </div>
+                        </div>
+
+                        <div class="card-body p-9">
+                            <div class="row mb-7">
+                                <label class="col-lg-4 fw-semibold text-muted">Email</label>
+                                <div class="col-lg-8">
+                                    <span class="fw-bold fs-6 text-gray-800">{{user.email}}</span>
+                                </div>
+                          </div>
+
+                          <div class="row mb-7">
+                              <label class="col-lg-4 fw-semibold text-muted">Password</label>
+                              <div class="col-lg-4 fv-row">
+                                  <span class="fw-semibold text-gray-800 fs-6">*******</span>
+                              </div>
+                            
+                              
+                              <div class="col-lg-4 fv-row text-end">
+                              {% if perms.accounts.change_user %}
+                                  <a 
+                                  href="#"
+                                  data-bs-toggle="modal"
+                                  data-bs-target="#sg_create_modal"
+                                  data-bs-toggle="tooltip"
+                                  data-bs-placement="right"
+                                  hx-get="{% url 'accounts:change_password' user.pk %}"
+                                  hx-target="#sg_create_modal_content"
+                                  hx-swap="innerHTML"
+                                  >
+                                  <i class="fas fa-edit" style="font-size: 1.5em;"></i>
+                                </a>
+                              {% endif %}
+                          </div>
+                          </div>
+
+                            <div class="row mb-7">
+                                <label class="col-lg-4 fw-semibold text-muted">Role</label>
+                                <div class="col-lg-8 fv-row">
+                                    <span class="fw-semibold text-gray-800 fs-6">
+                                      {% if user_groups %}
+                                      {% for group in user_groups %}
+                                          {{ group.name }}
+                                      {% endfor %}
+                                  {% else %}
+                                      -
+                                  {% endif %}
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="row mb-7">
+                              <label class="col-lg-4 fw-semibold text-muted" >is actif</label>
+                                <div class="col-lg-8">
+                                    <a
+                                      href="#"
+                                      class="fw-semibold fs-6 text-gray-800 text-hover-primary"
+                                      >{{user.is_active}}</a >
+                                </div>
+
+                        </div>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+              <div class="tab-pane fade" id="kt_user_view_permissons" role="tabpanel">
+                <form  class="form" action="{% url 'accounts:userdetail' user.pk %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="my_user" value={{user.pk}}>
+                    <div class="card pt-4 mb-6 mb-xl-9">
+                        <div class="card-header mt-6">
+                            <div class="card-title flex-column">
+                                <h2 class="mb-1">{% translate 'Permission' %}</h2>
+                            </div>
+                            <div class="card-toolbar">
+                                <button type="submit" class="btn btn-light-primary btn-sm" >
+                                    {% translate 'Submit' %}</button>
+                            </div>
+                        </div>
+                        <div class="card-body pt-0 pb-5">
+                            <div class="table-responsive">
+                                <table class="table align-middle table-row-dashed fs-6 gy-5">
+                                    <tbody class="text-gray-600 fw-semibold">
+                                      
+                                        {% for model, perms in permissions.items %}
+                                            <tr>
+                                                <td class="text-gray-800">{{ model }}</td>
+                                                <td>
+                                                    <div >
+                                                        {% for perm in perms %}
+                                                            <label class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-8">
+                                                                <input class="form-check-input" type="checkbox" value="{{perm.id|unlocalize}}" name="perms" {% if perm in user_permissions %}checked{% endif %}>
+                                                                <span class="form-check-label">{{ perm.name }}</span>
+                                                            </label>
+                                                        {% endfor %}
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                
+                                    </tbody>
+                                </table>
+                                <div class="text-center pt-15">
+                                    {% comment %} {% include 'dashboard/snippets/_submit_button.html' %} {% endcomment %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+          
+            </div>
+           
+          </div>
+        </div>
+      </div>
+
+
+      {% comment %} {% include 'accounts\snippets\change_password.html' %} {% endcomment %}
+
+       {% endblock content %}
+    </div>
+  </div>
+</div>

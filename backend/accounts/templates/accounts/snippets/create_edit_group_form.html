@@ -1,0 +1,71 @@
+
+{% load i18n %}
+{% load widget_tweaks %}
+{% csrf_token %}
+
+<div class="modal-body scroll-y mx-5 mx-xl-15 mb-7">
+    <form 
+        id="sg_create_store_form"  
+        class="form"    
+        
+        {% if form.instance.id %}
+        hx-post= "{% url 'accounts:edit_role' form.instance.id %}"
+        {% else %}
+        hx-post= "{% url 'accounts:create_role' %}"
+        {% endif %}       
+        hx-target="#sg_create_modal_content"
+        novalidate
+    >
+        {% csrf_token %}
+        <div class="mb-13 text-center">
+            <h1 class="mb-3">{% trans "Create Role" %}</h1>
+        </div>
+        {% with WIDGET_ERROR_CLASS='is-invalid' %}         
+            {% for field in form %}
+                
+                {% if field.name == "permissions" %}
+                    <div class="table-responsive">
+                        <table class="table align-middle table-row-dashed fs-6 gy-5">
+                            <tbody class="text-gray-600 fw-semibold">
+                                {% for model, perms in permissions.items %}
+                                    <tr>
+                                        <td class="text-gray-800">{{ model }}</td>
+                                        <td>
+                                            <div>
+                                                {% for perm in perms %}
+                                                    <label class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-8">
+                                                        <input class="form-check-input" type="checkbox" value="{{ perm.id }}" name="permissions" {% if perm in form.initial.permissions %}checked{% endif %}>
+                                                        <span class="form-check-label">{{ perm.name }}</span>
+                                                    </label>
+                                                {% endfor %}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <div class="d-flex flex-column mb-8 fv-row">
+                        <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+                            <span {%  if field.field.required %}class="required"{% endif %}>{{ field.label }}</span>
+                        </label>
+                        {% render_field field class='form-control' %}
+                        {% if field.errors %}
+                            <span class="form-check-label fw-semibold text-danger">{{ field.errors }}</span>
+                        {% else %}
+                            {{ field.help_text }}
+                        {% endif %}
+                    </div>
+                {% endif %}
+                    
+            {% endfor %} 
+        {% endwith %}       
+        <div class="text-center">   
+            <button type="reset" id="sg_create_store_form" class="btn btn-light me-3" data-bs-dismiss="modal">{% trans "Annulé" %}</button>
+            <button type="submit" class="btn btn-primary">{% trans "Confirmer" %}</button>
+        </div>
+    </form>
+</div>
+
+
