@@ -238,11 +238,7 @@ def ActiviteCreateView(request):
 class ActiviteUpdateView(UpdateView):
     model = Activity
     template_name="configuration\snippets\_ajout_activites_form.html"
-    fields=[
-         'name',
-         'salle',
-          'color',
-    ]
+    form_class= ActiviteModelForm
     def get(self,request,*args,**kwargs):
         self.object=self.get_object()
         print('form instance',self.object)
