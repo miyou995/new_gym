@@ -24,6 +24,7 @@ DEBUG = True
 LOGIN_REQUIRED = True
 ALLOWED_HOSTS = ["*"]
 
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 

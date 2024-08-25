@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from planning.models import Planning
 # from client.models import Coach
 from salle_activite.models import Activity
@@ -165,6 +166,9 @@ class Creneau(models.Model):
             return self.activity.color
         else:
             return str("#000") 
+    def get_delete_url(self):
+        return reverse('creneau:creneau_delete_view', kwargs={'pk': str(self.id)})
+
 
 
 class Event(models.Model):

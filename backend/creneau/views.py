@@ -1,11 +1,17 @@
+import json
 from django.shortcuts import render
 from django.shortcuts import render
-from django.http import JsonResponse
-
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from django.views.generic import (CreateView, DeleteView,DetailView,
+                                 ListView, UpdateView)
 from planning.models import Planning
 from .models import Creneau
 from datetime import datetime, timedelta
 from salle_activite.models import Salle
+from .forms import CreneauModelForm 
+from django.contrib import messages
+from django.utils.translation import gettext_lazy as _
+from django.urls import reverse, reverse_lazy
 
 
 
@@ -26,9 +32,9 @@ def event_data(request):
     # Filter the events based on the selected planning and salle
     events = Creneau.objects.all()
     if planning_id:
-        events = events.filter(planning_id=planning_id)
+        events = events.filter(planning=planning_id)
     if salle_id:
-        events = events.filter(salle_id=salle_id)
+        events = events.filter(activity__salle=salle_id)
 
     # Mapping day names to weekday numbers for FullCalendar (Sunday is 0, Monday is 1)
     day_name_to_weekday = {
@@ -48,9 +54,83 @@ def event_data(request):
         if event_weekday is not None:
             events_list.append({
                 'title': event.name,
+                'color':event.color,
                 'startTime': event.hour_start.strftime('%H:%M:%S'),
                 'endTime': event.hour_finish.strftime('%H:%M:%S'),
                 'daysOfWeek': [event_weekday],  # Repeat weekly on this day
+                'url': reverse('creneau:update_creneau', kwargs={'pk': event.pk}),  # Include the URL
+                
             })
 
+
     return JsonResponse(events_list, safe=False)
+
+
+
+class CreateCreneau(CreateView):
+    template_name ="snippets/_creneau_form.html"
+    form_class=CreneauModelForm 
+
+    def get(self, request, *args, **kwargs):
+        form = self.form_class(**self.get_form_kwargs())
+        context = {"form": form}
+        return render(request, self.template_name, context)
+    
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(data=request.POST)
+        posted_data = "\n.".join(f'{key} {value}' for key, value in request.POST.items())
+        print('POSTED DATA =========\n', posted_data, '\n==========')
+        if form.is_valid():
+            form.save()
+            message = _("Creneau a été créé avec succès")
+            messages.success(request, str(message), extra_tags="toastr")
+            return HttpResponse(status=204, headers={
+                'HX-Trigger': json.dumps({
+                    "closeModal": "kt_modal",
+                    "refresh_table": None
+                })
+            })
+        else :
+            print('is not valide', form.errors.as_data())
+            context = {'form': form}
+            return render(request, self.template_name, context)
+
+class UpdateCreneau(UpdateView):
+        model=Creneau
+        template_name ="snippets/_creneau_form.html"
+        form_class =CreneauModelForm
+    
+        def get(self, request, *args, **kwargs):
+            self.object = self.get_object()
+            print('yeah form instance', self.object)
+            return super().get(request, *args, **kwargs)
+        def form_valid(self, form):
+            paiement =form.save()
+            print('IS FORM VALID', paiement.id)
+            messages.success(self.request, "Creneau Mis a jour avec Succés",extra_tags="toastr")
+            return HttpResponse(status=204,
+                headers={
+                    'HX-Trigger': json.dumps({
+                        "closeModal": "kt_modal",
+                        "refresh_table": None,
+                        
+                    })
+                }) 
+    
+        def form_invalid(self, form):
+            messages.success(self.request, form.errors)
+            return self.render_to_response(self.get_context_data(form=form))   
+
+class CreneauDeleteView(DeleteView):
+    model = Creneau
+    template_name = "buttons/delete.html"
+    success_url = reverse_lazy("creneau:creneaux_name")
+
+    def form_valid(self, form):
+        success_url = self.get_success_url()
+        self.object.delete()
+        print('GOOOOO')
+        messages.success(self.request, "Creneau Supprimer avec Succés",extra_tags="toastr")
+        return HttpResponseRedirect(success_url)
+    
+
