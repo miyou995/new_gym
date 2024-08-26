@@ -92,8 +92,15 @@ class Remuneration_PersonnelModelForm(forms.ModelForm):
     
     
     def __init__(self, ticket=None, *args, **kwargs):   
-        super().__init__(*args, **kwargs)
-        self.fields["nom"].widget.attrs.update()
+        initial = kwargs.get('initial', {})
+        personnel_pk = initial.get('personnel_pk')
+        if personnel_pk:
+            try:
+                initial['nom'] = Personnel.objects.get(pk=personnel_pk)
+            except Personnel.DoesNotExist:
+                pass
+        kwargs['initial'] = initial  # Update kwargs with the modified initial
+        super(Remuneration_PersonnelModelForm, self).__init__(*args, **kwargs)
 
         self.fields['nom'].error_messages = {
             'required': 'veuillez choisir.',

@@ -36,10 +36,10 @@ class PresenceFilter(django_filters.FilterSet):
 
         # Check if the search value is numeric (possibly an ID)
         if value.replace(".", "", 1).isdigit():
-            queryset = queryset.filter(Q(id=value))
+            queryset = queryset.filter(Q(abc__client=value))
         else:
             # Check if the search value matches any location names
-            queryset = queryset.filter(Q(id__icontains=value))
+            queryset = queryset.filter(Q(abc__client=value))
 
         print('Filtered queryset:', queryset)
         return queryset.distinct()

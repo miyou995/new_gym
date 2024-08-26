@@ -7,7 +7,7 @@
 			id="sg_create_store_form" 
 			class="form"  
 			{% if form.instance.id %}
-			hx-post="{% url 'transactions:Autre_Transaction_update' form.instance.id %}" 
+			hx-post="{% url 'transactions:autre_transaction_update' form.instance.id %}" 
 			{% else %} hx-post="{% url 'transactions:Autre_Transaction_name' %}"
 			{% endif %}
 			hx-target="#kt_modal_content"

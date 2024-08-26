@@ -32,10 +32,9 @@ class ClientHTMxTable(tables.Table):
             "htmx_container": "#TableClient",
         }
 
-
 class CoachHTMxTable(tables.Table):
-    # client = tables.Column(accessor="abonnement_client__client", verbose_name="Client", orderable=True ,linkify= lambda record: record.get_url())
     last_name = tables.Column(accessor="last_name", verbose_name="Nom", orderable=True ,linkify= lambda record: record.get_view_url())
+    first_name = tables.Column(accessor="first_name", verbose_name="Prénom", orderable=True ,linkify= lambda record: record.get_view_url())
 
     action = tables.TemplateColumn(
             '''{% include 'buttons/action.html' with object=record modal_edit="true" %}''',
@@ -62,8 +61,8 @@ class CoachHTMxTable(tables.Table):
 
 
 class PersonnelHTMxTable(tables.Table):
-    # client = tables.Column(accessor="abonnement_client__client", verbose_name="Client", orderable=True ,linkify= lambda record: record.get_url())
-    #last_name = tables.Column(accessor="last_name", verbose_name="Nom", orderable=True ,linkify= lambda record: record.get_view_url())
+    last_name = tables.Column(accessor="last_name", verbose_name="Nom", orderable=True ,linkify= lambda record: record.get_view_url())
+    first_name = tables.Column(accessor="first_name", verbose_name="Prénom", orderable=True ,linkify= lambda record: record.get_view_url())
     action = tables.TemplateColumn(
             '''{% include 'buttons/action.html' with object=record modal_edit="true" %}''',
             verbose_name='Actions',

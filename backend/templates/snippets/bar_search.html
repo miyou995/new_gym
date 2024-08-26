@@ -22,8 +22,9 @@
                     {% url 'transactions:transaction_name' as my_url1%}
                     {% url 'transactions:RemunerationProfTable_name' as my_url2%}
                     {% url 'transactions:RemunerationPersonnelTable_name' as my_url3%}
+                    {% url 'transactions:autre_transaction_table' as my_url4%}
 
-               {% if request.path == my_url1 or request.path == my_url2 or request.path == my_url3  %}
+               {% if request.path == my_url1 or request.path == my_url2 or request.path == my_url3 or request.path == my_url4  %}
                     <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
                         {% for field in render_filter.form %}
                             {% if field.name != "search" %}

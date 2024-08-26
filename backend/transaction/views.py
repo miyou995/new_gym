@@ -7,15 +7,15 @@ from django.views.generic import (CreateView, DeleteView,DetailView,
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.contrib import messages
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from abonnement.models import AbonnementClient
 from .forms import PaiementModelForm,Remuneration_PersonnelModelForm,Remunération_CoachModelForm,Autre_TransactionForm
 import json
 from  django_tables2 import SingleTableMixin
 from django_filters.views import FilterView
 from .models import Paiement,RemunerationProf,Remuneration,Autre
-from .tables import PiaementHTMxTable,RemunerationProfHTMxTable,RemunerationPersonnelHTMxTable
-from .filters import ProductFilter,PersonnelFilter,CoachFilter
+from .tables import PiaementHTMxTable,RemunerationProfHTMxTable,RemunerationPersonnelHTMxTable,AutreTransactionTableHTMxTable
+from .filters import ProductFilter,PersonnelFilter,CoachFilter,AutreTransactionFilter
 
 
 # tables views
@@ -73,6 +73,25 @@ class RemunerationPersonnelTable(SingleTableMixin, FilterView):
         else:
             template_name = "transaction.html"
         return template_name 
+
+class AutreTransactionTable(SingleTableMixin,FilterView):
+    table_class=AutreTransactionTableHTMxTable
+    filterset_class=AutreTransactionFilter
+    paginate_by=15
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["target_url"]   = reverse('transactions:autre_transaction_table')
+        context["target"]       = "#table4"
+        context["render_filter"]=AutreTransactionFilter(self.request.GET)
+        return context
+    def get_template_names(self):
+        if self.request.htmx:
+            template_name = "tables/transactions_table_partial.html"
+        else:
+            template_name = "transaction.html"
+        return template_name 
+
+
 
 
 class Chiffre_affaireView(TemplateView):
@@ -169,34 +188,45 @@ class PaiementDeleteView(DeleteView):
  
 
 #remuneration personnel ------------------------------------------------------------------------------------------
-def Remuneration_Personnel(request):
-    context={} 
+class Remuneration_Personnel(CreateView):
     template_name="snippets/_remu_personnel_form.html"
-    form=Remuneration_PersonnelModelForm(data=request.POST or None)
-    if request.method =="POST" :
-        form= Remuneration_PersonnelModelForm(data=request.POST)
-        posted_data="\n".join(f'{key} {value}' for key,value in request.POST.items())
-        print('POSTED DATA =====\n',posted_data,'\n=====')
-        if form.is_valid():
-            print('is valide')
-            product=form.save()
-            message=_("une Remuneration Personnel a été créé avec succès")
-            messages.success(request,str(message),extra_tags="toastr")
-            return HttpResponse(status=204,
-                                headers={
-                                    'HX-Trigger':json.dumps({
-                                        "closeModal":"kt_modal",
-                                        "refresh_table":None
-                                    })
-                                })
+    form_class=Remuneration_PersonnelModelForm
 
+    def get_form_kwargs(self) :
+        kwargs = super().get_form_kwargs()
+        personnel_pk = self.kwargs.get('pk')
+        if personnel_pk:
+            kwargs['initial'] = {'personnel_pk': personnel_pk}
+        return kwargs
+
+    def get(self, request: HttpRequest, *args, **kwargs):
+        form = self.form_class(**self.get_form_kwargs())
+        context = {"form": form}
+        return render(request, self.template_name, context)
+    
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(data=request.POST)
+        posted_data = "\n.".join(f'{key} {value}' for key, value in request.POST.items())
+        print('POSTED DATA =========\n', posted_data, '\n==========')
+        
+        if form.is_valid():
+            print("is valide")
+            form.save()
+            message = _("Remuniration Personnel a été créé avec succès")
+            messages.success(request, str(message), extra_tags="toastr")
+            return HttpResponse(status=204, headers={
+                'HX-Trigger': json.dumps({
+                    "closeModal": "kt_modal",
+                    "refresh_table": None
+                })
+            })
         else:
-            print("is not valide",form.errors.as_data())
-            personnel=request.POST.get('nom')
-            context["form"]=Remuneration_PersonnelModelForm(data=request.POST or None )
-            return render(request,template_name="snippets/_remu_personnel_form.html", context=context)
-    context["form"]=form
-    return render(request,template_name=template_name,context=context)
+            print('is not valide', form.errors.as_data())
+            personnel = request.POST.get("personnel")
+            context = {'form': form}
+            return render(request, self.template_name, context)
+
+
 
 class RemuPersonnelUpdateView(UpdateView):
     model=Remuneration
@@ -313,12 +343,6 @@ class RemCoachDeleteView(DeleteView):
     template_name="snippets/delete_modal.html"
     success_url=reverse_lazy("transactions:RemunerationProfTable_name")
 
-    def get_context_data(self,**kwargs):
-    
-        context=super().get_context_data(**kwargs)
-        context["title"]= f"Coach"
-        return context
-
     def form_valid(self,form):
         success_url = self.get_success_url()
         self.object.delete()
@@ -369,10 +393,9 @@ class Autre_TransactionUpdateView(UpdateView):
         print("from instance",self.object)
         return super().get(request,*args, **kwargs)
     def form_valid(self,form):
-        autre=form.save()
-        print('is form valide',Autre.id)
+        form.save()
         messages.success(self.request,"Autre transactions Mis A Jour avec Succés",extra_tags="toastr")
-        return HttpResponse(statu=204,
+        return HttpResponse(status=204,
                 headers={
                     'HX-Trigger':json.dumps({
                         "closeModal":"kt_modal",
@@ -385,6 +408,16 @@ class Autre_TransactionUpdateView(UpdateView):
         return self.render_to_response(self.get_context_data(form=form))
 
 
+class AutreTransactionDelete(DeleteView):
+    model =Autre
+    template_name="snippets/delete_modal.html"
+    success_url=reverse_lazy("transactions:autre_transaction_table")
+
+    def form_valid(self,form):
+        success_url = self.get_success_url()
+        self.object.delete()
+        messages.success(self.request, "Autre transaction Supprimer avec Succés",extra_tags="toastr")
+        return HttpResponseRedirect(success_url)
 
     
 

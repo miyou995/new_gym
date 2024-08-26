@@ -1,5 +1,5 @@
 import django_tables2 as tables
-from .models import Paiement,RemunerationProf,Remuneration
+from .models import Paiement,RemunerationProf,Remuneration,Autre
 from django.urls import reverse
 
 class PiaementHTMxTable(tables.Table):
@@ -68,4 +68,26 @@ class RemunerationPersonnelHTMxTable(tables.Table):
         attrs = {
             "get_url": lambda: reverse("transactions:RemunerationPersonnelTable_name"),
             "htmx_container": "#table2",
+        }
+
+class AutreTransactionTableHTMxTable(tables.Table):   
+#     nom = tables.Column(accessor="nom", verbose_name="personnel", orderable=True ,linkify= lambda record: record.get_url())  
+    action = tables.TemplateColumn(
+            '''{% include 'buttons/action.html' with object=record modal_edit="true" %}''',
+            verbose_name='Actions',
+            orderable=False)
+  
+    class Meta:
+        fields  = (
+                'name',
+                'amount', 
+                'notes',
+                'date_creation',
+                'action',
+        )
+        model = Autre
+        template_name = "tables/bootstrap_htmx.html"
+        attrs = {
+            "get_url": lambda: reverse("transactions:autre_transaction_table"),
+            "htmx_container": "#table4",
         }

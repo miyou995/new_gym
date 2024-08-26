@@ -56,8 +56,6 @@ class Paiement(Transaction):
         return self.abonnement_client.reste
     
 
-    # def get_view_url(self):
-    #     return reverse("client:personnel_detail", kwargs={"pk": self.pk})
     
     def get_url(self):
         return reverse('client:client_detail', kwargs={'pk':str(self.id)})
@@ -74,6 +72,14 @@ class Autre(Transaction):
         return str(self.amount)
     class Meta:
         ordering = ['-date_creation']
+
+    def get_url(self):
+        return reverse('client:client_detail', kwargs={'pk':str(self.id)})
+    def get_edit_url(self):
+        return reverse('transactions:autre_transaction_update', kwargs={'pk': str(self.id)})
+
+    def get_delete_url(self):
+        return reverse('transactions:autre_transaction_delete', kwargs={'pk': str(self.id)})  
 
 class AssuranceTransaction(Transaction):
     # type = models.CharField(max_length=200, null=True, blank=True)
