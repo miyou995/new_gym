@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic.base import TemplateView
 from django.views.generic import (TemplateView,UpdateView,DeleteView)
 from django.shortcuts import get_object_or_404
+from transaction.tables import RemunerationPersonnelHTMxTable
 from presence.models import PresenceCoach
 from .forms import ClientModelForm,CoachModelForm, PersonnelModelForm
 from django.contrib import messages
@@ -10,7 +11,7 @@ import json
 from django.utils import timezone
 
 from django.urls import reverse_lazy
-from transaction.models import Paiement,RemunerationProf
+from transaction.models import Paiement, Remuneration,RemunerationProf
 from datetime import datetime
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
@@ -479,32 +480,37 @@ def presence_coach(request, pk):
     return HttpResponse(status=204)
 
 
-# def enter_coach(request,pk):
-#     context={}
-#     coach_pk = get_object_or_404(Coach, pk=pk)
-#     print("coach_pk enter ------------------------", coach_pk)
-#     in_salle=coach_pk.enter()
-#     if in_salle :
-#          messages.success(request, "Entrée Coach Enregistrée", extra_tags="toastr")
-#     else :
-#         message = _("not canceled.")
-#         messages.success(request, str(message), extra_tags="toastr")
-#     context["presence"]=in_salle
-#     return HttpResponse(status=204)
+# ----------------------------------------Personnel detail --------------------------------------------------
 
-# def sortie_coach(request,pk):
-#     context={}
-#     coach_pk = get_object_or_404(Coach, pk=pk)
-#     print("coach_pk enter ------------------------", coach_pk)
-#     in_salle=coach_pk.enter()
-#     if in_salle :
-#          messages.success(request, "Entrée Coach Enregistrée", extra_tags="toastr")
-#     else :
-#         message = _("not canceled.")
-#         messages.success(request, str(message), extra_tags="toastr")
 
-#     context["presence"]=in_salle
-#     return HttpResponse(status=204)
+class PersonnelDetail(SingleTableMixin, FilterView):
+    table_class =   RemunerationPersonnelHTMxTable
+    paginate_by = 15
+    model = Remuneration
+
+    def get_context_data(self, **kwargs):
+        context = super(PersonnelDetail, self).get_context_data(**kwargs)
+        context["personnel"] =  Personnel.objects.get(pk=self.kwargs['pk'])
+
+        return context
+    
+    def get_queryset(self):
+         queryset = Remuneration.objects.select_related('nom').order_by("-date_creation")
+         personnel_pk = self.kwargs.get('pk')
+         print("personnel_pk -------------", personnel_pk)
+         if personnel_pk:
+            queryset = queryset.filter(nom_id=personnel_pk)
+
+         return queryset
+    
+    def get_template_names(self):
+        if self.request.htmx:
+            template_name = "tables/product_table_partial.html"
+        else:
+            template_name = "snippets/personnel_detail.html"
+        return template_name
+
+
 
     
 

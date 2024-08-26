@@ -119,6 +119,21 @@
 								>
 								{% trans 'Coach' %}</a>
 						</li>
+						<li class="nav-item mt-2" role="presentation">
+
+							<a  class="nav-link text-active-primary pb-4"
+								data-bs-toggle="tab"
+								href="#kt_user_view_autre_transaction" 
+								aria-selected="false"
+								role="tab"
+								tabindex="-1"
+								hx-get="{% url 'transactions:autre_transaction_table'  %}"
+								hx-swap="innerHTML"
+								hx-trigger="refresh_table from:body,click"
+								hx-target="#table4"
+							>
+							{% trans 'Autre Transaction' %}</a>
+					</li>
 					
 						</ul>
 						<div class="d-flex flex-column flex-lg-row">
@@ -154,6 +169,17 @@
 												</div>
 									       </div>
 								       </div>
+							       </div>
+
+								   <div class="tab-pane fade" id="kt_user_view_autre_transaction" role="tabpanel">
+										<div id="kt_app_content_container" >
+											<div class="card ">
+										
+												<div class="card-body pt-0 table-responsive" id="table4">
+													{% render_table table %}
+												</div>
+										</div>
+									</div>
 							       </div>
 						</div>
 					</div>
