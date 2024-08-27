@@ -57,8 +57,8 @@ class Paiement(Transaction):
     
 
     
-    def get_url(self):
-        return reverse('client:client_detail', kwargs={'pk':str(self.id)})
+    def get_url(self,pk):
+        return reverse('client:client_detail', kwargs={'pk':pk})
     def get_edit_url(self):
         return reverse('transactions:paiement_update', kwargs={'pk': str(self.id)})
 
@@ -103,8 +103,8 @@ class Remuneration(Transaction):
     class Meta:
         ordering = ['-date_creation']
 
-    def get_url(self):
-        return reverse('client:client_detail')
+    def get_url(self,pk):
+        return reverse('client:personnel_detail', kwargs={'pk':pk})
     def get_edit_url(self):
         return reverse('transactions:Remuneration_Personnel_update', kwargs={'pk': str(self.id)})
     def get_delete_url(self):
@@ -119,8 +119,8 @@ class RemunerationProf(Transaction):
     class Meta:
         ordering = ['-date_creation']
 
-    def get_url(self):
-        return reverse('client:client_detail')
+    def get_url(self,pk):
+        return reverse('client:CoachDetail', kwargs={'pk':pk})
     def get_edit_url(self):
         return reverse('transactions:Remuneration_Coach_update', kwargs={'pk': str(self.id)})
     def get_delete_url(self):

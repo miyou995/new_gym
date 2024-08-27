@@ -6,7 +6,7 @@
     <div class="d-flex flex-column flex-column-fluid">
         <div id="kt_app_content" class="app-content">
             <div class="card card-flush">
-                <div class="card-header align-items-center py-5 gap-2 gap-md-5">
+                <div class="card-header align-items-center py-0 gap-2 gap-md-5">
                     <div class="card-title">
                         <div class="d-flex align-items-center position-relative my-1">
                             <button type="button" class="btn btn-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
@@ -14,25 +14,22 @@
                         </div>
                         <div id="kt_ecommerce_report_sales_export" class="d-none"></div>
                     </div>
-                
-                    <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
+                    <div class="card-toolbar flex-row-fluid justify-content-end ">
                         <button type="button" class="btn btn-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
                         <i class="ki-exit-up fs-2"></i>Fermer la salle</button>
                     </div>
                 </div>
-                
-                <div class="row py-5">
+                <div class="row py-0 ">
                     <div class="col-sm-6">
                             <div class="card-body">
-                                <div class="card card-flush">
-                                    <div class="card-header align-items-center py-5 gap-2 gap-md-5">
+                                <div class="card card-flush ">
+                                    <div class="card-header align-items-center py-0 gap-2 gap-md-5">
                                         <div class="card-title">
                                             <div class="d-flex align-items-center position-relative my-1">
                                                 <h3 class="card-title">Planning</h3>
                                             </div>
                                             <div id="kt_ecommerce_report_sales_export" class="d-none"></div>
                                         </div>
-                                    
                                         <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
                                             <a  href="#" 
                                                 class="btn btn-sm fw-bold btn-primary" 
@@ -43,7 +40,8 @@
                                                 hx-get="{% url 'core:PlanningCreateView' %}" 
                                                 hx-target="#kt_modal_content"  
                                                 hx-swap="innerHTML"
-                                        >{% trans 'Ajouter' %} </a>
+                                               >{% trans 'Ajouter' %}
+                                             </a>
                                         </div>
                                     </div>
                                     <div class="card-scroll h-250px card-body pt-0">
@@ -60,7 +58,7 @@
                                     </div>
                                 </div>
                             </div>
-                    </div>
+                     </div>
                     <div class="col-sm-6">
                             <div class="card-body">
                                 <div class="card card-flush">
@@ -82,7 +80,8 @@
                                                 hx-get="{% url 'core:SalleCreateView' %}" 
                                                 hx-target="#kt_modal_content" 
                                                 hx-swap="innerHTML"
-                                    >{% trans 'Ajouter' %} </a>
+                                                >{% trans 'Ajouter' %} 
+                                            </a>
                                         </div>
                                     </div>
                                     <div class="card-scroll h-250px card-body pt-0">
@@ -101,7 +100,6 @@
                             </div>
                      </div>
                 </div>
-                
                 <div class="row py-5">
                     <div class="col-sm-6">
                             <div class="card-body">
@@ -124,7 +122,8 @@
                                                 hx-get="{% url 'core:ActiviteCreateView' %}" 
                                                 hx-target="#kt_modal_content" 
                                                 hx-swap="innerHTML"
-                                    >{% trans 'Ajouter' %} </a>
+                                                >{% trans 'Ajouter' %} 
+                                            </a>
                                         </div>
                                     </div>
                                     <div class="card-scroll h-250px card-body pt-0">
@@ -152,7 +151,6 @@
                                             </div>
                                             <div id="kt_ecommerce_report_sales_export" class="d-none"></div>
                                         </div>
-                                        
                                         <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
                                             <a  href="#" 
                                                 class="btn btn-sm fw-bold btn-primary" 
@@ -163,7 +161,8 @@
                                                 hx-get="{% url 'core:MaladieCreateView' %}" 
                                                 hx-target="#kt_modal_content" 
                                                 hx-swap="innerHTML"
-                                    >{% trans 'Ajouter' %} </a>
+                                             >{% trans 'Ajouter' %} 
+                                            </a>
                                         </div>
                                     </div>
                                     <div class="card-scroll h-250px card-body pt-0">
@@ -182,10 +181,8 @@
                             </div>
                     </div>
                 </div>
-                
                 <div class="row py-5">
                     <div class="col-sm-4">
-                       
                             <div class="card-body">
                                 <div class="card card-flush">
                                     <div class="card-header align-items-center py-5 gap-2 gap-md-5">
@@ -195,7 +192,6 @@
                                             </div>
                                             <div id="kt_ecommerce_report_sales_export" class="d-none"></div>
                                         </div>
-                                    
                                         <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
                                             <a  href="#" 
                                                 class="btn btn-sm fw-bold btn-primary" 
@@ -206,7 +202,8 @@
                                                 hx-get="{% url 'core:PorteCreateView' %}" 
                                                 hx-target="#kt_modal_content" 
                                                 hx-swap="innerHTML"
-                                >{% trans 'Ajouter' %} </a>
+                                             >{% trans 'Ajouter' %} 
+                                            </a>
                                         </div>
                                     </div>
                                     <div class="card-scroll h-250px card-body pt-0">
@@ -223,7 +220,6 @@
                                     </div>
                                 </div>
                             </div>
-                       
                     </div>
                     <div class="col-sm-8">
                             <div class="card-body">
@@ -235,7 +231,6 @@
                                             </div>
                                             <div id="kt_ecommerce_report_sales_export" class="d-none"></div>
                                         </div>
-                                        
                                         <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
                                             <a  href="#" 
                                                 class="btn btn-sm fw-bold btn-primary" 
@@ -246,7 +241,8 @@
                                                 hx-get="{% url 'core:TypeAbonnementCreateView' %}" 
                                                 hx-target="#kt_modal_content" 
                                                 hx-swap="innerHTML"
-                                >{% trans 'Ajouter' %} </a>
+                                             >{% trans 'Ajouter' %} 
+                                            </a>
                                         </div>
                                     </div>
                                     <div class="card-scroll h-250px card-body pt-0">
@@ -265,7 +261,6 @@
                             </div>
                     </div>
                 </div>
-                
             </div>
         </div>
     </div>

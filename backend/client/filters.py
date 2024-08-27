@@ -9,7 +9,6 @@ class ClientFilter(django_filters.FilterSet):
     search = django_filters.CharFilter(method='universal_search', label="")
     # date_creation = django_filters.DateFromToRangeFilter(label="Date", lookup_expr='range', widget=django_filters.widgets.RangeWidget(attrs={'type': 'date'}))
     
-    
     class Meta:
         model = Client
         fields = ['search']
@@ -20,7 +19,7 @@ class ClientFilter(django_filters.FilterSet):
 
         # Check if the search value is numeric (possibly an ID)
         if value.replace(".", "", 1).isdigit():
-            queryset = queryset.filter(Q(id=value) | Q(last_name=value) | Q(first_name=value))
+            queryset = queryset.filter(Q(id=value) | Q(last_name=value) | Q(first_name=value) | Q(carte=value) )
         else:
             # Check if the search value matches any location names
             queryset = queryset.filter(Q(last_name__icontains=value)  | Q(first_name__icontains=value)  | Q(id__icontains=value))
@@ -28,9 +27,6 @@ class ClientFilter(django_filters.FilterSet):
         print('Filtered queryset:', queryset)
         return queryset.distinct()
    
-
-
-
 
 class CoachFilter(django_filters.FilterSet):
     search = django_filters.CharFilter(method='universal_search', label="")

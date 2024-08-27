@@ -441,14 +441,15 @@ def TypeAbonnementCreateView(request):
 class TypeAbonnementUpdateView(UpdateView):
     model = Abonnement
     template_name="configuration\snippets\_type_abonne_form.html"
-    fields=[
+    form_class=AbonnementModelForm
+    # fields=[
           
-            'name',
-            'price',
-            'length',
-            'seances_quantity',
-            'salles',
-    ]
+    #         'name',
+    #         'price',
+    #         'length',
+    #         'seances_quantity',
+    #         'salles',
+    # ]
     def get(self,request,*args,**kwargs):
         self.object=self.get_object()
         print('form instance',self.object)

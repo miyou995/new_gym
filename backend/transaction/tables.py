@@ -3,7 +3,8 @@ from .models import Paiement,RemunerationProf,Remuneration,Autre
 from django.urls import reverse
 
 class PiaementHTMxTable(tables.Table):
-    client = tables.Column(accessor="abonnement_client__client", verbose_name="Client", orderable=True ,linkify= lambda record: record.get_url())
+    client = tables.Column(accessor="abonnement_client__client", verbose_name="Client", orderable=True ,linkify= lambda record: record.get_url(pk=record.abonnement_client.client.pk))
+    nom = tables.Column(accessor="abonnement_client__client__last_name", verbose_name="nom", orderable=True ,linkify= lambda record: record.get_url(pk=record.abonnement_client.client.pk))
     action = tables.TemplateColumn(
             '''{% include 'buttons/action.html' with object=record modal_edit="true" %}''',
             verbose_name='Actions',
@@ -12,6 +13,7 @@ class PiaementHTMxTable(tables.Table):
     class Meta:
         fields  = (
                 'client',
+                'nom',
                 'abonnement_client',
                 'amount', 
                 'notes',
@@ -25,9 +27,8 @@ class PiaementHTMxTable(tables.Table):
             "htmx_container": "#table1",
         }
 
-
 class RemunerationProfHTMxTable(tables.Table):   
-#     coach = tables.Column(accessor="coach", verbose_name="coach", orderable=True ,linkify= lambda record: record.get_url()) 
+    coach = tables.Column(accessor="coach", verbose_name="coach", orderable=True ,linkify= lambda record: record.get_url(pk=record.coach.pk)) 
     action = tables.TemplateColumn(
             '''{% include 'buttons/action.html' with object=record modal_edit="true" %}''',
             verbose_name='Actions',
@@ -49,7 +50,7 @@ class RemunerationProfHTMxTable(tables.Table):
         }
 
 class RemunerationPersonnelHTMxTable(tables.Table):   
-#     nom = tables.Column(accessor="nom", verbose_name="personnel", orderable=True ,linkify= lambda record: record.get_url())  
+    nom = tables.Column(accessor="nom", verbose_name="personnel", orderable=True ,linkify= lambda record: record.get_url(pk=record.nom.pk))  
     action = tables.TemplateColumn(
             '''{% include 'buttons/action.html' with object=record modal_edit="true" %}''',
             verbose_name='Actions',
