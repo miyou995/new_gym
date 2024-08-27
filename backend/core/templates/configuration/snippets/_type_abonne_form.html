@@ -13,9 +13,16 @@
         hx-target="#kt_modal_content"
         novalidate 
     >
-        <div class="mb-13 text-center">
-            <h1 class="mb-3">{% trans "Creer un nouvel abonnement" %}</h1>
-        </div>
+        {% if form.instance.id  %}
+            <div class="mb-13 text-center">
+                <h1 class="mb-3">{% trans "Modifier abonnement" %}</h1>
+            </div>
+        {% else %}
+            <div class="mb-13 text-center">
+                <h1 class="mb-3">{% trans "Creer un nouvel abonnement" %}</h1>
+            </div>
+        {% endif %}
+
         {% with WIDGET_ERROR_CLASS='is-invalid' %}         
             {% for field in form %}
                 <div class="d-flex flex-column mb-8 fv-row">
@@ -37,7 +44,7 @@
             {% if form.instance.id %}  
                 {% include 'popups/delete_model.html' with object=form.instance %}
             {% endif %}
-          </div>
+        </div>
     </form>
 </div>
 
@@ -45,7 +52,6 @@
 	document.addEventListener('htmx:afterOnLoad', function(event) {
         if (event.detail.target.id === 'kt_modal_content') {
             document.querySelector('#PlanningTable').dispatchEvent(new CustomEvent('refresh_table'));
-            // Repeat for other tables as necessary
         }
     });
     

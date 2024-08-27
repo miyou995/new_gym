@@ -8,6 +8,7 @@ from presence.models import PresenceCoach,Presence
 
 
 class ClientHTMxTable(tables.Table):
+    id = tables.Column(accessor="id", verbose_name="ID", orderable=True ,linkify= lambda record: record.get_view_url())
     last_name = tables.Column(accessor="last_name", verbose_name="Nom", orderable=True ,linkify= lambda record: record.get_view_url())
     action = tables.TemplateColumn(
             '''{% include 'buttons/action.html' with object=record modal_edit="true" %}''',
@@ -168,11 +169,9 @@ class VirementsHTMxTable(tables.Table):
         fields  = (
                'amount',
                'date_creation', 
-                
         )
         model = RemunerationProf
         template_name = "tables/bootstrap_htmx.html"
-
 
 class PresenceCoachHTMxTable(tables.Table):
 

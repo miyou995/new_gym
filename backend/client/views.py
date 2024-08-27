@@ -18,13 +18,13 @@ from django.urls import reverse
 from django_tables2 import SingleTableMixin
 from django_filters.views import FilterView
 from .models import Client,Coach,Personnel
-
 from .filters import ClientFilter,CoachFilter,PersonnelFilter
 from .tables import (ClientHTMxTable,CoachHTMxTable,PersonnelHTMxTable,AbonnementClientHTMxTable,PaiementHTMxTable,
                      CoachDetailHTMxTable,VirementsHTMxTable,PresenceCoachHTMxTable,
                      PresenceClientHTMxTable)
 from abonnement.models import AbonnementClient
 from creneau.models import Creneau
+
 
 
 #-------------------------------------------------client------------------------------------------------------------
