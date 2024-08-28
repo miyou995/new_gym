@@ -89,19 +89,19 @@
 														</div>
 														<div class="card-toolbar flex-row-fluid justify-content-end gap-5">
 															<button
-																type="button"
-																class="btn btn-primary btn-sm"
-																data-bs-toggle="modal"
-																data-bs-target="#kt_modal"
-																{% comment %} hx-get="{% url 'transactions:coach_Remuneration_Coach' coach.pk %}" {% endcomment %}
-																hx-target="#kt_modal_content"
-																hx-trigger="click"
-																data-bs-toggle="tooltip" 
-																hx-swap="innerHTML"
-															>
+															type="button"
+															class="btn btn-primary btn-sm"
+															data-bs-toggle="modal"
+															data-bs-target="#kt_modal"
+															hx-get="{% url 'abonnement:create_abonnement_client' client.pk %}" 
+															hx-target="#kt_modal_content"
+															hx-trigger="click"
+															hx-swap="innerHTML"
+															data-bs-toggle="tooltip"
+														>
 															<i class="ki-exit-up fs-2">Ajouter Abonnement</i>
-															</button>
-
+														</button>
+															
 														</div>
 													</div>
 													<div class="card-scroll h-250px card-body pt-0">

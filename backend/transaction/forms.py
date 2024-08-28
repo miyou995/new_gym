@@ -16,8 +16,6 @@ class PaiementModelForm(forms.ModelForm):
                 'amount', 
                 'notes',
                  )
-         
-   
     def clean_amount(self):
         amount = self.cleaned_data.get('amount')
         if not amount :
@@ -25,8 +23,6 @@ class PaiementModelForm(forms.ModelForm):
         if amount < 0:
             raise forms.ValidationError(_('Montant doit être supérieur à zéro'))
         return amount
-    
-      
     def __init__(self, ticket=None, *args, **kwargs):   
         super().__init__(*args, **kwargs)
 
