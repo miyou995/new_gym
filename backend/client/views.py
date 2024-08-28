@@ -392,6 +392,9 @@ class PresenceClientDetail(SingleTableMixin, FilterView):
                 template_name = "snippets/client_detail.html"
             return template_name
 
+
+
+
 # ----------------------------------------coach detail --------------------------------------------------
 class CoachDetail(SingleTableMixin, FilterView):
     table_class =   CoachDetailHTMxTable
