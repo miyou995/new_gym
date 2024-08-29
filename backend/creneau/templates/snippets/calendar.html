@@ -1,3 +1,47 @@
+
+{% extends "base.html" %} 
+{% load static %}
+{% block content %}
+{% load i18n %}
+{% load widget_tweaks %}
+
+
+
+<div class="app-main flex-column flex-row-fluid" id="kt_app_main">
+    <div class="d-flex flex-column flex-column-fluid">
+        <div id="kt_app_content" class="app-content">
+            <div class="card card-flush">
+                <div class="card-toolbar flex-row-fluid justify-content-end gap-5">                
+                        <form                  
+                            hx-get="{{request.path}}"  
+                            hx-target="#calendarWrapper" 
+                            hx-swap="innerHTML" 
+                            hx-trigger="change,keyup delay:900ms"
+                            hx-push-url='true'
+                        >
+                            {{ filter.form.planning|add_class:"form-control" }}
+                            {{ filter.form.activity|add_class:"form-control" }}
+                        </form>
+                </div>
+                <div id="calendarWrapper" class="card card-flush">
+                    {% include "snippets/calender_partial.html" %}               
+                </div>
+            </div>
+        </div>
+    </div>
+</div>     
+
+
+
+{% endblock content %}
+
+
+
+
+
+
+
+
 {% comment %} <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -12,7 +12,8 @@ from .forms import CreneauModelForm
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse, reverse_lazy
-
+from .filters import CalenderFilter
+from django_filters.views import FilterView
 
 
 
@@ -22,20 +23,16 @@ def calendar_view(request):
     context["salles"]=Salle.objects.all()
     return render(request, 'creneaux.html',context)
 
-
-
 def event_data(request):
     # Get the selected planning and salle from the query parameters
     planning_id = request.GET.get('planning')
     salle_id = request.GET.get('salle')
-
     # Filter the events based on the selected planning and salle
     events = Creneau.objects.all()
     if planning_id:
         events = events.filter(planning=planning_id)
     if salle_id:
         events = events.filter(activity__salle=salle_id)
-
     # Mapping day names to weekday numbers for FullCalendar (Sunday is 0, Monday is 1)
     day_name_to_weekday = {
         'LU': 1,  # Monday
@@ -46,7 +43,6 @@ def event_data(request):
         'SA': 6,  # Saturday
         'DI': 0,  # Sunday
     }
-
     events_list = []
     for event in events:
         event_weekday = day_name_to_weekday.get(event.day.upper())
@@ -61,8 +57,6 @@ def event_data(request):
                 'url': reverse('creneau:update_creneau', kwargs={'pk': event.pk}),  # Include the URL
                 
             })
-
-
     return JsonResponse(events_list, safe=False)
 
 
@@ -134,3 +128,49 @@ class CreneauDeleteView(DeleteView):
         return HttpResponseRedirect(success_url)
     
 
+
+
+
+class CalenderView(FilterView):
+    filterset_class = CalenderFilter
+    model = Creneau
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # context['filter'] = self.filterset
+        context["events"] = json.dumps(self.get_events())
+        print('Called vevnets', context["events"])
+        return context
+ 
+    def get_events(self):
+        events = self.filterset_class(self.request.GET, queryset=Creneau.objects.all()).qs
+
+        day_name_to_weekday = {
+            'LU': 1,  # Monday
+            'MA': 2,  # Tuesday
+            'ME': 3,  # Wednesday
+            'JE': 4,  # Thursday
+            'VE': 5,  # Friday
+            'SA': 6,  # Saturday
+            'DI': 0,  # Sunday
+        }
+        events_list = []
+        for event in events:
+            event_weekday = day_name_to_weekday.get(event.day.upper())
+            if event_weekday is not None:
+                events_list.append({
+                    'title': event.name,
+                    'color': event.color,
+                    'startTime': event.hour_start.strftime('%H:%M:%S'),
+                    'endTime': event.hour_finish.strftime('%H:%M:%S'),
+                    'daysOfWeek': [event_weekday],  # Repeat weekly on this day
+                    'url': reverse('creneau:update_creneau', kwargs={'pk': event.pk}),
+                })
+        return events_list
+    
+    def get_template_names(self):
+        if self.request.htmx:
+            template_name = "snippets/calender_partial.html"
+        else:
+            template_name = "snippets/calendar.html"
+        return template_name 
