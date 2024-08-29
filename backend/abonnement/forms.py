@@ -17,7 +17,8 @@ class AbonnemetsClientModelForm(forms.ModelForm):
                'client',
                'creneaux',
                'type_abonnement',
-               'start_date'
+               'start_date',
+               'end_date'
           )
     def __init__(self, ticket=None, *args, **kwargs):   
         super().__init__(*args, **kwargs)
@@ -33,3 +34,22 @@ class AbonnemetsClientModelForm(forms.ModelForm):
                 pass
         kwargs['initial']=initial
         super(AbonnemetsClientModelForm,self).__init__(*args,**kwargs)
+
+
+        self.fields['client'].error_messages = {
+            'required': 'veuillez choisir.',
+            'invalid': 'Custom error message for field1 is invalid.',
+          
+        }
+        self.fields['creneaux'].error_messages = {
+            'required': 'veuillez choisir.',
+            'invalid': 'Custom error message for field2 is invalid.',
+        }
+        self.fields['type_abonnement'].error_messages = {
+            'required': 'veuillez choisir.',
+            'invalid': 'Custom error message for field2 is invalid.',
+        }
+        self.fields['start_date'].error_messages = {
+            'required': 'veuillez choisir.',
+            'invalid': 'Custom error message for field2 is invalid.',
+        }

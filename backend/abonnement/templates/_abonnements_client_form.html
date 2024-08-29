@@ -3,16 +3,45 @@
 {% csrf_token %}
 
 <div class="modal-body scroll-y mx-5 mx-xl-15 mb-7 " >
-	<form
+	<div class="card-toolbar flex-row-fluid justify-content-end gap-5">
+		<div class="fv-row mb-8">
+			<label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+				<span class="card-label fw-bold fs-2 text-grey-800">Plannings</span>
+				</span>
+			</label>
+			<select class="form-select"  name="planning"  aria-label="Default select example">
+				<option value="">--------</option>
+				{% for planning in Plannings %}
+					<option value="{{ planning.id }}">{{ planning }}</option>
+				{% endfor %}
+			</select>
+		</div>
+		<div class="fv-row mb-8">
+			<label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+				<span class="card-label fw-bold fs-2 text-grey-800">Salles</span>
+				</span>
+			</label>
+			<select class="form-select" name="salle" aria-label="Default select example">
+				<option value="">--------</option>
+				{% for salle in salles %}
+					<option value="{{ salle.id }}">{{ salle }}</option>
+				{% endfor %}
+			</select>
+		</div>
+		
+	</div>
+	{% comment %} <form
 			id="sg_create_store_form" 
 			class="form"  
 			{% if form.instance.id %}
 			hx-post="{% url 'client:client_update' form.instance.id %}" 
-			{% else %} hx-post="{% url 'abonnement:create_abonnement_client' %}"
+			{% else %} hx-post="{% url 'abonnement:create_abonnement_client'  pk=form.initial.client.pk  %}"
 			{% endif %}
 			hx-target="#kt_modal_content"
 			novalidate 
 		>
+
+
 
 		<div class="mb-13 text-center">
 			<h1 class="mb-3">{% trans "Profil abonné" %}</h1>
@@ -37,7 +66,7 @@
 			<button type="submit"  class="btn btn-primary"   >{% trans "Confirmer" %}</button>
 			
 		</div>
-	</form>
+	</form> {% endcomment %}
 </div>
 
 

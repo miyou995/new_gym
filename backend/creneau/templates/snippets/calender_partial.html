@@ -1,0 +1,48 @@
+
+
+<div id="calendar"></div>
+
+
+
+<script>
+    function initCalendar() {
+        var calendarEl = document.getElementById('calendar');
+    
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            headerToolbar: {
+                left: 'prev,next today', 
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            },
+            slotMinTime: '06:00:00',
+            slotDuration: '01:00:00',
+            events: {{ events|safe }}  // Correct syntax to include serialized events data
+        });
+    
+        calendar.render();
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('CVALENDAR CALLED')
+        initCalendar();
+    });
+   document.addEventListener('htmx:afterSwap', function(event) {
+    var calendarEl = document.getElementById('calendar');
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            headerToolbar: {
+                left: 'prev,next today', 
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            },
+            slotMinTime: '06:00:00',
+            slotDuration: '01:00:00',
+            events: {{ events|safe }}  
+        });
+        calendar.render();
+    });
+
+    
+</script>
+   
