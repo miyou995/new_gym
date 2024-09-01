@@ -1,13 +1,7 @@
-
-
 <div id="calendar"></div>
-
-
-
 <script>
-    function initCalendar() {
+    function initCalendar(eventsData) {
         var calendarEl = document.getElementById('calendar');
-    
         var calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth',
             headerToolbar: {
@@ -17,32 +11,36 @@
             },
             slotMinTime: '06:00:00',
             slotDuration: '01:00:00',
-            events: {{ events|safe }}  // Correct syntax to include serialized events data
+            events: eventsData,
+            eventClick: function(info) {
+                info.jsEvent.preventDefault(); // Prevent the default browser behavior
+                var url = info.event.url;
+                htmx.ajax('GET', url, {
+                    target: '#kt_modal_content', // The ID of the element where the content will be loaded
+                    swap: 'innerHTML', // Swap the innerHTML of the target element with the response
+                });
+                var myModal = new bootstrap.Modal(document.getElementById('kt_modal'));
+                myModal.show();
+            }
+           
+          
         });
-    
         calendar.render();
     }
+
     document.addEventListener('DOMContentLoaded', function() {
-        console.log('CVALENDAR CALLED')
-        initCalendar();
+        initCalendar({{ events|safe }});
     });
-   document.addEventListener('htmx:afterSwap', function(event) {
-    var calendarEl = document.getElementById('calendar');
-
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth',
-            headerToolbar: {
-                left: 'prev,next today', 
-                center: 'title',
-                right: 'dayGridMonth,timeGridWeek,timeGridDay'
-            },
-            slotMinTime: '06:00:00',
-            slotDuration: '01:00:00',
-            events: {{ events|safe }}  
-        });
-        calendar.render();
-    });
-
+    document.addEventListener('DOMContentLoaded', function () {
+        // Select the form element
+        const form = document.getElementById('form_id'); // Replace 'yourFormId' with the actual ID of your form
     
+        // Add an event listener to all input elements within the form
+        form.querySelectorAll('input, select, textarea').forEach(function(element) {
+            element.addEventListener('change', function() {
+                // Submit the form when an input changes
+                form.submit();
+            });
+        });
+    });
 </script>
-   
