@@ -3,7 +3,7 @@ import django_filters
 import django_filters.widgets
 from .models import Creneau
 from planning.models import Planning
-from salle_activite.models import Activity, Salle 
+from salle_activite.models import Activity 
 
 
 

@@ -2,75 +2,102 @@
 {% load widget_tweaks %}
 {% csrf_token %}
 
-<div class="modal-body scroll-y mx-5 mx-xl-15 mb-7 " >
-	<div class="card-toolbar flex-row-fluid justify-content-end gap-5">
-		<div class="fv-row mb-8">
-			<label class="d-flex align-items-center fs-6 fw-semibold mb-2">
-				<span class="card-label fw-bold fs-2 text-grey-800">Plannings</span>
-				</span>
-			</label>
-			<select class="form-select"  name="planning"  aria-label="Default select example">
-				<option value="">--------</option>
-				{% for planning in Plannings %}
-					<option value="{{ planning.id }}">{{ planning }}</option>
-				{% endfor %}
-			</select>
-		</div>
-		<div class="fv-row mb-8">
-			<label class="d-flex align-items-center fs-6 fw-semibold mb-2">
-				<span class="card-label fw-bold fs-2 text-grey-800">Salles</span>
-				</span>
-			</label>
-			<select class="form-select" name="salle" aria-label="Default select example">
-				<option value="">--------</option>
-				{% for salle in salles %}
-					<option value="{{ salle.id }}">{{ salle }}</option>
-				{% endfor %}
-			</select>
-		</div>
-		
-	</div>
-	{% comment %} <form
-			id="sg_create_store_form" 
-			class="form"  
-			{% if form.instance.id %}
-			hx-post="{% url 'client:client_update' form.instance.id %}" 
-			{% else %} hx-post="{% url 'abonnement:create_abonnement_client'  pk=form.initial.client.pk  %}"
-			{% endif %}
-			hx-target="#kt_modal_content"
-			novalidate 
-		>
+<div class="row">
+    <div class="col-md-9">
+        <!-- Calendar will be here -->
+        <div id="calendar"></div>
+    </div>
+    <div class="col-md-3">
+        <!-- Sidebar for selected events -->
+        <div id="selected-events-sidebar" class="border p-3">
+            <h4>Selected Events</h4>
+            <p>No events selected.</p>
+        </div>
+    </div>
+</div> 
+<script>   
+    var selectedEvents  = [];
+    function initCalendar(eventsData) {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            headerToolbar: {
+                left: 'prev,next today', 
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            },
+            slotMinTime: '06:00:00',
+            slotDuration: '01:00:00',
+            events: eventsData,
+            {% comment %} eventClick: function(info) {
+                info.jsEvent.preventDefault(); // Prevent the default browser behavior
+                var url = info.event.url;
+                htmx.ajax('GET', url, {
+                    target: '#kt_modal_content', // The ID of the element where the content will be loaded
+                    swap: 'innerHTML', // Swap the innerHTML of the target element with the response
+                });
+                var myModal = new bootstrap.Modal(document.getElementById('kt_modal'));
+                myModal.show();
+            }, {% endcomment %}
+            selectable: true,  // Enable selecting events
+            eventClick: function(info) {
+                info.jsEvent.preventDefault(); // Prevent the default browser behavior
+                
+                var selectedEvent = {
+                    title: info.event.title,
+                    startTime: info.event.start,
+                    endTime: info.event.end,
+                    url: info.event.url
+                };
+                
+                // Check if the event is already selected
+                var index = selectedEvents.findIndex(event => event.url === selectedEvent.url);
+                
+                if (index === -1) {
+                    selectedEvents.push(selectedEvent); // Add event to selectedEvents
+                } else {
+                    selectedEvents.splice(index, 1); // Remove event if already selected
+                }
+                
+                // Update the sidebar with selected events
+               console.log(selectedEvents)
+                updateSidebar(selectedEvents);
+            }
+          
+        });
+        calendar.render();
+    }
+    function updateSidebar(selectedEvents) {
+        var sidebar = document.getElementById('selected-events-sidebar');
+        sidebar.innerHTML = ''; // Clear previous content
+        
+        if (selectedEvents.length === 0) {
+            sidebar.innerHTML = '<p>No events selected.</p>';
+        } else {
+            selectedEvents.forEach(function(event) {
+                var eventHtml = `<div class="event-item">
+                                    <h5>${event.title}</h5>
+                                    <p>${event.startTime.toLocaleString()} - ${event.endTime.toLocaleString()}</p>
+                                    {% comment %} <a href="${event.url}" class="btn btn-sm btn-primary" hx-get="${event.url}" hx-target="#kt_modal_content" hx-swap="innerHTML" data-bs-toggle="modal" data-bs-target="#kt_modal">View Details</a> {% endcomment %}
+                                 </div>`;
+                sidebar.innerHTML += eventHtml;
+            });
+        }
+    }
 
-
-
-		<div class="mb-13 text-center">
-			<h1 class="mb-3">{% trans "Profil abonné" %}</h1>
-		</div>
-		{% with WIDGET_ERROR_CLASS='is-invalid' %}         
-			{% for field in form %}
-				<div class="d-flex flex-column mb-8 fv-row">
-					<label class="d-flex align-items-center fs-6 fw-semibold mb-2">
-						<span {%  if field.field.required %}class="required"{% endif %}>{{field.label}}</span>
-					</label>
-					{% render_field field class='form-control' %}
-					{% if field.errors %}
-						<span class="form-check-label fw-semibold text-danger">{{field.errors}}</span>
-					{% else %}
-						 {{field.help_text}}
-					{% endif %}
-				</div>
-			{% endfor %} 
-		{% endwith %}       
-		<div class="text-center">   
-			<button type="reset" id="sg_create_store_form" class="btn btn-light me-3"   data-bs-dismiss="modal">{% trans "Annulé" %}</button>
-			<button type="submit"  class="btn btn-primary"   >{% trans "Confirmer" %}</button>
-			
-		</div>
-	</form> {% endcomment %}
-</div>
-
-
-
-<script>
-	
+    document.addEventListener('DOMContentLoaded', function() {
+        initCalendar({{ events|safe }});
+    });
+    document.addEventListener('DOMContentLoaded', function () {
+        // Select the form element
+        const form = document.getElementById('form_id'); // Replace 'yourFormId' with the actual ID of your form
+    
+        // Add an event listener to all input elements within the form
+        form.querySelectorAll('input, select, textarea').forEach(function(element) {
+            element.addEventListener('change', function() {
+                // Submit the form when an input changes
+                form.submit();
+            });
+        });
+    });
 </script>
