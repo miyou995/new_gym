@@ -14,11 +14,12 @@ class AbonnemetsClientModelForm(forms.ModelForm):
     class Meta:
           model=AbonnementClient
           fields =(
+                'start_date',
+                'end_date',
                'client',
                'creneaux',
                'type_abonnement',
-               'start_date',
-               'end_date'
+               
           )
     def __init__(self, ticket=None, *args, **kwargs):   
         super().__init__(*args, **kwargs)
