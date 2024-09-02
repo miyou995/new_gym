@@ -13,17 +13,15 @@
             slotDuration: '01:00:00',
             events: eventsData,
             eventClick: function(info) {
-                info.jsEvent.preventDefault(); // Prevent the default browser behavior
+                info.jsEvent.preventDefault(); 
                 var url = info.event.url;
                 htmx.ajax('GET', url, {
-                    target: '#kt_modal_content', // The ID of the element where the content will be loaded
-                    swap: 'innerHTML', // Swap the innerHTML of the target element with the response
+                    target: '#kt_modal_content', 
+                    swap: 'innerHTML', 
                 });
                 var myModal = new bootstrap.Modal(document.getElementById('kt_modal'));
                 myModal.show();
             }
-           
-          
         });
         calendar.render();
     }
@@ -31,14 +29,11 @@
     document.addEventListener('DOMContentLoaded', function() {
         initCalendar({{ events|safe }});
     });
+
     document.addEventListener('DOMContentLoaded', function () {
-        // Select the form element
-        const form = document.getElementById('form_id'); // Replace 'yourFormId' with the actual ID of your form
-    
-        // Add an event listener to all input elements within the form
+        const form = document.getElementById('form_id'); 
         form.querySelectorAll('input, select, textarea').forEach(function(element) {
             element.addEventListener('change', function() {
-                // Submit the form when an input changes
                 form.submit();
             });
         });

@@ -1,0 +1,103 @@
+{% load i18n %}
+{% load widget_tweaks %}
+{% csrf_token %}
+
+<div class="row">
+    <div class="col-md-9">
+        <!-- Calendar will be here -->
+        <div id="calendar"></div>
+    </div>
+    <div class="col-md-3">
+        <!-- Sidebar for selected events -->
+        <div id="selected-events-sidebar" class="border p-3">
+            <h4>Selected Events</h4>
+            <p>No events selected.</p>
+        </div>
+    </div>
+</div> 
+<script>   
+    var selectedEvents  = [];
+
+function initCalendar(eventsData) {
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'timeGridWeek', // Set the initial view to one week
+        headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: '' // Disable other views to enforce the one-week display
+        },
+        slotMinTime: '06:00:00',
+        slotDuration: '01:00:00',
+        events: eventsData,
+        selectable: true,
+        visibleRange: function(currentDate) {
+            var startOfWeek = currentDate.clone().startOf('week'); // Start of the current week
+            var endOfWeek = currentDate.clone().endOf('week'); // End of the current week
+            return {
+                start: startOfWeek,
+                end: endOfWeek
+            };
+        },
+        eventClick: function(info) {
+            info.jsEvent.preventDefault();
+            
+            var selectedEvent = {
+                title: info.event.title,
+                startTime: info.event.start,
+                endTime: info.event.end,
+                url: info.event.url
+            };
+            var index = selectedEvents.findIndex(event => event.url === selectedEvent.url);
+
+            if (index === -1) {
+                selectedEvents.push(selectedEvent);
+                info.el.classList.add('selected-event'); // Add shadow to the selected event
+            } else {
+                selectedEvents.splice(index, 1);
+                info.el.classList.remove('selected-event'); // Remove shadow from the deselected event
+            }
+            updateSidebar(selectedEvents); // Update the sidebar with the selected events
+        }
+    });
+    calendar.render();
+}
+
+function updateSidebar(selectedEvents) {
+    var sidebar = document.getElementById('selected-events-sidebar');
+    sidebar.innerHTML = ''; // Clear previous content
+    
+    if (selectedEvents.length === 0) {
+        sidebar.innerHTML = '<p>No events selected.</p>';
+    } else {
+        selectedEvents.forEach(function(event) {
+            var eventHtml = `<div class="event-item">
+                                <h5>${event.title}</h5>
+                                <p>${event.startTime.toLocaleString()} - ${event.endTime.toLocaleString()}</p>
+                                <a href="${event.url}" class="btn btn-sm btn-primary" hx-get="${event.url}" hx-target="#kt_modal_content" hx-swap="innerHTML" data-bs-toggle="modal" data-bs-target="#kt_modal">View Details</a>
+                             </div>`;
+            sidebar.innerHTML += eventHtml;
+        });
+    }
+}
+
+document.addEventListener("htmx:afterSwap", (event) => {
+    if (event.detail.target.id === "kt_modal_content") {
+        // Reinitialize your calendar here
+        initCalendar({{ events|safe }}); // Reinitialize calendar with events
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    initCalendar({{ events|safe }});
+});
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('form_id'); // Replace 'yourFormId' with the actual ID of your form
+    form.querySelectorAll('input, select, textarea').forEach(function(element) {
+        element.addEventListener('change', function() {
+            form.submit();
+        });
+    });
+});
+
+</script>
