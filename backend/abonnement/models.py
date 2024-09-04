@@ -127,6 +127,10 @@ class AbonnementClient(models.Model):
     
     def __str__(self):
         return  str(self.type_abonnement)
+    
+
+ 
+
 
     def is_time_volume(self):
         return self.type_abonnement.type_of == "VH"
