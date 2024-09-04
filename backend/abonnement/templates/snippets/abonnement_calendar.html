@@ -32,6 +32,7 @@
                                             <span class="card-label fw-bold fs-2 text-grey-800">Type d'abonnement</span>
                                         </label>
                                         {{ filter.form.abonnement|add_class:"form-control" }}
+                                        
                                     </div>
                                 </form>
                             </div>
@@ -39,7 +40,7 @@
                     </div>
                 </div>
                 <div id="calendarWrapper" class="card card-flush">
-                    {% include "calander_partial.html" %}               
+                    {% include "calander_partial.html" with type_abonnement=filter.form.abonnement.value %}               
                 </div>
             </div>
         </div>
