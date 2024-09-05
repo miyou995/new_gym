@@ -14,6 +14,9 @@ urlpatterns = [
     path('add_abonnement_client/<str:client_pk>', add_abonnement_client, name='add_abonnement_client'),
 
 
+    # path('calendar_view/<str:pk>', calendar_view, name='calendar_view'),
+
+
 
 
 

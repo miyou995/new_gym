@@ -2,38 +2,48 @@
 {% load widget_tweaks %}
 {% csrf_token %}
 
-<div class="row">
-    <div class="col-md-9">
-        <!-- Calendar will be here -->
-        <div id="calendar"></div>
-    </div>
-    <div class="col-md-3">
-        <!-- Sidebar for selected events -->
-        <div class="form-group">
-            <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
-                <span class="card-label fw-bold fs-2 text-grey-800">Début Date</span>
-            </label>
-            <input type="date" name="debut_date" class="form-control" id="debut_date" />
+<div class="container-fluid">
+    <!-- Date Input and Button Above the Calendar -->
+    <div class="row mb-3">
+        <div class="col-md-12 d-flex justify-content-between">
+            <div>
+                <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+                    <span class="card-label fw-bold fs-2 text-grey-800">Début Date</span>
+                </label>
+                <input type="date" name="debut_date" class="form-control" id="debut_date" />
+            </div>
+            <div class="align-self-end">
+                <button
+                    id="add-abonnement-btn"
+                    type="button"
+                    class="btn btn-primary btn-sm"
+                    hx-post="{% url 'abonnement:add_abonnement_client' client_pk=client.pk %}" 
+                    hx-trigger="click"
+                >
+                    <i class="ki-exit-up fs-2">Confirmer</i>
+                </button>
+            </div>
         </div>
-   
-         <button
-            id="add-abonnement-btn"
-            type="button"
-            class="btn btn-primary btn-sm"
-            hx-post="{% url 'abonnement:add_abonnement_client' client_pk='C0001' %}" 
-            hx-trigger="click"
-           
-        >
-            <i class="ki-exit-up fs-2">Ajouter Abonnement</i>
-        </button>
+    </div>
+
+    <!-- Calendar Full Width -->
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Calendar will take up the full width -->
+            <div id="calendar" style="width: 100%;"></div>
+        </div>
     </div>
 </div>
-    
+
+
     <script>   
+        console.log("calenderrrrrrrrrrrrrrr")
         var selectedEvents = [];
         var typeAbonnement = "{{ type_abonnement|escapejs }}"; // Ensure type_abonnement is safely escaped for JS
     
         function initCalendar(eventsData) {
+        console.log("inticalender")
+
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'timeGridWeek', // Set the initial view to one week
@@ -72,6 +82,8 @@
         }
     
         function updateSidebar(selectedEvents) {
+        console.log("updateside")
+
             var addAbonnementBtn = document.getElementById('add-abonnement-btn');
             if (selectedEvents.length > 0) {
                 var eventPks = selectedEvents.map(event => event.event_pk); 
@@ -88,19 +100,53 @@
         }
 
 document.addEventListener('DOMContentLoaded', function() {
+    console.log("date calender")
+
     initCalendar({{ events|safe }});
 
     var today = new Date();
         var formattedDate = today.toISOString().split('T')[0];
         document.getElementById('debut_date').value = formattedDate;
-
-    const form = document.getElementById('form_id'); // Replace 'yourFormId' with the actual ID of your form
+    //search without submit
+    const form = document.getElementById('form_id');
         form.querySelectorAll('input, select, textarea').forEach(function(element) {
             element.addEventListener('change', function() {
                 form.submit();
             });
         });
+    //alert pour la selection de type abonnement
+    form.addEventListener('add-abonnement-btn', function (event) {
+
+            if (!typeAbonnement) {
+                alert('veullez choisir an abonnement type.');
+                event.preventDefault(); 
+            }
+        });
+        var addAbonnementBtn = document.getElementById('add-abonnement-btn');
+        addAbonnementBtn.addEventListener('click', function(event) {
+            if (!typeAbonnement || typeAbonnement === "None") {
+                // Show custom styled alert using SweetAlert
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Error',
+                    text: 'veullez choisir an abonnement type.',
+                    confirmButtonText: 'OK'
+                });
+                event.preventDefault();  // Prevent form submission
+            } else if (selectedEvents.length === 0) {
+                // Ensure that at least one event is selected
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Error',
+                    text: 'veullez choisir un creneau ou des creneaux  .',
+                    confirmButtonText: 'OK'
+                });
+                event.preventDefault();  // Prevent form submission
+            }
+        });
+        
     });
+    
 
 
 </script>
