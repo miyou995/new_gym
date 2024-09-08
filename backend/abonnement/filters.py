@@ -17,6 +17,7 @@ class CalenderFilter(django_filters.FilterSet):
     class Meta:
         model = Creneau
         fields = ['planning', 'abonnement']
+
     def filter_by_abonnement_salles(self, queryset, name, value):
         if value:
             salles = value.salles.all()
@@ -26,4 +27,9 @@ class CalenderFilter(django_filters.FilterSet):
 
 
 
+
+# class ClientCalendar(CalenderFilter):
+#     class Meta:
+#         model = Creneau
+#         fields = ['planning']
 

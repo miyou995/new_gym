@@ -56,13 +56,16 @@ class CalendarAbonnementClient(FilterView):
                     
                 })
         return events_list
-    
     def get_template_names(self):
-        if self.request.htmx:
-            template_name = "calander_partial.html"
-        else:
-            template_name = "snippets/abonnement_calendar.html"
+        # if self.request.htmx:
+        #     template_name = "snippets/calander_partial.html"
+        # else:
+        template_name = "abonnement_calendar.html"
         return template_name 
+    def get(self, request, *args, **kwargs):
+         return super().get(request, *args, **kwargs)
+    
+
 
 def add_abonnement_client(request,client_pk):
     event_pk = request.POST.getlist('event_pk')

@@ -2,6 +2,7 @@
 <script>
     function initCalendar(eventsData) {
         var calendarEl = document.getElementById('calendar');
+        console.log('IS IT WORKING AFTER HTMX')
         var calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth',
             headerToolbar: {
@@ -30,12 +31,18 @@
         initCalendar({{ events|safe }});
     });
 
-    document.addEventListener('DOMContentLoaded', function () {
-        const form = document.getElementById('form_id'); 
-        form.querySelectorAll('input, select, textarea').forEach(function(element) {
-            element.addEventListener('change', function() {
-                form.submit();
-            });
-        });
+    htmx.on('htmx:afterRequest', (e) => {
+        initCalendar({{ events|safe }});
     });
+
+    {% comment %}
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('form_id'); 
+            form.querySelectorAll('input, select, textarea').forEach(function(element) {
+                element.addEventListener('change', function() {
+                    form.submit();
+                });
+            });
+        }); 
+    {% endcomment %}
 </script>

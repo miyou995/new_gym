@@ -1,0 +1,77 @@
+{% extends "base.html" %} 
+{% load static %}
+{% block content %}
+{% load i18n %}
+{% load widget_tweaks %}
+
+<div class="card card-flush" id="selectId">
+    <div class="card-header py-1 gap-2 gap-md-1"> 
+        {% csrf_token %}
+        <div class="card-title">
+            <div class="card-toolbar d-flex justify-content-end gap-1">
+                <form
+                    class="d-flex align-items-center gap-4"
+                    hx-get="{{request.path}}"  
+                    hx-target="#calendarWrapper" 
+                    hx-swap="outerHTML" 
+                    hx-trigger="change"
+                    hx-select="#calendarWrapper"
+                    id="form_id">
+                    <div class="form-group mb-0">
+                        <label class="fs-6 fw-semibold mb-1">
+                            <span class="card-label fw-bold text-grey-800">Plannings</span>
+                        </label>
+                        {{ filter.form.planning|add_class:"form-control" }}
+                    </div>
+                    <div class="form-group mb-0">
+                        <label class="fs-6 fw-semibold mb-1">
+                            <span class="card-label fw-bold text-grey-800">Type d'abonnement</span>
+                        </label>
+                        {{ filter.form.abonnement|add_class:"form-control" }}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="calendarWrapper" class="card-body p-0">
+        {% comment %} {% include "calander_partial.html" with type_abonnement=filter.form.abonnement.value %}          {% endcomment %}
+        <div class="container-fluid">
+            <div id="eventsId" data-events='{{events}}'></div>
+            <!-- Date Input and Button Above the Calendar -->
+            <div class="row mb-3">
+                <div class="col-md-12 d-flex justify-content-between">
+                    <div>
+                        <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+                            <span class="card-label fw-bold fs-2 text-grey-800">Début Date</span>
+                        </label>
+                        <input type="date" name="debut_date" class="form-control" id="debut_date" />
+                    </div>
+                    <div class="align-self-end">
+                        <button
+                            id="add-abonnement-btn"
+                            type="button"
+                            class="btn btn-primary btn-sm"
+                            hx-post="{% url 'abonnement:add_abonnement_client' client_pk=client.pk %}" 
+                            hx-trigger="click"
+                        >
+                            <i class="ki-exit-up fs-2">Confirmer</i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- Calendar Full Width -->
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Calendar will take up the full width -->
+                    <div id="calendar" style="width: 100%;"></div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+
+
+{% endblock content %}
