@@ -33,10 +33,25 @@ htmx.on('load', (e) => {
 });
 
 
-window.addEventListener("DOMContentLoaded", (e) => {
-    console.log("loaded");
-    recountForms()
-})
+htmx.on('htmx:afterSettle', (e) => {
+    console.log("htmx:afterSettle");
+    const eventsBlock = document.querySelector("#eventsId");
+    if (eventsBlock) {
+        console.log("HEEEY eventsId here HTMX REQUEST");
+        preInitCalendar();
+    }
+});
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const eventsBlock = document.querySelector("#eventsId");
+    if (eventsBlock) {
+        console.log("HEEEY eventsId here HTTP REQUEST");
+        preInitCalendar();
+    }
+});
+
+
 
 
 document.addEventListener("htmx:load", function() {

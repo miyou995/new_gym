@@ -71,8 +71,9 @@ License: For each use you must have a valid license purchased only from above li
     rel="stylesheet"
     type="text/css"
   />
-    <script>
-    </script>
+  {% comment %} <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script> {% endcomment %}
+  <script async src="https://unpkg.com/htmx.org@2.0.2"></script>
+
   </head>
   <body
     id="kt_app_body"
@@ -201,13 +202,12 @@ License: For each use you must have a valid license purchased only from above li
       
       var hostUrl = "";
     </script>
-    <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
     <!--begin::Global Javascript Bundle(mandatory for all pages)-->
     <script src="{% static 'plugins/global/plugins.bundle.js' %}"></script>
     <script src="{% static 'js/scripts.bundle.js' %}"></script>
     <!--end::Global Javascript Bundle-->
     <!--begin::Vendors Javascript(used for this page only)-->
-    <script src="{% static 'plugins/custom/fullcalendar/fullcalendar.bundle.js' %}"></script>
+    {% comment %} <script src="{% static 'plugins/custom/fullcalendar/fullcalendar.bundle.js' %}"></script> {% endcomment %}
     <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
@@ -234,6 +234,8 @@ License: For each use you must have a valid license purchased only from above li
     <script src="{% static 'js/custom/utilities/modals/upgrade-plan.js' %}"></script>
     <script src="{% static 'js/custom/utilities/modals/create-campaign.js' %}"></script>
     <script src="{% static 'js/custom/utilities/modals/users-search.js' %}"></script>
+    <script src="{% static 'js/custom_calendar.js' %}"></script>
+
     <script src="{% static 'js/script.js' %}"></script>
     <!--end::Custom Javascript-->
     <!--end::Javascript-->
