@@ -110,7 +110,6 @@ function preInitCalendar(selectedEvents) {
                 // Show custom styled alert using SweetAlert
                 Swal.fire({
                     icon: 'warning',
-                    
                     title: 'Error',
                     text: 'veullez choisir an abonnement type.',
                     confirmButtonText: 'OK'
@@ -120,6 +119,7 @@ function preInitCalendar(selectedEvents) {
                 // Ensure that at least one event is selected
                 Swal.fire({
                     icon: 'warning',
+                    
                     title: 'Error',
                     text: 'veullez choisir un creneau ou des creneaux  .',
                     confirmButtonText: 'OK'
@@ -127,6 +127,6 @@ function preInitCalendar(selectedEvents) {
                 event.preventDefault();  // Prevent form submission
             }
         });
-};
+    };
 
 
