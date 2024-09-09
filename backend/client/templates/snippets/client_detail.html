@@ -67,16 +67,11 @@
 
 															<div class="fw-bold mt-5">Adresse</div>
 															<div class="text-gray-600">{{client.adress}}</div>
-														
 														</div>
 													</div>
-										
 												</div>
-							
 											</div>
-										
 										</div>
-
 										<div class="flex-lg-row-fluid ms-lg-15">
 											<div class="card-body">
 												<div class="card card-flush">
@@ -97,13 +92,11 @@
 																hx-target="#kt_modal_content"
 																hx-trigger="click"
 																hx-swap="innerHTML"
-																hx-on::after-request="console.log('Making a request!!!!!!!!!!!!!!!!!!!!!!!!!!!')"					
-																>
-																{% comment %} hx-on::after-swap="console.log('boom----------------------');" {% endcomment %}
-															{% comment %} hx-on:htmx:afterSettle="preInitCalendar();" {% endcomment %}
+																hx-indicator="#spinner" 
+																hx-on::after-request="console.log('Making a request***********!')">
 																<i class="ki-exit-up fs-2">Ajouter Abonnement</i>
 															</button>
-															
+															<span id="spinner" class="htmx-indicator" >Loading...........</span>
 														</div>
 													</div>
 													<div class="card-scroll h-250px card-body pt-0">

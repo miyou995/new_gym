@@ -40,6 +40,8 @@ htmx.on('htmx:afterSettle', (e) => {
         console.log("HEEEY eventsId here HTMX REQUEST");
         preInitCalendar();
     }
+    
+    
 });
 
 
