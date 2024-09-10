@@ -34,20 +34,11 @@
 
     htmx.on('htmx:afterSettle', (e) => {
         console.log("htmx:afterSettle");
-      
             console.log("HEEEY eventsId here HTMX REQUEST");
-          
         initCalendar({{ events|safe }});
     
     });
 
-        {% comment %} document.addEventListener('DOMContentLoaded', function () {
-            const form = document.getElementById('form_id'); 
-            form.querySelectorAll('input, select, textarea').forEach(function(element) {
-                element.addEventListener('change', function() {
-                    form.submit();
-                });
-            });
-        });  {% endcomment %}
+
     
 </script>

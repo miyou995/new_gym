@@ -91,12 +91,14 @@
 																hx-get="{% url 'abonnement:calendar_abonnement_client' client.pk %}" 
 																hx-target="#kt_modal_content"
 																hx-trigger="click"
-																hx-swap="innerHTML"
-																hx-indicator="#spinner" 
-																hx-on::after-request="console.log('Making a request***********!')">
+																hx-swap="innerHTML"  
+																{% comment %} hx-indicator="previous .htmx-indicator" {% endcomment %}
+																{% comment %} hx-indicator="find #spinner"  {% endcomment %}
+																{% comment %} hx-on::after-request="preInitHTMXCalendar(); console.log('pre init htmx calendar called on hx-on...................')" {% endcomment %}
+															>
 																<i class="ki-exit-up fs-2">Ajouter Abonnement</i>
 															</button>
-															<span id="spinner" class="htmx-indicator" >Loading...........</span>
+															{% comment %} <span id="spinner" class="htmx-indicator" >Loading...........</span> {% endcomment %}
 														</div>
 													</div>
 													<div class="card-scroll h-250px card-body pt-0">
@@ -212,7 +214,6 @@
 			</div>
 	
 	
-
 
 
 
