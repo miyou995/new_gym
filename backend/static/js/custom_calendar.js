@@ -1,10 +1,9 @@
 
-    console.log("calender")
     var selectedEvents = [];
     var typeAbonnement = "{{ type_abonnement|escapejs }}"; // Ensure type_abonnement is safely escaped for JS
 
     function initHTMXCalendar(eventsData) {
-        console.log("inticalender")
+        console.log("init >>>>>>>>>>> initHTMXCalendar------<")
 
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -64,7 +63,7 @@
     }
 
    
-function preInitCalendar(selectedEvents) {
+function preInitHTMXCalendar(selectedEvents) {
 
     console.log("date calender")
     const eventsBlock = document.querySelector("#eventsId");

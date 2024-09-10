@@ -33,23 +33,27 @@ htmx.on('load', (e) => {
 });
 
 
-htmx.on('htmx:afterSettle', (e) => {
+
+
+document.addEventListener('htmx:afterSettle', (e) => {
     console.log("htmx:afterSettle");
     const eventsBlock = document.querySelector("#eventsId");
+
     if (eventsBlock) {
-        console.log("HEEEY eventsId here HTMX REQUEST");
-        preInitCalendar();
+        setTimeout(function(){
+            console.log("HEEEY eventsId here HTMX REQUEST");
+            preInitHTMXCalendar();
+        },100)
     }
-    
-    
 });
 
-
 document.addEventListener('DOMContentLoaded', function () {
+    console.log("Document loaaaded lets call the callendar");
+    
     const eventsBlock = document.querySelector("#eventsId");
     if (eventsBlock) {
         console.log("HEEEY eventsId here HTTP REQUEST");
-        preInitCalendar();
+        preInitHTMXCalendar();
     }
 });
 
@@ -87,5 +91,11 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 }
+
+// $('#kt_calendar_modal').on('shown.bs.modal', function () {
+//     console.log("OUIIIIIIIIIIIIIII MOOOON");
+    
+//     preInitHTMXCalendar();
+// });
 
 });

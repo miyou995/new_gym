@@ -31,7 +31,6 @@ class CalendarAbonnementClient(FilterView):
  
     def get_events(self):
         events = self.filterset_class(self.request.GET, queryset=Creneau.objects.all()).qs
-
         day_name_to_weekday = {
             'LU': 1,  # Monday
             'MA': 2,  # Tuesday
@@ -41,6 +40,7 @@ class CalendarAbonnementClient(FilterView):
             'SA': 6,  # Saturday
             'DI': 0,  # Sunday
         }
+
         events_list = []
         for event in events:
             event_weekday = day_name_to_weekday.get(event.day.upper())
@@ -56,12 +56,15 @@ class CalendarAbonnementClient(FilterView):
                     
                 })
         return events_list
+    
     def get_template_names(self):
         # if self.request.htmx:
         #     template_name = "snippets/calander_partial.html"
         # else:
         template_name = "abonnement_calendar.html"
         return template_name 
+    
+    
     def get(self, request, *args, **kwargs):
          return super().get(request, *args, **kwargs)
     
