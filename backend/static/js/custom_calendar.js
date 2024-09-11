@@ -1,6 +1,9 @@
 
     var selectedEvents = [];
-    var typeAbonnement = "{{ type_abonnement|escapejs }}"; // Ensure type_abonnement is safely escaped for JS
+   
+    var typeAbonnement = "";
+    console.log("typeAbonnement--------------",typeAbonnement);
+
 
     function initHTMXCalendar(eventsData) {
         console.log("init >>>>>>>>>>> initHTMXCalendar------<")
@@ -67,42 +70,17 @@ function preInitHTMXCalendar(selectedEvents) {
 
     console.log("date calender")
     const eventsBlock = document.querySelector("#eventsId");
-    // console.log(eventsBlock);
     const events = JSON.parse(
         eventsBlock.dataset.events
       );
-    const selectEvent = document.getElementById("#selectId");
-    console.log("selectEvent",selectEvent)
-      
-    
-    // const events = eventsBlock.dataset.events
     initHTMXCalendar(events);
-
     
-    // initHTMXCalendar({{ events|safe }});
 
     var today = new Date();
         var formattedDate = today.toISOString().split('T')[0];
         document.getElementById('debut_date').value = formattedDate;
-    //search without submit
-    const form = document.getElementById('form_id');
-    // if (form) {
+  
         
-    //     form.querySelectorAll('input, select, textarea').forEach(function(element) {
-    //         element.addEventListener('change', function() {
-    //             form.submit();
-    //         });
-    //     });
-    // }
-
-        //alert pour la selection de type abonnement
-    form.addEventListener('add-abonnement-btn', function (event) {
-
-            if (!typeAbonnement) {
-                alert('veullez choisir an abonnement type.');
-                event.preventDefault(); 
-            }
-        });
         var addAbonnementBtn = document.getElementById('add-abonnement-btn');
         addAbonnementBtn.addEventListener('click', function(event) {
             if (!typeAbonnement || typeAbonnement === "None") {
@@ -110,17 +88,16 @@ function preInitHTMXCalendar(selectedEvents) {
                 Swal.fire({
                     icon: 'warning',
                     title: 'Error',
-                    text: 'veullez choisir an abonnement type.',
+                    text: 'veuillez choisir an abonnement type.',
                     confirmButtonText: 'OK'
                 });
                 event.preventDefault();  // Prevent form submission
-            } else if (selectedEvents.length === 0) {
+            } else  {
                 // Ensure that at least one event is selected
                 Swal.fire({
                     icon: 'warning',
-                    
                     title: 'Error',
-                    text: 'veullez choisir un creneau ou des creneaux  .',
+                    text: 'veuillez choisir un creneau ou des creneaux.',
                     confirmButtonText: 'OK'
                 });
                 event.preventDefault();  // Prevent form submission

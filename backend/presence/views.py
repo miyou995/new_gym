@@ -37,15 +37,15 @@ class PresencesView(SingleTableMixin, FilterView):
 
 def presence_client(request):
     code_card=request.GET.get('search','')
-    abc_list=AbonnementClient.objects.filter(client_id=code_card)
+    abc_list=AbonnementClient.objects.filter(client__carte=code_card)
     for abc in abc_list:
         print('abc--------------------',abc)
         print("creneau------------",abc.creneaux)
-    client_id=get_object_or_404(Client, id=code_card)
+    client_id=get_object_or_404(Client, carte=code_card)
     if client_id :
         client_id.auto_presence()
     else :
-        message = _("cilent a été créé avec succès.")
+        message = _("presence a été créé avec succès.")
         messages.success(request, str(message),extra_tags="toastr")   
     return HttpResponse(status=204) 
 

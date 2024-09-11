@@ -13,10 +13,11 @@
                     class="d-flex align-items-center gap-4"
                     hx-get="{{request.path}}"  
                     hx-target="#calendarWrapper" 
-                    hx-swap="outerHTML" 
+                    hx-swap="innerHTML" 
                     hx-trigger="change"
                     hx-select="#calendarWrapper"
-                    id="form_id">
+                    id="form_id"
+                    >
                     <div class="form-group mb-0">
                         <label class="fs-6 fw-semibold mb-1">
                             <span class="card-label fw-bold text-grey-800">Plannings</span>
@@ -26,8 +27,8 @@
                     <div class="form-group mb-0">
                         <label class="fs-6 fw-semibold mb-1">
                             <span class="card-label fw-bold text-grey-800">Type d'abonnement</span>
-                        </label>
-                        {{ filter.form.abonnement|add_class:"form-control" }}
+                </label>
+                        {{ filter.form.abonnement|add_class:"form-control" |attr:"id:abonnement-select" }}
                     </div>
                 </form>
             </div>
@@ -51,12 +52,12 @@
                             id="add-abonnement-btn"
                             type="button"
                             class="btn btn-primary btn-sm"
-                            hx-post="{% url 'abonnement:add_abonnement_client' client_pk=client.pk %}" 
+                            hx-post="{% url 'abonnement:add_abonnement_client' client_pk=client.pk type_abonnement=filter.form.abonnement.value %}" 
                             hx-trigger="click"
                         >
                             <i class="ki-exit-up fs-2">Confirmer</i>
                         </button>
-                    </div>
+                    </div> 
                 </div>
             </div>
         
