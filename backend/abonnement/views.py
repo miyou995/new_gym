@@ -12,6 +12,8 @@ from django.urls import reverse, reverse_lazy
 from client.models import Client
 from django.shortcuts import get_object_or_404
 from datetime import datetime, timedelta
+from django_htmx.http import HttpResponseClientRedirect
+
 
 def abc_htmx_view(request):
     client_id = request.GET.get('client')
@@ -70,7 +72,7 @@ class CalendarAbonnementClient(FilterView):
     
 
 
-def add_abonnement_client(request,client_pk):
+def add_abonnement_client(request,client_pk,type_abonnement):
     event_pk = request.POST.getlist('event_pk')
     event_pk = [int(pk) for pk in event_pk]  # Convert each item to an integer
     today_str = request.POST.get('today')
@@ -79,10 +81,11 @@ def add_abonnement_client(request,client_pk):
     else:
             today = datetime.today()  # Use the current date if 'today' is not provided
     end_date = today + timedelta(days=30)
-    type_abonnement = request.POST.get('type_abonnement')
+    # type_abonnement = request.POST.get('type_abonnement')
     client = get_object_or_404(Client, pk=client_pk)
     creneaux=Creneau.objects.filter(pk__in=event_pk)
-    if type_abonnement :
+    print("type_abonnement----------------", type_abonnement)
+    if type_abonnement and type_abonnement != "None" and event_pk :
         print("form typeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")
         abonnement_Obj = get_object_or_404(Abonnement, pk=type_abonnement)
         print("client-----------------", client)
@@ -100,7 +103,14 @@ def add_abonnement_client(request,client_pk):
         abonnement_client.save()
         abonnement_client.creneaux.set(creneaux)
         abonnement_client.save()
-    return redirect('calander_partial.html')  
+        redirect_url = reverse("client:client_detail", kwargs={'pk': client_pk})
+        return HttpResponseClientRedirect(redirect_url)
+
+                
+    else :
+         print("no type_abonnement or no selected event-------------->")
+    
+    return redirect('snippets/calander_partial.html')  
 
 
 

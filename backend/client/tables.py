@@ -17,6 +17,7 @@ class ClientHTMxTable(tables.Table):
 
     class Meta:
         fields  = (
+                'carte',
                 'id',
                 'last_name',
                 'first_name', 
@@ -87,18 +88,18 @@ class PersonnelHTMxTable(tables.Table):
 
 # client details ------------------------------------------------------------------------------------------
 class AbonnementClientHTMxTable(tables.Table):
-    Séances = tables.Column(accessor="type_abonnement__seances_quantity", verbose_name="Séances", orderable=True )
-    prix    =tables.Column(accessor="type_abonnement__price", verbose_name="Prix", orderable=True )
+#     Séances = tables.Column(accessor="type_abonnement__seances_quantity", verbose_name="Séances", orderable=True )
+    presence_quantity=tables.Column(accessor="type_abonnement__seances_quantity", verbose_name="Présence", orderable=True )
 
 
     class Meta:
         fields  = (
                 'type_abonnement',
-                'Séances',
+                'presence_quantity',
+                'creneaux',
+                'reste',
                 'start_date', 
                 'end_date',
-                'prix',
-                'reste',
         )
         model = AbonnementClient
         template_name = "tables/bootstrap_htmx.html"
