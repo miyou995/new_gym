@@ -1,9 +1,7 @@
-{% comment %} {% extends "base.html" %}  {% endcomment %}
 {% load static %}
 {% block content %}
 {% load i18n %}
 {% load widget_tweaks %}
-
 <div class="card card-flush" id="selectId">
     <div class="card-header py-1 gap-2 gap-md-1"> 
         {% csrf_token %}
@@ -35,10 +33,8 @@
         </div>
     </div>
     <div id="calendarWrapper" class="card-body p-0">
-        {% comment %} {% include "calander_partial.html" with type_abonnement=filter.form.abonnement.value %}          {% endcomment %}
         <div class="container-fluid">
             <div id="eventsId" data-events='{{events}}'></div>
-            <!-- Date Input and Button Above the Calendar -->
             <div class="row mb-3">
                 <div class="col-md-12 d-flex justify-content-between">
                     <div>
@@ -48,38 +44,26 @@
                         <input type="date" name="debut_date" class="form-control" id="debut_date" />
                     </div>
                     <div class="align-self-end">
-                        <button
+                        {% comment %} <button
                             id="add-abonnement-btn"
                             type="button"
                             class="btn btn-primary btn-sm"
-                            hx-post="{% if filter.form.abonnement.value %}{% url 'abonnement:add_abonnement_client' client_pk=client.pk type_abonnement=filter.form.abonnement.value %}{% else %}# {% endif %}"                          
+                            hx-post="{% url 'abonnement:update_abonnement_client' pk=object.pk  %}" 
                             hx-trigger="click"
-                        >
-                            <i class="ki-exit-up fs-2">Confirmer</i>
-                        </button>
-                    </div> 
+                            hx-vals="{}"  
+                            >
+                            <i class="ki-exit-up fs-2">update</i>
+                        </button> {% endcomment %}
+                     
                 </div>
             </div>
-        
-            <!-- Calendar Full Width -->
             <div class="row">
                 <div class="col-md-12">
-                    <!-- Calendar will take up the full width -->
                     <div id="calendar" style="width: 100%;"></div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
-{% comment %} <script>
-    const eventsBlock = document.querySelector("#eventsId");
-    if (eventsBlock) {
-        console.log("HEEEY eventsId here HTTP REQUEST");
-        preInitHTMXCalendar();
-    }
-</script> {% endcomment %}
-
 {% endblock content %}
 

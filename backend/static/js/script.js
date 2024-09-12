@@ -58,8 +58,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-
-
 document.addEventListener("htmx:load", function() {
     KTComponents.init();
 });

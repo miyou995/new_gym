@@ -13,6 +13,7 @@ from client.models import Client
 from django.shortcuts import get_object_or_404
 from datetime import datetime, timedelta
 from django_htmx.http import HttpResponseClientRedirect
+from django.http import HttpResponse,HttpResponseRedirect
 
 
 def abc_htmx_view(request):
@@ -106,13 +107,47 @@ def add_abonnement_client(request,client_pk,type_abonnement):
         redirect_url = reverse("client:client_detail", kwargs={'pk': client_pk})
         return HttpResponseClientRedirect(redirect_url)
 
-                
     else :
          print("no type_abonnement or no selected event-------------->")
     
-    return redirect('snippets/calander_partial.html')  
+    return redirect('abonnement:calendar_abonnement_client', kwargs={'pk': client_pk})
+
+
+
+from django.http import JsonResponse
+
+
+class UpdateAbonnementClient(UpdateView):
+    model = AbonnementClient
+    fields = ['type_abonnement'] 
+    template_name = "snippets/update_calander.html"  
+    
+    def post(self, request, *args, **kwargs):
+        # Fetch the existing AbonnementClient object to update
+        self.object = self.get_object()
+
+        type_abonnement = request.POST.get('type_abonnement')  # Get the new abonnement type
+        selected_events = request.POST.getlist('event_pk[]')    # Get the selected events (Creneaux)
+        today = request.POST.get('today')                      
+
+        # Update the abonnement field
+        self.object.abonnement = type_abonnement
+
+        # Update selected Creneaux (events)
+        if selected_events:
+            creneaux = Creneau.objects.filter(pk__in=selected_events)
+            self.object.creneaux.set(creneaux)  # Assuming there's a ManyToMany relationship
+            self.object.save()
+
+        # Return a JSON response
+        return JsonResponse({
+            'status': 'success',
+            'message': 'AbonnementClient updated successfully!',
+        })
+     
 
 
 
 
+     
 

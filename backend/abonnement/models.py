@@ -77,13 +77,24 @@ TYPE_ABONNEMENT = (
     ('SF', 'Seances Fix'),
     ('SL', 'Seances Libre'),
 )
+DURE_ABONNEMENT = (
+    ('1', '1 Jour'),
+    ('15', '15 Jours'),
+    ('45', '45 Jours'),
+    ('30', '1 mois'),
+    ('60', '2 mois'),
+    ('90', '3 mois'),
+    ('120', '4 mois'),
+    ('150', '5 mois'),
+    ('180', '6 mois'),
+)
 
 class Abonnement(models.Model):
     name             = models.CharField(max_length=70, verbose_name="Nom")
     type_of          = models.CharField(choices= TYPE_ABONNEMENT, max_length=2, default='VH',verbose_name="type d'abonnement")
     price            = models.DecimalField(max_digits=15, decimal_places=0, verbose_name="prix")
-    length           = models.IntegerField()# number of days
-    seances_quantity = models.IntegerField( blank=True, null=True)
+    length           = models.CharField(choices= DURE_ABONNEMENT,verbose_name="Durée",max_length=8)# number of days
+    seances_quantity = models.IntegerField(blank=True, null=True,verbose_name="Nombre de séances/heureux")
     salles           = models.ManyToManyField(Salle, related_name='abonnements')
     actif            = models.BooleanField(default=True)
     # objects        = AbonnementManager()
@@ -129,7 +140,8 @@ class AbonnementClient(models.Model):
         return  str(self.type_abonnement)
     
 
- 
+    def get_edit_url(self):
+        return reverse('abonnement:update_abonnement_client', kwargs={'pk': str(self.id)})
 
 
     def is_time_volume(self):
@@ -268,8 +280,8 @@ class AbonnementClient(models.Model):
             if self.presence_quantity > self.get_limit() :
                 return True
         return False 
-
-
+     
+            
 
 
     def get_type(self):
