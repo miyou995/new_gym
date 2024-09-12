@@ -13,7 +13,7 @@ class CalenderFilter(django_filters.FilterSet):
     abonnement  = django_filters.ModelChoiceFilter(queryset=Abonnement.objects.all(),
                                                     label="Abonnement", 
                                                       method='filter_by_abonnement_salles',
-                                                      required=True)
+                                                      required=False)
     class Meta:
         model = Creneau
         fields = ['planning', 'abonnement']
