@@ -14,6 +14,8 @@ urlpatterns = [
     path('add_abonnement_client/<str:client_pk>/<str:type_abonnement>', add_abonnement_client, name='add_abonnement_client'),
 
 
+
+    path('CalendarUpdateAbonnementClient/<str:pk>', CalendarUpdateAbonnementClient.as_view(), name='calendar_update_abonnementclient'),
     path('UpdateAbonnementClient/<int:pk>', UpdateAbonnementClient.as_view(), name='update_abonnement_client'),
 
 
