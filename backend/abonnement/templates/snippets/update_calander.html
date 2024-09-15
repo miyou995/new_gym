@@ -2,6 +2,7 @@
 {% block content %}
 {% load i18n %}
 {% load widget_tweaks %}
+
 <div class="card card-flush" id="selectId">
     <div class="card-header py-1 gap-2 gap-md-1"> 
         {% csrf_token %}
@@ -34,7 +35,9 @@
     </div>
     <div id="calendarWrapper" class="card-body p-0">
         <div class="container-fluid">
+            {% comment %} <div id="eventsId" data-events='{{events}}' data-selected-events='{{selected_events}}'></div> {% endcomment %}
             <div id="eventsId" data-events='{{events}}'></div>
+
             <div class="row mb-3">
                 <div class="col-md-12 d-flex justify-content-between">
                     <div>
@@ -43,8 +46,8 @@
                         </label>
                         <input type="date" name="debut_date" class="form-control" id="debut_date" />
                     </div>
-                    <div class="align-self-end">
-                        {% comment %} <button
+                     <div class="align-self-end">
+                         <button
                             id="add-abonnement-btn"
                             type="button"
                             class="btn btn-primary btn-sm"
@@ -53,8 +56,8 @@
                             hx-vals="{}"  
                             >
                             <i class="ki-exit-up fs-2">update</i>
-                        </button> {% endcomment %}
-                     
+                        </button>  
+
                 </div>
             </div>
             <div class="row">
