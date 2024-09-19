@@ -1,11 +1,10 @@
 from django_filters.views import FilterView
 from .filters import CalenderFilter
-from .models import Creneau
+from .models import AbonnementClient, Creneau
 from django.shortcuts import get_object_or_404
 from client.models import Client
 import json
 from django.urls import reverse
-
 
 class CalendarAbonnementClientMixin(FilterView):
     filterset_class = CalenderFilter
@@ -13,6 +12,9 @@ class CalendarAbonnementClientMixin(FilterView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["events"] = json.dumps(self.get_events())
+        # abc = AbonnementClient.objects.filter(client=self.kwargs['pk'])
+        # print("client*********************>>>>>>",abc)
+        # context["client"] = abc 
         context["client"] = get_object_or_404(Client, pk=self.kwargs['pk'])
         return context
  
@@ -27,7 +29,6 @@ class CalendarAbonnementClientMixin(FilterView):
             'SA': 6,  # Saturday
             'DI': 0,  # Sunday
         }
-
         events_list = []
         for event in events:
             event_weekday = day_name_to_weekday.get(event.day.upper())
