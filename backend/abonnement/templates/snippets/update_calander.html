@@ -37,7 +37,6 @@
         <div class="container-fluid">
             {% comment %} <div id="eventsId" data-events='{{events}}' data-selected-events='{{selected_events}}'></div> {% endcomment %}
             <div id="eventsId" data-events='{{events}}'></div>
-
             <div class="row mb-3">
                 <div class="col-md-12 d-flex justify-content-between">
                     <div>
@@ -51,13 +50,13 @@
                             id="add-abonnement-btn"
                             type="button"
                             class="btn btn-primary btn-sm"
-                            hx-post="{% url 'abonnement:update_abonnement_client' pk=object.pk  %}" 
+                            {% comment %} hx-post="{% url 'abonnement:update_abonnement_client' pk=client.pk  %}"  {% endcomment %}
                             hx-trigger="click"
                             hx-vals="{}"  
                             >
+                            {% comment %} pk=object.pk {% endcomment %}
                             <i class="ki-exit-up fs-2">update</i>
                         </button>  
-
                 </div>
             </div>
             <div class="row">

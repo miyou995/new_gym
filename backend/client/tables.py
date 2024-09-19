@@ -97,21 +97,19 @@ class AbonnementClientHTMxTable(tables.Table):
                 class="text-gray-800 text-hover-primary fs-5 fw-bold" 
                 data-bs-toggle="modal" 
                 data-bs-target="#kt_modal" 
-                hx-get="{% url 'abonnement:calendar_update_abonnementclient' record.id  %}" 
+                hx-get="{% url 'abonnement:calendar_update_abonnementclient'  record.id  %}" 
                 hx-target="#kt_modal_content" 
                 hx-swap="innerHTML">
-                {{ record.type_abonnement }}
+                {{ record.type_abonnement }}       - {{record.id}}
             </a>      
         ''')
-
-
     class Meta:
         fields  = (
                 'type_abonnement',
                 'presence_quantity',
                 'creneaux',
                 'reste',
-                'start_date', 
+                'start_date',
                 'end_date',
         )
         model = AbonnementClient

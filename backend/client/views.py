@@ -329,20 +329,23 @@ class AbonnementClientDetail(SingleTableMixin, FilterView):
     paginate_by = 15
     model = AbonnementClient
 
-    def get_context_data(self, **kwargs):
-        context = super(AbonnementClientDetail, self).get_context_data(**kwargs)
-        context["client"] = Client.objects.get(pk=self.kwargs['pk'])
-
-        return context
-    
     def get_queryset(self):
          queryset = AbonnementClient.objects.select_related('client', "type_abonnement").order_by("-created_date_time")
          abonnement_client_pk = self.kwargs.get('pk')
-         print("abonnement_client_pk  -------------", abonnement_client_pk)
+         print("abonnement_client_pk from abc -------------", abonnement_client_pk)
          if abonnement_client_pk:
             queryset = queryset.filter(client_id=abonnement_client_pk)
-
          return queryset
+    
+    
+    def get_context_data(self, **kwargs):
+        context = super(AbonnementClientDetail, self).get_context_data(**kwargs)
+        context["client"] = Client.objects.get(pk=self.kwargs['pk'])
+        # context["abc"] = self.kwargs['pk']
+        # print('context abc ---------------->>>>>',context['abc'])
+        return context
+    
+
     
     def get_template_names(self):
         if self.request.htmx:
