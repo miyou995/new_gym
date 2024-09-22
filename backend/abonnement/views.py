@@ -17,7 +17,7 @@ from django_htmx.http import HttpResponseClientRedirect
 from django.http import HttpResponse,HttpResponseRedirect
 from django.http import JsonResponse
 from django.core.serializers.json import DjangoJSONEncoder
-
+from datetime import datetime,time,date
 
 def abc_htmx_view(request):
     client_id = request.GET.get('client')
@@ -76,9 +76,30 @@ class CalendarUpdateAbonnementClient(FilterView):
     def get_context_data(self, **kwargs):
             context = super().get_context_data(**kwargs)
             context["events"] = json.dumps(self.get_events())
-            abc = AbonnementClient.objects.filter(client=self.kwargs['pk'])
-            print("client*********************>>>>>>",abc)
-            context["client"] = abc 
+            abc = AbonnementClient.objects.filter(pk=self.kwargs['pk'])
+            context["abc"]=get_object_or_404(AbonnementClient, pk=self.kwargs['pk'])
+            print("abc*********************>>>>>>",context["abc"])
+            # context["seleced_events"] = abc
+            selected_events_data = list(abc.values('creneaux__pk', 'creneaux__name', 'creneaux__hour_start', 'creneaux__hour_finish','type_abonnement','start_date'))
+            for event in selected_events_data:
+                if isinstance(event.get('creneaux__hour_start'), datetime):
+                    event['creneaux__hour_start'] = event['creneaux__hour_start'].isoformat()  # Convert datetime to ISO format
+                if isinstance(event.get('creneaux__hour_finish'), datetime):
+                    event['creneaux__hour_finish'] = event['creneaux__hour_finish'].isoformat()  # Convert datetime to ISO format
+                if isinstance(event.get('creneaux__hour_start'), time):
+                    event['creneaux__hour_start'] = event['creneaux__hour_start'].strftime('%H:%M:%S')  # Convert time to string
+                if isinstance(event.get('creneaux__hour_finish'), time):
+                    event['creneaux__hour_finish'] = event['creneaux__hour_finish'].strftime('%H:%M:%S')  # Convert time to string
+                
+                if isinstance(event.get('start_date'), datetime):
+                    event['start_date'] = event['start_date'].date().isoformat()
+                elif isinstance(event.get('start_date'), date):
+                    event['start_date'] = event['start_date'].isoformat()
+
+
+
+            print("selected_events_data--------------------",selected_events_data)
+            context["seleced_events"] = json.dumps(selected_events_data)
             return context
 
     def get_events(self):
@@ -111,46 +132,36 @@ class CalendarUpdateAbonnementClient(FilterView):
         return template_name
     
 
-class  UpdateAbonnementClient(UpdateView):
-    model = AbonnementClient
-    fields = ['type_abonnement']
-    # template_name = "snippets/update_calander.html"
+# class  UpdateAbonnementClient(UpdateView):
+from django.shortcuts import get_object_or_404, redirect
+from django.http import HttpResponseRedirect
+from datetime import datetime, timedelta
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        # Get selected events for this client
-        selected_events = list(self.object.creneaux.values_list('pk', flat=True))  # Assuming Creneaux is ManyToMany
-        # Fetch all events for the calendar
-        all_events = Creneau.objects.all().values('pk', 'name', 'hour_start', 'hour_finish')
+def update_abonnement_client(request, pk, type_abonnement):
+    abonnement_client = get_object_or_404(AbonnementClient, pk=pk)
+    event_pk = request.POST.getlist('event_pk')
+    event_pk = [int(pk) for pk in event_pk]
 
-        # Add both the selected events and all events to the context
-        context['events'] = json.dumps(list(all_events), cls=DjangoJSONEncoder)  # Send events as JSON
-        context['selected_events'] = selected_events  # Send selected event PKs
-        print("events---------------",context)
+    today_str = request.POST.get('today')
+    if today_str:
+        today = datetime.strptime(today_str, '%Y-%m-%d')
+    else:
+        today = datetime.today()
+    
+    end_date = today + timedelta(days=30)
+    creneaux = Creneau.objects.filter(pk__in=event_pk)
+    if type_abonnement and type_abonnement != "None" and event_pk:
+        abonnement_Obj = get_object_or_404(Abonnement, pk=type_abonnement)
 
-        return context
+        # Update fields
+        abonnement_client.start_date = today
+        abonnement_client.end_date = end_date
+        abonnement_client.type_abonnement = abonnement_Obj
+        abonnement_client.creneaux.set(creneaux)
 
-    def post(self, request, *args, **kwargs):
-        # Fetch the existing AbonnementClient object to update
-        self.object = self.get_object()
-        type_abonnement = request.POST.get('type_abonnement')
-        selected_events = request.POST.getlist('event_pk[]')  # Get the selected events (Creneaux)
-        today = request.POST.get('today')
-
-        # Update the abonnement field
-        self.object.abonnement = type_abonnement
-
-        # Update selected Creneaux (events)
-        if selected_events:
-            creneaux = Creneau.objects.filter(pk__in=selected_events)
-            self.object.creneaux.set(creneaux)  # Assuming ManyToMany relationship
-            self.object.save()
-
-        # Return a JSON response
-        return JsonResponse({
-            'status': 'success',
-            'message': 'AbonnementClient updated successfully!',
-        })
+        abonnement_client.save()
+    
+    return HttpResponse(status=204)
 
 
 
