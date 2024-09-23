@@ -2,8 +2,6 @@ from django.utils.translation import gettext as _
 from django.shortcuts import redirect, render
 from abonnement.mixins import CalendarAbonnementClientMixin
 from .models import Abonnement, AbonnementClient
-from django.views.generic import (CreateView, DeleteView,DetailView,
-                                 ListView, UpdateView)
 import json
 from django_filters.views import FilterView
 from .models import Creneau
@@ -14,10 +12,12 @@ from client.models import Client
 from django.shortcuts import get_object_or_404
 from datetime import datetime, timedelta
 from django_htmx.http import HttpResponseClientRedirect
-from django.http import HttpResponse,HttpResponseRedirect
-from django.http import JsonResponse
-from django.core.serializers.json import DjangoJSONEncoder
+from django.http import HttpResponse
 from datetime import datetime,time,date
+from django.shortcuts import get_object_or_404, redirect
+from datetime import datetime, timedelta
+from django.views.decorators.http import require_http_methods
+
 
 def abc_htmx_view(request):
     client_id = request.GET.get('client')
@@ -26,12 +26,10 @@ def abc_htmx_view(request):
     return render(request, template_name, {'abcs': abcs})
 
 
-
 class CalendarAbonnementClient(CalendarAbonnementClientMixin):
     def get_template_names(self):
         template_name = "abonnement_calendar.html"
         return template_name
-
 
 def add_abonnement_client(request,client_pk,type_abonnement):
     event_pk = request.POST.getlist('event_pk')
@@ -96,14 +94,14 @@ class CalendarUpdateAbonnementClient(FilterView):
                 elif isinstance(event.get('start_date'), date):
                     event['start_date'] = event['start_date'].isoformat()
 
-
-
             print("selected_events_data--------------------",selected_events_data)
             context["seleced_events"] = json.dumps(selected_events_data)
             return context
 
     def get_events(self):
-        events = self.filterset_class(self.request.GET, queryset=Creneau.objects.all()).qs
+        abc = AbonnementClient.objects.filter(pk=self.kwargs['pk']).first()
+        # events = self.filterset_class(self.request.GET, queryset=Creneau.objects.all()).qs
+        events = self.filterset_class(self.request.GET, queryset=Creneau.objects.filter(activity__salle__abonnements__id=abc.type_abonnement.id)).qs
         day_name_to_weekday = {
             'LU': 1,  # Monday
             'MA': 2,  # Tuesday
@@ -131,37 +129,50 @@ class CalendarUpdateAbonnementClient(FilterView):
         template_name = "snippets/update_calander.html"
         return template_name
     
-
-# class  UpdateAbonnementClient(UpdateView):
-from django.shortcuts import get_object_or_404, redirect
-from django.http import HttpResponseRedirect
-from datetime import datetime, timedelta
-
+@require_http_methods(["POST"])
 def update_abonnement_client(request, pk, type_abonnement):
     abonnement_client = get_object_or_404(AbonnementClient, pk=pk)
     event_pk = request.POST.getlist('event_pk')
-    event_pk = [int(pk) for pk in event_pk]
+    deselected_event_pk = request.POST.getlist('deselected_event_pk', [])  # Handle deselected event_pk
 
+    # Filter out any invalid or non-integer values
+    event_pk = [int(pk) for pk in event_pk if pk.isdigit()]
+    deselected_event_pk = [int(pk) for pk in deselected_event_pk if pk.isdigit()]
+
+    print("Filtered event_pk-------------------->>", event_pk)
+    print("Deselected event_pk-------------------->>", deselected_event_pk)
     today_str = request.POST.get('today')
+    print("today_str-------------------->>", today_str)
+
     if today_str:
         today = datetime.strptime(today_str, '%Y-%m-%d')
     else:
         today = datetime.today()
-    
     end_date = today + timedelta(days=30)
-    creneaux = Creneau.objects.filter(pk__in=event_pk)
-    if type_abonnement and type_abonnement != "None" and event_pk:
-        abonnement_Obj = get_object_or_404(Abonnement, pk=type_abonnement)
 
+    # Get the existing Creneaux for this abonnement_client
+    existing_creneaux = abonnement_client.creneaux.all()
+
+    # Combine the new Creneaux with existing ones and remove deselected ones
+    new_creneaux = Creneau.objects.filter(pk__in=event_pk)
+    combined_creneaux = set(existing_creneaux) | set(new_creneaux)  # Merge the sets to avoid duplicates
+    # Remove deselected events
+    combined_creneaux = [creneau for creneau in combined_creneaux if creneau.pk not in deselected_event_pk]
+
+    if type_abonnement and type_abonnement != "None" and combined_creneaux:
+        abonnement_Obj = get_object_or_404(Abonnement, pk=type_abonnement)
         # Update fields
         abonnement_client.start_date = today
         abonnement_client.end_date = end_date
         abonnement_client.type_abonnement = abonnement_Obj
-        abonnement_client.creneaux.set(creneaux)
-
+        abonnement_client.creneaux.set(combined_creneaux)  # Update the combined Creneaux
         abonnement_client.save()
-    
+    else:
+        print("no updating -*********-*---******-")
+        
     return HttpResponse(status=204)
+
+
 
 
 

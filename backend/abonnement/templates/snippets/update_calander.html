@@ -26,8 +26,9 @@
                     <div class="form-group mb-0">
                         <label class="fs-6 fw-semibold mb-1">
                             <span class="card-label fw-bold text-grey-800">Type d'abonnement</span>
-                </label>
+                        </label>
                         {{ filter.form.abonnement|add_class:"form-control" |attr:"id:abonnement-select" }}
+                        
                     </div>
                 </form>
             </div>
@@ -52,13 +53,15 @@
                             id="add-abonnement-btn"
                             type="button"
                             class="btn btn-primary btn-sm"
-                            hx-post="{% url 'abonnement:update_abonnement_client' pk=abc.pk type_abonnement=filter.form.abonnement.value  %}" 
+                            hx-post="{% url 'abonnement:update_abonnement_client' pk=abc.pk type_abonnement=abc.type_abonnement.pk  %}" 
                             {% comment %} hx-post="{% if filter.form.abonnement.value %}{% url 'abonnement:update_abonnement_client' pk=abc.pk type_abonnement=filter.form.abonnement.value %}{% else %}# {% endif %}" {% endcomment %}
                             hx-trigger="click"
                             hx-vals="{}"  
                             >
                             <i class="ki-exit-up fs-2">update</i>
                         </button>  
+                        {% comment %} <span class="card-label fw-bold fs-2 text-grey-800">nb : {{ abc.type_abonnement }}</span> {% endcomment %}
+                        <span class="card-label fw-bold fs-2 text-grey-800">nb : {{ filter.form.abonnement.value }}</span>
 
                 </div>
             </div>
@@ -70,5 +73,7 @@
         </div>
     </div>
 </div>
+
+
 {% endblock content %}
 
