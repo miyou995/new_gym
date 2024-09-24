@@ -167,10 +167,12 @@ def update_abonnement_client(request, pk, type_abonnement):
         abonnement_client.type_abonnement = abonnement_Obj
         abonnement_client.creneaux.set(combined_creneaux)  # Update the combined Creneaux
         abonnement_client.save()
+        redirect_url = reverse("client:client_detail", kwargs={'pk': abonnement_client.client.pk})
+        return HttpResponseClientRedirect(redirect_url)
     else:
         print("no updating -*********-*---******-")
         
-    return HttpResponse(status=204)
+    return redirect('abonnement:calendar_abonnement_client', kwargs={'pk': abonnement_client.client.pk})
 
 
 

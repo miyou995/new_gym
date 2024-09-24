@@ -21,13 +21,13 @@
                         <label class="fs-6 fw-semibold mb-1">
                             <span class="card-label fw-bold text-grey-800">Plannings</span>
                         </label>
-                        {{ filter.form.planning|add_class:"form-control" }}
+                        {{ filter.form.planning|add_class:"form-control" |attr:"disabled:disabled" }}
                     </div>
                     <div class="form-group mb-0">
                         <label class="fs-6 fw-semibold mb-1">
                             <span class="card-label fw-bold text-grey-800">Type d'abonnement</span>
                         </label>
-                        {{ filter.form.abonnement|add_class:"form-control" |attr:"id:abonnement-select" }}
+                        {{ filter.form.abonnement|add_class:"form-control" |attr:"id:abonnement-select" |attr:"disabled:disabled" }}
                         
                     </div>
                 </form>
@@ -61,7 +61,7 @@
                             <i class="ki-exit-up fs-2">update</i>
                         </button>  
                         {% comment %} <span class="card-label fw-bold fs-2 text-grey-800">nb : {{ abc.type_abonnement }}</span> {% endcomment %}
-                        <span class="card-label fw-bold fs-2 text-grey-800">nb : {{ filter.form.abonnement.value }}</span>
+                        {% comment %} <span class="card-label fw-bold fs-2 text-grey-800">nb : {{ filter.form.abonnement.value }}</span> {% endcomment %}
 
                 </div>
             </div>
