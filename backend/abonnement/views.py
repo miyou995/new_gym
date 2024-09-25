@@ -12,11 +12,14 @@ from client.models import Client
 from django.shortcuts import get_object_or_404
 from datetime import datetime, timedelta
 from django_htmx.http import HttpResponseClientRedirect
-from django.http import HttpResponse
 from datetime import datetime,time,date
 from django.shortcuts import get_object_or_404, redirect
 from datetime import datetime, timedelta
 from django.views.decorators.http import require_http_methods
+from django.views.generic import  DeleteView
+from django.http import  HttpResponse, HttpResponseRedirect
+from django.contrib import messages
+
 
 
 def abc_htmx_view(request):
@@ -133,50 +136,61 @@ class CalendarUpdateAbonnementClient(FilterView):
 def update_abonnement_client(request, pk, type_abonnement):
     abonnement_client = get_object_or_404(AbonnementClient, pk=pk)
     event_pk = request.POST.getlist('event_pk')
-    deselected_event_pk = request.POST.getlist('deselected_event_pk', [])  # Handle deselected event_pk
-
+    deselected_event_pk = request.POST.getlist('deselected_event_pk', [])  
     # Filter out any invalid or non-integer values
     event_pk = [int(pk) for pk in event_pk if pk.isdigit()]
     deselected_event_pk = [int(pk) for pk in deselected_event_pk if pk.isdigit()]
-
     print("Filtered event_pk-------------------->>", event_pk)
     print("Deselected event_pk-------------------->>", deselected_event_pk)
     today_str = request.POST.get('today')
     print("today_str-------------------->>", today_str)
-
     if today_str:
         today = datetime.strptime(today_str, '%Y-%m-%d')
     else:
         today = datetime.today()
     end_date = today + timedelta(days=30)
 
-    # Get the existing Creneaux for this abonnement_client
     existing_creneaux = abonnement_client.creneaux.all()
-
-    # Combine the new Creneaux with existing ones and remove deselected ones
     new_creneaux = Creneau.objects.filter(pk__in=event_pk)
-    combined_creneaux = set(existing_creneaux) | set(new_creneaux)  # Merge the sets to avoid duplicates
+    combined_creneaux = set(existing_creneaux) | set(new_creneaux)  
     # Remove deselected events
     combined_creneaux = [creneau for creneau in combined_creneaux if creneau.pk not in deselected_event_pk]
 
     if type_abonnement and type_abonnement != "None" and combined_creneaux:
         abonnement_Obj = get_object_or_404(Abonnement, pk=type_abonnement)
-        # Update fields
         abonnement_client.start_date = today
         abonnement_client.end_date = end_date
         abonnement_client.type_abonnement = abonnement_Obj
-        abonnement_client.creneaux.set(combined_creneaux)  # Update the combined Creneaux
+        abonnement_client.creneaux.set(combined_creneaux)  
         abonnement_client.save()
         redirect_url = reverse("client:client_detail", kwargs={'pk': abonnement_client.client.pk})
         return HttpResponseClientRedirect(redirect_url)
     else:
         print("no updating -*********-*---******-")
-        
     return redirect('abonnement:calendar_abonnement_client', kwargs={'pk': abonnement_client.client.pk})
 
 
+from transaction.models import Paiement
 
+class AbonnemtClientDeleteView(DeleteView):
+    model = AbonnementClient
+    template_name = "buttons/delete.html"
+    def get_success_url(self):
+        return reverse_lazy("client:client_detail", kwargs={'pk': self.object.client.pk})
 
+    def form_valid(self, form):
+        success_url = self.get_success_url()
+        paiment = Paiement.objects.filter(abonnement_client=self.object)
+        if paiment :
+            print("you can not delete this abc")
+            messages.error(self.request, "Supprimer le paiement de cet abonnement pour avoir supprimer l'abonnement ",extra_tags="toastr")
+            return HttpResponseRedirect(success_url)
+        else :
+            success_url = self.get_success_url()
+            self.object.delete()
+            print('GOOOOO')
+            messages.success(self.request, "Abonnemet Client Supprimer avec Succés",extra_tags="toastr")
+            return HttpResponseRedirect(success_url)
 
 
 

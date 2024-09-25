@@ -142,6 +142,8 @@ class AbonnementClient(models.Model):
 
     def get_edit_url(self):
         return reverse('abonnement:update_abonnement_client', kwargs={'pk': str(self.id)})
+    def get_delete_url(self):
+        return reverse('abonnement:abonnemt_client_delete', kwargs={'pk': str(self.id)})
 
 
     def is_time_volume(self):
