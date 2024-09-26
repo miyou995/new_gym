@@ -89,7 +89,7 @@ class PersonnelHTMxTable(tables.Table):
 # client details ------------------------------------------------------------------------------------------
 class AbonnementClientHTMxTable(tables.Table):
 #     Séances = tables.Column(accessor="type_abonnement__seances_quantity", verbose_name="Séances", orderable=True )
-    presence_quantity=tables.Column(accessor="type_abonnement__seances_quantity", verbose_name="Présence", orderable=True )
+    presence_quantity=tables.Column( verbose_name="seances / minutes", orderable=True )
     type_abonnement = tables.TemplateColumn(
         template_code='''
             <a 
@@ -100,7 +100,7 @@ class AbonnementClientHTMxTable(tables.Table):
                 hx-get="{% url 'abonnement:calendar_update_abonnementclient'  record.id  %}" 
                 hx-target="#kt_modal_content" 
                 hx-swap="innerHTML">
-                {{ record.type_abonnement }}       - {{record.id}}
+                {{ record.type_abonnement }}      
             </a>      
         ''')
     class Meta:

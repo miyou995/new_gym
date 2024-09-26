@@ -126,6 +126,10 @@ class RemunerationProf(Transaction):
     def get_delete_url(self):
         return reverse('transactions:RemCoachDeleteView_name', kwargs={'pk': str(self.id)})
 
+
+
+
+
 def paiement_signal(sender, instance, **kwargs):
     id_client = instance.abonnement_client.client.id
     id_abc = instance.abonnement_client.id

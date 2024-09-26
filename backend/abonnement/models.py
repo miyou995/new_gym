@@ -7,6 +7,7 @@ from django.db.models.signals import post_save, pre_save
 from simple_history.models import HistoricalRecords
 from django.db.models import Q
 from django.urls import reverse
+from django.db.models.signals import post_save
 
 
 class SubscriptionQuerySet(models.QuerySet):
@@ -128,7 +129,7 @@ class AbonnementClient(models.Model):
     type_abonnement     = models.ForeignKey(Abonnement, related_name="type_abonnement_client", on_delete=models.CASCADE)
     presence_quantity   = models.IntegerField(blank=True, null=True)
     creneaux            = models.ManyToManyField(Creneau, verbose_name="créneau", related_name='abonnements', blank=True)
-    reste               = models.DecimalField(max_digits=15, decimal_places=0, verbose_name="prix", blank=True, null=True)
+    reste               = models.DecimalField(max_digits=15, decimal_places=0, verbose_name="Reste", blank=True, null=True)
     archiver            = models.BooleanField(default=False)
     created_date_time   = models.DateTimeField(auto_now_add=True)
     updated_date_time   = models.DateTimeField(auto_now=True)
@@ -227,6 +228,7 @@ class AbonnementClient(models.Model):
         duree = self.type_abonnement.length
         # print('get_end_date start_date => ', start_date)
         # print('get_end_date duree => ', duree)
+        duree = int(duree) 
         duree_semaine = (duree // 7) - 1 
         selected_creneau= [cre.id for cre in creneaux]
         # print('get_end_date duree_semaine => ', duree_semaine)
@@ -309,7 +311,7 @@ class AbonnementClient(models.Model):
 
     def renew_abc(self, renew_start_date):
         type_abonnement = self.type_abonnement
-        delta = timedelta(days = type_abonnement.length)
+        # delta = timedelta(days = type_abonnement.length)
         creneaux = self.creneaux.all()
         # creneaux_ids = self.creneaux.all().values_list('id', flat=True)
         new_end_date = self.get_end_date(renew_start_date, creneaux)
@@ -345,6 +347,10 @@ class AbonnementClient(models.Model):
             return time_string
         else:
             return self.presence_quantity
+        
+
+        
+        
 
     def is_red(self):
         if self.presence_quantity <= self.get_limit():
@@ -388,9 +394,6 @@ class AbonnementClient(models.Model):
     #     return self
         # methode creer normaleemnt rest view / la method ne marche pas !!
         
-
-
-
 
 def creneau_created_signal(sender, instance, created,**kwargs):
     if created:
@@ -455,6 +458,12 @@ post_save.connect(creneau_created_signal, sender=Creneau)
     #     return abonnement_client
     # 0561 64 40 67 aymen bencherchali
 
-
-
-
+def abonnement_client_signal(sender,instance, created,**kwargs):
+    if created:
+        seances_qty = instance.type_abonnement.seances_quantity
+        instance.presence_quantity = seances_qty
+        print("signalllllllllllll-------------------",seances_qty)
+        reste = instance.type_abonnement.price
+        instance.reste =reste
+        instance.save()
+post_save.connect(abonnement_client_signal, sender=AbonnementClient)

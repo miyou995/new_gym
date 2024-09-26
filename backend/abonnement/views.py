@@ -1,6 +1,7 @@
 from django.utils.translation import gettext as _
 from django.shortcuts import redirect, render
 from abonnement.mixins import CalendarAbonnementClientMixin
+from abonnement.forms import AbonnementClientRestPaiementForm, AbonnementClientRestTempForm
 from .models import Abonnement, AbonnementClient
 import json
 from django_filters.views import FilterView
@@ -19,6 +20,10 @@ from django.views.decorators.http import require_http_methods
 from django.views.generic import  DeleteView
 from django.http import  HttpResponse, HttpResponseRedirect
 from django.contrib import messages
+from django.views.decorators.http import require_POST
+from transaction.models import Paiement
+from django.http import JsonResponse
+
 
 
 
@@ -135,6 +140,7 @@ class CalendarUpdateAbonnementClient(FilterView):
 @require_http_methods(["POST"])
 def update_abonnement_client(request, pk, type_abonnement):
     abonnement_client = get_object_or_404(AbonnementClient, pk=pk)
+    print("presence_quantity-----------------------------------",abonnement_client.presence_quantity)
     event_pk = request.POST.getlist('event_pk')
     deselected_event_pk = request.POST.getlist('deselected_event_pk', [])  
     # Filter out any invalid or non-integer values
@@ -170,7 +176,6 @@ def update_abonnement_client(request, pk, type_abonnement):
     return redirect('abonnement:calendar_abonnement_client', kwargs={'pk': abonnement_client.client.pk})
 
 
-from transaction.models import Paiement
 
 class AbonnemtClientDeleteView(DeleteView):
     model = AbonnementClient
@@ -194,5 +199,46 @@ class AbonnemtClientDeleteView(DeleteView):
 
 
 
-     
+@require_POST
+def update_temps_rest(request, pk):
+    if request.method == "POST":
+        print(list(request.POST.items()))
+        product = get_object_or_404(AbonnementClient, pk=pk)
+        form = AbonnementClientRestTempForm(request.POST, instance=product)
+        if form.is_valid() :
+            if form.is_valid():
+                form.save()
+            message = _("Reste temps updated successfully.")
+            messages.success(request, str(message), extra_tags="toastr")
+        else:
+            message = _("Error occures when updating product.")
+            messages.error(request, str(message))
+        return JsonResponse({"success": True})
+   
+
+
+@require_POST
+def update_paiement_rest(request, pk):
+    if request.method == "POST":
+        print(list(request.POST.items()))
+        product = get_object_or_404(AbonnementClient, pk=pk)
+        form = AbonnementClientRestPaiementForm(request.POST, instance=product)
+        if form.is_valid() :
+            if form.is_valid():
+                form.save()
+            message = _("Reste  updated successfully.")
+            messages.success(request, str(message), extra_tags="toastr")
+        else:
+            message = _("Error occures when updating product.")
+            messages.error(request, str(message))
+        return JsonResponse({"success": True})
+
+
+def renew_abonnemetn_client(request,pk):
+    abonnement_client = get_object_or_404(AbonnementClient, pk=pk)
+    renouvle_date = request.POST.get('renouvle')
+    print("get date-/-/-/-/-/-/-/-/-/-/-/-/-/-/",renouvle_date)
+    abonnement_client.renew_abc(renouvle_date)
+    print("renew is done ---------------------")
+    return HttpResponse(status=204)
 
