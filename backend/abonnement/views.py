@@ -237,8 +237,27 @@ def update_paiement_rest(request, pk):
 def renew_abonnemetn_client(request,pk):
     abonnement_client = get_object_or_404(AbonnementClient, pk=pk)
     renouvle_date = request.POST.get('renouvle')
-    print("get date-/-/-/-/-/-/-/-/-/-/-/-/-/-/",renouvle_date)
-    abonnement_client.renew_abc(renouvle_date)
-    print("renew is done ---------------------")
+    if renouvle_date:
+        print("get date-/-/-/-/-/-/-/-/-/-/-/-/-/-/",renouvle_date)
+        abonnement_client.renew_abc(renouvle_date)
+        print("renew is done ---------------------")
     return HttpResponse(status=204)
+
+
+def block_deblock_abonnement_client(request,pk):
+    abonnement_client = get_object_or_404(AbonnementClient, pk=pk)
+    block_date = request.POST.get('block_date')
+    print("block_date------------->>>>>",block_date)
+    if block_date :
+        abonnement_client.lock(block_date)
+        if not abonnement_client.blocking_date :
+            print("-----------------------blocking date not correct")
+            message = _("blocking date not correct")
+            messages.error(request, str(message))
+    else :
+        abonnement_client.unlock()   
+    return HttpResponse(status=204)
+
+
+
 
