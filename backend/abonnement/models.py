@@ -8,6 +8,7 @@ from simple_history.models import HistoricalRecords
 from django.db.models import Q
 from django.urls import reverse
 from django.db.models.signals import post_save
+from django.utils.dateparse import parse_date
 
 
 class SubscriptionQuerySet(models.QuerySet):
@@ -167,11 +168,13 @@ class AbonnementClient(models.Model):
         print("ABCCCCC DELETEEDDDD")
         return self
 
-    def lock(self):
-        today = date.today()
-        self.blocking_date = today
-        self.save()
-        print('LOCKING DONE')
+    def lock(self,block_date):
+        if parse_date(block_date) <= self.end_date:
+            self.blocking_date = block_date
+            self.save()
+            print('LOCKING DONE')
+        else :
+            False
 
     def unlock(self):
         today = date.today()

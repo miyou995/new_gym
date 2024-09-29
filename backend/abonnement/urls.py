@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import (
                     abc_htmx_view,CalendarAbonnementClient,add_abonnement_client,update_abonnement_client,
-                    update_temps_rest,update_paiement_rest,renew_abonnemetn_client
+                    update_temps_rest,update_paiement_rest,renew_abonnemetn_client,block_deblock_abonnement_client
 )
 # , RenewalSubscription
 from .views import *
@@ -21,6 +21,7 @@ urlpatterns = [
     path('update_temps_rest/<int:pk>/', update_temps_rest, name='update_temps_rest'),
     path('update_paiement_rest/<int:pk>/', update_paiement_rest, name='update_paiement_rest'),
     path('renew_abonnemetn_client/<int:pk>/', renew_abonnemetn_client, name='renew_abonnemetn_client'),
+    path('block_deblock_abonnement_client/<int:pk>/', block_deblock_abonnement_client, name='block_deblock_abonnement_client'),
 
 
 
