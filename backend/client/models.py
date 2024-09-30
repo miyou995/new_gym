@@ -392,7 +392,42 @@ class Client(models.Model):
             logger.warning('WHATS THE CASE-- {}'.format(str(abonnement_client.type_abonnement)))
             return False
 
+# def manual_presence(self, abc, hour_entree, hour_sortie, date, note=None):
+#         logger.warning('Client requested Door Auth ===> {}'.format(str(self.id)))
 
+#         FTM = '%H:%M:%S'
+#         erreur = {"level": "error", "message": "Ce client n'a pas accés maintenant"}
+#         sortie = {"level": "success", "message": f"la sortie de {self.id} a été éffectué Avec Succée"}
+#         entree = {"level": "success", "message": f"Accés autoriser pour {self.id}"}
+#         current_time = datetime.now().strftime("%H:%M:%S")
+#         client = self
+#         #client.has_permission()
+#         creneaux = Creneau.range.get_creneaux_of_day().filter(abonnements__client=client).distinct()
+#         # print('Les creneaux of client=====>',Creneau.objects.filter(abonnements__client=client))
+#         print('creneaux du Today client=====>', creneaux)
+#         logger.warning('LOGLes creneaux du Today client=====-{}'.format(str(creneaux)))
+#         if len(creneaux) :
+#             dur_ref_time_format = abs(datetime.strptime(str(creneaux[0].hour_start), FTM) - datetime.strptime(current_time, FTM))
+#             dur_ref= timedelta.total_seconds(dur_ref_time_format) 
+#             cren_ref = creneaux[0]
+#             for cr in creneaux:
+#                 start = str(cr.hour_start)
+#                 print('heure de début', start)
+#                 temps = abs(datetime.strptime(start, FTM) - datetime.strptime(current_time, FTM))
+#                 duree_seconde = timedelta.total_seconds(temps) 
+#                 if dur_ref > duree_seconde:
+#                     dur_ref = duree_seconde
+#                     cren_ref = cr
+#         presence_sortie= self.init_output()
+#         if presence_sortie:
+#             print('YESS SORTIEEE')
+#             return sortie
+#         # client.has_permission()
+
+
+        
+        
+        
     # def dettes(self):
     #     try:
     #         # dettes = AbonnementClient.objects.filter(client =self.id).aggregate(Sum('reste'))

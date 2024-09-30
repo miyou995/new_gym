@@ -83,7 +83,7 @@ class UserCreateView(PermissionRequiredMixin, View):
             logger.info("New_user Created=%s", email)
             return HttpResponse(status=201, headers={
                 'HX-Trigger': json.dumps({
-                    "closeModal": "sg_create_modal",
+                    "closeModal": "kt_modal",
                     "selected_client": f"{new_user.id}",
                     "refresh_table": None,
                 })
@@ -227,7 +227,7 @@ def add_edit_group(request, pk=None):
                 status=204,
                 headers={
                     'HX-Trigger': json.dumps({
-                        "closeModal": "sg_create_modal",
+                        "closeModal": "kt_modal",
                         "refresh_table": None,
                     })
                 }
@@ -237,7 +237,7 @@ def add_edit_group(request, pk=None):
         return HttpResponse(status=204,
             headers={
                     'HX-Trigger': json.dumps({
-                    "closeModal":'sg_create_modal',
+                    "closeModal":'kt_modal',
                     "refresh_table": None,
                 })
         })

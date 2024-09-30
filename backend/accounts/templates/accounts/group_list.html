@@ -18,12 +18,11 @@
                   {% if perms.accounts.add_group %}
                     <a href="#" 
                         class="btn btn-sm fw-bold btn-primary d-block" 
-                        data-bs-toggle="modal" 
                         data-bs-target="#sg_create_modal"
                         data-bs-toggle="tooltip" 
                         data-bs-placement="right" 
                         hx-get="{% url 'accounts:create_role' %}" 
-                        hx-target="#sg_create_modal_content" 
+                        hx-target="#kt_modal_content" 
                         hx-swap="innerHTML"
                         >
                         {% trans '+ Role' %} 

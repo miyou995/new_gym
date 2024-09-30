@@ -13,7 +13,7 @@
         {% else %}
         hx-post= "{% url 'accounts:create_role' %}"
         {% endif %}       
-        hx-target="#sg_create_modal_content"
+        hx-target="#kt_modal_content"
         novalidate
     >
         {% csrf_token %}

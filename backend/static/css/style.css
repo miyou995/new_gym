@@ -85,3 +85,12 @@ tr.htmx-swapping td {
     vertical-align: middle; /* Center text vertically */
 }
 
+.menu-link:hover {
+    color: #5d78ff; /* Your brand color */
+    background-color: #f3f6f9;
+    text-decoration: none;
+}
+.menu-item.here > .menu-link {
+    color: #ffffff;
+    background-color: #5d78ff; /* Your brand color */
+}

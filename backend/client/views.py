@@ -3,7 +3,7 @@ from django.views.generic.base import TemplateView
 from django.views.generic import (TemplateView,UpdateView,DeleteView)
 from django.shortcuts import get_object_or_404
 from transaction.tables import RemunerationPersonnelHTMxTable
-from presence.models import PresenceCoach
+from presence.models import Presence, PresenceCoach
 from .forms import ClientModelForm,CoachModelForm, PersonnelModelForm
 from django.contrib import messages
 from django.http import HttpResponse,HttpResponseRedirect
@@ -378,14 +378,14 @@ class PaiementClientDetail(SingleTableMixin, FilterView):
 class PresenceClientDetail(SingleTableMixin, FilterView):
         table_class =   PresenceClientHTMxTable
         paginate_by = 15
-        model = Paiement
+        model = Presence
         
         def get_queryset(self):
-            queryset = Paiement.objects.order_by("-date_creation")
+            queryset = Presence.objects.order_by("-created")
             abonnement_client_pk = self.kwargs.get('pk')
-            print("abonnement_client_pk  -------------", abonnement_client_pk)
+            print("abonnement_client_pk from presence -------------", abonnement_client_pk)
             if abonnement_client_pk:
-                queryset = queryset.filter(abonnement_client__client=abonnement_client_pk)
+                queryset = queryset.filter(abc__client=abonnement_client_pk)
                 return queryset
         
         def get_template_names(self):
