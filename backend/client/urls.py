@@ -5,7 +5,7 @@ from .views import (ClientCreateView,ClientView,CoachsView,CoachCreateView,
                     ClientUpdateView,ClientDeleteView,CoachUpdateView,CoachDeleteView,
                     PersonnelUpdateView,PersonnelDeleteView,PaiementClientDetail,
                     VirementsCoachDetail,CoachDetail,PresenceCoachDetail,presence_coach,
-                    PersonnelDetail)
+                    PersonnelDetail,PresenceClientDetail)
 
 
 app_name= 'client'
@@ -33,6 +33,7 @@ urlpatterns = [
 
     path('client/client_detail/<str:pk>',AbonnementClientDetail.as_view(),name='client_detail'),
     path('client/PaiementClientDetail/<str:pk>',PaiementClientDetail.as_view(),name='PaiementClientDetail'),
+    path('client/presence_client_detail/<str:pk>',PresenceClientDetail.as_view(),name='presence_client_detail'),
 
 
 

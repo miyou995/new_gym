@@ -1,194 +1,81 @@
-<div class="d-flex align-items-stretch" id="kt_app_header_menu_wrapper">
+<div class="d-flex align-items-stretch w-100" id="kt_app_header_menu_wrapper">
   <!--begin::Menu holder-->
-  <div
-    class="app-header-menu app-header-mobile-drawer align-items-stretch"
-    data-kt-drawer="true"
-    data-kt-drawer-name="app-header-menu"
-    data-kt-drawer-activate="{default: true, lg: false}"
-    data-kt-drawer-overlay="true"
-    data-kt-drawer-width="{default:'200px', '300px': '250px'}"
-    data-kt-drawer-direction="start"
-    data-kt-drawer-toggle="#kt_app_header_menu_toggle"
-    data-kt-swapper="true"
-    data-kt-swapper-mode="prepend"
-    data-kt-swapper-parent="{default: '#kt_app_body', lg: '#kt_app_header_menu_wrapper'}"
-  >
-
-    <div
-      class="menu menu-rounded menu-column menu-lg-row menu-active-bg menu-title-gray-600 menu-state-dark menu-arrow-gray-400 fw-semibold fw-semibold fs-6 align-items-stretch my-5 my-lg-0 px-2 px-lg-0"
-      id="#kt_app_header_menu"
-      data-kt-menu="true"
-    >
-
-      <div
-        data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
-        data-kt-menu-placement="bottom-start"
-        data-kt-menu-offset="-250,0"
-        class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2"
-      >
-
-     <a href="{% url 'core:index' %}">
-        <span class="menu-link">
-          <span class="menu-title">Tableau de board</span>
-          <span class="menu-arrow d-lg-none"></span>
-        </span>
-      </a>
-   
-      </div>
-
-      <div
-        data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
-        data-kt-menu-placement="bottom-start"
-        data-kt-menu-offset="-400,0"
-        class="menu-item menu-lg-down-accordion me-0 me-lg-2"
-      >
-      <a href="{% url 'transactions:transaction_name' %}">
-          <span class="menu-link">
-            <span class="menu-title">transactions</span>
-            <span class="menu-arrow d-lg-none"></span>
-          </span>
+  <div class="app-header-menu app-header-mobile-drawer align-items-stretch w-100"
+       data-kt-drawer="true"
+       data-kt-drawer-name="app-header-menu"
+       data-kt-drawer-activate="{default: true, lg: false}"
+       data-kt-drawer-overlay="true"
+       data-kt-drawer-width="{default:'200px', '300px': '250px'}"
+       data-kt-drawer-direction="start"
+       data-kt-drawer-toggle="#kt_app_header_menu_toggle"
+       data-kt-swapper="true"
+       data-kt-swapper-mode="prepend"
+       data-kt-swapper-parent="{default: '#kt_app_body', lg: '#kt_app_header_menu_wrapper'}">
+    
+    <!--begin::Menu-->
+    <div class="menu menu-rounded menu-column menu-lg-row menu-active-bg menu-title-gray-600 menu-state-dark menu-arrow-gray-400 fw-semibold fs-6 align-items-stretch my-5 my-lg-0 px-2 px-lg-0 w-100"
+         id="kt_app_header_menu"
+         data-kt-menu="true">
+      <nav class="navbar navbar-expand-lg navbar-light w-100">
+        <a href="{% url 'core:index' %}" class="navbar-brand mx-7">
+          <span class="nav-title">Tableau de bord</span>
         </a>
-
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item mx-3">
+              <a href="{% url 'transactions:transaction_name' %}" class="nav-link">
+                <span class="nav-title">Transactions</span>
+              </a>
+            </li>
+            <li class="nav-item mx-3">
+              <a href="{% url 'client:client_name' %}" class="nav-link">
+                <span class="nav-title">Clients</span>
+              </a>
+            </li>
+            <li class="nav-item mx-3">
+              <a href="{% url 'client:coach_name' %}" class="nav-link">
+                <span class="nav-title">Coachs</span>
+              </a>
+            </li>
+            <li class="nav-item mx-3">
+              <a href="{% url 'client:personnels_name' %}" class="nav-link">
+                <span class="nav-title">Personnels</span>
+              </a>
+            </li>
+            <li class="nav-item mx-3">
+              <a href="{% url 'presence:presences_name' %}" class="nav-link">
+                <span class="nav-title">Présences</span>
+              </a>
+            </li>
+            <li class="nav-item mx-3">
+              <a href="{% url 'transactions:chiffre_affaire_name' %}" class="nav-link">
+                <span class="nav-title">Chiffre D'affaire</span>
+              </a>
+            </li>
+            <li class="nav-item mx-3">
+              <a href="{% url 'creneau:creneaux_name' %}" class="nav-link">
+                <span class="nav-title">Créneaux</span>
+              </a>
+            </li>
+            <li class="nav-item mx-3">
+              <a href="{% url 'core:PlanningTable' %}" class="nav-link">
+                <span class="nav-title">Configuration</span>
+              </a>
+            </li>
+            <li class="nav-item dropdown mx-3">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+               Settings
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li><a class="dropdown-item" href="{% url 'accounts:userlist' %}">Users</a></li>
+                <li><a class="dropdown-item" href="{% url 'accounts:grouplist' %}">Role</a></li>
+              </ul>
+            </li>
+          </ul>
         </div>
-      <div
-        data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
-        data-kt-menu-placement="bottom-start"
-        data-kt-menu-offset="12,0"
-        class="menu-item menu-lg-down-accordion menu-sub-lg-down-indention me-0 me-lg-2"
-      >
-      <a href="{% url 'client:client_name' %}">
-        <span class="menu-link">
-          <span class="menu-title">Clients</span>
-          <span class="menu-arrow d-lg-none"></span>
-        </span>
-      </a>
-      </div>
-
-      <div
-        data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
-        data-kt-menu-placement="bottom-start"
-        data-kt-menu-offset="12,0"
-        class="menu-item menu-lg-down-accordion menu-sub-lg-down-indention me-0 me-lg-2"
-      >
-      <a href="{% url 'client:coach_name' %}">
-        <span class="menu-link">
-          <span class="menu-title">Coachs</span>
-          <span class="menu-arrow d-lg-none"></span>
-        </span>
-      </a>
-      </div>
-
-      <div
-        data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
-        data-kt-menu-placement="bottom-start"
-        data-kt-menu-offset="12,0"
-        class="menu-item menu-lg-down-accordion menu-sub-lg-down-indention me-0 me-lg-2"
-      >
-      <a href="{% url 'client:personnels_name' %}">
-        <span class="menu-link">
-          <span class="menu-title">Personnels</span>
-          <span class="menu-arrow d-lg-none"></span>
-        </span>
-      </a>
-      </div>
-
-      <div
-        data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
-        data-kt-menu-placement="bottom-start"
-        data-kt-menu-offset="12,0"
-        class="menu-item menu-lg-down-accordion menu-sub-lg-down-indention me-0 me-lg-2"
-      >
-      <a href="{% url 'presence:presences_name' %}">
-        <span class="menu-link">
-          <span class="menu-title">Présences</span>
-          <span class="menu-arrow d-lg-none"></span>
-        </span>
-      </a>
+      </nav>
     </div>
-    <div
-      data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
-      data-kt-menu-placement="bottom-start"
-      data-kt-menu-offset="12,0"
-      class="menu-item menu-lg-down-accordion menu-sub-lg-down-indention me-0 me-lg-2"
-    >
-    <a href="{% url 'transactions:chiffre_affaire_name' %}">
-    <span class="menu-link">
-        <span class="menu-title">Chiffre D'affaire</span>
-        <span class="menu-arrow d-lg-none"></span>
-    </span>
-  </a>
+    <!--end::Menu-->
   </div>
-  <div
-    data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
-    data-kt-menu-placement="bottom-start"
-    data-kt-menu-offset="12,0"
-    class="menu-item menu-lg-down-accordion menu-sub-lg-down-indention me-0 me-lg-2"
-  >
-  <a href="{% url 'creneau:creneaux_name' %}">
-   <span class="menu-link">
-      <span class="menu-title">Créneaux</span>
-      <span class="menu-arrow d-lg-none"></span>
-    </span>
-  </a>
-</div>
-<div
-    data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
-    data-kt-menu-placement="bottom-start"
-    data-kt-menu-offset="12,0"
-    class="menu-item menu-lg-down-accordion menu-sub-lg-down-indention me-0 me-lg-2"
->
-<a href="{% url 'core:PlanningTable' %}">
-  <span class="menu-link">
-      <span class="menu-title">Configuration</span>
-      <span class="menu-arrow d-lg-none"></span>
-  </span>
-</a>
-</div>
-<div class="menu-item menu-sub-indention menu-accordion" data-kt-menu-trigger="click">
-             
-  <a href="#" class="menu-link py-3">
-      <span class="menu-icon">
-          <i class="ki-duotone ki-abstract-13 fs-2">
-              <span class="path1"></span>
-              <span class="path2"></span>
-            </i>
-      </span>
-      <span class="menu-title">Settings</span>
-      <span class="menu-arrow"></span>
-  </a>
-
-  <div class="menu-sub menu-sub-accordion pt-3">
-      
-      <div class="menu-item">
-          {% comment %} {% if perms.accounts.view_user %} {% endcomment %}
-          <a class="menu-link" href="{% url 'accounts:userlist' %}">
-              <span class="menu-icon">
-                  <i class="ki-duotone ki-abstract-13 fs-2">
-                      <span class="path1"></span>
-                      <span class="path2"></span>
-                    </i>
-                </span>
-                <span class="menu-title">Users</span>
-            </a>
-            {% comment %} {% endif %} {% endcomment %}
-      </div>
-    
-      <div class="menu-item">
-          {% comment %} {% if perms.accounts.view_group %} {% endcomment %}
-          <a class="menu-link" href="{% url 'accounts:grouplist' %}">
-              <span class="menu-icon">
-                  <i class="ki-duotone ki-abstract-13 fs-2">
-                      <span class="path1"></span>
-                      <span class="path2"></span>
-                    </i>
-                </span>
-                <span class="menu-title">Roles</span>
-            </a>
-            {% comment %} {% endif %} {% endcomment %}
-      </div>
-    
-  </div>
-</div>
-    </div>
-  </div>
+  <!--end::Menu holder-->
 </div>

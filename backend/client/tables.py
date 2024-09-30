@@ -135,17 +135,19 @@ class PaiementHTMxTable(tables.Table):
 
 class PresenceClientHTMxTable(tables.Table):
     
-    recu = tables.TemplateColumn(
+    creneau__activity = tables.Column(verbose_name = "Activité")
+    Action = tables.TemplateColumn(
             '''{% include 'buttons/action.html' with object=record modal_edit="true" %}''',
             verbose_name='Actions',
             orderable=False )
 
     class Meta:
         fields  = (
-                'amount',
-                'date_creation', 
-                'abonnement_client',
-                'recu',
+                'hour_entree',
+                'hour_sortie', 
+                'date',
+                'creneau__activity',
+                'Action'
          
         )
         model = Presence
