@@ -14,16 +14,23 @@
           hx-target="#kt_modal_content"
           novalidate 
       >
-        <div class="mb-13 text-center">
-          <h1 class="mb-3">{% trans "Create New Client Account" %}</h1>
-        </div>
-        {% with WIDGET_ERROR_CLASS='is-invalid' %} 
+      {% if form.instance.id %}  
+            <div class="mb-13 text-center">
+              <h1 class="mb-4">{% trans "Modifier User" %}</h1>
+          </div>
+      {% else %}
+            <div class="mb-13 text-center">
+              <h1 class="mb-3">{% trans "Create Nouvel Utilisateur" %}</h1>
+            </div>          
+      {% endif %}
+        
+        {% with WIDGET_ERROR_CLASS='is-invalid' %}         
           {% for field in form %}
             {% if field.name == "is_active" %}
               <div class="d-flex flex-stack mb-8">
                 <div class="me-5">
-                    <label class="fs-6 fw-semibold">{% trans "Is Active" %}</label>
-                    <div class="fs-7 fw-semibold text-muted">{% trans "If you check this button the user will be able to authenticate" %}</div>
+                    <label class="fs-6 fw-semibold">{% trans "Actif" %}</label>
+                    <div class="fs-7 fw-semibold text-muted">{% trans "Précise si l’utilisateur doit être considéré comme actif. Décochez ceci plutôt que de supprimer le compte." %}</div>
                 </div>
                 <label class="form-check form-switch form-check-custom form-check-solid">
                       {% render_field form.is_active class='form-check-input' %}
@@ -33,8 +40,8 @@
             {% elif field.name == "is_staff" %}
               <div class="d-flex flex-stack mb-8">
                 <div class="me-5">
-                  <label class="fs-6 fw-semibold">{% trans "Is Staff Member" %}</label>
-                  <div class="fs-7 fw-semibold text-muted">{% trans "If you check this button the user will be able to authenticate" %}</div>
+                  <label class="fs-6 fw-semibold">{% trans "Statut Équipe" %}</label>
+                  <div class="fs-7 fw-semibold text-muted">{% trans "Précise si l’utilisateur peut se connecter à ce site d'administration." %}</div>
                 </div>
                 <label class="form-check form-switch form-check-custom form-check-solid">
                   {% render_field form.is_staff class='form-check-input' %}
@@ -44,13 +51,25 @@
             {% elif field.name == "is_admin" %}
               <div class="d-flex flex-stack mb-8">
                 <div class="me-5">
-                  <label class="fs-6 fw-semibold">{% trans "Is Admin" %}</label>
-                  <div class="fs-7 fw-semibold text-muted">{% trans "If you check this button the user will be able to authenticate" %}</div>
+                  <label class="fs-6 fw-semibold">{% trans "Statut Super-Utilisateur" %}</label>
+                  <div class="fs-7 fw-semibold text-muted">{% trans "Précise que l’utilisateur possède toutes les permissions sans les assigner explicitement." %}</div>
                 </div>
                 <label class="form-check form-switch form-check-custom form-check-solid">
                   {% render_field form.is_admin class='form-check-input' %}
                   <span class="form-check-label fw-semibold text-muted">{% trans "Default" %}</span>
                 </label>
+              </div>
+            {% elif field.name == "groups" %}
+              <div class="d-flex flex-stack mb-8 ">
+                <div class="me-5">
+                <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+                  <span {% if field.field.required %}class="required"{% endif %}>{{ field.label }}</span>
+                </label>
+                </div>
+                {% render_field form.groups class="form-select form-select-solid" data-control="select2" data-close-on-select="false" data-placeholder="Select one or more" data-allow-clear="true" multiple="multiple" %}
+                {% if field.errors %}
+                  <span class="form-check-label fw-semibold text-danger">{{ field.errors }}</span>
+                {% endif %}
               </div>
             {% else %}
               <div class="d-flex flex-column mb-8 fv-row">
@@ -68,7 +87,7 @@
           {% endfor %} 
         {% endwith %}       
         <div class="text-center">   
-          <button type="reset" id="sg_create_store_form" class="btn btn-light me-3" data-bs-dismiss="modal">{% trans "Annulé" %}</button>
+          <button type="reset"  class="btn btn-light me-3" data-bs-dismiss="modal">{% trans "Annulé" %}</button>
           <button type="submit" class="btn btn-primary">{% trans "Confirmer" %}</button>
         </div>
     </form>
