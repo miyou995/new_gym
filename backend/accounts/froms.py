@@ -19,6 +19,7 @@ class UserCreationForm(DjangoUserCreationForm):
         model = User
         fields = ("email",'first_name', "last_name","groups", "is_staff", "is_active","picture","password1")
         field_classes = {"email": UsernameField}
+        
   
 
 class UserEditionForm(forms.ModelForm):

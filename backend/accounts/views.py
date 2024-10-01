@@ -53,44 +53,26 @@ def logout_view(request):
 
 # -----------------------------------USER VIEWS----------------------------------------------------
 
-class UserCreateView(PermissionRequiredMixin, View):
+class UserCreateView(PermissionRequiredMixin, FormView):
     permission_required = 'accounts.add_user'
     template_name = "accounts/snippets/create_user.html"
-  
+    form_class = UserCreationForm
 
-    def get(self, request, *args, **kwargs):
-        context = {"form": UserCreationForm(initial=request.POST.dict())}
-        return render(request, self.template_name, context)
-
-    def post(self, request, *args, **kwargs):
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            print('YES FOR MVALID---------------------------------------------')
-            cd = form.cleaned_data
-            email = cd['email']
-            password1 = cd.pop("password1")
-            password2 = cd.pop("password2")
-            if password1 != password2:
-                messages.error(request, _('les mots de passes ne sont pas identique'))
-                return render(request, self.template_name, {'form': form})
-
-            if User.objects.filter(email=email).exists():
-                messages.error(request, _('un utilisateur avec cet email éxiste déja'))
-                return render(request, self.template_name, {'form': form})
-
-            new_user = User.objects.create_user(password=password1, **cd)
-            messages.success(request, _("Account Created successfully"))
-            logger.info("New_user Created=%s", email)
-            return HttpResponse(status=201, headers={
+    def form_valid(self, form):
+        new_user = form.save()
+        messages.success(self.request, _("Account Created successfully"))
+        print('new_user>>>>>> ID', new_user.pk)
+        return HttpResponse(
+            status=204,
+            headers={
                 'HX-Trigger': json.dumps({
                     "closeModal": "kt_modal",
-                    "selected_client": f"{new_user.id}",
-                    "refresh_table": None,
                 })
-            })
-        else:
-            messages.error(request, form.errors)
-            return render(request, self.template_name, {'form': form})
+            }
+        )
+    def form_invalid(self, form):
+        messages.error(self.request, form.errors)
+        return self.render_to_response(self.get_context_data(form=form)) 
 
 
 class UserUpdateView(PermissionRequiredMixin, View):
@@ -109,12 +91,12 @@ class UserUpdateView(PermissionRequiredMixin, View):
         if form.is_valid():
             form.save()
             messages.success(request, _("Account Updated successfully"))
-            return HttpResponse(status=201, headers={
-                'HX-Trigger': json.dumps({
-                    "closeModal": "sg_create_modal",
-                    "refresh_users": None,
-                })
-            })        
+            return HttpResponse(status=204,
+                headers={
+                    'HX-Trigger': json.dumps({
+                        "closeModal": "kt_modal",
+                    })
+                })   
         
         else:
             messages.error(request, form.errors)
@@ -125,7 +107,7 @@ class UserUpdateView(PermissionRequiredMixin, View):
 class UserDeleteView(PermissionRequiredMixin,DeleteView):
     permission_required='account:delete_user'
     model = User
-    template_name = "popups/delete_modal.html"
+    template_name = "buttons/delete.html"
     success_url = reverse_lazy("accounts:userlist")
 
     def form_valid(self, form):

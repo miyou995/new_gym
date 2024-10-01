@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'salle_sport',
     'planning',
     'transaction',
+    'mptt',
     
     
     #third party app
