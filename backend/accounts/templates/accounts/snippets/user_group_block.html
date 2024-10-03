@@ -5,14 +5,14 @@
     <td>
         {% if perms.auth.change_group %} 
         <a
-        href="#"
-        data-bs-toggle="modal"
-        data-bs-target="#sg_create_modal"
-        data-bs-toggle="tooltip"
-        data-bs-placement="right"
-        hx-get="{% url 'accounts:edit_role' role.pk %}"
-        hx-target="#sg_create_modal_content"
-        hx-swap="innerHTML"
+            href="#"
+            data-bs-toggle="modal" 
+            data-bs-target="#kt_modal"
+            data-bs-toggle="tooltip" 
+            data-bs-placement="right"
+            hx-get="{% url 'accounts:edit_role' role.pk %}"
+            hx-target="#kt_modal_content"
+            hx-swap="innerHTML"
         >{{role.name}}</a> 
         {% endif %}
         
@@ -23,14 +23,14 @@
         
         {% if perms.auth.delete_group %} 
         <a 
-        href="#"
-        data-bs-toggle="modal"
-        data-bs-target="#sg_create_modal"
-        data-bs-toggle="tooltip"
-        data-bs-placement="right"
-        hx-get="{% url 'accounts:delete_group' role.pk %}"
-        hx-target="#sg_create_modal_content"
-        hx-swap="innerHTML"
+            href="#"
+            data-bs-toggle="modal" 
+            data-bs-target="#kt_modal"
+            data-bs-toggle="tooltip" 
+            data-bs-placement="right"
+            hx-get="{% url 'accounts:delete_group' role.pk %}"
+            hx-target="#kt_modal_content"
+            hx-swap="innerHTML"
         >
         <i class="ki-duotone ki-trash-square" style="font-size: 2em;" >
             <span class="path1"></span>

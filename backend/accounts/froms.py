@@ -71,6 +71,14 @@ class AddGroupForm(forms.ModelForm):
         model = Group
         fields = ('name','permissions', )
 
+    def __init__(self, *args, **kwargs):
+        super(AddGroupForm, self).__init__(*args, **kwargs)
+        self.fields['name'].error_messages = {
+            'required': 'veuillez choisir.',
+            'invalid': 'Custom error message for field1 is invalid.',
+          
+        }
+
 
 
 

@@ -10,6 +10,11 @@ from django.utils.translation import gettext_lazy as _
 from django.urls import reverse, reverse_lazy
 from .filters import CalenderFilter
 from django_filters.views import FilterView
+from abonnement.models import AbonnementClient
+from django_tables2 import SingleTableMixin
+from .tables import AbonnementClientHTMxTable
+
+
 
 class CreateCreneau(CreateView):
     template_name ="snippets/_creneau_form.html"
@@ -124,3 +129,24 @@ class CalenderView(FilterView):
         else:
             template_name = "snippets/calendar.html"
         return template_name 
+
+
+class AbonnementsParCreneau(SingleTableMixin,FilterView):
+    table_class = AbonnementClientHTMxTable
+
+    model = AbonnementClient
+
+    def get_queryset(self):
+        queryset = AbonnementClient.objects.select_related('client', "type_abonnement").order_by("-created_date_time")
+        creneau_pk = self.kwargs.get('pk')
+        print("creneau_pk-------------",creneau_pk)
+        queryset = queryset.filter(creneaux__pk=creneau_pk)
+        return queryset
+   
+    
+    def get_template_names(self):
+        if self.request.htmx:
+            template_name = "tables/product_table_partial.html"
+        else:
+            template_name = "snippets/_creneau_form.html" 
+        return template_name

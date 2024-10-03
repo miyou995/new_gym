@@ -94,3 +94,19 @@ tr.htmx-swapping td {
     color: #ffffff;
     background-color: #5d78ff; /* Your brand color */
 }
+
+.select-all-container {
+    margin-bottom: 10px; /* Space between "Select All" and other checkboxes */
+    margin-left: -15px; /* Adjust this value to move "Select All" to the left */
+    display: block; /* Makes "Select All" appear as a block element */
+}
+
+.permissions-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.permissions-container label {
+    margin-right: 10px; /* Adjust spacing between permission checkboxes */
+    margin-bottom: 5px;  /* Adjust vertical spacing */
+}

@@ -6,8 +6,8 @@
             <a href="{% url 'accounts:userdetail' user.pk %}">{{user.email}}</a> 
             
         </td>
-        <td class="py-1"><a href="{{user.warehouse.get_absolute_url}}">{{user.warehouse | default_if_none:"-"}}</a>
-        </td>
+        {% comment %} <td class="py-1"><a href="{{user.warehouse.get_absolute_url}}">{{user.warehouse | default_if_none:"-"}}</a>
+        </td> {% endcomment %}
         <td class="py-1">
             {% if user.groups.all %}
             {% for group in user.groups.all %}

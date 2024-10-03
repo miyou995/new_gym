@@ -216,13 +216,8 @@ def add_edit_group(request, pk=None):
             )
         else:
             messages.error(request, form.errors,  )
-        return HttpResponse(status=204,
-            headers={
-                    'HX-Trigger': json.dumps({
-                    "closeModal":'kt_modal',
-                    "refresh_table": None,
-                })
-        })
+            print("is not valide", form.errors.as_data())
+    
     context["form"] = form 
     context["role"]= role
     context ["permissions"] = get_permissions()
@@ -263,7 +258,7 @@ class GroupDetailView(PermissionRequiredMixin, DetailView):
 class GroupDeleteView(PermissionRequiredMixin,DeleteView):
     permission_required='auth.delete_group'
     model = Group
-    template_name = "popups/delete_modal.html"
+    template_name = "buttons/delete.html"
     success_url = reverse_lazy("accounts:grouplist")
     
     def get_context_data(self, **kwargs):
