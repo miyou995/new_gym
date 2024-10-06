@@ -337,15 +337,12 @@ class AbonnementClientDetail(SingleTableMixin, FilterView):
             queryset = queryset.filter(client_id=abonnement_client_pk)
          return queryset
     
-    
     def get_context_data(self, **kwargs):
         context = super(AbonnementClientDetail, self).get_context_data(**kwargs)
         context["client"] = Client.objects.get(pk=self.kwargs['pk'])
         # context["abc"] = self.kwargs['pk']
         # print('context abc ---------------->>>>>',context['abc'])
         return context
-    
-
     
     def get_template_names(self):
         if self.request.htmx:

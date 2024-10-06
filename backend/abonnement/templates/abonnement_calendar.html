@@ -31,6 +31,14 @@
                         {{ filter.form.abonnement|add_class:"form-control" |attr:"id:abonnement-select" }}
                     </div>
                 </form>
+                <div>
+                    <div class="form-group  m-2 ">
+                        <label class="fs-6 fw-semibold mb-1">
+                            <span class="card-label fw-bold text-grey-800">Début Date</span>
+                        </label>
+                        <input type="date" name="debut_date" class="form-control" id="debut_date" />
+                   </div>
+                </div>
             </div>
         </div>
     </div>
@@ -39,34 +47,25 @@
         <div class="container-fluid">
             <div id="eventsId" data-events='{{events}}'></div>
             <!-- Date Input and Button Above the Calendar -->
-            <div class="row mb-3">
-                <div class="col-md-12 d-flex justify-content-between">
-                    <div>
-                        <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
-                            <span class="card-label fw-bold fs-2 text-grey-800">Début Date</span>
-                        </label>
-                        <input type="date" name="debut_date" class="form-control" id="debut_date" />
-                    </div>
-                    <div class="align-self-end">
-                        <button
-                            id="add-abonnement-btn"
-                            type="button"
-                            class="btn btn-primary btn-sm"
-                            hx-post="{% if filter.form.abonnement.value %}{% url 'abonnement:add_abonnement_client' client_pk=client.pk type_abonnement=filter.form.abonnement.value %}{% else %}# {% endif %}"                          
-                            hx-trigger="click"
-                        >
-                            <i class="ki-exit-up fs-2">Confirmer</i>
-                        </button>
-                    </div> 
-                </div>
-            </div>
-        
+          
             <!-- Calendar Full Width -->
             <div class="row">
                 <div class="col-md-12">
                     <!-- Calendar will take up the full width -->
                     <div id="calendar" style="width: 100%;"></div>
                 </div>
+            </div>
+            <div class="text-center p-4">
+                <button type="reset" id="sg_create_store_form" class="btn btn-light me-3"   data-bs-dismiss="modal">{% trans "Annulé" %}</button>
+                <button
+                    id="add-abonnement-btn"
+                    type="button"
+                    class="btn btn-primary btn-sm"
+                    hx-post="{% if filter.form.abonnement.value %}{% url 'abonnement:add_abonnement_client' client_pk=client.pk type_abonnement=filter.form.abonnement.value %}{% else %}# {% endif %}"                          
+                    hx-trigger="click"
+                >
+                <i class="ki-exit-up fs-2">Confirmer</i>
+                </button>
             </div>
         </div>
     </div>

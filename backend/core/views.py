@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic.base import TemplateView
 from django_filters.views import FilterView
+from transaction.models import Paiement
 from django_tables2 import SingleTableMixin
 from django.views.generic import (TemplateView,UpdateView,DeleteView)
 from django.urls import reverse_lazy
@@ -8,19 +9,35 @@ from django.http import HttpResponse, HttpResponseRedirect
 from .tables import PlannigHTMxTable,SalleHTMxTable,ActivityHTMxTable,MaladieHTMxTable,PortesHTMxTable,AbonnementHTMxTable
 from planning.models import Planning
 from salle_activite.models import Salle,Activity,Door
-from client.models import Maladie
-from abonnement.models import Abonnement
+from client.models import Client, Maladie
+from abonnement.models import Abonnement, AbonnementClient
 from .forms import PlanningModelForm,SalleModelForm,MaladieModelForm,ActiviteModelForm,DoorModelForm,AbonnementModelForm
 from django.contrib import messages
 from django.http import HttpResponse
 import json
 from django.utils.translation import gettext_lazy as _
+from django.db.models import Sum
 
 
 
 class IndexView(TemplateView):
     print('=========== we are here')
     template_name = "index.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        total_dettes = AbonnementClient.objects.aggregate(total_reste=Sum('reste'))['total_reste'] or 0
+        context['total_dettes'] = total_dettes
+
+        chiffre_affaire = Paiement.objects.aggregate(total_chiffre=Sum('amount'))['total_chiffre'] or 0
+        context["chiffre_affaire"] = chiffre_affaire
+
+        total_clients = Client.objects.count()
+        context["total_clients"] = total_clients 
+        return context
+    
+
+
 
 
 
