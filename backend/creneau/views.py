@@ -141,6 +141,7 @@ class AbonnementsParCreneau(SingleTableMixin,FilterView):
         creneau_pk = self.kwargs.get('pk')
         print("creneau_pk-------------",creneau_pk)
         queryset = queryset.filter(creneaux__pk=creneau_pk)
+        print ("queryset....................>>",queryset)
         return queryset
    
     

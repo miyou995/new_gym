@@ -35,17 +35,15 @@ class PaiementModelForm(forms.ModelForm):
             except Client.DoesNotExist:
                 pass
         kwargs['initial']=initial
+        
         super(PaiementModelForm,self).__init__(*args,**kwargs)
         
-
-
-
         self.fields["abonnement_client"].widget.attrs.update({'id' : 'abcSelectId' })
         self.fields["client"].widget.attrs.update({
             "hx-get": reverse('abonnement:abc_htmx_view'),
             "hx-target":"#abcSelectId",
             "hx-swap" : "innerHTML",
-            "hx-trigger": "change",
+            "hx-trigger": "change,load",
             "hx-include":"[name='client']",
             })
         self.fields["abonnement_client"].queryset = AbonnementClient.objects.none()
@@ -55,11 +53,9 @@ class PaiementModelForm(forms.ModelForm):
         elif self.instance.pk:
             self.fields['abonnement_client'].queryset = self.instance.client.abonnement_client
 
-      
         self.fields['client'].error_messages = {
             'required': 'veuillez choisir.',
             'invalid': 'Custom error message for field1 is invalid.',
-          
         }
         self.fields['abonnement_client'].error_messages = {
             'required': 'veuillez choisir.',
