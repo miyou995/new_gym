@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic.base import TemplateView
 from django_filters.views import FilterView
-from transaction.models import Paiement
+from transaction.models import Paiement, Remuneration, RemunerationProf
 from django_tables2 import SingleTableMixin
 from django.views.generic import (TemplateView,UpdateView,DeleteView)
 from django.urls import reverse_lazy
@@ -22,7 +22,7 @@ from django.db.models import Sum
 
 class IndexView(TemplateView):
     print('=========== we are here')
-    template_name = "index.html"
+
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -34,8 +34,20 @@ class IndexView(TemplateView):
 
         total_clients = Client.objects.count()
         context["total_clients"] = total_clients 
+
+        depenses_1 = Remuneration.objects.aggregate(depenses_1=Sum('amount'))['depenses_1'] or 0
+        depenses_2 = RemunerationProf.objects.aggregate(depenses_2=Sum('amount'))['depenses_2'] or 0
+        print("depenses_2----------------",depenses_2)
+        context ['total_depenses'] = depenses_1 + depenses_2
         return context
     
+    def get_template_names(self):
+        
+        if self.request.htmx:
+            template_name = "tables/product_table_partial.html"
+        else:
+            template_name = "index.html" 
+        return template_name 
 
 
 

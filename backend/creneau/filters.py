@@ -6,7 +6,7 @@ from salle_activite.models import Salle
 
 
 
-class CalenderFilter(django_filters.FilterSet):
+class CalenderFilterCreneau(django_filters.FilterSet):
     planning = django_filters.ModelChoiceFilter(queryset=Planning.objects.all(), label="Planning")
     activity__salle = django_filters.ModelChoiceFilter(queryset=Salle.objects.all(), label="Abonnement")
     class Meta:

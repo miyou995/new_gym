@@ -1,6 +1,7 @@
 import django_tables2 as tables
 from planning.models import Planning
 from salle_activite.models import Salle ,Activity,Door
+from transaction.models import Transaction
 from client.models import Maladie
 from abonnement.models import Abonnement
 from django.urls import reverse
@@ -152,6 +153,16 @@ class AbonnementHTMxTable(tables.Table):
         )
 
 
+
+class TransactionOfTheDayTable(tables.Table):
+    class Meta:
+        fields = (
+            'amount',   
+            'type_of_transaction',
+            'name',
+        )
+        model = Transaction
+        template_name = "tables/bootstrap_htmx.html"
 
 
         
