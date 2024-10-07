@@ -139,7 +139,7 @@ class AbonnementClient(models.Model):
     subscription    = SubscriptionManager()
     
     def __str__(self):
-        return  str(self.type_abonnement)
+        return f"{self.type_abonnement} : {self.start_date}"
     
 
     def get_edit_url(self):
