@@ -12,7 +12,7 @@ app_name= 'core'
 
 
 urlpatterns = [
-    path("",IndexView.as_view(),name="index",), 
+    path("", IndexView.as_view(), name="index"), 
     # path('configuration/',ConfigurationView.as_view(), name='configuration_name'),
     path('configuration/', PlanningTable.as_view(), name='PlanningTable'),
     path('configuration/SalleTable',SalleTable.as_view(), name='SalleTable'),
