@@ -17,10 +17,15 @@ from django.http import HttpResponse
 import json
 from django.utils.translation import gettext_lazy as _
 from django.db.models import Sum
+from datetime import date
+from .tables import TransactionOfTheDayTable
+from django.views.generic import ListView
+from itertools import chain
 
 
 
-class IndexView(TemplateView):
+class IndexView(SingleTableMixin, ListView):
+    table_class = TransactionOfTheDayTable
     print('=========== we are here')
 
 
@@ -40,7 +45,19 @@ class IndexView(TemplateView):
         print("depenses_2----------------",depenses_2)
         context ['total_depenses'] = depenses_1 + depenses_2
         return context
-    
+
+    def get_queryset(self):
+        print("-----------queryset----------")
+        today=date.today()
+        print("today***********",today)
+        paiement = Paiement.objects.filter(date_creation=today).order_by()
+        remuneration = Remuneration.objects.filter(date_creation=today).order_by()
+        remunerationProf = RemunerationProf.objects.filter(date_creation=today).order_by()
+        queryset=sorted(chain(paiement, remuneration, remunerationProf),
+        key=lambda instance: instance.date_creation)
+        print("queryset------------------",queryset)
+        return queryset
+
     def get_template_names(self):
         
         if self.request.htmx:

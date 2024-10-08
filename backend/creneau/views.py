@@ -84,8 +84,6 @@ class CreneauDeleteView(DeleteView):
         return HttpResponseRedirect(success_url)
     
 
-
-
 class CalenderView(FilterView):
     filterset_class = CalenderFilterCreneau
     model = Creneau
