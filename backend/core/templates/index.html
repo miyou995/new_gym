@@ -1,6 +1,6 @@
 {% extends "base.html" %} 
 {% load static %}
-
+{% load render_table from django_tables2 %}
 {% block content %}
 
 <div class="row g-5 g-xl-10 mb-xl-10" id="table_board">
@@ -61,7 +61,13 @@
                                 <div id="kt_ecommerce_report_sales_export" class="d-none"></div>
                             </div>
                         </div>
-                      tableau
+                        <table>
+                            <thead>
+                            </thead>
+                            <tbody>
+                                {% render_table table %}
+                            </tbody>
+                        </table>
                         </div>
                     </div>
                 </div>
@@ -78,33 +84,27 @@
                                 </div>
                                 <div id="kt_ecommerce_report_sales_export" class="d-none"></div>
                             </div>
-                        
-                          
                         </div>
+
                         <div class="card-body pt-0">
-                        
-                            <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_ecommerce_report_sales_table">
+                            <table >
                                 <thead>
-                                    <tr class="text-start text-gray-900 fw-bold fs-7 text-uppercase gs-0">
-                                        <th class="min-w-100px">Salle</th>
-                                        <th class="text-end min-w-100px">Présences</th>
-                                       
-                                     
-                                        
+                                    <tr>
+                                        <th>Salle</th>
+                                        <th>présences</th>
                                     </tr>
                                 </thead>
-                                <tbody class="fw-semibold text-gray-900">
-                                    
-                                
+                                <tbody>
+                                    {% for salle in salle_presences %}
                                     <tr>
-                                        <td>2000</td>
-                                        <td class="text-end pe-0">yousra</td>
-                                      
-                                    
+                                        <td>{{ salle.creneau__activity__salle }}</td>
+                                        <td>{{ salle.presence_count }}</td>
                                     </tr>
-                                
+                                    {% endfor %}
                                 </tbody>
                             </table>
+                            <p>Total des présences : {{ total_presences }}</p>
+
                             <div class="menu-item px-3">
                                 <div class="menu-content px-3 py-3">
                                     <a class="bi bi-caret-right-fill btn btn-primary btn-sm px-4 " href="#"> Présences</a>
@@ -126,11 +126,8 @@
                                 </div>
                                 <div id="kt_ecommerce_report_sales_export" class="d-none"></div>
                             </div>
-                        
-                          
                         </div>
                         <div class="card-body pt-0">
-                        
                             <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_ecommerce_report_sales_table">
                                 <thead>
                                     <tr class="text-start text-gray-900 fw-bold fs-7 text-uppercase gs-0">
@@ -138,21 +135,15 @@
                                         <th class="text-end min-w-75px">Nom</th>
                                         <th class="text-end min-w-75px">Activité</th>
                                         <th class="text-end min-w-75px">Dettes</th>
-                                     
-                                        
                                     </tr>
                                 </thead>
                                 <tbody class="fw-semibold text-gray-900">
-                                    
-                                
                                     <tr>
                                         <td>2000</td>
                                         <td class="text-end pe-0">yousra</td>
                                         <td class="text-end pe-0">123000</td>
                                         <td class="text-end pe-0">123000</td>
-                                    
                                     </tr>
-                                
                                 </tbody>
                             </table>
                             <div class="menu-item px-3">

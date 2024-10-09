@@ -1,7 +1,8 @@
+from presence.models import Presence
 import django_tables2 as tables
 from planning.models import Planning
 from salle_activite.models import Salle ,Activity,Door
-from transaction.models import Transaction
+from transaction.models import Autre, Paiement, Remuneration, RemunerationProf, Transaction
 from client.models import Maladie
 from abonnement.models import Abonnement
 from django.urls import reverse
@@ -155,14 +156,48 @@ class AbonnementHTMxTable(tables.Table):
 
 
 class TransactionOfTheDayTable(tables.Table):
+    source = tables.Column(empty_values=())  
+    related_info = tables.Column(empty_values=())
+
+    def render_related_info(self, record):
+        if isinstance(record, Paiement):
+            return record.abonnement_client.client.last_name  
+        elif isinstance(record, Remuneration):
+            return record.nom  
+        elif isinstance(record, RemunerationProf):
+            return record.coach  
+        elif isinstance(record, Autre):
+            return record.name  
+        return ''
+    def render_source(self, record):
+        if isinstance(record, Paiement):
+            return "Paiement client"  
+        elif isinstance(record, Remuneration):
+            return "Remuneration personnel"  
+        elif isinstance(record, RemunerationProf):
+            return "Remuneration coach"  
+        elif isinstance(record, Autre):
+            return "Autre"  
+        return ''
+
     class Meta:
-        fields = (
-            'amount',   
-            'type_of_transaction',
-            'name',
-        )
-        model = Transaction
+        model = Transaction  
+        attrs = {'class': 'table'}
+        fields = ['amount', 'source', 'related_info']  
         template_name = "tables/bootstrap_htmx.html"
 
 
-        
+
+class ActuellementEnSalleTable(tables.Table):
+
+    Creneau_activity = tables.Column(accessor="creneau.activity.salle", verbose_name="Activité", orderable=True )
+    # abc= tables.Column(accessor="abc__reste",verbose_name="Dettes", orderable=True)
+
+    class Meta:
+        fields  = (
+                'Creneau_activity',
+                'presence',
+                
+        )
+        model = Presence
+        template_name = "tables/bootstrap_htmx.html"
