@@ -6,18 +6,14 @@
 {% load widget_tweaks %}
 <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
     <div class="d-flex flex-column flex-column-fluid">
-        
         <div id="kt_app_content" class="app-content">
             <div class="card card-flush">
                 <div class="card-header align-items-center py-1 gap-2 gap-md-5">
-
                     <div class="card-title">
                         <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
                             <span class="card-label fw-bold fs-4 text-grey-800">Présence Automatique</span>
                             <i class=" ki-magnifier fs-3 position-absolute ms-4"></i>
-                            
                             <form  >
-                           
                                                 <input
                                                 hx-get='{% url "presence:presence_client" %}' 
                                                 hx-trigger="keyup changed delay:900ms"
@@ -91,9 +87,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                
-                                
-                                
 							   </form>
                                {% endwith %}
 							</div>

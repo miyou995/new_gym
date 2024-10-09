@@ -1,12 +1,13 @@
 from django.shortcuts import render
 from django.views.generic.base import TemplateView
 from django_filters.views import FilterView
-from transaction.models import Paiement, Remuneration, RemunerationProf
+from presence.models import Presence
+from transaction.models import Autre, Paiement, Remuneration, RemunerationProf
 from django_tables2 import SingleTableMixin
 from django.views.generic import (TemplateView,UpdateView,DeleteView)
 from django.urls import reverse_lazy
 from django.http import HttpResponse, HttpResponseRedirect
-from .tables import PlannigHTMxTable,SalleHTMxTable,ActivityHTMxTable,MaladieHTMxTable,PortesHTMxTable,AbonnementHTMxTable
+from .tables import ActuellementEnSalleTable, PlannigHTMxTable,SalleHTMxTable,ActivityHTMxTable,MaladieHTMxTable,PortesHTMxTable,AbonnementHTMxTable
 from planning.models import Planning
 from salle_activite.models import Salle,Activity,Door
 from client.models import Client, Maladie
@@ -21,13 +22,13 @@ from datetime import date
 from .tables import TransactionOfTheDayTable
 from django.views.generic import ListView
 from itertools import chain
+from django.db.models import Count
 
 
 
 class IndexView(SingleTableMixin, ListView):
     table_class = TransactionOfTheDayTable
     print('=========== we are here')
-
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -42,20 +43,42 @@ class IndexView(SingleTableMixin, ListView):
 
         depenses_1 = Remuneration.objects.aggregate(depenses_1=Sum('amount'))['depenses_1'] or 0
         depenses_2 = RemunerationProf.objects.aggregate(depenses_2=Sum('amount'))['depenses_2'] or 0
-        print("depenses_2----------------",depenses_2)
+        # print("depenses_2----------------",depenses_2)
         context ['total_depenses'] = depenses_1 + depenses_2
+
+        today=date.today()
+
+        print("from actuellement en salle ")
+        queryset = Presence.objects.filter(date=today).values('creneau__activity__salle').annotate(presence_count=Count('id')).order_by()
+        
+        print("queryset salle >------------------", queryset)
+
+        # If you want to get the total number of presences across all salles:
+        total_presences = queryset.aggregate(total=Count('id'))['total']
+        print("Total number of presences:", total_presences)
+
+        # Print each salle's presence count
+        for salle_presence in queryset:
+            print(f"Salle: {salle_presence['creneau__activity__salle']}, Number of presences: {salle_presence['presence_count']}")
+        context['salle_presences'] = queryset
+        context['total_presences'] = total_presences
         return context
 
     def get_queryset(self):
         print("-----------queryset----------")
         today=date.today()
-        print("today***********",today)
+        # print("today***********",today)
         paiement = Paiement.objects.filter(date_creation=today).order_by()
         remuneration = Remuneration.objects.filter(date_creation=today).order_by()
         remunerationProf = RemunerationProf.objects.filter(date_creation=today).order_by()
-        queryset=sorted(chain(paiement, remuneration, remunerationProf),
+        autre = Autre.objects.filter(date_creation=today).order_by()
+        queryset=sorted(chain(paiement, remuneration, remunerationProf,autre),
         key=lambda instance: instance.date_creation)
-        print("queryset------------------",queryset)
+        queryset = sorted(
+            chain(paiement, remuneration, remunerationProf,autre),
+            key=lambda instance: instance.date_creation
+        )
+        # print("queryset------------------",queryset)
         return queryset
 
     def get_template_names(self):
@@ -65,8 +88,36 @@ class IndexView(SingleTableMixin, ListView):
         else:
             template_name = "index.html" 
         return template_name 
+    
 
+    
 
+class ActuellementEnSalle(TemplateView):
+    template_name = "index.html" 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        today=date.today()
+        print("from actuellement en salle ")
+        queryset = Presence.objects.filter(date=today).values('creneau__activity__salle').annotate(presence_count=Count('id')).order_by()
+        
+        print("queryset salle >------------------", queryset)
+
+        # If you want to get the total number of presences across all salles:
+        total_presences = queryset.aggregate(total=Count('id'))['total']
+        print("Total number of presences:", total_presences)
+
+        # Print each salle's presence count
+        for salle_presence in queryset:
+            print(f"Salle: {salle_presence['creneau__activity__salle']}, Number of presences: {salle_presence['presence_count']}")
+        context['salle_presences'] = queryset
+        context['total_presences'] = total_presences
+        
+        return context
+        
+    
+
+    
 
 
 
