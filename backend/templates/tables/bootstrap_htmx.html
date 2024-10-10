@@ -6,7 +6,7 @@
 {% block table.thead %}
   {% if table.show_header %}
       <thead {{ table.attrs.thead.as_html }}>
-        <tr class="text-middle text-gray-400 fw-bold fs-7 text-uppercase gs-0">
+        <tr class="text-middle text-gray-800 fw-bold fs-7 text-uppercase gs-0">
             {% for column in table.columns %}
                 <th class="mw-250px"
                     {{ column.attrs.th.as_html }}

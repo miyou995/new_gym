@@ -5,7 +5,7 @@ from .views import (IndexView,PlanningTable,SalleTable ,ActivityTable,MaladieTab
                     ,SalleDeleteView,ActiviteCreateView,ActiviteUpdateView,ActiviteDeleteView,MaladieCreateView,
                    MaladieUpdateView,MaladieDeleteView,PorteCreateView,PorteUpdateView,
                    PorteDeleteView,TypeAbonnementCreateView,TypeAbonnementUpdateView,TypeAbonnementDeleteView,
-                   ActuellementEnSalle)
+                  )
 
 
 
@@ -14,7 +14,7 @@ app_name= 'core'
 
 urlpatterns = [
     path("", IndexView.as_view(), name="index"), 
-    path("actuellement_en_salle/", ActuellementEnSalle.as_view(), name="actuellement_en_salle"), 
+    # path("actuellement_en_salle/", ActuellementEnSalle.as_view(), name="actuellement_en_salle"), 
     
 
     # path('configuration/',ConfigurationView.as_view(), name='configuration_name'),
