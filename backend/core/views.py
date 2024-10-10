@@ -7,7 +7,7 @@ from django_tables2 import SingleTableMixin
 from django.views.generic import (TemplateView,UpdateView,DeleteView)
 from django.urls import reverse_lazy
 from django.http import HttpResponse, HttpResponseRedirect
-from .tables import ActuellementEnSalleTable, PlannigHTMxTable,SalleHTMxTable,ActivityHTMxTable,MaladieHTMxTable,PortesHTMxTable,AbonnementHTMxTable
+from .tables import  PlannigHTMxTable,SalleHTMxTable,ActivityHTMxTable,MaladieHTMxTable,PortesHTMxTable,AbonnementHTMxTable
 from planning.models import Planning
 from salle_activite.models import Salle,Activity,Door
 from client.models import Client, Maladie
@@ -43,23 +43,21 @@ class IndexView(SingleTableMixin, ListView):
 
         depenses_1 = Remuneration.objects.aggregate(depenses_1=Sum('amount'))['depenses_1'] or 0
         depenses_2 = RemunerationProf.objects.aggregate(depenses_2=Sum('amount'))['depenses_2'] or 0
-        # print("depenses_2----------------",depenses_2)
         context ['total_depenses'] = depenses_1 + depenses_2
 
+        # presences par salle 
         today=date.today()
-
         print("from actuellement en salle ")
-        queryset = Presence.objects.filter(date=today).values('creneau__activity__salle').annotate(presence_count=Count('id')).order_by()
-        
+        queryset = Presence.objects.filter(date=today).values('creneau__activity__salle__name').annotate(presence_count=Count('id')).order_by()
         print("queryset salle >------------------", queryset)
 
-        # If you want to get the total number of presences across all salles:
+        # If you want to get the total number of presences across all salles
         total_presences = queryset.aggregate(total=Count('id'))['total']
         print("Total number of presences:", total_presences)
 
-        # Print each salle's presence count
+        # Print each salle's name and presence count
         for salle_presence in queryset:
-            print(f"Salle: {salle_presence['creneau__activity__salle']}, Number of presences: {salle_presence['presence_count']}")
+            print(f"Salle: {salle_presence['creneau__activity__salle__name']}, Number of presences: {salle_presence['presence_count']}")
         context['salle_presences'] = queryset
         context['total_presences'] = total_presences
         return context
@@ -92,28 +90,28 @@ class IndexView(SingleTableMixin, ListView):
 
     
 
-class ActuellementEnSalle(TemplateView):
-    template_name = "index.html" 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+# class ActuellementEnSalle(TemplateView):
+#     template_name = "index.html" 
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
 
-        today=date.today()
-        print("from actuellement en salle ")
-        queryset = Presence.objects.filter(date=today).values('creneau__activity__salle').annotate(presence_count=Count('id')).order_by()
+#         today=date.today()
+#         print("from actuellement en salle ")
+#         queryset = Presence.objects.filter(date=today).values('creneau__activity__salle').annotate(presence_count=Count('id')).order_by()
         
-        print("queryset salle >------------------", queryset)
+#         print("queryset salle >------------------", queryset)
 
-        # If you want to get the total number of presences across all salles:
-        total_presences = queryset.aggregate(total=Count('id'))['total']
-        print("Total number of presences:", total_presences)
+#         # If you want to get the total number of presences across all salles:
+#         total_presences = queryset.aggregate(total=Count('id'))['total']
+#         print("Total number of presences:", total_presences)
 
-        # Print each salle's presence count
-        for salle_presence in queryset:
-            print(f"Salle: {salle_presence['creneau__activity__salle']}, Number of presences: {salle_presence['presence_count']}")
-        context['salle_presences'] = queryset
-        context['total_presences'] = total_presences
+#         # Print each salle's presence count
+#         for salle_presence in queryset:
+#             print(f"Salle: {salle_presence['creneau__activity__salle']}, Number of presences: {salle_presence['presence_count']}")
+#         context['salle_presences'] = queryset
+#         context['total_presences'] = total_presences
         
-        return context
+#         return context
         
     
 

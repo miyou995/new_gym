@@ -40,15 +40,11 @@ class Presence(models.Model):
     is_in_salle = models.BooleanField(default=False)
     # remote_device = models.BooleanField(default=False)
     note        = models.CharField(max_length=200, blank=True, null=True)
-    
     created = models.DateTimeField(verbose_name="Date de Création", auto_now_add=True)
     updated = models.DateTimeField(verbose_name="Date de dernière mise à jour", auto_now=True)
-    
     objects = models.Manager()
     presence_manager = PresenceManager()
     history = HistoricalRecords(user_model=settings.AUTH_USER_MODEL)
-
-
 
     class Meta:
         ordering  = ['-date']

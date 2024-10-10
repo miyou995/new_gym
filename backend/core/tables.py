@@ -188,16 +188,16 @@ class TransactionOfTheDayTable(tables.Table):
 
 
 
-class ActuellementEnSalleTable(tables.Table):
+# class ActuellementEnSalleTable(tables.Table):
 
-    Creneau_activity = tables.Column(accessor="creneau.activity.salle", verbose_name="Activité", orderable=True )
-    # abc= tables.Column(accessor="abc__reste",verbose_name="Dettes", orderable=True)
+#     Creneau_activity = tables.Column(accessor="creneau.activity.salle", verbose_name="Activité", orderable=True )
+#     # abc= tables.Column(accessor="abc__reste",verbose_name="Dettes", orderable=True)
 
-    class Meta:
-        fields  = (
-                'Creneau_activity',
-                'presence',
+#     class Meta:
+#         fields  = (
+#                 'Creneau_activity',
+#                 'presence',
                 
-        )
-        model = Presence
-        template_name = "tables/bootstrap_htmx.html"
+#         )
+#         model = Presence
+#         template_name = "tables/bootstrap_htmx.html"
