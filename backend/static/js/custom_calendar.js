@@ -2,15 +2,34 @@ var selectedEvents = []; // Declare globally
 var deselectedEvents = []; 
 var isAbonnementManuallyChanged = false;
 
+function setTodayAsDebutDate() {
+    var debutDateInput = document.getElementById('debut_date');
+    
+    // Set up an event listener to detect changes in the date input
+    debutDateInput.addEventListener('change', function() {
+        updateSidebar(selectedEvents, deselectedEvents);  // Update the sidebar when the date changes
+    });
+
+    // Check if the input already has a value (user-selected date)
+    if (!debutDateInput.value) {
+        // If no value is selected, set today's date
+        var today = new Date();
+        var formattedDate = today.toISOString().split('T')[0];
+        debutDateInput.value = formattedDate;
+        console.log("No date selected, setting today's date:", formattedDate);
+    } else {
+        // If a value is already present, use the selected date
+        console.log("Using selected date:", debutDateInput.value);
+    }
+}
+
 function initHTMXCalendar(eventsData) {
     console.log("init >>>>>>>>>>> initHTMXCalendar------<")
     // add abonnemet Client
     var typeAbonnement = document.getElementById("abonnement-select").value;
     console.log("Selected Type Abonnement Value:", typeAbonnement);
 
-    var today = new Date();
-    var formattedDate = today.toISOString().split('T')[0];
-    document.getElementById('debut_date').value = formattedDate;
+    setTodayAsDebutDate()
 
     // update abonnement Client :
     selectedEvents = [];
@@ -107,6 +126,7 @@ function updateSidebar(selectedEvents, deselectedEvents) {
     } else {
         addAbonnementBtn.removeAttribute('hx-vals');
     }
+   
 }
 
 

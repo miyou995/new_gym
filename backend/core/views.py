@@ -45,7 +45,7 @@ class IndexView(SingleTableMixin, ListView):
         depenses_2 = RemunerationProf.objects.aggregate(depenses_2=Sum('amount'))['depenses_2'] or 0
         context ['total_depenses'] = depenses_1 + depenses_2
 
-        # presences par salle 
+        # ------------------------presences par salle-----------------------# 
         today=date.today()
         print("from actuellement en salle ")
         queryset = Presence.objects.filter(date=today).values('creneau__activity__salle__name').annotate(presence_count=Count('id')).order_by()
@@ -60,6 +60,11 @@ class IndexView(SingleTableMixin, ListView):
             print(f"Salle: {salle_presence['creneau__activity__salle__name']}, Number of presences: {salle_presence['presence_count']}")
         context['salle_presences'] = queryset
         context['total_presences'] = total_presences
+
+        #--------------------- Actuellement en salle ----------------------#
+        presences=Presence.objects.filter(date=today,hour_sortie__isnull=True)
+        print(" Actuellement en salle->>>>>>>>>>>>>>>>>-------",presences)
+        context["presences"] = presences
         return context
 
     def get_queryset(self):
