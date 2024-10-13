@@ -284,7 +284,7 @@ class AbonnementClient(models.Model):
          
         if today <= self.end_date and not self.blocking_date:
             print('makach blocking', self.blocking_date)
-            if self.presence_quantity > self.get_limit() :
+            if self.presence_quantity > self.get_limit()  :
                 return True
         return False 
      

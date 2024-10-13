@@ -156,10 +156,11 @@ class AbonnementHTMxTable(tables.Table):
 
 
 class TransactionOfTheDayTable(tables.Table):
-    source = tables.Column(empty_values=())  
-    related_info = tables.Column(empty_values=())
+    amount = tables.Column( verbose_name="Montant")
+    type= tables.Column(empty_values=())  
+    client = tables.Column(empty_values=())
 
-    def render_related_info(self, record):
+    def render_client(self, record):
         if isinstance(record, Paiement):
             return record.abonnement_client.client.last_name  
         elif isinstance(record, Remuneration):
@@ -169,7 +170,7 @@ class TransactionOfTheDayTable(tables.Table):
         elif isinstance(record, Autre):
             return record.name  
         return ''
-    def render_source(self, record):
+    def render_type(self, record):
         if isinstance(record, Paiement):
             return "Paiement client"  
         elif isinstance(record, Remuneration):
@@ -183,7 +184,7 @@ class TransactionOfTheDayTable(tables.Table):
     class Meta:
         model = Transaction  
         attrs = {'class': 'table'}
-        fields = ['amount', 'source', 'related_info']  
+        fields = ['amount', 'type', 'client']  
         template_name = "tables/bootstrap_htmx.html"
 
 
