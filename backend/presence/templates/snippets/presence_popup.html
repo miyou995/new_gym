@@ -1,0 +1,68 @@
+
+
+<!-- popup_template.html -->
+
+<div class="modal fade" id="productNotFoundModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-danger text-white">
+          <h5 class="modal-title" id="exampleModalLongTitle">Le produit n'est pas disponible</h5>
+        </div>
+        <div class="modal-body">
+          <div class="alert alert-danger" role="alert">
+            <!-- Modal content goes here -->
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancelButton">Close</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+  
+  <script>
+    $(document).ready(function() {
+    console.log("Modal script is running");
+      $('#productNotFoundModal').modal('show');
+  
+      // Add event listener for modal close
+      $('#productNotFoundModal').on('hidden.bs.modal', function () {
+        location.reload();
+      });
+  
+      document.getElementById('cancelButton').addEventListener('click', function() {
+        location.reload();
+      });
+    });
+  </script>
+  
+  <style>
+    .modal-header.bg-danger {
+      background-color: #dc3545;
+    }
+    
+    .alert-link.text-white {
+      color: #fff;
+    }
+  
+    .alert-link.text-white:hover {
+      color: #f8f9fa;
+      text-decoration: underline;
+    }
+    
+    .btn-secondary {
+      background-color: #6c757d;
+      border: none;
+    }
+  
+    .btn-secondary:hover {
+      background-color: #5a6268;
+    }
+  
+    .modal-footer {
+      border-top: none;
+      justify-content: center;
+    }
+  </style>
+  

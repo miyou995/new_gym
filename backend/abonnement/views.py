@@ -254,9 +254,16 @@ def block_deblock_abonnement_client(request,pk):
             print("-----------------------blocking date not correct")
             message = _("blocking date not correct")
             messages.error(request, str(message))
+
     else :
         abonnement_client.unlock()   
-    return HttpResponse(status=204)
+    return HttpResponse(status=204,
+            headers={
+                "HX-Trigger":json.dumps({
+                    "closeModal":"kt_modal",
+                    "refresh_table":None
+                })
+            })
 
 
 
