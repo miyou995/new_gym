@@ -256,7 +256,8 @@ class Client(models.Model):
             abon_list = AbonnementClient.objects.filter(client = client, end_date__gte=date.today(), archiver = False ).order_by('-presence_quantity')
             if not abon_list:
                 # raise serializers.ValidationError("l'adherant n'est pas inscrit aujourd'hui")
-                return erreur
+                print("*******l'adherant n'est pas inscrit aujourd'hui**********")
+                return "erreur"
             
             abonnement = abon_list.filter(type_abonnement__type_of="SL").first()
             # If no non-free session is found, get the first session regardless of its type
@@ -280,9 +281,11 @@ class Client(models.Model):
                 logger.warning('LOG abonnement.presence_quantity=====> {}'.format(str(abonnement.presence_quantity)))
                 logger.warning('LOG ABONNEMENT=====-{}'.format(str(abonnement)))
                 logger.warning('LOG ABONNEMENT TYPE=====-{}'.format(str(abonnement.type_abonnement.type_of)))
-                return erreur
+                return "erreur"
         else:
-            return erreur
+            print("*******l'adherant n'est pas inscrit aujourd'hui pas de abc **********")
+
+            return "erreur"
             # messages.error(self.request, "l'adherant n'est pas inscrit aujourd'hui")
             # # raise serializers.ValidationError("l'adherant n'est pas inscrit aujourd'hui")
             # return self
