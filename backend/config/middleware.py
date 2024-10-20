@@ -113,5 +113,6 @@ class HtmxMessageMiddleware(MiddlewareMixin):
             hx_trigger = {}
 
         hx_trigger["messages"] = messages
+        print('THE MESSAGES>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', messages)
         response.headers["HX-Trigger"] = json.dumps(hx_trigger)
         return response

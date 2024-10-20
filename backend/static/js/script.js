@@ -18,11 +18,11 @@ htmx.on("closeModal", (event) => {
 
 
 
-htmx.on("refresh_table", (event)=> {
-	KTComponents.init();
-console.log('refresh_table is triggering');
+// htmx.on("refresh_table", (event)=> {
+// 	KTComponents.init();
+// console.log('refresh_table is triggering');
 
-})
+// })
 
 htmx.onLoad(function(){
 	KTComponents.init();
@@ -62,11 +62,11 @@ document.addEventListener("htmx:load", function() {
     KTComponents.init();
 });
 
-document.addEventListener('htmx:afterRequest', (event) => {
-    if (event.detail.xhr.status === 204) {
-        window.location.reload();
-    }
-});
+// document.addEventListener('htmx:afterRequest', (event) => {
+//     if (event.detail.xhr.status === 204) {
+//         window.location.reload();
+//     }
+// });
 
 
 
