@@ -70,8 +70,16 @@ def add_abonnement_client(request,client_pk,type_abonnement):
         abonnement_client.save()
         abonnement_client.creneaux.set(creneaux)
         abonnement_client.save()
-        redirect_url = reverse("client:client_detail", kwargs={'pk': client_pk})
-        return HttpResponseClientRedirect(redirect_url)
+        message = _("Abonnement ajouter avec succès.")
+        messages.success(request, str(message),extra_tags="toastr")
+        return HttpResponse(status=204,
+                headers={
+                    'HX-Trigger': json.dumps({
+                        "closeModal": "kt_modal",
+                        "refresh_table": None
+                         
+                    })
+                }) 
     else :
          print("no type_abonnement or no selected event-------------->")
     return redirect('abonnement:calendar_abonnement_client', kwargs={'pk': client_pk})
@@ -169,8 +177,16 @@ def update_abonnement_client(request, pk, type_abonnement):
         abonnement_client.type_abonnement = abonnement_Obj
         abonnement_client.creneaux.set(combined_creneaux)  
         abonnement_client.save()
-        redirect_url = reverse("client:client_detail", kwargs={'pk': abonnement_client.client.pk})
-        return HttpResponseClientRedirect(redirect_url)
+        message = _("Abonnement Mis a jour avec Succés.")
+        messages.success(request, str(message),extra_tags="toastr")
+        return HttpResponse(status=204,
+                headers={
+                    'HX-Trigger': json.dumps({
+                        "closeModal": "kt_modal",
+                        "refresh_table": None
+                         
+                    })
+                }) 
     else:
         print("no updating -*********-*---******-")
     return redirect('abonnement:calendar_abonnement_client', kwargs={'pk': abonnement_client.client.pk})
