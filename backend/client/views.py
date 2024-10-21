@@ -106,7 +106,7 @@ class ClientUpdateView(UpdateView):
                 })
             })
     def form_invalid(self, form):
-        messages.success(self.request, form.errors)
+        messages.success(self.request, form.errors ,extra_tags="toastr")
         return self.render_to_response(self.get_context_data(form=form))   
 
 
@@ -205,7 +205,7 @@ class CoachUpdateView(UpdateView):
                 })
             })
     def form_invalid(self, form):
-        messages.success(self.request, form.errors)
+        messages.success(self.request, form.errors ,extra_tags="toastr")
         return self.render_to_response(self.get_context_data(form=form)) 
 
 class CoachDeleteView(DeleteView):
@@ -302,7 +302,7 @@ class PersonnelUpdateView(UpdateView):
                 })
             })
     def form_invalid(self, form):
-        messages.success(self.request, form.errors)
+        messages.success(self.request, form.errors ,extra_tags="toastr")
         return self.render_to_response(self.get_context_data(form=form)) 
 
 class PersonnelDeleteView(DeleteView):
@@ -477,9 +477,9 @@ def presence_coach(request, pk):
     print('presnece view///////////////////////////',presnce)
     context["presence"]=presnce
     if in_salle :
-        messages.success(request, "Entrée Coach Enregistrée", extra_tags="toastr")
+        messages.success(request, "Entrée /Sorté Coach Enregistrée", extra_tags="toastr")
     else :
-        messages.error(request, "Coach ", extra_tags="toastr")
+        messages.error(request, "Coach ",extra_tags="toastr")
     return HttpResponse(status=204)
 
 

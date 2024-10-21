@@ -62,11 +62,43 @@ document.addEventListener("htmx:load", function() {
     KTComponents.init();
 });
 
-// document.addEventListener('htmx:afterRequest', (event) => {
-//     if (event.detail.xhr.status === 204) {
-//         window.location.reload();
-//     }
-// });
+
+// Store messages in localStorage before reload toastr
+document.addEventListener('htmx:afterRequest', (event) => {
+    if (event.detail.xhr.status === 204) {
+        const trigger = event.detail.xhr.getResponseHeader('HX-Trigger');
+        if (trigger) {
+            const data = JSON.parse(trigger);
+            if (data.messages) {
+                localStorage.setItem('toastrMessages', JSON.stringify(data.messages));
+            }
+        }
+        window.location.reload();
+    }
+});
+window.addEventListener('load', () => {
+    const toastrMessages = localStorage.getItem('toastrMessages');
+    if (toastrMessages) {
+        const messages = JSON.parse(toastrMessages);
+        messages.forEach(msg => {
+            if (msg.tags.includes('toastr')) {
+                // Display Toastr notifications based on the message type
+                if (msg.tags.includes('error')) {
+                    toastr.error(msg.message);
+                } else if (msg.tags.includes('warning')) {
+                    toastr.warning(msg.message);
+                } else if (msg.tags.includes('info')) {
+                    toastr.info(msg.message);
+                } else if (msg.tags.includes('success')) {
+                    toastr.success(msg.message);
+                }
+            }
+        });
+        // Clear the stored messages to avoid showing them again
+        localStorage.removeItem('toastrMessages');
+    }
+});
+
 
 
 
@@ -90,10 +122,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 }
 
-// $('#kt_calendar_modal').on('shown.bs.modal', function () {
-//     console.log("OUIIIIIIIIIIIIIII MOOOON");
-    
-//     preInitHTMXCalendar();
-// });
 
 });
+
+

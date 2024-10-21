@@ -1,5 +1,6 @@
 {% load i18n %}
-<script type="text/javascript">
+
+ <script type="text/javascript">
   window.addEventListener("DOMContentLoaded", (e) => {
     {% if messages %}
       {% for message in messages %}
@@ -20,6 +21,8 @@
     {% endif %}
   });
 </script>
+
+
 
 <div id="toast-container">
   <div data-toast-container class="toast-container position-fixed top-0 end-0 p-3">
@@ -71,10 +74,89 @@
                         console.log("HEEEY eventsId here HTMX REQUEST");
                         const bsToast = new bootstrap.Toast(toastClone );  // Initialize the toast
                         bsToast.show();  // Show the toast
-                    },5000)
+                    },600)
                   }
               });
           }
       }
   });
-</script>
+</script> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	{% comment %} <script>
+    
+      document.addEventListener('htmx:afterRequest', (event) => {
+        if (event.detail.xhr.status === 204) {
+          // Extract the message from the HX-Trigger header
+          const triggers = event.detail.xhr.getResponseHeader('HX-Trigger');
+          if (triggers) {
+            const parsedTriggers = JSON.parse(triggers);
+            const toastrMessage = parsedTriggers.showToastr;  // Get the message from the trigger
+    
+            // Store the message in localStorage
+            localStorage.setItem('toastrMessage', toastrMessage);
+            localStorage.setItem('toastrMessageType', 'success');  // Assuming a success type message
+    
+            // Reload the page to display the message
+            window.location.reload();
+          }
+        }
+      });
+    
+     
+      window.addEventListener('DOMContentLoaded', (e) => {
+        const message = localStorage.getItem('toastrMessage');
+        const messageType = localStorage.getItem('toastrMessageType');
+    
+        if (message) {
+          // Display the Toastr message based on the type
+          setTimeout(function() {
+            if (messageType === 'success') {
+              toastr.success(message);
+            } else if (messageType === 'error') {
+              toastr.error(message);
+            } else if (messageType === 'warning') {
+              toastr.warning(message);
+            } else if (messageType === 'info') {
+              toastr.info(message);
+            }
+          }, 600);  // Delay by 600 milliseconds
+    
+          // Clear the message from localStorage
+          localStorage.removeItem('toastrMessage');
+          localStorage.removeItem('toastrMessageType');
+        }
+      });
+    </script> {% endcomment %}
+    
+	  
+
+
+
+
+
+
+
+
+
+

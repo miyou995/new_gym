@@ -139,8 +139,12 @@ class AbonnementClient(models.Model):
     subscription    = SubscriptionManager()
     
     def __str__(self):
-        return f"{self.type_abonnement} : {self.start_date}"
+        status = "✅ Paid" if self.reste == 0 else f"💰 {self.reste} DA"
+        return f"📅 {self.type_abonnement} | {status}"
     
+    def get_abc_reste_date(self):
+        status = "✅ Paid" if self.reste == 0 else f"💰 {self.reste} DA"
+        return f"🗓 {self.start_date} | 📅 {self.type_abonnement} | {status}"
 
     def get_edit_url(self):
         return reverse('abonnement:update_abonnement_client', kwargs={'pk': str(self.id)})
