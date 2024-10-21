@@ -60,7 +60,7 @@ class UserCreateView(PermissionRequiredMixin, FormView):
 
     def form_valid(self, form):
         new_user = form.save()
-        messages.success(self.request, _("Account Created successfully"))
+        messages.success(self.request, _("Account Created successfully"), extra_tags="toastr")
         print('new_user>>>>>> ID', new_user.pk)
         return HttpResponse(
             status=204,
@@ -71,7 +71,7 @@ class UserCreateView(PermissionRequiredMixin, FormView):
             }
         )
     def form_invalid(self, form):
-        messages.error(self.request, form.errors)
+        messages.error(self.request, form.errors , extra_tags="toastr")
         return self.render_to_response(self.get_context_data(form=form)) 
 
 
@@ -90,7 +90,7 @@ class UserUpdateView(PermissionRequiredMixin, View):
         form = UserEditionForm(request.POST, instance=user)
         if form.is_valid():
             form.save()
-            messages.success(request, _("Account Updated successfully"))
+            messages.success(request, _("Account Updated successfully") , extra_tags="toastr")
             return HttpResponse(status=204,
                 headers={
                     'HX-Trigger': json.dumps({
@@ -99,7 +99,7 @@ class UserUpdateView(PermissionRequiredMixin, View):
                 })   
         
         else:
-            messages.error(request, form.errors)
+            messages.error(request, form.errors , extra_tags="toastr")
             return render(request, self.template_name, {'form': form, 'user': user})
 
 
@@ -113,7 +113,7 @@ class UserDeleteView(PermissionRequiredMixin,DeleteView):
     def form_valid(self, form):
         success_url = self.get_success_url()
         self.object.delete()
-        messages.success(self.request, "User Supprimer avec Succés")
+        messages.success(self.request, "User Supprimer avec Succés" , extra_tags="toastr")
         return HttpResponseRedirect(success_url)
 
 
@@ -137,7 +137,7 @@ class UserDetailView(DetailView):
         permissions = Permission.objects.filter(id__in=perms)
         user.user_permissions.set(permissions)
         user.save()
-        messages.success(request, _('Profile updated successfully'))
+        messages.success(request, _('Profile updated successfully') , extra_tags="toastr")
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     
 
@@ -204,7 +204,7 @@ def add_edit_group(request, pk=None):
         if form.is_valid():
             form.save()
             message = _("Role created successfully")
-            messages.success(request, str(message),  )
+            messages.success(request, str(message), extra_tags="toastr" )
             return HttpResponse(
                 status=204,
                 headers={
@@ -215,7 +215,7 @@ def add_edit_group(request, pk=None):
                 }
             )
         else:
-            messages.error(request, form.errors,  )
+            messages.error(request, form.errors , extra_tags="toastr"  )
             print("is not valide", form.errors.as_data())
     
     context["form"] = form 
@@ -252,6 +252,7 @@ class GroupDetailView(PermissionRequiredMixin, DetailView):
         context["parent_page"]= _('Users')
         context["parent_url"]= reverse('accounts:user_management')
         return context
+
 
 
 

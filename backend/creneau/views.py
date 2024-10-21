@@ -68,7 +68,7 @@ class UpdateCreneau(UpdateView):
                 }) 
     
         def form_invalid(self, form):
-            messages.success(self.request, form.errors)
+            messages.success(self.request, form.errors ,extra_tags="toastr")
             return self.render_to_response(self.get_context_data(form=form))   
 
 class CreneauDeleteView(DeleteView):

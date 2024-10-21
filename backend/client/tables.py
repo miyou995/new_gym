@@ -103,6 +103,15 @@ class AbonnementClientHTMxTable(tables.Table):
                 {{ record.type_abonnement }}      
             </a>      
         ''')
+    reste = tables.TemplateColumn(
+        template_code='''
+                {% if record.reste == 0 %}
+                <span style="color: green;">payé</span>
+                {% else %}
+                <span style="color: red;">{{ record.reste }}</span>
+                {% endif %}
+    '''
+    )
     class Meta:
         fields  = (
                 'type_abonnement',
@@ -114,6 +123,9 @@ class AbonnementClientHTMxTable(tables.Table):
         )
         model = AbonnementClient
         template_name = "tables/bootstrap_htmx.html"
+        row_attrs = {
+            'class': lambda record: 'table-danger' if record.blocking_date else ''
+        }
 
 class PaiementHTMxTable(tables.Table):
     

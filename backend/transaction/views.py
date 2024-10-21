@@ -166,7 +166,7 @@ class PaiementUpdateView(UpdateView):
             }) 
     
     def form_invalid(self, form):
-        messages.success(self.request, form.errors)
+        messages.success(self.request, form.errors ,extra_tags="toastr")
         return self.render_to_response(self.get_context_data(form=form))   
 
 class PaiementDeleteView(DeleteView):
@@ -251,7 +251,7 @@ class RemuPersonnelUpdateView(UpdateView):
                 })
             })
     def form_invalid(self, form):
-        messages.success(self.request, form.errors)
+        messages.success(self.request, form.errors ,extra_tags="toastr")
         return self.render_to_response(self.get_context_data(form=form))   
 
 class RemuPersonnelDeleteView(DeleteView):
@@ -334,7 +334,7 @@ class Remuneration_CoachUpdateView(UpdateView):
                 })
             })
     def form_invalid(self, form):
-        messages.success(self.request, form.errors)
+        messages.success(self.request, form.errors ,extra_tags="toastr")
         return self.render_to_response(self.get_context_data(form=form))   
     
 
@@ -404,7 +404,7 @@ class Autre_TransactionUpdateView(UpdateView):
                     })
                 })
     def form_invalid(self,form):
-        messages.success(self.request,form.errors)
+        messages.success(self.request,form.errors ,extra_tags="toastr")
         return self.render_to_response(self.get_context_data(form=form))
 
 

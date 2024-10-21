@@ -228,7 +228,7 @@ def update_temps_rest(request, pk):
             messages.success(request, str(message), extra_tags="toastr")
         else:
             message = _("Error occures when updating product.")
-            messages.error(request, str(message))
+            messages.error(request, str(message),extra_tags="toastr")
         return JsonResponse({"success": True})
    
 
@@ -246,7 +246,7 @@ def update_paiement_rest(request, pk):
             messages.success(request, str(message), extra_tags="toastr")
         else:
             message = _("Error occures when updating product.")
-            messages.error(request, str(message))
+            messages.error(request, str(message),extra_tags="toastr")
         return JsonResponse({"success": True})
 
 
@@ -268,11 +268,22 @@ def block_deblock_abonnement_client(request,pk):
         abonnement_client.lock(block_date)
         if not abonnement_client.blocking_date :
             print("-----------------------blocking date not correct")
-            message = _("blocking date not correct")
-            messages.error(request, str(message))
+            message = _("vous pouvez pas bloquer cette abonnement.")
+            messages.warning(request, str(message), extra_tags="toastr")
+            return HttpResponse(status=204,
+            headers={
+                "HX-Trigger":json.dumps({
+                    "closeModal":"kt_modal",
+                    "refresh_table":None
+                })
+            })
+        message = _("l'abonnement est bloqué.")
+        messages.success(request, str(message), extra_tags="toastr")    
 
     else :
-        abonnement_client.unlock()   
+        abonnement_client.unlock() 
+        message = _("l'abonnement est débloqué.")
+        messages.success(request, str(message), extra_tags="toastr")  
     return HttpResponse(status=204,
             headers={
                 "HX-Trigger":json.dumps({

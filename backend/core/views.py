@@ -222,7 +222,7 @@ class PlanningUpdateView(UpdateView):
                 })
             })
     def form_invalid(self, form):
-        messages.success(self.request, form.errors)
+        messages.success(self.request, form.errors ,extra_tags="toastr")
         return self.render_to_response(self.get_context_data(form=form))   
     
 class PlanningDeleteView(DeleteView):
@@ -290,7 +290,7 @@ class SalleUpdateView(UpdateView):
                 })
             })
     def form_invalid(self, form):
-        messages.success(self.request, form.errors)
+        messages.success(self.request, form.errors ,extra_tags="toastr")
         return self.render_to_response(self.get_context_data(form=form))   
     
 
@@ -355,7 +355,7 @@ class ActiviteUpdateView(UpdateView):
                 })
             })
     def form_invalid(self, form):
-        messages.success(self.request, form.errors)
+        messages.success(self.request, form.errors ,extra_tags="toastr")
         return self.render_to_response(self.get_context_data(form=form))   
     
 
@@ -423,7 +423,7 @@ class MaladieUpdateView(UpdateView):
                 })
             })
     def form_invalid(self, form):
-        messages.success(self.request, form.errors)
+        messages.success(self.request, form.errors ,extra_tags="toastr")
         return self.render_to_response(self.get_context_data(form=form))   
     
 
@@ -493,7 +493,7 @@ class PorteUpdateView(UpdateView):
                 })
             })
     def form_invalid(self, form):
-        messages.success(self.request, form.errors)
+        messages.success(self.request, form.errors ,extra_tags="toastr")
         return self.render_to_response(self.get_context_data(form=form))   
     
 
@@ -566,7 +566,7 @@ class TypeAbonnementUpdateView(UpdateView):
                 })
             })
     def form_invalid(self, form):
-        messages.success(self.request, form.errors)
+        messages.success(self.request, form.errors ,extra_tags="toastr")
         return self.render_to_response(self.get_context_data(form=form))   
     
 

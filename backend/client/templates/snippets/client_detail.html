@@ -175,42 +175,5 @@
 			</div>
 		</div>
 	</div>
-	<script>
-		document.addEventListener('htmx:afterRequest', (event) => {
-		  if (event.detail.xhr.status === 204) {
-			   // Store a message in localStorage before refreshing
-			   localStorage.setItem('toastrMessage', 'Your message has been processed successfully.');
-			   localStorage.setItem('toastrMessageType', 'success');  // You can set error, warning, info, etc.
-			   
-			   // Reload the page
-			   window.location.reload();
-		   }
-		});
-	   
-		// After the page reloads, check for a message in localStorage and display it
-		window.addEventListener('DOMContentLoaded', (e) => {
-		   const message = localStorage.getItem('toastrMessage');
-		   const messageType = localStorage.getItem('toastrMessageType');
-		   
-		   if (message) {
-			   // Display the Toastr message based on the type
-			   setTimeout(function() {
-				   if (messageType === 'success') {
-					   toastr.success(message);
-				   } else if (messageType === 'error') {
-					   toastr.error(message);
-				   } else if (messageType === 'warning') {
-					   toastr.warning(message);
-				   } else if (messageType === 'info') {
-					   toastr.info(message);
-				   }
-			   }, 600);  // Delay by 2000 milliseconds (2 seconds)
-	   
-			   // Clear the message from localStorage
-			   localStorage.removeItem('toastrMessage');
-			   localStorage.removeItem('toastrMessageType');
-		   }
-		});
-	   </script>
 	   
 {% endblock content %}
