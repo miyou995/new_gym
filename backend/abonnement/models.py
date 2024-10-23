@@ -139,11 +139,11 @@ class AbonnementClient(models.Model):
     subscription    = SubscriptionManager()
     
     def __str__(self):
-        status = "✅ Paid" if self.reste == 0 else f"💰 {self.reste} DA"
+        status = "✅ payé" if self.reste == 0 else f"💰 {self.reste} DA"
         return f"📅 {self.type_abonnement} | {status}"
     
     def get_abc_reste_date(self):
-        status = "✅ Paid" if self.reste == 0 else f"💰 {self.reste} DA"
+        status = "✅ payé" if self.reste == 0 else f"💰 {self.reste} DA"
         return f"🗓 {self.start_date} | 📅 {self.type_abonnement} | {status}"
 
     def get_edit_url(self):

@@ -16,7 +16,7 @@
 												<div class="card-body pt-15">
 													<div class="d-flex flex-center flex-column mb-5">
 														<div class="symbol symbol-100px symbol-circle mb-7">
-															<img src="static/images/avatar/1.png" alt="image" />
+															<span class="symbol-label fs-4x fw-semibold text-primary bg-light-primary">{{ personnel.first_name|slice:1 }}{{ personnel.last_name|slice:1 }}</span>
 														</div>
 														<a href="#" class="fs-3 text-gray-800 text-hover-primary fw-bold mb-1">{{personnel.last_name}}  {{personnel.first_name}}</a>
 														<div class="fs-5 fw-semibold text-muted mb-6">ID: {{personnel.id}}</div>
@@ -46,9 +46,6 @@
 															<div class="fw-bold mt-5">Téléphone</div>
 															<div class="text-gray-600">{{personnel.phone}}</div>
 												
-															<div class="fw-bold mt-5">Email</div>
-															<div class="text-gray-600">{{personnel.email}}</div>
-															
 															<div class="fw-bold mt-5">Groupe sanguin</div>
 															<div class="text-gray-600">{{personnel.blood}}</div>
 													
@@ -58,9 +55,6 @@
 															<div class="fw-bold mt-5">Date de naissance</div>
 															<div class="text-gray-600">{{personnel.birth_date}}</div>
 															
-															<div class="fw-bold mt-5">Maladies</div>
-															<div class="text-gray-600">{{personnel.maladies}}</div>
-
 															<div class="fw-bold mt-5">Adresse</div>
 															<div class="text-gray-600">{{personnel.adress}}</div>
 														

@@ -34,10 +34,10 @@ class ClientView(SingleTableMixin, FilterView):
     paginate_by = 15
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-      
+        print('from client viewwwwwwwwwwwwwwwwwwwwwwwwwwwwww')
         return context
+    
     def get_template_names(self):
-        
         if self.request.htmx:
             template_name = "tables/product_table_partial.html"
         else:
@@ -47,7 +47,7 @@ class ClientView(SingleTableMixin, FilterView):
 def ClientCreateView(request):
     context = {}
     template_name = "snippets/_client_form.html"
-    form = ClientModelForm(data=request.POST or None) 
+    form = ClientModelForm(data=request.POST or None,files=request.FILES or None) 
     if request.method == "POST":
         form = ClientModelForm(data=request.POST) 
         posted_data= "\n".join(f'{key} {value}' for key, value in request.POST.items())
@@ -340,6 +340,8 @@ class AbonnementClientDetail(SingleTableMixin, FilterView):
     def get_context_data(self, **kwargs):
         context = super(AbonnementClientDetail, self).get_context_data(**kwargs)
         context["client"] = Client.objects.get(pk=self.kwargs['pk'])
+        print('context abc ------****************---------->>>>>')
+
         # context["abc"] = self.kwargs['pk']
         # print('context abc ---------------->>>>>',context['abc'])
         return context

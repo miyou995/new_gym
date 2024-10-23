@@ -117,23 +117,27 @@ class Client(models.Model):
 
     def __init__(self, *args, **kwargs):
         super(Client, self).__init__(*args, **kwargs)
-        self._old_picture = self.picture
+        # self._old_picture = self.picture
 
     def __str__(self):
         return str(self.id)
+    
+    def get_picture_url(self):
+        if self.picture and hasattr(self.picture, 'url'):
+            return self.picture.url
 
-    def generate_thumbnail(self, picture, picture_name):
-        THUMBNAIL_SIZE = (250, 360)
-        image = Image.open(picture)
-        image = image.convert("RGB")
-        image.thumbnail(THUMBNAIL_SIZE, Image.ANTIALIAS)
-        temp_thumb = BytesIO()
-        image.save(temp_thumb, "JPEG")
-        temp_thumb.seek(0)
-        # set save=False, otherwise it will run in an infinite loop
-        self.picture.save(self.picture.name,ContentFile(temp_thumb.read()),save=False)
-        print('DONE')
-        temp_thumb.close()
+    # def generate_thumbnail(self, picture, picture_name):
+    #     THUMBNAIL_SIZE = (250, 360)
+    #     image = Image.open(picture)
+    #     image = image.convert("RGB")
+    #     image.thumbnail(THUMBNAIL_SIZE, Image.ANTIALIAS)
+    #     temp_thumb = BytesIO()
+    #     image.save(temp_thumb, "JPEG")
+    #     temp_thumb.seek(0)
+    #     # set save=False, otherwise it will run in an infinite loop
+    #     self.picture.save(self.picture.name,ContentFile(temp_thumb.read()),save=False)
+    #     print('DONE')
+    #     temp_thumb.close()
 
     # def generate_thumbnail(self, picture, picture_name):
     #     from django.core.files import File
@@ -155,53 +159,53 @@ class Client(models.Model):
         # picture.save(instance.picture.name,ContentFile(temp_thumb.read()),save=False)
     # C0
     
-    def save(self, *args, **kwargs):
-        if self._old_picture != self.picture:
-            self.generate_thumbnail(self.picture, self.picture.name)
-            print('yess changed picturename', self.picture.name)
-            print('yess changed picture url', self.picture.url)
-            logger.warning('yess changed picture url-{}'.format(str(self.picture.url)))
-            register_user.delay(self.last_name, self.id, self.picture.name)
-        else:
-            logger.warning('picture not changed photo url-{}'.format(str(self.id)))
-            print('picture not changed')
-        if not self.id:
-            try :
-                # print('clientsd==> ', timezone.now())
-                last_id = Client.objects.latest('created').id
-                print('yesssss last id = ', last_id)
-                number = int(last_id[1::])+1
-                print('the number', number)     
-                result  = str(number).zfill(4)
-                print('the result', result)     
-                the_id = f'C{result}'   
-                print('the id', the_id)   
-                self.id = the_id
-                if self.picture:  
-                    self.generate_thumbnail(self.picture, self.picture.name)
-                    register_user.delay(self.last_name, the_id, self.picture.name)
-                    print('yess changed picturename', self.picture.name)
-                    print('yess changed picturename', self.picture.name)
-                    print('yess changed picture url', self.picture.url)
-                    print('yess changed picturename', self.picture.name)
-            except Exception as e:
-                print('THE EXCEPTION ON save client', e)
-                logger.warning('THE EXCEPTION ON save client-{}'.format(str(e)))
-                self.id = "C0001"
+    # def save(self, *args, **kwargs):
+    #     if self._old_picture != self.picture:
+    #         self.generate_thumbnail(self.picture, self.picture.name)
+    #         print('yess changed picturename', self.picture.name)
+    #         print('yess changed picture url', self.picture.url)
+    #         logger.warning('yess changed picture url-{}'.format(str(self.picture.url)))
+    #         register_user.delay(self.last_name, self.id, self.picture.name)
+    #     else:
+    #         logger.warning('picture not changed photo url-{}'.format(str(self.id)))
+    #         print('picture not changed')
+    #     if not self.id:
+    #         try :
+    #             # print('clientsd==> ', timezone.now())
+    #             last_id = Client.objects.latest('created').id
+    #             print('yesssss last id = ', last_id)
+    #             number = int(last_id[1::])+1
+    #             print('the number', number)     
+    #             result  = str(number).zfill(4)
+    #             print('the result', result)     
+    #             the_id = f'C{result}'   
+    #             print('the id', the_id)   
+    #             self.id = the_id
+    #             if self.picture:  
+    #                 self.generate_thumbnail(self.picture, self.picture.name)
+    #                 register_user.delay(self.last_name, the_id, self.picture.name)
+    #                 print('yess changed picturename', self.picture.name)
+    #                 print('yess changed picturename', self.picture.name)
+    #                 print('yess changed picture url', self.picture.url)
+    #                 print('yess changed picturename', self.picture.name)
+    #         except Exception as e:
+    #             print('THE EXCEPTION ON save client', e)
+    #             logger.warning('THE EXCEPTION ON save client-{}'.format(str(e)))
+    #             self.id = "C0001"
 
-        if self.carte:
-            # old_carte = self.carte
-            # print('old_carte', old_carte) 
-            int_carte = int(self.carte)
-            str_carte = str(int_carte)
-            print('carte', str_carte) 
-            new_int_carte =  int(str_carte)
-            hex_card = hex(new_int_carte)
-            deleted_x = hex_card.replace('0x', '')
-            self.hex_card = deleted_x.upper().zfill(8)
-            print('deleted_x', deleted_x) 
-            print(' hex_card', self.hex_card) 
-        return super().save(*args, **kwargs)
+    #     if self.carte:
+    #         # old_carte = self.carte
+    #         # print('old_carte', old_carte) 
+    #         int_carte = int(self.carte)
+    #         str_carte = str(int_carte)
+    #         print('carte', str_carte) 
+    #         new_int_carte =  int(str_carte)
+    #         hex_card = hex(new_int_carte)
+    #         deleted_x = hex_card.replace('0x', '')
+    #         self.hex_card = deleted_x.upper().zfill(8)
+    #         print('deleted_x', deleted_x) 
+    #         print(' hex_card', self.hex_card) 
+    #     return super().save(*args, **kwargs)
     
     def full_name(self):
         return str(self.last_name)+ " " +str(self.first_name)
