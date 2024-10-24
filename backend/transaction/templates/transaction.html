@@ -14,7 +14,8 @@
 						<div class="card-title">
 							
 							<div class="card-toolbar flex-row-fluid justify-content-end gap-5">
-								<button
+								{% if perms.transaction.add_paiement %}
+									<button
 									type="button"
 									class="btn btn-success btn-sm"
 									data-bs-toggle="modal"
@@ -23,51 +24,55 @@
 									hx-target="#kt_modal_content"
 									hx-trigger="click"
 									hx-swap="innerHTML"
-								>
+									>
 									<i class="ki-exit-up fs-2"></i>Paiement
 								</button>
-
-								<button
-									type="button"
-									class="btn btn btn-danger btn-sm"
-									data-bs-toggle="modal"
-									data-bs-target="#kt_modal"
-									hx-get="{% url 'transactions:Remuneration_Personnel_name' %}"
-									hx-target="#kt_modal_content"
-									hx-trigger="click"
-									data-bs-toggle="tooltip" 
-									hx-swap="innerHTML"
-								>
-									<i class="ki-exit-up fs-2"></i> Rémuneration Personnel
-								</button>
-
-								<button
-									type="button"
-									class="btn btn-primary btn-sm"
-									data-bs-toggle="modal"
-									data-bs-target="#kt_modal"
-									hx-get="{% url 'transactions:Remuneration_Coach_name' %}"
-									hx-target="#kt_modal_content"
-									hx-trigger="click"
-									data-bs-toggle="tooltip"
-									hx-swap="innerHTML"
-								>
-								<i class="ki-exit-up fs-2"></i>Remunération Coach
-								</button>
-								
-								<button
-									type="button"
-									class="btn btn-info btn-sm"
-									data-bs-toggle="modal"
-									data-bs-target="#kt_modal"
-									hx-get="{% url 'transactions:Autre_Transaction_name' %}"
-									hx-target="#kt_modal_content"
-									hx-trigger="click"
-									data-bs-toggle="tooltip" 
-									hx-swap="innerHTML"
-								>
-									<i class="ki-exit-up fs-2"></i>Autre Transaction
-								</button>
+								{% endif %}
+								{% if perms.transaction.add_remuneration %}
+									<button
+										type="button"
+										class="btn btn btn-danger btn-sm"
+										data-bs-toggle="modal"
+										data-bs-target="#kt_modal"
+										hx-get="{% url 'transactions:Remuneration_Personnel_name' %}"
+										hx-target="#kt_modal_content"
+										hx-trigger="click"
+										data-bs-toggle="tooltip" 
+										hx-swap="innerHTML"
+									>
+										<i class="ki-exit-up fs-2"></i> Rémuneration Personnel
+									</button>
+								{% endif %}
+								{% if perms.transaction.add_remunerationprof  %}
+									<button
+										type="button"
+										class="btn btn-primary btn-sm"
+										data-bs-toggle="modal"
+										data-bs-target="#kt_modal"
+										hx-get="{% url 'transactions:Remuneration_Coach_name' %}"
+										hx-target="#kt_modal_content"
+										hx-trigger="click"
+										data-bs-toggle="tooltip"
+										hx-swap="innerHTML"
+										>
+										<i class="ki-exit-up fs-2"></i>Remunération Coach
+									</button>
+								{% endif %}
+								{% if perms.transaction.add_autre  %}
+									<button
+										type="button"
+										class="btn btn-info btn-sm"
+										data-bs-toggle="modal"
+										data-bs-target="#kt_modal"
+										hx-get="{% url 'transactions:Autre_Transaction_name' %}"
+										hx-target="#kt_modal_content"
+										hx-trigger="click"
+										data-bs-toggle="tooltip" 
+										hx-swap="innerHTML"
+									>
+										<i class="ki-exit-up fs-2"></i>Autre Transaction
+									</button>
+								{% endif %}
 							</div>
 						</div>
 					</div>
@@ -90,7 +95,7 @@
 							</li>
 						
 							<li class="nav-item mt-2" role="presentation">
-
+								{% if perms.transaction.view_remuneration %}
 									<a  class="nav-link text-active-primary pb-4"
 										data-bs-toggle="tab"
 										href="#kt_user_view_Personnel" 
@@ -103,36 +108,39 @@
 										hx-target="#table2"
 									>
 									{% trans 'Personnel' %}</a>
+								{% endif %}
 							</li>
 							<li class="nav-item mt-2" role="presentation">
-
+								{% if perms.transaction.view_remunerationprof %}
+									<a  class="nav-link text-active-primary pb-4"
+										data-bs-toggle="tab"
+										href="#kt_user_view_Coach" 
+										aria-selected="false"
+										role="tab"
+										tabindex="-1"
+										hx-get="{% url 'transactions:RemunerationProfTable_name'  %}"
+										hx-swap="innerHTML"
+										hx-trigger="refresh_table from:body,click"
+										hx-target="#table3"
+									>
+									{% trans 'Coach' %}</a>
+								{% endif %}
+						</li>
+						<li class="nav-item mt-2" role="presentation">
+							{% if perms.transaction.view_autre %}
 								<a  class="nav-link text-active-primary pb-4"
 									data-bs-toggle="tab"
-									href="#kt_user_view_Coach" 
+									href="#kt_user_view_autre_transaction" 
 									aria-selected="false"
 									role="tab"
 									tabindex="-1"
-									hx-get="{% url 'transactions:RemunerationProfTable_name'  %}"
+									hx-get="{% url 'transactions:autre_transaction_table'  %}"
 									hx-swap="innerHTML"
 									hx-trigger="refresh_table from:body,click"
-									hx-target="#table3"
+									hx-target="#table4"
 								>
-								{% trans 'Coach' %}</a>
-						</li>
-						<li class="nav-item mt-2" role="presentation">
-
-							<a  class="nav-link text-active-primary pb-4"
-								data-bs-toggle="tab"
-								href="#kt_user_view_autre_transaction" 
-								aria-selected="false"
-								role="tab"
-								tabindex="-1"
-								hx-get="{% url 'transactions:autre_transaction_table'  %}"
-								hx-swap="innerHTML"
-								hx-trigger="refresh_table from:body,click"
-								hx-target="#table4"
-							>
-							{% trans 'Autre Transaction' %}</a>
+								{% trans 'Autre Transaction' %}</a>
+							{% endif %}
 					</li>
 					
 						</ul>

@@ -4,6 +4,7 @@ from abonnement.mixins import CalendarAbonnementClientMixin
 from abonnement.forms import AbonnementClientRestPaiementForm, AbonnementClientRestTempForm
 from .models import Abonnement, AbonnementClient
 import json
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django_filters.views import FilterView
 from .models import Creneau
 from .filters import CalenderFilter

@@ -10,16 +10,16 @@ def get_permissions():
         model.__name__: model for model in apps.get_models(include_auto_created=False)
     }
     excluded_model_names = [
-        'LogEntry', 'Prospect', 'HistoricalStockTransfer', 'HistoricalShippingAdress', 
-        'HistoricalSalesOrder', 'HistoricalPurchaseOrder', 'HistoricalBillingAdress', 
-        'Fonctionalite', 'Plan', 'Portfolio', 'Position', 'WishlistItem', 'ThemeScreenShot', 
-        'Status', 'StockCheckItem', 'PurchaseOrder', 'StockTransfer', 'Tax', 'Notification',
-        'StockTransferLineItem', 'PurchaseOrderLineItem', 'CategoryBanner', 'AtributesValue', 
-        'CategorySpecs', 'EmailConfirmation', 'EmailAddress', 'DiscountLine', 'Theme', 
-        'Comment', 'PhotoComment', 'Client', 'ContentType', 'Session', 
-        'Supplier', 'SalesOrderLineItem', 'SocialAccount', 'StockCheck', 'ShippingAdress', 
-        'PaymentMethod', 'BillingAdress', 'ProductDocument', 'SocialApp', 'SocialToken', 
-        'PlanPrice', 'BasketLine', 'Site',
+        'LogEntry', 'HistoricalPresenceCoach', 'HistoricalCoach', 'HistoricalPersonnel', 'Maladie',
+        'HistoricalCreneau', 'HistoricalPurchaseOrder', 'BlacklistedToken', 
+        'Fonctionalite', 'AssuranceTransaction', 'Portfolio', 'Position', 'WishlistItem', 'ThemeScreenShot', 
+        'OutstandingToken', 'StockCheckItem', 'PurchaseOrder','HistoricalAbonnementClient', 'StockTransfer', 'Tax', 'Notification',
+        'StockTransferLineItem', 'PurchaseOrderLineItem', 'HistoricalPresence', 'AtributesValue', 
+        'CategorySpecs', 'EmailConfirmation', 'EmailAddress','Permission' ,'DiscountLine', 'Theme', 
+        'Comment', 'PhotoComment', 'ContentType', 'Session', 'HistoricalClient',
+        'Supplier', 'Materiel', 'SocialAccount', 'StockCheck', 'ShippingAdress', 
+        'PaymentMethod', 'HistoricalRemuneration','Event', 'HistoricalPaiement', 'SocialApp', 'HistoricalAutre', 
+        'HistoricalRemunerationProf', 'BasketLine', 'Site','HistoricalAssuranceTransaction',
     ]
 
     excluded_content_types = ContentType.objects.filter(

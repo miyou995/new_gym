@@ -9,7 +9,7 @@ from django.contrib import messages
 from django.http import HttpResponse,HttpResponseRedirect
 import json
 from django.utils import timezone
-
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.urls import reverse_lazy
 from transaction.models import Paiement, Remuneration,RemunerationProf
 from datetime import datetime
@@ -127,7 +127,8 @@ class ClientDeleteView(DeleteView):
         return HttpResponseRedirect(success_url)
        
 #-----------------------------------------------Coach--------------------------------------------------------------
-class CoachsView(SingleTableMixin,FilterView):
+class CoachsView(PermissionRequiredMixin,SingleTableMixin,FilterView):
+    permission_required = "client.view_coach"
     table_class=CoachHTMxTable
     filterset_class = CoachFilter
     paginate_by = 15
