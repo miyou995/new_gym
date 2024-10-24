@@ -6,6 +6,7 @@ from transaction.models import Autre, Paiement, Remuneration, RemunerationProf
 from django_tables2 import SingleTableMixin
 from django.views.generic import (TemplateView,UpdateView,DeleteView)
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.http import HttpResponse, HttpResponseRedirect
 from .tables import  PlannigHTMxTable,SalleHTMxTable,ActivityHTMxTable,MaladieHTMxTable,PortesHTMxTable,AbonnementHTMxTable
 from planning.models import Planning
@@ -23,6 +24,7 @@ from .tables import TransactionOfTheDayTable
 from django.views.generic import ListView
 from itertools import chain
 from django.db.models import Count
+from django.contrib.auth.decorators import  permission_required
 
 
 
@@ -93,37 +95,9 @@ class IndexView(SingleTableMixin, ListView):
         return template_name 
     
 
-    
 
-# class ActuellementEnSalle(TemplateView):
-#     template_name = "index.html" 
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-
-#         today=date.today()
-#         print("from actuellement en salle ")
-#         queryset = Presence.objects.filter(date=today).values('creneau__activity__salle').annotate(presence_count=Count('id')).order_by()
-        
-#         print("queryset salle >------------------", queryset)
-
-#         # If you want to get the total number of presences across all salles:
-#         total_presences = queryset.aggregate(total=Count('id'))['total']
-#         print("Total number of presences:", total_presences)
-
-#         # Print each salle's presence count
-#         for salle_presence in queryset:
-#             print(f"Salle: {salle_presence['creneau__activity__salle']}, Number of presences: {salle_presence['presence_count']}")
-#         context['salle_presences'] = queryset
-#         context['total_presences'] = total_presences
-        
-#         return context
         
     
-
-    
-
-
-
 class GenericTableView(SingleTableMixin, FilterView):
     paginate_by = 15
 
@@ -140,14 +114,17 @@ class GenericTableView(SingleTableMixin, FilterView):
         return template_name 
     
 class PlanningTable(GenericTableView):
+    # permission_required = "planning.view_planning"
     model = Planning
     table_class = PlannigHTMxTable
 
 class SalleTable(GenericTableView):
+    # permission_required = "salle_activite.view_salle"
     model = Salle
     table_class = SalleHTMxTable
 
 class ActivityTable(GenericTableView):
+    # permission_required = "salle_activite.view_activity"
     model = Activity
     table_class = ActivityHTMxTable
 
@@ -156,20 +133,19 @@ class MaladieTable(GenericTableView):
     table_class =MaladieHTMxTable
 
 class PortesTable(GenericTableView):
+    # permission_required = "salle_activite.view_door"
     model = Door
     table_class =PortesHTMxTable
 
-class MaladieTalble(GenericTableView):
-    model = Maladie
-    table_class =MaladieHTMxTable
-
 
 class AbonnementTable(GenericTableView):
+    # permission_required = "abonnement.view_abonnement"
     model = Abonnement
     table_class =AbonnementHTMxTable
 
 
 # planning--------------------------------------------------------------------------------------
+@permission_required('planning.add_planning',raise_exception=True)
 def PlanningCreateView(request):
     context = {}
     template_name = "configuration\snippets\_ajout_planning_form.html"
@@ -238,6 +214,7 @@ class PlanningDeleteView(DeleteView):
         return HttpResponseRedirect(success_url)
     
 # salle----------------------------------------------------------------------------------------------
+@permission_required('salle_activite.add_salle',raise_exception=True)
 def SalleCreateView(request):
     context = {}
     template_name = "configuration\snippets\_ajout_Salle_form.html"
@@ -307,6 +284,7 @@ class SalleDeleteView(DeleteView):
         return HttpResponseRedirect(success_url)
     
 # Activites------------------------------------------------------------------------------------------
+@permission_required('salle_activite.add_activity',raise_exception=True)
 def ActiviteCreateView(request):
     context = {}
     template_name = "configuration\snippets\_ajout_activites_form.html"
@@ -440,6 +418,7 @@ class MaladieDeleteView(DeleteView):
         return HttpResponseRedirect(success_url)
     
 #Portes--------------------------------------------------------------------------------------------------
+@permission_required('salle_activite.add_door',raise_exception=True)
 def PorteCreateView(request):
     context = {}
     template_name = "configuration\snippets\_ajout_ ports_form.html"
@@ -510,6 +489,7 @@ class PorteDeleteView(DeleteView):
         return HttpResponseRedirect(success_url)
     
 # Abonnement-------------------------------------------------------------------------------------------------
+@permission_required('abonnement.add_abonnement',raise_exception=True)
 def TypeAbonnementCreateView(request):
     context = {}
     template_name = "configuration\snippets\_type_abonne_form.html"

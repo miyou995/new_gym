@@ -1,11 +1,11 @@
 from django.contrib import admin
-from .models import  Creneau,Event
+from .models import  Creneau
 
 
-admin.site.register(Event)
-@admin.register(Creneau)
-class CreaneauAdmin(admin.ModelAdmin):
-    list_display = ('id','name', 'hour_start', 'hour_finish', 'planning', 'activity')
+# admin.site.register(Event)
+# @admin.register(Creneau)
+# class CreaneauAdmin(admin.ModelAdmin):
+#     list_display = ('id','name', 'hour_start', 'hour_finish', 'planning', 'activity')
 
 # from .models import Event
 # from datetime import datetime

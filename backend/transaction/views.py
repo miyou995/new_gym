@@ -12,14 +12,18 @@ from abonnement.models import AbonnementClient
 from .forms import PaiementModelForm,Remuneration_PersonnelModelForm,Remunération_CoachModelForm,Autre_TransactionForm
 import json
 from  django_tables2 import SingleTableMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin
+
 from django_filters.views import FilterView
 from .models import Paiement,RemunerationProf,Remuneration,Autre
 from .tables import PiaementHTMxTable,RemunerationProfHTMxTable,RemunerationPersonnelHTMxTable,AutreTransactionTableHTMxTable
 from .filters import ProductFilter,PersonnelFilter,CoachFilter,AutreTransactionFilter
+from django.contrib.auth.decorators import  permission_required
 
 
 # tables views
-class TransactionView(SingleTableMixin, FilterView):
+class TransactionView(PermissionRequiredMixin,SingleTableMixin, FilterView):
+    permission_required ="transaction.view_transaction"
     table_class = PiaementHTMxTable
     filterset_class = ProductFilter
     paginate_by = 15
@@ -39,7 +43,8 @@ class TransactionView(SingleTableMixin, FilterView):
         return template_name 
 
 
-class RemunerationProfTable(SingleTableMixin, FilterView):
+class RemunerationProfTable(PermissionRequiredMixin,SingleTableMixin, FilterView):
+    permission_required ="transaction.view_remunerationprof"
     table_class = RemunerationProfHTMxTable
     filterset_class = CoachFilter
     paginate_by = 15
@@ -57,7 +62,8 @@ class RemunerationProfTable(SingleTableMixin, FilterView):
         return template_name 
 
 
-class RemunerationPersonnelTable(SingleTableMixin, FilterView):
+class RemunerationPersonnelTable(PermissionRequiredMixin,SingleTableMixin, FilterView):
+    permission_required ="transaction.view_remuneration"
     table_class = RemunerationPersonnelHTMxTable
     filterset_class = PersonnelFilter
     paginate_by = 15
@@ -74,7 +80,8 @@ class RemunerationPersonnelTable(SingleTableMixin, FilterView):
             template_name = "transaction.html"
         return template_name 
 
-class AutreTransactionTable(SingleTableMixin,FilterView):
+class AutreTransactionTable(PermissionRequiredMixin,SingleTableMixin,FilterView):
+    permission_required = "transaction.view_autre"
     table_class=AutreTransactionTableHTMxTable
     filterset_class=AutreTransactionFilter
     paginate_by=15
@@ -98,7 +105,8 @@ class Chiffre_affaireView(TemplateView):
     template_name = "chiffre_affaire.html"
 
 # paiement transactions------------------------------------------------------------------------------------------
-class paiement(CreateView):
+class paiement(PermissionRequiredMixin,CreateView):
+    permission_required = "transaction.add_paiement"
     template_name = "snippets/_transaction_paiement_form.html"
     form_class =PaiementModelForm
 
@@ -188,7 +196,8 @@ class PaiementDeleteView(DeleteView):
  
 
 #remuneration personnel ------------------------------------------------------------------------------------------
-class Remuneration_Personnel(CreateView):
+class Remuneration_Personnel(PermissionRequiredMixin,CreateView):
+    permission_required = "transaction.add_remuneration"
     template_name="snippets/_remu_personnel_form.html"
     form_class=Remuneration_PersonnelModelForm
 
@@ -271,7 +280,8 @@ class RemuPersonnelDeleteView(DeleteView):
         return HttpResponseRedirect(success_url)
 
 #remuneration Coach ------------------------------------------------------------------------------------------
-class Remuneration_Coach(CreateView):
+class Remuneration_Coach(PermissionRequiredMixin,CreateView):
+    permission_required = "transaction.add_remunerationprof"
     template_name = "snippets/_remu_Coach_form.html"
     form_class = Remunération_CoachModelForm
 
@@ -350,6 +360,7 @@ class RemCoachDeleteView(DeleteView):
         return HttpResponseRedirect(success_url)
 
 # Auter Transaction------------------------------------------------------------------------------------------
+@permission_required("transaction.add_autre",raise_exception=True)
 def Autre_Transaction(request):
     context={}
     template_name="snippets/_autre_Transaction_form.html"
