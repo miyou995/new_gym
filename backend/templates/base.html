@@ -77,8 +77,8 @@ License: For each use you must have a valid license purchased only from above li
                             name="search"
                             class='form-control fw-bold pe-5' 
                             placeholder='Présence... '
-                            {% comment %} hx-target="#correctionsId" {% endcomment %}
-                            hx-swap="innerHTML"
+                            {% comment %} hx-target="closest form" {% endcomment %}
+                            hx-swap="afterend"
                             hx-refresh="true" 
                             id="barcode-input"
                             style="width: 150px;" 

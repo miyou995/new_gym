@@ -208,7 +208,6 @@ class AbonnemtClientDeleteView(DeleteView):
             messages.error(self.request, "Supprimer le paiement de cet abonnement pour avoir supprimer l'abonnement ",extra_tags="toastr")
             return HttpResponseRedirect(success_url)
         else :
-            success_url = self.get_success_url()
             self.object.delete()
             print('GOOOOO')
             messages.success(self.request, "Abonnemet Client Supprimer avec Succés",extra_tags="toastr")

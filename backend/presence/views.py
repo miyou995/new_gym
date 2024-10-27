@@ -39,19 +39,35 @@ def presence_client(request):
     # template_name = "snippets/presence_popup.html"
     context= {}
     code_card=request.GET.get('search','')
+    print("from client present//////////////////")
+    client_id=Client.objects.filter(carte=code_card)
+    print("client_id---------------",client_id)
     abc_list=AbonnementClient.objects.filter(client__carte=code_card)
-    for abc in abc_list:
-        print('abc--------------------',abc)
-        print("creneau------------",abc.creneaux)
-    client_id=get_object_or_404(Client, carte=code_card)
+    # for abc in abc_list:
+    #     print('abc--------------------',abc)
+    #     print("creneau------------",abc.creneaux)
     if client_id :
-        # client_id.auto_presence()
-        if client_id.auto_presence() == 'erreur':
+        print("client_id----------------")
+        client_id=get_object_or_404(Client, carte=code_card)
+        auto_presence=client_id.auto_presence()
+        context["client"]=client_id
+        context["auto_presence"]=auto_presence
+        if auto_presence == 'not_today':
             print("-------------------working from presence--------------------")
             return render(request,"snippets/presence_popup.html",context)
+        elif auto_presence == 'entre':
+            print("enter ------------------------------------")
+            return render(request,"snippets/presence_popup.html",context)
+        elif auto_presence == 'fin_abonnement':
+            print("fin d'abonnemnt---------------------")
+            return render(request,"snippets/presence_popup.html",context)
+        elif auto_presence == 'sortie':
+            print("la sortie---------------------")
+            return render(request,"snippets/presence_popup.html",context)
     else :
-        message = _("*******client n'exist pas****presence a été créé avec succès*****.")
-        messages.success(request, str(message),extra_tags="toastr")   
+        print(" else----------client_id----------------")
+        message = _("client n'exist pas .")
+        messages.warning(request, str(message),extra_tags="toastr")   
     return HttpResponse(status=204) 
 
 

@@ -159,53 +159,53 @@ class Client(models.Model):
         # picture.save(instance.picture.name,ContentFile(temp_thumb.read()),save=False)
     # C0
     
-    # def save(self, *args, **kwargs):
-    #     if self._old_picture != self.picture:
-    #         self.generate_thumbnail(self.picture, self.picture.name)
-    #         print('yess changed picturename', self.picture.name)
-    #         print('yess changed picture url', self.picture.url)
-    #         logger.warning('yess changed picture url-{}'.format(str(self.picture.url)))
-    #         register_user.delay(self.last_name, self.id, self.picture.name)
-    #     else:
-    #         logger.warning('picture not changed photo url-{}'.format(str(self.id)))
-    #         print('picture not changed')
-    #     if not self.id:
-    #         try :
-    #             # print('clientsd==> ', timezone.now())
-    #             last_id = Client.objects.latest('created').id
-    #             print('yesssss last id = ', last_id)
-    #             number = int(last_id[1::])+1
-    #             print('the number', number)     
-    #             result  = str(number).zfill(4)
-    #             print('the result', result)     
-    #             the_id = f'C{result}'   
-    #             print('the id', the_id)   
-    #             self.id = the_id
-    #             if self.picture:  
-    #                 self.generate_thumbnail(self.picture, self.picture.name)
-    #                 register_user.delay(self.last_name, the_id, self.picture.name)
-    #                 print('yess changed picturename', self.picture.name)
-    #                 print('yess changed picturename', self.picture.name)
-    #                 print('yess changed picture url', self.picture.url)
-    #                 print('yess changed picturename', self.picture.name)
-    #         except Exception as e:
-    #             print('THE EXCEPTION ON save client', e)
-    #             logger.warning('THE EXCEPTION ON save client-{}'.format(str(e)))
-    #             self.id = "C0001"
+    def save(self, *args, **kwargs):
+        # if self._old_picture != self.picture:
+        #     self.generate_thumbnail(self.picture, self.picture.name)
+        #     print('yess changed picturename', self.picture.name)
+        #     print('yess changed picture url', self.picture.url)
+        #     logger.warning('yess changed picture url-{}'.format(str(self.picture.url)))
+        #     register_user.delay(self.last_name, self.id, self.picture.name)
+        # else:
+        #     logger.warning('picture not changed photo url-{}'.format(str(self.id)))
+        #     print('picture not changed')
+        if not self.id:
+            try :
+                # print('clientsd==> ', timezone.now())
+                last_id = Client.objects.latest('created').id
+                print('yesssss last id = ', last_id)
+                number = int(last_id[1::])+1
+                print('the number', number)     
+                result  = str(number).zfill(4)
+                print('the result', result)     
+                the_id = f'C{result}'   
+                print('the id', the_id)   
+                self.id = the_id
+                # if self.picture:  
+                #     self.generate_thumbnail(self.picture, self.picture.name)
+                #     register_user.delay(self.last_name, the_id, self.picture.name)
+                #     print('yess changed picturename', self.picture.name)
+                #     print('yess changed picturename', self.picture.name)
+                #     print('yess changed picture url', self.picture.url)
+                #     print('yess changed picturename', self.picture.name)
+            except Exception as e:
+                print('THE EXCEPTION ON save client', e)
+                logger.warning('THE EXCEPTION ON save client-{}'.format(str(e)))
+                self.id = "C0001"
 
-    #     if self.carte:
-    #         # old_carte = self.carte
-    #         # print('old_carte', old_carte) 
-    #         int_carte = int(self.carte)
-    #         str_carte = str(int_carte)
-    #         print('carte', str_carte) 
-    #         new_int_carte =  int(str_carte)
-    #         hex_card = hex(new_int_carte)
-    #         deleted_x = hex_card.replace('0x', '')
-    #         self.hex_card = deleted_x.upper().zfill(8)
-    #         print('deleted_x', deleted_x) 
-    #         print(' hex_card', self.hex_card) 
-    #     return super().save(*args, **kwargs)
+        if self.carte:
+            # old_carte = self.carte
+            # print('old_carte', old_carte) 
+            int_carte = int(self.carte)
+            str_carte = str(int_carte)
+            print('carte', str_carte) 
+            new_int_carte =  int(str_carte)
+            hex_card = hex(new_int_carte)
+            deleted_x = hex_card.replace('0x', '')
+            self.hex_card = deleted_x.upper().zfill(8)
+            print('deleted_x', deleted_x) 
+            print(' hex_card', self.hex_card) 
+        return super().save(*args, **kwargs)
     
     def full_name(self):
         return str(self.last_name)+ " " +str(self.first_name)
@@ -239,7 +239,7 @@ class Client(models.Model):
         presence_sortie= self.init_output()
         if presence_sortie:
             print('YESS SORTIEEE')
-            return sortie
+            return 'sortie'
         # client.has_permission()
         creneaux = Creneau.range.get_creneaux_of_day().filter(abonnements__client=client).distinct()
         # print('Les creneaux of client=====>',Creneau.objects.filter(abonnements__client=client))
@@ -261,7 +261,7 @@ class Client(models.Model):
             if not abon_list:
                 # raise serializers.ValidationError("l'adherant n'est pas inscrit aujourd'hui")
                 print("*******l'adherant n'est pas inscrit aujourd'hui**********")
-                return "erreur"
+                return "over"
             
             abonnement = abon_list.filter(type_abonnement__type_of="SL").first()
             # If no non-free session is found, get the first session regardless of its type
@@ -274,22 +274,22 @@ class Client(models.Model):
             if abonnement.is_valid() and abonnement.is_time_volume():
                 print('IM HEEERE LOG ABONNEMENT==== TIME VOLUUUPME', abonnement.is_time_volume())
                 Presence.objects.create(abc= abonnement, creneau= cren_ref,  hour_entree=current_time )
-                return entree
+                return 'entre'
             elif abonnement.is_valid() and abonnement.presence_quantity > 0:
                 Presence.objects.create(abc= abonnement, creneau= cren_ref,  hour_entree=current_time )
                 if abonnement.is_fixed_sessions() or abonnement.is_free_sessions():
                     abonnement.presence_quantity -= 1
                 abonnement.save()
-                return entree
+                return 'entre'
             else:
                 logger.warning('LOG abonnement.presence_quantity=====> {}'.format(str(abonnement.presence_quantity)))
-                logger.warning('LOG ABONNEMENT=====-{}'.format(str(abonnement)))
+                # logger.warning('LOG ABONNEMENT=====-{}'.format(str(abonnement)))
                 logger.warning('LOG ABONNEMENT TYPE=====-{}'.format(str(abonnement.type_abonnement.type_of)))
-                return "erreur"
+                return "fin_abonnement"
         else:
             print("*******l'adherant n'est pas inscrit aujourd'hui pas de abc **********")
 
-            return "erreur"
+            return "not_today"
             # messages.error(self.request, "l'adherant n'est pas inscrit aujourd'hui")
             # # raise serializers.ValidationError("l'adherant n'est pas inscrit aujourd'hui")
             # return self

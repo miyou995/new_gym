@@ -49,7 +49,6 @@ class IndexView(SingleTableMixin, ListView):
 
         # ------------------------presences par salle-----------------------# 
         today=date.today()
-        print("from actuellement en salle ")
         queryset = Presence.objects.filter(date=today).values('creneau__activity__salle__name').annotate(presence_count=Count('id')).order_by()
         print("queryset salle >------------------", queryset)
 
