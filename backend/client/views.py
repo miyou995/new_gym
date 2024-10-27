@@ -24,11 +24,14 @@ from .tables import (ClientHTMxTable,CoachHTMxTable,PersonnelHTMxTable,Abonnemen
                      PresenceClientHTMxTable)
 from abonnement.models import AbonnementClient
 from creneau.models import Creneau
+from django.contrib.auth.decorators import  permission_required
+
 
 
 
 #-------------------------------------------------client------------------------------------------------------------
-class ClientView(SingleTableMixin, FilterView):
+class ClientView(PermissionRequiredMixin,SingleTableMixin, FilterView):
+    permission_required = "client.view_client"
     table_class = ClientHTMxTable
     filterset_class = ClientFilter
     paginate_by = 15
@@ -43,7 +46,8 @@ class ClientView(SingleTableMixin, FilterView):
         else:
             template_name = "client.html" 
         return template_name 
-    
+
+@permission_required('client.view_client', raise_exception=True)
 def ClientCreateView(request):
     context = {}
     template_name = "snippets/_client_form.html"
@@ -72,7 +76,8 @@ def ClientCreateView(request):
     context["form"] = form
     return render(request, template_name=template_name, context=context)
 
-class ClientUpdateView(UpdateView):
+class ClientUpdateView(PermissionRequiredMixin,UpdateView):
+    permission_required = "client.change_client"
     model = Client
     template_name="snippets/_client_form.html"
     fields=[
@@ -110,7 +115,8 @@ class ClientUpdateView(UpdateView):
         return self.render_to_response(self.get_context_data(form=form))   
 
 
-class ClientDeleteView(DeleteView):
+class ClientDeleteView(PermissionRequiredMixin,DeleteView):
+    permission_required = "client.delete_client"
     model =Client
     template_name="snippets/delete_modal.html"
     success_url=reverse_lazy("client:client_name")
@@ -122,9 +128,15 @@ class ClientDeleteView(DeleteView):
     
     def form_valid(self, form):
         success_url = self.get_success_url()
-        self.object.delete()
-        messages.success(self.request,"Client Supprimier avec Succés",extra_tags="toastr")
-        return HttpResponseRedirect(success_url)
+        abc= AbonnementClient.objects.filter(client=self.object)
+        if abc :
+            print("you can not delete this client")
+            messages.error(self.request, "vous ne pouvez pas supprimer un client avec un abonnement",extra_tags="toastr")
+            return HttpResponseRedirect(success_url)
+        else :
+            self.object.delete()
+            messages.success(self.request,"Client Supprimier avec Succés",extra_tags="toastr")
+            return HttpResponseRedirect(success_url)
        
 #-----------------------------------------------Coach--------------------------------------------------------------
 class CoachsView(PermissionRequiredMixin,SingleTableMixin,FilterView):
@@ -144,6 +156,7 @@ class CoachsView(PermissionRequiredMixin,SingleTableMixin,FilterView):
             template_name = "coach.html" 
         return template_name 
 
+@permission_required('client.view_coach', raise_exception=True)
 def CoachCreateView(request):
     context={}
     template_name = "snippets/_coach_form.html"
@@ -173,7 +186,8 @@ def CoachCreateView(request):
     return render(request, template_name=template_name, context=context)
     
 
-class CoachUpdateView(UpdateView):
+class CoachUpdateView(PermissionRequiredMixin,UpdateView):
+    permission_required= "client.change_coach"
     model = Coach
     template_name="snippets/_coach_form.html"
     fields=[
@@ -209,7 +223,8 @@ class CoachUpdateView(UpdateView):
         messages.success(self.request, form.errors ,extra_tags="toastr")
         return self.render_to_response(self.get_context_data(form=form)) 
 
-class CoachDeleteView(DeleteView):
+class CoachDeleteView(PermissionRequiredMixin,DeleteView):
+    permission_required ="client.delete_coach"
     model= Coach
     template_name="snippets/delete_modal.html"
     success_url=reverse_lazy('client:coach_name')
@@ -226,7 +241,8 @@ class CoachDeleteView(DeleteView):
         return HttpResponseRedirect(success_url)
       
 # ---------------------------------------------Personnel---------------------------------------------------------
-class PersonnelsView(SingleTableMixin,FilterView):
+class PersonnelsView(PermissionRequiredMixin,SingleTableMixin,FilterView):
+    permission_required = "client.view_personnel"
     table_class=PersonnelHTMxTable
     filterset_class = PersonnelFilter
     paginate_by = 15
@@ -242,7 +258,7 @@ class PersonnelsView(SingleTableMixin,FilterView):
             template_name = "personnels.html" 
         return template_name 
     
-
+@permission_required("client.add_personnel", raise_exception=True)
 def PersonnelCreateView(request):
     context={}
     template_name = "snippets/_personnels_form.html"
@@ -271,7 +287,8 @@ def PersonnelCreateView(request):
     context["form"] = form
     return render(request, template_name=template_name, context=context)
     
-class PersonnelUpdateView(UpdateView):
+class PersonnelUpdateView(PermissionRequiredMixin,UpdateView):
+    permission_required  = "client.change_personnel"
     model = Personnel
     template_name="snippets/_personnels_form.html"
     fields=[
@@ -306,7 +323,8 @@ class PersonnelUpdateView(UpdateView):
         messages.success(self.request, form.errors ,extra_tags="toastr")
         return self.render_to_response(self.get_context_data(form=form)) 
 
-class PersonnelDeleteView(DeleteView):
+class PersonnelDeleteView(PermissionRequiredMixin,DeleteView):
+    permission_required = "client.delete_personnel"
     model= Personnel
     template_name="snippets/delete_modal.html"
     success_url=reverse_lazy('client:personnels_name')

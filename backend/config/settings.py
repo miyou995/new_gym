@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'planning',
     'transaction',
     'mptt',
+    'django_crontab',
     
     
     #third party app
@@ -264,6 +265,12 @@ CELERY_TIMEZONE = TIME_ZONE
 
 
 
+
+
+CRONJOBS = [
+    ('20 12 * * *', 'presence.tasks.presence_cron_job'),
+    # Add more cron jobs as needed
+]
 
 
 
