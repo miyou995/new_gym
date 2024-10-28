@@ -12,6 +12,7 @@ class PresenceManuelleModelForm(forms.ModelForm):
         model  = Presence
         fields= ('client',
                 'abc',
+                'creneau',
                 'hour_entree',
                 'hour_sortie',
                 'date',
@@ -39,8 +40,15 @@ class PresenceManuelleModelForm(forms.ModelForm):
         super(PresenceManuelleModelForm,self).__init__(*args,**kwargs)
         
 
+        self.fields["creneau"].widget.attrs.update({'id':'creneauSelectId'})
 
-        self.fields["abc"].widget.attrs.update({'id' : 'abcSelectId' })
+        self.fields["abc"].widget.attrs.update({'id' : 'abcSelectId',
+            "hx-get": reverse('creneau:abc_creneau_view'),
+            "hx-target":"#creneauSelectId",
+            "hx-swap" : "innerHTML",
+            "hx-trigger": "change",
+            "hx-include":"[name='abc'] , [name='client']",
+            })
         self.fields["client"].widget.attrs.update({
             "hx-get": reverse('abonnement:abc_htmx_view'),
             "hx-target":"#abcSelectId",
@@ -48,12 +56,21 @@ class PresenceManuelleModelForm(forms.ModelForm):
             "hx-trigger": "change",
             "hx-include":"[name='client']",
             })
+
         self.fields["abc"].queryset = AbonnementClient.objects.none()
         if 'client' in self.data:
             client = self.data.get('client')
             self.fields['abc'].queryset = AbonnementClient.objects.filter(client=client)
         elif self.instance.pk:
             self.fields['abc'].queryset = self.instance.client.abonnement_client
+
+        
+        self.fields["creneau"].queryset = AbonnementClient.objects.none()
+        if 'abc' in self.data:
+            abc = self.data.get('abc')
+            self.fields['creneau'].queryset = AbonnementClient.objects.filter(type_abonnement=abc)
+        elif self.instance.pk:
+            self.fields['creneau'].queryset = self.instance.client.abonnements
 
       
         self.fields['client'].error_messages = {

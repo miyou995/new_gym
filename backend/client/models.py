@@ -293,6 +293,7 @@ class Client(models.Model):
             # messages.error(self.request, "l'adherant n'est pas inscrit aujourd'hui")
             # # raise serializers.ValidationError("l'adherant n'est pas inscrit aujourd'hui")
             # return self
+    
         
         
     def init_output(self,  exit_hour=None):
@@ -326,6 +327,76 @@ class Client(models.Model):
                 print('la sorite--------------- ', presence.hour_sortie)
                 logger.warning('la sorite--------------- {}'.format(str(presence.hour_sortie)))
                 return True
+
+
+    def manuelle_presence(self,date,heur_sortie, door_ip=None):
+        logger.warning('Client requested Door Auth ===> {}'.format(str(self.id)))
+        client = self
+        creneaux = Creneau.objects.filter(abonnements__client=client,day=date).distinct()
+       
+        print('creneaux du Today client=====>', creneaux)
+        logger.warning('LOGLes creneaux du Today client=====-{}'.format(str(creneaux)))
+        if len(creneaux) :
+            abonnement = creneaux
+            print('ABONNEMENT<<<<<<<<<<>>>>>>>>>>>>>>>>',abonnement.get_type())
+            print('ABONNEMENT is valid<<<<<<<<<<>>>>>>>>>>>>>>>>',abonnement.is_valid())
+            print('ABONNEMENT presence qnt<<<<<<<<<<>>>>>>>>>>>>>>>>',abonnement.presence_quantity)
+
+            if abonnement.is_valid() and abonnement.is_time_volume():
+                print('IM HEEERE LOG ABONNEMENT==== TIME VOLUUUPME', abonnement.is_time_volume())
+                presence_sortie= self.init_output_sortie_manuelle(heur_sortie)
+                if presence_sortie:
+                    print('YESS SORTIEEE')
+                return 'entre'
+            elif abonnement.is_valid() and abonnement.presence_quantity > 0:
+                if abonnement.is_fixed_sessions() or abonnement.is_free_sessions():
+                    abonnement.presence_quantity -= 1
+                abonnement.save()
+                presence_sortie= self.init_output_sortie_manuelle(heur_sortie)
+                if presence_sortie:
+                    print('YESS SORTIEEE')
+                return 'entre'
+            else:
+                logger.warning('LOG abonnement.presence_quantity=====> {}'.format(str(abonnement.presence_quantity)))
+                logger.warning('LOG ABONNEMENT TYPE=====-{}'.format(str(abonnement.type_abonnement.type_of)))
+                return "fin_abonnement"
+        else:
+            print("*******l'adherant n'est pas inscrit aujourd'hui pas de abc **********")
+            return "not_today"
+        
+    def init_output_sortie_manuelle(self,heur_sortie , exit_hour=None):
+        presences = Presence.objects.select_for_update().filter(abc__client=self)
+        with transaction.atomic():
+            presence = presences.first()
+            if exit_hour:
+                heur_sortie = exit_hour
+            if not presence:
+                """ ecart + de 10 seconde"""
+                return False
+            logger.warning('LA PRESENCE de{}'.format(str(self.id)))
+            presence_time = presence.hour_entree
+            ecart = abs(datetime.strptime(heur_sortie, FTM) - datetime.strptime(str(presence_time), FTM))
+            time_diff_seconds = timedelta.total_seconds(ecart)
+            if int(time_diff_seconds) <= 2:
+                logger.warning('SORTIE COULD NOT BE done  ================> ')
+                return False
+            else:
+                # presence.hour_sortie = heur_sortie
+                # logger.warning('SORTIE AUTORISEE ================> {}'.format(str(presence.hour_sortie)))
+                # presence.save()
+                abc = presence.abc
+                if abc.is_time_volume():
+                    ecart = presence.get_time_consumed() 
+                    print('ecart presence>>>>', ecart)
+                    abc.presence_quantity -= ecart 
+                    abc.save()
+                print('la sorite--------------- ', presence.hour_sortie)
+                logger.warning('la sorite--------------- {}'.format(str(presence.hour_sortie)))
+                return True
+          
+
+
+
 
     def get_access_permission(self, door_ip=None):
         logger.warning('Client requested Door Auth ===> {}'.format(str(self.id)))

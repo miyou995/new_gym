@@ -53,7 +53,7 @@ def ClientCreateView(request):
     template_name = "snippets/_client_form.html"
     form = ClientModelForm(data=request.POST or None,files=request.FILES or None) 
     if request.method == "POST":
-        form = ClientModelForm(data=request.POST) 
+        form = ClientModelForm(data=request.POST , files=request.FILES) 
         posted_data= "\n".join(f'{key} {value}' for key, value in request.POST.items())
         print('POSTED DATA=========\n', posted_data, '\n========')
         if form.is_valid():
