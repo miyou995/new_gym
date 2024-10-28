@@ -77,6 +77,18 @@ class Presence(models.Model):
     def get_edit_url(self):
         return reverse('presence:PresenceManuelleUpdateClient', kwargs={'pk': str(self.id)})
 
+
+    def create_manual_presence(self, validated_data):# THIS IS USED ON THE API SIDE 
+        abc = validated_data['abc']
+        creneau = validated_data['creneau']
+        presence_date = validated_data['date']
+        hour_in = validated_data['hour_entree']
+        hour_out = validated_data['hour_sortie']
+        presence = Presence.objects.create(abc= abc, creneau= creneau, hour_entree=hour_in , hour_sortie=hour_out, date=presence_date)
+        ecart = presence.get_time_consumed(hour_out)
+        abc.presence_quantity -= ecart
+        abc.save() 
+        return presence
     
 
     # def get_time_consumed(self, sortie=None):

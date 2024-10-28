@@ -16,6 +16,24 @@ from .tables import AbonnementClientHTMxTable
 from django.db.models import Max
 
 
+def abc_creneau_view(request):
+    template_name = "snippets/abc_creneau.html"
+    abc = request.GET.get('abc')
+    print("abc--------------", abc)
+    client_id = request.GET.get('client')
+    print("client----------------", client_id)
+    
+    abonnements = AbonnementClient.objects.filter(client__id=client_id)
+    print("Abonnements for client:", abonnements)
+
+    for abonnement_client in abonnements:
+        creneaux = abonnement_client.creneaux.all()
+        print(f"Creneaux for this AbonnementClient (ID: {abonnement_client.id}): {creneaux}")
+    return render(request, template_name, {'creneaux': creneaux})
+
+
+
+
 
 class CreateCreneau(CreateView):
     template_name ="snippets/_creneau_form.html"

@@ -1,11 +1,13 @@
 from django.urls import path
 from .views import  (CreateCreneau,UpdateCreneau,CreneauDeleteView,CalenderView,
-                     AbonnementsParCreneau)
+                     AbonnementsParCreneau,abc_creneau_view)
 
 app_name = 'creneau'
 
 
 urlpatterns = [
+       path('abc_creneau_view/', abc_creneau_view, name='abc_creneau_view'),
+       
        path('creneaux/', CalenderView.as_view(), name='creneaux_name'),
 
        path('creneaux/CreateCreneau',CreateCreneau.as_view(), name='create_creneau'),

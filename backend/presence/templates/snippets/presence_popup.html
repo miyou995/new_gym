@@ -3,12 +3,7 @@
 <div class="modal fade" id="productNotFoundModal" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
-      <div class="modal-header bg-primary text-white">
-        <h5 class="modal-title" id="modalLongTitle">Presence Client</h5>
-        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
+      
       <div class="modal-body">
         <div class="alert alert-primary" role="alert">
           <div class="d-flex align-items-center mb-4">
@@ -37,13 +32,13 @@
           {% endif %}
           {% if auto_presence == 'not_today' %}
             <div class="text-center mt-4">
-              <h2 class="text-danger">le client n'est pas un abonnement aujourd'hui</h2>
+              <h2 class="text-danger">Le client n'a pas un abonnement aujourd'hui</h2>
               <img alt="Cross Icon" src="{% static 'images/logos/cross.png' %}" width="120" height="120" class="img-fluid" />
             </div>
           {% endif %}
           {% if auto_presence == 'sortie' %}
             <div class="text-center mt-4">
-              <h2 class="text-success">le client est sortie</h2>
+              <h2 class="text-success">Le client est sortie</h2>
               <img alt="Cross Icon" src="{% static 'images/logos/ex.png' %}" width="120" height="120" class="img-fluid" />
             </div>
           {% endif %}

@@ -94,7 +94,12 @@ class PresenceManuelleClient(CreateView):
         
         if form.is_valid():
             print("is valide")
-            paiement = form.save()
+            presence = form.save()
+            client_id=presence.abc.client
+            print("client_id from presence -----------",client_id)
+            print("presence.abc.creneaux-----------",presence.date)
+
+            client_id.manuelle_presence(presence.date , presence.hour_sortie)
             message = _("Presence a été créé avec succès")
             messages.success(request, str(message), extra_tags="toastr")
             return HttpResponse(status=204, headers={
