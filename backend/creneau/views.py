@@ -22,14 +22,14 @@ def abc_creneau_view(request):
     print("abc--------------", abc)
     client_id = request.GET.get('client')
     print("client----------------", client_id)
-    
-    abonnements = AbonnementClient.objects.filter(client__id=client_id)
-    print("Abonnements for client:", abonnements)
-
-    for abonnement_client in abonnements:
+    try:
+        abonnement_client = AbonnementClient.objects.get( id=abc, client__id=client_id)
+        print("abonnement_client for client---:", abonnement_client)
         creneaux = abonnement_client.creneaux.all()
         print(f"Creneaux for this AbonnementClient (ID: {abonnement_client.id}): {creneaux}")
-    return render(request, template_name, {'creneaux': creneaux})
+        return render(request, template_name, {'creneaux': creneaux})
+    except ValueError:
+        return HttpResponse("<option>------</option>")
 
 
 
