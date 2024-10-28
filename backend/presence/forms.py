@@ -46,7 +46,7 @@ class PresenceManuelleModelForm(forms.ModelForm):
             "hx-get": reverse('creneau:abc_creneau_view'),
             "hx-target":"#creneauSelectId",
             "hx-swap" : "innerHTML",
-            "hx-trigger": "change",
+            "hx-trigger": "change, referesh_creneaux from:body delay:100",
             "hx-include":"[name='abc'] , [name='client']",
             })
         self.fields["client"].widget.attrs.update({
