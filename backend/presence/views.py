@@ -34,21 +34,21 @@ class PresencesView(SingleTableMixin, FilterView):
         else:
             template_name = "presences.html" 
         return template_name 
-
+    
+from django.db.models import Q
 def presence_client(request):
-    # template_name = "snippets/presence_popup.html"
     context= {}
-    code_card=request.GET.get('search','')
+    code=request.GET.get('search','')
     print("from client present//////////////////")
-    client_id=Client.objects.filter(carte=code_card)
+    client_id=Client.objects.filter(Q(id=code) | Q(carte=code))
     print("client_id---------------",client_id)
-    abc_list=AbonnementClient.objects.filter(client__carte=code_card)
+    # abc_list=AbonnementClient.objects.filter(client__carte=code)
     # for abc in abc_list:
     #     print('abc--------------------',abc)
     #     print("creneau------------",abc.creneaux)
     if client_id :
         print("client_id----------------")
-        client_id=get_object_or_404(Client, carte=code_card)
+        client_id=get_object_or_404(Client, Q(id=code) | Q(carte=code))
         auto_presence=client_id.auto_presence()
         context["client"]=client_id
         context["auto_presence"]=auto_presence
@@ -94,12 +94,10 @@ class PresenceManuelleClient(CreateView):
         
         if form.is_valid():
             print("is valide")
-            presence = form.save()
-            client_id=presence.abc.client
-            print("client_id from presence -----------",client_id)
-            print("presence.abc.creneaux-----------",presence.date)
-
-            client_id.manuelle_presence(presence.date , presence.hour_sortie)
+            presence= form.save()
+            ecart = presence.get_time_consumed(presence.hour_sortie)
+            presence.abc.presence_quantity -= ecart
+            presence.abc.save() 
             message = _("Presence a été créé avec succès")
             messages.success(request, str(message), extra_tags="toastr")
             return HttpResponse(status=204, headers={
@@ -116,14 +114,12 @@ class PresenceManuelleClient(CreateView):
             return render(request, self.template_name, context)
 
 
-
-
 class PresenceManuelleUpdateClient(UpdateView):
     model = Presence 
     template_name = "snippets/_presence_Manuelle_form.html"
     fields = [
-      
                 'abc',
+                'creneau',
                 'hour_entree',
                 'hour_sortie',
                 'date',
@@ -135,6 +131,9 @@ class PresenceManuelleUpdateClient(UpdateView):
         return super().get(request, *args, **kwargs)
     def form_valid(self, form):
         presence =form.save()
+        ecart = presence.get_time_consumed(presence.hour_sortie)
+        presence.abc.presence_quantity -= ecart
+        presence.abc.save() 
         print('IS FORM VALID', presence.id)
         messages.success(self.request, "Presence Mis a jour avec Succés",extra_tags="toastr")
         return HttpResponse(status=204,

@@ -1,0 +1,13 @@
+
+{% load i18n %}
+{% load widget_tweaks %}
+
+  {% render_field 
+      field 
+      class="form-select filter-select affect-select" 
+      data-control="select2" 
+      data-allow-clear="true" 
+  %}
+  {% if field.errors %}
+    <span class="form-check-label fw-semibold text-danger">{{ field.errors }}</span>
+  {% endif %}
