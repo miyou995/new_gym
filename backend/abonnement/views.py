@@ -26,8 +26,6 @@ from transaction.models import Paiement
 from django.http import JsonResponse
 
 
-
-
 def abc_htmx_view(request):
     client_id = request.GET.get('client')
     template_name = "abc_hx.html"

@@ -126,3 +126,29 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+
+
+
+
+window.addEventListener("DOMContentLoaded", (e) => {
+	// const inputElements = document.getElementsByClassName('default-today');
+	// inputElements.forEach(function(inputElement) {
+	//   inputElement.value = today.toISOString().substring(0, 10);
+	// });
+	$('.affect-select').on('select2:select select2:unselect', function (e) {
+	console.log("BOOM SELECT CHANGED");
+		$(this).closest('select').get(0).dispatchEvent(new Event('change'));
+	});
+	$('.filter-select').on('select2:select select2:unselect', function (e) {
+	console.log("BOOM SELECT CHANGED");
+		$(this).closest('form').get(0).dispatchEvent(new Event('change'));
+	});
+});
+
+
+window.addEventListener("DOMContentLoaded", (e) => {
+	$('.warehouse-select').on('select2:select select2:unselect', function (e) {
+		$('.products-select').trigger('change');
+	});
+
+});

@@ -1,5 +1,6 @@
 from django import forms
 from django.urls import reverse
+from creneau.models import Creneau
 from client.models import Client
 from presence.models import Presence
 from django.utils.translation import gettext_lazy as _
@@ -50,6 +51,7 @@ class PresenceManuelleModelForm(forms.ModelForm):
             "hx-include":"[name='abc'] , [name='client']",
             })
         self.fields["client"].widget.attrs.update({
+          
             "hx-get": reverse('abonnement:abc_htmx_view'),
             "hx-target":"#abcSelectId",
             "hx-swap" : "innerHTML",
@@ -68,7 +70,10 @@ class PresenceManuelleModelForm(forms.ModelForm):
         self.fields["creneau"].queryset = AbonnementClient.objects.none()
         if 'abc' in self.data:
             abc = self.data.get('abc')
-            self.fields['creneau'].queryset = AbonnementClient.objects.filter(type_abonnement=abc)
+            print("abc = self.data.get('abc')------------",abc)
+            self.fields['creneau'].queryset = Creneau.objects.filter(abonnements__id= abc)
+            print("self.fields['creneau'].queryse)------------\n \n \n ",self.fields['creneau'].queryset)
+
         elif self.instance.pk:
             self.fields['creneau'].queryset = self.instance.client.abonnements
 
@@ -90,6 +95,11 @@ class PresenceManuelleModelForm(forms.ModelForm):
         self.fields['hour_sortie'].error_messages = {
             'required': 'veuillez choisir.',
             'invalid': 'Custom error message for field2 is invalid.',
+        }
+        self.fields['creneau'].error_messages = {
+            'required': 'veuillez choisir.',
+            'invalid': 'Custom error message for field1 is invalid.',
+          
         }
 
 

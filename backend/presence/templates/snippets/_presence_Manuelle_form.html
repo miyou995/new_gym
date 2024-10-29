@@ -18,17 +18,26 @@
 		</div>
 		{% with WIDGET_ERROR_CLASS='is-invalid' %}         
 			{% for field in form %}
-				<div class="d-flex flex-column mb-8 fv-row">
-					<label class="d-flex align-items-center fs-6 fw-semibold mb-2">
-						<span {%  if field.field.required %}class="required"{% endif %}>{{field.label}}</span>
-					</label>
-					{% render_field field class='form-control' %}
-					{% if field.errors %}
-						<span class="form-check-label fw-semibold text-danger">{{field.errors}}</span>
-					{% else %}
-						{{field.help_text}}
-					{% endif %}
-				</div>
+				{% if field|widget_type|slugify == "select" %}
+					<div class="{{column_classes}} mb-4 d-flex flex-column mb-8 fv-row">
+						<label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+							<span {%  if field.field.required %}class="required"{% endif %}>{{field.label}}</span>
+							{% include 'fields/select.html' %}
+						</label>
+					</div>
+				{% else %}
+					<div class="d-flex flex-column mb-8 fv-row">
+						<label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+							<span {%  if field.field.required %}class="required"{% endif %}>{{field.label}}</span>
+						</label>
+						{% render_field field class='form-control' %}
+						{% if field.errors %}
+							<span class="form-check-label fw-semibold text-danger">{{field.errors}}</span>
+						{% else %}
+							{{field.help_text}}
+						{% endif %}
+					</div>
+				{% endif %}
 			{% endfor %} 
 		{% endwith %}       
 		<div class="text-center">   
