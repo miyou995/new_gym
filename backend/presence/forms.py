@@ -41,9 +41,10 @@ class PresenceManuelleModelForm(forms.ModelForm):
         super(PresenceManuelleModelForm,self).__init__(*args,**kwargs)
         
 
-        self.fields["creneau"].widget.attrs.update({'id':'creneauSelectId'})
+        self.fields["creneau"].widget.attrs.update({'id':'creneauSelectId', "class": "affect-select",})
 
         self.fields["abc"].widget.attrs.update({'id' : 'abcSelectId',
+            "class": "affect-select",                                   
             "hx-get": reverse('creneau:abc_creneau_view'),
             "hx-target":"#creneauSelectId",
             "hx-swap" : "innerHTML",
@@ -51,7 +52,7 @@ class PresenceManuelleModelForm(forms.ModelForm):
             "hx-include":"[name='abc'] , [name='client']",
             })
         self.fields["client"].widget.attrs.update({
-          
+             "class": "affect-select",
             "hx-get": reverse('abonnement:abc_htmx_view'),
             "hx-target":"#abcSelectId",
             "hx-swap" : "innerHTML",

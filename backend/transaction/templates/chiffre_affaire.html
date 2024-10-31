@@ -1,132 +1,175 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
 {% load static %}
-
 {% block content %}
-<div class="app-main flex-column flex-row-fluid" id="kt_app_main">
-    <div class="d-flex flex-column flex-column-fluid">
-        
-        <div id="kt_app_content" class="app-content">
-            <div class="card card-flush">
-                <div class="card-header align-items-center py-5 gap-2 gap-md-5">
-                    <div class="card-title">
-                        <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
-                            <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
-                    
-                                    <div class="col-md-5">
-                                        <span class="card-label fw-bold fs-4 text-grey-800">Date Début</span>
-                                        <input type="date" class="form-control"  />
-                                    </div>
-                                    <div class=" col-md-5">
-                                        <span class="card-label fw-bold fs-4 text-grey-800">Date Fin</span>
 
-                                        <input type="date"  class="form-control"  />
-                                    </div>
-                            
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
-                        <span class="card-label fw-bold fs-1 text-danger">Résultat: 0 DA</span>
-                    </div>
-
-
-
-
-
-                </div>
-                <div class="row" >
-                    <div class="col-sm-6" >
-                        <div class="card" style="background-color: #F6E5CA">
-                            <div class="card-body">
-                                <div class="card card-flush">
-                                    <div class="card-header align-items-center py-5 gap-2 gap-md-5">
-                                        <div class="card-title">
-                                            <div class="d-flex align-items-center position-relative my-1">
-                                                </h3 class="card-title">Chiffre d'affaire par salle</h3>
-                                            </div>
-                                            <div id="kt_ecommerce_report_sales_export" class="d-none"></div>
-                                        </div>
-                                    
-                                      
-                                    </div>
-                                    <div class="card-body pt-0">
-                                    
-                                        <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_ecommerce_report_sales_table">
-                                            <thead>
-                                                <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
-                                                    <th class="min-w-100px">Nom</th>
-                                                    <th class="text-end min-w-75px">Montant</th>
-                                               
-                                                </tr>
-                                            </thead>
-                                            <tbody class="fw-semibold text-gray-600">
-                                                <tr>
-                                                    <td>C00102</td>
-                                                    <td class="text-end">141 </td>
-                                                  
-                                                </tr>    
-                                            </tbody>
-                                        </table>
-                                        <div class="menu-item px-3">
-                                            <div class="menu-content px-3 py-3">
-                                                <a class="bi bi-caret-right-fill btn btn-primary btn-sm px-4 " href="#"> Afficher tout</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                          </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="card" style="background-color: #F6E5CA">
-                            <div class="card-body">
-                                <div class="card card-flush">
-                                    <div class="card-header align-items-center py-5 gap-2 gap-md-5">
-                                        <div class="card-title">
-                                            <div class="d-flex align-items-center position-relative my-1">
-                                                </h3 class="card-title">Chiffre d'affaire par Abonnement</h3>
-                                            </div>
-                                            <div id="kt_ecommerce_report_sales_export" class="d-none"></div>
-                                        </div>
-                                    
-                                      
-                                    </div>
-                                    <div class="card-body pt-0">
-                                    
-                                        <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_ecommerce_report_sales_table">
-                                            <thead>
-                                                <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
-                                                    <th class="min-w-100px">Nom</th>
-                                                    <th class="text-end min-w-75px">Montant</th>
-                                               
-                                                </tr>
-                                            </thead>
-                                            <tbody class="fw-semibold text-gray-600">
-                                                <tr>
-                                                    <td>C00102</td>
-                                                    <td class="text-end">141 </td>
-                                                  
-                                                </tr>    
-                                            </tbody>
-                                        </table>
-                                        <div class="menu-item px-3">
-                                            <div class="menu-content px-3 py-3">
-                                                <a class="bi bi-caret-right-fill btn btn-primary btn-sm px-4 " href="#"> Transactions</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                          </div>
-                    </div>
-                </div>
-
-                
-              
+<div class="container my-5">
+    <div class="d-flex justify-content-center align-items-center mb-4">
+        <form method="GET" class="form-inline shadow-sm p-3 rounded bg-white" style="width: 100%; max-width: 700px;">
+            <div class="form-group me-3">
+                <select name="period" id="period" class="form-select form-select-sm" onchange="this.form.submit()">
+                    <option value="all" {% if selected_period == 'all' %}selected{% endif %}>Total</option>
+                    <option value="today" {% if selected_period == 'today' %}selected{% endif %}>Aujourd'hui</option>
+                    <option value="week" {% if selected_period == 'week' %}selected{% endif %}>Cette semaine</option>
+                    <option value="month" {% if selected_period == 'month' %}selected{% endif %}>Ce mois</option>
+                    <option value="year" {% if selected_period == 'year' %}selected{% endif %}>Cette année</option>
+                    <option value="custom" {% if selected_period == 'custom' %}selected{% endif %}>Custom Range</option>
+                </select>
             </div>
-            
+            <div id="dateRangeInputs" class="d-flex align-items-center mt-3" style="display: none; opacity: 0; transition: opacity 0.2s;">
+                <input type="date" name="start_date" value="{{ start_date|date:'Y-m-d' }}" class="form-control form-control-sm me-2" placeholder="Start Date">
+                <input type="date" name="end_date" value="{{ end_date|date:'Y-m-d' }}" class="form-control form-control-sm me-2" placeholder="End Date">
+                <button type="submit" class="btn btn-primary btn-sm">Apply</button>
+            </div>
+        </form>
+    </div>
+
+    <div style="display: flex; justify-content: center; gap: 30px; margin-top: 40px; padding: 20px; background-color: #eef2f7; border-radius: 12px;">
+        <div hx-get="{% url 'transactions:chiffre_par_abonnement_name' %}"
+             hx-trigger="click"
+             hx-target="#subscriptionChart"
+             hx-swap="innerHTML"
+             style="width: 600px; height: 500px; background-color: #ffffff; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1); border-radius: 12px; padding: 20px;">
+            {% include 'snippets/chart_graph.html' with id="subscriptionChart" chart_labels=chart_labels chart_data=chart_data title="Chiffre d'affaire par Abonnement" %}
+        </div>
+      
+        <div style="width: 600px; height: 500px; background-color: #ffffff; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1); border-radius: 12px; padding: 20px;">
+            {% include 'snippets/chart_graph.html' with id="roomChart" chart_labels=room_chart_labels chart_data=room_chart_data title="Chiffre d'affaire par Salle" %}
         </div>
     </div>
 
+
+
+
+
+
+
+
+
+
+
+
+{% comment %} <div style="display: flex; justify-content: center; gap: 30px; margin-top: 40px; padding: 20px; background-color: #eef2f7; border-radius: 12px;">
+    <div style="width: 600px; height: 500px; background-color: #ffffff; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1); border-radius: 12px; padding: 20px;">
+        <canvas id="subscriptionChart"></canvas>
+    </div>
+    <div style="width: 600px; height: 500px; background-color: #ffffff; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1); border-radius: 12px; padding: 20px;">
+        <canvas id="roomChart"></canvas>
+    </div>
 </div>
+    <!-- Add Chart.js from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Helper to create vibrant gradient colors
+        function createGradient(ctx, color1, color2) {
+            const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+            gradient.addColorStop(0, color1);
+            gradient.addColorStop(1, color2);
+            return gradient;
+        }
+    
+        // Configuration for each chart
+        function createChartConfig(ctx, labels, data, titleText, gradient) {
+            return {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Total',
+                        data: data,
+                        backgroundColor: gradient,
+                        borderRadius: 10,
+                        barPercentage: 0.6,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Montant (DZD)',
+                                font: { size: 14, weight: 'bold' },
+                                color: '#444'
+                            },
+                            ticks: {
+                                color: '#333',
+                                font: { size: 13 }
+                            },
+                            grid: { color: "rgba(180, 180, 180, 0.3)" }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                font: { size: 14, weight: 'bold' },
+                                color: '#444'
+                            },
+                            ticks: {
+                                color: '#333',
+                                font: { size: 13 }
+                            },
+                            grid: { display: false }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: titleText,
+                            font: { size: 18, weight: 'bold' },
+                            color: '#333'
+                        },
+                        legend: { display: false }
+                    }
+                }
+            };
+        }
+        
+        // Subscription Chart
+        const subscriptionCtx = document.getElementById('subscriptionChart').getContext('2d');
+        const subscriptionGradient = createGradient(subscriptionCtx, 'rgba(0, 123, 255, 0.9)', 'rgba(0, 80, 210, 0.7)');
+        new Chart(subscriptionCtx, createChartConfig(
+            subscriptionCtx,
+            {{ chart_labels|safe }},
+            {{ chart_data|safe }},
+            "Chiffre d'affaire par Abonnement",
+            subscriptionGradient
+        ));
+    
+        // Room Chart
+        const roomCtx = document.getElementById('roomChart').getContext('2d');
+        const roomGradient = createGradient(roomCtx, 'rgba(255, 99, 132, 0.9)', 'rgba(220, 53, 69, 0.7)');
+        new Chart(roomCtx, createChartConfig(
+            roomCtx,
+            {{ room_chart_labels|safe }},
+            {{ room_chart_data|safe }},
+            "Chiffre d'affaire par Salle",
+            roomGradient
+        ));
+    
+     {% endcomment %}
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const periodSelect = document.querySelector('select[name="period"]');
+        const dateRangeInputs = document.getElementById('dateRangeInputs');
+
+        // Initial check to display custom range if already selected
+        if (periodSelect.value === 'custom') {
+            dateRangeInputs.style.display = 'flex';
+            dateRangeInputs.style.opacity = '1';
+        }
+
+        // Add event listener to show/hide date range inputs based on selection
+        periodSelect.addEventListener('change', function() {
+            if (this.value === 'custom') {
+                dateRangeInputs.style.display = 'flex';
+                setTimeout(() => dateRangeInputs.style.opacity = '1', 0);
+            } else {
+                dateRangeInputs.style.opacity = '0';
+                setTimeout(() => { dateRangeInputs.style.display = 'none'; }, 200);
+                this.form.submit();
+            }
+        });
+    });
+</script>
 {% endblock content %}

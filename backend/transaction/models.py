@@ -65,6 +65,13 @@ class Paiement(Transaction):
     def get_delete_url(self):
         return reverse('transactions:PaiementDeleteView_name', kwargs={'pk': str(self.id)})
 
+    @classmethod
+    def get_total_by_subscription_type(cls):
+        from django.db.models import Sum
+        return (cls.objects
+                .values('abonnement_client__type_abonnement__name')
+                .annotate(total=Sum('amount'))
+                .order_by('abonnement_client__type_abonnement__name'))
 class Autre(Transaction):
     history = HistoricalRecords()
     name = models.CharField(max_length=200, null=True, blank=True)
