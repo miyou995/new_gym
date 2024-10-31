@@ -100,9 +100,98 @@ class AutreTransactionTable(PermissionRequiredMixin,SingleTableMixin,FilterView)
 
 
 
+from datetime import datetime, timedelta
 
-class Chiffre_affaireView(TemplateView):
+from django.db.models import Sum
+from django.shortcuts import render
+from .models import Paiement
+from .mixin import DateFilterMixin
+
+class chiffre_affaire(PermissionRequiredMixin,TemplateView):
+    permission_required = "transaction.view_paiement"
     template_name = "chiffre_affaire.html"
+
+# def chiffre_affaire(request):
+#     date_filter = DateFilterMixin()
+#     date_filter.request = request  # Manually set request since this is a function view
+#     period = request.GET.get('period', 'all')
+#     start_date, end_date = date_filter.get_date_range(period)
+
+#     # Initialize base querysets
+#     subscription_totals = (Paiement.objects
+#         .values('abonnement_client__type_abonnement__name')
+#         .annotate(total=Sum('amount'))
+#         .order_by('abonnement_client__type_abonnement__name'))
+
+#     room_totals = (Paiement.objects
+#         .values('abonnement_client__type_abonnement__salles__name')
+#         .annotate(total=Sum('amount'))
+#         .order_by('abonnement_client__type_abonnement__salles__name'))
+
+#     # Apply date filters if a period is selected
+#     if start_date and end_date:
+#         subscription_totals = subscription_totals.filter(date_creation__range=[start_date, end_date])
+#         room_totals = room_totals.filter(date_creation__range=[start_date, end_date])
+
+#     # Prepare chart data
+#     labels = [item['abonnement_client__type_abonnement__name'] for item in subscription_totals]
+#     amounts = [float(item['total']) for item in subscription_totals]
+#     room_labels = [str(item['abonnement_client__type_abonnement__salles__name']) for item in room_totals]
+#     room_amounts = [float(item['total']) for item in room_totals]
+
+#     return render(request, 'chiffre_affaire.html', {
+#         'subscription_totals': subscription_totals,
+#         'room_totals': room_totals,
+#         'chart_labels': labels,
+#         'chart_data': amounts,
+#         'room_chart_labels': room_labels,
+#         'room_chart_data': room_amounts,
+#         'selected_period': period,  
+#     })
+def chiffre_par_abonnement(request):
+    date_filter = DateFilterMixin()
+    date_filter.request = request  # Manually set request since this is a function view
+    period = request.GET.get('period', 'all')
+    start_date, end_date = date_filter.get_date_range(period)
+    subscription_totals = (Paiement.objects
+        .values('abonnement_client__type_abonnement__name')
+        .annotate(total=Sum('amount'))
+        .order_by('abonnement_client__type_abonnement__name'))
+    if start_date and end_date:
+        subscription_totals = subscription_totals.filter(date_creation__range=[start_date, end_date])
+
+    labels = [item['abonnement_client__type_abonnement__name'] for item in subscription_totals]
+    amounts = [float(item['total']) for item in subscription_totals]
+
+    return render(request, 'chiffre_affaire.html', {
+        'subscription_totals': subscription_totals,
+        'chart_labels': labels,
+        'chart_data': amounts,
+        'selected_period': period,  
+    })
+
+def chiffre_par_Activity(request):
+    date_filter = DateFilterMixin()
+    date_filter.request = request  # Manually set request since this is a function view
+    period = request.GET.get('period', 'all')
+    start_date, end_date = date_filter.get_date_range(period)
+    room_totals = (Paiement.objects
+        .values('abonnement_client__type_abonnement__salles__name')
+        .annotate(total=Sum('amount'))
+        .order_by('abonnement_client__type_abonnement__salles__name'))
+    if start_date and end_date:
+        room_totals = room_totals.filter(date_creation__range=[start_date, end_date])
+
+    room_labels = [str(item['abonnement_client__type_abonnement__salles__name']) for item in room_totals]
+    room_amounts = [float(item['total']) for item in room_totals]
+    
+    return render(request, 'chiffre_affaire.html', {
+        'room_totals': room_totals,
+        'room_chart_labels': room_labels,
+        'room_chart_data': room_amounts,
+        'selected_period': period,  
+    })
+
 
 # paiement transactions------------------------------------------------------------------------------------------
 class paiement(PermissionRequiredMixin,CreateView):

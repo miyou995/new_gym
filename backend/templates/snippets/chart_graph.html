@@ -1,0 +1,83 @@
+        <canvas id="id "></canvas>
+
+    <!-- Add Chart.js from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Helper to create vibrant gradient colors
+        function createGradient(ctx, color1, color2) {
+            const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+            gradient.addColorStop(0, color1);
+            gradient.addColorStop(1, color2);
+            return gradient;
+        }
+    
+        // Configuration for each chart
+        function createChartConfig(ctx, labels, data, titleText, gradient) {
+            return {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Total',
+                        data: data,
+                        backgroundColor: gradient,
+                        borderRadius: 10,
+                        barPercentage: 0.6,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Montant (DZD)',
+                                font: { size: 14, weight: 'bold' },
+                                color: '#444'
+                            },
+                            ticks: {
+                                color: '#333',
+                                font: { size: 13 }
+                            },
+                            grid: { color: "rgba(180, 180, 180, 0.3)" }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                font: { size: 14, weight: 'bold' },
+                                color: '#444'
+                            },
+                            ticks: {
+                                color: '#333',
+                                font: { size: 13 }
+                            },
+                            grid: { display: false }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: titleText,
+                            font: { size: 18, weight: 'bold' },
+                            color: '#333'
+                        },
+                        legend: { display: false }
+                    }
+                }
+            };
+        }
+        
+        const ctx = document.getElementById('{{ id }}').getContext('2d');
+        const gradient = createGradient(ctx, 'rgba(0, 123, 255, 0.9)', 'rgba(0, 80, 210, 0.7)');
+        new Chart(ctx, createChartConfig(
+            ctx,
+            {{ chart_labels|safe }}, 
+            {{ chart_data|safe }},
+            "{{ title }}",
+            gradient 
+        ));
+    
+   
+</script>
