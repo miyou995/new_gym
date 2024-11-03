@@ -3,39 +3,63 @@
 {% block content %}
 
 <div class="container my-5">
-    <div class="d-flex justify-content-center align-items-center mb-4">
-        <form method="GET" class="form-inline shadow-sm p-3 rounded bg-white" style="width: 100%; max-width: 700px;">
-            <div class="form-group me-3">
-                <select name="period" id="period" class="form-select form-select-sm" onchange="this.form.submit()">
-                    <option value="all" {% if selected_period == 'all' %}selected{% endif %}>Total</option>
-                    <option value="today" {% if selected_period == 'today' %}selected{% endif %}>Aujourd'hui</option>
-                    <option value="week" {% if selected_period == 'week' %}selected{% endif %}>Cette semaine</option>
-                    <option value="month" {% if selected_period == 'month' %}selected{% endif %}>Ce mois</option>
-                    <option value="year" {% if selected_period == 'year' %}selected{% endif %}>Cette année</option>
-                    <option value="custom" {% if selected_period == 'custom' %}selected{% endif %}>Custom Range</option>
-                </select>
-            </div>
-            <div id="dateRangeInputs" class="d-flex align-items-center mt-3" style="display: none; opacity: 0; transition: opacity 0.2s;">
-                <input type="date" name="start_date" value="{{ start_date|date:'Y-m-d' }}" class="form-control form-control-sm me-2" placeholder="Start Date">
-                <input type="date" name="end_date" value="{{ end_date|date:'Y-m-d' }}" class="form-control form-control-sm me-2" placeholder="End Date">
-                <button type="submit" class="btn btn-primary btn-sm">Apply</button>
-            </div>
-        </form>
+    <!-- Date Range Picker -->
+    <div class="card-toolbar mb-4">
+        <input name="start_date" type="hidden"/>
+        <input name="end_date" type="hidden"/>
+        <input 
+            class="form-control form-control-solid" 
+            placeholder="Pick date range" 
+            id="kt_daterangepicker_4"
+        />
     </div>
 
-    <div style="display: flex; justify-content: center; gap: 30px; margin-top: 40px; padding: 20px; background-color: #eef2f7; border-radius: 12px;">
-        <div hx-get="{% url 'transactions:chiffre_par_abonnement_name' %}"
-             hx-trigger="click"
-             hx-target="#subscriptionChart"
-             hx-swap="innerHTML"
-             style="width: 600px; height: 500px; background-color: #ffffff; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1); border-radius: 12px; padding: 20px;">
-            {% include 'snippets/chart_graph.html' with id="subscriptionChart" chart_labels=chart_labels chart_data=chart_data title="Chiffre d'affaire par Abonnement" %}
+    <!-- Charts Section -->
+    <div class="row gy-4">
+        <!-- First Chart -->
+        <div class="col-md-6">
+            <div 
+                class="chart-container p-4 rounded shadow-sm bg-white"
+                hx-get="{% url 'transactions:chiffre_par_abonnement_name' %}"
+                hx-trigger="load once, date_changed"
+                hx-include="[name='start_date'], [name='end_date']"
+                hx-swap="innerHTML"
+                style="height: 500px;"
+            >
+                <!-- Chart content will be loaded here -->
+            </div>
         </div>
-      
-        <div style="width: 600px; height: 500px; background-color: #ffffff; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1); border-radius: 12px; padding: 20px;">
-            {% include 'snippets/chart_graph.html' with id="roomChart" chart_labels=room_chart_labels chart_data=room_chart_data title="Chiffre d'affaire par Salle" %}
+
+        <!-- Second Chart -->
+        <div class="col-md-6">
+            <div 
+                class="chart-container p-4 rounded shadow-sm bg-white"
+                hx-get="{% url 'transactions:chiffre_par_Activity_name' %}"
+                hx-trigger="load once, date_changed"
+                hx-include="[name='start_date'], [name='end_date']"
+                hx-swap="innerHTML"
+                style="height: 500px;"
+            >
+                <!-- Chart content will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Third Chart -->
+        <div class="col-12">
+            <div 
+                class="chart-container p-4 rounded shadow-sm bg-white"
+                hx-get="{% url 'transactions:chifre_dattes_abonnement_name' %}"
+                hx-trigger="load once, date_changed"
+                hx-include="[name='start_date'], [name='end_date']"
+                hx-swap="innerHTML"
+                style="height: 500px;"
+            >
+                <!-- Chart content will be loaded here -->
+            </div>
         </div>
     </div>
+</div>
+
 
 
 
@@ -148,28 +172,6 @@
         ));
     
      {% endcomment %}
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const periodSelect = document.querySelector('select[name="period"]');
-        const dateRangeInputs = document.getElementById('dateRangeInputs');
 
-        // Initial check to display custom range if already selected
-        if (periodSelect.value === 'custom') {
-            dateRangeInputs.style.display = 'flex';
-            dateRangeInputs.style.opacity = '1';
-        }
-
-        // Add event listener to show/hide date range inputs based on selection
-        periodSelect.addEventListener('change', function() {
-            if (this.value === 'custom') {
-                dateRangeInputs.style.display = 'flex';
-                setTimeout(() => dateRangeInputs.style.opacity = '1', 0);
-            } else {
-                dateRangeInputs.style.opacity = '0';
-                setTimeout(() => { dateRangeInputs.style.display = 'none'; }, 200);
-                this.form.submit();
-            }
-        });
-    });
-</script>
+   
 {% endblock content %}

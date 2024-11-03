@@ -148,49 +148,93 @@ class chiffre_affaire(PermissionRequiredMixin,TemplateView):
 #         'room_chart_data': room_amounts,
 #         'selected_period': period,  
 #     })
+
+from django.http import JsonResponse
+from django.shortcuts import render
+from datetime import datetime
+from django.db.models import Sum
+from .models import Paiement
+
 def chiffre_par_abonnement(request):
-    date_filter = DateFilterMixin()
-    date_filter.request = request  # Manually set request since this is a function view
-    period = request.GET.get('period', 'all')
-    start_date, end_date = date_filter.get_date_range(period)
-    subscription_totals = (Paiement.objects
+    start_date = request.GET.get('start_date')
+    end_date = request.GET.get('end_date')
+
+    paiement_queryset = Paiement.objects.all()
+    if start_date and end_date:
+        start_date = datetime.strptime(start_date, "%Y-%m-%d")
+        end_date = datetime.strptime(end_date, "%Y-%m-%d")
+        paiement_queryset = paiement_queryset.filter(date_creation__range=[start_date, end_date])
+
+    # Aggregate after applying date filter
+    subscription_totals = (paiement_queryset
         .values('abonnement_client__type_abonnement__name')
         .annotate(total=Sum('amount'))
         .order_by('abonnement_client__type_abonnement__name'))
-    if start_date and end_date:
-        subscription_totals = subscription_totals.filter(date_creation__range=[start_date, end_date])
-
+    # Prepare data for JSON response
     labels = [item['abonnement_client__type_abonnement__name'] for item in subscription_totals]
     amounts = [float(item['total']) for item in subscription_totals]
-
-    return render(request, 'chiffre_affaire.html', {
+    # print('subscription_totals-------------', subscription_totals)
+    return render(request, 'snippets/chart_graph.html', {
         'subscription_totals': subscription_totals,
         'chart_labels': labels,
         'chart_data': amounts,
-        'selected_period': period,  
+        "id": "subscriptionChart",
+        "title": "Chiffre d'affaire par Abonnement",
+        
+    })
+
+def chifre_dattes_abonnement(request):
+    start_date = request.GET.get('start_date')
+    end_date = request.GET.get('end_date')
+    
+    paiement_queryset = AbonnementClient.objects.all()
+    if start_date and end_date:
+        start_date = datetime.strptime(start_date, "%Y-%m-%d")
+        end_date = datetime.strptime(end_date, "%Y-%m-%d")
+        paiement_queryset = paiement_queryset.filter(date_creation__range=[start_date, end_date])
+
+    reste_abn_totals = (paiement_queryset
+        .values('type_abonnement__name')
+        .annotate(total=Sum('reste'))
+        .order_by('type_abonnement__name'))
+
+    abbonnement_labels = [str(item['type_abonnement__name']) for item in reste_abn_totals]
+    abonnement_reste = [float(item['total']) for item in reste_abn_totals]
+    # print('room_totals', room_totals)
+    return render(request, 'snippets/chart_graph.html', {
+        'room_totals': reste_abn_totals,
+        'chart_labels': abbonnement_labels,
+        'chart_data': abonnement_reste,
+        "id" : "resteChart",
+        "title" : "Dettes par  abonnement",
     })
 
 def chiffre_par_Activity(request):
-    date_filter = DateFilterMixin()
-    date_filter.request = request  # Manually set request since this is a function view
-    period = request.GET.get('period', 'all')
-    start_date, end_date = date_filter.get_date_range(period)
-    room_totals = (Paiement.objects
-        .values('abonnement_client__type_abonnement__salles__name')
-        .annotate(total=Sum('amount'))
-        .order_by('abonnement_client__type_abonnement__salles__name'))
-    if start_date and end_date:
-        room_totals = room_totals.filter(date_creation__range=[start_date, end_date])
-
-    room_labels = [str(item['abonnement_client__type_abonnement__salles__name']) for item in room_totals]
-    room_amounts = [float(item['total']) for item in room_totals]
+    start_date = request.GET.get('start_date')
+    end_date = request.GET.get('end_date')
     
-    return render(request, 'chiffre_affaire.html', {
+    paiement_queryset = Paiement.objects.all()
+    if start_date and end_date:
+        start_date = datetime.strptime(start_date, "%Y-%m-%d")
+        end_date = datetime.strptime(end_date, "%Y-%m-%d")
+        paiement_queryset = paiement_queryset.filter(date_creation__range=[start_date, end_date])
+
+    room_totals = (paiement_queryset
+        .values('abonnement_client__creneaux__activity__name')
+        .annotate(total=Sum('amount'))
+        .order_by('abonnement_client__creneaux__activity__name'))
+
+    room_labels = [str(item['abonnement_client__creneaux__activity__name']) for item in room_totals]
+    room_amounts = [float(item['total']) for item in room_totals]
+    # print('room_totals', room_totals)
+    return render(request, 'snippets/chart_graph.html', {
         'room_totals': room_totals,
-        'room_chart_labels': room_labels,
-        'room_chart_data': room_amounts,
-        'selected_period': period,  
+        'chart_labels': room_labels,
+        'chart_data': room_amounts,
+        "id" : "roomChart",
+        "title" : "Chiffre d'affaire par Activité",
     })
+
 
 
 # paiement transactions------------------------------------------------------------------------------------------

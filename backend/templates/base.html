@@ -33,17 +33,18 @@ License: For each use you must have a valid license purchased only from above li
     <link href="{% static 'plugins/global/plugins.bundle.css' %}" rel="stylesheet" type="text/css"/>
     <link href="{% static 'css/style.bundle.css' %}" rel="stylesheet" type="text/css" />
     <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" />
+    <script src="{% static 'js/htmx.min.js' %}"></script>
+
   {% comment %} <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script> {% endcomment %}
   </head>
   <body
     id="kt_app_body"
     data-kt-app-header-fixed-mobile="true"
-    data-kt-app-sidebar-enabled="true"
-    data-kt-app-sidebar-fixed="false"
-    class="app-default"
     hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
-  >
-  {% comment %} <img class="htmx-indicator" src="{% static 'images/indicator.svg' %}"/> {% endcomment %}
+    data-kt-app-toolbar-enabled="true" class="app-default">
+		<script>var defaultThemeMode = "light"; var themeMode; if ( document.documentElement ) { if ( document.documentElement.hasAttribute("data-bs-theme-mode")) { themeMode = document.documentElement.getAttribute("data-bs-theme-mode"); } else { if ( localStorage.getItem("data-bs-theme") !== null ) { themeMode = localStorage.getItem("data-bs-theme"); } else { themeMode = defaultThemeMode; } } if (themeMode === "system") { themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; } document.documentElement.setAttribute("data-bs-theme", themeMode); }</script>
+  
+
 
     <div class="d-flex flex-column flex-root app-root" id="kt_app_root">
       <div class="app-page flex-column flex-column-fluid" id="kt_app_page">
@@ -248,7 +249,6 @@ License: For each use you must have a valid license purchased only from above li
   {% comment %} <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script> {% endcomment %}
   {% comment %} <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/rrule@6.1.15/index.global.min.js'></script> {% endcomment %}
   <script src="{% static 'js/fullcalendar.global.min.js' %}"></script>
-  <script src="{% static 'js/htmx.min.js' %}"></script>
     <script src="{% static 'js/widgets.bundle.js' %}"></script>
     <script src="{% static 'js/custom/widgets.js' %}"></script>
     <script src="{% static 'js/custom/apps/chat/chat.js' %}"></script>
