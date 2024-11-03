@@ -1,17 +1,15 @@
-        <canvas id="id "></canvas>
-
-    <!-- Add Chart.js from CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        // Helper to create vibrant gradient colors
+<canvas id="{{ id }}"></canvas>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    htmx.on('htmx:afterSettle', function() {
+        console.log('Chart INITED')
         function createGradient(ctx, color1, color2) {
             const gradient = ctx.createLinearGradient(0, 0, 0, 400);
-            gradient.addColorStop(0, color1);
-            gradient.addColorStop(1, color2);
+            gradient.addColorStop(0, "#073b4c");
+            gradient.addColorStop(1, "#118ab2");
             return gradient;
         }
-    
-        // Configuration for each chart
+
         function createChartConfig(ctx, labels, data, titleText, gradient) {
             return {
                 type: 'bar',
@@ -68,16 +66,25 @@
                 }
             };
         }
-        
-        const ctx = document.getElementById('{{ id }}').getContext('2d');
-        const gradient = createGradient(ctx, 'rgba(0, 123, 255, 0.9)', 'rgba(0, 80, 210, 0.7)');
-        new Chart(ctx, createChartConfig(
-            ctx,
-            {{ chart_labels|safe }}, 
+    const subscriptionCtx = document.getElementById('{{ id }}');
+    if (window.chartInstances && window.chartInstances['{{ id }}']) {
+        window.chartInstances['{{ id }}'].destroy();
+    }
+       
+    console.log("chart_data--","{{ chart_labels|safe }}")
+    if (subscriptionCtx) {
+        const subscriptionGradient = createGradient(subscriptionCtx.getContext('2d'), 'rgba(0, 123, 255, 0.9)', 'rgba(0, 80, 210, 0.7)');
+        // Store chart instance in global object
+        if (!window.chartInstances) window.chartInstances = {};
+        window.chartInstances['{{ id }}'] = new Chart(subscriptionCtx.getContext('2d'), createChartConfig(
+            subscriptionCtx.getContext('2d'),
+            {{ chart_labels|safe }},
             {{ chart_data|safe }},
-            "{{ title }}",
-            gradient 
+            "{{ title|safe }}",
+            subscriptionGradient
         ));
-    
-   
+    } else {
+        console.error("Canvas element not found");
+    }
+    });
 </script>

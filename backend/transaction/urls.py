@@ -5,17 +5,18 @@ from .views import (
                     PaiementUpdateView,RemunerationProfTable,
                     RemunerationPersonnelTable,PaiementDeleteView,RemuPersonnelUpdateView,Remuneration_CoachUpdateView,RemuPersonnelDeleteView,RemCoachDeleteView,
                     AutreTransactionTable,Autre_TransactionUpdateView,AutreTransactionDelete,
-                    chiffre_par_abonnement,chiffre_par_Activity)
+                    chiffre_par_abonnement,chiffre_par_Activity,chifre_dattes_abonnement)
 
 app_name = 'transactions'
 
 
 urlpatterns = [
 
-         path('chiffre_affaire/',chiffre_affaire.as_view(), name='chiffre_affaire_name'),
+        path('chiffre_affaire/',chiffre_affaire.as_view(), name='chiffre_affaire_name'),
         path('chiffre_par_abonnement/',chiffre_par_abonnement, name='chiffre_par_abonnement_name'),
         path('chiffre_par_Activity/',chiffre_par_Activity, name='chiffre_par_Activity_name'),
-        
+        path('chifre_dattes_abonnement/',chifre_dattes_abonnement, name='chifre_dattes_abonnement_name'),
+
         path('transaction/',TransactionView.as_view(), name='transaction_name'),
         path('transaction/paiement_name',paiement.as_view(), name='paiement_name'),
         path('transaction/paiement_name/<str:pk>',paiement.as_view(), name='client_paiement_name'),
