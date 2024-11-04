@@ -47,7 +47,7 @@ class ClientView(PermissionRequiredMixin,SingleTableMixin, FilterView):
             template_name = "client.html" 
         return template_name 
 
-@permission_required('client.view_client', raise_exception=True)
+@permission_required('client.add_client', raise_exception=True)
 def ClientCreateView(request):
     context = {}
     template_name = "snippets/_client_form.html"
@@ -156,7 +156,7 @@ class CoachsView(PermissionRequiredMixin,SingleTableMixin,FilterView):
             template_name = "coach.html" 
         return template_name 
 
-@permission_required('client.view_coach', raise_exception=True)
+@permission_required('client.add_coach', raise_exception=True)
 def CoachCreateView(request):
     context={}
     template_name = "snippets/_coach_form.html"

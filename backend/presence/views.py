@@ -2,7 +2,7 @@ from django.views.generic.base import TemplateView
 from django_tables2 import SingleTableMixin
 from django_filters.views import FilterView 
 from django.shortcuts import get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
 from .models import Presence
 from .tables import PresencesHTMxTable
 from client.models import Client
@@ -15,6 +15,7 @@ from django.views.generic import (CreateView, DeleteView,DetailView,
 from django.shortcuts import render
 from salle_activite.models import Salle,Activity,Door
 import json
+from django.urls import reverse_lazy
 from .filters import PresenceFilter
 
 
@@ -149,4 +150,21 @@ class PresenceManuelleUpdateClient(UpdateView):
         messages.success(self.request, form.errors ,extra_tags="toastr")
         return self.render_to_response(self.get_context_data(form=form)) 
 
+
+class PresenceManuelleDeleteClient(DeleteView):
+    permission_required = "presence.delete_presence"
+    model = Presence
+    template_name = "snippets/delete_modal.html"
+    def get_success_url(self):
+        return reverse_lazy("client:client_detail", kwargs={'pk': str(self.object.abc.client.pk
+                                                                      )})
+    
+    def form_valid(self, form):
+        success_url=self.get_success_url()
+        ecrat=self.object.get_time_consumed(self.object.hour_sortie)
+        self.object.abc.presence_quantity += ecrat
+        self.object.abc.save()
+        self.object.delete()
+        messages.success(self.request,"Presence Supprimier avec Succés",extra_tags="toastr")
+        return HttpResponseRedirect(success_url)
 
