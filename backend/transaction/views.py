@@ -19,6 +19,10 @@ from .models import Paiement,RemunerationProf,Remuneration,Autre
 from .tables import PiaementHTMxTable,RemunerationProfHTMxTable,RemunerationPersonnelHTMxTable,AutreTransactionTableHTMxTable
 from .filters import ProductFilter,PersonnelFilter,CoachFilter,AutreTransactionFilter
 from django.contrib.auth.decorators import  permission_required
+from datetime import datetime, timedelta
+from django.db.models import Sum
+from django.shortcuts import render
+
 
 
 # tables views
@@ -100,60 +104,10 @@ class AutreTransactionTable(PermissionRequiredMixin,SingleTableMixin,FilterView)
 
 
 
-from datetime import datetime, timedelta
-
-from django.db.models import Sum
-from django.shortcuts import render
-from .models import Paiement
-from .mixin import DateFilterMixin
-
 class chiffre_affaire(PermissionRequiredMixin,TemplateView):
-    permission_required = "transaction.view_paiement"
+    permission_required = "transaction.can_view_statistique"
     template_name = "chiffre_affaire.html"
 
-# def chiffre_affaire(request):
-#     date_filter = DateFilterMixin()
-#     date_filter.request = request  # Manually set request since this is a function view
-#     period = request.GET.get('period', 'all')
-#     start_date, end_date = date_filter.get_date_range(period)
-
-#     # Initialize base querysets
-#     subscription_totals = (Paiement.objects
-#         .values('abonnement_client__type_abonnement__name')
-#         .annotate(total=Sum('amount'))
-#         .order_by('abonnement_client__type_abonnement__name'))
-
-#     room_totals = (Paiement.objects
-#         .values('abonnement_client__type_abonnement__salles__name')
-#         .annotate(total=Sum('amount'))
-#         .order_by('abonnement_client__type_abonnement__salles__name'))
-
-#     # Apply date filters if a period is selected
-#     if start_date and end_date:
-#         subscription_totals = subscription_totals.filter(date_creation__range=[start_date, end_date])
-#         room_totals = room_totals.filter(date_creation__range=[start_date, end_date])
-
-#     # Prepare chart data
-#     labels = [item['abonnement_client__type_abonnement__name'] for item in subscription_totals]
-#     amounts = [float(item['total']) for item in subscription_totals]
-#     room_labels = [str(item['abonnement_client__type_abonnement__salles__name']) for item in room_totals]
-#     room_amounts = [float(item['total']) for item in room_totals]
-
-#     return render(request, 'chiffre_affaire.html', {
-#         'subscription_totals': subscription_totals,
-#         'room_totals': room_totals,
-#         'chart_labels': labels,
-#         'chart_data': amounts,
-#         'room_chart_labels': room_labels,
-#         'room_chart_data': room_amounts,
-#         'selected_period': period,  
-#     })
-
-from django.http import JsonResponse
-from django.shortcuts import render
-from datetime import datetime
-from django.db.models import Sum
-from .models import Paiement
 
 def chiffre_par_abonnement(request):
     start_date = request.GET.get('start_date')
@@ -163,6 +117,7 @@ def chiffre_par_abonnement(request):
     if start_date and end_date:
         start_date = datetime.strptime(start_date, "%Y-%m-%d")
         end_date = datetime.strptime(end_date, "%Y-%m-%d")
+        
         paiement_queryset = paiement_queryset.filter(date_creation__range=[start_date, end_date])
 
     # Aggregate after applying date filter
@@ -173,6 +128,7 @@ def chiffre_par_abonnement(request):
     # Prepare data for JSON response
     labels = [item['abonnement_client__type_abonnement__name'] for item in subscription_totals]
     amounts = [float(item['total']) for item in subscription_totals]
+    total = sum(amounts)
     # print('subscription_totals-------------', subscription_totals)
     return render(request, 'snippets/chart_graph.html', {
         'subscription_totals': subscription_totals,
@@ -180,6 +136,7 @@ def chiffre_par_abonnement(request):
         'chart_data': amounts,
         "id": "subscriptionChart",
         "title": "Chiffre d'affaire par Abonnement",
+        "total": total,
         
     })
 
@@ -190,8 +147,9 @@ def chifre_dattes_abonnement(request):
     paiement_queryset = AbonnementClient.objects.all()
     if start_date and end_date:
         start_date = datetime.strptime(start_date, "%Y-%m-%d")
-        end_date = datetime.strptime(end_date, "%Y-%m-%d")
-        paiement_queryset = paiement_queryset.filter(date_creation__range=[start_date, end_date])
+        end_date = datetime.strptime(end_date, "%Y-%m-%d") + timedelta(days=1) - timedelta(seconds=1)
+        paiement_queryset = paiement_queryset.filter(created_date_time__range=[start_date, end_date])
+
 
     reste_abn_totals = (paiement_queryset
         .values('type_abonnement__name')
@@ -200,13 +158,15 @@ def chifre_dattes_abonnement(request):
 
     abbonnement_labels = [str(item['type_abonnement__name']) for item in reste_abn_totals]
     abonnement_reste = [float(item['total']) for item in reste_abn_totals]
-    # print('room_totals', room_totals)
+    # print('reste_abn_totals---------------', reste_abn_totals)
+    total = sum(abonnement_reste)
     return render(request, 'snippets/chart_graph.html', {
         'room_totals': reste_abn_totals,
         'chart_labels': abbonnement_labels,
         'chart_data': abonnement_reste,
         "id" : "resteChart",
         "title" : "Dettes par  abonnement",
+        "total": total,
     })
 
 def chiffre_par_Activity(request):
@@ -226,13 +186,15 @@ def chiffre_par_Activity(request):
 
     room_labels = [str(item['abonnement_client__creneaux__activity__name']) for item in room_totals]
     room_amounts = [float(item['total']) for item in room_totals]
-    # print('room_totals', room_totals)
+    # print('room_totals', room_totals) 
+    total = sum(room_amounts)
     return render(request, 'snippets/chart_graph.html', {
         'room_totals': room_totals,
         'chart_labels': room_labels,
         'chart_data': room_amounts,
         "id" : "roomChart",
         "title" : "Chiffre d'affaire par Activité",
+        "total": total,
     })
 
 
@@ -280,7 +242,8 @@ class paiement(PermissionRequiredMixin,CreateView):
 
  
           
-class PaiementUpdateView(UpdateView):
+class PaiementUpdateView(PermissionRequiredMixin,UpdateView):
+    permission_required="transaction.change_paiement"
     model = Paiement 
     template_name = "snippets/_transaction_paiement_form.html"
     fields = [
@@ -310,7 +273,8 @@ class PaiementUpdateView(UpdateView):
         messages.success(self.request, form.errors ,extra_tags="toastr")
         return self.render_to_response(self.get_context_data(form=form))   
 
-class PaiementDeleteView(DeleteView):
+class PaiementDeleteView(PermissionRequiredMixin,DeleteView):
+    permission_required = "transaction.delete_paiement"
     model = Paiement
     template_name = "snippets/delete_modal.html"
     success_url = reverse_lazy("transactions:transaction_name")
@@ -370,7 +334,8 @@ class Remuneration_Personnel(PermissionRequiredMixin,CreateView):
 
 
 
-class RemuPersonnelUpdateView(UpdateView):
+class RemuPersonnelUpdateView(PermissionRequiredMixin,UpdateView):
+    permission_required="transaction.change_remuneration"
     model=Remuneration
     template_name="snippets/_remu_personnel_form.html"
     fields=[
@@ -396,7 +361,8 @@ class RemuPersonnelUpdateView(UpdateView):
         messages.success(self.request, form.errors ,extra_tags="toastr")
         return self.render_to_response(self.get_context_data(form=form))   
 
-class RemuPersonnelDeleteView(DeleteView):
+class RemuPersonnelDeleteView(PermissionRequiredMixin,DeleteView):
+    permission_required="transaction.delete_remuneration"
     model =Remuneration
     template_name="snippets/delete_modal.html"
     success_url=reverse_lazy("transactions:RemunerationPersonnelTable_name")
@@ -453,7 +419,8 @@ class Remuneration_Coach(PermissionRequiredMixin,CreateView):
             return render(request, self.template_name, context)
 
     
-class Remuneration_CoachUpdateView(UpdateView):
+class Remuneration_CoachUpdateView(PermissionRequiredMixin,UpdateView):
+    permission_required="transaction.change_remunerationprof"
     model=RemunerationProf
     template_name="snippets/_remu_Coach_form.html"
     fields=[
@@ -481,7 +448,8 @@ class Remuneration_CoachUpdateView(UpdateView):
         return self.render_to_response(self.get_context_data(form=form))   
     
 
-class RemCoachDeleteView(DeleteView):
+class RemCoachDeleteView(PermissionRequiredMixin,DeleteView):
+    permission_required="transaction.delete_remunerationprof"
     model =RemunerationProf
     template_name="snippets/delete_modal.html"
     success_url=reverse_lazy("transactions:RemunerationProfTable_name")
@@ -524,7 +492,8 @@ def Autre_Transaction(request):
     context["form"]=form
     return render(request,template_name=template_name,context=context)
 
-class Autre_TransactionUpdateView(UpdateView):
+class Autre_TransactionUpdateView(PermissionRequiredMixin,UpdateView):
+    permission_required="transaction.change_autre"
     model=Autre
     template_name="snippets/_autre_Transaction_form.html"
     fields=[
@@ -552,7 +521,8 @@ class Autre_TransactionUpdateView(UpdateView):
         return self.render_to_response(self.get_context_data(form=form))
 
 
-class AutreTransactionDelete(DeleteView):
+class AutreTransactionDelete(PermissionRequiredMixin,DeleteView):
+    permission_required="transaction.delete_autre"
     model =Autre
     template_name="snippets/delete_modal.html"
     success_url=reverse_lazy("transactions:autre_transaction_table")

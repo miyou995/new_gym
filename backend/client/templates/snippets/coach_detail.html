@@ -26,18 +26,20 @@
 												<span class="ms-2 rotate-180">
 													<i class="ki-outline ki-down fs-3"></i>
 												</span></div>
-													<a  
-														href="#" 
-														class="btn btn-sm btn-light-primary"
-														data-bs-toggle="modal" 
-														data-bs-target="#kt_modal"
-														data-bs-placement="right" 
-														data-bs-toggle="tooltip" 
-														hx-target="#kt_modal_content" 
-														hx-get="{% url 'client:coach_update' coach.pk %}"
-														hx-swap="innerHTML">
-														Modification</a>
-												</span>
+												{% if perms.client.change_coach %}
+														<a  
+															href="#" 
+															class="btn btn-sm btn-light-primary"
+															data-bs-toggle="modal" 
+															data-bs-target="#kt_modal"
+															data-bs-placement="right" 
+															data-bs-toggle="tooltip" 
+															hx-target="#kt_modal_content" 
+															hx-get="{% url 'client:coach_update' coach.pk %}"
+															hx-swap="innerHTML">
+															Modification</a>
+												{% endif %}
+													</span>
 												
 											</div>
 
@@ -78,19 +80,19 @@
 											<div class="card-header align-items-center py-5 gap-2 gap-md-1">
 												<div class="card-title">
 		
-													<div class="card-toolbar d-flex flex-row justify-content-end align-items-center gap-3">
+													{% comment %} <div class="card-toolbar d-flex flex-row justify-content-end align-items-center gap-3">
 														<div class="salary-display p-3 rounded text-white bg-danger d-flex align-items-center">
 															<i class="ki-exit-up fs-2 me-2"></i>
 															<span>Reste du salaire :</span>
 															<span class="fw-bold ms-2">{{coach.salaire}}</span>
 														</div>
-												</div>
+												    </div> {% endcomment %}
 											</div>
 
 
 											<div class="card-body">
 												<div class="card card-flush">
-													<div class="card-header align-items-center py-5 gap-2 gap-md-5">
+													<div class="card-header align-items-center py-5 gap-2 gap-md-5" style="background-color: #98c1d9">
 														<div class="card-title">
 															<div class="d-flex align-items-center position-relative my-1">
 																<h3 class="card-title">Seances / Presences</h3>
@@ -137,7 +139,7 @@
 
 											<div class="card-body">
 												<div class="card card-flush">
-													<div class="card-header align-items-center py-5 gap-2 gap-md-5">
+													<div class="card-header align-items-center py-5 gap-2 gap-md-5" style="background-color: #98c1d9">
 														<div class="card-title">
 															<div class="d-flex align-items-center position-relative my-1">
 																<h3 class="card-title">Virements</h3>
@@ -149,6 +151,7 @@
 															<button
 															type="button"
 															class="btn btn-primary btn-sm"
+															style="background-color: #3d5a80; border-color: #3d5a80;"
 															data-bs-toggle="modal"
 															data-bs-target="#kt_modal"
 															hx-get="{% url 'transactions:coach_Remuneration_Coach' coach.pk %}"
@@ -177,7 +180,7 @@
 											</div>
 											<div class="card-body">
 												<div class="card card-flush">
-													<div class="card-header align-items-center py-5 gap-2 gap-md-5">
+													<div class="card-header align-items-center py-5 gap-2 gap-md-5" style="background-color: #98c1d9">
 														<div class="card-title">
 															<div class="d-flex align-items-center position-relative my-1">
 																<h3 class="card-title">Creneaux</h3>

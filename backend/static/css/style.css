@@ -110,3 +110,39 @@ tr.htmx-swapping td {
     margin-right: 10px; /* Adjust spacing between permission checkboxes */
     margin-bottom: 5px;  /* Adjust vertical spacing */
 }
+
+
+
+
+.total-container {
+    background: linear-gradient(135deg, #0ad1c8, #14919b);
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    color: #fff;
+}
+
+.total-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+.icon {
+    font-size: 2rem;
+    margin-right: 10px;
+    color: #ffdd57;
+}
+
+.total-amount {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+
+
+
+
+

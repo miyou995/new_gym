@@ -6,6 +6,7 @@ from django.contrib.auth.models import  Permission , Group
 from django.contrib.auth.decorators import  permission_required
 from django.views import View
 import json
+from django_htmx.http import HttpResponseClientRedirect
 from django.http import HttpResponse, HttpResponseRedirect
 from .froms import (UserCreationForm, UserEditionForm, 
 ChangePasswordForm,AddGroupForm)
@@ -39,7 +40,7 @@ class CustomLoginView(LoginView):
             messages.error(self.request, _("Email ou mot de passe incorrect."), extra_tags="toastr")
             return "/"
         redirect_url = redirect('/')
-        return reverse('core:index')
+        return reverse('accounts:userdetail', kwargs={'pk': user.pk})
     
     def form_invalid(self, form):
         """If the form is invalid, render the invalid form."""
@@ -170,10 +171,10 @@ def change_password(request, pk):
                 user.set_password(password)
                 user.save()
                 messages.success(request, _('Mot de passe modifié avec succès'),extra_tags="toastr")
-                return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+                redirect_url = reverse("accounts:userlist")
+                return HttpResponseClientRedirect(redirect_url)
             else:
                 messages.error(request, _('Formulaire invalide'), extra_tags="toastr")
-
         else:
             messages.error(request, _('Formulaire invalide'),extra_tags="toastr")
             context["form"]=ChangePasswordForm(data=request.POST or None )

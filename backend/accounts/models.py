@@ -74,7 +74,7 @@ class User(AbstractUser):
 
     notes           = models.TextField( blank=True, null=True)
     # warehouse       = models.ForeignKey(Store, on_delete=models.SET_NULL, related_name='managers',blank=True, null=True)
-    is_active       = models.BooleanField(default=False)
+    is_active       = models.BooleanField(default=True)
     is_manager      = models.BooleanField(default=False)
     # store           = models.ForeignKey("inventory.Store", verbose_name="magasin", on_delete=models.CASCADE, null=True, blank=True)
     is_admin        = models.BooleanField(default=False)

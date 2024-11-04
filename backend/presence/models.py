@@ -32,7 +32,7 @@ class PresenceManager(models.Manager):
 
 class Presence(models.Model):
     abc         = models.ForeignKey(AbonnementClient, on_delete=models.CASCADE,related_name='presences',verbose_name='Abonnement client')
-    date        = models.DateField()
+    date        = models.DateField( default=timezone.now,auto_now=False, auto_now_add=False,blank=True, null=True)
     creneau     = models.ForeignKey(Creneau, on_delete=models.CASCADE,related_name='presenses', null=True, blank=True)
     is_in_list  = models.BooleanField(default=True) # check if the person is in the list of client that should be in this creneau
     hour_entree = models.TimeField()
@@ -76,6 +76,9 @@ class Presence(models.Model):
     
     def get_edit_url(self):
         return reverse('presence:PresenceManuelleUpdateClient', kwargs={'pk': str(self.id)})
+    
+    def get_delete_url(self):
+        return reverse('presence:Presence_manuelle_deleteclient', kwargs={'pk': str(self.id)})
 
 
 

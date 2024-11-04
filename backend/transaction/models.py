@@ -19,7 +19,10 @@ class Transaction(models.Model):
         return str(self.amount)
     class Meta:
         ordering = ['-last_modified']
-        permissions = [('can_view_history', 'Can View history')]
+        permissions = [
+            ('can_view_history', 'Can View history'),
+            ('can_view_statistique', 'Can View Statistique'),
+            ]
 
 class Paiement(Transaction):
     # type = models.ForeignKey(Abonnement, verbose_name="abonnement" , related_name="abonnements", on_delete=models.CASCADE)

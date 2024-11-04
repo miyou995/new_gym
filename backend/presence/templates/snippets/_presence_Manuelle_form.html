@@ -18,7 +18,7 @@
 		</div>
 		{% with WIDGET_ERROR_CLASS='is-invalid' %}         
 			{% for field in form %}
-				{% if field|widget_type|slugify == "select" %}
+				{% if field|widget_type|slugify == "dfdf" %}
 					<div class="{{column_classes}} mb-4 d-flex flex-column mb-8 fv-row">
 						<label class="d-flex align-items-center fs-6 fw-semibold mb-2">
 							<span {%  if field.field.required %}class="required"{% endif %}>{{field.label}}</span>
