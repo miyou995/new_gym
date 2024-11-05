@@ -31,7 +31,8 @@
 												{% if perms.client.change_client %}
 													<a  
 														href="#" 
-														class="btn btn-sm btn-light-primary"
+														class="btn btn-sm  btn-primary btn-radius color-container"
+														btn btn-primary btn-lg btn-radius color-container
 														data-bs-toggle="modal" 
 														data-bs-target="#kt_modal"
 														data-bs-placement="right" 
@@ -77,7 +78,7 @@
 								<div class="flex-lg-row-fluid ms-lg-15">
 									<div class="card-body">
 										<div class="card card-flush">
-											<div class="card-header align-items-center py-5 gap-2 gap-md-5" style="background-color: #98c1d9">
+											<div class="card-header align-items-center py-5 gap-2 gap-md-5 total-container" >
 												<div class="card-title">
 													<div class="d-flex align-items-center position-relative my-1">
 														<h3 class="card-title">Abonnements</h3>
@@ -85,19 +86,22 @@
 													<div id="kt_ecommerce_report_sales_export" class="d-none"></div>
 												</div>
 												<div class="card-toolbar flex-row-fluid justify-content-end gap-5">
-													<button
-														type="button"
-														class="btn btn-primary btn-sm text-white"
-														style="background-color: #3d5a80; border-color: #3d5a80;"
-														data-bs-toggle="modal"
-														data-bs-target="#kt_modal"
-														hx-get="{% url 'abonnement:calendar_abonnement_client' client.pk %}" 
-														hx-target="#kt_modal_content"
-														hx-trigger="click"
-														hx-swap="innerHTML"  
-													>
-														<i class="ki-exit-up fs-3">Ajouter Abonnement</i>
-													</button>
+													
+													{% if perms.abonnement.add_abonnementclient %}
+														<button
+															type="button"
+															class="btn btn-primary btn-lg btn-radius color-container"
+															data-bs-toggle="modal"
+															data-bs-target="#kt_modal"
+															hx-get="{% url 'abonnement:calendar_abonnement_client' client.pk %}" 
+															hx-target="#kt_modal_content"
+															hx-trigger="click"
+															hx-swap="innerHTML"  
+														>
+															<i class="ki-exit-up fs-4">Ajouter Abonnement</i>
+														</button>
+													{% endif %}
+														
 												</div>
 											</div>
 											<div class="card-scroll h-250px card-body pt-0">
@@ -116,7 +120,7 @@
 									</div>
 									<div class="card-body">
 										<div class="card card-flush">
-											<div class="card-header align-items-center py-5 gap-2 gap-md-5" style="background-color: #98c1d9">
+											<div class="card-header align-items-center py-5 gap-2 gap-md-5 total-container" >
 												<div class="card-title">
 													<div class="d-flex align-items-center position-relative my-1">
 														<h3 class="card-title">Paiements</h3>
@@ -124,20 +128,22 @@
 													<div id="kt_ecommerce_report_sales_export" class="d-none"></div>
 												</div>
 												<div class="card-toolbar flex-row-fluid justify-content-end gap-5">
-													<button
-														type="button"
-														class="btn btn-primary btn-sm text-white"
-														style="background-color: #3d5a80; border-color: #3d5a80;"
-														data-bs-toggle="modal"
-														data-bs-target="#kt_modal"
-														hx-get="{% url 'transactions:client_paiement_name' client.pk %}" 
-														hx-target="#kt_modal_content"
-														hx-trigger="click"
-														data-bs-toggle="tooltip" 
-														hx-swap="innerHTML"
-													>
-													<i class="ki-exit-up fs-3">Ajouter Paiement</i>
-													</button>
+													{% if perms.transaction.add_paiement %}
+														<button
+															type="button"
+															class="btn btn-primary btn-lg btn-radius color-container"
+															
+															data-bs-toggle="modal"
+															data-bs-target="#kt_modal"
+															hx-get="{% url 'transactions:client_paiement_name' client.pk %}" 
+															hx-target="#kt_modal_content"
+															hx-trigger="click"
+															data-bs-toggle="tooltip" 
+															hx-swap="innerHTML"
+														>
+														<i class="ki-exit-up fs-4">Ajouter Paiement</i>
+														</button>
+													{% endif %}
 												</div>
 											</div>
 											<div class="card-scroll h-250px card-body pt-0">
@@ -156,7 +162,7 @@
 									</div>
 								<div class="card-body">
 										<div class="card card-flush">
-											<div class="card-header align-items-center py-5 gap-2 gap-md-5" style="background-color: #98c1d9">
+											<div class="card-header align-items-center py-5 gap-2 gap-md-5 total-container" >
 												<div class="card-title">
 													<div class="d-flex align-items-center position-relative my-1">
 														<h3 class="card-title">Seances / Presences</h3>

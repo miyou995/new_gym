@@ -70,8 +70,10 @@
             </div>
             <div class="text-center p-4">
                 <button type="reset" id="sg_create_store_form" class="btn btn-light me-3"   data-bs-dismiss="modal">{% trans "Annulé" %}</button>
-                {% if abc.pk   %} 
-                    {% include 'buttons/delete_button.html' with object=abc %}
+                {% if perms.abonnement.delete_abonnementclient %}
+                    {% if abc.pk   %} 
+                        {% include 'buttons/delete_button.html' with object=abc %}
+                    {% endif %}
                 {% endif %}
                 <button
                     id="add-abonnement-btn"

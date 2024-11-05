@@ -14,6 +14,7 @@ from abonnement.models import AbonnementClient
 from django_tables2 import SingleTableMixin
 from .tables import AbonnementClientHTMxTable
 from django.db.models import Max
+from django.contrib.auth.mixins import PermissionRequiredMixin
 
 
 def abc_creneau_view(request):
@@ -35,7 +36,8 @@ def abc_creneau_view(request):
 
 
 
-class CreateCreneau(CreateView):
+class CreateCreneau(PermissionRequiredMixin,CreateView):
+    permission_required = "creneau.add_creneau"
     template_name ="snippets/_creneau_form.html"
     form_class=CreneauModelForm 
 
@@ -63,33 +65,35 @@ class CreateCreneau(CreateView):
             context = {'form': form}
             return render(request, self.template_name, context)
 
-class UpdateCreneau(UpdateView):
-        model=Creneau
-        template_name ="snippets/_creneau_form.html"
-        form_class =CreneauModelForm
-    
-        def get(self, request, *args, **kwargs):
-            self.object = self.get_object()
-            print('yeah form instance', self.object)
-            return super().get(request, *args, **kwargs)
-        def form_valid(self, form):
-            paiement =form.save()
-            print('IS FORM VALID', paiement.id)
-            messages.success(self.request, "Creneau Mis a jour avec Succés",extra_tags="toastr")
-            return HttpResponse(status=204,
-                headers={
-                    'HX-Trigger': json.dumps({
-                        "closeModal": "kt_modal",
-                        "refresh_table": None,
-                        
-                    })
-                }) 
-    
-        def form_invalid(self, form):
-            messages.success(self.request, form.errors ,extra_tags="toastr")
-            return self.render_to_response(self.get_context_data(form=form))   
+class UpdateCreneau(PermissionRequiredMixin,UpdateView):
+    permission_required = "creneau.change_creneau"
+    model=Creneau
+    template_name ="snippets/_creneau_form.html"
+    form_class =CreneauModelForm
 
-class CreneauDeleteView(DeleteView):
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        print('yeah form instance', self.object)
+        return super().get(request, *args, **kwargs)
+    def form_valid(self, form):
+        paiement =form.save()
+        print('IS FORM VALID', paiement.id)
+        messages.success(self.request, "Creneau Mis a jour avec Succés",extra_tags="toastr")
+        return HttpResponse(status=204,
+            headers={
+                'HX-Trigger': json.dumps({
+                    "closeModal": "kt_modal",
+                    "refresh_table": None,
+                    
+                })
+            }) 
+
+    def form_invalid(self, form):
+        messages.success(self.request, form.errors ,extra_tags="toastr")
+        return self.render_to_response(self.get_context_data(form=form))   
+
+class CreneauDeleteView(PermissionRequiredMixin,DeleteView):
+    permission_required = "creneau.delete_creneau"
     model = Creneau
     template_name = "buttons/delete.html"
     success_url = reverse_lazy("creneau:creneaux_name")
@@ -102,7 +106,8 @@ class CreneauDeleteView(DeleteView):
         return HttpResponseRedirect(success_url)
     
 
-class CalenderView(FilterView):
+class CalenderView(PermissionRequiredMixin,FilterView):
+    permission_required = "creneau.view_creneau"
     filterset_class = CalenderFilterCreneau
     model = Creneau
 

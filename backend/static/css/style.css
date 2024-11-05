@@ -111,8 +111,13 @@ tr.htmx-swapping td {
     margin-bottom: 5px;  /* Adjust vertical spacing */
 }
 
-
-
+.color-container {
+    background: linear-gradient(135deg, #118ab2, #073b4c);
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    color: #fff;
+}
 
 .total-container {
     background: linear-gradient(135deg, #0ad1c8, #14919b);

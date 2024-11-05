@@ -41,16 +41,19 @@
                         </div>
                     </div>
                     <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
-                        <a href="#" 
-                        class="btn btn-sm fw-bold btn-primary" 
-                        data-bs-toggle="modal" 
-                        data-bs-target="#kt_modal"
-                        data-bs-toggle="tooltip" 
-                        data-bs-placement="right" 
-                        hx-get="{% url 'creneau:create_creneau' %}" 
-                        hx-target="#kt_modal_content" 
-                        hx-swap="innerHTML"
-                    >{% trans 'Ajouter Creneau' %} </a>
+                        
+                        {% if perms.creneau.add_creneau %}
+                            <a href="#" 
+                            class="btn btn-sm fw-bold btn-primary" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#kt_modal"
+                            data-bs-toggle="tooltip" 
+                            data-bs-placement="right" 
+                            hx-get="{% url 'creneau:create_creneau' %}" 
+                            hx-target="#kt_modal_content" 
+                            hx-swap="innerHTML"
+                         >{% trans 'Ajouter Creneau' %} </a>
+                       {% endif %}
                 </div>
                 </div>
                 <div id="calendarWrapper" class="card card-flush">

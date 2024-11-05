@@ -27,13 +27,10 @@
 															<i class="ki-outline ki-down fs-3"></i>
 														</span></div>
 														
-														{% if perms. %}
-															
-														{% endif %}
-															
+														{% if perms.client.change_personnel %}
 															<a  
 																href="#" 
-																class="btn btn-sm btn-light-primary"
+																class="btn btn-sm  btn-primary btn-radius color-container"
 																data-bs-toggle="modal" 
 																data-bs-target="#kt_modal"
 																data-bs-placement="right" 
@@ -41,7 +38,9 @@
 																hx-target="#kt_modal_content" 
 																hx-get="{% url 'client:personnel_update' personnel.pk %}"
 																hx-swap="innerHTML">
-															 Modification</a>
+															Modification</a>
+														{% endif %}
+															
 														</span>
 													</div>
 													<div class="separator separator-dashed my-3"></div>
@@ -71,7 +70,7 @@
 										<div class="flex-lg-row-fluid ms-lg-15">
 											<div class="card-body">
 												<div class="card card-flush">
-													<div class="card-header align-items-center py-5 gap-2 gap-md-5" style="background-color: #90e0ef">
+													<div class="card-header align-items-center py-5 gap-2 gap-md-5 total-container" >
 														<div class="card-title">
 															<div class="d-flex align-items-center position-relative my-1">
 																<h3 class="card-title">Virements</h3>
@@ -82,8 +81,7 @@
 														<div class="card-toolbar flex-row-fluid justify-content-end gap-5">
 															<button
 															type="button"
-															class="btn btn-primary btn-sm text-white"
-															style="background-color: #0077b6; border-color: #0077b6;"
+															class="btn btn-primary btn-sm btn-radius color-container"
 															data-bs-toggle="modal"
 															data-bs-target="#kt_modal"
 															hx-get="{% url 'transactions:Remuneration_Personnel_detail' personnel.pk %}"
@@ -92,7 +90,7 @@
 															data-bs-toggle="tooltip" 
 															hx-swap="innerHTML"
 														>
-														<i class="ki-exit-up fs-2">Ajouter Virement</i>
+														<i class="ki-exit-up fs-4">Ajouter Virement</i>
 														</button>
 														</div>
 													</div>

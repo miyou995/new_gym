@@ -227,8 +227,8 @@ def add_edit_group(request, pk=None):
 
 
 class GroupListView(PermissionRequiredMixin, ListView):
+    permission_required = 'auth.view_group'
     model = Group
-    permission_required = 'accounts.view_group'
     template_name = 'accounts/group_list.html' 
     success_url = reverse_lazy('accounts:grouplist')
     context_object_name= "roles"
@@ -241,9 +241,9 @@ class GroupListView(PermissionRequiredMixin, ListView):
 
 
 
-class GroupDetailView(PermissionRequiredMixin, DetailView):
+class GroupDetailView(DetailView):
     model = Group
-    permission_required = 'auth.view_group'
+    
     template_name = "/role/_role_detail.html" 
     def get_context_data(self, **kwargs):
         context = super(GroupDetailView, self).get_context_data(**kwargs)

@@ -10,38 +10,40 @@
             <div class="card card-flush">
                 <div class="card-header align-items-center py-1 gap-2 gap-md-5">
                     <div class="card-title">
-                        <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
-                            <span class="card-label fw-bold fs-4 text-grey-800">Présence Automatique</span>
-                            <i class=" ki-magnifier fs-3 position-absolute ms-4"></i>
-                            <form  >
-                                                <input
-                                                hx-get='{% url "presence:presence_client" %}' 
-                                                hx-trigger="keyup changed delay:900ms"
-                                                type="text"
-                                                name="search"
-                                                class='form-control fw-bold pe-5' 
-                                                placeholder='scanner le code a barre ici '
-                                                {% comment %} hx-target="#correctionsId" {% endcomment %}
-                                                hx-swap="afterend"
-                                                hx-refresh="true" 
-                                                id="barcode-input"
-                                                autofocus  />
+                        {% if perms.presence.add_presence %}
+                            <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
+                                <span class="card-label fw-bold fs-4 text-grey-800">Présence Automatique</span>
+                                <i class=" ki-magnifier fs-3 position-absolute ms-4"></i>
+                                <form  >
+                                                    <input
+                                                    hx-get='{% url "presence:presence_client" %}' 
+                                                    hx-trigger="keyup changed delay:900ms"
+                                                    type="text"
+                                                    name="search"
+                                                    class='form-control fw-bold pe-5' 
+                                                    placeholder='scanner le code a barre ici '
+                                                    {% comment %} hx-target="#correctionsId" {% endcomment %}
+                                                    hx-swap="afterend"
+                                                    hx-refresh="true" 
+                                                    id="barcode-input"
+                                                    autofocus  />
+                                
+                                </form>
+                                            <button
+                                                type="button"
+                                                class="btn btn-info"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#kt_modal"
+                                                hx-get="{% url 'presence:PresenceManuelleClient' %}"
+                                                hx-target="#kt_modal_content"
+                                                hx-trigger="click"
+                                                hx-swap="innerHTML"
+                                            >
+                                                <i class="ki-exit-up fs-2">Présence Manuellement</i>
+                                            </button>
                             
-                            </form>
-                                        <button
-                                            type="button"
-                                            class="btn btn-info"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#kt_modal"
-                                            hx-get="{% url 'presence:PresenceManuelleClient' %}"
-                                            hx-target="#kt_modal_content"
-                                            hx-trigger="click"
-                                            hx-swap="innerHTML"
-                                        >
-                                            <i class="ki-exit-up fs-2">Présence Manuellement</i>
-                                        </button>
-                           
-                        </div>
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
                 <div id="kt_app_content" class="app-content flex-column-fluid fw-bold text-gray-800 fs-5 py-1">
@@ -70,7 +72,7 @@
                                                     <label class="form-label card-label fw-bold fs-4 text-grey-800 mb-0">{{ field.label }}</label>
                                                     <div class="input-group">
                                                         <span class="input-group-text"><i class="bi bi-search"></i></span>
-                                                        {% render_field field class="form-control" placeholder="Rechercher par ID" %}
+                                                        {% render_field field class="form-control" placeholder="Rechercher par Carte ou ID" %}
                                                     </div>
                                                 </div>
                                             {% endif %}
