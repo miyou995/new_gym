@@ -92,6 +92,7 @@ class AbonnementClientHTMxTable(tables.Table):
     presence_quantity=tables.Column( verbose_name="seances / minutes", orderable=True )
     type_abonnement = tables.TemplateColumn(
         template_code='''
+            {% if perms.abonnement.change_abonnementclient %}
             <a 
                 href="#" 
                 class="text-gray-800 text-hover-primary fs-5 fw-bold" 
@@ -102,6 +103,9 @@ class AbonnementClientHTMxTable(tables.Table):
                 hx-swap="innerHTML">
                 {{ record.type_abonnement }}      
             </a>      
+            {% else %}
+                {{ record.type_abonnement }}      
+            {% endif %}
         ''')
     reste = tables.TemplateColumn(
         template_code='''

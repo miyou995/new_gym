@@ -5,6 +5,7 @@ from django.shortcuts import get_object_or_404
 from django.http import HttpResponse,HttpResponseRedirect
 from .models import Presence
 from .tables import PresencesHTMxTable
+from django.db.models import Q
 from client.models import Client
 from abonnement.models import AbonnementClient
 from django.contrib import messages
@@ -17,9 +18,12 @@ from salle_activite.models import Salle,Activity,Door
 import json
 from django.urls import reverse_lazy
 from .filters import PresenceFilter
+from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.contrib.auth.decorators import  permission_required
 
 
-class PresencesView(SingleTableMixin, FilterView):
+class PresencesView(PermissionRequiredMixin,SingleTableMixin, FilterView):
+    permission_required = "presence.view_presence"
     table_class = PresencesHTMxTable
     filterset_class=PresenceFilter
     paginate_by = 15
@@ -36,7 +40,7 @@ class PresencesView(SingleTableMixin, FilterView):
             template_name = "presences.html" 
         return template_name 
     
-from django.db.models import Q
+@permission_required("presence.add_presence" , raise_exception=True)
 def presence_client(request):
     context= {}
     code=request.GET.get('search','')
@@ -72,7 +76,8 @@ def presence_client(request):
     return HttpResponse(status=204) 
 
 
-class PresenceManuelleClient(CreateView):
+class PresenceManuelleClient(PermissionRequiredMixin,CreateView):
+    permission_required = "presence.add_presence"
     template_name = "snippets/_presence_Manuelle_form.html"
     form_class =PresenceManuelleModelForm
 
@@ -115,7 +120,8 @@ class PresenceManuelleClient(CreateView):
             return render(request, self.template_name, context)
 
 
-class PresenceManuelleUpdateClient(UpdateView):
+class PresenceManuelleUpdateClient(PermissionRequiredMixin,UpdateView):
+    permission_required = "presence.change_presence"
     model = Presence 
     template_name = "snippets/_presence_Manuelle_form.html"
     fields = [
@@ -151,7 +157,7 @@ class PresenceManuelleUpdateClient(UpdateView):
         return self.render_to_response(self.get_context_data(form=form)) 
 
 
-class PresenceManuelleDeleteClient(DeleteView):
+class PresenceManuelleDeleteClient(PermissionRequiredMixin,DeleteView):
     permission_required = "presence.delete_presence"
     model = Presence
     template_name = "snippets/delete_modal.html"

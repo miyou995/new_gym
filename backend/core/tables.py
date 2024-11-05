@@ -14,6 +14,7 @@ class PlannigHTMxTable(tables.Table):
 #     name = tables.Column(accessor="name", verbose_name="Nom", orderable=True ,linkify= lambda record: record.get_edit_url())
       name = tables.TemplateColumn(
         template_code='''
+        {% if perms.planning.change_planning %}
             <a 
                 href="#" 
                 class="text-gray-800 text-hover-primary fs-5 fw-bold" 
@@ -24,6 +25,9 @@ class PlannigHTMxTable(tables.Table):
                 hx-swap="innerHTML">
                 {{ record.name }}
             </a>
+        {% else %}
+            {{ record.name }}
+        {% endif %}
         ''')
       class Meta:
         fields  = (
@@ -36,6 +40,7 @@ class PlannigHTMxTable(tables.Table):
 class SalleHTMxTable(tables.Table):
     name = tables.TemplateColumn(
         template_code='''
+        {% if perms.salle_activite.change_salle %}
             <a 
                 href="#" 
                 class="text-gray-800 text-hover-primary fs-5 fw-bold" 
@@ -46,6 +51,9 @@ class SalleHTMxTable(tables.Table):
                 hx-swap="innerHTML">
                 {{ record.name }}
             </a>
+        {% else %}
+            {{ record.name }}
+        {% endif %}
         ''')
     class Meta:
         fields  = (
@@ -57,6 +65,7 @@ class SalleHTMxTable(tables.Table):
 class ActivityHTMxTable(tables.Table):
     name = tables.TemplateColumn(
         template_code='''
+        {% if perms.salle_activite.change_activity %}
             <a 
                 href="#" 
                 class="text-gray-800 text-hover-primary fs-5 fw-bold" 
@@ -67,6 +76,9 @@ class ActivityHTMxTable(tables.Table):
                 hx-swap="innerHTML">
                 {{ record.name }}
             </a>
+        {% else %}
+            {{ record.name }}
+        {% endif %}
         ''')
     class Meta:
         fields  = (
@@ -100,6 +112,7 @@ class MaladieHTMxTable(tables.Table):
 class PortesHTMxTable(tables.Table):
     ip_adress = tables.TemplateColumn(
         template_code='''
+            {% if perms.salle_activite.change_door %}
             <a 
                 href="#" 
                 class="text-gray-800 text-hover-primary fs-5 fw-bold" 
@@ -110,6 +123,9 @@ class PortesHTMxTable(tables.Table):
                 hx-swap="innerHTML">
                 {{ record.ip_adress }}
             </a>
+            {% else %}
+                {{ record.ip_adress }}
+            {% endif %}
         ''')
     class Meta:
         fields  = (
@@ -126,16 +142,20 @@ class PortesHTMxTable(tables.Table):
 class AbonnementHTMxTable(tables.Table):
     name = tables.TemplateColumn(
         template_code='''
-            <a 
-                href="#" 
-                class="text-gray-800 text-hover-primary fs-5 fw-bold" 
-                data-bs-toggle="modal" 
-                data-bs-target="#kt_modal" 
-                hx-get="{% url 'core:TypeAbonnementUpdateView' record.id %}" 
-                hx-target="#kt_modal_content" 
-                hx-swap="innerHTML">
+            {% if perms.abonnement.change_abonnement %}
+                <a 
+                    href="#" 
+                    class="text-gray-800 text-hover-primary fs-5 fw-bold" 
+                    data-bs-toggle="modal" 
+                    data-bs-target="#kt_modal" 
+                    hx-get="{% url 'core:TypeAbonnementUpdateView' record.id %}" 
+                    hx-target="#kt_modal_content" 
+                    hx-swap="innerHTML">
+                    {{ record.name }}
+                </a>
+            {% else %}
                 {{ record.name }}
-            </a>
+            {% endif %}
         '''
     )
 

@@ -14,14 +14,16 @@
             slotDuration: '01:00:00',
             events: eventsData,
             eventClick: function(info) {
-                info.jsEvent.preventDefault(); 
+                info.jsEvent.preventDefault();
+                {% if perms.creneau.change_creneau %} 
                 var url = info.event.url;
                 htmx.ajax('GET', url, {
                     target: '#kt_modal_content', 
                     swap: 'innerHTML', 
                 });
                 var myModal = new bootstrap.Modal(document.getElementById('kt_modal'));
-                myModal.show();
+                    myModal.show();
+                {% endif %}
             }
         });
         calendar.render();

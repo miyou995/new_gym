@@ -74,19 +74,26 @@
                     </a>
                 </li>
             {% endif %}
-            <li class="nav-item mx-3">
-              <a href="{% url 'core:PlanningTable' %}" class="nav-link">
-                <span class="nav-title">Configuration</span>
-              </a>
-            </li>
-            {% if perms.inventory.view_user %}
+            
+             {% if perms.abonnement.view_abonnement %}
+              <li class="nav-item mx-3">
+                <a href="{% url 'core:PlanningTable' %}" class="nav-link">
+                  <span class="nav-title">Configuration</span>
+                  </a>
+                </li>
+            {% endif %}
+            {% if perms.accounts.view_user or perms.auth.view_group %}
               <li class="nav-item dropdown mx-3">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                           Settings
+                           Users
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <li><a class="dropdown-item" href="{% url 'accounts:userlist' %}">Users</a></li>
-                    <li><a class="dropdown-item" href="{% url 'accounts:grouplist' %}">Role</a></li>
+                      {% if perms.accounts.view_user %}
+                        <li><a class="dropdown-item" href="{% url 'accounts:userlist' %}">Users</a></li>
+                      {% endif %}
+                      {% if perms.auth.view_group %}
+                        <li><a class="dropdown-item" href="{% url 'accounts:grouplist' %}">Role</a></li>
+                      {% endif %}
                   </ul>
               </li>
             {% endif %}

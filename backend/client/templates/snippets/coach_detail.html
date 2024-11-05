@@ -29,7 +29,7 @@
 												{% if perms.client.change_coach %}
 														<a  
 															href="#" 
-															class="btn btn-sm btn-light-primary"
+															class="btn btn-sm  btn-primary btn-radius color-container"
 															data-bs-toggle="modal" 
 															data-bs-target="#kt_modal"
 															data-bs-placement="right" 
@@ -92,7 +92,7 @@
 
 											<div class="card-body">
 												<div class="card card-flush">
-													<div class="card-header align-items-center py-5 gap-2 gap-md-5" style="background-color: #98c1d9">
+													<div class="card-header align-items-center py-5 gap-2 gap-md-5 total-container" >
 														<div class="card-title">
 															<div class="d-flex align-items-center position-relative my-1">
 																<h3 class="card-title">Seances / Presences</h3>
@@ -139,7 +139,7 @@
 
 											<div class="card-body">
 												<div class="card card-flush">
-													<div class="card-header align-items-center py-5 gap-2 gap-md-5" style="background-color: #98c1d9">
+													<div class="card-header align-items-center py-5 gap-2 gap-md-5 total-container" >
 														<div class="card-title">
 															<div class="d-flex align-items-center position-relative my-1">
 																<h3 class="card-title">Virements</h3>
@@ -150,8 +150,7 @@
 														<div class="card-toolbar flex-row-fluid justify-content-end gap-5">
 															<button
 															type="button"
-															class="btn btn-primary btn-sm"
-															style="background-color: #3d5a80; border-color: #3d5a80;"
+															class="btn btn-primary btn-sm btn-radius color-container"
 															data-bs-toggle="modal"
 															data-bs-target="#kt_modal"
 															hx-get="{% url 'transactions:coach_Remuneration_Coach' coach.pk %}"
@@ -180,7 +179,7 @@
 											</div>
 											<div class="card-body">
 												<div class="card card-flush">
-													<div class="card-header align-items-center py-5 gap-2 gap-md-5" style="background-color: #98c1d9">
+													<div class="card-header align-items-center py-5 gap-2 gap-md-5 total-container" >
 														<div class="card-title">
 															<div class="d-flex align-items-center position-relative my-1">
 																<h3 class="card-title">Creneaux</h3>

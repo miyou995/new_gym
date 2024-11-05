@@ -13,6 +13,7 @@ class PresencesHTMxTable(tables.Table):
 
     nom = tables.TemplateColumn(
         template_code='''
+        {% if perms.presence.change_presence %}
             <a 
                 href="#" 
                 class="text-gray-800 text-hover-primary fs-5 fw-bold" 
@@ -23,6 +24,9 @@ class PresencesHTMxTable(tables.Table):
                 hx-swap="innerHTML">
                 {{  record.abc.client.last_name }}
             </a>
+        {% else %}
+            {{  record.abc.client.last_name }}
+        {% endif %}
         ''',
           verbose_name="Nom",
         orderable=True)

@@ -24,7 +24,7 @@ from django.contrib import messages
 from django.views.decorators.http import require_POST
 from transaction.models import Paiement
 from django.http import JsonResponse
-
+from django.contrib.auth.decorators import permission_required
 
 def abc_htmx_view(request):
     client_id = request.GET.get('client')
@@ -39,7 +39,8 @@ def abc_htmx_view(request):
     return response
 
 
-class CalendarAbonnementClient(CalendarAbonnementClientMixin):
+class CalendarAbonnementClient(PermissionRequiredMixin,CalendarAbonnementClientMixin):
+    permission_required = 'abonnement.add_abonnementclient'
     def get_template_names(self):
         template_name = "abonnement_calendar.html"
         return template_name
@@ -89,7 +90,8 @@ def add_abonnement_client(request,client_pk,type_abonnement):
          print("no type_abonnement or no selected event-------------->")
     return redirect('abonnement:calendar_abonnement_client', kwargs={'pk': client_pk})
 
-class CalendarUpdateAbonnementClient(FilterView):
+class CalendarUpdateAbonnementClient(PermissionRequiredMixin,FilterView):
+    permission_required = 'abonnement.change_abonnementclient'
     filterset_class = CalenderFilter
     model = Creneau
     def get_context_data(self, **kwargs):
@@ -198,7 +200,8 @@ def update_abonnement_client(request, pk, type_abonnement):
 
 
 
-class AbonnemtClientDeleteView(DeleteView):
+class AbonnemtClientDeleteView(PermissionRequiredMixin,DeleteView):
+    permission_required = 'abonnement.delete_abonnementclient'
     model = AbonnementClient
     template_name = "buttons/delete.html"
     def get_success_url(self):

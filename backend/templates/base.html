@@ -70,6 +70,7 @@ License: For each use you must have a valid license purchased only from above li
                   <i class="ki-outline ki-abstract-14 fs-1"></i>
                 </div>
               </div>
+              {% if perms.presence.add_presence %}
                     <form  >
                       <input
                             hx-get='{% url "presence:presence_client" %}' 
@@ -85,6 +86,7 @@ License: For each use you must have a valid license purchased only from above li
                             style="width: 150px;" 
                             autofocus  />
                     </form>
+              {% endif %}
               {% include 'snippets/header.html' %}
               <div class="app-navbar flex-shrink-0">
 								<div class="app-navbar-item ms-1 ms-md-4" id="kt_header_user_menu_toggle">
