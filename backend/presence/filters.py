@@ -18,7 +18,7 @@ class PresenceFilter(django_filters.FilterSet):
     
     class Meta:
         model = Presence
-        fields = ['search', 'date','creneau__activity','creneau__activity__salle','creneau']
+        fields = ['search', 'date','creneau__activity','creneau__activity__salle']
         labels = {
            
             'creneau__activity': 'Activity',
