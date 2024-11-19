@@ -1,19 +1,15 @@
+
 # Django #
 *.log
 *.pot
 *.pyc
 __pycache__
-db.sqlite3
-media/*
-*.zip
-*.rar
+
+media
+backups/*
 # Backup files # 
 *.bak 
-backend/*.log
-backend/media/*
-backend/*/__pycache__
-backend/picture.jpg
-frontend/.eslintcache
+
 # If you are using PyCharm # 
 # User-specific stuff
 .idea/**/workspace.xml
@@ -23,10 +19,9 @@ frontend/.eslintcache
 .idea/**/shelf
 # AWS User-specific
 .idea/**/aws.xml
-backend/assets/*
+
 # Generated files
 .idea/**/contentModel.xml
-
 # Sensitive or high-churn files
 .idea/**/dataSources/
 .idea/**/dataSources.ids
@@ -45,18 +40,18 @@ backend/assets/*
 
 # IntelliJ
 out/
-
+../venv/
 # JIRA plugin
 atlassian-ide-plugin.xml
 
 # Python # 
-# *.py[cod] 
-# *$py.class 
+*.py[cod] 
+*$py.class 
 
 # Distribution / packaging 
 .Python build/ 
 develop-eggs/ 
-# dist/ 
+dist/ 
 downloads/ 
 eggs/ 
 .eggs/ 
@@ -101,48 +96,4 @@ celerybeat-schedule.*
 *.sage.py 
 
 # Environments 
-.venv 
-env/ 
-venv/ 
-ENV/ 
-env.bak/ 
-venv.bak/ 
-
-# mkdocs documentation 
-/site 
-
-# mypy 
-.mypy_cache/ 
-*.rar
-# Sublime Text # 
-*.tmlanguage.cache 
-*.tmPreferences.cache 
-*.stTheme.cache 
-*.sublime-workspace 
-*.sublime-project 
-
-# sftp configuration file 
-sftp-config.json 
-
-# Package control specific files Package 
-Control.last-run 
-Control.ca-list 
-Control.ca-bundle 
-Control.system-ca-bundle 
-GitHub.sublime-settings 
-
-# Visual Studio Code # 
-.vscode/* 
-!.vscode/settings.json 
-!.vscode/tasks.json 
-!.vscode/launch.json 
-!.vscode/extensions.json 
-.history
-frontend/node_modules/
-
-
-backend/config/local_settings.py
-backend/debug.log
-
-*.zip
-backend/*.json
+.env 
