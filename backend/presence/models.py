@@ -47,7 +47,7 @@ class Presence(models.Model):
     history = HistoricalRecords(user_model=settings.AUTH_USER_MODEL)
 
     class Meta:
-        ordering  = ['-date']
+        ordering  = ['-created']
 
     def save(self, *args, **kwargs):
         # print(' Save() on Presence class ( model)')
