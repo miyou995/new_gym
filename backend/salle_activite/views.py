@@ -17,6 +17,9 @@ from rest_framework.views import APIView
 from .device import AccessControl
 from .utils import revoke_all_tasks
 from celery import group
+from django.views import View
+from django.http import HttpResponse
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .tasks import ( 
 	start_linsten_test_device_1, 
 	start_linsten_test_device_2, 
@@ -221,32 +224,47 @@ class StartListening(APIView):
 #         )
 #         return Response(status=200)
 
-class OpenTheDoor(APIView):
-	permission_classes = [IsAdminUser]
-	def get(self, request, pk, format=None):
-		# serializer = SalleSerialiser(salle)
-		# res = open_the_door.delay(salle.door.id)
-		door = Door.objects.get(id=pk)
-		# door = salle.doors.all().first()
-		device = AccessControl()
-		# device = FaceControl()
-		print('DOOOORE', door)
-		print('ad', door.username)
-		print('PWD', door.password)
+# class OpenTheDoor(APIView):
+# 	permission_classes = [IsAdminUser]
+# 	def get(self, request, pk, format=None):
+# 		# serializer = SalleSerialiser(salle)
+# 		# res = open_the_door.delay(salle.door.id)
+# 		door = Door.objects.get(id=pk)
+# 		# door = salle.doors.all().first()
+# 		device = AccessControl()
+# 		# device = FaceControl()
+# 		print('DOOOORE', door)
+# 		print('ad', door.username)
+# 		print('PWD', door.password)
 
+# 		device.get_login_info(ip=str(door.ip_adress), port=37777, username=door.username, password=door.password)
+# 		result = device.login()
+# 		if result:
+# 			device.access_operate()
+# 			device.logout()
+# 			device.sdk.Cleanup()
+# 			print('pk', pk)
+# 			# print('serializer', serializer)
+# 			return Response(status=200)
+# 		else:
+# 			print('WHAT')
+# 			return Response(status=400)
+
+
+class OpenTheDoorView(LoginRequiredMixin, View):
+	def get(self, request, pk, *args, **kwargs):
+		door = Door.objects.get(id=pk)
+		device = AccessControl()
 		device.get_login_info(ip=str(door.ip_adress), port=37777, username=door.username, password=door.password)
 		result = device.login()
+		print('result>>>>', result)
 		if result:
 			device.access_operate()
 			device.logout()
 			device.sdk.Cleanup()
-			print('pk', pk)
-			# print('serializer', serializer)
-			return Response(status=200)
+			return HttpResponse("Door opened successfully", status=200)
 		else:
-			print('WHAT')
-			return Response(status=400)
-
+			return HttpResponse("Failed to open the door", status=400)
 
 # @api_view(['GET'])
 # def start_listening(request):
