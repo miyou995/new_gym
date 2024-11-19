@@ -16,15 +16,16 @@
 		<div class="mb-13 text-center">
 			<h1 class="mb-3">{% trans "Creation De Présence Manuellement" %}</h1>
 		</div>
+		
 		{% with WIDGET_ERROR_CLASS='is-invalid' %}         
 			{% for field in form %}
-				{% if field|widget_type|slugify == "dfdf" %}
-					<div class="{{column_classes}} mb-4 d-flex flex-column mb-8 fv-row">
-						<label class="d-flex align-items-center fs-6 fw-semibold mb-2">
-							<span {%  if field.field.required %}class="required"{% endif %}>{{field.label}}</span>
-							{% include 'fields/select.html' %}
-						</label>
-					</div>
+				{% if field|widget_type|slugify == "select" %}
+                <div class="{{column_classes}} mb-4 d-flex flex-column mb-8 fv-row">
+                    <label class="align-items-center fw-semibold mb-2">
+                        <span {% if field.field.required %}class="required"{% endif %}>{{ field.label }}</span>
+                        {% include 'fields/select.html' %}
+                    </label>
+                </div>
 				{% else %}
 					<div class="d-flex flex-column mb-8 fv-row">
 						<label class="d-flex align-items-center fs-6 fw-semibold mb-2">

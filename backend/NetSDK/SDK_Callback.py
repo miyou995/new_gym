@@ -1,3 +1,5 @@
+# _*_ coding:utf-8 _*_
+
 from ctypes import *
 from .SDK_Struct import *
 
@@ -83,7 +85,7 @@ fDownLoadPosCallBack = CB_FUNCTYPE(None, C_LLONG, C_DWORD, C_DWORD, C_LDWORD)
 
 # 回放数据回调; Playback data callback function
 # 若设备传过来的码流是不加密的,dwDataType:0-不加密的录像文件原始数据
-# 若设备传过来的码流是加密的,dwDataType: 0-解密后的大华私有码流(帧数据）,2-加密的原始码流
+# 若设备传过来的码流是加密的,dwDataType: 0-解密后的私有码流(帧数据）,2-加密的原始码流
 # If the stream is unencrypted,dwDataType:0-the original unencrypted stream
 # If the stream is encrypted,dwDataType: 0-the decrypted stream(the frame data),2-the original encrypted stream
 #  Whether the stream is encrypted,should call CLIENT_GetConfig(NET_EM_CFG_MEDIA_ENCRYPT) to get it;
@@ -108,11 +110,11 @@ fDataCallBack = CB_FUNCTYPE(c_int, C_LLONG, C_DWORD, POINTER(c_ubyte), C_DWORD, 
 #     dwUser:用户数据； user data
 fTimeDownLoadPosCallBack = CB_FUNCTYPE(None, C_LLONG, C_DWORD, C_DWORD, c_int, NET_RECORDFILE_INFO, C_LDWORD)
 
-# 实时监视数据回调函数原形--扩展(pBuffer内存由SDK内部申请释放); Real-time monitor data callback function original shape---extensive
+# 实时预览数据回调函数原形--扩展(pBuffer内存由SDK内部申请释放); Real-time monitor data callback function original shape---extensive
 # 通过 dwDataType 过滤得到对应码流，具体码流类型请参考 EM_REALDATA_FLAG; Obtain corresponding stream by filtering dwDataType, stream type refers to EM_REALDATA_FLAG
 # 转码流时 dwDataType 值请参考 NET_DATA_CALL_BACK_VALUE 说明; The dwDataType value in stream transcoding refers to NET_DATA_CALL_BACK_VALUE
 # 参数列表(param list):
-#     lRealHandle：监视句柄; monitor handle
+#     lRealHandle：预览句柄; monitor handle
 #     dwDataType: 回调数据类型；callback data type
 #     pBuffer: 回调数据缓存； byte array, length is dwBufSize
 #     dwBufSize: 回调数据的缓存大小; pBuffer's size
@@ -120,11 +122,11 @@ fTimeDownLoadPosCallBack = CB_FUNCTYPE(None, C_LLONG, C_DWORD, C_DWORD, c_int, N
 #     dwUser:用户数据； user data
 fRealDataCallBackEx = CB_FUNCTYPE(None, C_LLONG, C_DWORD, POINTER(c_byte), C_DWORD, C_LLONG, C_LDWORD)
 
-# 实时监视数据回调函数原形--扩展(pBuffer内存由SDK内部申请释放); Obtain corresponding stream by filtering dwDataType, stream type refers to EM_REALDATA_FLAG
+# 实时预览数据回调函数原形--扩展(pBuffer内存由SDK内部申请释放); Obtain corresponding stream by filtering dwDataType, stream type refers to EM_REALDATA_FLAG
 # 通过 dwDataType 过滤得到对应码流，具体码流类型请参考 EM_REALDATA_FLAG; 转码流时 dwDataType 值请参考 NET_DATA_CALL_BACK_VALUE 说明; The dwDataType value in stream converting refers to NET_DATA_CALL_BACK_VALUE
 # 当转码流时，param 为具体的转码信息（视频帧、音频帧等信息），对应结构体 NET_STREAMCONVERT_INFO; when convert stream, param refers to frame info(video frame info or audio frame info), param's type is NET_STREAMCONVERT_INFO
 # 参数列表(param list):
-#     lRealHandle：监视句柄; monitor handle
+#     lRealHandle：预览句柄; monitor handle
 #     dwDataType: 回调数据类型；callback data type
 #     pBuffer: 回调数据缓存； byte array, length is dwBufSize
 #     dwBufSize: 回调数据的缓存大小; pBuffer's size
@@ -180,6 +182,17 @@ fPTZStatusProcCallBack = CB_FUNCTYPE(None, C_LLONG, C_LLONG, c_void_p, c_int, C_
 #     dwUser: 用户数据; user data
 fRadiometryAttachCB = CB_FUNCTYPE(None, C_LLONG, POINTER(NET_RADIOMETRY_DATA), c_int, C_LDWORD)
 
+# 侦听服务器回调函数原形; Listening server callback function original shape
+# 参数列表(param list):
+#     lHandle：订阅句柄;Handle
+#     pIp: 设备IP;device IP
+#     wPort: 设备端口;device port
+#     lCommand: 命令类型,参考EM_AUTOREGISTER_TYPE; command type, refers to EM_AUTOREGISTER_TYPE
+#     pParam: 回调数据缓存； byte array, length is dwBufSize
+#     dwParamLen: 回调数据的缓存大小; pBuffer's size
+#     dwUserData: 用户数据; User data
+fServiceCallBack = CB_FUNCTYPE(c_int, C_LLONG, c_char_p, c_ushort, C_ENUM, c_void_p, C_DWORD, C_LDWORD)
+
 #
 fDataCallBackEx = CB_FUNCTYPE(c_int, C_LLONG, POINTER(NET_DATA_CALL_BACK_INFO), C_LDWORD)
 
@@ -214,3 +227,57 @@ fRTMPAttachStatusCallBack = CB_FUNCTYPE(c_int, C_LLONG, POINTER(NET_CB_RTMP_STAT
 # nTotalSize = -1, nSendSize = XX Indicates Upgrade Progress
 # nTotalSize = XX, nSendSize = XX Upgrade file transmission progress
 fUpgradeCallBackEx = CB_FUNCTYPE(None, C_LLONG, C_LLONG, c_int64, c_int64, C_LDWORD)
+
+# 雷达报警点信息回调函数指针
+# radar alarm point info callback
+fRadarAlarmPointInfoCallBack = CB_FUNCTYPE(None, C_LLONG, C_LLONG, POINTER(NET_RADAR_NOTIFY_ALARMPOINTINFO), C_DWORD, c_void_p, C_LDWORD)
+
+# 回调函数
+# callback
+fFaceFindState = CB_FUNCTYPE(None, C_LLONG, C_LLONG, POINTER(NET_CB_FACE_FIND_STATE), c_int, C_LDWORD)
+
+# VK信息回调(pBuffer内存由SDK内部申请释放),dwError值可以dhnetsdk.h中找到相应的解释,比如NET_NOERROR,NET_ERROR_VK_INFO_DECRYPT_FAILED等
+# VK info callback,dwError value will be finded in dhnetsdk.h,for example:NET_NOERROR,NET_ERROR_VK_INFO_DECRYPT_FAILED
+fVKInfoCallBack = CB_FUNCTYPE(None, C_LLONG, POINTER(NET_VKINFO), C_DWORD, C_LDWORD, c_void_p)
+
+# 回放数据原始回调函数原形
+# pBuffer: 数据缓冲区，内存由SDK内部申请释放
+# 无论设备传的码流是不是加密的，都回调原始码流
+# Playback data callback function prototype
+# pBuffer: data buffer, memory malloc or free was managed by SDK interior
+# Whether the stream is encrypted or not,dwDataType: 0-original stream
+fOriDataCallBack = CB_FUNCTYPE(c_int, C_LLONG, C_DWORD, POINTER(C_BYTE), C_DWORD, C_LDWORD)
+
+# 刻录设备回调函数原形, 每次1条,pBuf->dwSize == nBufLen
+# burning device callback function, pBuf->dwSize == nBufLen
+fAddFileStateCB = CB_FUNCTYPE(None, C_LLONG, C_LLONG, POINTER(NET_CB_ADDFILESTATE), c_int, C_LDWORD)
+
+# 订阅大图检测小图进度回调函数原型
+# the callback function of detection small image form the large image
+fMultiFaceDetectState = CB_FUNCTYPE(None, C_LLONG, POINTER(NET_CB_MULTIFACE_DETECT_STATE), C_LDWORD)
+
+# 订阅大图检测小图进度回调函数原型
+# The callback function about attach to large image to detect small image
+fMultiFaceDetectStateEx = CB_FUNCTYPE(None, C_LLONG, POINTER(NET_CB_MULTIFACE_DETECT_STATE_EX), C_LDWORD)
+
+# 订阅无线对码信息回调函数原形,lAttachHandle是CLIENT_AttachLowRateWPAN返回值
+# Order wireless code info call function origin, lAttachHandle is CLIENT_AttachLowRateWPAN return valud
+fAttachLowRateWPANCB = CB_FUNCTYPE(None, C_LLONG, C_LLONG, POINTER(NET_CODEID_INFO), C_ENUM, C_LDWORD)
+
+# 接口(CLIENT_StartTrafficFluxStat)回调
+# CLIENT_StartTrafficFluxStat's callback function
+fFluxStatDataCallBack = CB_FUNCTYPE(c_int, C_LLONG, C_DWORD, c_void_p, POINTER(C_BYTE), C_DWORD, C_LDWORD, c_int, c_void_p)
+
+# 智能分析结果的回调函数
+# attach Traffic Flow Stat Real Flow callback
+# Param List:
+#     lAttachHandle: [out] lAttachHandle 订阅句柄; [out] lAttachHandle : analyse proc handle
+#     pstuVehicleInOutAnalyseProc: [out] pstuVideoAnalyseTrackProc 智能分析结果的信息; [out] pstuVehicleInOutAnalyseProc : Callback information
+#     dwUser: [out] dwUser 用户信息; [out] dwUser User Info
+# Return Value:
+#     void; void
+fVehicleInOutAnalyseProc = CB_FUNCTYPE(None, C_LLONG, POINTER(NET_VEHICLE_INOUT_ANALYSE_PROC), C_LDWORD)
+
+# 订阅人群分布图实时统计信息回调函数原型
+# Crowd Distri Map callback
+fCrowdDistriStream = CB_FUNCTYPE(None, C_LLONG, POINTER(NET_CB_CROWD_DISTRI_STREAM_INFO), C_LDWORD)

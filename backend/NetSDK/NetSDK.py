@@ -1,3 +1,5 @@
+# _*_ coding:utf-8 _*_
+
 from .SDK_Struct import *
 from .SDK_Enum import *
 from .SDK_Callback import *
@@ -95,7 +97,7 @@ error_code = {
     102: 'Time out for log in returned value.',
     103: 'The account has logged in',
     104: 'The account has been locked',
-    105: 'The account has been in the black list',
+    105: 'The account has been in the block list',
     106: 'Resources are not sufficient. System is busy now.',
     107: 'Time out. Please check network and try again.',
     108: 'Network connection failed.',
@@ -278,7 +280,7 @@ error_code = {
     1022: 'decrypt data fail',
     1023: '2D code check out fail',
     1024: 'invalid request',
-    1025: 'pwd reset disabled',
+    1025: 'pwd reset unable',
     1026: 'failed to display private data,such as rule box',
     1027: 'robot operate failed',
     1028: 'photosize exceeds limit',
@@ -302,39 +304,39 @@ error_code = {
     1046: 'Counts upper limit',
     1047: 'Cert no exist',
     1048: "default search port can't use(5050,37810)",
-    1049: 'face recognition server multi append stop',
-    1050: 'face recognition server multi append error',
-    1051: 'face recognition server group id exceed',
-    1052: 'face recognition server group id not in register group',
-    1053: 'face recognition server picture not found',
-    1054: 'face recognition server generate group id failed',
-    1055: 'face recognition server set config failed',
-    1056: 'face recognition server file open failed',
-    1057: 'face recognition server file read failed',
-    1058: 'face recognition server file write failed',
-    1059: 'face recognition server picture dpi error',
-    1060: 'face recognition server picture px error',
-    1061: 'face recognition server picture size error',
-    1062: 'face recognition server database error',
-    1063: 'face recognition server face max num',
-    1064: 'face recognition server birthday format error',
-    1065: 'face recognition server uid error',
-    1066: 'face recognition server token error',
-    1067: 'face recognition server begin num over run',
-    1068: 'face recognition server abstract num zero',
-    1069: 'face recognition server abstract init error',
-    1070: 'face recognition server auto abstract state',
-    1071: 'face recognition server abstract state',
-    1072: 'face recognition server im ex state',
-    1073: 'face recognition server pic write failed',
-    1074: 'face recognition server group space exceed',
-    1075: 'face recognition server group pic count exceed',
-    1076: 'face recognition server group not found',
-    1077: 'face recognition server find record error',
-    1078: 'face recognition server delete person error',
-    1079: 'face recognition server delete group error',
-    1080: 'face recognition server name format error',
-    1081: 'face recognition server file path not set',
+    1049: 'target recognition server multi append stop',
+    1050: 'target recognition server multi append error',
+    1051: 'target recognition server group id exceed',
+    1052: 'target recognition server group id not in register group',
+    1053: 'target recognition server picture not found',
+    1054: 'target recognition server generate group id failed',
+    1055: 'target recognition server set config failed',
+    1056: 'target recognition server file open failed',
+    1057: 'target recognition server file read failed',
+    1058: 'target recognition server file write failed',
+    1059: 'target recognition server picture dpi error',
+    1060: 'target recognition server picture px error',
+    1061: 'target recognition server picture size error',
+    1062: 'target recognition server database error',
+    1063: 'target recognition server face max num',
+    1064: 'target recognition server birthday format error',
+    1065: 'target recognition server uid error',
+    1066: 'target recognition server token error',
+    1067: 'target recognition server begin num over run',
+    1068: 'target recognition server abstract num zero',
+    1069: 'target recognition server abstract init error',
+    1070: 'target recognition server auto abstract state',
+    1071: 'target recognition server abstract state',
+    1072: 'target recognition server im ex state',
+    1073: 'target recognition server pic write failed',
+    1074: 'target recognition server group space exceed',
+    1075: 'target recognition server group pic count exceed',
+    1076: 'target recognition server group not found',
+    1077: 'target recognition server find record error',
+    1078: 'target recognition server delete person error',
+    1079: 'target recognition server delete group error',
+    1080: 'target recognition server name format error',
+    1081: 'target recognition server file path not set',
     1082: 'device internal request timeout',
     1083: 'device keeps alive fail',
     1084: 'device network error',
@@ -358,7 +360,7 @@ error_code = {
     1102: 'device does not support stream packing format',
     1103: 'device does not support audio encoding format',
     1104: 'check request security failed, using local GUI reset password',
-    1105: 'check request security failed, using dahua APP or configtool reset password',
+    1105: 'check request security failed, using Private APP or configtool reset password',
     1106: 'check request security failed, using Web reset password',
     1107: 'streamconvertor defect',
     1108: 'generate safe code failed',
@@ -512,6 +514,8 @@ class NetClient(metaclass=Singleton):
             cls.sdk = load_library(netsdkdllpath)
             cls.config_sdk = load_library(configdllpath)
             # cls.play_sdk = load_library(playsdkdllpath)
+            cls.render_sdk = load_library(rendersdkdllpath)
+            cls.infra_sdk = load_library(infrasdkdllpath)
         except OSError as e:
             print('动态库加载失败')
 
@@ -565,7 +569,7 @@ class NetClient(metaclass=Singleton):
         username = c_char_p(username.encode())
         password = c_char_p(password.encode())
         spec_cap = c_int(spec_cap)
-        cap_param = c_void_p(cap_param) if cap_param is not None else None
+        cap_param = byref(cap_param) if cap_param is not None else None
         error = c_int(0)
         error_message = ''
         device_info = NET_DEVICEINFO_Ex()
@@ -578,7 +582,7 @@ class NetClient(metaclass=Singleton):
             3: 'timeout',
             4: 'repeat login',
             5: 'account has been locked',
-            6: 'the account has been blacklisted',
+            6: 'the account has been blocklisted',
             7: 'system busy, insufficient resources',
             8: 'sub socket connect fail',
             9: 'main socket connect fail',
@@ -587,8 +591,8 @@ class NetClient(metaclass=Singleton):
             12: 'device not insert U shield or U shiled info invalid',
             13: 'client ip address is not permit to login',
             18: 'device does not been initialized,so cannot be login',
-			19: 'limited login',
-			20: 'device only support high level security login'
+            19: 'limited login',
+            20: 'device only support high level security login'
         }
         if login_id == 0:
             try:
@@ -617,7 +621,7 @@ class NetClient(metaclass=Singleton):
             3: '登录超时',
             4: '重复登录',
             5: '帐号被锁定',
-            6: '帐号被列入黑名单',
+            6: '帐号被列入禁止名单',
             7: '系统忙,资源不足',
             8: '子连接失败',
             9: '主连接失败',
@@ -676,7 +680,7 @@ class NetClient(metaclass=Singleton):
     #         3: '登录超时',
     #         4: '重复登录',
     #         5: '帐号被锁定',
-    #         6: '帐号被列入黑名单',
+    #         6: '帐号被列入禁止名单',
     #         7: '系统忙,资源不足',
     #         8: '子连接失败',
     #         9: '主连接失败',
@@ -716,11 +720,9 @@ class NetClient(metaclass=Singleton):
         :return:result:成功：1，失败：0；succeed：1，failed：0
         """
         login_id = C_LLONG(login_id)
-        print('login_id---->', login_id)
         result = cls.sdk.CLIENT_Logout(login_id)
-        print('NestSDK NetClient Logout resulkt====', result)
         if result == 0:
-            print("whanho",cls.GetLastErrorMessage())
+            print(cls.GetLastErrorMessage())
         return result
 
     @classmethod
@@ -750,7 +752,7 @@ class NetClient(metaclass=Singleton):
     @classmethod
     def RealPlayEx(cls, login_id: int, channel: int, hwnd: int, play_type=SDK_RealPlayType.Realplay) -> C_LLONG:
         """
-        开始实时监视;Begin real-time monitor
+        开始实时预览;Begin real-time monitor
         :param login_id:登陆句柄,LoginWithHighLevelSecurity返回值;user LoginID,LoginWithHighLevelSecurity's returns value
         :param channel:通道号;real time monitor channel NO.(from 0).
         :param hwnd:窗口句柄;display window handle.
@@ -771,7 +773,7 @@ class NetClient(metaclass=Singleton):
     @classmethod
     def RealPlayByDataType(cls, lLoginID: int, pstInParam: NET_IN_REALPLAY_BY_DATA_TYPE, pstOutParam: NET_OUT_REALPLAY_BY_DATA_TYPE, dwWaitTime: int = 5000) -> C_LLONG:
         """
-        指定回调数据类型 实施监视(预览), 数据回调函数 cbRealData 中得到的码流类型为 emDataType 所指定的类型;RealPlay By Stream Data Type
+        指定回调数据类型 实施预览(预览), 数据回调函数 cbRealData 中得到的码流类型为 emDataType 所指定的类型;RealPlay By Stream Data Type
         :param lLoginID:登陆句柄,LoginWithHighLevelSecurity返回值;user LoginID,LoginWithHighLevelSecurity's returns value
         :param pstInParam:输入参数;input param
         :param pstOutParam:输出参数;output param
@@ -822,8 +824,8 @@ class NetClient(metaclass=Singleton):
     @classmethod
     def SetRealDataCallBackEx2(cls, realplay_id: int, cbRealData: fRealDataCallBackEx2, dwUser: C_LDWORD, dwFlag: EM_REALDATA_FLAG) -> bool:
         """
-        开始实时监视;Begin real-time monitor
-        :param realplay_id:监视ID,RealPlayEx返回值;monitor handle,RealPlayEx returns value
+        开始实时预览;Begin real-time monitor
+        :param realplay_id:预览ID,RealPlayEx返回值;monitor handle,RealPlayEx returns value
         :param cbRealData:回调函数;callback function
         :param dwUser:用户数据;user data
         :param dwFlag:回调数据类型;real data type
@@ -840,7 +842,7 @@ class NetClient(metaclass=Singleton):
     def StopRealPlayEx(cls, realplay_id: int) -> int:
         """
         停止实时预览;stop real-time preview
-        :param realplay_id:监视ID,RealPlayEx返回值;monitor handle,RealPlayEx returns value
+        :param realplay_id:预览ID,RealPlayEx返回值;monitor handle,RealPlayEx returns value
         :return:result:成功：1，失败：0；succeed：1，failed：0
         """
         realplay_id = C_LLONG(realplay_id)
@@ -1142,13 +1144,75 @@ class NetClient(metaclass=Singleton):
         return result
 
     @classmethod
+    def FastPlayBack(cls, download_id: int) -> int:
+        """
+        快进录像回放;  Fast forward video playback
+        :param download_id:下载句柄, DownloadByTimeEx的返回值； download handle，DownloadByTimeEx's returns value
+        :return:result:成功：1，失败：0；succeed：1，failed：0
+        """
+        if download_id == 0:
+            return
+        download_id = C_LLONG(download_id)
+        result = cls.sdk.CLIENT_FastPlayBack(download_id)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def SlowPlayBack(cls, download_id: int) -> int:
+        """
+        慢进录像回放;  Slow forward video playback
+        :param download_id:下载句柄, DownloadByTimeEx的返回值； download handle，DownloadByTimeEx's returns value
+        :return:result:成功：1，失败：0；succeed：1，failed：0
+        """
+        if download_id == 0:
+            return
+        download_id = C_LLONG(download_id)
+        result = cls.sdk.CLIENT_SlowPlayBack(download_id)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def NormalPlayBack(cls, download_id: int) -> int:
+        """
+        恢复正常回放速度;  Restore normal playback speed
+        :param download_id:下载句柄, DownloadByTimeEx的返回值； download handle，DownloadByTimeEx's returns value
+        :return:result:成功：1，失败：0；succeed：1，failed：0
+        """
+        if download_id == 0:
+            return
+        download_id = C_LLONG(download_id)
+        result = cls.sdk.CLIENT_NormalPlayBack(download_id)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def PlayBackControlDirection(cls, download_id: int, backard: bool) -> int:
+        """
+        控制播放方向--正放或者倒放;  Control the playback direction - forward or backward
+        :param download_id:下载句柄, DownloadByTimeEx的返回值； download handle，DownloadByTimeEx's returns value
+        :param backard: false 正放,true 倒放
+        :return:result:成功：1，失败：0；succeed：1，failed：0
+        """
+        if download_id == 0:
+            return
+        download_id = C_LLONG(download_id)
+        backard = c_bool(backard)
+        result = cls.sdk.CLIENT_PlayBackControlDirection(download_id, backard)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
     def GetDevConfig(cls, login_id: C_LLONG, cfg_type: C_DWORD, channel_id: C_LONG,
                      out_buffer: C_LLONG, outbuffer_size: C_DWORD,
                      wait_time: int = 5000) -> int:
         """
         查询配置信息； Search configuration information
         :param login_id:登陆句柄,LoginWithHighLevelSecurity返回值;user LoginID,LoginWithHighLevelSecurity's returns value
-        :param cfg_type:查询类型，参考EM_QUERY_RECORD_TYPE; type of record file,see EM_QUERY_RECORD_TYPE
+        :param cfg_type:查询类型，参考 EM_DEV_CFG_TYPE; type,see EM_DEV_CFG_TYPE
         :param channel_id:查询通道号; user work mode
         :param out_buffer:获取的结构体数据; struct data of output
         :param outbuffer_size:out_buffer数据长度; size of out_buffer
@@ -1177,7 +1241,7 @@ class NetClient(metaclass=Singleton):
         """
         设置配置信息; Set configuration information
         :param login_id:登陆句柄,LoginWithHighLevelSecurity返回值;user LoginID,LoginWithHighLevelSecurity's returns value
-        :param cfg_type:查询类型，参考EM_QUERY_RECORD_TYPE; type of record file,see EM_QUERY_RECORD_TYPE
+        :param cfg_type:查询类型，参考EM_DEV_CFG_TYPE; type,see EM_DEV_CFG_TYPE
         :param channel_id:查询通道号; user work mode
         :param in_buffer:传入的结构体数据; struct data of input
         :param inbuffer_size:in_buffer数据长度; size of in_buffer
@@ -1238,8 +1302,6 @@ class NetClient(metaclass=Singleton):
             print(cls.GetLastErrorMessage())
         return result
 
-
-
     @classmethod
     def StartListenEx(cls, lLoginID:C_LLONG)->c_int:
         """
@@ -1248,7 +1310,6 @@ class NetClient(metaclass=Singleton):
         :return:1:成功，0：失败；1：success,0:failed
         """
         lLoginID = C_LLONG(lLoginID)
-        print('login id', lLoginID)
         result = cls.sdk.CLIENT_StartListenEx(lLoginID)
         if not result:
             print(cls.GetLastErrorMessage())
@@ -1282,7 +1343,7 @@ class NetClient(metaclass=Singleton):
     def RenderPrivateData(cls, realplay_id: C_LLONG, bTrue: bool) -> c_int:
         """
         显示私有数据，例如规则框，规则框报警，移动侦测等;Stop subscribe alarm
-        :param realplay_id:监视ID,RealPlayEx返回值;monitor handle,RealPlayEx returns value
+        :param realplay_id:预览ID,RealPlayEx返回值;monitor handle,RealPlayEx returns value
         :param lLoginID: 播放句柄,LoginWithHighLevelSecurity返回值;user LoginID,LoginWithHighLevelSecurity's returns value
         :return:1:成功，0：失败；1：success,0:failed
         """
@@ -1458,7 +1519,7 @@ class NetClient(metaclass=Singleton):
     @classmethod
     def FindGroupInfo(cls, lLoginID: int, pstInParam: NET_IN_FIND_GROUP_INFO, pstOutParam: NET_OUT_FIND_GROUP_INFO, nWaitTime: int = 1000) -> int:
         """
-        查询人脸识别人员组信息,pstInParam与pstOutParam内存由用户申请释放； search face recognition staff group info ,user malloc and free (pstInParam's and pstOutParam's) memory
+        查询目标识别人员组信息,pstInParam与pstOutParam内存由用户申请释放； search target recognition staff group info ,user malloc and free (pstInParam's and pstOutParam's) memory
         :param lLoginID: 登录句柄，LoginWithHighLevelSecurity返回值;user LoginID,LoginWithHighLevelSecurity's returns value
         :param pstInParam:结构体输入参数;input param
         :param pstOutParam:结构体输出参数;output param
@@ -1475,7 +1536,7 @@ class NetClient(metaclass=Singleton):
     def OperateFaceRecognitionGroup(cls, lLoginID: int, pstInParam: NET_IN_OPERATE_FACERECONGNITION_GROUP, pstOutParam: NET_OUT_OPERATE_FACERECONGNITION_GROUP,
                       nWaitTime: int = 1000) -> int:
         """
-        人脸识别人员组操作（包括添加,修改和删除）,pstInParam与pstOutParam内存由用户申请释放； face recognition staff group operation, including add, modify and delete, ,user malloc and free (pstInParam's and pstOutParam's) memory
+        目标识别人员组操作（包括添加,修改和删除）,pstInParam与pstOutParam内存由用户申请释放； target recognition staff group operation, including add, modify and delete, ,user malloc and free (pstInParam's and pstOutParam's) memory
         :param lLoginID: 登录句柄，LoginWithHighLevelSecurity返回值;user LoginID,LoginWithHighLevelSecurity's returns value
         :param pstInParam:结构体输入参数;input param
         :param pstOutParam:结构体输出参数;output param
@@ -1489,11 +1550,10 @@ class NetClient(metaclass=Singleton):
         return result
 
     @classmethod
-    def OperateFaceRecognitionDB(cls, lLoginID: int, pstInParam: NET_IN_OPERATE_FACERECONGNITIONDB,
-                                    pstOutParam: NET_OUT_OPERATE_FACERECONGNITIONDB,
+    def OperateFaceRecognitionDB(cls, lLoginID: int, pstInParam: NET_IN_OPERATE_FACERECONGNITIONDB, pstOutParam: NET_OUT_OPERATE_FACERECONGNITIONDB,
                                     nWaitTime: int = 1000) -> int:
         """
-        人脸识别数据库信息操作（包括添加,修改和删除）,pstInParam与pstOutParam内存由用户申请释放； face recognition database info operation, including add and delete, ,user malloc and free (pstInParam's and pstOutParam's) memory
+        目标识别数据库信息操作（包括添加,修改和删除）,pstInParam与pstOutParam内存由用户申请释放； target recognition database info operation, including add and delete, ,user malloc and free (pstInParam's and pstOutParam's) memory
         :param lLoginID: 登录句柄，LoginWithHighLevelSecurity返回值;user LoginID,LoginWithHighLevelSecurity's returns value
         :param pstInParam:结构体输入参数;input param
         :param pstOutParam:结构体输出参数;output param
@@ -1543,7 +1603,7 @@ class NetClient(metaclass=Singleton):
         return result
 
     @classmethod
-    def GetNewDevConfig(cls, lLoginID:c_int, szCommand:c_char_p, nChannelID:c_int, szOutBuffer:c_char_p, dwOutBufferSize:C_DWORD, error:c_int, waittime:c_int):
+    def GetNewDevConfig(cls, lLoginID:c_int, szCommand:c_char_p, nChannelID:c_int, szOutBuffer:c_char_p, dwOutBufferSize:C_DWORD, error:c_int, waittime:c_int, pReserved:c_void_p = None):
         """
          查询配置信息; Search configuration information
         :param lLoginID: 登录句柄，LoginWithHighLevelSecurity返回值;user LoginID,LoginWithHighLevelSecurity's returns value
@@ -1553,14 +1613,16 @@ class NetClient(metaclass=Singleton):
         :param dwOutBufferSize: 数据大小;Out buffer size
         :param error:错误码;Error code
         :param waittime:等待时间；Wait time
+        :param pReserved:保留字段;Reserved
         :return:1:成功,0:失败;1:success,0:failed
         """
         lLoginID = C_LLONG(lLoginID)
         szCommand = c_char_p(szCommand.encode())
         dwOutBufferSize = C_DWORD(dwOutBufferSize)
         data_buffer = pointer(szOutBuffer)
+        pReserved = c_void_p(pReserved)
         error = c_int(0)
-        result = cls.sdk.CLIENT_GetNewDevConfig(lLoginID, szCommand, nChannelID, data_buffer, dwOutBufferSize, byref(error), waittime)
+        result = cls.sdk.CLIENT_GetNewDevConfig(lLoginID, szCommand, nChannelID, data_buffer, dwOutBufferSize, byref(error), waittime, pReserved)
         if not result:
             print(cls.GetLastErrorMessage())
         return result
@@ -1644,11 +1706,18 @@ class NetClient(metaclass=Singleton):
         """
         lLoginID = C_LLONG(lLoginID)
         dwOutBufferSize = C_DWORD(dwOutBufferSize)
-        reserve = c_void_p(reserve)
-        result = cls.sdk.CLIENT_GetConfig(lLoginID, emCfgOpType, nChannelID, byref(szOutBuffer), dwOutBufferSize, waittime, byref(reserve))
-        if not result:
-            print(cls.GetLastErrorMessage())
-        return result
+        if reserve != None:
+            reserve = c_void_p(reserve)
+            result = cls.sdk.CLIENT_GetConfig(lLoginID, emCfgOpType, nChannelID, byref(szOutBuffer), dwOutBufferSize, waittime, byref(reserve))
+            if not result:
+                print(cls.GetLastErrorMessage())
+            return result
+        else:
+            result = cls.sdk.CLIENT_GetConfig(lLoginID, emCfgOpType, nChannelID, byref(szOutBuffer), dwOutBufferSize,
+                                              waittime)
+            if not result:
+                print(cls.GetLastErrorMessage())
+            return result
     @classmethod
     def SetConfig(cls, lLoginID: C_LLONG, emCfgOpType: c_int, nChannelID: c_int, szInBuffer: c_void_p,
                   dwInBufferSize: C_DWORD, waittime: c_int, restart:c_int, reserve: c_void_p = None):
@@ -1667,12 +1736,19 @@ class NetClient(metaclass=Singleton):
         lLoginID = C_LLONG(lLoginID)
         dwInBufferSize = C_DWORD(dwInBufferSize)
         restart = c_int(restart)
-        reserve = c_void_p(None)
-        result = cls.sdk.CLIENT_SetConfig(lLoginID, emCfgOpType, nChannelID, byref(szInBuffer), dwInBufferSize,
-                                          waittime, byref(restart), byref(reserve))
-        if not result:
-            print(cls.GetLastErrorMessage())
-        return result
+        if reserve != None:
+            reserve = c_void_p(None)
+            result = cls.sdk.CLIENT_SetConfig(lLoginID, emCfgOpType, nChannelID, byref(szInBuffer), dwInBufferSize,
+                                              waittime, byref(restart), byref(reserve))
+            if not result:
+                print(cls.GetLastErrorMessage())
+            return result
+        else:
+            result = cls.sdk.CLIENT_SetConfig(lLoginID, emCfgOpType, nChannelID, byref(szInBuffer), dwInBufferSize,
+                                              waittime, byref(restart))
+            if not result:
+                print(cls.GetLastErrorMessage())
+            return result
 
     @classmethod
     def QuerySystemStatus(cls, lLoginID: C_LLONG, pstuStatus:SDK_SYSTEM_STATUS, nWaitTime: c_int):
@@ -1758,7 +1834,6 @@ class NetClient(metaclass=Singleton):
             dwStop = C_BOOL(1)
         else:
             dwStop = C_BOOL(0)
-        param4 = byref(param4)
         result = cls.sdk.CLIENT_DHPTZControlEx2(lLoginID, nChannelID, dwPTZCommand, lParam1, lParam2, lParam3, dwStop, param4)
         if not result:
             print(cls.GetLastErrorMessage())
@@ -2628,4 +2703,1018 @@ class NetClient(metaclass=Singleton):
             print(cls.GetLastErrorMessage())
         return result
 
+    @classmethod
+    def QueryFurthestRecordTime(cls, lLoginID: int, nRecordFileType: int, pchCardid:c_char_p, pFurthrestTime:NET_FURTHEST_RECORD_TIME, waittime: int) -> C_BOOL:
+        """
+        查询最早录像时间(pFurthrestTime内存由用户申请释放); Query the earliest recording time (pfurthresttime memory is released by the user's request)
+        :param lLoginID: 登录句柄，LoginWithHighLevelSecurity返回值; user LoginID,LoginWithHighLevelSecurity's returns value
+        :param nRecordFileType: 录像文件类型, 参考 EM_VIDEO_FILE_TYPE; Video file type, reference resources EM_VIDEO_FILE_TYPE
+        :param pchCardid: 输入参数 由nRecordFileType类型决定类型; The input parameter determines the type by the nRecordFileType type
+        :param pFurthrestTime: 输入参数 参考 NET_FURTHEST_RECORD_TIME; Input parameter reference NET_FURTHEST_RECORD_TIME
+        :param waittime: 超时时间; waittime
+        :return: 1:成功,0:失败;1:success,0:failed
+        """
+        lLoginID = C_LLONG(lLoginID)
+        result = cls.sdk.CLIENT_QueryFurthestRecordTime(lLoginID, nRecordFileType, pchCardid, byref(pFurthrestTime), c_int(waittime))
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def GetStorageBoundTimeEx(cls, lLoginID: int, pInParam: NET_IN_GET_BOUND_TIMEEX, pOutParam: NET_OUT_GET_BOUND_TIMEEX, waittime: int) -> C_BOOL:
+        """
+        获取录像时间范围; Obtain the recording time range
+        :param lLoginID: 登录句柄，LoginWithHighLevelSecurity返回值; user LoginID,LoginWithHighLevelSecurity's returns value
+        :param pInParam: 输入参数 对应 NET_IN_GET_BOUND_TIMEEX ; The input parameter corresponds to NET_IN_GET_BOUND_TIMEEX
+        :param pOutParam: 输出参数 对应 NET_OUT_GET_BOUND_TIMEEX; The output parameter corresponds to NET_OUT_GET_BOUND_TIMEEX
+        :param waittime: 超时时间; waittime
+        :return: 1:成功,0:失败;1:success,0:failed
+        """
+        lLoginID = C_LLONG(lLoginID)
+        result = cls.sdk.CLIENT_GetStorageBoundTimeEx(lLoginID, byref(pInParam), byref(pOutParam), c_int(waittime))
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def ModifyDeviceEx(cls, pInBuf: NET_IN_MODIFY_IP, pOutBuf: NET_OUT_MODIFY_IP, waittime: int) -> C_BOOL:
+        """
+        修改设备IP (pDevNetInfo内存由用户申请释放); Modify the device IP (pDevNetInfo memory is released by the user's request)
+        :param pInBuf: 输入参数 对应 NET_IN_MODIFY_IP ; The input parameter corresponds to NET_IN_MODIFY_IP
+        :param pOutBuf: 输出参数 对应 NET_OUT_MODIFY_IP; The output parameter corresponds to NET_OUT_MODIFY_IP
+        :param waittime: 超时时间; waittime
+        :return: 1:成功,0:失败;1:success,0:failed
+        """
+        result = cls.sdk.CLIENT_ModifyDeviceEx(byref(pInBuf), byref(pOutBuf), c_int(waittime))
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def SetAlarmRegionInfo(cls, lLoginID: int, emtype: EM_A_NET_EM_SET_ALARMREGION_INFO, pstuInParam, pstuOutParam, waittime: int) -> C_BOOL:
+        """
+        报警主机设置操作; alarm host setting operation
+        :param lLoginID: 登录句柄，LoginWithHighLevelSecurity返回值; user LoginID,LoginWithHighLevelSecurity's returns value
+        :param emtype: 操作类型; operation type
+        :param pstuInParam: 输入参数 由emtype类型决定结构体类型; The input parameter determines the structure type by the emType type
+        :param pstuOutParam: 输出参数 由emtype类型决定结构体类型; The output parameter determines the structure type by the emType type
+        :param waittime: 超时时间; waittime
+        :return: 1:成功,0:失败;1:success,0:failed
+        """
+        lLoginID = C_LLONG(lLoginID)
+        result = cls.sdk.CLIENT_SetAlarmRegionInfo(lLoginID, emtype, byref(pstuInParam), byref(pstuOutParam), c_int(waittime))
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def GetAlarmRegionInfo(cls, lLoginID: int, emtype: EM_A_NET_EM_GET_ALARMREGION_INFO, pstuInParam, pstuOutParam, waittime: int) -> C_BOOL:
+        """
+        报警主机获取操作; alarm host acquisition operation
+        :param lLoginID: 登录句柄，LoginWithHighLevelSecurity返回值; user LoginID,LoginWithHighLevelSecurity's returns value
+        :param emtype: 操作类型; operation type
+        :param pstuInParam: 输入参数 由emtype类型决定结构体类型; The input parameter determines the structure type by the emType type
+        :param pstuOutParam: 输出参数 由emtype类型决定结构体类型; The output parameter determines the structure type by the emType type
+        :param waittime: 超时时间; waittime
+        :return: 1:成功,0:失败;1:success,0:failed
+        """
+        lLoginID = C_LLONG(lLoginID)
+        result = cls.sdk.CLIENT_GetAlarmRegionInfo(lLoginID, emtype, byref(pstuInParam), byref(pstuOutParam), c_int(waittime))
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def AttachRadarAlarmPointInfo(cls, lLoginID: int, pstInParam: NET_IN_RADAR_ALARMPOINTINFO, pstOutParam: NET_OUT_RADAR_ALARMPOINTINFO, waittime: int) -> C_LLONG:
+        """
+        订阅雷达的报警点信息; Subscribe to radar alarm point information
+        :param lLoginID: 登录句柄，LoginWithHighLevelSecurity返回值; user LoginID,LoginWithHighLevelSecurity's returns value
+        :param pstInParam: 输入参数 参考结构体 NET_IN_RADAR_ALARMPOINTINFO; Input parameter reference structure NET_IN_RADAR_ALARMPOINTINFO
+        :param pstOutParam: 输出参数 参考结构体 NET_OUT_RADAR_ALARMPOINTINFO; Output parameter reference structure NET_OUT_RADAR_ALARMPOINTINFO
+        :param waittime: 超时时间; waittime
+        :return: 订阅句柄; attach handle
+        """
+        lLoginID = C_LLONG(lLoginID)
+        cls.sdk.CLIENT_AttachRadarAlarmPointInfo.restype = C_LLONG
+        result = cls.sdk.CLIENT_AttachRadarAlarmPointInfo(lLoginID, byref(pstInParam), byref(pstOutParam), c_int(waittime))
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def DetachRadarAlarmPointInfo(cls, lAttachHandle: int) -> C_BOOL:
+        """
+        取消订阅雷达的报警点信息; Unsubscribe radar alarm point information
+        :param lAttachHandle:订阅句柄，AttachRadarAlarmPointInfo接口返回值；Attach handle,return value of AttachRadarAlarmPointInfo
+        :return:1:成功,0:失败;1:success,0:failed
+        """
+        lAttachHandle = C_LLONG(lAttachHandle)
+        result = cls.sdk.CLIENT_DetachRadarAlarmPointInfo(lAttachHandle)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def MatchTwoFaceImage(cls, lLoginID: int, pstInParam: NET_MATCH_TWO_FACE_IN, pstOutParam: NET_MATCH_TWO_FACE_OUT, nWaitTime: int) -> C_BOOL:
+        """
+        计算两张人脸图片的相似度faceRecognitionServer.matchTwoFace,pstInParam与pstOutParam内存由用户申请释放
+        calculate the similarity of two face images,user malloc and free memory of pstInParam and pstOutParam
+        """
+        lLoginID = C_LLONG(lLoginID)
+        pstInParam = pointer(pstInParam)
+        pstOutParam = pointer(pstOutParam)
+        nWaitTime = c_int(nWaitTime)
+        result = cls.sdk.CLIENT_MatchTwoFaceImage(lLoginID, pstInParam, pstOutParam, nWaitTime)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def StartMultiFindFaceRecognition(cls, lLoginID: int, pstInParam: NET_IN_STARTMULTIFIND_FACERECONGNITION, pstOutParam: NET_OUT_STARTMULTIFIND_FACERECONGNITION, nWaitTime: int) -> C_BOOL:
+        """
+        开始人脸检测/注册库的多通道查询
+        start face detection / registry multi channel query
+        """
+        lLoginID = C_LLONG(lLoginID)
+        nWaitTime = c_int(nWaitTime)
+        result = cls.sdk.CLIENT_StartMultiFindFaceRecognition(lLoginID, byref(pstInParam), byref(pstOutParam), nWaitTime)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def AttachFaceFindState(cls, lLoginID: int, pstInParam: NET_IN_FACE_FIND_STATE, pstOutParam: NET_OUT_FACE_FIND_STATE, nWaitTime: int) -> C_LLONG:
+        """
+        订阅人脸查询状态,pstInParam与pstOutParam内存由用户申请释放
+        attach face find state,user malloc and free (pstInParam's and pstOutParam's) memory
+        """
+        lLoginID = C_LLONG(lLoginID)
+        pstInParam = pointer(pstInParam)
+        pstOutParam = pointer(pstOutParam)
+        nWaitTime = c_int(nWaitTime)
+        cls.sdk.CLIENT_AttachFaceFindState.restype = C_LLONG
+        result = cls.sdk.CLIENT_AttachFaceFindState(lLoginID, pstInParam, pstOutParam, nWaitTime)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def DoFindFaceRecognition(cls, pstInParam: NET_IN_DOFIND_FACERECONGNITION, pstOutParam: NET_OUT_DOFIND_FACERECONGNITION, nWaitTime: int) -> C_BOOL:
+        """
+        查找目标识别结果:nFilecount:需要查询的条数, 返回值为媒体文件条数 返回值<nFilecount则相应时间段内的文件查询完毕(每次最多只能查询20条记录),pstInParam与pstOutParam内存由用户申请释放
+        search target recognition result:nFilecount: need search item, return value is media file item return value<nFilecount then corresponding period file search complete(search max of 20 records each time)
+        user malloc and free (pstInParam's and pstOutParam's) memory
+        """
+        pstInParam = pointer(pstInParam)
+        pstOutParam = pointer(pstOutParam)
+        nWaitTime = c_int(nWaitTime)
+        result = cls.sdk.CLIENT_DoFindFaceRecognition(pstInParam, pstOutParam, nWaitTime)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def StopFindFaceRecognition(cls, lFindHandle: int) -> C_BOOL:
+        """
+        结束查询
+        end search
+        """
+        lFindHandle = C_LLONG(lFindHandle)
+        result = cls.sdk.CLIENT_StopFindFaceRecognition(lFindHandle)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def ListenServer(cls, ip: str, port: c_ushort, nTimeout: int, cbListen: fServiceCallBack, dwUserData: C_LDWORD) -> C_BOOL:
+        """
+        主动注册功能,启动服务；nTimeout参数已无效(默认为设备断线后SDK内部登出); actively registration function. enable service. nTimeout is invalid.
+        :param ip: 设备IP;device IP
+        :param port:设备端口;device port
+        :param nTimeout:等待时间;wait time
+        :param cbListen:等待时间;wait time
+        :param dwUserData:用户数据; User data
+        :return:订阅句柄;Handle
+        """
+        ip = c_char_p(ip.encode())
+        dwUserData = C_LDWORD(dwUserData)
+        cls.sdk.CLIENT_ListenServer.restype = C_LLONG
+        result = cls.sdk.CLIENT_ListenServer(ip, port, nTimeout, cbListen, dwUserData)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def StopListenServer(cls, lServerHandle: C_LLONG) -> bool:
+        """
+        停止服务; stop service
+        :param lServerHandle: 服务ID,ListenServer返回值;service handle,ListenServer returns value
+        :return:result: 1：success,0:failed
+        """
+        result = cls.sdk.CLIENT_StopListenServer(lServerHandle)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def GetWaterDataStatServerCaps(cls, lLoginID: int, pstuInParam: NET_IN_WATERDATA_STAT_SERVER_GETCAPS_INFO,
+                                   pstuOutParam: NET_OUT_WATERDATA_STAT_SERVER_GETCAPS_INFO, nWaitTime: int) -> C_LLONG:
+        """
+        获取水质检测能力
+        Acquire water quality detection capability
+        :param lLoginID: [in] lLoginID 登录句柄; [in] lLoginID Login handle
+        :param pstuInParam: [in] pstuInParam 接口输入参数; [in] pstuInParam Interface input parameters
+        :param pstuOutParam: [out]pstuOutParam 接口输出参数; [out]pstuOutParam Interface output parameters
+        :param nWaitTime: [in] nWaitTime 接口超时时间, 单位毫秒; [in] nWaitTime Interface timeout in milliseconds
+        :return: TRUE表示成功 FALSE表示失败; TRUE indicates success FALSE indicates failure
+        """
+        lLoginID = C_LLONG(lLoginID)
+        pstuInParam = pointer(pstuInParam)
+        pstuOutParam = pointer(pstuOutParam)
+        nWaitTime = c_int(nWaitTime)
+        cls.sdk.CLIENT_GetWaterDataStatServerCaps.restype = C_LLONG
+        result = cls.sdk.CLIENT_GetWaterDataStatServerCaps(lLoginID, pstuInParam, pstuOutParam, nWaitTime)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def GetWaterDataStatServerWaterData(cls, lLoginID: int, pstuInParam: NET_IN_WATERDATA_STAT_SERVER_GETDATA_INFO,
+                                        pstuOutParam: NET_OUT_WATERDATA_STAT_SERVER_GETDATA_INFO, nWaitTime: int) -> C_LLONG:
+        """
+        水质检测实时数据获取
+        Real time data acquisition of water quality detection
+        :param lLoginID: [in] lLoginID 登录句柄; [in] lLoginID Login handle
+        :param pstuInParam: [in] pstuInParam 接口输入参数; [in] pstuInParam Interface input parameters
+        :param pstuOutParam: [out]pstuOutParam 接口输出参数; [out]pstuOutParam Interface output parameters
+        :param nWaitTime: [in] nWaitTime 接口超时时间, 单位毫秒; [in] nWaitTime Interface timeout in milliseconds
+        :return: TRUE表示成功 FALSE表示失败; TRUE indicates success FALSE indicates failure
+        """
+        lLoginID = C_LLONG(lLoginID)
+        pstuInParam = pointer(pstuInParam)
+        pstuOutParam = pointer(pstuOutParam)
+        nWaitTime = c_int(nWaitTime)
+        cls.sdk.CLIENT_GetWaterDataStatServerWaterData.restype = C_LLONG
+        result = cls.sdk.CLIENT_GetWaterDataStatServerWaterData(lLoginID, pstuInParam, pstuOutParam, nWaitTime)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def StartFindWaterDataStatServer(cls, lLoginID: int, pstuInParam: NET_IN_START_FIND_WATERDATA_STAT_SERVER_INFO,
+                                     pstuOutParam: NET_OUT_START_FIND_WATERDATA_STAT_SERVER_INFO, nWaitTime: int) -> C_LLONG:
+        """
+        开始水质检测报表数据查询
+        Start data query of water quality test report
+        :param lLoginID: [in] lLoginID 登录句柄; [in] lLoginID Login handle
+        :param pstuInParam: [in] pstuInParam 接口输入参数; [in] pstuInParam Interface input parameters
+        :param pstuOutParam: [out]pstuOutParam 接口输出参数; [out]pstuOutParam Interface output parameters
+        :param nWaitTime: [in] nWaitTime 接口超时时间, 单位毫秒; [in] nWaitTime Interface timeout in milliseconds
+        :return: TRUE表示成功 FALSE表示失败; TRUE indicates success FALSE indicates failure
+        """
+        lLoginID = C_LLONG(lLoginID)
+        pstuInParam = pointer(pstuInParam)
+        pstuOutParam = pointer(pstuOutParam)
+        nWaitTime = c_int(nWaitTime)
+        cls.sdk.CLIENT_StartFindWaterDataStatServer.restype = C_LLONG
+        result = cls.sdk.CLIENT_StartFindWaterDataStatServer(lLoginID, pstuInParam, pstuOutParam, nWaitTime)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def DoFindWaterDataStatServer(cls, lLoginID: int, pstuInParam: NET_IN_DO_FIND_WATERDATA_STAT_SERVER_INFO,
+                                  pstuOutParam: NET_OUT_DO_FIND_WATERDATA_STAT_SERVER_INFO, nWaitTime: int) -> C_LLONG:
+        """
+        水质检测报表数据查询
+        Data query of water quality test report
+        :param lLoginID: [in] lLoginID 登录句柄; [in] lLoginID Login handle
+        :param pstuInParam: [in] pstuInParam 接口输入参数; [in] pstuInParam Interface input parameters
+        :param pstuOutParam: [out]pstuOutParam 接口输出参数; [out]pstuOutParam Interface output parameters
+        :param nWaitTime: [in] nWaitTime 接口超时时间, 单位毫秒; [in] nWaitTime Interface timeout in milliseconds
+        :return: TRUE表示成功 FALSE表示失败; TRUE indicates success FALSE indicates failure
+        """
+        lLoginID = C_LLONG(lLoginID)
+        pstuInParam = pointer(pstuInParam)
+        pstuOutParam = pointer(pstuOutParam)
+        nWaitTime = c_int(nWaitTime)
+        cls.sdk.CLIENT_DoFindWaterDataStatServer.restype = C_LLONG
+        result = cls.sdk.CLIENT_DoFindWaterDataStatServer(lLoginID, pstuInParam, pstuOutParam, nWaitTime)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def StopFindWaterDataStatServer(cls, lLoginID: int, pstuInParam: NET_IN_STOP_FIND_WATERDATA_STAT_SERVER_INFO,
+                                    pstuOutParam: NET_OUT_STOP_FIND_WATERDATA_STAT_SERVER_INFO, nWaitTime: int) -> C_LLONG:
+        """
+        停止水质检测报表数据查询
+        Stop data query of water quality test report
+        :param lLoginID: [in] lLoginID 登录句柄; [in] lLoginID Login handle
+        :param pstuInParam: [in] pstuInParam 接口输入参数; [in] pstuInParam Interface input parameters
+        :param pstuOutParam: [out]pstuOutParam 接口输出参数; [out]pstuOutParam Interface output parameters
+        :param nWaitTime: [in] nWaitTime 接口超时时间, 单位毫秒; [in] nWaitTime Interface timeout in milliseconds
+        :return: TRUE表示成功 FALSE表示失败; TRUE indicates success FALSE indicates failure
+        """
+        lLoginID = C_LLONG(lLoginID)
+        pstuInParam = pointer(pstuInParam)
+        pstuOutParam = pointer(pstuOutParam)
+        nWaitTime = c_int(nWaitTime)
+        cls.sdk.CLIENT_StopFindWaterDataStatServer.restype = C_LLONG
+        result = cls.sdk.CLIENT_StopFindWaterDataStatServer(lLoginID, pstuInParam, pstuOutParam, nWaitTime)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def FaceInfoOpreate(cls, lLoginID: int, emType: EM_FACEINFO_OPREATE_TYPE, pInParam: c_void_p, pOutParam: c_void_p, nWaitTime: int) -> C_BOOL:
+        """
+        :人脸信息记录操作函数
+        : CLIENT_FaceInfoOpreate
+        the opreation function of face info
+        :param lLoginID: [in]: LLONG :lLoginID  登陆句柄; [in]: LLONG :lLoginID  login handle
+        :param emType: [in]: EM_FACEINFO_OPREATE_TYPE: emType 操作类型; [in]: EM_FACEINFO_OPREATE_TYPE: emType opreate type
+        :param pInParam: [in]: void* :pInParam  接口输入参数, 资源由用户维护; [in]: void* :pInParam  the input param, the resource is maintained by user
+        :param pOutParam: [out]: void* :pOutParam  接口输出参数, 资源由用户维护; [out]: void* :pOutParam  the outtime param, the resource is maintained by user
+        :param nWaitTime: [in]: int :nWaitTime  等待超时时间; [in]: int :nWaitTime  timeout
+        :return: : BOOL; : BOOL
+        """
+        lLoginID = C_LLONG(lLoginID)
+        emType = C_ENUM(emType)
+        nWaitTime = c_int(nWaitTime)
+        result = cls.sdk.CLIENT_FaceInfoOpreate(lLoginID, emType, pInParam, pOutParam, nWaitTime)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def GetDeviceType(cls, lLoginID: int, pstInParam: NET_IN_GET_DEVICETYPE_INFO, pstOutParam: NET_OUT_GET_DEVICETYPE_INFO, nWaitTime: int) -> C_BOOL:
+        """
+        获取设备类型
+        Get Device Type(not the true type of the device)
+        """
+        lLoginID = C_LLONG(lLoginID)
+        pstInParam = pointer(pstInParam)
+        pstOutParam = pointer(pstOutParam)
+        nWaitTime = c_int(nWaitTime)
+        result = cls.sdk.CLIENT_GetDeviceType(lLoginID, pstInParam, pstOutParam, nWaitTime)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def GetDeviceAllInfo(cls, lLoginID: int, pstInParam: NET_IN_GET_DEVICE_AII_INFO, pstOutParam: NET_OUT_GET_DEVICE_AII_INFO, nWaitTime: int) -> C_BOOL:
+        """
+        获取IPC设备的存储信息
+        """
+        lLoginID = C_LLONG(lLoginID)
+        pstInParam = pointer(pstInParam)
+        pstOutParam = pointer(pstOutParam)
+        nWaitTime = c_int(nWaitTime)
+        result = cls.sdk.CLIENT_GetDeviceAllInfo(lLoginID, pstInParam, pstOutParam, nWaitTime)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def GetUnifiedStatus(cls, lLoginID: int, pInParam: NET_IN_UNIFIEDINFOCOLLECT_GET_DEVSTATUS, pOutParam: NET_OUT_UNIFIEDINFOCOLLECT_GET_DEVSTATUS, nWaitTime: int) -> C_BOOL:
+        """
+        获取设备状态, DMSS专用接口, pInParam与pOutParam内存由用户申请释放
+        """
+        lLoginID = C_LLONG(lLoginID)
+        pInParam = pointer(pInParam)
+        pOutParam = pointer(pOutParam)
+        nWaitTime = c_int(nWaitTime)
+        result = cls.sdk.CLIENT_GetUnifiedStatus(lLoginID, pInParam, pOutParam, nWaitTime)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def StartFindNumberStat(cls, lLoginID: int, pstInParam: NET_IN_FINDNUMBERSTAT, pstOutParam: NET_OUT_FINDNUMBERSTAT) -> C_LLONG:
+        """
+        开始查询视频统计信息,pstInParam与pstOutParam内存由用户申请释放
+        start find number state,user malloc and free (pstInParam's and pstOutParam's) memory
+        """
+        lLoginID = C_LLONG(lLoginID)
+        pstInParam = pointer(pstInParam)
+        pstOutParam = pointer(pstOutParam)
+        cls.sdk.CLIENT_StartFindNumberStat.restype = C_LLONG
+        result = cls.sdk.CLIENT_StartFindNumberStat(lLoginID, pstInParam, pstOutParam)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def DoFindNumberStat(cls, lFindHandle: int, pstInParam: NET_IN_DOFINDNUMBERSTAT, pstOutParam: NET_OUT_DOFINDNUMBERSTAT) -> c_int:
+        """
+        继续查询视频统计,pstInParam与pstOutParam内存由用户申请释放
+        do find number state,user malloc and free (pstInParam's and pstOutParam's) memory
+        """
+        lFindHandle = C_LLONG(lFindHandle)
+        pstInParam = pointer(pstInParam)
+        pstOutParam = pointer(pstOutParam)
+        result = cls.sdk.CLIENT_DoFindNumberStat(lFindHandle, pstInParam, pstOutParam)
+        return result
+
+    @classmethod
+    def StopFindNumberStat(cls, lFindHandle: int) -> C_BOOL:
+        """
+        结束查询视频统计
+        stop find number state
+        """
+        lFindHandle = C_LLONG(lFindHandle)
+        result = cls.sdk.CLIENT_StopFindNumberStat(lFindHandle)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def GetDeviceInfo(cls, lLoginID: int, pInParam: NET_IN_GET_DEVICE_LIST_INFO, pOutParam: NET_OUT_GET_DEVICE_LIST_INFO, nWaitTime: int) -> C_BOOL:
+        """
+        获取已添加的设备状态
+        interface of get added device info
+        """
+        lLoginID = C_LLONG(lLoginID)
+        pInParam = pointer(pInParam)
+        pOutParam = pointer(pOutParam)
+        nWaitTime = c_int(nWaitTime)
+        result = cls.sdk.CLIENT_GetDeviceInfo(lLoginID, pInParam, pOutParam, nWaitTime)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def GetChannelInfo(cls, lLoginID: int, pInParam: NET_IN_GET_CHANNEL_INFO, pOutParam: NET_OUT_GET_CHANNEL_INFO, nWaitTime: int) -> C_BOOL:
+        """
+        获取设备通道信息
+        interface of get channel info
+        """
+        lLoginID = C_LLONG(lLoginID)
+        pInParam = pointer(pInParam)
+        pOutParam = pointer(pOutParam)
+        nWaitTime = c_int(nWaitTime)
+        result = cls.sdk.CLIENT_GetChannelInfo(lLoginID, pInParam, pOutParam, nWaitTime)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def BatchAppendFaceRecognition(cls, lLoginID: int, pstInParam: NET_IN_BATCH_APPEND_FACERECONGNITION, pstOutParam: NET_OUT_BATCH_APPEND_FACERECONGNITION, nWaitTime: int) -> C_BOOL:
+        """
+        添加多个人员信息和人脸样本
+        batch append persons, user malloc and free (pstInParam's and pstOutParam's) memory
+        """
+        lLoginID = C_LLONG(lLoginID)
+        pstInParam = pointer(pstInParam)
+        pstOutParam = pointer(pstOutParam)
+        nWaitTime = c_int(nWaitTime)
+        result = cls.sdk.CLIENT_BatchAppendFaceRecognition(lLoginID, pstInParam, pstOutParam, nWaitTime)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def StartFindFaceRecognition(cls, lLoginID: int, pstInParam: NET_IN_STARTFIND_FACERECONGNITION, pstOutParam: NET_OUT_STARTFIND_FACERECONGNITION, nWaitTime: int) -> C_BOOL:
+        """
+        按条件查询目标识别结果 ,pstInParam与pstOutParam内存由用户申请释放
+        by filter search Target recognition result ,user malloc and free (pstInParam's and pstOutParam's) memory
+        """
+        lLoginID = C_LLONG(lLoginID)
+        pstInParam = pointer(pstInParam)
+        pstOutParam = pointer(pstOutParam)
+        nWaitTime = c_int(nWaitTime)
+        result = cls.sdk.CLIENT_StartFindFaceRecognition(lLoginID, pstInParam, pstOutParam, nWaitTime)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def FaceRecognitionPutDisposition(cls, lLoginID: int, pstInParam: NET_IN_FACE_RECOGNITION_PUT_DISPOSITION_INFO, pstOutParam: NET_OUT_FACE_RECOGNITION_PUT_DISPOSITION_INFO, nWaitTime: int) -> C_BOOL:
+        """
+        以人脸库的角度进行布控, pstInParam与pstOutParam内存由用户申请释放
+        put disposition to Target recognition, user malloc and free (pstInParam's and pstOutParam's) memory
+        """
+        lLoginID = C_LLONG(lLoginID)
+        pstInParam = pointer(pstInParam)
+        pstOutParam = pointer(pstOutParam)
+        nWaitTime = c_int(nWaitTime)
+        result = cls.sdk.CLIENT_FaceRecognitionPutDisposition(lLoginID, pstInParam, pstOutParam, nWaitTime)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def FaceRecognitionDelDisposition(cls, lLoginID: int, pstInParam: NET_IN_FACE_RECOGNITION_DEL_DISPOSITION_INFO, pstOutParam: NET_OUT_FACE_RECOGNITION_DEL_DISPOSITION_INFO,
+                                      nWaitTime: int) -> C_BOOL:
+        """
+        以人脸库的角度进行撤控, pstInParam与pstOutParam内存由用户申请释放
+        delete disposition from Target recognition, user malloc and free (pstInParam's and pstOutParam's) memory
+        """
+        lLoginID = C_LLONG(lLoginID)
+        pstInParam = pointer(pstInParam)
+        pstOutParam = pointer(pstOutParam)
+        nWaitTime = c_int(nWaitTime)
+        result = cls.sdk.CLIENT_FaceRecognitionDelDisposition(lLoginID, pstInParam, pstOutParam, nWaitTime)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def AttachAddFileState(cls, lLoginID: int, pstInParam: NET_IN_ADDFILE_STATE, pstOutParam: NET_OUT_ADDFILE_STATE, nWaitTime: int) -> C_LLONG:
+        """
+        订阅添加文件信息状态,pstInParam与pstOutParam内存由用户申请释放
+        attach add file state,user malloc and free (pstInParam's and pstOutParam's) memory
+        """
+        lLoginID = C_LLONG(lLoginID)
+        pstInParam = pointer(pstInParam)
+        pstOutParam = pointer(pstOutParam)
+        nWaitTime = c_int(nWaitTime)
+        cls.sdk.CLIENT_AttachAddFileState.restype = C_LLONG
+        result = cls.sdk.CLIENT_AttachAddFileState(lLoginID, pstInParam, pstOutParam, nWaitTime)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def FaceRServerGetDetectToken(cls, lLoginID: int, pInParam: NET_IN_FACERSERVER_GETDETEVTTOKEN,
+                                  pOutParam: NET_OUT_FACERSERVER_GETDETEVTTOKEN, nWaitTime: int) -> C_BOOL:
+        """
+        获取人脸检测令牌
+        Get face detection token
+        :param lLoginID: [in] lLoginID 登录句柄; [in] lLoginID Login handle
+        :param pInParam: [in] pInParam 接口输入参数; [in] pInParam Interface input parameters
+        :param pOutParam: [out]pOutParam 接口输出参数; [out] pOutParam Interface output parameters
+        :param nWaitTime: [in] nWaitTime 接口超时时间, 单位毫秒; [in] nWaitTime Interface timeout in milliseconds
+        :return: TRUE表示成功 FALSE表示失败; True indicates success and false indicates failure
+        """
+        lLoginID = C_LLONG(lLoginID)
+        pInParam = pointer(pInParam)
+        pOutParam = pointer(pOutParam)
+        nWaitTime = c_int(nWaitTime)
+        result = cls.sdk.CLIENT_FaceRServerGetDetectToken(lLoginID, pInParam, pOutParam, nWaitTime)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def AttachDetectMultiFaceState(cls, lLoginID: int, pstInParam: NET_IN_MULTIFACE_DETECT_STATE, pstOutParam: NET_OUT_MULTIFACE_DETECT_STATE, nWaitTime: int) -> C_LLONG:
+        """
+        订阅大图检测小图进度,配合CLIENT_FaceRecognitionDetectMultiFace使用, pstInParam与pstOutParam内存由用户申请释放
+        attach the progress of detect face images form the big images, cooperate with CLIENT_FaceRecognitionDetectMultiFace, user malloc and free (pstInParam's and pstOutParam's) memory
+        """
+        lLoginID = C_LLONG(lLoginID)
+        pstInParam = pointer(pstInParam)
+        pstOutParam = pointer(pstOutParam)
+        nWaitTime = c_int(nWaitTime)
+        cls.sdk.CLIENT_AttachDetectMultiFaceState.restype = C_LLONG
+        result = cls.sdk.CLIENT_AttachDetectMultiFaceState(lLoginID, pstInParam, pstOutParam, nWaitTime)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def FaceRecognitionDetectMultiFace(cls, lLoginID: int, pstInParam: NET_IN_FACE_RECOGNITION_DETECT_MULTI_FACE_INFO,
+                                       pstOutParam: NET_OUT_FACE_RECOGNITION_DETECT_MULTI_FACE_INFO,
+                                       nWaitTime: int) -> C_BOOL:
+        """
+        向服务器提交多张大图，从中检测人脸图片, pstInParam与pstOutParam内存由用户申请释放
+        submit multiple large images to the server, and detect face images from it, user malloc and free (pstInParam's and pstOutParam's) memory
+        """
+        lLoginID = C_LLONG(lLoginID)
+        pstInParam = pointer(pstInParam)
+        pstOutParam = pointer(pstOutParam)
+        nWaitTime = c_int(nWaitTime)
+        result = cls.sdk.CLIENT_FaceRecognitionDetectMultiFace(lLoginID, pstInParam, pstOutParam, nWaitTime)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def DetachDetectMultiFaceState(cls, lAttachHandle: int) -> C_BOOL:
+        """
+        取消订阅大图检测小图进度, lAttachHandle为CLIENT_AttachDetectMultiFaceState 返回的句柄
+        detach the progress of detect face images form the big images, lAttachHandleis returned by CLIENT_AttachDetectMultiFaceState
+        """
+        lAttachHandle = C_LLONG(lAttachHandle)
+        result = cls.sdk.CLIENT_DetachDetectMultiFaceState(lAttachHandle)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def StartMultiFindFaceRecognitionEx(cls, lLoginID: int, pstuInParam: NET_IN_STARTMULTIFIND_FACERECONGNITION_EX,
+                                        pstuOutParam: NET_OUT_STARTMULTIFIND_FACERECONGNITION_EX,
+                                        nWaitTime: int) -> C_BOOL:
+        """
+        开始人脸检测/注册库的多通道查询
+        Start multi-channel query of face detection/registration library
+        :param lLoginID: [in] lLoginID 登录句柄; [in] lLoginID login handle
+        :param pstuInParam: [in] pstuInParam 接口输入参数, 内存资源由用户申请和释放; [in] pstuInParam interface input parameters, memory resources are applied and released by the user
+        :param pstuOutParam: [out]pstuOutParam 接口输出参数, 内存资源由用户申请和释放; [out]pstuOutParam interface output parameters, memory resources are applied and released by the user
+        :param nWaitTime: [in] nWaitTime 接口超时时间, 单位毫秒; [in] nWaitTime interface timeout, in milliseconds
+        :return: TRUE表示成功 FALSE表示失败; TRUE means success FALSE means failure
+        """
+        lLoginID = C_LLONG(lLoginID)
+        pstuInParam = pointer(pstuInParam)
+        pstuOutParam = pointer(pstuOutParam)
+        nWaitTime = c_int(nWaitTime)
+        result = cls.sdk.CLIENT_StartMultiFindFaceRecognitionEx(lLoginID, pstuInParam, pstuOutParam, nWaitTime)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def DoFindFaceRecognitionEx(cls, pstuInParam: NET_IN_DOFIND_FACERECONGNITION_EX, pstuOutParam: NET_OUT_DOFIND_FACERECONGNITION_EX, nWaitTime: int) -> C_BOOL:
+        """
+        获取人脸查询结果信息
+        Get face query result information
+        :param pstuInParam: [in] pstuInParam 接口输入参数, 内存资源由用户申请和释放; [in] pstuInParam interface input parameters, memory resources are applied and released by the user
+        :param pstuOutParam: [out]pstuOutParam 接口输出参数, 内存资源由用户申请和释放; [out]pstuOutParam interface output parameters, memory resources are applied and released by the user
+        :param nWaitTime: [in] nWaitTime 接口超时时间, 单位毫秒; [in] nWaitTime interface timeout, in milliseconds
+        :return: TRUE表示成功 FALSE表示失败; TRUE means success FALSE means failure
+        """
+        pstuInParam = pointer(pstuInParam)
+        pstuOutParam = pointer(pstuOutParam)
+        nWaitTime = c_int(nWaitTime)
+        result = cls.sdk.CLIENT_DoFindFaceRecognitionEx(pstuInParam, pstuOutParam, nWaitTime)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def Init(cls, cbDisConnect: fDisConnect, dwUser: int) -> C_BOOL:
+        """
+        SDK初始化
+        SDK Initialization
+        """
+        dwUser = C_LDWORD(dwUser)
+        result = cls.sdk.CLIENT_Init(cbDisConnect, dwUser)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def GetDeviceSerialNo(cls, lLoginID: int, pstInParam: NET_IN_GET_DEVICESERIALNO_INFO,
+                          pstOutParam: NET_OUT_GET_DEVICESERIALNO_INFO, nWaitTime: int) -> C_BOOL:
+        """
+        获取设备序列号
+        Get device serial number
+        """
+        lLoginID = C_LLONG(lLoginID)
+        pstInParam = pointer(pstInParam)
+        pstOutParam = pointer(pstOutParam)
+        nWaitTime = c_int(nWaitTime)
+        result = cls.sdk.CLIENT_GetDeviceSerialNo(lLoginID, pstInParam, pstOutParam, nWaitTime)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def QueryDeviceLog(cls, lLoginID: int, pQueryParam: NET_A_QUERY_DEVICE_LOG_PARAM, pLogBuffer: c_char_p,
+                       nLogBufferLen: int, pRecLogNum: int, waittime: int) -> C_BOOL:
+        """
+        查询设备日志，以分页方式查询(pQueryParam, pLogBuffer内存由用户申请释放)
+        Search device log page by page.
+        """
+        lLoginID = C_LLONG(lLoginID)
+        pQueryParam = pointer(pQueryParam)
+        nLogBufferLen = c_int(nLogBufferLen)
+        pRecLogNum = pointer(c_int(pRecLogNum))
+        waittime = c_int(waittime)
+        result = cls.sdk.CLIENT_QueryDeviceLog(lLoginID, pQueryParam, pLogBuffer, nLogBufferLen, pRecLogNum, waittime)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def AttachLowRateWPAN(cls, lLoginID: int, pstInParam: NET_IN_ATTACH_LOWRATEWPAN,
+                          pstOutParam: NET_OUT_ATTACH_LOWRATEWPAN, nWaitTime: int) -> C_LLONG:
+        """
+        订阅无线对码信息接口,pstInParam与pstOutParam内存由用户申请释放
+        Order wireless code info port,user malloc memory of pstInBuf and pstOutBuf
+        """
+        lLoginID = C_LLONG(lLoginID)
+        pstInParam = pointer(pstInParam)
+        pstOutParam = pointer(pstOutParam)
+        nWaitTime = c_int(nWaitTime)
+        cls.sdk.CLIENT_AttachLowRateWPAN.restype = C_LLONG
+        result = cls.sdk.CLIENT_AttachLowRateWPAN(lLoginID, pstInParam, pstOutParam, nWaitTime)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def DetachLowRateWPAN(cls, lAttachHandle: int) -> C_BOOL:
+        """
+        取消订阅无线对码信息接口,lAttachHandle是CLIENT_AttachLowRateWPAN返回值
+        Cancel order wireless info port, lAttachHandle is CLIENT_AttachLowRateWPAN return value
+        """
+        lAttachHandle = C_LLONG(lAttachHandle)
+        result = cls.sdk.CLIENT_DetachLowRateWPAN(lAttachHandle)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def TransmitCmd(cls, lLoginID: int, pstuInParam: NET_IN_TRANSMIT_CMD, pstuOutParam: NET_OUT_TRANSMIT_CMD, nWaitTime: int) -> C_BOOL:
+        """
+        RPC测试
+        RPC test
+        :param lLoginID: [in] lLoginID: 登录句柄; [in] lLoginID Login handle
+        :param pstuInParam: [in] pstuInParam: 接口输入参数, 内存资源由用户申请和释放; [in] pstuInParam Indicates the interface parameter
+        :param pstuOutParam: [out] pstuOutParam: 接口输出参数, 内存资源由用户申请和释放; [out] pstuOutParam Indicates the output parameter of the interface
+        :param nWaitTime: [in] nWaitTime: 接口超时时间, 单位毫秒; [in] nWaitTime Interface timeout, in milliseconds
+        :return: TRUE表示成功 FALSE表示失败; TRUE means success FALSE means failure
+        """
+        lLoginID = C_LLONG(lLoginID)
+        pstuInParam = pointer(pstuInParam)
+        pstuOutParam = pointer(pstuOutParam)
+        nWaitTime = c_int(nWaitTime)
+        result = cls.sdk.CLIENT_TransmitCmd(lLoginID, pstuInParam, pstuOutParam, nWaitTime)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def ManualTest(cls, lLoginID: int, pstuInParam: NET_IN_MANUAL_TEST, pstuOutParam: NET_OUT_MANUAL_TEST, nWaitTime: int) -> C_BOOL:
+        """
+        手动测试
+        Manual test
+        :param lLoginID: [in] lLoginID: 登录句柄; [in] lLoginID Login handle
+        :param pstuInParam: [in] pstuInParam: 接口输入参数, 内存资源由用户申请和释放; [in] pstuInParam Indicates the interface parameter
+        :param pstuOutParam: [out] pstuOutParam: 接口输出参数, 内存资源由用户申请和释放; [out] pstuOutParam Indicates the output parameter of the interface
+        :param nWaitTime: [in] nWaitTime: 接口超时时间, 单位毫秒; [in] nWaitTime Interface timeout, in milliseconds
+        :return: TRUE表示成功 FALSE表示失败; TRUE means success FALSE means failure
+        """
+        lLoginID = C_LLONG(lLoginID)
+        pstuInParam = pointer(pstuInParam)
+        pstuOutParam = pointer(pstuOutParam)
+        nWaitTime = c_int(nWaitTime)
+        result = cls.sdk.CLIENT_ManualTest(lLoginID, pstuInParam, pstuOutParam, nWaitTime)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def AddAlarmUser(cls, lLoginID: int, pstuInParam: NET_IN_ADD_ALARM_USER, pstuOutParam: NET_OUT_ADD_ALARM_USER,
+                     nWaitTime: int) -> C_BOOL:
+        """
+        添加报警用户
+        Add alarm user
+        :param lLoginID: [in] lLoginID: 登录句柄; [in] lLoginID Login handle
+        :param pstuInParam: [in] pstuInParam: 接口输入参数, 内存资源由用户申请和释放; [in] pstuInParam Indicates the interface parameter
+        :param pstuOutParam: [out] pstuOutParam: 接口输出参数, 内存资源由用户申请和释放; [out] pstuOutParam Indicates the output parameter of the interface
+        :param nWaitTime: [in] nWaitTime: 接口超时时间, 单位毫秒; [in] nWaitTime Interface timeout, in milliseconds
+        :return: TRUE表示成功 FALSE表示失败; TRUE means success FALSE means failure
+        """
+        lLoginID = C_LLONG(lLoginID)
+        pstuInParam = pointer(pstuInParam)
+        pstuOutParam = pointer(pstuOutParam)
+        nWaitTime = c_int(nWaitTime)
+        result = cls.sdk.CLIENT_AddAlarmUser(lLoginID, pstuInParam, pstuOutParam, nWaitTime)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def ModifyAlarmUser(cls, lLoginID: int, pstuInParam: NET_IN_MODIFY_ALARM_USER,
+                        pstuOutParam: NET_OUT_MODIFY_ALARM_USER, nWaitTime: int) -> C_BOOL:
+        """
+        修改报警用户
+        Modify alarm user
+        :param lLoginID: [in] lLoginID: 登录句柄; [in] lLoginID Login handle
+        :param pstuInParam: [in] pstuInParam: 接口输入参数, 内存资源由用户申请和释放; [in] pstuInParam Indicates the interface parameter
+        :param pstuOutParam: [out] pstuOutParam: 接口输出参数, 内存资源由用户申请和释放; [out] pstuOutParam Indicates the output parameter of the interface
+        :param nWaitTime: [in] nWaitTime: 接口超时时间, 单位毫秒; [in] nWaitTime Interface timeout, in milliseconds
+        :return: TRUE表示成功 FALSE表示失败; TRUE means success FALSE means failure
+        """
+        lLoginID = C_LLONG(lLoginID)
+        pstuInParam = pointer(pstuInParam)
+        pstuOutParam = pointer(pstuOutParam)
+        nWaitTime = c_int(nWaitTime)
+        result = cls.sdk.CLIENT_ModifyAlarmUser(lLoginID, pstuInParam, pstuOutParam, nWaitTime)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def ModifyAlarmUserPassword(cls, lLoginID: int, pstuInParam: NET_IN_MODIFY_ALARM_USER_PASSWORD,
+                                pstuOutParam: NET_OUT_MODIFY_ALARM_USER_PASSWORD, nWaitTime: int) -> C_BOOL:
+        """
+        修改报警用户密码
+        Modify alarm user password
+        :param lLoginID: [in] lLoginID: 登录句柄; [in] lLoginID Login handle
+        :param pstuInParam: [in] pstuInParam: 接口输入参数, 内存资源由用户申请和释放; [in] pstuInParam Indicates the interface parameter
+        :param pstuOutParam: [out] pstuOutParam: 接口输出参数, 内存资源由用户申请和释放; [out] pstuOutParam Indicates the output parameter of the interface
+        :param nWaitTime: [in] nWaitTime: 接口超时时间, 单位毫秒; [in] nWaitTime Interface timeout, in milliseconds
+        :return: TRUE表示成功 FALSE表示失败; TRUE means success FALSE means failure
+        """
+        lLoginID = C_LLONG(lLoginID)
+        pstuInParam = pointer(pstuInParam)
+        pstuOutParam = pointer(pstuOutParam)
+        nWaitTime = c_int(nWaitTime)
+        result = cls.sdk.CLIENT_ModifyAlarmUserPassword(lLoginID, pstuInParam, pstuOutParam, nWaitTime)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def DeleteAlarmUser(cls, lLoginID: int, pstuInParam: NET_IN_DELETE_ALARM_USER,
+                        pstuOutParam: NET_OUT_DELETE_ALARM_USER, nWaitTime: int) -> C_BOOL:
+        """
+        删除报警用户
+        Delete alarm user
+        :param lLoginID: [in] lLoginID: 登录句柄; [in] lLoginID Login handle
+        :param pstuInParam: [in] pstuInParam: 接口输入参数, 内存资源由用户申请和释放; [in] pstuInParam Indicates the interface parameter
+        :param pstuOutParam: [out] pstuOutParam: 接口输出参数, 内存资源由用户申请和释放; [out] pstuOutParam Indicates the output parameter of the interface
+        :param nWaitTime: [in] nWaitTime: 接口超时时间, 单位毫秒; [in] nWaitTime Interface timeout, in milliseconds
+        :return: TRUE表示成功 FALSE表示失败; TRUE means success FALSE means failure
+        """
+        lLoginID = C_LLONG(lLoginID)
+        pstuInParam = pointer(pstuInParam)
+        pstuOutParam = pointer(pstuOutParam)
+        nWaitTime = c_int(nWaitTime)
+        result = cls.sdk.CLIENT_DeleteAlarmUser(lLoginID, pstuInParam, pstuOutParam, nWaitTime)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+        @classmethod
+        def QueryDeviceTimeEx(cls, lLoginID: int, pDeviceTime: NET_TIME_EX, waittime: int) -> C_BOOL:
+            """
+            查询设备当前时间扩展接口
+            Search device current time extension interface
+            """
+            lLoginID = C_LLONG(lLoginID)
+            pDeviceTime = pointer((pDeviceTime))
+            waittime = c_int(waittime)
+            result = cls.sdk.CLIENT_QueryDeviceTimeEx(lLoginID, pDeviceTime, waittime)
+            if not result:
+                print(cls.GetLastErrorMessage())
+            return result
+
+    @classmethod
+    def StartTrafficFluxStat(cls, lLoginID: C_LLONG, pstInParam: NET_IN_TRAFFICFLUXSTAT,
+                                pstOutParam: NET_OUT_TRAFFICFLUXSTAT) -> C_LLONG:
+        """
+        交通流量统计,pstInParamg与pstOutParam内存由用户申请释放
+        start traffic flux state,user malloc and free (pstInParam's and pstOutParam's) memory
+        """
+        lLoginID = C_LLONG(lLoginID)
+        pstInParam = pointer((pstInParam))
+        pstOutParam = pointer((pstOutParam))
+        cls.sdk.CLIENT_StartTrafficFluxStat.restype = C_LLONG
+        result = cls.sdk.CLIENT_StartTrafficFluxStat(lLoginID, pstInParam, pstOutParam)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def StopTrafficFluxStat(cls, lFluxStatHandle: C_LLONG) -> C_BOOL:
+        """
+        结束流量统计
+        stop traffic flux state
+        """
+        lFluxStatHandle = C_LLONG(lFluxStatHandle)
+        result = cls.sdk.CLIENT_StopTrafficFluxStat(lFluxStatHandle)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def AttachTrafficFlowStatRealFlow(cls, lLoginID: int, pstuInParam: NET_IN_ATTACH_TRAFFIC_FLOW_STAT_REAL_FLOW, pstuOutParam: NET_OUT_ATTACH_TRAFFIC_FLOW_STAT_REAL_FLOW, nWaitTime: int) -> C_LLONG:
+        """
+        订阅交通流量统计
+        Attach Traffic Flow Stat Real Flow
+        :param lLoginID: [in] lLoginID 登录句柄; [in] lLoginID: Login handle
+        :param pstuInParam: [in] pstInParam 接口输入参数; [in] pstInParam: Interface input parameters, memory resources are requested and released by the user
+        :param pstuOutParam: [out] pstOutParam 接口输出参数; [out] pstOutParam: Interface output parameters, memory resources are requested and released by the user
+        :param nWaitTime: [in] nWaitTime 接口超时时间, 单位毫秒; [in] nWaitTime: Interface timeout, in milliseconds
+        :return: 返回订阅句柄; AttachHandle
+        """
+        lLoginID = C_LLONG(lLoginID)
+        pstuInParam = pointer((pstuInParam))
+        pstuOutParam = pointer((pstuOutParam))
+        nWaitTime = c_int(nWaitTime)
+        cls.sdk.CLIENT_AttachTrafficFlowStatRealFlow.restype = C_LLONG
+        result = cls.sdk.CLIENT_AttachTrafficFlowStatRealFlow(lLoginID, pstuInParam, pstuOutParam, nWaitTime)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def DetachTrafficFlowStatRealFlow(cls, lAttachHandle: int) -> C_BOOL:
+        """
+        取消订阅交通流量统计
+        detach Traffic Flow Stat Real Flow
+        :param lAttachHandle: [in] lAttachHandle 订阅句柄; [in] lAttachHandle Attach Handle
+        :return: TRUE表示成功 FALSE表示失败; TRUE means success, FALSE means failure
+        """
+        lAttachHandle = C_LLONG(lAttachHandle)
+        result = cls.sdk.CLIENT_DetachTrafficFlowStatRealFlow(lAttachHandle)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def AttachCrowdDistriMap(cls, lLoginID: int, pstuInParam: NET_IN_ATTACH_TRAFFIC_FLOW_STAT_REAL_FLOW,
+                                      pstuOutParam: NET_OUT_ATTACH_TRAFFIC_FLOW_STAT_REAL_FLOW,
+                                      nWaitTime: int) -> C_LLONG:
+        """
+        订阅人群分布图实时统计信息
+        Attach Crowd Distri Map
+        :param lLoginID: [in] lLoginID 登录句柄; [in] lLoginID: Login handle
+        :param pstuInParam: [in] pstInParam 接口输入参数; [in] pstInParam: Interface input parameters, memory resources are requested and released by the user
+        :param pstuOutParam: [out] pstOutParam 接口输出参数; [out] pstOutParam: Interface output parameters, memory resources are requested and released by the user
+        :param nWaitTime: [in] nWaitTime 接口超时时间, 单位毫秒; [in] nWaitTime: Interface timeout, in milliseconds
+        :return: 返回订阅句柄; AttachHandle
+        """
+        lLoginID = C_LLONG(lLoginID)
+        pstuInParam = pointer((pstuInParam))
+        pstuOutParam = pointer((pstuOutParam))
+        nWaitTime = c_int(nWaitTime)
+        cls.sdk.CLIENT_AttachCrowdDistriMap.restype = C_LLONG
+        result = cls.sdk.CLIENT_AttachCrowdDistriMap(lLoginID, pstuInParam, pstuOutParam, nWaitTime)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def DetachCrowdDistriMap(cls, lAttachHandle: int) -> C_BOOL:
+        """
+        取消订阅人群分布图实时统计信息
+        detach Crowd Distri Map
+        :param lAttachHandle: [in] lAttachHandle 订阅句柄; [in] lAttachHandle Attach Handle
+        :return: TRUE表示成功 FALSE表示失败; TRUE means success, FALSE means failure
+        """
+        lAttachHandle = C_LLONG(lAttachHandle)
+        result = cls.sdk.CLIENT_DetachCrowdDistriMap(lAttachHandle)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+    
+    @classmethod
+    def StartFindFluxStat(cls, lLoginID: int, pstInParam: NET_IN_TRAFFICSTARTFINDSTAT, pstOutParam: NET_OUT_TRAFFICSTARTFINDSTAT) -> C_LLONG:
+        """
+        获取流量统计信息,pstInParam与pstOutParam内存由用户申请释放
+        start find flux state,user malloc and free (pstInParam's and pstOutParam's) memory
+        :return: 处理句柄
+        """
+        lLoginID = C_LLONG(lLoginID)
+        pstInParam = pointer(pstInParam)
+        pstOutParam = pointer(pstOutParam)
+        cls.sdk.CLIENT_StartFindFluxStat.restype = C_LLONG
+        result = cls.sdk.CLIENT_StartFindFluxStat(lLoginID, pstInParam, pstOutParam)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+
+    @classmethod
+    def DoFindFluxStat(cls, lFindHandle: int, pstInParam: NET_IN_TRAFFICDOFINDSTAT, pstOutParam: NET_OUT_TRAFFICDOFINDSTAT) -> c_int:
+        """
+        继续查询流量统计,pstInParam与pstOutParam内存由用户申请释放
+        do find flux state,user malloc and free (pstInParam's and pstOutParam's) memory
+        :return: 大于0表示成功
+        """
+        lFindHandle = C_LLONG(lFindHandle)
+        pstInParam = pointer(pstInParam)
+        pstOutParam = pointer(pstOutParam)
+        result = cls.sdk.CLIENT_DoFindFluxStat(lFindHandle, pstInParam, pstOutParam)
+        return result
+
+    @classmethod
+    def StopFindFluxStat(cls, lFindHandle: int) -> C_BOOL:
+        """
+        结束查询流量统计
+        stop find flux state
+        :return: TRUE表示成功 FALSE表示失败
+        """
+        lFindHandle = C_LLONG(lFindHandle)
+        result = cls.sdk.CLIENT_StopFindFluxStat(lFindHandle)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+        
+    @classmethod
+    def OpenDoor(cls, lLoginID: int, pInParam: NET_IN_FACE_OPEN_DOOR,
+                          pOutParam: NET_OUT_FACE_OPEN_DOOR, nWaitTime: int) -> C_BOOL:
+        """
+        远程认证开门（闸机）
+        Remote authentication door opening (gate)
+        :param lLoginID: [in] lLoginID 登录句柄; [in] lLoginID: Login handle
+        :param pstuInParam: [in] pstInParam 接口输入参数; [in] pstInParam: Interface input parameters, memory resources are requested and released by the user
+        :param pstuOutParam: [out] pstOutParam 接口输出参数; [out] pstOutParam: Interface output parameters, memory resources are requested and released by the user
+        :param nWaitTime: [in] nWaitTime 接口超时时间, 单位毫秒; [in] nWaitTime: Interface timeout, in milliseconds
+        :return: TRUE表示成功 FALSE表示失败; TRUE means success, FALSE means failure
+        """
+        lLoginID = C_LLONG(lLoginID)
+        pInParam = pointer(pInParam)
+        pOutParam = pointer(pOutParam)
+        nWaitTime = c_int(nWaitTime)
+        result = cls.sdk.CLIENT_FaceOpenDoor(lLoginID, pInParam, pOutParam, nWaitTime)
+        if not result:
+            print(cls.GetLastErrorMessage())
+        return result
+    
 __all__ = ['NetSDK', ]
