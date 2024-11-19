@@ -32,13 +32,13 @@ urlpatterns = [
     
 
     path('client/client_detail/<str:pk>',AbonnementClientDetail.as_view(),name='client_detail'),
-    path('client/PaiementClientDetail/<str:pk>',PaiementClientDetail.as_view(),name='PaiementClientDetail'),
+    path('client/paiement_client_detail/<str:pk>',PaiementClientDetail.as_view(),name='paiement_client_detail'),
     path('client/presence_client_detail/<str:pk>',PresenceClientDetail.as_view(),name='presence_client_detail'),
 
 
 
     path('client/CoachDetail/<str:pk>',CoachDetail.as_view(),name='CoachDetail'),
-    path('client/VirementsCoachDetail/<str:pk>',VirementsCoachDetail.as_view(),name='VirementsCoachDetail'),
+    path('client/virements_coach_detail/<str:pk>',VirementsCoachDetail.as_view(),name='virements_coach_detail'),
     path('client/PresenceCoachDetail/<str:pk>',PresenceCoachDetail.as_view(),name='PresenceCoachDetail'),
     path('client/presence_coach/<str:pk>',presence_coach,name='presence_coach'),
 
