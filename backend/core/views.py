@@ -142,12 +142,11 @@ class AbonnementTable(GenericTableView):
     model = Abonnement
     table_class =AbonnementHTMxTable
 
-
 # planning--------------------------------------------------------------------------------------
 @permission_required('planning.add_planning',raise_exception=True)
 def PlanningCreateView(request):
     context = {}
-    template_name = "configuration\snippets\_ajout_planning_form.html"
+    template_name = "configuration/snippets/_ajout_planning_form.html"
     form = PlanningModelForm(data=request.POST or None) 
     if request.method == "POST":
         form = PlanningModelForm(data=request.POST) 
@@ -169,13 +168,13 @@ def PlanningCreateView(request):
         else:
             print("is not valide", form.errors.as_data())
             context["form"]=PlanningModelForm(data=request.POST or None )
-            return render(request, template_name="configuration\snippets\_ajout_planning_form.html", context=context)
+            return render(request, template_name="configuration/snippets/_ajout_planning_form.html", context=context)
     context["form"] = form
     return render(request, template_name=template_name, context=context)
 
 class PlanningUpdateView(UpdateView):
     model = Planning
-    template_name="configuration\snippets\_ajout_planning_form.html"
+    template_name="configuration/snippets/_ajout_planning_form.html"
     fields=[
         "name",
         "is_default"
@@ -211,12 +210,11 @@ class PlanningDeleteView(DeleteView):
         print('GOOOOO')
         messages.success(self.request, "Planning Supprimer avec Succés",extra_tags="toastr")
         return HttpResponseRedirect(success_url)
-    
 # salle----------------------------------------------------------------------------------------------
 @permission_required('salle_activite.add_salle',raise_exception=True)
 def SalleCreateView(request):
     context = {}
-    template_name = "configuration\snippets\_ajout_Salle_form.html"
+    template_name = "configuration/snippets/_ajout_salle_form.html"
     form = SalleModelForm(data=request.POST or None) 
     if request.method == "POST":
         form = SalleModelForm(data=request.POST) 
@@ -244,7 +242,7 @@ def SalleCreateView(request):
 
 class SalleUpdateView(UpdateView):
     model = Salle
-    template_name="configuration\snippets\_ajout_Salle_form.html"
+    template_name="configuration/snippets/_ajout_salle_form.html"
     fields=[
         "name",
         "is_default"
@@ -286,7 +284,7 @@ class SalleDeleteView(DeleteView):
 @permission_required('salle_activite.add_activity',raise_exception=True)
 def ActiviteCreateView(request):
     context = {}
-    template_name = "configuration\snippets\_ajout_activites_form.html"
+    template_name = "configuration/snippets/_ajout_activites_form.html"
     form = ActiviteModelForm(data=request.POST or None) 
     if request.method == "POST":
         form = ActiviteModelForm(data=request.POST) 
@@ -314,7 +312,7 @@ def ActiviteCreateView(request):
 
 class ActiviteUpdateView(UpdateView):
     model = Activity
-    template_name="configuration\snippets\_ajout_activites_form.html"
+    template_name="configuration/snippets/_ajout_activites_form.html"
     form_class= ActiviteModelForm
     def get(self,request,*args,**kwargs):
         self.object=self.get_object()
@@ -352,7 +350,7 @@ class ActiviteDeleteView(DeleteView):
 
 def MaladieCreateView(request):
     context = {}
-    template_name = "configuration\snippets\_ajout_Maladies_form.html"
+    template_name = "configuration/snippets/_ajout_Maladies_form.html"
     form = MaladieModelForm(data=request.POST or None) 
     if request.method == "POST":
         form = MaladieModelForm(data=request.POST) 
@@ -380,7 +378,7 @@ def MaladieCreateView(request):
 
 class MaladieUpdateView(UpdateView):
     model = Maladie
-    template_name="configuration\snippets\_ajout_maladies_form.html"
+    template_name="configuration/snippets/_ajout_maladies_form.html"
     fields=[
         "name",
     ]
@@ -420,7 +418,7 @@ class MaladieDeleteView(DeleteView):
 @permission_required('salle_activite.add_door',raise_exception=True)
 def PorteCreateView(request):
     context = {}
-    template_name = "configuration\snippets\_ajout_ ports_form.html"
+    template_name = "configuration/snippets/_ajout_ports_form.html"
     form = DoorModelForm(data=request.POST or None) 
     if request.method == "POST":
         form = DoorModelForm(data=request.POST) 
@@ -436,7 +434,6 @@ def PorteCreateView(request):
                     'HX-Trigger': json.dumps({
                         "closeModal": "kt_modal",
                         "refresh_table": None
-                         
                     })
                 }) 
         else:
@@ -448,7 +445,7 @@ def PorteCreateView(request):
 
 class PorteUpdateView(UpdateView):
     model = Door
-    template_name="configuration\snippets\_ajout_ ports_form.html"
+    template_name="configuration/snippets/_ajout_ports_form.html"
     fields=[
            'ip_adress',
             'salle',
@@ -491,7 +488,7 @@ class PorteDeleteView(DeleteView):
 @permission_required('abonnement.add_abonnement',raise_exception=True)
 def TypeAbonnementCreateView(request):
     context = {}
-    template_name = "configuration\snippets\_type_abonne_form.html"
+    template_name = "configuration/snippets/_type_abonne_form.html"
     form = AbonnementModelForm(data=request.POST or None) 
     if request.method == "POST":
         form = AbonnementModelForm(data=request.POST) 
@@ -519,7 +516,7 @@ def TypeAbonnementCreateView(request):
 
 class TypeAbonnementUpdateView(UpdateView):
     model = Abonnement
-    template_name="configuration\snippets\_type_abonne_form.html"
+    template_name="configuration/snippets/_type_abonne_form.html"
     form_class=AbonnementModelForm
     # fields=[
           

@@ -276,15 +276,6 @@ CRONJOBS = [
 
 
 
-
-
-
-
-
-
-
-
-
 # if DEBUG == True:
 #     CELERY_BEAT_SCHEDULE = {  
 #         'stop_restart_tasks_daily' : {   

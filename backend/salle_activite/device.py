@@ -154,6 +154,8 @@ class AccessControl:
                     # self.alarm_listen()
                 print('get_authorization => ', client)
         return 
+    
+
 
     def reboot_device(self):
         if self.loginID:
@@ -184,6 +186,35 @@ class AccessControl:
         else:
             print("StartListenEx operate already successful.")
         return True
+    
+    
+    def config_door(self):
+        from ctypes import byref, sizeof, c_int
+
+        # Initialize the configuration structure
+        cfgParam = NET_CFG_LED_STATUS_INFO()
+        cfgParam.dwSize = sizeof(NET_CFG_LED_STATUS_INFO)
+        cfgParam.nChannelID = 0  # Replace with your actual door channel ID
+        cfgParam.emLedMode = EM_LED_MODE.RED  # Set the desired light color
+
+        # Convert the structure to bytes if necessary
+        buffer_size = sizeof(cfgParam)
+        buffer = (c_char * buffer_size)()
+        memmove(buffer, byref(cfgParam), buffer_size)
+
+        # Define the operation type
+        emCfgOpType = EM_CFG_OPERATE_TYPE.OPERATE_SET_LED_STATUS
+
+        # Call the configuration function
+        ret = self.sdk.CLIENT_SetDevConfig(self.loginID, emCfgOpType, cfgParam.nChannelID, buffer, buffer_size, c_int(3000))
+
+        if ret:
+            print("Successfully changed the light color.")
+        else:
+            err = self.sdk.CLIENT_GetLastError()
+            print(f"Failed to change the light color. Error code: {err}")
+
+    
 
     def access_operate(self):
         stuInParam = NET_CTRL_ACCESS_OPEN()
@@ -210,6 +241,10 @@ class AccessControl:
         #     print("Open the door fail. " + self.sdk.GetLastErrorMessage())
         #     return False
         return True
+    
+    def config_door(self, ):
+        print("Config door called -----------------------<")  # 门禁事件; Access control event
+        # alarm_info = cast(pBuf, POINTER(NET_A_ALARM_ACCESS_CTL_EVENT_INFO)).contents
 
     def open_door(self):
         print(' open_door')
