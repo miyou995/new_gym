@@ -47,6 +47,7 @@ def is_reboot_day():
 #                 logger.warning('Could not stop device ERROR ON  Ip--------->{}'.format(device.ip))
 #             break
 #         time.sleep(15)
+
 def manage_door(ip, port, username, password): # PROD
     device = AccessControl()
     device.get_login_info(ip=ip, port=port, username=username, password=password)
