@@ -72,7 +72,7 @@ def presence_client(request):
     else :
         print(" else----------client_id----------------")
         message = _("client n'exist pas .")
-        messages.warning(request, str(message),extra_tags="toastr")   
+        messages.warning(request, str(message))   
     return HttpResponse(status=204) 
 
 
@@ -105,7 +105,7 @@ class PresenceManuelleClient(PermissionRequiredMixin,CreateView):
             presence.abc.presence_quantity -= ecart
             presence.abc.save() 
             message = _("Presence a été créé avec succès")
-            messages.success(request, str(message), extra_tags="toastr")
+            messages.success(request, str(message))
             return HttpResponse(status=204, headers={
                 'HX-Trigger': json.dumps({
                     "closeModal": "kt_modal",
@@ -142,7 +142,7 @@ class PresenceManuelleUpdateClient(PermissionRequiredMixin,UpdateView):
         presence.abc.presence_quantity -= ecart
         presence.abc.save() 
         print('IS FORM VALID', presence.id)
-        messages.success(self.request, "Presence Mis a jour avec Succés",extra_tags="toastr")
+        messages.success(self.request, "Presence Mis a jour avec Succés")
         return HttpResponse(status=204,
             headers={
                 'HX-Trigger': json.dumps({
@@ -153,7 +153,7 @@ class PresenceManuelleUpdateClient(PermissionRequiredMixin,UpdateView):
             }) 
     
     def form_invalid(self, form):
-        messages.success(self.request, form.errors ,extra_tags="toastr")
+        messages.success(self.request, form.errors )
         return self.render_to_response(self.get_context_data(form=form)) 
 
 
@@ -171,6 +171,6 @@ class PresenceManuelleDeleteClient(PermissionRequiredMixin,DeleteView):
         self.object.abc.presence_quantity += ecrat
         self.object.abc.save()
         self.object.delete()
-        messages.success(self.request,"Presence Supprimier avec Succés",extra_tags="toastr")
+        messages.success(self.request,"Presence Supprimier avec Succés")
         return HttpResponseRedirect(success_url)
 

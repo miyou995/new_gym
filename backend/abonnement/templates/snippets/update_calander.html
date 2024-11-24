@@ -7,7 +7,7 @@
     <div class="card-header py-0">
         <ul class="nav nav-tabs nav-line-tabs fs-6">
             <li class="nav-item">
-                <a class="nav-link active" data-bs-toggle="tab" href="#kt_tab_pane_1">Modification</a>
+                <a class="nav-link active" data-bs-toggle="tab" href="#kt_tab_pane_1">Modification OUIIIIII</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="tab" href="#kt_tab_pane_2">Reste seances / bloqué</a>
@@ -51,8 +51,8 @@
                                 <label class="fs-6 fw-semibold mb-1">
                                     <span class="card-label fw-bold text-grey-800">Début Date</span>
                                 </label>
-                                <input type="date" name="debut_date" class="form-control" id="debut_date" />
-                           </div>
+                                <input type="date" name="start_date" class="form-control" id="startDate" />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -82,6 +82,7 @@
                     hx-post="{% url 'abonnement:update_abonnement_client' pk=abc.pk type_abonnement=abc.type_abonnement.pk  %}" 
                     {% comment %} hx-post="{% if filter.form.abonnement.value %}{% url 'abonnement:update_abonnement_client' pk=abc.pk type_abonnement=filter.form.abonnement.value %}{% else %}# {% endif %}" {% endcomment %}
                     hx-trigger="click"
+                    hx-include="[name='start_date']"
                     hx-vals="{}"  
                     >
                     {% trans "Confirmer" %}
@@ -138,7 +139,7 @@
                 type="button"
                 class="btn btn-primary align-self-end"
                 hx-trigger="click"
-                hx-post="{% url 'abonnement:renew_abonnemetn_client' pk=abc.pk %}"
+                hx-post="{% url 'abonnement:renew_abonnement_client' pk=abc.pk %}"
                 hx-vals="{renouvle: document.getElementById('renouvle').value}"
                 hx-include="#renouvle">
                 {% trans "Renouveler l'abonnement" %}

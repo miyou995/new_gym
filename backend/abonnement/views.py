@@ -77,7 +77,7 @@ def add_abonnement_client(request,client_pk,type_abonnement):
         abonnement_client.creneaux.set(creneaux)
         abonnement_client.save()
         message = _("Abonnement ajouter avec succès.")
-        messages.success(request, str(message),extra_tags="toastr")
+        messages.success(request, str(message))
         return HttpResponse(status=204,
                 headers={
                     'HX-Trigger': json.dumps({
@@ -94,6 +94,7 @@ class CalendarUpdateAbonnementClient(PermissionRequiredMixin,FilterView):
     permission_required = 'abonnement.change_abonnementclient'
     filterset_class = CalenderFilter
     model = Creneau
+    
     def get_context_data(self, **kwargs):
             context = super().get_context_data(**kwargs)
             context["events"] = json.dumps(self.get_events())
@@ -152,11 +153,13 @@ class CalendarUpdateAbonnementClient(PermissionRequiredMixin,FilterView):
         template_name = "snippets/update_calander.html"
         return template_name
     
+    
 @require_http_methods(["POST"])
 def update_abonnement_client(request, pk, type_abonnement):
     abonnement_client = get_object_or_404(AbonnementClient, pk=pk)
     print("presence_quantity-----------------------------------",abonnement_client.presence_quantity)
     event_pk = request.POST.getlist('event_pk')
+    print('Start date +++++++++++++++++++++++++++++++++++++', request.POST.get("start_date"))
     deselected_event_pk = request.POST.getlist('deselected_event_pk', [])  
     # Filter out any invalid or non-integer values
     event_pk = [int(pk) for pk in event_pk if pk.isdigit()]
@@ -174,7 +177,6 @@ def update_abonnement_client(request, pk, type_abonnement):
     existing_creneaux = abonnement_client.creneaux.all()
     new_creneaux = Creneau.objects.filter(pk__in=event_pk)
     combined_creneaux = set(existing_creneaux) | set(new_creneaux)  
-    # Remove deselected events
     combined_creneaux = [creneau for creneau in combined_creneaux if creneau.pk not in deselected_event_pk]
 
     if type_abonnement and type_abonnement != "None" and combined_creneaux:
@@ -185,7 +187,7 @@ def update_abonnement_client(request, pk, type_abonnement):
         abonnement_client.creneaux.set(combined_creneaux)  
         abonnement_client.save()
         message = _("Abonnement Mis a jour avec Succés.")
-        messages.success(request, str(message),extra_tags="toastr")
+        messages.success(request, str(message))
         return HttpResponse(status=204,
                 headers={
                     'HX-Trigger': json.dumps({
@@ -212,12 +214,12 @@ class AbonnemtClientDeleteView(PermissionRequiredMixin,DeleteView):
         paiment = Paiement.objects.filter(abonnement_client=self.object)
         if paiment :
             print("you can not delete this abc")
-            messages.error(self.request, "Supprimer le paiement de cet abonnement pour avoir supprimer l'abonnement ",extra_tags="toastr")
+            messages.error(self.request, "Supprimer le paiement de cet abonnement pour avoir supprimer l'abonnement ")
             return HttpResponseRedirect(success_url)
         else :
             self.object.delete()
             print('GOOOOO')
-            messages.success(self.request, "Abonnemet Client Supprimer avec Succés",extra_tags="toastr")
+            messages.success(self.request, "Abonnemet Client Supprimer avec Succés")
             return HttpResponseRedirect(success_url)
 
 
@@ -232,10 +234,10 @@ def update_temps_rest(request, pk):
             if form.is_valid():
                 form.save()
             message = _("Reste temps updated successfully.")
-            messages.success(request, str(message), extra_tags="toastr")
+            messages.success(request, str(message))
         else:
             message = _("Error occures when updating product.")
-            messages.error(request, str(message),extra_tags="toastr")
+            messages.error(request, str(message))
         return JsonResponse({"success": True})
    
 
@@ -250,14 +252,14 @@ def update_paiement_rest(request, pk):
             if form.is_valid():
                 form.save()
             message = _("Reste  updated successfully.")
-            messages.success(request, str(message), extra_tags="toastr")
+            messages.success(request, str(message))
         else:
             message = _("Error occures when updating product.")
-            messages.error(request, str(message),extra_tags="toastr")
+            messages.error(request, str(message))
         return JsonResponse({"success": True})
 
 
-def renew_abonnemetn_client(request,pk):
+def renew_abonnement_client(request,pk):
     abonnement_client = get_object_or_404(AbonnementClient, pk=pk)
     renouvle_date = request.POST.get('renouvle')
     if renouvle_date:
@@ -276,7 +278,7 @@ def block_deblock_abonnement_client(request,pk):
         if not abonnement_client.blocking_date :
             print("-----------------------blocking date not correct")
             message = _("vous pouvez pas bloquer cette abonnement.")
-            messages.warning(request, str(message), extra_tags="toastr")
+            messages.warning(request, str(message))
             return HttpResponse(status=204,
             headers={
                 "HX-Trigger":json.dumps({
@@ -285,12 +287,12 @@ def block_deblock_abonnement_client(request,pk):
                 })
             })
         message = _("l'abonnement est bloqué.")
-        messages.success(request, str(message), extra_tags="toastr")    
+        messages.success(request, str(message))    
 
     else :
         abonnement_client.unlock() 
         message = _("l'abonnement est débloqué.")
-        messages.success(request, str(message), extra_tags="toastr")  
+        messages.success(request, str(message))  
     return HttpResponse(status=204,
             headers={
                 "HX-Trigger":json.dumps({

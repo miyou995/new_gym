@@ -37,14 +37,14 @@ class CustomLoginView(LoginView):
     def get_success_url(self):
         user = self.request.user 
         if not user:
-            messages.error(self.request, _("Email ou mot de passe incorrect."), extra_tags="toastr")
+            messages.error(self.request, _("Email ou mot de passe incorrect."))
             return "/"
         redirect_url = redirect('/')
         return reverse('accounts:userdetail', kwargs={'pk': user.pk})
     
     def form_invalid(self, form):
         """If the form is invalid, render the invalid form."""
-        messages.error(self.request, _("Invalid credentials."), extra_tags="toastr")
+        messages.error(self.request, _("Invalid credentials."))
         return self.render_to_response(self.get_context_data(form=form))
     
 
@@ -61,7 +61,7 @@ class UserCreateView(PermissionRequiredMixin, FormView):
 
     def form_valid(self, form):
         new_user = form.save()
-        messages.success(self.request, _("Account Created successfully"), extra_tags="toastr")
+        messages.success(self.request, _("Account Created successfully"))
         print('new_user>>>>>> ID', new_user.pk)
         return HttpResponse(
             status=204,
@@ -72,7 +72,7 @@ class UserCreateView(PermissionRequiredMixin, FormView):
             }
         )
     def form_invalid(self, form):
-        messages.error(self.request, form.errors , extra_tags="toastr")
+        messages.error(self.request, form.errors )
         return self.render_to_response(self.get_context_data(form=form)) 
 
 
@@ -91,7 +91,7 @@ class UserUpdateView(PermissionRequiredMixin, View):
         form = UserEditionForm(request.POST, instance=user)
         if form.is_valid():
             form.save()
-            messages.success(request, _("Account Updated successfully") , extra_tags="toastr")
+            messages.success(request, _("Account Updated successfully") )
             return HttpResponse(status=204,
                 headers={
                     'HX-Trigger': json.dumps({
@@ -100,7 +100,7 @@ class UserUpdateView(PermissionRequiredMixin, View):
                 })   
         
         else:
-            messages.error(request, form.errors , extra_tags="toastr")
+            messages.error(request, form.errors )
             return render(request, self.template_name, {'form': form, 'user': user})
 
 
@@ -114,7 +114,7 @@ class UserDeleteView(PermissionRequiredMixin,DeleteView):
     def form_valid(self, form):
         success_url = self.get_success_url()
         self.object.delete()
-        messages.success(self.request, "User Supprimer avec Succés" , extra_tags="toastr")
+        messages.success(self.request, "User Supprimer avec Succés" )
         return HttpResponseRedirect(success_url)
 
 
@@ -138,7 +138,7 @@ class UserDetailView(DetailView):
         permissions = Permission.objects.filter(id__in=perms)
         user.user_permissions.set(permissions)
         user.save()
-        messages.success(request, _('Profile updated successfully') , extra_tags="toastr")
+        messages.success(request, _('Profile updated successfully') )
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     
 
@@ -170,13 +170,13 @@ def change_password(request, pk):
             if password == password2:
                 user.set_password(password)
                 user.save()
-                messages.success(request, _('Mot de passe modifié avec succès'),extra_tags="toastr")
+                messages.success(request, _('Mot de passe modifié avec succès'))
                 redirect_url = reverse("accounts:userlist")
                 return HttpResponseClientRedirect(redirect_url)
             else:
-                messages.error(request, _('Formulaire invalide'), extra_tags="toastr")
+                messages.error(request, _('Formulaire invalide'))
         else:
-            messages.error(request, _('Formulaire invalide'),extra_tags="toastr")
+            messages.error(request, _('Formulaire invalide'))
             context["form"]=ChangePasswordForm(data=request.POST or None )
             return render(request, template_name="accounts\snippets\change_password.html", context=context)
     else:
@@ -205,7 +205,7 @@ def add_edit_group(request, pk=None):
         if form.is_valid():
             form.save()
             message = _("Role created successfully")
-            messages.success(request, str(message), extra_tags="toastr" )
+            messages.success(request, str(message) )
             return HttpResponse(
                 status=204,
                 headers={
@@ -216,7 +216,7 @@ def add_edit_group(request, pk=None):
                 }
             )
         else:
-            messages.error(request, form.errors , extra_tags="toastr"  )
+            messages.error(request, form.errors   )
             print("is not valide", form.errors.as_data())
     
     context["form"] = form 

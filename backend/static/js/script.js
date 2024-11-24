@@ -87,18 +87,19 @@ document.addEventListener("htmx:load", function() {
 
 
 // Store messages in localStorage before reload toastr
-document.addEventListener('htmx:afterRequest', (event) => {
-    if (event.detail.xhr.status === 204) {
-        const trigger = event.detail.xhr.getResponseHeader('HX-Trigger');
-        if (trigger) {
-            const data = JSON.parse(trigger);
-            if (data.messages) {
-                localStorage.setItem('toastrMessages', JSON.stringify(data.messages));
-            }
-        }
-        window.location.reload();
-    }
-});
+// document.addEventListener('htmx:afterRequest', (event) => {
+//     if (event.detail.xhr.status === 204) {
+//         const trigger = event.detail.xhr.getResponseHeader('HX-Trigger');
+//         if (trigger) {
+//             const data = JSON.parse(trigger);
+//             if (data.messages) {
+//                 localStorage.setItem('toastrMessages', JSON.stringify(data.messages));
+//             }
+//         }
+//         window.location.reload();
+//     }
+// });
+
 window.addEventListener('load', () => {
     const toastrMessages = localStorage.getItem('toastrMessages');
     if (toastrMessages) {

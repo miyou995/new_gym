@@ -10,6 +10,8 @@ from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser, D
 from rest_framework.response import Response
 from rest_framework import status
 from django.db.models import Count
+from django.contrib import messages
+
 from rest_framework.decorators import api_view
 from rest_framework.viewsets import ViewSet, ModelViewSet
 
@@ -262,7 +264,8 @@ class OpenTheDoorView(LoginRequiredMixin, View):
 			device.access_operate()
 			device.logout()
 			device.sdk.Cleanup()
-			return HttpResponse("Door opened successfully", status=200)
+			messages.success(request, f'Porte "{door.salle}" ouverte avec succès')
+			return HttpResponse(status=204)
 		else:
 			return HttpResponse("Failed to open the door", status=400)
 

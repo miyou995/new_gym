@@ -3,7 +3,7 @@ var deselectedEvents = [];
 var isAbonnementManuallyChanged = false;
 
 function setTodayAsDebutDate() {
-    var debutDateInput = document.getElementById('debut_date');
+    var debutDateInput = document.getElementById('startDate');
     
     // Set up an event listener to detect changes in the date input
     debutDateInput.addEventListener('change', function() {
@@ -41,7 +41,7 @@ function initHTMXCalendar(eventsData) {
 
         var date = selectedEvents.find(event => event.start_date !== undefined);
         if (date && date.start_date) {
-            var dateSelect = document.getElementById("debut_date");
+            var dateSelect = document.getElementById("startDate");
             dateSelect.value = date.start_date;
             console.log("start_date/*/*/*/*/*/---:", date.start_date);
         }
@@ -113,7 +113,7 @@ function updateSidebar(selectedEvents, deselectedEvents) {
             .map(event => event.event_pk);
 
         if (eventPks.length > 0 || deselectedEventPks.length > 0) {
-            var today = document.getElementById('debut_date').value; // Get the selected date
+            var today = document.getElementById('startDate').value; // Get the selected date
             addAbonnementBtn.setAttribute('hx-vals', JSON.stringify({
                 'event_pk': eventPks,
                 'deselected_event_pk': deselectedEventPks,  // Send deselected event_pk
