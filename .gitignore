@@ -19,7 +19,7 @@ backups/*
 .idea/**/shelf
 # AWS User-specific
 .idea/**/aws.xml
-
+backend/new_novdata.json
 # Generated files
 .idea/**/contentModel.xml
 # Sensitive or high-churn files
