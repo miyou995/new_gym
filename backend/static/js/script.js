@@ -7,10 +7,10 @@ htmx.on("closeModal", (event) => {
 	}
 	var modal = bootstrap.Modal.getInstance(myModalEl)
 	// const modal = new bootstrap.Modal(document.getElementById("sg_create_modal"))
-	console.log("closeModal",event.detail.value);
-	console.log("modal",modal);
+	// console.log("closeModal",event.detail.value);
+	// console.log("modal",modal);
 	if (modal) {
-	console.log("LOGGING MODAL ", modal);
+	// console.log("LOGGING MODAL ", modal);
 	modal.hide()
 	} 
 })
@@ -43,12 +43,12 @@ document.addEventListener('htmx:afterSettle', (e) => {
 
 
 document.addEventListener('htmx:afterSettle', (e) => {
-    console.log("htmx:afterSettle");
+    // console.log("htmx:afterSettle");
     const eventsBlock = document.querySelector("#eventsId");
 
     if (eventsBlock) {
         setTimeout(function(){
-            console.log("HEEEY eventsId here HTMX REQUEST");
+            // console.log("HEEEY eventsId here HTMX REQUEST");
             preInitHTMXCalendar();
         },100)
     }
@@ -71,11 +71,11 @@ window.addEventListener("DOMContentLoaded", (e) => {
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-    console.log("Document loaaaded lets call the callendar");
+    // console.log("Document loaaaded lets call the callendar");
     
     const eventsBlock = document.querySelector("#eventsId");
     if (eventsBlock) {
-        console.log("HEEEY eventsId here HTTP REQUEST");
+        // console.log("HEEEY eventsId here HTTP REQUEST");
         preInitHTMXCalendar();
     }
 });
@@ -163,7 +163,7 @@ var end = moment();
 
 function cb(start, end) {
     $("#kt_daterangepicker_4").html(start.format("MMMM D, YYYY") + " - " + end.format("MMMM D, YYYY"));
-    console.log("date changes-----", document.querySelector('input[name="start_date"]').value);
+    // console.log("date changes-----", document.querySelector('input[name="start_date"]').value);
     document.querySelector('input[name="start_date"]').value = start.format("YYYY-MM-DD");
     document.querySelector('input[name="end_date"]').value = end.format("YYYY-MM-DD");
     var chartContainers = document.querySelectorAll('.chart-container');

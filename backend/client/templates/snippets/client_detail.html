@@ -85,32 +85,36 @@
 													</div>
 													<div id="kt_ecommerce_report_sales_export" class="d-none"></div>
 												</div>
-												<div class="card-toolbar flex-row-fluid justify-content-end gap-5">
-													
+												<div id="abonnementsClient" 
+													class="card-toolbar flex-row-fluid justify-content-end gap-5"
+													hx-get="{% url 'abonnement:calendar_abonnement_client' client.pk %}"
+													hx-target="#abonnementsClient"
+													hx-select="#abonnementsClient"
+													hx-swap="outerHTML"
+													hx-trigger="refresh_abcs from:body" 
+												>
 													{% if perms.abonnement.add_abonnementclient %}
 														<button
 															type="button"
 															class="btn btn-primary btn-lg btn-radius color-container"
 															data-bs-toggle="modal"
 															data-bs-target="#kt_modal"
-															hx-get="{% url 'abonnement:calendar_abonnement_client' client.pk %}" 
+															{% comment %} hx-get="{% url 'abonnement:calendar_abonnement_client' client.pk %}" 
 															hx-target="#kt_modal_content"
 															hx-trigger="click"
-															hx-swap="innerHTML"  
+															hx-swap="innerHTML"   {% endcomment %}
 														>
 															<i class="ki-exit-up fs-4">Ajouter Abonnement</i>
 														</button>
 													{% endif %}
-														
 												</div>
 											</div>
 											<div class="card-scroll h-250px card-body pt-0">
 												<div class="nav-link active text-gray-800 fs-5 fw-bold"
 													hx-get="{% url 'client:client_detail' client.pk %}"
-													hx-trigger="revealed ,refresh_table from:body"
+													hx-trigger="refresh_abcs from:body, revealed"
 													hx-swap="innerHTML"
 													hx-target="#AbonnementClientTable"
-													data-bs-toggle="tab"
 												>
 													<div class="card-body pt-0 table-responsive" id="AbonnementClientTable">
 													</div>

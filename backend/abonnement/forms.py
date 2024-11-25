@@ -1,7 +1,10 @@
 from django import forms
 from django.contrib.auth import authenticate
 import logging
-from .models import AbonnementClient
+from datetime import datetime, timedelta
+from .models import AbonnementClient, Abonnement
+from client.models import Client
+from creneau.models import Creneau
 
 
 logger = logging.getLogger(__name__)
@@ -108,3 +111,81 @@ class AbonnementClientRestPaiementForm(forms.ModelForm):
 
 
 
+class AbonnementClientAddForm(forms.ModelForm):
+    event_pk = forms.ModelMultipleChoiceField(
+        queryset=Creneau.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        required=True,
+        label="Select Events"
+    )
+    start_date = forms.DateField(
+        widget=forms.DateInput(attrs={'type': 'date'}),
+        required=False,
+        initial=datetime.today().date()
+    )
+
+    class Meta:
+        model = AbonnementClient
+        fields = ['type_abonnement', 'start_date',]
+
+    def __init__(self, *args, **kwargs):
+        self.client_pk = kwargs.pop('client_pk', None)
+        super().__init__(*args, **kwargs)
+        if not self.fields['type_abonnement'].queryset.exists():
+            self.fields['type_abonnement'].queryset = Abonnement.objects.all()
+
+    def save(self, commit=True):
+        abonnement_client = super().save(commit=False)
+        start_date = self.cleaned_data.get('start_date') or datetime.today().date()
+        abonnement_client.start_date = start_date
+        abonnement = self.cleaned_data('abonnement')
+        abonnement_client.end_date = start_date + timedelta(days=int(abonnement.length))
+        
+        if self.client_pk:
+            abonnement_client.client = Client.objects.get(pk=self.client_pk)
+            
+        if commit:
+            abonnement_client.save()
+            events = self.cleaned_data['event_pk']
+            print('EVENTS------------------------=======>', events)
+            # creneaux_pk = [int(pk) for pk in events] 
+            abonnement_client.creneaux.set(events)
+            abonnement_client.save()
+        return abonnement_client
+    
+
+
+class AbonnementClientEditForm(forms.ModelForm):
+    event_pk = forms.ModelMultipleChoiceField(
+        queryset=Creneau.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        required=True,
+        label="Select Events"
+    )
+    start_date = forms.DateField(
+        widget=forms.DateInput(attrs={'type': 'date'}),
+        required=False,
+        # initial=datetime.today().date()
+    )
+
+    class Meta:
+        model = AbonnementClient
+        fields = ['start_date',]
+        # fields = ['type_abonnement', 'start_date',]
+
+    def save(self, commit=True):
+        abonnement_client = super().save(commit=False)
+        # start_date = self.cleaned_data.get('start_date') or datetime.today().date()
+        # abonnement_client.start_date = start_date
+        # abonnement_client.end_date = start_date + timedelta(days=30)
+        
+        # if self.client_pk:
+        #     abonnement_client.client = Client.objects.get(pk=self.client_pk)
+            
+        if commit:
+            events = self.cleaned_data['event_pk']
+            print('EVENTS------------------------=======>', events)
+            # creneaux_pk = [int(pk) for pk in events] 
+            abonnement_client.creneaux.set(events)
+            abonnement_client.save()
+        return abonnement_client

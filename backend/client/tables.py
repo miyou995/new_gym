@@ -71,13 +71,13 @@ class PersonnelHTMxTable(tables.Table):
             orderable=False )
 
     class Meta:
-        fields  = (
-                'last_name',
-                'first_name', 
-                'phone',
-                'function',
-                'date_added',
-                'action',
+        fields = (
+            'last_name',
+            'first_name', 
+            'phone',
+            'function',
+            'date_added',
+            'action',
         )
         model = Personnel
         template_name = "tables/bootstrap_htmx.html"
@@ -98,7 +98,7 @@ class AbonnementClientHTMxTable(tables.Table):
                 class="text-gray-800 text-hover-primary fs-5 fw-bold" 
                 data-bs-toggle="modal" 
                 data-bs-target="#kt_modal" 
-                hx-get="{% url 'abonnement:calendar_update_abonnementclient'  record.id  %}" 
+                hx-get="{% url 'abonnement:retreive_abc'  record.id  %}" 
                 hx-target="#kt_modal_content" 
                 hx-swap="innerHTML">
                 {{ record.type_abonnement }}      

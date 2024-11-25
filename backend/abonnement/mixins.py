@@ -9,25 +9,22 @@ from django.urls import reverse
 class CalendarAbonnementClientMixin(FilterView):
     filterset_class = CalenderFilter
     model = Creneau
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["events"] = json.dumps(self.get_events())
-        # abc = AbonnementClient.objects.filter(client=self.kwargs['pk'])
-        # print("client*********************>>>>>>",abc)
-        # context["client"] = abc 
-        context["client"] = get_object_or_404(Client, pk=self.kwargs['pk'])
         return context
  
     def get_events(self):
-        events = self.filterset_class(self.request.GET, queryset=Creneau.objects.all()).qs
+        events = self.filterset_class(self.request.GET, queryset=self.get_queryset()).qs
         day_name_to_weekday = {
-            'LU': 1,  # Monday
-            'MA': 2,  # Tuesday
-            'ME': 3,  # Wednesday
-            'JE': 4,  # Thursday
-            'VE': 5,  # Friday
-            'SA': 6,  # Saturday
-            'DI': 0,  # Sunday
+            'LU': 1,
+            'MA': 2,
+            'ME': 3,
+            'JE': 4,
+            'VE': 5,
+            'SA': 6,
+            'DI': 0,
         }
         events_list = []
         for event in events:
@@ -40,7 +37,7 @@ class CalendarAbonnementClientMixin(FilterView):
                     'startTime': event.hour_start.strftime('%H:%M:%S'),
                     'endTime': event.hour_finish.strftime('%H:%M:%S'),
                     'daysOfWeek': [event_weekday],  # Repeat weekly on this day
-                     'url': reverse('creneau:update_creneau', kwargs={'pk': event.pk}),
+                    'url': reverse('creneau:update_creneau', kwargs={'pk': event.pk}),
                     
                 })
         return events_list

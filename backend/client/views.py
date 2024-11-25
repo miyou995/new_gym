@@ -343,7 +343,7 @@ class PersonnelDeleteView(PermissionRequiredMixin,DeleteView):
 
 
 # ----------------------------------------------client detail-----------------------------------------
-class AbonnementClientDetail(SingleTableMixin, FilterView):
+class ClientDetailView(SingleTableMixin, FilterView):
     table_class =   AbonnementClientHTMxTable
     paginate_by = 15
     model = AbonnementClient
@@ -357,7 +357,7 @@ class AbonnementClientDetail(SingleTableMixin, FilterView):
          return queryset
     
     def get_context_data(self, **kwargs):
-        context = super(AbonnementClientDetail, self).get_context_data(**kwargs)
+        context = super(ClientDetailView, self).get_context_data(**kwargs)
         context["client"] = Client.objects.get(pk=self.kwargs['pk'])
         print('context abc ------****************---------->>>>>')
 
