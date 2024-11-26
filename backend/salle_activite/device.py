@@ -22,6 +22,7 @@ def SDKLogCallBack(szLogBuffer, nLogSize, dwUser):
         print(e)
     return 1
 
+
 class AccessControl:
     def __init__(self):
 
@@ -81,10 +82,15 @@ class AccessControl:
 
             self.loginID, device_info, error_msg = self.sdk.LoginWithHighLevelSecurity(stuInParam, stuOutParam)
             if self.loginID != 0:
-                print("Login succeed. Channel num:" + str(device_info.nChanNum))
+                print('login succeed ip=>', self.ip)
+                print('login succeed self.loginID=>', self.loginID)
+                print('login succeed self.playID=>', self.playID)
+                # print("Login succeed. Channel num:" + str(device_info.nChanNum))
                 return True
             else:
-                print("Login failed. " + error_msg)
+                print('login failed ip=>', self.ip)
+                print('login failed self.loginID=>', self.loginID)
+                # print("Login failed. " + error_msg)
                 return False
 
     def logout(self):
@@ -95,7 +101,7 @@ class AccessControl:
 
             self.sdk.Logout(self.loginID)
             self.loginID = 0
-        print("Logout succeed")
+        print("Logout succeed for door ip====>", self.ip)
 
     def DisConnectCallBack(self, lLoginID, pchDVRIP, nDVRPort, dwUser):
         print("Device-OffLine")

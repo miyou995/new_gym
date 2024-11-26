@@ -1,15 +1,32 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 11d81fe146d182f958a5abd5e284d6c683c52b1d
 # Django #
 *.log
 *.pot
 *.pyc
 __pycache__
+<<<<<<< HEAD
 
 media
 backups/*
 # Backup files # 
 *.bak 
 
+=======
+db.sqlite3
+media/*
+*.zip
+*.rar
+# Backup files # 
+*.bak 
+backend/*.log
+backend/media/*
+backend/*/__pycache__
+backend/picture.jpg
+frontend/.eslintcache
+>>>>>>> 11d81fe146d182f958a5abd5e284d6c683c52b1d
 # If you are using PyCharm # 
 # User-specific stuff
 .idea/**/workspace.xml
@@ -19,9 +36,16 @@ backups/*
 .idea/**/shelf
 # AWS User-specific
 .idea/**/aws.xml
+<<<<<<< HEAD
 backend/new_novdata.json
 # Generated files
 .idea/**/contentModel.xml
+=======
+backend/assets/*
+# Generated files
+.idea/**/contentModel.xml
+
+>>>>>>> 11d81fe146d182f958a5abd5e284d6c683c52b1d
 # Sensitive or high-churn files
 .idea/**/dataSources/
 .idea/**/dataSources.ids
@@ -40,18 +64,31 @@ backend/new_novdata.json
 
 # IntelliJ
 out/
+<<<<<<< HEAD
 ../venv/
+=======
+
+>>>>>>> 11d81fe146d182f958a5abd5e284d6c683c52b1d
 # JIRA plugin
 atlassian-ide-plugin.xml
 
 # Python # 
+<<<<<<< HEAD
 *.py[cod] 
 *$py.class 
+=======
+# *.py[cod] 
+# *$py.class 
+>>>>>>> 11d81fe146d182f958a5abd5e284d6c683c52b1d
 
 # Distribution / packaging 
 .Python build/ 
 develop-eggs/ 
+<<<<<<< HEAD
 dist/ 
+=======
+# dist/ 
+>>>>>>> 11d81fe146d182f958a5abd5e284d6c683c52b1d
 downloads/ 
 eggs/ 
 .eggs/ 
@@ -96,4 +133,52 @@ celerybeat-schedule.*
 *.sage.py 
 
 # Environments 
+<<<<<<< HEAD
 .env 
+=======
+.venv 
+env/ 
+venv/ 
+ENV/ 
+env.bak/ 
+venv.bak/ 
+
+# mkdocs documentation 
+/site 
+
+# mypy 
+.mypy_cache/ 
+*.rar
+# Sublime Text # 
+*.tmlanguage.cache 
+*.tmPreferences.cache 
+*.stTheme.cache 
+*.sublime-workspace 
+*.sublime-project 
+
+# sftp configuration file 
+sftp-config.json 
+
+# Package control specific files Package 
+Control.last-run 
+Control.ca-list 
+Control.ca-bundle 
+Control.system-ca-bundle 
+GitHub.sublime-settings 
+
+# Visual Studio Code # 
+.vscode/* 
+!.vscode/settings.json 
+!.vscode/tasks.json 
+!.vscode/launch.json 
+!.vscode/extensions.json 
+.history
+frontend/node_modules/
+
+
+backend/config/local_settings.py
+backend/debug.log
+
+*.zip
+backend/*.json
+>>>>>>> 11d81fe146d182f958a5abd5e284d6c683c52b1d

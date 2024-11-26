@@ -110,7 +110,6 @@ class AbonnementClientRestPaiementForm(forms.ModelForm):
 #         return abonnement_client
 
 
-
 class AbonnementClientAddForm(forms.ModelForm):
     event_pk = forms.ModelMultipleChoiceField(
         queryset=Creneau.objects.all(),
