@@ -261,9 +261,9 @@ class OpenTheDoorView(LoginRequiredMixin, View):
 		result = device.login()
 		print('result>>>>', result)
 		if result:
-			device.access_operate()
-			device.logout()
-			device.sdk.Cleanup()
+			device.open_door()
+			# device.logout()
+			# device.sdk.Cleanup()
 			messages.success(request, f'Porte "{door.salle}" ouverte avec succès')
 			return HttpResponse(status=204)
 		else:

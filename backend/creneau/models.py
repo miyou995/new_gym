@@ -24,31 +24,31 @@ class RangeManager(models.Manager):
     def get_creneaux_of_day(self):
         if datetime.today().weekday() == 0:
             creneaux =Creneau.objects.filter(day='LU')
-            print('les creneaux du lundi sont !:;====>', creneaux)
+            # print('les creneaux du lundi sont !:;====>', creneaux)
             return creneaux
         elif datetime.today().weekday() == 1:
             creneaux =Creneau.objects.filter(day='MA')
-            print('les creneaux du Mardi sont !:;====>', creneaux)
+            # print('les creneaux du Mardi sont !:;====>', creneaux)
             return creneaux
         elif datetime.today().weekday() == 2:
             creneaux =Creneau.objects.filter(day='ME')
-            print('les creneaux du MERCREDI sont !:;====>', creneaux)
+            # print('les creneaux du MERCREDI sont !:;====>', creneaux)
             return creneaux
         elif datetime.today().weekday() == 3:
             creneaux =Creneau.objects.filter(day='JE')
-            print('les creneaux du JEUDI sont !:;====>', creneaux)
+            # print('les creneaux du JEUDI sont !:;====>', creneaux)
             return creneaux
         elif datetime.today().weekday() == 4:
             creneaux =Creneau.objects.filter(day='VE')
-            print('les creneaux du VENDREDI sont !:;====>', creneaux)
+            # print('les creneaux du VENDREDI sont !:;====>', creneaux)
             return creneaux
         elif datetime.today().weekday() == 5:
             creneaux =Creneau.objects.filter(day='SA')
-            print('les creneaux du lundi sont !:;====>', creneaux)
+            # print('les creneaux du lundi sont !:;====>', creneaux)
             return creneaux
         elif datetime.today().weekday() == 6:
             creneaux =Creneau.objects.filter(day='DI')
-            print('les creneaux du lundi sont !:;====>', creneaux)
+            # print('les creneaux du lundi sont !:;====>', creneaux)
             return creneaux
 
     # def get_creneaux_of_similar_day(self, creneau_id):

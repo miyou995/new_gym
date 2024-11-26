@@ -417,16 +417,16 @@ class Client(models.Model):
         door = Door.objects.filter(ip_adress=door_ip).first()
         salle = door.salle
 
-        print('Adress IP', door_ip)
-        print('SAlle ', salle)
+        # print('Adress IP', door_ip)
+        # print('SAlle ', salle)
 
         abonnements_actives = AbonnementClient.subscription.active_subscription()
         abonnement_client = abonnements_actives.filter(client=self, type_abonnement__salles=salle).first()
         creneaux = Creneau.range.get_creneaux_of_day().filter(abonnements=abonnement_client)
 
-        print('LES abonnements_actives  =====', abonnements_actives)
-        print('Le abonnement_client Choisi =====', abonnement_client)
-        print('LES CRENEAUX =====', creneaux)
+        # print('LES abonnements_actives  =====', abonnements_actives)
+        # print('Le abonnement_client Choisi =====', abonnement_client)
+        # print('LES CRENEAUX =====', creneaux)
 
         logger.warning('LES CRENEAUX ====={}'.format(str(creneaux)))
         logger.warning('Le TYPE DABONNEMENT CRENEAUX ====={}'.format(str(abonnement_client)))
@@ -434,10 +434,10 @@ class Client(models.Model):
         if not abonnement_client or not creneaux:
             return False
         cren_ref = creneaux.first()
-        print('Creneau de reference', cren_ref)
+        # print('Creneau de reference', cren_ref)
 
         if abonnement_client.is_time_volume() and abonnement_client.is_valid():
-            print('abonnement_client.is_time_volume')
+            # print('abonnement_client.is_time_volume')
             logger.warning('abonnement_client.is_time_volume and is valid')
             # with transaction.atomic():
             Presence.objects.create(abc= abonnement_client, creneau=cren_ref,  hour_entree=current_time)
@@ -446,13 +446,13 @@ class Client(models.Model):
             return True
         
         elif not abonnement_client.is_time_volume() and abonnement_client.is_valid():
-            print('not abonnement_client.is_time_volume')
+            # print('not abonnement_client.is_time_volume')
             if creneaux.count() > 1 :
                 dur_ref_time_format = abs(datetime.strptime(str(creneaux[0].hour_start), FTM) - datetime.strptime(current_time, FTM)) #nous avons besoin d'un crenaux Reference pour le comparé au autres
                 dur_ref= timedelta.total_seconds(dur_ref_time_format) 
                 for cr in creneaux:
                     start = str(cr.hour_start)
-                    print('heure de début', start)
+                    # print('heure de début', start)
                     temps = abs(datetime.strptime(start, FTM) - datetime.strptime(current_time, FTM))
                     duree_seconde = timedelta.total_seconds(temps) 
                     if dur_ref > duree_seconde:
@@ -466,7 +466,7 @@ class Client(models.Model):
                 abonnement_client.save()
                 return True
         else:
-            print('WHATS THE CASE')
+            # print('WHATS THE CASE')
             logger.warning('WHATS THE CASE-- {}'.format(str(abonnement_client.type_abonnement)))
             return False
 
