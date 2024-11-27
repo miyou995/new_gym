@@ -9,11 +9,7 @@ from django.db.models import Q
 from django.urls import reverse
 from django.db.models.signals import post_save
 from django.utils.dateparse import parse_date
-<<<<<<< HEAD
 import json
-=======
-
->>>>>>> 11d81fe146d182f958a5abd5e284d6c683c52b1d
 
 class SubscriptionQuerySet(models.QuerySet):
     def time_volume(self):
@@ -294,11 +290,6 @@ class AbonnementClient(models.Model):
                 return True
         return False 
      
-<<<<<<< HEAD
-=======
-            
-
->>>>>>> 11d81fe146d182f958a5abd5e284d6c683c52b1d
 
     def get_type(self):
         return self.type_abonnement.get_type_of_display()
@@ -369,7 +360,6 @@ class AbonnementClient(models.Model):
             return "text-danger"
         return ""
 
-<<<<<<< HEAD
     def get_selected_events(self):
         abc = AbonnementClient.objects.filter(pk=self.pk) # we are not using self.creneaux because we need to use queryset.values as bellow 
         
@@ -389,10 +379,6 @@ class AbonnementClient(models.Model):
 
         # print("selected_events_data--------------------",selected_events_data)
         return json.dumps(selected_events_data)
-=======
-    def get_reste(self):
-        return sum()
->>>>>>> 11d81fe146d182f958a5abd5e284d6c683c52b1d
 
     # def renew_abc(self, renew_start_date):
     #     type_abonnement = self.type_abonnement
