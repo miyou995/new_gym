@@ -20,7 +20,6 @@
                                     hx-push-url='true' 
                                     {% comment %} id="form_id" {% endcomment %}
                                  >
-
                                     <div class="form-group">
                                         <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
                                             <span class="card-label fw-bold fs-2 text-grey-800">Plannings</span>
@@ -63,49 +62,5 @@
        
     </div>
 </div>
-   
-
-
 {% endblock content %}
 
-
-
-
-
-
-
-
-{% comment %} <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Full Calendar</title>
-    <!-- FullCalendar CSS -->
-  
-</head>
-<body>
-    <div id="calendar"></div>
-
-    <!-- FullCalendar JS -->
-    <script src='https://cdn.jsdelivr.net/npm/rrule@2.6.4/dist/es5/rrule.min.js'></>
-
-    <!-- fullcalendar bundle -->
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
-    
-    <!-- the rrule-to-fullcalendar connector. must go AFTER the rrule lib -->
-    <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/rrule@6.1.15/index.global.min.js'></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var calendarEl = document.getElementById('calendar');
-
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth',
-                events: '/creneaux/events/', // Adjust this URL if necessary
-            });
-
-            calendar.render();
-        });
-    </script>
-</body>
-</html> {% endcomment %}
