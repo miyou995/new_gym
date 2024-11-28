@@ -1,6 +1,5 @@
 from django.db import models
-# from client.models import Coach
-# Create your models here.
+from django.urls import reverse
 class SalleSport(models.Model):
     name    = models.CharField( max_length=50)
     adresse = models.CharField( max_length=50)
@@ -10,5 +9,5 @@ class SalleSport(models.Model):
     def __str__(self):
         return self.name
 
-    def get_absolute_url(self):
+    def get_view_url(self):
         return reverse("SalleSport_detail", kwargs={"pk": self.pk})

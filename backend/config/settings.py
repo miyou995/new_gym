@@ -21,30 +21,34 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-m@qx+wsk0=4r0)_7=#b*#6)tn6_n#@hv=*tt#!_2rotvo*4byl'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
+LOGIN_REQUIRED = True
 ALLOWED_HOSTS = ["*"]
 
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
-    'authentication.apps.AuthenticationConfig',
+    'accounts',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'client.apps.ClientConfig',
-    'assurance.apps.AssuranceConfig',
-    'abonnement.apps.AbonnementConfig',
-    'materiel.apps.MaterielConfig',
-    'salle_activite.apps.SalleActiviteConfig',
-    'creneau.apps.CreneauConfig',
-    'presence.apps.PresenceConfig',
-    'salle_sport.apps.SalleSportConfig',
-    'planning.apps.PlanningConfig',
-    'transaction.apps.TransactionConfig',
+    'client',
+    'assurance',
+    'abonnement',
+    'materiel',
+    'salle_activite',
+    'creneau',
+    'presence',
+    'salle_sport',
+    'planning',
+    'transaction',
+    'mptt',
+    'django_crontab',
+    
     
     #third party app
     'rest_framework',
@@ -65,6 +69,15 @@ INSTALLED_APPS = [
     # 'allauth.account', 
     # 'allauth.socialaccount', 
     # 'rest_auth.registration', 
+    "core",
+    "NetSDK",
+    "django_tables2",
+    "widget_tweaks",
+    "crispy_forms",
+    "crispy_bootstrap4",
+    "django_htmx",
+    'django_extensions',
+    
 ]
 
 REST_FRAMEWORK = {
@@ -112,12 +125,22 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware', #DJango debug toolbar
     'django.middleware.common.CommonMiddleware',
-    # 'django.middleware.csrf.CsrfViewMiddleware',
+    "django_htmx.middleware.HtmxMiddleware",
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'simple_history.middleware.HistoryRequestMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "config.middleware.LoginRequiredMiddleware", 
+    "config.middleware.HtmxMessageMiddleware",
+
 ]
+LOGIN_URL = '/login'
+
+LOGIN_EXEMPT_URLS = ['accounts:password_reset',
+                     'accounts:password_reset_done',
+                     'accounts:password_reset_complete',
+                     'accounts:password_reset_confirm']
 
 # CORS_ALLOWED_ORIGINS = [
 #     "http://localhost:3000"
@@ -131,7 +154,11 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         # 'DIRS': [BASE_DIR / 'build'],
-        'DIRS': [BASE_DIR / 'build'],
+          "DIRS": [
+            BASE_DIR / "templates", 
+            # BASE_DIR / 'build', 
+           
+    ],
         'APP_DIRS': True,
         'OPTIONS': { 
             'context_processors': [
@@ -146,6 +173,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
@@ -209,7 +237,7 @@ LOGGING ={
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-AUTH_USER_MODEL = 'authentication.User'
+AUTH_USER_MODEL = 'accounts.User'
 
 LANGUAGE_CODE = 'en-us'
 
@@ -239,13 +267,10 @@ CELERY_TIMEZONE = TIME_ZONE
 
 
 
-
-
-
-
-
-
-
+CRONJOBS = [
+    ('20 12 * * *', 'presence.tasks.presence_cron_job'),
+    # Add more cron jobs as needed
+]
 
 
 
@@ -268,22 +293,12 @@ CELERY_TIMEZONE = TIME_ZONE
 #     }
 
 
-MEDIA_URL = "/media/" 
-
+STATIC_URL = "static/"
+STATIC_ROOT = BASE_DIR / "assets"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
-
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-### 
-STATIC_URL = '/static/'
-# STATICFILES_DIR = [ BASE_DIR / 'static' ]
-STATIC_ROOT = BASE_DIR / 'assets'
-STATICFILES_DIRS = [
-   BASE_DIR / 'build/static',
-
-#    BASE_DIR,
-]
-
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/' 
@@ -293,12 +308,46 @@ SITE_ID = 1
 
 
 MESSAGE_TAGS = {
-    messages.DEBUG: 'alert-info',
-    messages.INFO: 'alert-info',
-    messages.SUCCESS: 'alert-success',
-    messages.WARNING: 'alert-warning',
-    messages.ERROR: 'alert-danger',
+    messages.DEBUG: 'info',
+    messages.INFO: 'info',
+    messages.SUCCESS: 'success',
+    messages.WARNING: 'warning',
+    messages.ERROR: 'danger',
 }
+
+
+
+LOGGING ={
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'console': {
+            'format': '%(name)-12s %(levelname)-8s %(message)s'
+        },
+        'file': {
+            'format': '%(asctime)s %(name)-12s %(levelname)-8s %(message)s'
+        }
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'console'
+        },
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'formatter': 'file',
+            'filename': BASE_DIR / "debug.log"
+        }
+    },
+    'loggers': {
+        '': {
+            'level': 'DEBUG',
+            'handlers': ['console', 'file']
+        }
+    }
+}
+
 
 INTERNAL_IPS = [
     # ...

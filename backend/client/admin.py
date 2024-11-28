@@ -7,11 +7,11 @@ from import_export import resources
 from import_export.widgets import DateWidget
 from import_export.fields import Field
 
-@admin.register(Client)
-class PersonAdmin(ImportExportModelAdmin):
-    birth_date = Field(attribute='birth_date', column_name='<birth_date>', widget=DateWidget('%d/%m/%Y')) 
-    date_added = Field(attribute='date_added', column_name='<date_added>', widget=DateWidget('%d/%m/%Y')) 
-    pass
+# @admin.register(Client)
+# class PersonAdmin(ImportExportModelAdmin):
+#     birth_date = Field(attribute='birth_date', column_name='<birth_date>', widget=DateWidget('%d/%m/%Y')) 
+#     date_added = Field(attribute='date_added', column_name='<date_added>', widget=DateWidget('%d/%m/%Y')) 
+#     pass
 
 # class EmployeeResource(resources.ModelResource):
 #     birth_date = Field(attribute='birth_date', column_name='<birth_date>', widget=DateWidget('<date_format>')) 
@@ -19,3 +19,34 @@ class PersonAdmin(ImportExportModelAdmin):
 #     class Meta:
 #         model = Client
 #         # fields = ('start_date',...)
+
+
+
+
+from .models import  Client,Maladie,Personnel,Coach
+
+admin.site.register(Maladie)
+admin.site.register(Personnel)
+admin.site.register(Coach)
+
+@admin.register(Client)
+class clientAdmin(admin.ModelAdmin):
+    list_display = (  "carte",
+        "last_name",
+        "first_name",
+        "picture",
+        "email",
+        "adress",
+        "phone",
+        "civility",
+        "birth_date",
+        
+       )
+    
+
+
+  
+
+
+
+

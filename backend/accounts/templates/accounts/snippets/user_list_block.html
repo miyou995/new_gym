@@ -1,0 +1,55 @@
+    <tr>
+        <td>
+             {{user.id}}
+        </td>
+        <td>
+            <a href="{% url 'accounts:userdetail' user.pk %}">{{user.email}}</a> 
+            
+        </td>
+        {% comment %} <td class="py-1"><a href="{{user.warehouse.get_absolute_url}}">{{user.warehouse | default_if_none:"-"}}</a>
+        </td> {% endcomment %}
+        <td class="py-1">
+            {% if user.groups.all %}
+            {% for group in user.groups.all %}
+                {{ group.name }}
+            {% endfor %}
+        {% else %}
+            -
+        {% endif %}
+       
+        </td>
+        <td>
+            <input type="checkbox" {% if user.is_manager %} checked {% endif %}  class="form-check-input" disabled>
+        </td>
+        <td>
+            <input type="checkbox" {% if user.is_staff %} checked {% endif %}  class="form-check-input" disabled>
+        </td>
+        <td>
+            <input type="checkbox" {% if user.is_active %} checked {% endif %}  class="form-check-input" disabled>  
+        </td>
+        <td>
+            
+            {% if perms.accounts.delete_user %}
+                
+            
+            <a 
+                href="#"
+                data-bs-toggle="modal" 
+                data-bs-target="#kt_modal"
+                data-bs-toggle="tooltip" 
+                data-bs-placement="right" 
+                hx-get="{% url 'accounts:user_delete_view' user.pk %}"
+                hx-target="#kt_modal_content"
+                hx-swap="innerHTML"
+            >
+            <i class="ki-duotone ki-trash-square" style="font-size: 2em;" >
+                <span class="path1"></span>
+                <span class="path2"></span>
+                <span class="path3"></span>
+                <span class="path4"></span>
+            </i>
+        </a>
+        {% endif %}
+    
+        </td>
+    </tr>

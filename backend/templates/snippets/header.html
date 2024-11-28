@@ -1,0 +1,107 @@
+<div class="d-flex align-items-stretch w-100" id="kt_app_header_menu_wrapper">
+  <!--begin::Menu holder-->
+  <div class="app-header-menu app-header-mobile-drawer align-items-stretch w-20"
+       data-kt-drawer="true"
+       data-kt-drawer-name="app-header-menu"
+       data-kt-drawer-activate="{default: true, lg: false}"
+       data-kt-drawer-overlay="true"
+       data-kt-drawer-width="{default:'200px', '300px': '250px'}"
+       data-kt-drawer-direction="start"
+       data-kt-drawer-toggle="#kt_app_header_menu_toggle"
+       data-kt-swapper="true"
+       data-kt-swapper-mode="prepend"
+       data-kt-swapper-parent="{default: '#kt_app_body', lg: '#kt_app_header_menu_wrapper'}">
+    
+    <!--begin::Menu-->
+    <div class="menu menu-rounded menu-column menu-lg-row menu-active-bg menu-title-gray-600 menu-state-dark menu-arrow-gray-400 fw-semibold fs-6 align-items-stretch my-5 my-lg-0 px-2 px-lg-0 w-100"
+         id="kt_app_header_menu"
+         data-kt-menu="true">
+      <nav class="navbar navbar-expand-lg navbar-light w-100">
+        
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item mx-3">
+              <a href="{% url 'core:index' %}" class="nav-link">
+                <span class="nav-title">Tableau de bord</span>
+              </a>
+            </li>
+            {% if perms.transaction.view_transaction %}
+              <li class="nav-item mx-3">
+                <a href="{% url 'transactions:transaction_name' %}" class="nav-link">
+                  <span class="nav-title">Transactions</span>
+                </a>
+              </li>
+            {% endif %}
+            {% if perms.client.view_client %}
+              <li class="nav-item mx-3">
+                  <a href="{% url 'client:client_name' %}" class="nav-link">
+                    <span class="nav-title">Clients</span>
+                  </a>
+              </li>
+            {% endif %}
+            {% if perms.client.view_coach %}
+              <li class="nav-item mx-3">
+                <a href="{% url 'client:coach_name' %}" class="nav-link">
+                  <span class="nav-title">Coachs</span>
+                </a>
+              </li>
+            {% endif %}
+            {% if perms.client.view_personnel %}
+              <li class="nav-item mx-3">
+                <a href="{% url 'client:personnels_name' %}" class="nav-link">
+                  <span class="nav-title">Personnels</span>
+                </a>
+              </li>
+            {% endif %}     
+            {% if perms.presence.view_presence %}
+                <li class="nav-item mx-3">
+                  <a href="{% url 'presence:presences_name' %}" class="nav-link">
+                  <span class="nav-title">Présences</span>
+                </a>
+              </li>
+            {% endif %}
+            {% if perms.transaction.can_view_statistique %}
+                <li class="nav-item mx-3">
+                    <a href="{% url 'transactions:chiffre_affaire_name' %}" class="nav-link">
+                    <span class="nav-title">Chiffre D'affaire</span>
+                  </a>
+                </li>
+            {% endif %}
+            {% if perms.creneau.view_creneau %}
+                <li class="nav-item mx-3">
+                    <a href="{% url 'creneau:creneaux_name' %}" class="nav-link">
+                      <span class="nav-title">Créneaux</span>
+                    </a>
+                </li>
+            {% endif %}
+            
+             {% if perms.abonnement.view_abonnement %}
+              <li class="nav-item mx-3">
+                <a href="{% url 'core:planning_table' %}" class="nav-link">
+                  <span class="nav-title">Configuration</span>
+                  </a>
+                </li>
+            {% endif %}
+            {% if perms.accounts.view_user or perms.auth.view_group %}
+              <li class="nav-item dropdown mx-3">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                           Users
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                      {% if perms.accounts.view_user %}
+                        <li><a class="dropdown-item" href="{% url 'accounts:userlist' %}">Users</a></li>
+                      {% endif %}
+                      {% if perms.auth.view_group %}
+                        <li><a class="dropdown-item" href="{% url 'accounts:grouplist' %}">Role</a></li>
+                      {% endif %}
+                  </ul>
+              </li>
+            {% endif %}
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <!--end::Menu-->
+  </div>
+  <!--end::Menu holder-->
+</div>

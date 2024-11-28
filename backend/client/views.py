@@ -1,374 +1,544 @@
-from django.shortcuts import render, get_object_or_404
-from rest_framework import generics, viewsets
-from .models import Client, Personnel, Coach, Maladie
-from .serializers import ClientSerialiser, PersonnelSerializer, CoachSerializer, MaladieSerializer, ClientNameSerializer, ClientCreateSerialiser, ClientNameDropSerializer, ClientLastPresenceSerializer
-from rest_framework.permissions import AllowAny, IsAuthenticated,IsAdminUser, DjangoModelPermissions
-from rest_framework.response import Response
-from rest_framework.parsers import MultiPartParser, FormParser
-from django_auto_prefetching import AutoPrefetchViewSetMixin
-from rest_framework.decorators import api_view, permission_classes
-from django.db.models import Sum
-from rest_framework import pagination
-from rest_framework import filters
-from rest_framework import status
+from django.shortcuts import render
+from django.views.generic.base import TemplateView
+from django.views.generic import (TemplateView,UpdateView,DeleteView)
+from django.shortcuts import get_object_or_404
+from transaction.tables import RemunerationPersonnelHTMxTable
+from presence.models import Presence, PresenceCoach
+from .forms import ClientModelForm,CoachModelForm, PersonnelModelForm
+from django.contrib import messages
+from django.http import HttpResponse,HttpResponseRedirect
+import json
+from django.utils import timezone
+from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.urls import reverse_lazy
+from transaction.models import Paiement, Remuneration,RemunerationProf
+from datetime import datetime
+from django.utils.translation import gettext_lazy as _
+from django.urls import reverse
+from django_tables2 import SingleTableMixin
+from django_filters.views import FilterView
+from .models import Client,Coach,Personnel
+from .filters import ClientFilter,CoachFilter,PersonnelFilter
+from .tables import (ClientHTMxTable,CoachHTMxTable,PersonnelHTMxTable,AbonnementClientHTMxTable,PaiementHTMxTable,
+                     CoachDetailHTMxTable,VirementsHTMxTable,PresenceCoachHTMxTable,
+                     PresenceClientHTMxTable)
+from abonnement.models import AbonnementClient
+from creneau.models import Creneau
+from django.contrib.auth.decorators import  permission_required
 
-class StandardResultsSetPagination(pagination.PageNumberPagination):
-    page_size = 20
-    page_size_query_param = 'page_size'
-    max_page_size = 100
 
-class BaseModelPerm(DjangoModelPermissions):
-    def get_custom_perms(self, method, view):
-        app_name =  view.queryset.model._meta.app_label
-        if hasattr(view, 'extra_perms_map'):
-            return [perms for perms in view.extra_perms_map.get(method, [])]
+
+
+#-------------------------------------------------client------------------------------------------------------------
+class ClientView(PermissionRequiredMixin,SingleTableMixin, FilterView):
+    permission_required = "client.view_client"
+    table_class = ClientHTMxTable
+    filterset_class = ClientFilter
+    paginate_by = 15
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        print('from client viewwwwwwwwwwwwwwwwwwwwwwwwwwwwww')
+        return context
+    
+    def get_template_names(self):
+        if self.request.htmx:
+            template_name = "tables/product_table_partial.html"
         else:
-            return []
+            template_name = "client.html" 
+        return template_name 
 
-    def has_permission(self, request, view):
-        perms = self.get_required_permissions(request.method, view.queryset.model)
-        perms.extend(self.get_custom_perms(request.method, view))
-        print('IM has_permission', perms)
+@permission_required('client.add_client', raise_exception=True)
+def ClientCreateView(request):
+    context = {}
+    template_name = "snippets/_client_form.html"
+    form = ClientModelForm(data=request.POST or None,files=request.FILES or None) 
+    if request.method == "POST":
+        form = ClientModelForm(data=request.POST , files=request.FILES) 
+        posted_data= "\n".join(f'{key} {value}' for key, value in request.POST.items())
+        print('POSTED DATA=========\n', posted_data, '\n========')
+        if form.is_valid():
+            print("is valide")
+            client = form.save()
+            message = _("cilent a été créé avec succès.")
+            messages.success(request, str(message))
+            return HttpResponse(status=204,
+                headers={
+                    'HX-Trigger': json.dumps({
+                        "closeModal": "kt_modal",
+                        "refresh_table": None
+                         
+                    })
+                }) 
+        else:
+            print("is not valide", form.errors.as_data())
+            context["form"]=ClientModelForm(data=request.POST or None )
+            return render(request, template_name="snippets/_client_form.html", context=context)
+    context["form"] = form
+    return render(request, template_name=template_name, context=context)
 
-        return ( request.user and request.user.has_perms(perms) )
+class ClientUpdateView(PermissionRequiredMixin,UpdateView):
+    permission_required = "client.change_client"
+    model = Client
+    template_name="snippets/_client_form.html"
+    fields=[
+        "carte",
+        "last_name",
+        "first_name",
+        "picture",
+        "email",
+        "adress",
+        "phone",
+        "civility",
+        "nationality",
+        "birth_date",
+        "blood",
+        'maladies',
+        'note'
+    ]
+    def get(self,request,*args,**kwargs):
+        self.object=self.get_object()
+        print('form instance',self.object)
+        return super().get(request,*args, **kwargs)
+    def form_valid(self,form):
+        client=form.save()
+        print("is from valid",client.id)
+        messages.success(self.request,"Client Mis a jour avec Succés")
+        return HttpResponse(status=204,
+            headers={
+                "HX-Trigger":json.dumps({
+                    "closeModal":"kt_modal",
+                    "refresh_table":None
+                })
+            })
+    def form_invalid(self, form):
+        messages.success(self.request, form.errors )
+        return self.render_to_response(self.get_context_data(form=form))   
 
 
-class ClientAPIView(generics.CreateAPIView):
-    serializer_class = ClientCreateSerialiser
-    queryset = Client.objects.all()
-    parser_classes = [MultiPartParser, FormParser]
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "POST": ["client.add_client"]
-    }
-    # def perform_create(self, serializer):
-    #     queryset = SignupRequest.objects.filter(user=self.request.user)
-    #     if queryset.exists():
-    #         raise ValidationError('You have already signed up')
-    #     serializer.save(user=self.request.user)
-    # lookup_field = 'slug'
-   # permission_classes = (AllowAny, )
+class ClientDeleteView(PermissionRequiredMixin,DeleteView):
+    permission_required = "client.delete_client"
+    model =Client
+    template_name="snippets/delete_modal.html"
+    success_url=reverse_lazy("client:client_name")
 
-class ClientListAPIView(AutoPrefetchViewSetMixin, generics.ListAPIView):
-    pagination_class = StandardResultsSetPagination
-    queryset = Client.objects.prefetch_related('abonnement_client', 'abonnement_client__creneaux', 'maladies', 'abonnement_client__type_abonnement','abonnement_client__presences', 'maladies')
-    # permission_classes = (IsAuthenticated,)
-    serializer_class = ClientSerialiser
-    # lookup_field = 'slug'
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "GET": ["client.view_client"]
-    }
-    search_fields = ['=id','last_name',  'first_name', 'phone']
-
-
-class ClientNamesDropListAPIView(generics.ListAPIView):
-    queryset = Client.objects.all()
-    # permission_classes = (IsAuthenticated,)
-    serializer_class = ClientNameDropSerializer
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "GET": ["client.view_client"]
-    }
-
-
-
-class GETClientDetailAPIView(generics.RetrieveAPIView):
-    queryset = Client.objects.all()
-    # permission_classes = (IsAuthenticated,)
-    serializer_class = ClientLastPresenceSerializer
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "GET": ["client.view_client"],
-        "PUT": ["client.change_client"],
-        "PATCH": ["client.change_client"],
-    }
-
-    def get_object(self):
-        try:
-            client = Client.objects.get(id = self.request.query_params.get('cl', None))
-        except :
-            client = get_object_or_404(Client, carte=self.request.query_params.get('cl', None))
-            # client = Client.objects.get(carte = self.request.query_params.get('cl', None))
-        print('object, client', client)
-        return client
-
-    # def get(self , request, *args, **kwargs):
-    #     params = self.request.query_params.get('cl', None)
-    #     print('object,params', params)
-    #     try:
-    #         client = Client.objects.get(id = params)
-    #     except :
-    #         client = Client.objects.filter(carte = params)
-    #     print('les client !!!', client)
-    #     # obj = get_object_or_404(Client.objects.filter(id=self.kwargs["pk"]))
-    #     ax = self.serializer_class(client)
-    #     return Response(ax.data)
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
-from client.models import Client
-from django.db.models import Q
-
-class ClientAutoPresenceView(APIView):
-    def get(self, request, value):
-        print('value', value)
-        try:
-            client = Client.objects.get(Q(id=value) | Q(carte=value) | Q(hex_card=value))
-            presence = client.auto_presence()
-            print('THE RETURN', presence["level"], presence["message"])
-            return Response({"status": presence["level"], "message": presence["message"]})
-        except Client.DoesNotExist:
-            print('NO CLIENT FOR', value)
-            return Response({"status": "error", "error": "Client does not exist"}, status=200)
-
-# return Response({"status":"error", "message":"Le numéro de carte ou d'identification n'est pas valide"}, status
-class ClientDetailAPIView(generics.RetrieveUpdateAPIView):
-    queryset = Client.objects.all()
-    # permission_classes = (IsAuthenticated,)
-    serializer_class = ClientSerialiser
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "GET": ["client.view_client"],
-        "PUT": ["client.change_client"],
-        "PATCH": ["client.change_client"],
-    }
-
-    def get_object(self):
-        obj = get_object_or_404(Client, id=self.kwargs["pk"])
-        return obj
+    def get_context_data(self, **kwargs):
+        context=super().get_context_data(**kwargs)
+        context["title"] = f"Client"
+        return context
     
-    def get(self , request, *args, **kwargs):
-        # try:
-        obj = get_object_or_404(Client, id=self.kwargs["pk"])
+    def form_valid(self, form):
+        success_url = self.get_success_url()
+        abc= AbonnementClient.objects.filter(client=self.object)
+        if abc :
+            print("you can not delete this client")
+            messages.error(self.request, "vous ne pouvez pas supprimer un client avec un abonnement")
+            return HttpResponseRedirect(success_url)
+        else :
+            self.object.delete()
+            messages.success(self.request,"Client Supprimier avec Succés")
+            return HttpResponseRedirect(success_url)
+       
+#-----------------------------------------------Coach--------------------------------------------------------------
+class CoachsView(PermissionRequiredMixin,SingleTableMixin,FilterView):
+    permission_required = "client.view_coach"
+    table_class=CoachHTMxTable
+    filterset_class = CoachFilter
+    paginate_by = 15
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+    
+    def get_template_names(self):
+        
+        if self.request.htmx:
+            template_name = "tables/product_table_partial.html"
+        else:
+            template_name = "coach.html" 
+        return template_name 
 
-        # obj.is_on_salle()
-        ax = self.serializer_class(obj)
-        return Response(ax.data)
-        # except:
-        #     msg = 'le client nexiste pas'
-            # return Response({'message': msg}, status=404)
-
-
-class ClientDestroyAPIView(generics.DestroyAPIView):
-    queryset = Client.objects.all()
-    serializer_class = ClientSerialiser
-    # lookup_field = 'slug'
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "POST": ["client.delete_client"],
-        "DELETE": ["client.delete_client"],
-    }
-    # def destroy(self, request, *args, **kwargs):
-    #     instance = self.get_object()
-    #     self.perform_destroy(instance)
-    #     return Response(status=status.HTTP_204_NO_CONTENT)
-################################################
-#################  PERSONNEL  ##################
-################################################
-
-
-class PersonnelCreateAPIView(generics.CreateAPIView):
-    queryset = Personnel.objects.all()
-    serializer_class = PersonnelSerializer
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "POST": ["client.add_personnel"]
-    }
-
-
-
-class PersonnelListAPIView(generics.ListAPIView):
-    queryset = Personnel.objects.all()
-    # permission_classes = (IsAuthenticated,)
-    serializer_class = PersonnelSerializer
-    # lookup_field = 'slug'
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "GET": ["client.view_personnel"]
-    }
-
-
-class PersonnelDetailAPIView(generics.RetrieveUpdateAPIView):
-    queryset = Personnel.objects.all()
-    # permission_classes = (IsAuthenticated,)
-    serializer_class = PersonnelSerializer
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "GET": ["client.view_personnel"],
-        "PUT": ["client.change_personnel"],
-        "PATCH": ["client.change_personnel"],
-    }
-
-    def get_object(self):
-        obj = get_object_or_404(Personnel, id=self.kwargs["pk"])
-        return obj
+@permission_required('client.add_coach', raise_exception=True)
+def CoachCreateView(request):
+    context={}
+    template_name = "snippets/_coach_form.html"
+    form = CoachModelForm(data=request.POST or None) 
+    if request.method == "POST":
+        form = CoachModelForm(data=request.POST) 
+        posted_data= "\n".join(f'{key} {value}' for key, value in request.POST.items())
+        print('POSTED DATA=========\n', posted_data, '\n========')
+        if form.is_valid():
+            print("is valide")
+            coach = form.save()
+            message = _("Coach a été créé avec succès.")
+            messages.success(request, str(message))
+            return HttpResponse(status=204,
+                headers={
+                    'HX-Trigger': json.dumps({
+                        "closeModal": "kt_modal",
+                        "refresh_table": None
+                         
+                    })
+                }) 
+        else:
+            print("is not valide", form.errors.as_data())
+            context["form"]=CoachModelForm(data=request.POST or None )
+            return render(request, template_name="snippets/_coach_form.html", context=context)
+    context["form"] = form
+    return render(request, template_name=template_name, context=context)
     
 
-class PersonnelDestroyAPIView(generics.DestroyAPIView):
-    queryset = Personnel.objects.all()
-    serializer_class = PersonnelSerializer
-    # lookup_field = 'slug'
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "POST": ["client.delete_personnel"],
-        "DELETE": ["client.delete_personnel"]
-    }
+class CoachUpdateView(PermissionRequiredMixin,UpdateView):
+    permission_required= "client.change_coach"
+    model = Coach
+    template_name="snippets/_coach_form.html"
+    fields=[
+       "last_name",
+        "first_name",
+        "email",
+        "adress",
+        "birth_date",
+        "nationality",
+        "phone",
+        "civility",
+        "blood",
+        'color',
+        'pay_per_hour',
+        'note'
+    ]
+    def get(self,request,*args,**kwargs):
+        self.object=self.get_object()
+        print('form instance',self.object)
+        return super().get(request,*args, **kwargs)
+    def form_valid(self,form):
+        coach=form.save()
+        print("is from valid",coach.id)
+        messages.success(self.request,"Coach Mis a jour avec Succés")
+        return HttpResponse(status=204,
+            headers={
+                "HX-Trigger":json.dumps({
+                    "closeModal":"kt_modal",
+                    "refresh_table":None
+                })
+            })
+    def form_invalid(self, form):
+        messages.success(self.request, form.errors )
+        return self.render_to_response(self.get_context_data(form=form)) 
 
-###############################################
-#################   COACHS   ##################
-###############################################
-class CoachCreateAPIView(generics.CreateAPIView):
-    queryset = Coach.objects.all()
-    serializer_class = CoachSerializer
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "POST": ["client.add_coach"]
-    }
+class CoachDeleteView(PermissionRequiredMixin,DeleteView):
+    permission_required ="client.delete_coach"
+    model= Coach
+    template_name="snippets/delete_modal.html"
+    success_url=reverse_lazy('client:coach_name')
 
+    def get_context_data(self, **kwargs) :
+        context=super().get_context_data(**kwargs)
+        context["title"]= f"Coach"
+        return context
 
+    def form_valid(self, form):
+        success_url=self.get_success_url()
+        self.object.delete()
+        messages.success(self.request,"Coach Supprimier avec Succés")
+        return HttpResponseRedirect(success_url)
+      
+# ---------------------------------------------Personnel---------------------------------------------------------
+class PersonnelsView(PermissionRequiredMixin,SingleTableMixin,FilterView):
+    permission_required = "client.view_personnel"
+    table_class=PersonnelHTMxTable
+    filterset_class = PersonnelFilter
+    paginate_by = 15
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+    
+    def get_template_names(self):
+        
+        if self.request.htmx:
+            template_name = "tables/product_table_partial.html"
+        else:
+            template_name = "personnels.html" 
+        return template_name 
+    
+@permission_required("client.add_personnel", raise_exception=True)
+def PersonnelCreateView(request):
+    context={}
+    template_name = "snippets/_personnels_form.html"
+    form = PersonnelModelForm(data=request.POST or None) 
+    if request.method == "POST":
+        form = PersonnelModelForm(data=request.POST) 
+        posted_data= "\n".join(f'{key} {value}' for key, value in request.POST.items())
+        print('POSTED DATA=========\n', posted_data, '\n========')
+        if form.is_valid():
+            print("is valide")
+            coach = form.save()
+            message = _("Employé a été créé avec succès.")
+            messages.success(request, str(message))
+            return HttpResponse(status=204,
+                headers={
+                    'HX-Trigger': json.dumps({
+                        "closeModal": "kt_modal",
+                        "refresh_table": None
+                         
+                    })
+                }) 
+        else:
+            print("is not valide", form.errors.as_data())
+            context["form"]=PersonnelModelForm(data=request.POST or None )
+            return render(request, template_name="snippets/_personnels_form.html", context=context)
+    context["form"] = form
+    return render(request, template_name=template_name, context=context)
+    
+class PersonnelUpdateView(PermissionRequiredMixin,UpdateView):
+    permission_required  = "client.change_personnel"
+    model = Personnel
+    template_name="snippets/_personnels_form.html"
+    fields=[
+        "last_name",
+        "first_name",
+        "function",
+        "adress",
+        "birth_date",
+        "nationality",
+        "phone",
+        "civility",
+        "blood",
+        "state",
+        'note'
+    ]
+    def get(self,request,*args,**kwargs):
+        self.object=self.get_object()
+        print('form instance',self.object)
+        return super().get(request,*args, **kwargs)
+    def form_valid(self,form):
+        personnel=form.save()
+        print("is from valid",personnel.id)
+        messages.success(self.request,"Personnel Mis a jour avec Succés")
+        return HttpResponse(status=204,
+            headers={
+                "HX-Trigger":json.dumps({
+                    "closeModal":"kt_modal",
+                    "refresh_table":None
+                })
+            })
+    def form_invalid(self, form):
+        messages.success(self.request, form.errors )
+        return self.render_to_response(self.get_context_data(form=form)) 
 
-class CoachListAPIView(generics.ListAPIView):
-    queryset = Coach.objects.all()
-    permission_classes = (IsAuthenticated,)
-    serializer_class = CoachSerializer
-    # lookup_field = 'slug'
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "GET": ["client.view_coach"]
-    }
+class PersonnelDeleteView(PermissionRequiredMixin,DeleteView):
+    permission_required = "client.delete_personnel"
+    model= Personnel
+    template_name="snippets/delete_modal.html"
+    success_url=reverse_lazy('client:personnels_name')
 
-class CoachDetailAPIView(generics.RetrieveUpdateAPIView):
-    queryset = Coach.objects.all()
-    # permission_classes = (IsAuthenticated,)
-    serializer_class = CoachSerializer
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "GET":  ["client.view_client"],
-        "PUT":  ["client.change_client"],
-        "PATCH":["client.change_client"],
-    }
+    def get_context_data(self, **kwargs) :
+        context=super().get_context_data(**kwargs)
+        context["title"]= f"Employé"
+        return context
 
-    def get_object(self):
-        obj = get_object_or_404(Coach.objects.filter(id=self.kwargs["pk"]))
-        return obj
+    def form_valid(self, form):
+        success_url=self.get_success_url()
+        self.object.delete()
+        messages.success(self.request,"Employé Supprimier avec Succés")
+        return HttpResponseRedirect(success_url)
     
 
-class CoachDestroyAPIView(generics.DestroyAPIView):
-    queryset = Coach.objects.all()
-    serializer_class = CoachSerializer
-    # lookup_field = 'slug'
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "POST": ["client.delete_coach"],
-        "DELETE": ["client.delete_coach"]
-    }
+
+# ----------------------------------------------client detail-----------------------------------------
+class ClientDetailView(SingleTableMixin, FilterView):
+    table_class =   AbonnementClientHTMxTable
+    paginate_by = 15
+    model = AbonnementClient
+
+    def get_queryset(self):
+         queryset = AbonnementClient.objects.select_related('client', "type_abonnement").order_by("-created_date_time")
+         abonnement_client_pk = self.kwargs.get('pk')
+         print("abonnement_client_pk from abc -------------", abonnement_client_pk)
+         if abonnement_client_pk:
+            queryset = queryset.filter(client_id=abonnement_client_pk)
+         return queryset
+    
+    def get_context_data(self, **kwargs):
+        context = super(ClientDetailView, self).get_context_data(**kwargs)
+        context["client"] = Client.objects.get(pk=self.kwargs['pk'])
+        print('context abc ------****************---------->>>>>')
+
+        # context["abc"] = self.kwargs['pk']
+        # print('context abc ---------------->>>>>',context['abc'])
+        return context
+    
+    def get_template_names(self):
+        if self.request.htmx:
+            template_name = "tables/product_table_partial.html"
+        else:
+            template_name = "snippets/client_detail.html"
+        return template_name
+    
+
+class PaiementClientDetail(SingleTableMixin, FilterView):
+        table_class =   PaiementHTMxTable
+        paginate_by = 15
+        model = Paiement
+        
+        def get_queryset(self):
+            queryset = Paiement.objects.order_by("-date_creation")
+            abonnement_client_pk = self.kwargs.get('pk')
+            print("abonnement_client_pk  -------------", abonnement_client_pk)
+            if abonnement_client_pk:
+                queryset = queryset.filter(abonnement_client__client=abonnement_client_pk)
+                return queryset
+        
+        def get_template_names(self):
+            if self.request.htmx:
+                template_name = "tables/product_table_partial.html"
+            else:
+                template_name = "snippets/client_detail.html"
+            return template_name
+
+class PresenceClientDetail(SingleTableMixin, FilterView):
+        table_class =   PresenceClientHTMxTable
+        paginate_by = 15
+        model = Presence
+        
+        def get_queryset(self):
+            queryset = Presence.objects.order_by("-created")
+            abonnement_client_pk = self.kwargs.get('pk')
+            print("abonnement_client_pk from presence -------------", abonnement_client_pk)
+            if abonnement_client_pk:
+                queryset = queryset.filter(abc__client=abonnement_client_pk)
+                return queryset
+        
+        def get_template_names(self):
+            if self.request.htmx:
+                template_name = "tables/product_table_partial.html"
+            else:
+                template_name = "snippets/client_detail.html"
+            return template_name
 
 
-class MaladieCreateAPIView(generics.CreateAPIView):
-    queryset = Maladie.objects.all()
-    serializer_class = MaladieSerializer
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "POST": ["client.add_maladie"]
-    }
 
 
-class MaladieViewSet(viewsets.ViewSet):
-    queryset = Maladie.objects.all()
-    serializer_class = MaladieSerializer
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "GET": ["client.view_maladie"],
-        "POST": ["client.add_maladie"],
-        "PUT": ["client.change_maladie"],
-        "PATCH": ["client.change_maladie"],
-        "DELETE": ["client.delete_maladie"],
-    }
+# ----------------------------------------coach detail --------------------------------------------------
+class CoachDetail(SingleTableMixin, FilterView):
+    table_class =   CoachDetailHTMxTable
+    paginate_by = 15
+    model = Creneau
 
-    def list(self, request):
-        queryset = Maladie.objects.all()
-        serializer = MaladieSerializer(queryset, many=True)
-        return Response(serializer.data)
+    def get_context_data(self, **kwargs):
+        context = super(CoachDetail, self).get_context_data(**kwargs)
+        context["coach"] =  Coach.objects.get(pk=self.kwargs['pk'])
+
+        return context
+    
+    def get_queryset(self):
+         queryset = Creneau.objects.select_related('coach').order_by("-created")
+         coach_pk = self.kwargs.get('pk')
+         print("coach_pk -------------", coach_pk)
+         if coach_pk:
+            queryset = queryset.filter(coach_id=coach_pk)
+
+         return queryset
+    
+    def get_template_names(self):
+        if self.request.htmx:
+            template_name = "tables/product_table_partial.html"
+        else:
+            template_name = "snippets/coach_detail.html"
+        return template_name
+    
+class VirementsCoachDetail(SingleTableMixin, FilterView):
+    table_class =   VirementsHTMxTable
+    paginate_by = 15
+    model = RemunerationProf
+    
+    def get_queryset(self):
+         queryset = RemunerationProf.objects.order_by("-date_creation")
+         coach_pk = self.kwargs.get('pk')
+         print("coach_pk virements  -------------", coach_pk)
+         if coach_pk:
+            queryset = queryset.filter(coach_id=coach_pk)
+
+         return queryset
+    
+    def get_template_names(self):
+        if self.request.htmx:
+            template_name = "tables/product_table_partial.html"
+        else:
+            template_name = "snippets/coach_detail.html"
+        return template_name
+
+class PresenceCoachDetail(SingleTableMixin, FilterView):
+    table_class =   PresenceCoachHTMxTable
+    paginate_by = 15
+    model = PresenceCoach
+    
+    def get_queryset(self):
+         queryset = PresenceCoach.objects.order_by("-date")
+         coach_pk = self.kwargs.get('pk')
+         print("coach_pk presences -------------", coach_pk)
+         if coach_pk:
+            queryset = queryset.filter(coach_id=coach_pk)
+            print("quey-----------------",queryset)
+         return queryset
+    
+    def get_template_names(self):
+        if self.request.htmx:
+            template_name = "tables/product_table_partial.html"
+        else:
+            template_name = "snippets/coach_detail.html"
+        return template_name
+    
+
+def presence_coach(request, pk):
+    context={}
+    coach_pk = get_object_or_404(Coach, pk=pk)
+    print("coach_pk enter ------------------------", coach_pk)
+    in_salle=coach_pk.enter_sotrie_coach()
+    print("is_salle from view*****************************",in_salle)
+    presnce =PresenceCoach.objects.filter(coach=in_salle).first()
+    
+    print('presnece view///////////////////////////',presnce)
+    context["presence"]=presnce
+    if in_salle :
+        messages.success(request, "Entrée /Sorté Coach Enregistrée")
+    else :
+        messages.error(request, "Coach ")
+    return HttpResponse(status=204)
 
 
-class ClientNameViewAPI(generics.ListAPIView):
-    queryset = Client.objects.annotate(dettes=Sum("abonnement_client__reste")).order_by('-id')
-    pagination_class = StandardResultsSetPagination
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "GET": ["client.view_client"]
-    }
-    serializer_class = ClientNameSerializer
-    search_fields = [ '=id','^carte', '^last_name', '^first_name', '^phone']
-    filter_backends = (filters.SearchFilter,)
-
-class MaladieDetailViewAPI(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Maladie.objects.all()
-    serializer_class = MaladieSerializer
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "GET": ["client.view_maladie"],
-        "PUT": ["client.change_maladie"],
-        "PATCH": ["client.change_maladie"],
-        "DELETE": ["client.delete_maladie"],
-    }
-# class ClientPaeiementsViewAPI(generics.ListAPIView):
-#     queryset = Client.objects.all()
-#     serializer_class = ClientTransactionsSerializer
-
-class ClientPresenceViewAPI(generics.ListAPIView):
-    # pagination_class = StandardResultsSetPagination
-    queryset = Client.objects.all().order_by('id')
-    serializer_class = ClientNameDropSerializer
-    search_fields = ['^last_name', '=id', '^first_name']
-    filter_backends = (filters.SearchFilter,)
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "GET": ["client.view_client"]
-}
-
-@api_view(['GET'])
-def total_dettes(request):
-    dettes = Client.objects.all().aggregate(Sum('dette'))
-    print('les CLIENTS--------------------', Client.objects.first().dette)
-    return Response(dettes)
-
-@api_view(['GET'])
-def total_abonnes(request):
-    total_abonnees = Client.objects.all().count()
-    return Response( {'abonnees': total_abonnees})
+# ----------------------------------------Personnel detail --------------------------------------------------
 
 
-# @api_view(['GET'])
-# def abonnements(request):
-#     total_abonnees = Client.objects.all().count()
-#     return Response( { 'abonnees': total_abonnees})
-#sdvdsvsddsv
+class PersonnelDetail(SingleTableMixin, FilterView):
+    table_class =   RemunerationPersonnelHTMxTable
+    paginate_by = 15
+    model = Remuneration
 
-@api_view(['GET'])
-def get_client_authorization(request):
-    user = request.user
-    if user.has_perm("client.view_client"):
-        return Response(status=200)
-    else:
-        return Response(status=403)
+    def get_context_data(self, **kwargs):
+        context = super(PersonnelDetail, self).get_context_data(**kwargs)
+        context["personnel"] =  Personnel.objects.get(pk=self.kwargs['pk'])
 
-@api_view(['GET'])
-def get_coach_authorization(request):
-    user = request.user
-    if user.has_perm("client.view_coach"):
-        return Response(status=200)
-    else:
-        return Response(status=403)
+        return context
+    
+    def get_queryset(self):
+         queryset = Remuneration.objects.select_related('nom').order_by("-date_creation")
+         personnel_pk = self.kwargs.get('pk')
+         print("personnel_pk -------------", personnel_pk)
+         if personnel_pk:
+            queryset = queryset.filter(nom_id=personnel_pk)
 
-@api_view(['GET'])
-def get_personnel_authorization(request):
-    user = request.user
-    if user.has_perm("client.view_personnel"):
-        return Response(status=200)
-    else:
-        return Response(status=403)
+         return queryset
+    
+    def get_template_names(self):
+        if self.request.htmx:
+            template_name = "tables/product_table_partial.html"
+        else:
+            template_name = "snippets/personnel_detail.html"
+        return template_name
+
+
+
+    
+
+    
 
 
 

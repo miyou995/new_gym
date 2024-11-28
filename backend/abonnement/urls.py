@@ -1,35 +1,30 @@
-from django.urls import path, include
-from .views import AbonnementAPIView, AbonnementListAPIView, AbonnementDetailAPIView, AbonnementDestroyAPIView ,AbonnementClientCreateAPIView ,AbonnementClientListAPIView ,AbonnementClientDetailAPIView ,AbonnementClientDestroyAPIView, renew_api_view, AbonnementClientActifsDetailListApi, AbonnementClientTransactionsDetailListApi, total_dettes_abonnee, deactivate_api_view,deactivate_abc_api_view, ABClientByCreneauListAPIView, total_restes_abonnees, RenewABCView, AbonnementClientRenewAPIView, AbonnementClientAllDetailListApi, AbonnementClientHistoryListAPIView, get_abonnement_authorization, get_abonnementclient_authorization, ABCToggleSuspensionAPIView
+from django.urls import path
+from .views import (
+                    abc_htmx_view,CalendarAbonnementClient,add_abonnement_client,update_abonnement_client,
+                    update_temps_rest,update_paiement_rest,renew_abonnement_client,block_deblock_abonnement_client
+)
 # , RenewalSubscription
 from .views import *
 app_name = 'abonnement'
 
 
 urlpatterns = [
-    path('abonnement/', AbonnementListAPIView.as_view(),  name="abonnement"),
-    path('abonnement/<int:pk>/', AbonnementDetailAPIView.as_view(), name="abonnement-delete"),
-    path('abc-toggle-suspension/<int:pk>/', ABCToggleSuspensionAPIView.as_view()),
-    path('abonnement/create', AbonnementAPIView.as_view(),  name="abonnement-create"),
-    path('abc-by-creneau', ABClientByCreneauListAPIView.as_view(),  name="abonnement-by-creneau"),
-    path('abonnement/delete/<int:pk>/', AbonnementDestroyAPIView.as_view(), name="abonnement-delete"),
-    path('abonnement/deativate/<int:pk>/', deactivate_api_view, name="abonnement-delete"),
-    path('abonnement-client/deativate/<int:pk>/', DeactivateAbcView.as_view(), name="abonnement-delete"),
-    # path('abonnement-client/deativate/<int:pk>/', deactivate_abc_api_view, name="abonnement-delete"),
-    path('abonnement-client/', AbonnementClientListAPIView.as_view(),  name="type"),
-    path('abonnement-client-history/', AbonnementClientHistoryListAPIView.as_view(),  name="abc-history"),
-    path('abonnement-client-dettes/', total_dettes_abonnee,  name="abonnement-client-dettes"),
-    path('totales-restes/', total_restes_abonnees,  name="totales-restes"),
-    path('abonnement-transactions/', AbonnementClientTransactionsDetailListApi.as_view(),  name="transactions"),
-    path('abonnement-by-client/', AbonnementClientActifsDetailListApi.as_view(),  name="abc-by-client"),
-    path('abonnement-by-client-all/', AbonnementClientAllDetailListApi.as_view(),  name="abc-by-client"),
-    path('abonnement-client/detail/<int:pk>/', renew_api_view, name="type-detail"),
-    path('abonnement-client/renew/<int:pk>/', RenewABCView.as_view(), name="type-renew"),
-    path('abonnement-client/<int:pk>/', AbonnementClientDetailAPIView.as_view(), name="type-delete"),
-    path('abonnement-client/create', AbonnementClientCreateAPIView.as_view(),  name="type-create"),
-    path('abonnement-client/renouveler', AbonnementClientRenewAPIView.as_view(),  name="abc-renew"),
-    path('abonnement-client/delete/<int:pk>/', AbonnementClientDestroyAPIView.as_view(), name="type-delete"),
-    path('get_abonnement_authorization/', get_abonnement_authorization, name="get_abonnement_authorization"),
-    path('get_abonnementclient_authorization/', get_abonnementclient_authorization, name="get_abonnementclient_authorization"),
+
+    path('abc_htmx_view/', abc_htmx_view, name='abc_htmx_view'),
+    path('calendar_abonnement_client/<str:pk>', CalendarAbonnementClient.as_view(), name='calendar_abonnement_client'),
+    path('add_abonnement_client/<str:client_pk>/<str:type_abonnement>', add_abonnement_client, name='add_abonnement_client'),
+
+
+    path('retreive_abc/<str:pk>', RetreiveAbonnementClient.as_view(), name='retreive_abc'),
+    path('update_abonnement_client/<int:pk>', update_abonnement_client, name='update_abonnement_client'),
+
+    path('abonnemt_client_delete/<int:pk>', AbonnemtClientDeleteView.as_view(), name='abonnemt_client_delete'),
+    
+    path('update_temps_rest/<int:pk>/', update_temps_rest, name='update_temps_rest'),
+    path('update_paiement_rest/<int:pk>/', update_paiement_rest, name='update_paiement_rest'),
+    path('renew_abonnement_client/<int:pk>/', renew_abonnement_client, name='renew_abonnement_client'),
+    path('block_deblock_abonnement_client/<int:pk>/', block_deblock_abonnement_client, name='block_deblock_abonnement_client'),
+
 ]
 
 

@@ -1,8 +1,15 @@
+
 # Django #
 *.log
 *.pot
 *.pyc
 __pycache__
+
+media
+backups/*
+# Backup files # 
+*.bak 
+
 db.sqlite3
 media/*
 *.zip

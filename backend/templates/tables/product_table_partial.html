@@ -1,0 +1,6 @@
+ {# product/templates/product_table_partial.html #}
+{% load render_table from django_tables2 %}
+
+{% comment %} {% include "snippets/bar_search.html" with target_url=target_url target=target render_filter=render_filter %} {% endcomment %}
+{% render_table table %} 
+

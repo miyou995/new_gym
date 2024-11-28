@@ -1,0 +1,46 @@
+<div id="calendar"></div>
+<script>
+    function initCalendar(eventsData) {
+        var calendarEl = document.getElementById('calendar');
+        console.log('IS IT WORKING AFTER HTMX')
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            headerToolbar: {
+                left: 'prev,next today', 
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            },
+            slotMinTime: '06:00:00',
+            slotDuration: '01:00:00',
+            events: eventsData,
+            eventClick: function(info) {
+                info.jsEvent.preventDefault();
+                {% if perms.creneau.change_creneau %} 
+                var url = info.event.url;
+                htmx.ajax('GET', url, {
+                    target: '#kt_modal_content', 
+                    swap: 'innerHTML', 
+                });
+                var myModal = new bootstrap.Modal(document.getElementById('kt_modal'));
+                    myModal.show();
+                {% endif %}
+            }
+        });
+        calendar.render();
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        initCalendar({{ events|safe }});
+    });
+
+
+    htmx.on('htmx:afterSettle', (e) => {
+        console.log("htmx:afterSettle");
+            console.log("HEEEY eventsId here HTMX REQUEST");
+        initCalendar({{ events|safe }});
+    
+    });
+
+
+    
+</script>

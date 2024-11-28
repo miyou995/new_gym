@@ -1,586 +1,580 @@
-from django.shortcuts import render, get_object_or_404
-from rest_framework import generics, serializers
-from .models import Paiement, Autre, AssuranceTransaction, Remuneration, RemunerationProf, Transaction
+from typing import Dict
+from django.shortcuts import render
+from django.urls import reverse
+from django.views.generic.base import TemplateView
+from django.views.generic import (CreateView, DeleteView,DetailView,
+                                 ListView, UpdateView)
+from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy as _
+from django.contrib import messages
+from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
+from abonnement.models import AbonnementClient
+from .forms import PaiementModelForm,Remuneration_PersonnelModelForm,Remunération_CoachModelForm,Autre_TransactionForm
 import json
-from client.models import  Coach
+import weasyprint
+from  django_tables2 import SingleTableMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin
 
-from .serializers import PaiementSerialiser, AutreSerialiser, AssuranceSerialiser, RemunerationSerialiser, RemunerationProfSerialiser, TransactionSerialiser, RemunerationProfPostSerialiser,PaiementPostSerialiser, AssurancePostSerialiser, RemunerationPostSerialiser, PaiementFiltersSerialiser, PaiementHistorySerialiser
-from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser, DjangoModelPermissions
-from drf_multiple_model.views import FlatMultipleModelAPIView, ObjectMultipleModelAPIView
-from drf_multiple_model.pagination import MultipleModelLimitOffsetPagination
-from rest_framework.decorators import api_view, permission_classes
+from django_filters.views import FilterView
+from .models import Paiement,RemunerationProf,Remuneration,Autre
+from .tables import PiaementHTMxTable,RemunerationProfHTMxTable,RemunerationPersonnelHTMxTable,AutreTransactionTableHTMxTable
+from .filters import ProductFilter,PersonnelFilter,CoachFilter,AutreTransactionFilter
+from django.contrib.auth.decorators import  permission_required
+from datetime import datetime, timedelta
 from django.db.models import Sum
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from datetime import date
-from rest_framework import pagination, viewsets, filters
-from django.db.models import Count
-from salle_activite.models import Salle, Activity
-from abonnement.models import Abonnement
-from abonnement.serializers import AbonnementTestSerializer
-from django.http import HttpResponse
-from django.http import JsonResponse
-
-class StandardResultsSetPagination(pagination.PageNumberPagination):
-    page_size = 20
-    page_size_query_param = 'page_size'
-    max_page_size = 100
+from django.shortcuts import render
+from django.contrib.admin.views.decorators import staff_member_required
+from django.shortcuts import get_object_or_404, redirect, render
+from django.template.loader import render_to_string
 
 
 
-class LimitPagination(MultipleModelLimitOffsetPagination):
-    default_limit = 15
 
-class BaseModelPerm(DjangoModelPermissions):
-    def get_custom_perms(self, method, view):
-        app_name =  view.queryset.model._meta.app_label
-        if hasattr(view, 'extra_perms_map'):
-            return [perms for perms in view.extra_perms_map.get(method, [])]
+    
+
+# @staff_member_required
+# def impression_pdf(request, order_id):
+#     order = get_object_or_404(Order, id=order_id)
+#     response = HttpResponse(content_type="application/pdf")
+#     response["Content-Disposition"] = f"filename=order_{order.id}.pdf"
+#     # business = Business.objects.first()
+#     business = order.client or  Business.objects.first()
+#     context = {
+#         "order": order, 
+#         "business": business,
+#     }
+#     html = render_to_string("snippets/order_pdf.html", context)
+#     # stylesheets=[weasyprint.CSS(str(configs.STATIC_ROOT) + 'css/pdf.css' )]
+#     weasyprint.HTML(string=html, base_url=request.build_absolute_uri()).write_pdf(
+#         response
+#     )
+#     return response
+    
+
+
+
+
+
+# tables views
+class TransactionView(PermissionRequiredMixin,SingleTableMixin, FilterView):
+    permission_required ="transaction.view_transaction"
+    table_class = PiaementHTMxTable
+    filterset_class = ProductFilter
+    paginate_by = 15
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["target_url"]   = reverse('transactions:transaction_name')
+        context["target"]       = "#table1"
+        context["render_filter"]=ProductFilter(self.request.GET)
+        return context
+
+    def get_template_names(self):
+        if self.request.htmx:
+            template_name = "tables/transactions_table_partial.html"
         else:
-            return []
-
-    def has_permission(self, request, view):
-        perms = self.get_required_permissions(request.method, view.queryset.model)
-        perms.extend(self.get_custom_perms(request.method, view))
-        return ( request.user and request.user.has_perms(perms) )
+            template_name = "transaction.html" 
+        return template_name 
 
 
-class PaiementAPIView(generics.CreateAPIView):
-    queryset = Paiement.objects.all()
-    serializer_class = PaiementPostSerialiser
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "POST": ["transaction.add_paiement"]
-    }
+class RemunerationProfTable(PermissionRequiredMixin,SingleTableMixin, FilterView):
+    permission_required ="transaction.view_remunerationprof"
+    table_class = RemunerationProfHTMxTable
+    filterset_class = CoachFilter
+    paginate_by = 15
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["target_url"]   = reverse('transactions:RemunerationProfTable_name')
+        context["target"]       = "#table3"
+        context["render_filter"]=CoachFilter(self.request.GET)
+        return context
+    def get_template_names(self):
+        if self.request.htmx:
+            template_name = "tables/transactions_table_partial.html"
+        else:
+            template_name = "transaction.html"
+        return template_name 
 
-class PaiementListAPIView(generics.ListAPIView):
-    queryset = Paiement.objects.all()
-    # permission_classes = (IsAuthenticated,)
-    serializer_class = PaiementSerialiser
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "GET": ["transaction.view_paiement"]
-    }
-class PaiementHistoryListAPIView(generics.ListAPIView):
-    queryset = Paiement.history.all()
-    # permission_classes = (IsAuthenticated,)
-    serializer_class = PaiementHistorySerialiser
-    pagination_class = StandardResultsSetPagination
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "GET": ["transaction.can_view_history"]
-    }
-    # def get_queryset(self):
-    #     queryset = get_filtered_abc_history(self.request)['qs']
-    #     print('queryset', queryset.count())
-    #     print('queryset', queryset)                                                                                     
-    #     return queryset
 
-class PaiementDetailAPIView(generics.RetrieveUpdateAPIView):
-    queryset = Paiement.objects.all()
-    # permission_classes = (IsAuthenticated,)
-    serializer_class = PaiementPostSerialiser
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "GET": ["transaction.view_paiement"],
-        "PUT": ["transaction.change_paiement"],
-        "PATCH": ["transaction.change_paiement"],
-    }
-    def get_object(self): 
-        obj = get_object_or_404(Paiement.objects.filter(id=self.kwargs["pk"]))
-        return obj
+class RemunerationPersonnelTable(PermissionRequiredMixin,SingleTableMixin, FilterView):
+    permission_required ="transaction.view_remuneration"
+    table_class = RemunerationPersonnelHTMxTable
+    filterset_class = PersonnelFilter
+    paginate_by = 15
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["target_url"]   = reverse('transactions:RemunerationPersonnelTable_name')
+        context["target"]       = "#table2"
+        context["render_filter"]=PersonnelFilter(self.request.GET)
+        return context
+    def get_template_names(self):
+        if self.request.htmx:
+            template_name = "tables/transactions_table_partial.html"
+        else:
+            template_name = "transaction.html"
+        return template_name 
+
+class AutreTransactionTable(PermissionRequiredMixin,SingleTableMixin,FilterView):
+    permission_required = "transaction.view_autre"
+    table_class=AutreTransactionTableHTMxTable
+    filterset_class=AutreTransactionFilter
+    paginate_by=15
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["target_url"]   = reverse('transactions:autre_transaction_table')
+        context["target"]       = "#table4"
+        context["render_filter"]=AutreTransactionFilter(self.request.GET)
+        return context
+    def get_template_names(self):
+        if self.request.htmx:
+            template_name = "tables/transactions_table_partial.html"
+        else:
+            template_name = "transaction.html"
+        return template_name 
+
+
+
+class chiffre_affaire(PermissionRequiredMixin,TemplateView):
+    permission_required = "transaction.can_view_statistique"
+    template_name = "chiffre_affaire.html"
+
+
+def chiffre_par_abonnement(request):
+    start_date = request.GET.get('start_date')
+    end_date = request.GET.get('end_date')
+
+    paiement_queryset = Paiement.objects.all()
+    if start_date and end_date:
+        start_date = datetime.strptime(start_date, "%Y-%m-%d")
+        end_date = datetime.strptime(end_date, "%Y-%m-%d")
+        
+        paiement_queryset = paiement_queryset.filter(date_creation__range=[start_date, end_date])
+
+    # Aggregate after applying date filter
+    subscription_totals = (paiement_queryset
+        .values('abonnement_client__type_abonnement__name')
+        .annotate(total=Sum('amount'))
+        .order_by('abonnement_client__type_abonnement__name'))
+    # Prepare data for JSON response
+    labels = [item['abonnement_client__type_abonnement__name'] for item in subscription_totals]
+    amounts = [float(item['total']) for item in subscription_totals]
+    total = sum(amounts)
+    # print('subscription_totals-------------', subscription_totals)
+    return render(request, 'snippets/chart_graph.html', {
+        'subscription_totals': subscription_totals,
+        'chart_labels': labels,
+        'chart_data': amounts,
+        "id": "subscriptionChart",
+        "title": "Chiffre d'affaire par Abonnement",
+        "total": total,
+        
+    })
+
+def chifre_dattes_abonnement(request):
+    start_date = request.GET.get('start_date')
+    end_date = request.GET.get('end_date')
+    
+    paiement_queryset = AbonnementClient.objects.all()
+    if start_date and end_date:
+        start_date = datetime.strptime(start_date, "%Y-%m-%d")
+        end_date = datetime.strptime(end_date, "%Y-%m-%d") + timedelta(days=1) - timedelta(seconds=1)
+        paiement_queryset = paiement_queryset.filter(created_date_time__range=[start_date, end_date])
+
+
+    reste_abn_totals = (paiement_queryset
+        .values('type_abonnement__name')
+        .annotate(total=Sum('reste'))
+        .order_by('type_abonnement__name'))
+
+    abbonnement_labels = [str(item['type_abonnement__name']) for item in reste_abn_totals]
+    abonnement_reste = [float(item['total']) for item in reste_abn_totals]
+    # print('reste_abn_totals---------------', reste_abn_totals)
+    total = sum(abonnement_reste)
+    return render(request, 'snippets/chart_graph.html', {
+        'room_totals': reste_abn_totals,
+        'chart_labels': abbonnement_labels,
+        'chart_data': abonnement_reste,
+        "id" : "resteChart",
+        "title" : "Dettes par  abonnement",
+        "total": total,
+    })
+
+def chiffre_par_Activity(request):
+    start_date = request.GET.get('start_date')
+    end_date = request.GET.get('end_date')
+    
+    paiement_queryset = Paiement.objects.all()
+    if start_date and end_date:
+        start_date = datetime.strptime(start_date, "%Y-%m-%d")
+        end_date = datetime.strptime(end_date, "%Y-%m-%d")
+        paiement_queryset = paiement_queryset.filter(date_creation__range=[start_date, end_date])
+
+    room_totals = (paiement_queryset
+        .values('abonnement_client__creneaux__activity__name')
+        .annotate(total=Sum('amount'))
+        .order_by('abonnement_client__creneaux__activity__name'))
+
+    room_labels = [str(item['abonnement_client__creneaux__activity__name']) for item in room_totals]
+    room_amounts = [float(item['total']) for item in room_totals]
+    # print('room_totals', room_totals) 
+    total = sum(room_amounts)
+    return render(request, 'snippets/chart_graph.html', {
+        'room_totals': room_totals,
+        'chart_labels': room_labels,
+        'chart_data': room_amounts,
+        "id" : "roomChart",
+        "title" : "Chiffre d'affaire par Activité",
+        "total": total,
+    })
+
+
+
+# paiement transactions------------------------------------------------------------------------------------------
+class paiement(PermissionRequiredMixin,CreateView):
+    permission_required = "transaction.add_paiement"
+    template_name = "snippets/_transaction_paiement_form.html"
+    form_class =PaiementModelForm
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        client_pk = self.kwargs.get('pk')
+        if client_pk:
+            kwargs['initial'] = {'client_pk': client_pk}
+        return kwargs
+
+    def get(self, request, *args, **kwargs):
+        form = self.form_class(**self.get_form_kwargs())
+        context = {"form": form}
+        return render(request, self.template_name, context)
+
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(data=request.POST)
+        posted_data = "\n.".join(f'{key} {value}' for key, value in request.POST.items())
+        print('POSTED DATA =========\n', posted_data, '\n==========')
+        
+        if form.is_valid():
+            print("is valide")
+            paiement = form.save()
+            message = _("un paiement a été créé avec succès")
+            messages.success(request, str(message))
+            return HttpResponse(status=204, headers={
+                'HX-Trigger': json.dumps({
+                    "closeModal": "kt_modal",
+                    "refresh_table": None
+                })
+            })
+        else:
+            print('is not valide', form.errors.as_data())
+            client = request.POST.get('client')
+            abcs= AbonnementClient.objects.filter(client=client)
+            context = {'form': form}
+            return render(request, self.template_name, context)
+
+ 
+          
+class PaiementUpdateView(PermissionRequiredMixin,UpdateView):
+    permission_required="transaction.change_paiement"
+    model = Paiement 
+    template_name = "snippets/_transaction_paiement_form.html"
+    fields = [
+      
+        'abonnement_client',
+        'amount', 
+        'notes',
+    ]
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        print('yeah form instance', self.object)
+        return super().get(request, *args, **kwargs)
+    def form_valid(self, form):
+        paiement =form.save()
+        print('IS FORM VALID', paiement.id)
+        messages.success(self.request, "paiement Mis a jour avec Succés")
+        return HttpResponse(status=204,
+            headers={
+                'HX-Trigger': json.dumps({
+                    "closeModal": "kt_modal",
+                    "refresh_table": None,
+                    "selected_client": f"{paiement.id}",
+                })
+            }) 
+    
+    def form_invalid(self, form):
+        messages.success(self.request, form.errors )
+        return self.render_to_response(self.get_context_data(form=form))   
+
+class PaiementDeleteView(PermissionRequiredMixin,DeleteView):
+    permission_required = "transaction.delete_paiement"
+    model = Paiement
+    template_name = "snippets/delete_modal.html"
+    success_url = reverse_lazy("transactions:transaction_name")
     
 
-class PaiementDestroyAPIView(generics.DestroyAPIView):
-    queryset = Paiement.objects.all()
-    serializer_class = PaiementSerialiser
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "POST": ["transaction.delete_paiement"],
-        "DELETE": ["transaction.delete_paiement"],
-    }
-# fin des paiement 
+    def get_context_data(self,**kwargs):
+        context=super().get_context_data(**kwargs)
+        context["title"]= f"Paiement"
+        return context
+
+    def form_valid(self, form):
+        success_url = self.get_success_url()
+        self.object.delete()
+        messages.success(self.request, "Paiement Supprimer avec Succés")
+        return HttpResponseRedirect(success_url)
+ 
+
+#remuneration personnel ------------------------------------------------------------------------------------------
+class Remuneration_Personnel(PermissionRequiredMixin,CreateView):
+    permission_required = "transaction.add_remuneration"
+    template_name="snippets/_remu_personnel_form.html"
+    form_class=Remuneration_PersonnelModelForm
+
+    def get_form_kwargs(self) :
+        kwargs = super().get_form_kwargs()
+        personnel_pk = self.kwargs.get('pk')
+        if personnel_pk:
+            kwargs['initial'] = {'personnel_pk': personnel_pk}
+        return kwargs
+
+    def get(self, request: HttpRequest, *args, **kwargs):
+        form = self.form_class(**self.get_form_kwargs())
+        context = {"form": form}
+        return render(request, self.template_name, context)
+    
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(data=request.POST)
+        posted_data = "\n.".join(f'{key} {value}' for key, value in request.POST.items())
+        print('POSTED DATA =========\n', posted_data, '\n==========')
+        
+        if form.is_valid():
+            print("is valide")
+            form.save()
+            message = _("Remuniration Personnel a été créé avec succès")
+            messages.success(request, str(message))
+            return HttpResponse(status=204, headers={
+                'HX-Trigger': json.dumps({
+                    "closeModal": "kt_modal",
+                    "refresh_table": None
+                })
+            })
+        else:
+            print('is not valide', form.errors.as_data())
+            personnel = request.POST.get("personnel")
+            context = {'form': form}
+            return render(request, self.template_name, context)
 
 
-class AutreAPIView(generics.CreateAPIView):
-    queryset = Autre.objects.all()
-    serializer_class = AutreSerialiser
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "POST": ["transaction.add_autre"]
-    }
 
-class AutreListAPIView(generics.ListAPIView):
-    queryset = Autre.objects.all()
-    # permission_classes = (IsAuthenticated,)
-    serializer_class = AutreSerialiser
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "GET": ["transaction.view_autre"]
-    }
+class RemuPersonnelUpdateView(PermissionRequiredMixin,UpdateView):
+    permission_required="transaction.change_remuneration"
+    model=Remuneration
+    template_name="snippets/_remu_personnel_form.html"
+    fields=[
+        'amount', 
+        'notes',
+    ]
+    def get(self,request,*args,**kwargs):
+        self.object=self.get_object()
+        print('form instance',self.object)
+        return super().get(request,*args, **kwargs)
+    def form_valid(self,form):
+        remuneration=form.save()
+        print("is from valid",remuneration.id)
+        messages.success(self.request,"remuniration Personnel Mis a jour avec Succés")
+        return HttpResponse(status=204,
+            headers={
+                "HX-Trigger":json.dumps({
+                    "closeModal":"kt_modal",
+                    "refresh_table":None
+                })
+            })
+    def form_invalid(self, form):
+        messages.success(self.request, form.errors )
+        return self.render_to_response(self.get_context_data(form=form))   
 
-class AutreDetailAPIView(generics.RetrieveUpdateAPIView):
-    queryset = Autre.objects.all()
-    # permission_classes = (IsAuthenticated,)
-    serializer_class = AutreSerialiser
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "GET": ["transaction.view_autre"],
-        "PUT": ["transaction.change_autre"],
-        "PATCH": ["transaction.change_autre"],
-    }
-    def get_object(self):
-        obj = get_object_or_404(Autre.objects.filter(id=self.kwargs["pk"]))
-        return obj
+class RemuPersonnelDeleteView(PermissionRequiredMixin,DeleteView):
+    permission_required="transaction.delete_remuneration"
+    model =Remuneration
+    template_name="snippets/delete_modal.html"
+    success_url=reverse_lazy("transactions:RemunerationPersonnelTable_name")
+ 
+    def get_context_data(self,**kwargs):
+        context=super().get_context_data(**kwargs)
+        context["title"]= f"Personnel"
+        return context
+
+    def form_valid(self,form):
+        success_url = self.get_success_url()
+        self.object.delete()
+        messages.success(self.request, "Remuniration Personnel Supprimer avec Succés")
+        return HttpResponseRedirect(success_url)
+
+#remuneration Coach ------------------------------------------------------------------------------------------
+class Remuneration_Coach(PermissionRequiredMixin,CreateView):
+    permission_required = "transaction.add_remunerationprof"
+    template_name = "snippets/_remu_Coach_form.html"
+    form_class = Remunération_CoachModelForm
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        coach_pk = self.kwargs.get('pk')
+        if coach_pk:
+            kwargs['initial'] = {'coach_pk': coach_pk}
+        return kwargs
+
+    def get(self, request, *args, **kwargs):
+        form = self.form_class(**self.get_form_kwargs())
+        context = {"form": form}
+        return render(request, self.template_name, context)
+
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(data=request.POST)
+        posted_data = "\n.".join(f'{key} {value}' for key, value in request.POST.items())
+        print('POSTED DATA =========\n', posted_data, '\n==========')
+        
+        if form.is_valid():
+            print("is valide")
+            remuneration = form.save()
+            message = _("Remuniration Coach a été créé avec succès")
+            messages.success(request, str(message))
+            return HttpResponse(status=204, headers={
+                'HX-Trigger': json.dumps({
+                    "closeModal": "kt_modal",
+                    "refresh_table": None
+                })
+            })
+        else:
+            print('is not valide', form.errors.as_data())
+            coach = request.POST.get("coach")
+            context = {'form': form}
+            return render(request, self.template_name, context)
+
+    
+class Remuneration_CoachUpdateView(PermissionRequiredMixin,UpdateView):
+    permission_required="transaction.change_remunerationprof"
+    model=RemunerationProf
+    template_name="snippets/_remu_Coach_form.html"
+    fields=[
+        'amount',
+        'notes',
+    ]
+    def get(self,request,*args, **kwargs):
+        self.object=self.get_object()
+        print('from instance',self.object)
+        return super().get(request,*args, **kwargs)
+    def form_valid(self, form):
+        remuCoach=form.save()
+        print('is from valid',remuCoach.id)
+        messages.success(self.request,"Remuneration Coach Mis a jour avec Succés ")
+        return HttpResponse(status=204,
+            headers={
+                "HX-Trigger":json.dumps({
+                    "closeModal":"kt_modal",
+                    "refresh_table":None,
+
+                })
+            })
+    def form_invalid(self, form):
+        messages.success(self.request, form.errors )
+        return self.render_to_response(self.get_context_data(form=form))   
     
 
-class AutreDestroyAPIView(generics.DestroyAPIView):
-    queryset = Autre.objects.all()
-    serializer_class = AutreSerialiser
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "POST": ["transaction.delete_autre"],
-        "DELETE": ["transaction.delete_autre"],
-    }
-# FIN AUTRE#########
+class RemCoachDeleteView(PermissionRequiredMixin,DeleteView):
+    permission_required="transaction.delete_remunerationprof"
+    model =RemunerationProf
+    template_name="snippets/delete_modal.html"
+    success_url=reverse_lazy("transactions:RemunerationProfTable_name")
 
-class AssuranceAPIView(generics.CreateAPIView):
-    queryset = AssuranceTransaction.objects.all()
-    serializer_class = AssurancePostSerialiser
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "POST": ["transaction.add_assurancetransaction"]
-    }
+    def form_valid(self,form):
+        success_url = self.get_success_url()
+        self.object.delete()
+        messages.success(self.request, "Remuniration Coach Supprimer avec Succés")
+        return HttpResponseRedirect(success_url)
 
-class AssuranceListAPIView(generics.ListAPIView):
-    queryset = AssuranceTransaction.objects.all()
-    # permission_classes = (IsAuthenticated,)
-    serializer_class = AssuranceSerialiser
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "GET": ["transaction.view_assurancetransaction"]
-    }
-
-class AssuranceDetailAPIView(generics.RetrieveUpdateAPIView):
-    queryset = AssuranceTransaction.objects.all()
-    # permission_classes = (IsAuthenticated,)
-    serializer_class = AssurancePostSerialiser
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "GET": ["transaction.view_assurancetransaction"],
-        "PUT": ["transaction.change_assurancetransaction"],
-        "PATCH": ["transaction.change_assurancetransaction"],
-    }
-
-    def get_object(self):
-        obj = get_object_or_404(AssuranceTransaction.objects.filter(id=self.kwargs["pk"]))
-        return obj
+# Auter Transaction------------------------------------------------------------------------------------------
+@permission_required("transaction.add_autre",raise_exception=True)
+def Autre_Transaction(request):
+    context={}
+    template_name="snippets/_autre_Transaction_form.html"
     
+    form=Autre_TransactionForm(data=request.POST or None)
+    if request.method=="POST":
+        form=Autre_TransactionForm(data=request.POST)
+        posted_data="\n.".join(f'{key} {value}' for key,value in request.POST.items())
+        print('POSTED DATA =========\n',posted_data, '\n==========')
+        if form.is_valid():
+            print("is valide")
+            remuniration=form.save()
+            message=_("Autre transaction created successfully")
+            messages.success(request,str(message))
+            return HttpResponse(status=204,
+                headers={
+                    'HX-Trigger' :json.dumps({
+                        "closeModal":"kt_modal",
+                        "refresh_table":None
 
-class AssuranceDestroyAPIView(generics.DestroyAPIView):
-    queryset = AssuranceTransaction.objects.all()
-    serializer_class = AssuranceSerialiser
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "POST": ["transaction.delete_assurancetransaction"],
-        "DELETE": ["transaction.delete_assurancetransaction"],
-    }
-# FIN ASSURANCE#########
+                    })
+                })
+        else:
+            print('is not valide',form.errors.as_data())
+            coach=request.POST.get("name")
+            context['form']=Autre_TransactionForm(data=request.POST or None)
+            return render(request,template_name="snippets/_autre_Transaction_form.html",context=context)
+    context["form"]=form
+    return render(request,template_name=template_name,context=context)
 
-class RemunerationAPIView(generics.CreateAPIView):
-    queryset = Remuneration.objects.all()
-    serializer_class = RemunerationPostSerialiser
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "POST": ["transaction.add_remuneration"]
-    }
+class Autre_TransactionUpdateView(PermissionRequiredMixin,UpdateView):
+    permission_required="transaction.change_autre"
+    model=Autre
+    template_name="snippets/_autre_Transaction_form.html"
+    fields=[
+        'amount', 
+        'name',
+        'notes',
+    ]
+    def get(self,request,*args, **kwargs):
+        self.object=self.get_object()
+        print("from instance",self.object)
+        return super().get(request,*args, **kwargs)
+    def form_valid(self,form):
+        form.save()
+        messages.success(self.request,"Autre transactions Mis A Jour avec Succés")
+        return HttpResponse(status=204,
+                headers={
+                    'HX-Trigger':json.dumps({
+                        "closeModal":"kt_modal",
+                        "refresh_table":None,
 
-class RemunerationListAPIView(generics.ListAPIView):
-    queryset = Remuneration.objects.all()
-    # permission_classes = (IsAuthenticated,)
-    serializer_class = RemunerationSerialiser
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "GET": ["transaction.view_remuneration"]
-    }
-
-class RemunerationDetailAPIView(generics.RetrieveUpdateAPIView):
-    queryset = Remuneration.objects.all()
-    # permission_classes = (IsAuthenticated,)
-    serializer_class = RemunerationPostSerialiser
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "GET": ["transaction.view_remuneration"],
-        "PUT": ["transaction.change_remuneration"],
-        "PATCH": ["transaction.change_remuneration"],
-    }
-    def get_object(self):
-        obj = get_object_or_404(Remuneration.objects.filter(id=self.kwargs["pk"]))
-        return obj
-    
-class PaiementEmployeListAPIView(generics.ListAPIView):
-    queryset = Remuneration.objects.all()
-    serializer_class = RemunerationPostSerialiser
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "GET": ["transaction.view_remuneration"]
-    }
-    def get_queryset(self):
-        employe_id = self.request.query_params.get('em', None)
-        transactions = Remuneration.objects.filter(nom__id=employe_id)
-        print('cliiiientr transactions', transactions)
-        return transactions
-
-class RemunerationDestroyAPIView(generics.DestroyAPIView):
-    queryset = Remuneration.objects.all()
-    serializer_class = RemunerationSerialiser
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "POST": ["transaction.delete_remuneration"],
-        "DELETE": ["transaction.delete_remuneration"],
-    }
-
-# FIN ASSURANCE#########
-class RemunerationProfAPIView(generics.CreateAPIView):
-    queryset = RemunerationProf.objects.all()
-    serializer_class = RemunerationProfPostSerialiser
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "POST": ["transaction.add_remunerationprof"]
-    }
+                    })
+                })
+    def form_invalid(self,form):
+        messages.success(self.request,form.errors )
+        return self.render_to_response(self.get_context_data(form=form))
 
 
-class RemunerationProfListAPIView(generics.ListAPIView):
-    queryset = RemunerationProf.objects.all()
-    # permission_classes = (IsAuthenticated,)
-    serializer_class = RemunerationProfSerialiser
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "GET": ["transaction.view_remunerationprof"]
-    }
-class RemunerationProfDetailAPIView(generics.RetrieveUpdateAPIView):
-    queryset = RemunerationProf.objects.all()
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "GET": ["transaction.view_remunerationprof"],
-        "PUT": ["transaction.change_remunerationprof"],
-        "PATCH": ["transaction.change_remunerationprof"],
-    }
-    serializer_class = RemunerationProfPostSerialiser
-    def get_object(self):
-        obj = get_object_or_404(RemunerationProf.objects.filter(id=self.kwargs["pk"]))
-        return obj
-    
+class AutreTransactionDelete(PermissionRequiredMixin,DeleteView):
+    permission_required="transaction.delete_autre"
+    model =Autre
+    template_name="snippets/delete_modal.html"
+    success_url=reverse_lazy("transactions:autre_transaction_table")
 
-class RemunerationProfDestroyAPIView(generics.DestroyAPIView):
-    queryset = RemunerationProf.objects.all()
-    serializer_class = RemunerationProfSerialiser
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "POST": ["transaction.delete_remunerationprof"],
-        "PATCH": ["transaction.delete_remunerationprof"],
-    }
-
-
-class TransactionListAPIView(FlatMultipleModelAPIView):
-    queryset = Transaction.objects.all()
-    sorting_fields = ['-id']
-    filter_backends = (filters.SearchFilter,)
-    flat = True
-    pagination_class = LimitPagination
-    search_fields = ('amount',)
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "GET": ["transaction.view_transactions"]
-    }
-    def get_querylist(self):
-        start_date = self.request.query_params.get('start_date', None)
-        end_date = self.request.query_params.get('end_date', None)
-        querylist = (
-            {
-                'queryset': Paiement.objects.filter(date_creation__range=[start_date, end_date]).select_related('abonnement_client', 'abonnement_client__type_abonnement', 'abonnement_client__client').order_by('-date_creation'),
-                'serializer_class': PaiementSerialiser,
-                'label': 'paiement',
-            },
-            {
-                'queryset': Remuneration.objects.filter(date_creation__range=[start_date, end_date]).select_related('nom').order_by('-date_creation'),
-                'serializer_class': RemunerationSerialiser,# il ya un problem
-                'label': 'remuneration',
-            },
-            {
-                'queryset': Autre.objects.filter(date_creation__range=[start_date, end_date]).order_by('-date_creation'),
-                'serializer_class': AutreSerialiser,
-                'label': 'autre',
-            },
-            {
-                'queryset': RemunerationProf.objects.filter(date_creation__range=[start_date, end_date]).select_related('coach').order_by('-date_creation'),
-                'serializer_class': RemunerationProfSerialiser,
-                'label': 'remunerationProf',
-            },
-            {
-                'queryset': AssuranceTransaction.objects.filter(date_creation__range=[start_date, end_date]).select_related('client').order_by('-date_creation'),
-                'serializer_class': AssuranceSerialiser,
-                'label': 'assurance',
-            },
-        )
-        return querylist
-
-
-# class TransactionListAPIView(FlatMultipleModelAPIView):
-#     sorting_fields = ['-date_creation']
-#     querylist = [
-#         {
-#             'queryset': Paiement.objects.all().order_by('-date_creation'),
-#             'serializer_class': PaiementSerialiser,
-#             'label': 'paiement',
-#         },
-#         {
-#             'queryset': Remuneration.objects.all().order_by('-date_creation'),
-#             'serializer_class': RemunerationSerialiser,# il ya un problem
-#             'label': 'remuneration',
-#         },
-#         {
-#             'queryset': Autre.objects.all().order_by('-date_creation'),
-#             'serializer_class': AutreSerialiser,
-#             'label': 'autre',
-#         },
-#         {
-#             'queryset': RemunerationProf.objects.all().order_by('-date_creation'),
-#             'serializer_class': RemunerationProfSerialiser,
-#             'label': 'remunerationProf',
-#         },
-#         {
-#             'queryset': AssuranceTransaction.objects.all().order_by('-date_creation'),
-#             'serializer_class': AssuranceSerialiser,
-#             'label': 'assurance',
-#         },
-#      ]
-    
-    # def get_queryset(self):
-    #     return Transaction.objects.select_subclasses()
-
-class TransactionDetailAPIView(generics.RetrieveUpdateAPIView):
-    # querylist = [
-    #     {
-    #         'queryset': Paiement.objects.all(),
-    #         'serializer_class': PaiementSerialiser,
-    #         'label': 'Paiements',
-    #     },
-    #     {
-    #         'queryset': Remuneration.objects.all(),
-    #         'serializer_class': RemunerationSerialiser,
-    #         'label': 'Remunerations',
-    #     },
-    #  ]
-    queryset = Transaction.objects.all()
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "GET": ["transaction.view_transaction"],
-        "PUT": ["transaction.change_transaction"],
-        "PATCH": ["transaction.change_transaction"],
-    }
-    serializer_class = TransactionSerialiser
-
-    def get_object(self): 
-        obj = get_object_or_404(Transaction.objects.filter(id=self.kwargs["pk"]))
-        return obj
-    
-class PaiementCoachListAPIView(generics.ListAPIView):
-    queryset = RemunerationProf.objects.all()
-    serializer_class = RemunerationProfPostSerialiser
-    permission_classes = (IsAdminUser, BaseModelPerm)
-    extra_perms_map = {
-        "GET": ["transaction.view_remunerationprof"]
-    }
-    def get_queryset(self):
-        coach_id = self.request.query_params.get('cl', None)
-        coach = get_object_or_404(Coach, id=coach_id)
-        print('cliiiientr', coach)
-        transactions = RemunerationProf.objects.filter(coach=coach)
-        print(' TRansaction coach -------------------------->', transactions)
-        return transactions
-
-@api_view(['GET'])
-def total_charges(request):
-    charges_coachs = RemunerationProf.objects.filter(amount__gte = 0).aggregate(Sum('amount'))
-    charges_personnel = Remuneration.objects.filter(amount__gte = 0).aggregate(Sum('amount'))
-    charges_autre = Autre.objects.filter(amount__lte = 0).aggregate(Sum('amount'))
-    total_list = [charges_coachs['amount__sum']  , charges_personnel['amount__sum'] , charges_autre['amount__sum']]
-    totale = 0
-
-    for i in total_list: 
-        if i :
-            totale+=i
-    print('total autrs', totale)
-    return Response( {'total_charges': totale})
-
-class MyModelViewSet(generics.ListAPIView):
-    # The usual stuff here
-    queryset="""
-          SELECT  abonnement_abonnement.id, Sum(amount)  from transaction_paiement join transaction_transaction on transaction_paiement.transaction_ptr_id=transaction_transaction.id
- join abonnement_abonnementclient on transaction_paiement.abonnement_client_id=abonnement_abonnementclient.id 
- join abonnement_abonnement on abonnement_abonnementclient.type_abonnement_id=abonnement_abonnement.id
- join  abonnement_abonnement_salles on abonnement_abonnement.id=  abonnement_abonnement_salles.abonnement_id
- where transaction_transaction.date_creation between '2021-03-01' and '2022-07-01' GROUP BY abonnement_abonnement.name
-        """
-    model = Abonnement
-    serializer_class = AbonnementTestSerializer
-    # permission_classes = (IsAdminUser,BaseModelPerm)
-    # extra_perms_map = {
-    #     "GET": ["transaction.view_client"]
-    # }
-    def list(self, request):
-        queryset = self.get_queryset()
-        serializer = AbonnementTestSerializer(list(queryset), many=True)
-        return Response(serializer.data)
-
-
-#@api_view(['GET'])
-# def presences_by_salle(request):
-#     salles = Salle.objects.values('name').annotate(Count('actvities__creneaux__presenses'))
-#     return Response( {'presences': salles})
+    def form_valid(self,form):
+        success_url = self.get_success_url()
+        self.object.delete()
+        messages.success(self.request, "Autre transaction Supprimer avec Succés")
+        return HttpResponseRedirect(success_url)
 
 
 
-@api_view(['GET'])
-def ca_by_salle(request):
-    st_date = request.query_params.get('st', None)
-    nd_date = request.query_params.get('nd', None)
-    if st_date and nd_date :
-        ca = Salle.objects.filter(abonnements__type_abonnement_client__transactions__date_creation__range=[st_date, nd_date]).values('name').annotate(Sum('abonnements__type_abonnement_client__transactions__amount')).order_by('-abonnements__type_abonnement_client__transactions__amount__sum')
-    return Response(ca)
-
-@api_view(['GET'])
-def ca_by_ab(request):
-    st_date = request.query_params.get('st', None)
-    nd_date = request.query_params.get('nd', None)
-#     query="""
-#           SELECT  abonnement_abonnement.id, Sum(amount)  from transaction_paiement join transaction_transaction on transaction_paiement.transaction_ptr_id=transaction_transaction.id
-#  join abonnement_abonnementclient on transaction_paiement.abonnement_client_id=abonnement_abonnementclient.id 
-#  join abonnement_abonnement on abonnement_abonnementclient.type_abonnement_id=abonnement_abonnement.id
-#  join  abonnement_abonnement_salles on abonnement_abonnement.id=  abonnement_abonnement_salles.abonnement_id
-#  where transaction_transaction.date_creation between '2021-03-01' and '2022-07-01' GROUP BY abonnement_abonnement.name
-#         """
-    # ab = Abonnement.objects.raw(query)
-    # for i in ab:
-    #     print('this is ab..............',type(i))
-    
-    ab = Abonnement.objects.filter(type_abonnement_client__transactions__date_creation__range=[st_date, nd_date]).values('name').annotate(Sum('type_abonnement_client__transactions__amount'))
-    # ab.aggregate(Sum('amount'))
-    # ab = Abonnement.objects.values('name').annotate(Sum('type_abonnement_client__transactions__amount')).filter(type_abonnement_client__transactions__date_creation__range=['2021-03-01', '2022-07-01']).order_by('-type_abonnement_client__transactions__amount__sum')
-    # hey = serializers.PaiementSerialiser(ab)
-    # print('this is ab..............',ab[0])
-    return Response( ab)
-
-# @api_view(['GET'])
-# def ca_by_activity(request):
-#     st_date = request.query_params.get('st', None)
-#     nd_date = request.query_params.get('nd', None)
-#     if st_date and nd_date :
-#         ab = Activity.objects.values('name').annotate(Sum('salle__abonnements__type_abonnement_client__transactions__amount')).order_by('-salle__abonnements__type_abonnement_client__transactions__amount__sum')
-#     return Response(ab)
-
-@api_view(['GET'])
-def ca_by_date(request):
-    st_date = request.query_params.get('st', None)
-    nd_date = request.query_params.get('nd', None)
-    if st_date and nd_date:
-        ttc_autre = Autre.objects.filter(amount__gte = 0).aggregate(Sum('amount'))
-        ttc_paiement = Paiement.objects.filter(date_creation__range=[st_date, nd_date]).aggregate(Sum('amount'))
-        ttc_assurance = AssuranceTransaction.objects.filter(date_creation__range=[st_date, nd_date]).aggregate(Sum('amount'))
-        if not ttc_autre :
-            ttc_autre = 0
-        if not ttc_paiement :
-            ttc_paiement = 0
-        if not ttc_assurance :
-            ttc_assurance = 0
-        total = ttc_paiement['amount__sum'] 
-        print('LE TOTAAAAL', total)
-        return Response( {'chiffre_affaire': total})
-
-@api_view(['GET'])
-def chiffre_affaire(request):
-
-    ttc_autre = Autre.objects.filter(amount__gte = 0).aggregate(Sum('amount'))
-    ttc_paiement = Paiement.objects.all().aggregate(Sum('amount'))
-    ttc_assurance = AssuranceTransaction.objects.all().aggregate(Sum('amount'))
-
-    if not ttc_autre :
-        ttc_autre = 0
-    if not ttc_paiement :
-        ttc_paiement = 0
-    if not ttc_assurance :
-        ttc_assurance = 0
-    total = ttc_paiement['amount__sum'] 
-    print('ELSEEEEE TOTAAAAL', total)
-
-    return Response( {'chiffre_affaire': total})
-
-# @api_view(['GET'])
-# def trans_today(request):
-#     today = date.today()
-#     trans = Transaction.objects.filter(date_creation = today)
-
-#     return Response(trans).data
-
-class TransToday(FlatMultipleModelAPIView):
-    queryset = Transaction.objects.all()
-    today = date.today()
-    sorting_fields = ['-date_creation']
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "GET": ["transaction.view_transaction"]
-    }
-    querylist = [
-        {
-            'queryset': Paiement.objects.filter(date_creation = today).order_by('-date_creation'),
-            'serializer_class': PaiementSerialiser,
-            'label': 'paiement',
-        },
-        {
-            'queryset': Remuneration.objects.filter(date_creation = today).select_related('nom').order_by('-date_creation'),
-            'serializer_class': RemunerationSerialiser,
-            'label': 'remuneration',
-        },
-        {
-            'queryset': Autre.objects.filter(date_creation = today).order_by('-date_creation'),
-            'serializer_class': AutreSerialiser,
-            'label': 'autre',
-        },
-        {
-            'queryset': RemunerationProf.objects.filter(date_creation = today).select_related('coach').order_by('-date_creation'),
-            'serializer_class': RemunerationProfSerialiser,
-            'label': 'remunerationProf',
-        },
-        {
-            'queryset': AssuranceTransaction.objects.filter(date_creation = today).order_by('-date_creation'),
-            'serializer_class': AssuranceSerialiser,
-            'label': 'assurance',
-        },
-     ]
-    # def get_queryset(self):
-    #     today = date.today()
-
-    #     return Transaction.objects.filter(date_creation = today)
-
-class PaiementClientListAPIView(generics.ListAPIView):
-    queryset = Paiement.objects.all()
-    serializer_class = PaiementSerialiser
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "GET": ["transaction.view_paiement"]
-    }
-    def get_queryset(self):
-        client = self.request.query_params.get('cl', None)
-        transactions = Paiement.objects.filter(abonnement_client__client=client).select_related('abonnement_client__client','abonnement_client', 'abonnement_client__type_abonnement')
-        return  transactions
 
 
 
-@api_view(['GET'])
-def get_transaction_authorization(request):
-    user = request.user
-    if user.has_perm("transaction.view_transaction"):
-        return Response(status=200)
-    else:
-        return Response(status=403)
+
+
+
+
+
+
+
+
+
+

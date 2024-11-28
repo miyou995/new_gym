@@ -1,24 +1,30 @@
-from django.urls import path, include
-from .views import CreneauAPIView, CreneauPerSalleListAPIView, CreneauListAPIView, CreneauDetailAPIView, CreneauDestroyAPIView, CreneauActivityListAPIView, CreneauByAbonnement, CreneauClientListAPIView, CreneauCoachListAPIView, CreneauBySalleAndPlanningListAPIView, CreneauAbcListAPIView, CreneauByAbndPlanListAPIView, get_creneau_authorization
-
+from django.urls import path
+from .views import  (CreateCreneau,UpdateCreneau,CreneauDeleteView,CalenderView,
+                     AbonnementsParCreneau,abc_creneau_view)
 
 app_name = 'creneau'
 
 
 urlpatterns = [
-    path('by-salle-planning', CreneauBySalleAndPlanningListAPIView.as_view(), name="creneau-salle-planning"),
-    path('by-salle', CreneauPerSalleListAPIView.as_view(), name="creneau-salle"),
-    path('by-ab-plan', CreneauByAbndPlanListAPIView.as_view(), name="creneau-salle"),
-    path('by-client', CreneauClientListAPIView.as_view(), name="creneau-client"),
-    path('by-coach', CreneauCoachListAPIView.as_view(), name="creneau-coach"),
-    path('by-abonnement', CreneauByAbonnement.as_view(), name="creneau-abn"),
-    path('by-abc', CreneauAbcListAPIView.as_view(), name="creneau-abc"),
-    path('all/', CreneauListAPIView.as_view(), name="creneau"),
-    path('create/', CreneauAPIView.as_view(),  name="creneau-create"),
-    path('<int:pk>/', CreneauDetailAPIView.as_view(),  name="creneau-detail"),
-    path('delete/<int:pk>/', CreneauDestroyAPIView.as_view(), name="creneau-delete"),
-    path('range/<int:pk>/', CreneauDestroyAPIView.as_view(), name="creneau-delete"),
-    path('get_creneau_authorization/', get_creneau_authorization, name="get_creneau_authorization"),
+       path('abc_creneau_view/', abc_creneau_view, name='abc_creneau_view'),
+       
+       path('creneaux/', CalenderView.as_view(), name='creneaux_name'),
+
+       path('creneaux/CreateCreneau',CreateCreneau.as_view(), name='create_creneau'),
+       path("creneaux/UpdateCreneau/<int:pk>", UpdateCreneau.as_view(), name="update_creneau"),
+       path("creneaux/CreneauDeleteView/<int:pk>", CreneauDeleteView.as_view(), name="creneau_delete_view"),
+       path("creneaux/abonnements_par_creneau/<int:pk>", AbonnementsParCreneau.as_view(), name="abonnements_par_creneau"),
+
+
+
+
+       # path("CalenderView/", CalenderView.as_view(), name="CalenderView"),
+
+       
+
 ]   
+
+
+
 
 

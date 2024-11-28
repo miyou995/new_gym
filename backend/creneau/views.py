@@ -1,255 +1,179 @@
-from django.shortcuts import render, get_object_or_404
-from rest_framework import generics
+import json
+from django.shortcuts import render
+from django.shortcuts import render
+from django.http import HttpResponse, HttpResponseRedirect
+from django.views.generic import (CreateView, DeleteView,UpdateView)
 from .models import Creneau
-from salle_activite.models import Salle
-from planning.models import Planning
-from .serializers import CreneauSerialiser, CreneauxSimpleSerialiser, CreneauClientSerialiser, CreneauOnlySerialiser
-from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser, DjangoModelPermissions
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
+from .forms import CreneauModelForm 
+from django.contrib import messages
+from django.utils.translation import gettext_lazy as _
+from django.urls import reverse, reverse_lazy
+from .filters import CalenderFilterCreneau
+from django_filters.views import FilterView
 from abonnement.models import AbonnementClient
-from django.db import transaction
-from django.db.models import Count, Q
-from django.utils.timezone import now
-class BaseModelPerm(DjangoModelPermissions):
-    def get_custom_perms(self, method, view):
-        app_name =  view.queryset.model._meta.app_label
-        if hasattr(view, 'extra_perms_map'):
-            return [perms for perms in view.extra_perms_map.get(method, [])]
+from django_tables2 import SingleTableMixin
+from .tables import AbonnementClientHTMxTable
+from django.db.models import Max
+from django.contrib.auth.mixins import PermissionRequiredMixin
+
+
+def abc_creneau_view(request):
+    template_name = "snippets/abc_creneau.html"
+    abc = request.GET.get('abc')
+    print("abc--------------", abc)
+    client_id = request.GET.get('client')
+    print("client----------------", client_id)
+    try:
+        abonnement_client = AbonnementClient.objects.get( id=abc, client__id=client_id)
+        print("abonnement_client for client---:", abonnement_client)
+        creneaux = abonnement_client.creneaux.all()
+        print(f"Creneaux for this AbonnementClient (ID: {abonnement_client.id}): {creneaux}")
+        return render(request, template_name, {'creneaux': creneaux})
+    except ValueError:
+        return HttpResponse("<option>------</option>")
+
+
+
+
+
+class CreateCreneau(PermissionRequiredMixin,CreateView):
+    permission_required = "creneau.add_creneau"
+    template_name ="snippets/_creneau_form.html"
+    form_class=CreneauModelForm 
+
+    def get(self, request, *args, **kwargs):
+        form = self.form_class(**self.get_form_kwargs())
+        context = {"form": form}
+        return render(request, self.template_name, context)
+    
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(data=request.POST)
+        posted_data = "\n.".join(f'{key} {value}' for key, value in request.POST.items())
+        print('POSTED DATA =========\n', posted_data, '\n==========')
+        if form.is_valid():
+            form.save()
+            message = _("Creneau a été créé avec succès")
+            messages.success(request, str(message))
+            return HttpResponse(status=204, headers={
+                'HX-Trigger': json.dumps({
+                    "closeModal": "kt_modal",
+                    "refresh_table": None
+                })
+            })
+        else :
+            print('is not valide', form.errors.as_data())
+            context = {'form': form}
+            return render(request, self.template_name, context)
+
+class UpdateCreneau(PermissionRequiredMixin,UpdateView):
+    permission_required = "creneau.change_creneau"
+    model=Creneau
+    template_name ="snippets/_creneau_form.html"
+    form_class =CreneauModelForm
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        print('yeah form instance', self.object)
+        return super().get(request, *args, **kwargs)
+    def form_valid(self, form):
+        paiement =form.save()
+        print('IS FORM VALID', paiement.id)
+        messages.success(self.request, "Creneau Mis a jour avec Succés")
+        return HttpResponse(status=204,
+            headers={
+                'HX-Trigger': json.dumps({
+                    "closeModal": "kt_modal",
+                    "refresh_table": None,
+                    
+                })
+            }) 
+
+    def form_invalid(self, form):
+        messages.success(self.request, form.errors )
+        return self.render_to_response(self.get_context_data(form=form))   
+
+class CreneauDeleteView(PermissionRequiredMixin,DeleteView):
+    permission_required = "creneau.delete_creneau"
+    model = Creneau
+    template_name = "buttons/delete.html"
+    success_url = reverse_lazy("creneau:creneaux_name")
+
+    def form_valid(self, form):
+        success_url = self.get_success_url()
+        self.object.delete()
+        print('GOOOOO')
+        messages.success(self.request, "Creneau Supprimer avec Succés")
+        return HttpResponseRedirect(success_url)
+    
+
+class CalenderView(PermissionRequiredMixin,FilterView):
+    permission_required = "creneau.view_creneau"
+    filterset_class = CalenderFilterCreneau
+    model = Creneau
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # context['filter'] = self.filterset
+        context["events"] = json.dumps(self.get_events())
+        # print('Called vevnets', context["events"])
+        return context
+ 
+    def get_events(self):
+        events = self.filterset_class(self.request.GET, queryset=Creneau.objects.all()).qs
+
+        day_name_to_weekday = {
+            'LU': 1,  # Monday
+            'MA': 2,  # Tuesday
+            'ME': 3,  # Wednesday
+            'JE': 4,  # Thursday
+            'VE': 5,  # Friday
+            'SA': 6,  # Saturday
+            'DI': 0,  # Sunday
+        }
+        events_list = []
+        for event in events:
+            event_weekday = day_name_to_weekday.get(event.day.upper())
+            if event_weekday is not None:
+                events_list.append({
+                    'title': event.name,
+                    'color': event.color,
+                    'startTime': event.hour_start.strftime('%H:%M:%S'),
+                    'endTime': event.hour_finish.strftime('%H:%M:%S'),
+                    'daysOfWeek': [event_weekday],  # Repeat weekly on this day
+                    'url': reverse('creneau:update_creneau', kwargs={'pk': event.pk}),
+                   
+                })
+        return events_list
+    
+    def get_template_names(self):
+        if self.request.htmx:
+            template_name = "snippets/calender_partial.html"
         else:
-            return []
-
-    def has_permission(self, request, view):
-        perms = self.get_required_permissions(request.method, view.queryset.model)
-        perms.extend(self.get_custom_perms(request.method, view))
-        return ( request.user and request.user.has_perms(perms) )
+            template_name = "snippets/calendar.html"
+        return template_name 
 
 
-class CreneauAPIView(generics.CreateAPIView):
-    queryset = Creneau.objects.all()
-    serializer_class = CreneauOnlySerialiser
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "POST": ["creneau.add_creneau"]
-    }
-
-class CreneauListAPIView(generics.ListAPIView):
-    serializer_class = CreneauSerialiser
-    # permission_classes = (IsAuthenticated,)
-    queryset = Creneau.objects.all()
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "GET": ["creneau.view_creneau"]
-    }
-class CreneauActivityListAPIView(generics.ListAPIView):
-    queryset = Creneau.objects.all()
-    serializer_class = CreneauSerialiser
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "GET": ["creneau.view_creneau"]
-    }
-    def get_queryset(self):
-        par = self.request.query_params.get('day', None)
-        activ = self.request.query_params.get('act', None)
-        return Creneau.objects.filter(day=par, activity=activ)
-
-
-class CreneauPerSalleListAPIView(generics.ListAPIView):
-    queryset = Creneau.objects.all()
-    serializer_class = CreneauSerialiser
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "GET": ["creneau.view_creneau"]
-    }
-    def get_queryset(self):
-        salle = self.request.query_params.get('salle', None)
-        return Creneau.objects.filter(activity__salle=salle)
-
-class CreneauBySalleAndPlanningListAPIView(generics.ListAPIView):
-    queryset = Creneau.objects.all()
-    serializer_class = CreneauSerialiser
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "GET": ["creneau.view_creneau"]
-    }
-    def get_queryset(self):
-        today = now().date()
-        salle = self.request.query_params.get('sa', None)
-        planning = self.request.query_params.get('pl', None)
-        try:
-            creneaux = Creneau.objects.filter(activity__salle=salle, planning=planning).select_related('activity', 'coach', 'activity__salle').prefetch_related('abonnements').annotate(
-                clients_count=Count(
-                    'abonnements__client', 
-                    filter=Q(abonnements__end_date__gte=today, abonnements__archiver=False)
-                )
-            ).distinct()
-        except:
-            creneaux = Creneau.objects.none()
-        return creneaux
-
-    # def get_queryset(self):
-    #     jour = self.kwargs['day']
-    #     # activ = self.kwargs['activity']
-    #     creneaux= Creneau.objects.filter(day=jour)
-    #     return creneaux
-        
-class CreneauByAbndPlanListAPIView(generics.ListAPIView):    
-    queryset = Creneau.objects.all()
-    serializer_class = CreneauSerialiser
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "GET": ["creneau.view_creneau"]
-    }
+class AbonnementsParCreneau(SingleTableMixin,FilterView):
+    table_class = AbonnementClientHTMxTable
+    model = AbonnementClient
 
     def get_queryset(self):
-        planning = self.request.query_params.get('pl', None)
-        type_ab = self.request.query_params.get('ab', None)
-        # salle = Salle.objects.get(activities__activities_id= type_ab)
-        return Creneau.objects.filter(activity__salle__abonnements__id = type_ab, planning=planning).select_related('planning', 'coach', 'activity', 'activity__salle').prefetch_related('abonnements', 'abonnements__client')
-
-
-
-class CreneauDetailAPIView(generics.RetrieveUpdateAPIView):
-    queryset = Creneau.objects.all()
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "GET": ["creneau.view_creneau"],
-        "PUT": ["creneau.change_creneau"],
-        "PATCH": ["creneau.change_creneau"],
-    }
-
-    serializer_class = CreneauSerialiser
-    def get_object(self):
-        obj = get_object_or_404(Creneau.objects.filter(id=self.kwargs["pk"]))
-        # range = Creneau.objects.filter(hour_start) 
-        # print('Salle ... ', Creneau.range.get_clients(21))
-        chose = Creneau.range.get_creneaux_of_day()
-        print('la choooose,', chose)
-        # print('Salle ... ', self.kwargs)
-        return obj
-
-class CreneauDestroyAPIView(generics.DestroyAPIView):
-    queryset = Creneau.objects.all()
-    serializer_class = CreneauSerialiser
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "POST": ["creneau.delete_creneau"],
-        "DELETE": ["creneau.delete_creneau"],
-    }
-
-from django.db.models import Prefetch, F, Q
-from django.db.models import Count
-class CreneauByAbonnement(generics.ListAPIView):
-    queryset = Creneau.objects.all()
-    serializer_class = CreneauxSimpleSerialiser
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "GET": ["creneau.delete_creneau"]
-    }
-    # def get_queryset(self):
-    #     abonnement_id = self.request.query_params.get('ab', None)
-    #     abc_id = self.request.query_params.get('abc', None)
-    #     abonnement_client = AbonnementClient.objects.get(id=abc_id)
-    #     if not abonnement_id or not abc_id:
-    #         return Creneau.objects.none()
-    #     # planning = Planning.objects.get()
-    #     # try:
-    #     planning_id = abonnement_client.creneaux.first().planning.id
-    #     print('PLANNNING ID', planning_id)
-    #     creneaux = Creneau.objects.filter(activity__salle__abonnements__id = abonnement_id,  planning__id=planning_id).select_related(
-    #         'planning', 'activity','coach', 'activity__salle'
-    #         ).prefetch_related(
-    #             'abonnements'
-    #         )
-    #     # except:
-    #     creneaux = Creneau.objects.filter(activity__salle__abonnements__id = abonnement_id).annotate(abc_planning=
-    #                                                                                                  ).select_related(
-    #             'planning', 'activity','coach', 'activity__salle'
-    #             ).prefetch_related(
-    #                 'abonnements'
-    #             )
-    #     # print('les ceneaux', creneaux.count())
-    #     return creneaux
-    transaction.atomic()
-    def get_queryset(self):
-        abonnement_id = self.request.query_params.get('ab', None)
-        abc_id = self.request.query_params.get('abc', None)
-        abonnement_client = AbonnementClient.objects.get(id=abc_id)
-        if not abonnement_id or not abc_id:
-            return Creneau.objects.none()
-        # planning = Planning.objects.get()
-        # try:
-        planning_id = abonnement_client.creneaux.first().planning.id
-        creneaux = Creneau.objects.filter(Q(activity__salle__abonnements__id = abonnement_id) & Q(planning__id=planning_id) ).select_related(
-            'planning', 'activity','coach', 'activity__salle'
-            ).prefetch_related(
-                'abonnements'
-            ).annotate(clients_count=Count('abonnements__client')).distinct()
-        # except:
-        # creneaux = Creneau.objects.filter(activity__salle__abonnements__id = abonnement_id).annotate(abc_planning=
-        #                                                                                              ).select_related(
-        #         'planning', 'activity','coach', 'activity__salle'
-        #         ).prefetch_related(
-        #             'abonnements'
-        #         )
-        # print('les ceneaux', creneaux.count())
-        return creneaux
-
-
-class CreneauClientListAPIView(generics.ListAPIView):
-    queryset = Creneau.objects.all()
-    serializer_class = CreneauClientSerialiser
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "GET": ["creneau.view_creneau"]
-    }
-
-    def get_queryset(self):
-        client = self.request.query_params.get('cl', None)
-        # abc = AbonnementClient.objects.filter(client= client, type_abonnement__systeme_cochage=False)
-        # creneaux = Creneau.objects.filter(abonnements__client=client, abonnements__type_abonnement__systeme_cochage=False)
-        creneaux = Creneau.objects.filter(abonnements__client=client).select_related('activity').distinct()
-        return creneaux
-
-class CreneauCoachListAPIView(generics.ListAPIView):
-    queryset = Creneau.objects.all()
-    serializer_class = CreneauClientSerialiser
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "GET": ["creneau.view_creneau"]
-    }
-
-    def get_queryset(self):
-        coach = self.request.query_params.get('cl', None)
-        print('cliiiientr', coach)
-        creneaux = Creneau.objects.filter(coach=coach).distinct()
-        return creneaux
-
-class CreneauAbcListAPIView(generics.ListAPIView):
-    queryset = Creneau.objects.all()
-    serializer_class = CreneauClientSerialiser
-    permission_classes = (IsAdminUser,BaseModelPerm)
-    extra_perms_map = {
-        "GET": ["creneau.view_creneau"]
-    }
-
-    def get_queryset(self):
-        abonnement = self.request.query_params.get('ab', None)
-        creneaux = Creneau.objects.filter(abonnements__id =abonnement)
-        return creneaux
-
-
-@api_view(['GET'])
-def get_creneau_authorization(request):
-    user = request.user
-    if user.has_perm("creneau.view_creneau"):
-        return Response(status=200)
-    else:
-        return Response(status=403)
-
-# @api_view(['GET'])
-# def creneau_by_abonnee(request):
-#     creneaux = Creneau.objects.filter()
-#     return Response({'creneaux': creneaux})
-
-
+        creneau_pk = self.kwargs.get('pk')
+        print("creneau_pk-------------", creneau_pk)
+        # Annotate with the max created_date_time for each client
+        latest_abonnements = AbonnementClient.objects.filter(creneaux__pk=creneau_pk).values('client') \
+            .annotate(latest_created_date_time=Max('created_date_time'))
+        # Filter original queryset with the annotated max created_date_time
+        queryset = AbonnementClient.objects.select_related('client', 'type_abonnement') \
+            .filter(creneaux__pk=creneau_pk, created_date_time__in=[item['latest_created_date_time'] for item in latest_abonnements]) \
+            .order_by('-created_date_time')
+        print("queryset....................>>", queryset)
+        return queryset
+   
+    
+    def get_template_names(self):
+        if self.request.htmx:
+            template_name = "tables/product_table_partial.html"
+        else:
+            template_name = "snippets/_creneau_form.html" 
+        return template_name

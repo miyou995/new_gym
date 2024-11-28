@@ -6,6 +6,11 @@ from creneau.models import Creneau
 from django.db.models.signals import post_save, pre_save
 from simple_history.models import HistoricalRecords
 from django.db.models import Q
+from django.urls import reverse
+from django.db.models.signals import post_save
+from django.utils.dateparse import parse_date
+import json
+
 class SubscriptionQuerySet(models.QuerySet):
     def time_volume(self):
         return self.filter(type_abonnement__type_of="VH")
@@ -74,13 +79,24 @@ TYPE_ABONNEMENT = (
     ('SF', 'Seances Fix'),
     ('SL', 'Seances Libre'),
 )
+DURE_ABONNEMENT = (
+    ('1', '1 Jour'),
+    ('15', '15 Jours'),
+    ('45', '45 Jours'),
+    ('30', '1 mois'),
+    ('60', '2 mois'),
+    ('90', '3 mois'),
+    ('120', '4 mois'),
+    ('150', '5 mois'),
+    ('180', '6 mois'),
+)
 
 class Abonnement(models.Model):
     name             = models.CharField(max_length=70, verbose_name="Nom")
     type_of          = models.CharField(choices= TYPE_ABONNEMENT, max_length=2, default='VH',verbose_name="type d'abonnement")
     price            = models.DecimalField(max_digits=15, decimal_places=0, verbose_name="prix")
-    length           = models.IntegerField()# number of days
-    seances_quantity = models.IntegerField( blank=True, null=True)
+    length           = models.CharField(choices= DURE_ABONNEMENT,verbose_name="Durée",max_length=8)# number of days
+    seances_quantity = models.IntegerField(blank=True, null=True,verbose_name="Nombre de séances/heureux")
     salles           = models.ManyToManyField(Salle, related_name='abonnements')
     actif            = models.BooleanField(default=True)
     # objects        = AbonnementManager()
@@ -100,18 +116,21 @@ class Abonnement(models.Model):
     
     def free_sessions(self):
         return self.type_of == "SL"
+    
+    def get_delete_url(self):
+        return reverse('core:TypeAbonnementDeleteView', kwargs={'pk': str(self.id)})
 
 
         
 class AbonnementClient(models.Model):
     start_date          = models.DateField()
     end_date            = models.DateField()
-    blocking_date       = models.DateField(null=True)
+    blocking_date       = models.DateField(null=True,blank=True)
     client              = models.ForeignKey('client.Client', related_name="abonnement_client", on_delete=models.PROTECT)
     type_abonnement     = models.ForeignKey(Abonnement, related_name="type_abonnement_client", on_delete=models.CASCADE)
     presence_quantity   = models.IntegerField(blank=True, null=True)
     creneaux            = models.ManyToManyField(Creneau, verbose_name="créneau", related_name='abonnements', blank=True)
-    reste               = models.DecimalField(max_digits=15, decimal_places=0, verbose_name="prix", blank=True, null=True)
+    reste               = models.DecimalField(max_digits=15, decimal_places=0, verbose_name="Reste", blank=True, null=True)
     archiver            = models.BooleanField(default=False)
     created_date_time   = models.DateTimeField(auto_now_add=True)
     updated_date_time   = models.DateTimeField(auto_now=True)
@@ -120,7 +139,16 @@ class AbonnementClient(models.Model):
     subscription    = SubscriptionManager()
     
     def __str__(self):
-        return  str(self.id)
+        status = "✅ payé" if self.reste == 0 else f"💰 {self.reste} DA"
+        return f"📅 {self.type_abonnement} | {status}"
+    
+
+
+    def get_edit_url(self):
+        return reverse('abonnement:update_abonnement_client', kwargs={'pk': str(self.id)})
+    def get_delete_url(self):
+        return reverse('abonnement:abonnemt_client_delete', kwargs={'pk': str(self.id)})
+
 
     def is_time_volume(self):
         return self.type_abonnement.type_of == "VH"
@@ -142,11 +170,13 @@ class AbonnementClient(models.Model):
         print("ABCCCCC DELETEEDDDD")
         return self
 
-    def lock(self):
-        today = date.today()
-        self.blocking_date = today
-        self.save()
-        print('LOCKING DONE')
+    def lock(self,block_date):
+        if parse_date(block_date) <= self.end_date:
+            self.blocking_date = block_date
+            self.save()
+            print('LOCKING DONE')
+        else :
+            False
 
     def unlock(self):
         today = date.today()
@@ -203,6 +233,7 @@ class AbonnementClient(models.Model):
         duree = self.type_abonnement.length
         # print('get_end_date start_date => ', start_date)
         # print('get_end_date duree => ', duree)
+        duree = int(duree) 
         duree_semaine = (duree // 7) - 1 
         selected_creneau= [cre.id for cre in creneaux]
         # print('get_end_date duree_semaine => ', duree_semaine)
@@ -249,17 +280,16 @@ class AbonnementClient(models.Model):
 
     def is_valid(self):
         today = date.today()
-        # print('self.blocking_date', self.blocking_date)
-        # print('end_date', self.end_date)
+        print('self.blocking_date', self.blocking_date)
+        print('end_date', self.end_date)
+        print('end_datoday <= self.end_datete', today <= self.end_date)
          
         if today <= self.end_date and not self.blocking_date:
-            # print('makach blocking', self.blocking_date)
-            if self.presence_quantity > self.get_limit() :
+            print('makach blocking', self.blocking_date)
+            if self.presence_quantity > self.get_limit()  :
                 return True
         return False 
-
-
-
+     
 
     def get_type(self):
         return self.type_abonnement.get_type_of_display()
@@ -284,7 +314,7 @@ class AbonnementClient(models.Model):
 
     def renew_abc(self, renew_start_date):
         type_abonnement = self.type_abonnement
-        delta = timedelta(days = type_abonnement.length)
+        # delta = timedelta(days = type_abonnement.length)
         creneaux = self.creneaux.all()
         # creneaux_ids = self.creneaux.all().values_list('id', flat=True)
         new_end_date = self.get_end_date(renew_start_date, creneaux)
@@ -320,14 +350,35 @@ class AbonnementClient(models.Model):
             return time_string
         else:
             return self.presence_quantity
+        
+
+        
+        
 
     def is_red(self):
         if self.presence_quantity <= self.get_limit():
             return "text-danger"
         return ""
 
-    def get_reste(self):
-        return sum()
+    def get_selected_events(self):
+        abc = AbonnementClient.objects.filter(pk=self.pk) # we are not using self.creneaux because we need to use queryset.values as bellow 
+        
+        selected_events_data = list(abc.values('creneaux__pk',
+            'creneaux__name',
+            'creneaux__hour_start',
+            'creneaux__hour_finish',
+            'type_abonnement',
+            'start_date'
+        ))
+        
+        for event in selected_events_data:
+            print('creneaux__hour_start>>>>>', type(event.get('creneaux__hour_start')))
+            event['creneaux__hour_start'] = event['creneaux__hour_start'].isoformat()  # Convert datetime to ISO format
+            event['creneaux__hour_finish'] = event['creneaux__hour_finish'].isoformat()  # Convert datetime to ISO format
+            event['start_date'] = event['start_date'].isoformat()
+
+        # print("selected_events_data--------------------",selected_events_data)
+        return json.dumps(selected_events_data)
 
     # def renew_abc(self, renew_start_date):
     #     type_abonnement = self.type_abonnement
@@ -363,9 +414,6 @@ class AbonnementClient(models.Model):
     #     return self
         # methode creer normaleemnt rest view / la method ne marche pas !!
         
-
-
-
 
 def creneau_created_signal(sender, instance, created,**kwargs):
     if created:
@@ -430,6 +478,12 @@ post_save.connect(creneau_created_signal, sender=Creneau)
     #     return abonnement_client
     # 0561 64 40 67 aymen bencherchali
 
-
-
-
+def abonnement_client_signal(sender,instance, created,**kwargs):
+    if created:
+        seances_qty = instance.type_abonnement.seances_quantity
+        instance.presence_quantity = seances_qty
+        print("signalllllllllllll-------------------",seances_qty)
+        reste = instance.type_abonnement.price
+        instance.reste =reste
+        instance.save()
+post_save.connect(abonnement_client_signal, sender=AbonnementClient)

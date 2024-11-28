@@ -1,0 +1,153 @@
+
+/* Progress bar */
+/* .table {
+
+    border-radius: 8px;
+    background-clip: padding-box;
+    font-weight: bold;
+    text-align: center;
+    font-size: 15px;
+    background-color: #b0f5ec;
+    font-family: sans-serif;
+}
+.th {
+    background-color: #db5000;
+ 
+  }
+ */
+
+
+ .custom-text {
+    text-align: center;
+    font-weight: bold;
+  }
+
+
+  .salary-display {
+    background-color: #ca4230;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.salary-display i {
+    font-size: 1.5rem;
+}
+
+.salary-display span {
+    font-size: 1rem;
+}
+
+.salary-display .fw-bold {
+    font-size: 1.2rem;
+}
+
+.selected-event {
+    background-color: #f74d0a !important; /* Highlight color */
+    border-color: #21011a !important; /* Border color */
+    border-radius: 5px;
+    
+    border-style: solid;
+    border-width: 5px;
+}
+  
+
+.htmx-indicator{
+    opacity:0;
+    transition: opacity 700ms ease-in;
+}
+.htmx-request .htmx-indicator{
+    opacity:1;
+}
+.htmx-request.htmx-indicator{
+    opacity:1;
+}
+
+
+
+tr.htmx-swapping td {
+    opacity: 0;
+    transition: opacity 1s ease-out;
+   
+  }
+
+  .table-container {
+    margin: 20px 0;
+}
+
+.table thead th {
+    /* background-color: #a7c6e7; */
+    color: rgb(0, 0, 0);
+    text-align: center; 
+    vertical-align: middle; 
+}
+
+.table tbody td {
+    text-align: center; /* Center text in body cells */
+    vertical-align: middle; /* Center text vertically */
+}
+
+.menu-link:hover {
+    color: #5d78ff; /* Your brand color */
+    background-color: #f3f6f9;
+    text-decoration: none;
+}
+.menu-item.here > .menu-link {
+    color: #ffffff;
+    background-color: #5d78ff; /* Your brand color */
+}
+
+.select-all-container {
+    margin-bottom: 10px; /* Space between "Select All" and other checkboxes */
+    margin-left: -15px; /* Adjust this value to move "Select All" to the left */
+    display: block; /* Makes "Select All" appear as a block element */
+}
+
+.permissions-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.permissions-container label {
+    margin-right: 10px; /* Adjust spacing between permission checkboxes */
+    margin-bottom: 5px;  /* Adjust vertical spacing */
+}
+
+.color-container {
+    background: linear-gradient(135deg, #118ab2, #073b4c);
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    color: #fff;
+}
+
+.total-container {
+    background: linear-gradient(135deg, #0ad1c8, #14919b);
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    color: #fff;
+}
+
+.total-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+.icon {
+    font-size: 2rem;
+    margin-right: 10px;
+    color: #ffdd57;
+}
+
+.total-amount {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+
+
+
+
+

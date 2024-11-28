@@ -11,6 +11,7 @@ from abonnement.models import AbonnementClient
 from simple_history.models import HistoricalRecords
 from django.conf import settings
 from django.core.exceptions import ValidationError
+from django.urls import reverse
 
 FTM = '%H:%M:%S'
 
@@ -30,8 +31,8 @@ class PresenceManager(models.Manager):
 
 
 class Presence(models.Model):
-    abc         = models.ForeignKey(AbonnementClient, on_delete=models.CASCADE,related_name='presences')
-    date        = models.DateField()
+    abc         = models.ForeignKey(AbonnementClient, on_delete=models.CASCADE,related_name='presences',verbose_name='Abonnement client')
+    date        = models.DateField( default=timezone.now,auto_now=False, auto_now_add=False,blank=True, null=True)
     creneau     = models.ForeignKey(Creneau, on_delete=models.CASCADE,related_name='presenses', null=True, blank=True)
     is_in_list  = models.BooleanField(default=True) # check if the person is in the list of client that should be in this creneau
     hour_entree = models.TimeField()
@@ -39,18 +40,14 @@ class Presence(models.Model):
     is_in_salle = models.BooleanField(default=False)
     # remote_device = models.BooleanField(default=False)
     note        = models.CharField(max_length=200, blank=True, null=True)
-    
     created = models.DateTimeField(verbose_name="Date de Création", auto_now_add=True)
     updated = models.DateTimeField(verbose_name="Date de dernière mise à jour", auto_now=True)
-    
     objects = models.Manager()
     presence_manager = PresenceManager()
     history = HistoricalRecords(user_model=settings.AUTH_USER_MODEL)
 
-
-
     class Meta:
-        ordering  = ['-date']
+        ordering  = ['-created']
 
     def save(self, *args, **kwargs):
         # print(' Save() on Presence class ( model)')
@@ -76,6 +73,16 @@ class Presence(models.Model):
             ecart = 1
         self.hour_sortie = now_time
         return ecart
+    
+    def get_edit_url(self):
+        return reverse('presence:PresenceManuelleUpdateClient', kwargs={'pk': str(self.id)})
+    
+    def get_delete_url(self):
+        return reverse('presence:Presence_manuelle_deleteclient', kwargs={'pk': str(self.id)})
+
+
+
+    
 
     # def get_time_consumed(self, sortie=None):
     #     if not sortie :
@@ -90,10 +97,12 @@ class PresenceCoach(models.Model):
     coach      = models.ForeignKey('client.Coach', on_delete=models.CASCADE,related_name='presencesCoach', null=True, blank=True)
     date        = models.DateField(auto_now_add=True)
     # creneau     = models.ForeignKey(Creneau, on_delete=models.CASCADE,related_name='presencesCoach', null=True, blank=True)
-    hour_entree = models.TimeField()
+    hour_entree = models.TimeField(auto_now_add=False,null=True, blank=True)
     hour_sortie = models.TimeField(auto_now_add=False, null=True, blank=True)
-    is_in_salle = models.BooleanField(default=False)
+    is_in_salle = models.BooleanField(default=False) #TODO remove this
     history = HistoricalRecords()
+
+
 
 
 def presence_coach_create_signal(sender, instance, created,**kwargs):

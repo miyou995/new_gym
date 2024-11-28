@@ -1,0 +1,193 @@
+{% extends "base.html" %} 
+{% load static %} 
+{% load i18n %}
+{% load render_table from django_tables2 %}
+{% block content %}
+{% load widget_tweaks %}
+   
+<div class="app-main flex-column fw-bold flex-row-fluid " id="kt_app_main">
+		<div class="d-flex flex-column flex-column-fluid">
+				<div class="card card-flush">
+					<div class="card-header align-items-center ">
+						<div class="card-title">
+							<div class="card-toolbar flex-row-fluid justify-content-end gap-5">
+								{% if perms.transaction.add_paiement %}
+									<button
+									type="button"
+									class="btn btn-success btn-sm"
+									data-bs-toggle="modal"
+									data-bs-target="#kt_modal"
+									hx-get="{% url 'transactions:paiement_name' %}"
+									hx-target="#kt_modal_content"
+									hx-trigger="click"
+									hx-swap="innerHTML"
+									>
+									<i class="ki-exit-up fs-2"></i>Paiement
+								</button>
+								{% endif %}
+								{% if perms.transaction.add_remuneration %}
+									<button
+										type="button"
+										class="btn btn btn-danger btn-sm"
+										data-bs-toggle="modal"
+										data-bs-target="#kt_modal"
+										hx-get="{% url 'transactions:Remuneration_Personnel_name' %}"
+										hx-target="#kt_modal_content"
+										hx-trigger="click"
+										data-bs-toggle="tooltip" 
+										hx-swap="innerHTML"
+									>
+										<i class="ki-exit-up fs-2"></i> Rémuneration Personnel
+									</button>
+								{% endif %}
+								{% if perms.transaction.add_remunerationprof  %}
+									<button
+										type="button"
+										class="btn btn-primary btn-sm"
+										data-bs-toggle="modal"
+										data-bs-target="#kt_modal"
+										hx-get="{% url 'transactions:Remuneration_Coach_name' %}"
+										hx-target="#kt_modal_content"
+										hx-trigger="click"
+										data-bs-toggle="tooltip"
+										hx-swap="innerHTML"
+										>
+										<i class="ki-exit-up fs-2"></i>Remunération Coach
+									</button>
+								{% endif %}
+								{% if perms.transaction.add_autre  %}
+									<button
+										type="button"
+										class="btn btn-info btn-sm"
+										data-bs-toggle="modal"
+										data-bs-target="#kt_modal"
+										hx-get="{% url 'transactions:Autre_Transaction_name' %}"
+										hx-target="#kt_modal_content"
+										hx-trigger="click"
+										data-bs-toggle="tooltip" 
+										hx-swap="innerHTML"
+									>
+										<i class="ki-exit-up fs-2"></i>Autre Transaction
+									</button>
+								{% endif %}
+							</div>
+						</div>
+					</div>
+					
+					<div class="card-body pt-0" id="table" >
+
+						<ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bold">
+							<li class="nav-item mt-2" role="presentation">
+								<a  class="nav-link text-active-primary pb-4 active"
+									data-bs-toggle="tab"
+									href="#kt_user_view_Client"
+									aria-selected="false"
+									role="tab"
+									tabindex="-1"
+									hx-get="{% url 'transactions:transaction_name'  %}"
+									hx-swap="innerHTML"
+									hx-trigger="refresh_table from:body,click,revealed"
+									hx-target="#table1"
+                                >{% trans 'Client' %}</a>
+							</li>
+						
+							<li class="nav-item mt-2" role="presentation">
+								{% if perms.transaction.view_remuneration %}
+									<a  class="nav-link text-active-primary pb-4"
+										data-bs-toggle="tab"
+										href="#kt_user_view_Personnel" 
+										aria-selected="false"
+										role="tab"
+										tabindex="-1"
+										hx-get="{% url 'transactions:RemunerationPersonnelTable_name'  %}"
+										hx-swap="innerHTML"
+										hx-trigger="refresh_table from:body,click"
+										hx-target="#table2"
+									>
+									{% trans 'Personnel' %}</a>
+								{% endif %}
+							</li>
+							<li class="nav-item mt-2" role="presentation">
+								{% if perms.transaction.view_remunerationprof %}
+									<a  class="nav-link text-active-primary pb-4"
+										data-bs-toggle="tab"
+										href="#kt_user_view_Coach" 
+										aria-selected="false"
+										role="tab"
+										tabindex="-1"
+										hx-get="{% url 'transactions:RemunerationProfTable_name'  %}"
+										hx-swap="innerHTML"
+										hx-trigger="refresh_table from:body,click"
+										hx-target="#table3"
+									>
+									{% trans 'Coach' %}</a>
+								{% endif %}
+						</li>
+						<li class="nav-item mt-2" role="presentation">
+							{% if perms.transaction.view_autre %}
+								<a  class="nav-link text-active-primary pb-4"
+									data-bs-toggle="tab"
+									href="#kt_user_view_autre_transaction" 
+									aria-selected="false"
+									role="tab"
+									tabindex="-1"
+									hx-get="{% url 'transactions:autre_transaction_table'  %}"
+									hx-swap="innerHTML"
+									hx-trigger="refresh_table from:body,click"
+									hx-target="#table4"
+								>
+								{% trans 'Autre Transaction' %}</a>
+							{% endif %}
+					</li>
+					
+						</ul>
+						<div class="d-flex flex-column flex-lg-row">
+							<div class="flex-lg-row-fluid ">
+								<div class="tab-content" id="myTabContent">
+									<div class="tab-pane fade active show" id="kt_user_view_Client" role="tabpanel">
+										<div id="kt_app_content_container" >
+											<div >
+												<div class="card-body pt-0 table-responsive" id="table1">
+														{% render_table table %}
+												</div>
+											</div>
+										</div>
+									</div>							
+									<div class="tab-pane fade" id="kt_user_view_Personnel" role="tabpanel">
+										<div id="kt_app_content_container" >
+											<div class="card ">
+												<div class="card-body pt-0 table-responsive" id="table2">
+													{% render_table table %}
+												</div>
+									       </div>
+								      </div>
+							       </div>
+									<div class="tab-pane fade" id="kt_user_view_Coach" role="tabpanel">
+										<div id="kt_app_content_container" >
+											<div class="card ">
+										
+												<div class="card-body pt-0 table-responsive" id="table3">
+													{% render_table table %}
+												</div>
+									       </div>
+								       </div>
+							       </div>
+								   <div class="tab-pane fade" id="kt_user_view_autre_transaction" role="tabpanel">
+										<div id="kt_app_content_container" >
+											<div class="card ">
+												<div class="card-body pt-0 table-responsive" id="table4">
+													{% render_table table %}
+												</div>
+										   </div>
+									    </div>
+							       </div>
+						</div>
+					</div>
+				</div>
+			
+		</div>
+	</div>
+
+	{% endblock content %}
+
+

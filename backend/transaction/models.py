@@ -3,6 +3,7 @@ from abonnement.models import Abonnement, AbonnementClient
 from client.models import Personnel, Coach, Client
 from assurance.models import Assurance
 from datetime import date, datetime
+from django.urls import reverse
 # Create your models here.
 from django.db.models.signals import post_save, post_delete
 import calendar
@@ -18,7 +19,10 @@ class Transaction(models.Model):
         return str(self.amount)
     class Meta:
         ordering = ['-last_modified']
-        permissions = [('can_view_history', 'Can View history')]
+        permissions = [
+            ('can_view_history', 'Can View history'),
+            ('can_view_statistique', 'Can View Statistique'),
+            ]
 
 class Paiement(Transaction):
     # type = models.ForeignKey(Abonnement, verbose_name="abonnement" , related_name="abonnements", on_delete=models.CASCADE)
@@ -53,6 +57,24 @@ class Paiement(Transaction):
     @property
     def get_abc_reste(self):
         return self.abonnement_client.reste
+    
+
+    
+    def get_url(self,pk):
+        return reverse('client:client_detail', kwargs={'pk':pk})
+    def get_edit_url(self):
+        return reverse('transactions:paiement_update', kwargs={'pk': str(self.id)})
+
+    def get_delete_url(self):
+        return reverse('transactions:PaiementDeleteView_name', kwargs={'pk': str(self.id)})
+
+    @classmethod
+    def get_total_by_subscription_type(cls):
+        from django.db.models import Sum
+        return (cls.objects
+                .values('abonnement_client__type_abonnement__name')
+                .annotate(total=Sum('amount'))
+                .order_by('abonnement_client__type_abonnement__name'))
 class Autre(Transaction):
     history = HistoricalRecords()
     name = models.CharField(max_length=200, null=True, blank=True)
@@ -60,6 +82,14 @@ class Autre(Transaction):
         return str(self.amount)
     class Meta:
         ordering = ['-date_creation']
+
+    def get_url(self):
+        return reverse('client:client_detail', kwargs={'pk':str(self.id)})
+    def get_edit_url(self):
+        return reverse('transactions:autre_transaction_update', kwargs={'pk': str(self.id)})
+
+    def get_delete_url(self):
+        return reverse('transactions:autre_transaction_delete', kwargs={'pk': str(self.id)})  
 
 class AssuranceTransaction(Transaction):
     # type = models.CharField(max_length=200, null=True, blank=True)
@@ -72,6 +102,8 @@ class AssuranceTransaction(Transaction):
     class Meta:
         ordering = ['-date_creation']
 
+    
+
 
 class Remuneration(Transaction):
     history = HistoricalRecords()
@@ -80,6 +112,14 @@ class Remuneration(Transaction):
         return str(self.amount)
     class Meta:
         ordering = ['-date_creation']
+
+    def get_url(self,pk):
+        return reverse('client:personnel_detail', kwargs={'pk':pk})
+    def get_edit_url(self):
+        return reverse('transactions:Remuneration_Personnel_update', kwargs={'pk': str(self.id)})
+    def get_delete_url(self):
+        return reverse('transactions:RemuPersonnelDeleteView_name', kwargs={'pk': str(self.id)})
+    
         
 class RemunerationProf(Transaction):
     history = HistoricalRecords()
@@ -88,6 +128,17 @@ class RemunerationProf(Transaction):
         return str(self.amount)
     class Meta:
         ordering = ['-date_creation']
+
+    def get_url(self,pk):
+        return reverse('client:CoachDetail', kwargs={'pk':pk})
+    def get_edit_url(self):
+        return reverse('transactions:Remuneration_Coach_update', kwargs={'pk': str(self.id)})
+    def get_delete_url(self):
+        return reverse('transactions:RemCoachDeleteView_name', kwargs={'pk': str(self.id)})
+
+
+
+
 
 def paiement_signal(sender, instance, **kwargs):
     id_client = instance.abonnement_client.client.id

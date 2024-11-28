@@ -1,5 +1,6 @@
 from django.db import models
 from salle_sport.models import SalleSport
+from django.urls import reverse
 
 class PlanningManager(models.Manager):
     def default_planning(self):
@@ -26,6 +27,11 @@ class Planning(models.Model):
     def __str__(self):
         return self.name
 
+    def get_edit_url(self):
+        return reverse('core:PlanningUpdateView', kwargs={'pk': str(self.id)})
+    
+    def get_delete_url(self):
+        return reverse('core:PlanningDeleteView', kwargs={'pk': str(self.id)})
 
 
     def save(self, *args, **kwargs):

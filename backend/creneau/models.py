@@ -1,4 +1,6 @@
 from django.db import models
+from django.urls import reverse
+from django.urls import reverse
 from planning.models import Planning
 # from client.models import Coach
 from salle_activite.models import Activity
@@ -18,36 +20,37 @@ DAYS_CHOICES = (
 )
 
 
+
 class RangeManager(models.Manager):
     now = datetime.now().time()
     def get_creneaux_of_day(self):
         if datetime.today().weekday() == 0:
             creneaux =Creneau.objects.filter(day='LU')
-            print('les creneaux du lundi sont !:;====>', creneaux)
+            # print('les creneaux du lundi sont !:;====>', creneaux)
             return creneaux
         elif datetime.today().weekday() == 1:
             creneaux =Creneau.objects.filter(day='MA')
-            print('les creneaux du Mardi sont !:;====>', creneaux)
+            # print('les creneaux du Mardi sont !:;====>', creneaux)
             return creneaux
         elif datetime.today().weekday() == 2:
             creneaux =Creneau.objects.filter(day='ME')
-            print('les creneaux du MERCREDI sont !:;====>', creneaux)
+            # print('les creneaux du MERCREDI sont !:;====>', creneaux)
             return creneaux
         elif datetime.today().weekday() == 3:
             creneaux =Creneau.objects.filter(day='JE')
-            print('les creneaux du JEUDI sont !:;====>', creneaux)
+            # print('les creneaux du JEUDI sont !:;====>', creneaux)
             return creneaux
         elif datetime.today().weekday() == 4:
             creneaux =Creneau.objects.filter(day='VE')
-            print('les creneaux du VENDREDI sont !:;====>', creneaux)
+            # print('les creneaux du VENDREDI sont !:;====>', creneaux)
             return creneaux
         elif datetime.today().weekday() == 5:
             creneaux =Creneau.objects.filter(day='SA')
-            print('les creneaux du lundi sont !:;====>', creneaux)
+            # print('les creneaux du lundi sont !:;====>', creneaux)
             return creneaux
         elif datetime.today().weekday() == 6:
             creneaux =Creneau.objects.filter(day='DI')
-            print('les creneaux du lundi sont !:;====>', creneaux)
+            # print('les creneaux du lundi sont !:;====>', creneaux)
             return creneaux
 
     # def get_creneaux_of_similar_day(self, creneau_id):
@@ -147,6 +150,19 @@ class Creneau(models.Model):
     objects     = models.Manager()
     range       = RangeManager()
     history     = HistoricalRecords()
+    hour_start  = models.TimeField()
+    hour_finish = models.TimeField()
+    day         = models.CharField(choices=DAYS_CHOICES , max_length=2, default='DI', verbose_name='Jour')
+    name        = models.CharField(verbose_name="nom du creneau", max_length=100,blank=True, null=True)
+    planning    = models.ForeignKey(Planning, on_delete=models.CASCADE)
+    color       = models.CharField( max_length=50, blank=True, null=True) 
+    activity    = models.ForeignKey(Activity, verbose_name="activities", related_name="creneaux", on_delete=models.CASCADE)
+    coach       = models.ForeignKey('client.Coach' , on_delete=models.CASCADE, related_name='creneaux', blank=True, null=True)
+    created     = models.DateTimeField(verbose_name='Date de Création', auto_now_add=True)
+    updated     = models.DateTimeField(verbose_name='Date de dernière mise à jour', auto_now=True)
+    objects     = models.Manager()
+    range       = RangeManager()
+    history     = HistoricalRecords()
 
     class Meta:
         ordering = ['hour_start']
@@ -165,6 +181,29 @@ class Creneau(models.Model):
             return self.activity.color
         else:
             return str("#000") 
+    def get_delete_url(self):
+        return reverse('creneau:creneau_delete_view', kwargs={'pk': str(self.id)})
 
 
 
+class Event(models.Model):
+    title = models.CharField(max_length=200)
+    start_time = models.DateTimeField()
+    end_time = models.DateTimeField()
+   
+
+    def __str__(self):
+        return self.title
+    def get_delete_url(self):
+        return reverse('creneau:creneau_delete_view', kwargs={'pk': str(self.id)})
+
+
+
+class Event(models.Model):
+    title = models.CharField(max_length=200)
+    start_time = models.DateTimeField()
+    end_time = models.DateTimeField()
+   
+
+    def __str__(self):
+        return self.title

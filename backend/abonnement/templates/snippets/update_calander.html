@@ -1,0 +1,188 @@
+{% load static %}
+{% block content %}
+{% load i18n %}
+{% load widget_tweaks %}
+
+<div class="tab-container mt-4 ms-5">
+    <div class="card-header py-0">
+        <ul class="nav nav-tabs nav-line-tabs fs-6">
+            <li class="nav-item">
+                <a class="nav-link active" data-bs-toggle="tab" href="#kt_tab_pane_1">Modification OUIIIIII</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#kt_tab_pane_2">Reste seances / bloqué</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="kt_tab_pane_1" role="tabpanel">
+        <div class="card card-flush" id="selectId">
+            <div class="card-header py-1 gap-2 gap-md-1"> 
+                {% csrf_token %}
+                <div class="card-title">
+                    <div class="card-toolbar d-flex justify-content-end gap-1">
+                        <form
+                            class="d-flex align-items-center gap-4"
+                            hx-get="{{request.path}}"  
+                            hx-target="#calendarWrapper" 
+                            hx-swap="innerHTML" 
+                            hx-trigger="change"
+                            hx-select="#calendarWrapper"
+                            id="form_id"
+                        >
+                            <div class="form-group mb-0">
+                                <label class="fs-6 fw-semibold mb-1">
+                                    <span class="card-label fw-bold text-grey-800">Plannings</span>
+                                </label>
+                                {{ filter.form.planning|add_class:"form-control"|attr:"disabled:disabled" }}
+                            </div>
+                            <div class="form-group mb-0">
+                                <label class="fs-6 fw-semibold mb-1">
+                                    <span class="card-label fw-bold text-grey-800">Type d'abonnement</span>
+                                </label>
+                                {% render_field filter.form.type_abonnement|add_class:"form-control"|attr:"id:abonnement-select"|attr:"disabled:disabled" %}
+                                {% comment %} {{ filter.form.type_abonnement|add_class:"form-control"|attr:"id:abonnement-select" |attr:"disabled:disabled" }} {% endcomment %}
+                                
+                            </div>
+                        </form>
+                        <div>
+                            <div class="form-group  m-2 ">
+                                <label class="fs-6 fw-semibold mb-1">
+                                    <span class="card-label fw-bold text-grey-800">Début Date</span>
+                                </label>
+                                {% render_field form.start_date|attr:"required"|add_class:"form-control" %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="calendarWrapper" class="card-body p-0">
+                <div class="container-fluid">
+                    <div id="eventsId" data-events='{{events}}' data-selected-events='{{seleced_events}}' ></div>
+                    <div id="selected_eventsID"  ></div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div id="calendar" style="width: 100%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center p-4">
+                <button type="reset" id="sg_create_store_form" class="btn btn-light me-3"   data-bs-dismiss="modal">{% trans "Annulé" %}</button>
+                {% if perms.abonnement.delete_abonnementclient %}
+                    {% if abc.pk   %} 
+                        {% include 'buttons/delete_button.html' with object=abc %}
+                    {% endif %}
+                {% endif %}
+                <button
+                    id="add-abonnement-btn"
+                    type="button"
+                    class="btn btn-primary"
+                    hx-post="{% url 'abonnement:update_abonnement_client' pk=abc.pk %}" 
+                    hx-trigger="click"
+                    hx-include="[name='start_date']"
+                    >
+                    {% trans "Confirmer Update" %}
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade p-4" id="kt_tab_pane_2" role="tabpanel">
+        <div class="d-flex align-items-center  mt-5 ms-6">
+            <div class="form-group me-2">
+                <label class="fs-6 fw-semibold mb-1">
+                    <span class="card-label fw-bold text-grey-800">Date d'expiration</span>
+                </label>
+                <input type="date" name="expiration" class="form-control" id="expiration" value="{{ abc.end_date|date:'Y-m-d' }}" />
+                
+            </div>
+            <div class="form-group me-2">
+                <label class="fs-6 fw-semibold mb-1">
+                    <span class="card-label fw-bold text-grey-800">Reste seances / minutes</span>
+                </label>
+                <input
+                    class="form-control" 
+                    type="number" 
+                    name="presence_quantity" 
+                    value="{{ abc.presence_quantity }}" 
+                    data-selected-key="{{ abc.presence_quantity }}"
+                    hx-post="{% url 'abonnement:update_temps_rest' pk=abc.pk %}"
+                    hx-trigger="keyup delay:1s, change delay:1s"
+                />
+            </div>
+            <div class="form-group me-2">
+                <label class="fs-6 fw-semibold mb-1">
+                    <span class="card-label fw-bold text-grey-800">Reste (DA)</span>
+                </label>
+                <input
+                    class="form-control" 
+                    type="number" 
+                    name="reste" 
+                    value="{{ abc.reste }}" 
+                    data-selected-key="{{ abc.reste }}"
+                    hx-post="{% url 'abonnement:update_paiement_rest' pk=abc.pk %}"
+                    hx-trigger="keyup delay:1s, change delay:1s"
+                 />
+            </div>
+        </div>
+        {% comment %} <div class="d-flex align-items-center mt-5 ms-6">
+            <div class="form-group me-2">
+                <label class="fs-6 fw-semibold mb-1">
+                    <span class="card-label fw-bold text-grey-800">Renouvelé à partir du</span>
+                </label>
+                <input type="date" name="renouvle" class="form-control" id="renouvle" />
+            </div>
+            <button
+                type="button"
+                class="btn btn-primary align-self-end"
+                hx-trigger="click"
+                hx-post="{% url 'abonnement:renew_abonnement_client' pk=abc.pk %}"
+                hx-vals="{renouvle: document.getElementById('renouvle').value}"
+                hx-include="#renouvle">
+                {% trans "Renouveler l'abonnement" %}
+            </button>
+        </div> {% endcomment %}
+        <div class="d-flex align-items-center mt-5 ms-6">
+            {% if  abc.blocking_date %}
+                <div class="form-group me-2">
+                    <label class="fs-6 fw-semibold mb-1">
+                        <span class="card-label fw-bold text-grey-800">Bloqué à partir du</span>
+                    </label>
+                    <input type="date" name="block_date" class="form-control" id="block_date" disabled/>
+                </div>
+                <button
+                    type="button"
+                    class="btn btn-success align-self-end"
+                    hx-post="{% url 'abonnement:block_deblock_abonnement_client' pk=abc.pk %}"
+                    hx-vals="{block_date: document.getElementById('block_date').value}"
+                    hx-trigger="click"
+                    hx-include="#block_date"
+                >
+                {% trans "débloquer" %}
+            {% else  %}
+                <div class="form-group me-2">
+                    <label class="fs-6 fw-semibold mb-1">
+                        <span class="card-label fw-bold text-grey-800">Bloqué à partir du</span>
+                    </label>
+                    <input type="date" name="block_date" class="form-control" id="block_date"/>
+                </div>
+                <button
+                    type="button"
+                    class="btn btn-danger align-self-end"
+                    hx-post="{% url 'abonnement:block_deblock_abonnement_client' pk=abc.pk %}"
+                    hx-vals="{block_date: document.getElementById('block_date').value}"
+                    hx-trigger="click"
+                    hx-include="#block_date"
+                >
+                    {% trans "Bloqué" %}
+                </button>
+
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+

@@ -1,0 +1,112 @@
+{% extends "base.html" %} 
+{% load static %}
+{% block content %}
+{% load i18n %}
+{% load widget_tweaks %}
+<div class="app-main flex-column flex-row-fluid" id="kt_app_main">
+    <div class="d-flex flex-column flex-column-fluid">
+       
+            <div class="card card-flush">
+                <div class="card-header align-items-center py-5 gap-2 gap-md-5"> 
+                    <div class="card-title">
+                        <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
+                            <div class="fv-row">
+                                <form 
+                                    class="d-flex align-items-end gap-3" 
+                                    hx-get="{{request.path}}"  
+                                    hx-target="#calendarWrapper" 
+                                    hx-swap="innerHTML" 
+                                    hx-trigger="change"
+                                    hx-push-url='true' 
+                                    {% comment %} id="form_id" {% endcomment %}
+                                 >
+
+                                    <div class="form-group">
+                                        <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+                                            <span class="card-label fw-bold fs-2 text-grey-800">Plannings</span>
+                                        </label>
+                                        {{ filter.form.planning|add_class:"form-control" }}
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+                                            <span class="card-label fw-bold fs-2 text-grey-800">Salles</span>
+                                        </label>
+                                        {{ filter.form.activity__salle|add_class:"form-control" }}
+                                    </div>
+                                    {% comment %} <div class="form-group">
+                                        <input type="submit" value="Filter"  class="btn btn-primary mt-4">
+                                    </div> {% endcomment %}
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
+                        
+                        {% if perms.creneau.add_creneau %}
+                            <a href="#" 
+                            class="btn btn-sm fw-bold btn-primary" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#kt_modal"
+                            data-bs-toggle="tooltip" 
+                            data-bs-placement="right" 
+                            hx-get="{% url 'creneau:create_creneau' %}" 
+                            hx-target="#kt_modal_content" 
+                            hx-swap="innerHTML"
+                         >{% trans 'Ajouter Creneau' %} </a>
+                       {% endif %}
+                </div>
+                </div>
+                <div id="calendarWrapper" class="card card-flush">
+                    {% include "snippets/calender_partial.html" %}               
+                </div>
+            </div>
+       
+    </div>
+</div>
+   
+
+
+
+{% endblock content %}
+
+
+
+
+
+
+
+
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Calendar</title>
+    <!-- FullCalendar CSS -->
+  
+</head>
+<body>
+    <div id="calendar"></div>
+
+    <!-- FullCalendar JS -->
+    <script src='https://cdn.jsdelivr.net/npm/rrule@2.6.4/dist/es5/rrule.min.js'></script>
+
+    <!-- fullcalendar bundle -->
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
+    
+    <!-- the rrule-to-fullcalendar connector. must go AFTER the rrule lib -->
+    <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/rrule@6.1.15/index.global.min.js'></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                events: '/creneaux/events/', // Adjust this URL if necessary
+            });
+
+            calendar.render();
+        });
+    </script>
+</body>
+</html> {% endcomment %}

@@ -1,0 +1,162 @@
+{% load i18n %}
+
+ <script type="text/javascript">
+  window.addEventListener("DOMContentLoaded", (e) => {
+    {% if messages %}
+      {% for message in messages %}
+        {% if 'toastr' in message.tags %}
+          {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+            toastr.error('{{ message }}')
+          {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+            toastr.warning('{{ message }}')
+          {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+            toastr.info('{{ message }}')
+          {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+            toastr.success('{{ message }}')
+          {% else %}
+            toastr.error('{% translate "Contact support. Unknown error" %} {{ message }}')
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  });
+</script>
+
+
+
+<div id="toast-container">
+  <div data-toast-container class="toast-container position-fixed top-0 end-0 p-3">
+    <!-- Toasts will be dynamically injected here -->
+  </div>
+</div>
+
+<script>
+  document.body.addEventListener('htmx:afterRequest', (event) => {
+      const trigger = event.detail.xhr.getResponseHeader('HX-Trigger');
+      if (trigger) {
+          const data = JSON.parse(trigger);
+          
+          if (data.messages) {
+              const container = document.querySelector('[data-toast-container]');
+              container.innerHTML = ''; // Clear any existing messages
+              
+              data.messages.forEach(msg => {
+                  if (msg.tags.includes('toastr')) {
+                      // Handle Toastr messages
+                      if (msg.tags.includes('error')) {
+                          toastr.error(msg.message);
+                      } else if (msg.tags.includes('warning')) {
+                          toastr.warning(msg.message);
+                      } else if (msg.tags.includes('info')) {
+                          toastr.info(msg.message);
+                      } else if (msg.tags.includes('success')) {
+                          toastr.success(msg.message);
+                      }
+                  } else {
+                      // Handle Bootstrap toast messages
+                      const toastTemplate = document.querySelector('[data-toast-template]');
+                      const toastClone = toastTemplate.cloneNode(true);
+                      toastClone.querySelector('[data-toast-body]').textContent = msg.message;
+                      
+                      // Set additional classes or styles as needed based on message tags
+                      if (msg.tags.includes('error')) {
+                          toastClone.classList.add('bg-danger');
+                      } else if (msg.tags.includes('warning')) {
+                          toastClone.classList.add('bg-warning');
+                      } else if (msg.tags.includes('info')) {
+                          toastClone.classList.add('bg-info');
+                      } else if (msg.tags.includes('success')) {
+                          toastClone.classList.add('bg-success');
+                      }
+                      
+                      container.appendChild(toastClone);
+                      setTimeout(function(){
+                        console.log("HEEEY eventsId here HTMX REQUEST");
+                        const bsToast = new bootstrap.Toast(toastClone );  // Initialize the toast
+                        bsToast.show();  // Show the toast
+                    },600)
+                  }
+              });
+          }
+      }
+  });
+</script> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	{% comment %} <script>
+    
+      document.addEventListener('htmx:afterRequest', (event) => {
+        if (event.detail.xhr.status === 204) {
+          // Extract the message from the HX-Trigger header
+          const triggers = event.detail.xhr.getResponseHeader('HX-Trigger');
+          if (triggers) {
+            const parsedTriggers = JSON.parse(triggers);
+            const toastrMessage = parsedTriggers.showToastr;  // Get the message from the trigger
+    
+            // Store the message in localStorage
+            localStorage.setItem('toastrMessage', toastrMessage);
+            localStorage.setItem('toastrMessageType', 'success');  // Assuming a success type message
+    
+            // Reload the page to display the message
+            window.location.reload();
+          }
+        }
+      });
+    
+     
+      window.addEventListener('DOMContentLoaded', (e) => {
+        const message = localStorage.getItem('toastrMessage');
+        const messageType = localStorage.getItem('toastrMessageType');
+    
+        if (message) {
+          // Display the Toastr message based on the type
+          setTimeout(function() {
+            if (messageType === 'success') {
+              toastr.success(message);
+            } else if (messageType === 'error') {
+              toastr.error(message);
+            } else if (messageType === 'warning') {
+              toastr.warning(message);
+            } else if (messageType === 'info') {
+              toastr.info(message);
+            }
+          }, 600);  // Delay by 600 milliseconds
+    
+          // Clear the message from localStorage
+          localStorage.removeItem('toastrMessage');
+          localStorage.removeItem('toastrMessageType');
+        }
+      });
+    </script> {% endcomment %}
+    
+	  
+
+
+
+
+
+
+
+
+
+

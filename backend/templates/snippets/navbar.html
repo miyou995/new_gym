@@ -1,0 +1,158 @@
+{% comment %} {% load static %}
+<div class="nav d-flex justify-content-xxl-between flex-wrap gap-5 ">
+  <li class="nav-item mb-2">
+    <a
+      class="nav-link btn btn-active-success btn-center bg-gray-300 btn-color-gray-900 rounded-4 flex-column overflow-hidden w-80px h-100px pt-7 pt-lg-3 pb-2 custom-text"
+      href="{% url 'core:index' %}" >
+    
+      <div class="nav-icon mb-1">
+        <img src= "{% static 'images/profile/dashboard.png' %}" class="w-40px" alt="" />
+      </div>
+      <span class="fs-9 lh-1 center">Tableau de board</span>
+    </a>
+  </li>
+      <li class="nav-item mb-2"> 
+        <a class="nav-link btn btn-active-success btn-center bg-gray-300 btn-color-gray-900 rounded-3 flex-column overflow-hidden w-80px h-100px pt-7 pt-lg-3 pb-2 custom-text"
+          href="{% url 'client:client_name' %}">
+          <div class="nav-icon mb-3">
+            <img src="{% static 'images/profile/clients.png' %}" class="w-40px" alt="" />
+          </div>
+          <span class="fs-7 lh-1 center">clients</span>
+        </a>
+      </li>
+
+    <li class="nav-item mb-2">
+      <a
+        class="nav-link btn btn-active-success btn-center bg-gray-300 btn-color-gray-900 rounded-3 flex-column overflow-hidden w-80px h-100px pt-7 pt-lg-3 pb-2 custom-text"
+        href="{% url 'transactions:transaction_name' %}"
+      >
+        <div class="nav-icon mb-3">
+          <img src="{% static 'images/profile/transaction.png' %}" class="w-40px" alt="" />
+        </div>
+        <span class="fs-8 lh-1">Transactions</span>
+      </a>
+</li>
+<li class="nav-item mb-2">
+  <!--begin::Nav link-->
+  <a
+    class="nav-link btn btn-active-success btn-center bg-gray-300 btn-color-gray-900 rounded-3 flex-column overflow-hidden w-80px h-100px pt-7 pt-lg-3  pb-2"
+
+    href="{% url 'client:coach_name' %}"
+  >
+    <!--begin::Icon-->
+    <div class="nav-icon mb-3">
+      <img src="{% static 'images/profile/coach.png' %}" class="w-40px" alt="" />
+
+    </div>
+    <!--end::Icon-->
+    <!--begin::Title-->
+    <span class="fw-semibold fs-8 lh-1">Coachs</span>
+    <!--end::Title-->
+  </a>
+  <!--end::Nav link-->
+</li>
+<!--end::Nav item-->
+<!--begin::Nav item-->
+<li class="nav-item mb-2">
+  <!--begin::Nav link-->
+  <a
+    class="nav-link btn btn-active-success btn-center bg-gray-300 btn-color-gray-900 rounded-3 flex-column overflow-hidden w-80px h-100px pt-7 pt-lg-3 pb-2"
+
+    href="{% url 'client:personnels_name' %}"
+  >
+    <!--begin::Icon-->
+    <div class="nav-icon mb-3">
+      <img src="{% static 'images/profile/waiter.png' %}" class="w-40px" alt="" />
+    </div>
+    <!--end::Icon-->
+    <!--begin::Title-->
+    <span class="fw-semibold fs-8 lh-1">Personnels</span>
+    <!--end::Title-->
+  </a>
+  <!--end::Nav link-->
+</li>
+<!--end::Nav item-->
+<!--begin::Nav item-->
+<li class="nav-item mb-2">
+  <!--begin::Nav link-->
+  <a
+    class="nav-link btn btn-active-success btn-center  bg-gray-300 btn-color-gray-900 rounded-3 flex-column overflow-hidden w-80px h-100px pt-7 pt-lg-3 pb-2 "
+
+    href="{% url 'presence:presences_name' %}"
+  >
+    <!--begin::Icon-->
+    <div class="nav-icon mb-3">
+      <img src="{% static 'images/profile/presences.png' %}" class="w-40px" alt="" />
+    </div>
+    <!--end::Icon-->
+    <!--begin::Title-->
+    <span class="fw-semibold fs-8 lh-1">Présences</span>
+    <!--end::Title-->
+  </a>
+  <!--end::Nav link-->
+</li>
+<!--end::Nav item-->
+<!--begin::Nav item-->
+<li class="nav-item mb-2">
+  <!--begin::Nav link-->
+  <a
+    class="nav-link btn btn-active-success btn-center bg-gray-300 btn-color-gray-900 rounded-3 flex-column overflow-hidden w-80px h-100px pt-7 pt-lg-3 pb-2"
+
+    href="{% url 'transactions:chiffre_affaire_name' %}"
+  >
+    <!--begin::Icon-->
+    <div class="nav-icon mb-3">
+      <img src="{% static 'images/profile/tresorie.png' %}" class="w-40px" alt="" />
+    </div>
+    <!--end::Icon-->
+    <!--begin::Title-->
+    <span class="fw-semibold fs-8 lh-1">Chiffre d'affaire</span>
+    <!--end::Title-->
+  </a>
+  <!--end::Nav link-->
+</li>
+<!--end::Nav item-->
+<!--begin::Nav item-->
+<li class="nav-item mb-2">
+  <!--begin::Nav link-->
+  <a
+    class="nav-link btn btn-active-success btn-center bg-gray-300 btn-color-gray-900 rounded-3 flex-column overflow-hidden w-80px h-100px pt-7 pt-lg-3 pb-2"
+
+    href= "{% url 'creneau:creneaux_name' %}" 
+  >
+    <!--begin::Icon-->
+    <div class="nav-icon mb-3">
+      <img src="{% static 'images/profile/creneau.png' %}" class="w-40px" alt="" />
+    </div>
+    <!--end::Icon-->
+    <!--begin::Title-->
+    <span class="fw-semibold fs-8 lh-1">Créneaux</span>
+    <!--end::Title-->
+  </a>
+  <!--end::Nav link-->
+</li>
+<!--end::Nav item-->
+<!--begin::Nav item-->
+<li class="nav-item mb-2">
+  <!--begin::Nav link-->
+  <a
+    class="nav-link btn btn-active-success btn-center bg-gray-300 btn-color-gray-900 rounded-3 flex-column overflow-hidden w-80px h-100px pt-7 pt-lg-3 pb-2"
+
+    href="{% url 'core:PlanningTable' %}"
+  >
+    <!--begin::Icon-->
+    <div class="nav-icon mb-3">
+      <img src="{% static 'images/profile/gear.png' %}" class="w-40px" alt="" />
+    </div>
+    <!--end::Icon-->
+    <!--begin::Title-->
+    <span class="fw-semibold fs-8 lh-1">Configuration</span>
+    <!--end::Title-->
+  </a>
+  <!--end::Nav link-->
+</li>
+
+
+
+
+</div> {% endcomment %}
