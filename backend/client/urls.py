@@ -33,7 +33,7 @@ urlpatterns = [
 
 
     path('client/client_detail/<str:pk>',ClientDetailView.as_view(),name='client_detail'),
-    path('client/PaiementClientDetail/<str:pk>',PaiementClientDetail.as_view(),name='PaiementClientDetail'),
+    path('client/PaiementClientDetail/<str:pk>',PaiementClientDetail.as_view(),name='paiement_client_detail'),
 
     path('client/presence_client_detail/<str:pk>',PresenceClientDetail.as_view(),name='presence_client_detail'),
 
