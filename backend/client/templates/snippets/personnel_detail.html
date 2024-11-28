@@ -69,8 +69,8 @@
 										</div>
 										<div class="flex-lg-row-fluid ms-lg-15">
 											<div class="card-body">
-												<div class="card card-flush">
-													<div class="card-header align-items-center py-5 gap-2 gap-md-5 total-container" >
+												<div class="card card-flush border border-primary">
+													<div class="card-header align-items-center py-5 gap-2 gap-md-5 " >
 														<div class="card-title">
 															<div class="d-flex align-items-center position-relative my-1">
 																<h3 class="card-title">Virements</h3>
@@ -97,7 +97,7 @@
 													<div class="card-scroll h-250px card-body pt-0">
 														<div class="nav-link active text-gray-800 fs-5 fw-bold"
 															hx-get="{% url 'client:personnel_detail' personnel.pk %}"
-															hx-trigger="revealed"
+															hx-trigger="refresh_table from:body,revealed"
 															hx-swap="innerHTML"
 															hx-target="#VirementsTable"
 															data-bs-toggle="tab"

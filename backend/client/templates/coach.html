@@ -44,7 +44,12 @@
 					
 				</div>
 			</div>
-			<div class="card-body pt-0 table-responsive" id="TableCoach">
+			<div class="card-body pt-0 table-responsive" id="TableCoach"
+				hx-trigger="refresh_table from:body" 
+				hx-get="{% url 'client:coach_name' %}" 
+				hx-swipe="innerHTML" 
+				hx-target="this"
+			>
 				{% render_table table %}
 			</div>
 		</div>

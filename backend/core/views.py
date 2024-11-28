@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.views.generic.base import TemplateView
 from django_filters.views import FilterView
 from presence.models import Presence
@@ -25,6 +25,20 @@ from django.views.generic import ListView
 from itertools import chain
 from django.db.models import Count
 from django.contrib.auth.decorators import  permission_required
+from django_htmx.http import HttpResponseClientRedirect
+
+
+def open_salle(request):
+    print("open salle *-*-*--*-*-*-*-*-*")
+    success_url = reverse_lazy("core:planning_table")
+
+    return redirect(success_url)
+
+def close_salle(request):
+    success_url = reverse_lazy("core:planning_table")
+    print("close salle *-*-*--*-*-*-*-*-*")
+    return HttpResponseRedirect(success_url)
+
 
 
 

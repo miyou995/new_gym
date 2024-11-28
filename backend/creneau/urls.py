@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import  (CreateCreneau,UpdateCreneau,CreneauDeleteView,CalenderView,
-                     AbonnementsParCreneau,abc_creneau_view)
+                     AbonnementsParCreneau,abc_creneau_view,render_calendar)
 
 app_name = 'creneau'
 
@@ -14,6 +14,8 @@ urlpatterns = [
        path("creneaux/UpdateCreneau/<int:pk>", UpdateCreneau.as_view(), name="update_creneau"),
        path("creneaux/CreneauDeleteView/<int:pk>", CreneauDeleteView.as_view(), name="creneau_delete_view"),
        path("creneaux/abonnements_par_creneau/<int:pk>", AbonnementsParCreneau.as_view(), name="abonnements_par_creneau"),
+
+       path('render_calendar/', render_calendar, name='render_calendar'),
 
 
 

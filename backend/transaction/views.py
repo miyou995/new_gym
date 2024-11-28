@@ -32,23 +32,23 @@ from django.template.loader import render_to_string
 
     
 
-# @staff_member_required
-# def impression_pdf(request, order_id):
-#     order = get_object_or_404(Order, id=order_id)
-#     response = HttpResponse(content_type="application/pdf")
-#     response["Content-Disposition"] = f"filename=order_{order.id}.pdf"
-#     # business = Business.objects.first()
-#     business = order.client or  Business.objects.first()
-#     context = {
-#         "order": order, 
-#         "business": business,
-#     }
-#     html = render_to_string("snippets/order_pdf.html", context)
-#     # stylesheets=[weasyprint.CSS(str(configs.STATIC_ROOT) + 'css/pdf.css' )]
-#     weasyprint.HTML(string=html, base_url=request.build_absolute_uri()).write_pdf(
-#         response
-#     )
-#     return response
+@staff_member_required
+def impression_resu_paiement(request, paiement_id):
+    paiement = get_object_or_404(Paiement, id=paiement_id)
+    response = HttpResponse(content_type="application/pdf")
+    response["Content-Disposition"] = f"filename=paiement_{paiement.id}.pdf"
+    # business = Business.objects.first()
+    # business = paiement.client or  Business.objects.first()
+    context = {
+        "paiement": paiement, 
+        # "business": business,
+    }
+    html = render_to_string("snippets/order_pdf.html", context)
+    # stylesheets=[weasyprint.CSS(str(configs.STATIC_ROOT) + 'css/pdf.css' )]
+    weasyprint.HTML(string=html, base_url=request.build_absolute_uri()).write_pdf(
+        response
+    )
+    return response
     
 
 

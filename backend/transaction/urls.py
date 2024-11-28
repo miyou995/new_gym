@@ -5,7 +5,7 @@ from .views import (
                     PaiementUpdateView,RemunerationProfTable,
                     RemunerationPersonnelTable,PaiementDeleteView,RemuPersonnelUpdateView,Remuneration_CoachUpdateView,RemuPersonnelDeleteView,RemCoachDeleteView,
                     AutreTransactionTable,Autre_TransactionUpdateView,AutreTransactionDelete,
-                    chiffre_par_abonnement,chiffre_par_Activity,chifre_dattes_abonnement)
+                    chiffre_par_abonnement,chiffre_par_Activity,chifre_dattes_abonnement,impression_resu_paiement)
 
 app_name = 'transactions'
 
@@ -46,7 +46,7 @@ urlpatterns = [
         path("transaction/Remuneration_Coach/delete/<int:pk>", RemCoachDeleteView.as_view(), name="RemCoachDeleteView_name"),
         path("transaction/AutreTransactionDelete/delete/<int:pk>", AutreTransactionDelete.as_view(), name="autre_transaction_delete"),
 
-        # path('pdf/<int:order_id>/', admin_order_pdf, name='admin_order_pdf'),
+        path('impression_resu_paiement/<int:paiement_id>/', impression_resu_paiement, name='impression_resu_paiement'),
 
 
 
