@@ -46,6 +46,8 @@ urlpatterns = [
         path("transaction/Remuneration_Coach/delete/<int:pk>", RemCoachDeleteView.as_view(), name="RemCoachDeleteView_name"),
         path("transaction/AutreTransactionDelete/delete/<int:pk>", AutreTransactionDelete.as_view(), name="autre_transaction_delete"),
 
+        # path('pdf/<int:order_id>/', admin_order_pdf, name='admin_order_pdf'),
+
 
 
        
