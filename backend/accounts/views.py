@@ -159,7 +159,7 @@ class UserListView(PermissionRequiredMixin, ListView):
 @permission_required('accounts.change_user', raise_exception=True)
 def change_password(request, pk):
     context= {}
-    template_name="accounts\snippets\change_password.html"
+    template_name="accounts/snippets/change_password.html"
     user = get_object_or_404(User, pk=pk)
     if request.method == 'POST':
         user_form = ChangePasswordForm(request.POST ,instance=user)
@@ -178,7 +178,7 @@ def change_password(request, pk):
         else:
             messages.error(request, _('Formulaire invalide'))
             context["form"]=ChangePasswordForm(data=request.POST or None )
-            return render(request, template_name="accounts\snippets\change_password.html", context=context)
+            return render(request, template_name="accounts/snippets/change_password.html", context=context)
     else:
         user_form = ChangePasswordForm()  
     context = {'form': user_form, 'user': user}

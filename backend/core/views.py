@@ -236,7 +236,7 @@ def SalleCreateView(request):
         else:
             print("is not valide", form.errors.as_data())
             context["form"]=SalleModelForm(data=request.POST or None )
-            return render(request, template_name="configuration\snippets\_ajout_Salle_form.html", context=context)
+            return render(request, template_name="configuration/snippets/_ajout_Salle_form.html", context=context)
     context["form"] = form
     return render(request, template_name=template_name, context=context)
 
@@ -306,7 +306,7 @@ def ActiviteCreateView(request):
         else:
             print("is not valide", form.errors.as_data())
             context["form"]=ActiviteModelForm(data=request.POST or None )
-            return render(request, template_name="configuration\snippets\_ajout_activites_form.html", context=context)
+            return render(request, template_name="configuration/snippets/_ajout_activites_form.html", context=context)
     context["form"] = form
     return render(request, template_name=template_name, context=context)
 
@@ -372,7 +372,7 @@ def MaladieCreateView(request):
         else:
             print("is not valide", form.errors.as_data())
             context["form"]=MaladieModelForm(data=request.POST or None )
-            return render(request, template_name="configuration\snippets\_ajout_maladies_form.html", context=context)
+            return render(request, template_name="configuration/snippets/_ajout_maladies_form.html", context=context)
     context["form"] = form
     return render(request, template_name=template_name, context=context)
 
@@ -439,7 +439,7 @@ def PorteCreateView(request):
         else:
             print("is not valide", form.errors.as_data())
             context["form"]=DoorModelForm(data=request.POST or None )
-            return render(request, template_name="configuration\snippets\_ajout_ ports_form.html", context=context)
+            return render(request, template_name="configuration/snippets/_ajout_ ports_form.html", context=context)
     context["form"] = form
     return render(request, template_name=template_name, context=context)
 
@@ -510,7 +510,7 @@ def TypeAbonnementCreateView(request):
         else:
             print("is not valide", form.errors.as_data())
             context["form"]=AbonnementModelForm(data=request.POST or None )
-            return render(request, template_name="configuration\snippets\_type_abonne_form.html", context=context)
+            return render(request, template_name="configuration/snippets/_type_abonne_form.html", context=context)
     context["form"] = form
     return render(request, template_name=template_name, context=context)
 
