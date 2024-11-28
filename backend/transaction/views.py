@@ -11,6 +11,7 @@ from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from abonnement.models import AbonnementClient
 from .forms import PaiementModelForm,Remuneration_PersonnelModelForm,Remunération_CoachModelForm,Autre_TransactionForm
 import json
+import weasyprint
 from  django_tables2 import SingleTableMixin
 from django.contrib.auth.mixins import PermissionRequiredMixin
 
@@ -22,6 +23,35 @@ from django.contrib.auth.decorators import  permission_required
 from datetime import datetime, timedelta
 from django.db.models import Sum
 from django.shortcuts import render
+from django.contrib.admin.views.decorators import staff_member_required
+from django.shortcuts import get_object_or_404, redirect, render
+from django.template.loader import render_to_string
+
+
+
+
+    
+
+# @staff_member_required
+# def impression_pdf(request, order_id):
+#     order = get_object_or_404(Order, id=order_id)
+#     response = HttpResponse(content_type="application/pdf")
+#     response["Content-Disposition"] = f"filename=order_{order.id}.pdf"
+#     # business = Business.objects.first()
+#     business = order.client or  Business.objects.first()
+#     context = {
+#         "order": order, 
+#         "business": business,
+#     }
+#     html = render_to_string("snippets/order_pdf.html", context)
+#     # stylesheets=[weasyprint.CSS(str(configs.STATIC_ROOT) + 'css/pdf.css' )]
+#     weasyprint.HTML(string=html, base_url=request.build_absolute_uri()).write_pdf(
+#         response
+#     )
+#     return response
+    
+
+
 
 
 
@@ -533,10 +563,6 @@ class AutreTransactionDelete(PermissionRequiredMixin,DeleteView):
         messages.success(self.request, "Autre transaction Supprimer avec Succés")
         return HttpResponseRedirect(success_url)
 
-    
-
-
-    
 
 
 

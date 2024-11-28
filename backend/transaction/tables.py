@@ -9,7 +9,15 @@ class PiaementHTMxTable(tables.Table):
             '''{% include 'buttons/action.html' with object=record modal_edit="true" %}''',
             verbose_name='Actions',
             orderable=False )
-  
+#     impression= tables.TemplateColumn(
+#                                 '''
+#                                         <a class="btn btn-primary btn-sm" 
+#                                         href="{% url 'inventory:print_barcode' pk=record.pk  %}" 
+#                                         target="_blank"
+                                        
+#                                         >Imprimer </a>
+#                                 '''
+#                                 )
     class Meta:
         fields  = (
                 'client',
@@ -18,6 +26,7 @@ class PiaementHTMxTable(tables.Table):
                 'amount', 
                 'notes',
                 'date_creation',
+                'impression'
                 'action',
         )
         model = Paiement
