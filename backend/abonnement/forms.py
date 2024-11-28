@@ -137,8 +137,9 @@ class AbonnementClientAddForm(forms.ModelForm):
         abonnement_client = super().save(commit=False)
         start_date = self.cleaned_data.get('start_date') or datetime.today().date()
         abonnement_client.start_date = start_date
-        abonnement = self.cleaned_data('abonnement')
-        abonnement_client.end_date = start_date + timedelta(days=int(abonnement.length))
+        print("self.cleaned_data['type_abonnement']>>>>>>>>>>>", self.cleaned_data['type_abonnement'])
+        type_abonnement = self.cleaned_data['type_abonnement']
+        abonnement_client.end_date = start_date + timedelta(days=int(type_abonnement.length))
         
         if self.client_pk:
             abonnement_client.client = Client.objects.get(pk=self.client_pk)

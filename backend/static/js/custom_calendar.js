@@ -7,7 +7,7 @@ var isAbonnementManuallyChanged = false;
 
 
 
-function initHTMXCalendar(eventsData) {
+function initHTMXCalendar(eventsData, checkAll = false) {
     console.log("init >>>>>>>>>>> initHTMXCalendar------<")
     selectedEvents = [];
     var calendarEl = document.getElementById('calendar');
@@ -16,23 +16,40 @@ function initHTMXCalendar(eventsData) {
         headerToolbar: {
             left: 'prev,next today',
             center: 'title',
-            right: '' // Disable other views to enforce the one-week display
+            right: 'customSwitch'
         },
+        customButtons: {
+            customSwitch: {
+                text: '', // Leave text empty as we will replace it with custom HTML
+                click: function() {
+                    // Optional logic can go here
+                    console.log('Switch toggled!');
+                }
+            }
+
+          },
+  
         slotMinTime: '06:00:00',
         slotDuration: '01:00:00',
         events: eventsData,
         selectable: true,
         eventDidMount: function(info) {
             var selectedEventsDiv = document.getElementById('eventsId');
+            info.el.setAttribute('data-event-id', info.event.extendedProps.pk_event);
+            console.log("info.el---------------->", info.event.extendedProps.pk_event);
+            
             // console.log("selectedEventsDiv.dataset.selected>>>>>", selectedEventsDiv.dataset.selectedEvents);
             if (selectedEventsDiv) {
                 var selectedEventsData = selectedEventsDiv.dataset.selectedEvents ? JSON.parse(selectedEventsDiv.dataset.selectedEvents) : [];
                 selectedEvents = selectedEventsData.length > 0 ? selectedEventsData : [];
-                console.log("Mounting selectedEvents----------", selectedEvents);
+                console.log("Mounting eventsData----------", eventsData);
             }
             var preSelectedEvent = selectedEvents.find(event => event.creneaux__pk === info.event.extendedProps.pk_event);
             if (preSelectedEvent) {
                 info.el.classList.add('selected-event');
+            }
+            if (checkAll) {
+                selectAllEvents(eventsData, calendar);
             }
             addSelectedEventsVals(selectedEvents);
 
@@ -61,7 +78,96 @@ function initHTMXCalendar(eventsData) {
         }
     });
     calendar.render();
+
+    // Replace the custom button with a switch
+    const customSwitch = document.querySelector('.fc-customSwitch-button');
+    if (customSwitch) {
+        customSwitch.outerHTML = `
+            <div class="form-check form-switch form-check-custom form-check-solid">
+                <input class="form-check-input" type="checkbox" value="" id="flexSwitchChecked" ${checkAll ? 'checked' : ''} />
+                <label class="form-check-label" for="flexSwitchChecked">
+                    Selectionner tous
+                </label>
+            </div>
+        `;
+        // Add event listener to handle interactions with the switch
+        const switchInput = document.getElementById('flexSwitchChecked');
+        console.log("switchInput------", switchInput);
+        
+        switchInput.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                console.log("switchInput.checked------", switchInput.checked);
+                
+                selectAllEvents(eventsData);
+            } else {
+                console.log("switchInput.UN checked------", switchInput.checked);
+                deselectAllEvents();
+            }
+        });
+    }
+
+    // If `checkAll` is true, apply the initial state
+    if (checkAll) {
+        selectAllEvents();
+    }
 }
+function selectAllEvents(eventsData) {
+    console.log("selectAllEvents called with eventsData:", eventsData);
+    selectedEvents = [];
+    eventsData.forEach(event => {
+        console.log("Processing event:", event);
+        const eventElement = document.querySelector(`[data-event-id="${event.pk_event}"]`);
+        if (eventElement) {
+            console.log("Adding 'selected-event' class to eventElement:", eventElement);
+            eventElement.classList.add('selected-event');
+        }
+        selectedEvents.push({
+            creneaux__pk: event.pk_event,
+            creneaux__name: event.title,
+            // creneaux__hour_start: event.startTime.toISOString(),
+            // creneaux__hour_finish: event.endTime.toISOString(),
+            url: event.url
+        });
+    });
+    console.log("Selected events after processing:", selectedEvents);
+    addSelectedEventsVals(selectedEvents);
+}
+
+
+// Function to select all events
+// function selectAllEvents() {
+    
+//     selectedEvents = [];
+//     const allEventElements = document.querySelectorAll('.fc-event'); // Select all events with the class "fc-event"
+
+//     console.log("allEventElements------", allEventElements);
+
+//     allEventElements.forEach(eventElement => {
+//         // Add the 'selected-event' class
+//         eventElement.classList.add('selected-event');
+        
+//         // Find the corresponding event from FullCalendar using the event's ID
+//         addSelectedEventsVals(selectedEvents);
+//     });
+
+// }
+
+// Function to deselect all events
+function deselectAllEvents() {
+    selectedEvents = [];
+    const allEventElements = document.querySelectorAll('.fc-event'); // Select all events with the class "fc-event"
+
+    console.log("allEventElements------", allEventElements);
+
+    allEventElements.forEach(eventElement => {
+        // Add the 'selected-event' class
+        eventElement.classList.remove('selected-event');
+        // Find the corresponding event from FullCalendar using the event's ID
+        addSelectedEventsVals(selectedEvents);
+    });
+}
+
+
 
 function addSelectedEventsVals(selectedEvents) {
     var addAbonnementBtn = document.getElementById('add-abonnement-btn');
