@@ -4,8 +4,8 @@ from django.urls import reverse
 
 
 class PresencesHTMxTable(tables.Table):
-
-    # nom= tables.Column(accessor="abc.client.last_name",verbose_name="Nom", orderable=True)
+    # tables.Column(accessor="client__id",verbose_name="carte",orderable=True , linkify=lambda record: record.client.get_view_url() if record.client else None)
+    id= tables.Column(accessor="abc.client.id",verbose_name="Nom", orderable=True, linkify=lambda record:record.abc.client.get_view_url() if record.abc.client else None)
     Creneau_activity = tables.Column(accessor="creneau.activity", verbose_name="Activité", orderable=True )
     Creneau_date = tables.Column(accessor="creneau.day", verbose_name="Jour", orderable=True )
     abc= tables.Column(accessor="abc__reste",verbose_name="Dettes", orderable=True)

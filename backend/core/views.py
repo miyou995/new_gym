@@ -202,7 +202,7 @@ class PlanningUpdateView(UpdateView):
 class PlanningDeleteView(DeleteView):
     model = Planning
     template_name = "buttons/delete.html"
-    success_url = reverse_lazy("core:PlanningTable")
+    success_url = reverse_lazy("core:planning_table")
 
     def form_valid(self, form):
         success_url = self.get_success_url()
@@ -271,7 +271,7 @@ class SalleUpdateView(UpdateView):
 class SalleDeleteView(DeleteView):
     model = Salle
     template_name = "buttons/delete.html"
-    success_url = reverse_lazy("core:PlanningTable")
+    success_url = reverse_lazy("core:planning_table")
 
     def form_valid(self, form):
         success_url = self.get_success_url()
@@ -337,7 +337,7 @@ class ActiviteUpdateView(UpdateView):
 class ActiviteDeleteView(DeleteView):
     model = Activity
     template_name = "buttons/delete.html"
-    success_url = reverse_lazy("core:PlanningTable")
+    success_url = reverse_lazy("core:planning_table")
 
     def form_valid(self, form):
         success_url = self.get_success_url()
@@ -405,7 +405,7 @@ class MaladieUpdateView(UpdateView):
 class MaladieDeleteView(DeleteView):
     model = Maladie
     template_name = "buttons/delete.html"
-    success_url = reverse_lazy("core:PlanningTable")
+    success_url = reverse_lazy("core:planning_table")
 
     def form_valid(self, form):
         success_url = self.get_success_url()
@@ -475,7 +475,7 @@ class PorteUpdateView(UpdateView):
 class PorteDeleteView(DeleteView):
     model = Door
     template_name = "buttons/delete.html"
-    success_url = reverse_lazy("core:PlanningTable")
+    success_url = reverse_lazy("core:planning_table")
 
     def form_valid(self, form):
         success_url = self.get_success_url()
@@ -549,7 +549,7 @@ class TypeAbonnementUpdateView(UpdateView):
 class TypeAbonnementDeleteView(DeleteView):
     model = Abonnement
     template_name = "buttons/delete.html"
-    success_url = reverse_lazy("core:PlanningTable")
+    success_url = reverse_lazy("core:planning_table")
 
     def form_valid(self, form):
         success_url = self.get_success_url()

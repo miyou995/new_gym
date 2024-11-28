@@ -18,7 +18,7 @@ urlpatterns = [
     
 
     # path('configuration/',ConfigurationView.as_view(), name='configuration_name'),
-    path('configuration/', PlanningTable.as_view(), name='PlanningTable'),
+    path('configuration/', PlanningTable.as_view(), name='planning_table'),
     path('configuration/SalleTable',SalleTable.as_view(), name='SalleTable'),
     path('configuration/ActivityTable',ActivityTable.as_view(), name='ActivityTable'),
     path('configuration/MaladieTable',MaladieTable.as_view(), name='MaladieTable'),
