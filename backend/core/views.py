@@ -156,7 +156,7 @@ def PlanningCreateView(request):
             print("is valide")
             client = form.save()
             message = _("Planning a été créé avec succès.")
-            messages.success(request, str(message),extra_tags="toastr")
+            messages.success(request, str(message))
             return HttpResponse(status=204,
                 headers={
                     'HX-Trigger': json.dumps({
@@ -187,7 +187,7 @@ class PlanningUpdateView(UpdateView):
     def form_valid(self,form):
         client=form.save()
         print("is from valid",client.id)
-        messages.success(self.request,"Planning Mis a jour avec Succés",extra_tags="toastr")
+        messages.success(self.request,"Planning Mis a jour avec Succés")
         return HttpResponse(status=204,
             headers={
                 "HX-Trigger":json.dumps({
@@ -196,7 +196,7 @@ class PlanningUpdateView(UpdateView):
                 })
             })
     def form_invalid(self, form):
-        messages.success(self.request, form.errors ,extra_tags="toastr")
+        messages.success(self.request, form.errors )
         return self.render_to_response(self.get_context_data(form=form))   
     
 class PlanningDeleteView(DeleteView):
@@ -208,7 +208,7 @@ class PlanningDeleteView(DeleteView):
         success_url = self.get_success_url()
         self.object.delete()
         print('GOOOOO')
-        messages.success(self.request, "Planning Supprimer avec Succés",extra_tags="toastr")
+        messages.success(self.request, "Planning Supprimer avec Succés")
         return HttpResponseRedirect(success_url)
 # salle----------------------------------------------------------------------------------------------
 @permission_required('salle_activite.add_salle',raise_exception=True)
@@ -224,7 +224,7 @@ def SalleCreateView(request):
             print("is valide")
             client = form.save()
             message = _("Salle a été créé avec succès.")
-            messages.success(request, str(message),extra_tags="toastr")
+            messages.success(request, str(message))
             return HttpResponse(status=204,
                 headers={
                     'HX-Trigger': json.dumps({
@@ -255,7 +255,7 @@ class SalleUpdateView(UpdateView):
     def form_valid(self,form):
         client=form.save()
         print("is from valid",client.id)
-        messages.success(self.request,"Salle Mis a jour avec Succés",extra_tags="toastr")
+        messages.success(self.request,"Salle Mis a jour avec Succés")
         return HttpResponse(status=204,
             headers={
                 "HX-Trigger":json.dumps({
@@ -264,7 +264,7 @@ class SalleUpdateView(UpdateView):
                 })
             })
     def form_invalid(self, form):
-        messages.success(self.request, form.errors ,extra_tags="toastr")
+        messages.success(self.request, form.errors )
         return self.render_to_response(self.get_context_data(form=form))   
     
 
@@ -277,7 +277,7 @@ class SalleDeleteView(DeleteView):
         success_url = self.get_success_url()
         self.object.delete()
         print('GOOOOO')
-        messages.success(self.request, "Salle Supprimer avec Succés",extra_tags="toastr")
+        messages.success(self.request, "Salle Supprimer avec Succés")
         return HttpResponseRedirect(success_url)
     
 # Activites------------------------------------------------------------------------------------------
@@ -294,7 +294,7 @@ def ActiviteCreateView(request):
             print("is valide")
             client = form.save()
             message = _("Activite a été créé avec succès.")
-            messages.success(request, str(message),extra_tags="toastr")
+            messages.success(request, str(message))
             return HttpResponse(status=204,
                 headers={
                     'HX-Trigger': json.dumps({
@@ -321,7 +321,7 @@ class ActiviteUpdateView(UpdateView):
     def form_valid(self,form):
         client=form.save()
         print("is from valid",client.id)
-        messages.success(self.request,"Activite Mis a jour avec Succés",extra_tags="toastr")
+        messages.success(self.request,"Activite Mis a jour avec Succés")
         return HttpResponse(status=204,
             headers={
                 "HX-Trigger":json.dumps({
@@ -330,7 +330,7 @@ class ActiviteUpdateView(UpdateView):
                 })
             })
     def form_invalid(self, form):
-        messages.success(self.request, form.errors ,extra_tags="toastr")
+        messages.success(self.request, form.errors )
         return self.render_to_response(self.get_context_data(form=form))   
     
 
@@ -343,7 +343,7 @@ class ActiviteDeleteView(DeleteView):
         success_url = self.get_success_url()
         self.object.delete()
         print('GOOOOO')
-        messages.success(self.request, "Activite Supprimer avec Succés",extra_tags="toastr")
+        messages.success(self.request, "Activite Supprimer avec Succés")
         return HttpResponseRedirect(success_url)
     
 # Maladie--------------------------------------------------------------------------------------------
@@ -360,7 +360,7 @@ def MaladieCreateView(request):
             print("is valide")
             client = form.save()
             message = _("Maladie a été créé avec succès.")
-            messages.success(request, str(message),extra_tags="toastr")
+            messages.success(request, str(message))
             return HttpResponse(status=204,
                 headers={
                     'HX-Trigger': json.dumps({
@@ -389,7 +389,7 @@ class MaladieUpdateView(UpdateView):
     def form_valid(self,form):
         client=form.save()
         print("is from valid",client.id)
-        messages.success(self.request,"Maladie Mis a jour avec Succés",extra_tags="toastr")
+        messages.success(self.request,"Maladie Mis a jour avec Succés")
         return HttpResponse(status=204,
             headers={
                 "HX-Trigger":json.dumps({
@@ -398,7 +398,7 @@ class MaladieUpdateView(UpdateView):
                 })
             })
     def form_invalid(self, form):
-        messages.success(self.request, form.errors ,extra_tags="toastr")
+        messages.success(self.request, form.errors )
         return self.render_to_response(self.get_context_data(form=form))   
     
 
@@ -411,7 +411,7 @@ class MaladieDeleteView(DeleteView):
         success_url = self.get_success_url()
         self.object.delete()
         print('GOOOOO')
-        messages.success(self.request, "Maladie Supprimer avec Succés",extra_tags="toastr")
+        messages.success(self.request, "Maladie Supprimer avec Succés")
         return HttpResponseRedirect(success_url)
     
 #Portes--------------------------------------------------------------------------------------------------
@@ -428,7 +428,7 @@ def PorteCreateView(request):
             print("is valide")
             client = form.save()
             message = _("Porte a été créé avec succès.")
-            messages.success(request, str(message),extra_tags="toastr")
+            messages.success(request, str(message))
             return HttpResponse(status=204,
                 headers={
                     'HX-Trigger': json.dumps({
@@ -459,7 +459,7 @@ class PorteUpdateView(UpdateView):
     def form_valid(self,form):
         client=form.save()
         print("is from valid",client.id)
-        messages.success(self.request,"Porte Mis a jour avec Succés",extra_tags="toastr")
+        messages.success(self.request,"Porte Mis a jour avec Succés")
         return HttpResponse(status=204,
             headers={
                 "HX-Trigger":json.dumps({
@@ -468,7 +468,7 @@ class PorteUpdateView(UpdateView):
                 })
             })
     def form_invalid(self, form):
-        messages.success(self.request, form.errors ,extra_tags="toastr")
+        messages.success(self.request, form.errors )
         return self.render_to_response(self.get_context_data(form=form))   
     
 
@@ -481,7 +481,7 @@ class PorteDeleteView(DeleteView):
         success_url = self.get_success_url()
         self.object.delete()
         print('GOOOOO')
-        messages.success(self.request, "Porte Supprimer avec Succés",extra_tags="toastr")
+        messages.success(self.request, "Porte Supprimer avec Succés")
         return HttpResponseRedirect(success_url)
     
 # Abonnement-------------------------------------------------------------------------------------------------
@@ -498,7 +498,7 @@ def TypeAbonnementCreateView(request):
             print("is valide")
             client = form.save()
             message = _("abonnement a été créé avec succès.")
-            messages.success(request, str(message),extra_tags="toastr")
+            messages.success(request, str(message))
             return HttpResponse(status=204,
                 headers={
                     'HX-Trigger': json.dumps({
@@ -533,7 +533,7 @@ class TypeAbonnementUpdateView(UpdateView):
     def form_valid(self,form):
         client=form.save()
         print("is from valid",client.id)
-        messages.success(self.request,"Abonnement Mis a jour avec Succés",extra_tags="toastr")
+        messages.success(self.request,"Abonnement Mis a jour avec Succés")
         return HttpResponse(status=204,
             headers={
                 "HX-Trigger":json.dumps({
@@ -542,7 +542,7 @@ class TypeAbonnementUpdateView(UpdateView):
                 })
             })
     def form_invalid(self, form):
-        messages.success(self.request, form.errors ,extra_tags="toastr")
+        messages.success(self.request, form.errors )
         return self.render_to_response(self.get_context_data(form=form))   
     
 
@@ -555,7 +555,7 @@ class TypeAbonnementDeleteView(DeleteView):
         success_url = self.get_success_url()
         self.object.delete()
         print('GOOOOO')
-        messages.success(self.request, "Abonnement Supprimer avec Succés",extra_tags="toastr")
+        messages.success(self.request, "Abonnement Supprimer avec Succés")
         return HttpResponseRedirect(success_url)
 
 

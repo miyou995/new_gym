@@ -9,7 +9,7 @@ from django.db.models import Q
 from django.urls import reverse
 from django.db.models.signals import post_save
 from django.utils.dateparse import parse_date
-
+import json
 
 class SubscriptionQuerySet(models.QuerySet):
     def time_volume(self):
@@ -290,8 +290,6 @@ class AbonnementClient(models.Model):
                 return True
         return False 
      
-            
-
 
     def get_type(self):
         return self.type_abonnement.get_type_of_display()
@@ -362,8 +360,25 @@ class AbonnementClient(models.Model):
             return "text-danger"
         return ""
 
-    def get_reste(self):
-        return sum()
+    def get_selected_events(self):
+        abc = AbonnementClient.objects.filter(pk=self.pk) # we are not using self.creneaux because we need to use queryset.values as bellow 
+        
+        selected_events_data = list(abc.values('creneaux__pk',
+            'creneaux__name',
+            'creneaux__hour_start',
+            'creneaux__hour_finish',
+            'type_abonnement',
+            'start_date'
+        ))
+        
+        for event in selected_events_data:
+            print('creneaux__hour_start>>>>>', type(event.get('creneaux__hour_start')))
+            event['creneaux__hour_start'] = event['creneaux__hour_start'].isoformat()  # Convert datetime to ISO format
+            event['creneaux__hour_finish'] = event['creneaux__hour_finish'].isoformat()  # Convert datetime to ISO format
+            event['start_date'] = event['start_date'].isoformat()
+
+        # print("selected_events_data--------------------",selected_events_data)
+        return json.dumps(selected_events_data)
 
     # def renew_abc(self, renew_start_date):
     #     type_abonnement = self.type_abonnement

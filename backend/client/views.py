@@ -60,7 +60,7 @@ def ClientCreateView(request):
             print("is valide")
             client = form.save()
             message = _("cilent a été créé avec succès.")
-            messages.success(request, str(message),extra_tags="toastr")
+            messages.success(request, str(message))
             return HttpResponse(status=204,
                 headers={
                     'HX-Trigger': json.dumps({
@@ -102,7 +102,7 @@ class ClientUpdateView(PermissionRequiredMixin,UpdateView):
     def form_valid(self,form):
         client=form.save()
         print("is from valid",client.id)
-        messages.success(self.request,"Client Mis a jour avec Succés",extra_tags="toastr")
+        messages.success(self.request,"Client Mis a jour avec Succés")
         return HttpResponse(status=204,
             headers={
                 "HX-Trigger":json.dumps({
@@ -111,7 +111,7 @@ class ClientUpdateView(PermissionRequiredMixin,UpdateView):
                 })
             })
     def form_invalid(self, form):
-        messages.success(self.request, form.errors ,extra_tags="toastr")
+        messages.success(self.request, form.errors )
         return self.render_to_response(self.get_context_data(form=form))   
 
 
@@ -131,11 +131,11 @@ class ClientDeleteView(PermissionRequiredMixin,DeleteView):
         abc= AbonnementClient.objects.filter(client=self.object)
         if abc :
             print("you can not delete this client")
-            messages.error(self.request, "vous ne pouvez pas supprimer un client avec un abonnement",extra_tags="toastr")
+            messages.error(self.request, "vous ne pouvez pas supprimer un client avec un abonnement")
             return HttpResponseRedirect(success_url)
         else :
             self.object.delete()
-            messages.success(self.request,"Client Supprimier avec Succés",extra_tags="toastr")
+            messages.success(self.request,"Client Supprimier avec Succés")
             return HttpResponseRedirect(success_url)
        
 #-----------------------------------------------Coach--------------------------------------------------------------
@@ -169,7 +169,7 @@ def CoachCreateView(request):
             print("is valide")
             coach = form.save()
             message = _("Coach a été créé avec succès.")
-            messages.success(request, str(message),extra_tags="toastr")
+            messages.success(request, str(message))
             return HttpResponse(status=204,
                 headers={
                     'HX-Trigger': json.dumps({
@@ -211,7 +211,7 @@ class CoachUpdateView(PermissionRequiredMixin,UpdateView):
     def form_valid(self,form):
         coach=form.save()
         print("is from valid",coach.id)
-        messages.success(self.request,"Coach Mis a jour avec Succés",extra_tags="toastr")
+        messages.success(self.request,"Coach Mis a jour avec Succés")
         return HttpResponse(status=204,
             headers={
                 "HX-Trigger":json.dumps({
@@ -220,7 +220,7 @@ class CoachUpdateView(PermissionRequiredMixin,UpdateView):
                 })
             })
     def form_invalid(self, form):
-        messages.success(self.request, form.errors ,extra_tags="toastr")
+        messages.success(self.request, form.errors )
         return self.render_to_response(self.get_context_data(form=form)) 
 
 class CoachDeleteView(PermissionRequiredMixin,DeleteView):
@@ -237,7 +237,7 @@ class CoachDeleteView(PermissionRequiredMixin,DeleteView):
     def form_valid(self, form):
         success_url=self.get_success_url()
         self.object.delete()
-        messages.success(self.request,"Coach Supprimier avec Succés",extra_tags="toastr")
+        messages.success(self.request,"Coach Supprimier avec Succés")
         return HttpResponseRedirect(success_url)
       
 # ---------------------------------------------Personnel---------------------------------------------------------
@@ -271,7 +271,7 @@ def PersonnelCreateView(request):
             print("is valide")
             coach = form.save()
             message = _("Employé a été créé avec succès.")
-            messages.success(request, str(message),extra_tags="toastr")
+            messages.success(request, str(message))
             return HttpResponse(status=204,
                 headers={
                     'HX-Trigger': json.dumps({
@@ -311,7 +311,7 @@ class PersonnelUpdateView(PermissionRequiredMixin,UpdateView):
     def form_valid(self,form):
         personnel=form.save()
         print("is from valid",personnel.id)
-        messages.success(self.request,"Personnel Mis a jour avec Succés",extra_tags="toastr")
+        messages.success(self.request,"Personnel Mis a jour avec Succés")
         return HttpResponse(status=204,
             headers={
                 "HX-Trigger":json.dumps({
@@ -320,7 +320,7 @@ class PersonnelUpdateView(PermissionRequiredMixin,UpdateView):
                 })
             })
     def form_invalid(self, form):
-        messages.success(self.request, form.errors ,extra_tags="toastr")
+        messages.success(self.request, form.errors )
         return self.render_to_response(self.get_context_data(form=form)) 
 
 class PersonnelDeleteView(PermissionRequiredMixin,DeleteView):
@@ -337,13 +337,13 @@ class PersonnelDeleteView(PermissionRequiredMixin,DeleteView):
     def form_valid(self, form):
         success_url=self.get_success_url()
         self.object.delete()
-        messages.success(self.request,"Employé Supprimier avec Succés",extra_tags="toastr")
+        messages.success(self.request,"Employé Supprimier avec Succés")
         return HttpResponseRedirect(success_url)
     
 
 
 # ----------------------------------------------client detail-----------------------------------------
-class AbonnementClientDetail(SingleTableMixin, FilterView):
+class ClientDetailView(SingleTableMixin, FilterView):
     table_class =   AbonnementClientHTMxTable
     paginate_by = 15
     model = AbonnementClient
@@ -357,7 +357,7 @@ class AbonnementClientDetail(SingleTableMixin, FilterView):
          return queryset
     
     def get_context_data(self, **kwargs):
-        context = super(AbonnementClientDetail, self).get_context_data(**kwargs)
+        context = super(ClientDetailView, self).get_context_data(**kwargs)
         context["client"] = Client.objects.get(pk=self.kwargs['pk'])
         print('context abc ------****************---------->>>>>')
 
@@ -498,9 +498,9 @@ def presence_coach(request, pk):
     print('presnece view///////////////////////////',presnce)
     context["presence"]=presnce
     if in_salle :
-        messages.success(request, "Entrée /Sorté Coach Enregistrée", extra_tags="toastr")
+        messages.success(request, "Entrée /Sorté Coach Enregistrée")
     else :
-        messages.error(request, "Coach ",extra_tags="toastr")
+        messages.error(request, "Coach ")
     return HttpResponse(status=204)
 
 

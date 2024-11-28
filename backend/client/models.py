@@ -27,6 +27,24 @@ lock = threading.Lock()
 import logging
 logger = logging.getLogger(__name__)
 FTM = '%H:%M:%S'
+from salle_activite.models import Salle, Door
+from datetime import datetime, timedelta, date
+from django.db import transaction
+from django.utils import timezone
+from .tasks import register_user
+from django.utils.translation import gettext as _
+from presence.models import PresenceCoach
+
+
+from io import BytesIO
+from PIL import Image
+from django.core.files.base import ContentFile
+import threading
+
+lock = threading.Lock()
+import logging
+logger = logging.getLogger(__name__)
+FTM = '%H:%M:%S'
 
 # Create your models here.
 class AbonnementManager(models.Manager):
@@ -38,6 +56,15 @@ class AbonnementManager(models.Manager):
 
 class PresenceManager(models.Manager):
     def get_last_presence(self, coach_id):
+        coach = Coach.objects.get(id=coach_id)
+        try :
+            presence = coach.presencesCoach.filter(is_in_salle=True).last().id
+            # print(presence, ' JJJJJJJJJJJJJJJJJJJJJJ')
+            return presence
+        except:
+            presence = False
+            return presence
+
         coach = Coach.objects.get(id=coach_id)
         try :
             presence = coach.presencesCoach.filter(is_in_salle=True).last().id
@@ -74,9 +101,14 @@ STATE_CHOICES = (
 # def generate_pk():
 class Maladie(models.Model):
     name = models.CharField(max_length=150,blank=True, null=True)
+    name = models.CharField(max_length=150,blank=True, null=True)
     # client = models.ForeignKey(Client, related_name="maladies", on_delete=models.CASCADE, null=True, blank=True)
     def __str__(self):
         return self.name
+    
+    def get_delete_url(self):
+        return reverse('core:MaladieDeleteView', kwargs={'pk': str(self.id)})
+    
     
     def get_delete_url(self):
         return reverse('core:MaladieDeleteView', kwargs={'pk': str(self.id)})
@@ -90,6 +122,7 @@ class Client(models.Model):
     carte       = models.CharField(max_length=100, unique=True, blank=True, null=True)
     hex_card    = models.CharField(max_length=100, unique=True, blank=True, null=True)
     last_name   = models.CharField(max_length=50, verbose_name='Nom',blank=True, null=True)
+    last_name   = models.CharField(max_length=50, verbose_name='Nom',blank=True, null=True)
     first_name  = models.CharField(max_length=50, verbose_name='Prénom')
     civility    = models.CharField(choices=CIVILITY_CHOICES , max_length=3, default='MME', verbose_name='Civilité', blank=True, null=True)
     adress      = models.CharField(max_length=200, verbose_name='Adresse', blank=True, null=True)
@@ -101,7 +134,13 @@ class Client(models.Model):
     blood       = models.CharField(choices=BLOOD_CHOICES , max_length=3, verbose_name='Groupe sanguin')
     date_added  = models.DateField(auto_now_add=True)
     created     = models.DateTimeField(verbose_name='Date de Création',  auto_now_add=True)
+    created     = models.DateTimeField(verbose_name='Date de Création',  auto_now_add=True)
     profession  = models.CharField(max_length=50, blank=True, null=True)
+    updated     = models.DateTimeField(verbose_name='Date de dernière mise à jour',  auto_now=True)
+    note        = models.TextField(blank=True, null=True)
+    dette       = models.DecimalField(max_digits=10, decimal_places=0, blank=True, null=True,default=0)
+    is_on_salle = models.BooleanField(default=False)
+    maladies    = models.ManyToManyField(Maladie,blank=True)
     updated     = models.DateTimeField(verbose_name='Date de dernière mise à jour',  auto_now=True)
     note        = models.TextField(blank=True, null=True)
     dette       = models.DecimalField(max_digits=10, decimal_places=0, blank=True, null=True,default=0)
@@ -118,9 +157,49 @@ class Client(models.Model):
     def __init__(self, *args, **kwargs):
         super(Client, self).__init__(*args, **kwargs)
         # self._old_picture = self.picture
+    def __init__(self, *args, **kwargs):
+        super(Client, self).__init__(*args, **kwargs)
+        # self._old_picture = self.picture
 
     def __str__(self):
         return str(self.id)
+    
+    def get_picture_url(self):
+        if self.picture and hasattr(self.picture, 'url'):
+            return self.picture.url
+
+    # def generate_thumbnail(self, picture, picture_name):
+    #     THUMBNAIL_SIZE = (250, 360)
+    #     image = Image.open(picture)
+    #     image = image.convert("RGB")
+    #     image.thumbnail(THUMBNAIL_SIZE, Image.ANTIALIAS)
+    #     temp_thumb = BytesIO()
+    #     image.save(temp_thumb, "JPEG")
+    #     temp_thumb.seek(0)
+    #     # set save=False, otherwise it will run in an infinite loop
+    #     self.picture.save(self.picture.name,ContentFile(temp_thumb.read()),save=False)
+    #     print('DONE')
+    #     temp_thumb.close()
+
+    # def generate_thumbnail(self, picture, picture_name):
+    #     from django.core.files import File
+    #     THUMBNAIL_SIZE = (250, 360)
+    #     image = Image.open(picture)
+    #     image = image.convert("RGB")
+    #     image.thumbnail(THUMBNAIL_SIZE, Image.ANTIALIAS)
+    #     thumb_io = BytesIO()
+    #     temp_thumb.seek(0)
+    #     image.save(temp_thumb, format='JPEG')
+    #     thumb_file = File(thumb_io, name=picture_name)
+    #     insstance.thumbnail.save(instance.fichier.name,ContentFile(temp_thumb.read()),save=False)
+    #     temp_thumb.close()
+    #     self.picture.save(picture_name, thumb_file, save=False)
+    #     print('IMAGE RESIZED')
+    #     return image
+
+        # set save=False, otherwise it will run in an infinite loop
+        # picture.save(instance.picture.name,ContentFile(temp_thumb.read()),save=False)
+    # C0
     
     def get_picture_url(self):
         if self.picture and hasattr(self.picture, 'url'):
@@ -169,6 +248,15 @@ class Client(models.Model):
         # else:
         #     logger.warning('picture not changed photo url-{}'.format(str(self.id)))
         #     print('picture not changed')
+        # if self._old_picture != self.picture:
+        #     self.generate_thumbnail(self.picture, self.picture.name)
+        #     print('yess changed picturename', self.picture.name)
+        #     print('yess changed picture url', self.picture.url)
+        #     logger.warning('yess changed picture url-{}'.format(str(self.picture.url)))
+        #     register_user.delay(self.last_name, self.id, self.picture.name)
+        # else:
+        #     logger.warning('picture not changed photo url-{}'.format(str(self.id)))
+        #     print('picture not changed')
         if not self.id:
             try :
                 # print('clientsd==> ', timezone.now())
@@ -179,6 +267,7 @@ class Client(models.Model):
                 result  = str(number).zfill(4)
                 print('the result', result)     
                 the_id = f'C{result}'   
+                print('the id', the_id)   
                 print('the id', the_id)   
                 self.id = the_id
                 # if self.picture:  
@@ -191,7 +280,18 @@ class Client(models.Model):
             except Exception as e:
                 print('THE EXCEPTION ON save client', e)
                 logger.warning('THE EXCEPTION ON save client-{}'.format(str(e)))
+                # if self.picture:  
+                #     self.generate_thumbnail(self.picture, self.picture.name)
+                #     register_user.delay(self.last_name, the_id, self.picture.name)
+                #     print('yess changed picturename', self.picture.name)
+                #     print('yess changed picturename', self.picture.name)
+                #     print('yess changed picture url', self.picture.url)
+                #     print('yess changed picturename', self.picture.name)
+            except Exception as e:
+                print('THE EXCEPTION ON save client', e)
+                logger.warning('THE EXCEPTION ON save client-{}'.format(str(e)))
                 self.id = "C0001"
+
 
         if self.carte:
             # old_carte = self.carte
@@ -417,16 +517,16 @@ class Client(models.Model):
         door = Door.objects.filter(ip_adress=door_ip).first()
         salle = door.salle
 
-        print('Adress IP', door_ip)
-        print('SAlle ', salle)
+        # print('Adress IP', door_ip)
+        # print('SAlle ', salle)
 
         abonnements_actives = AbonnementClient.subscription.active_subscription()
         abonnement_client = abonnements_actives.filter(client=self, type_abonnement__salles=salle).first()
         creneaux = Creneau.range.get_creneaux_of_day().filter(abonnements=abonnement_client)
 
-        print('LES abonnements_actives  =====', abonnements_actives)
-        print('Le abonnement_client Choisi =====', abonnement_client)
-        print('LES CRENEAUX =====', creneaux)
+        # print('LES abonnements_actives  =====', abonnements_actives)
+        # print('Le abonnement_client Choisi =====', abonnement_client)
+        # print('LES CRENEAUX =====', creneaux)
 
         logger.warning('LES CRENEAUX ====={}'.format(str(creneaux)))
         logger.warning('Le TYPE DABONNEMENT CRENEAUX ====={}'.format(str(abonnement_client)))
@@ -434,10 +534,10 @@ class Client(models.Model):
         if not abonnement_client or not creneaux:
             return False
         cren_ref = creneaux.first()
-        print('Creneau de reference', cren_ref)
+        # print('Creneau de reference', cren_ref)
 
         if abonnement_client.is_time_volume() and abonnement_client.is_valid():
-            print('abonnement_client.is_time_volume')
+            # print('abonnement_client.is_time_volume')
             logger.warning('abonnement_client.is_time_volume and is valid')
             # with transaction.atomic():
             Presence.objects.create(abc= abonnement_client, creneau=cren_ref,  hour_entree=current_time)
@@ -446,13 +546,13 @@ class Client(models.Model):
             return True
         
         elif not abonnement_client.is_time_volume() and abonnement_client.is_valid():
-            print('not abonnement_client.is_time_volume')
+            # print('not abonnement_client.is_time_volume')
             if creneaux.count() > 1 :
                 dur_ref_time_format = abs(datetime.strptime(str(creneaux[0].hour_start), FTM) - datetime.strptime(current_time, FTM)) #nous avons besoin d'un crenaux Reference pour le comparé au autres
                 dur_ref= timedelta.total_seconds(dur_ref_time_format) 
                 for cr in creneaux:
                     start = str(cr.hour_start)
-                    print('heure de début', start)
+                    # print('heure de début', start)
                     temps = abs(datetime.strptime(start, FTM) - datetime.strptime(current_time, FTM))
                     duree_seconde = timedelta.total_seconds(temps) 
                     if dur_ref > duree_seconde:
@@ -466,7 +566,7 @@ class Client(models.Model):
                 abonnement_client.save()
                 return True
         else:
-            print('WHATS THE CASE')
+            # print('WHATS THE CASE')
             logger.warning('WHATS THE CASE-- {}'.format(str(abonnement_client.type_abonnement)))
             return False
 
@@ -539,6 +639,7 @@ class Coach(models.Model):
     # maladies        = models.ManyToManyField(Maladie)
     heures_done     = models.IntegerField( blank=True, null=True)
     pay_per_hour    = models.IntegerField( blank=True, null=True, default=1,verbose_name='Salaire par heure')
+    pay_per_hour    = models.IntegerField( blank=True, null=True, default=1,verbose_name='Salaire par heure')
     created      = models.DateTimeField(verbose_name='Date de Création',  auto_now_add=True)
 
     updated      = models.DateTimeField(verbose_name='Date de dernière mise à jour',  auto_now=True)
@@ -546,12 +647,81 @@ class Coach(models.Model):
     custom_manager = PresenceManager()
 
     
+
+    
     def __str__(self):
         return self.last_name
+    
     
 
     def get_salaire(self):
         return self.heures_done * self.pay_per_hour
+
+    def get_view_url(self):
+        return reverse("client:CoachDetail", kwargs={"pk": self.pk})
+    
+    def get_edit_url(self):
+        return reverse('client:coach_update', kwargs={'pk': str(self.id)})
+
+    def get_delete_url(self):
+        return reverse('client:coach_delete', kwargs={'pk': str(self.id)})
+
+
+    def enter_sotrie_coach(self):
+        pending_presence = PresenceCoach.objects.filter(coach=self, hour_sortie__isnull=True)
+        print("in_salle ------------------------", pending_presence)
+        
+        if not pending_presence:
+            pending_presence = PresenceCoach.objects.get_or_create(
+                coach=self,
+                hour_entree=timezone.now().time()
+            )
+        else:
+            pending_presence = pending_presence.first()
+            pending_presence.hour_sortie = timezone.now().time()
+        
+            pending_presence.save()   
+            
+        context = {'pending_presence': pending_presence}
+        print("context*******************", context)
+        # print('hour_sortie --------------', pending_presence.hour_sortie)
+        return self
+    
+    # def enter(self):
+    #     pending_presence = self.get_pending_presence()
+    #     print("in_salle ------------------------", pending_presence)
+        
+    #     if  pending_presence:
+    #         pending_presence = PresenceCoach.objects.get_or_create(
+    #             coach=self,
+    #             hour_entree=timezone.now().time()
+    #         )
+    #     else:
+    #         pending_presence.hour_sortie = timezone.now().time()
+        
+    #     context = {'pending_presence': pending_presence}
+    #     print("context*******************", context)
+    #     # print('hour_sortie --------------', pending_presence.hour_sortie)
+    #     return self
+
+    # def sortie(self):
+    #     pending_presence = self.get_pending_presence()
+    #     print("in_salle ------------------------", pending_presence)
+    #     if  pending_presence:
+    #         pending_presence = pending_presence.first()
+    #         pending_presence.hour_sortie = timezone.now().time()
+    #         pending_presence.save()  
+
+    #     context = {'pending_presence': pending_presence}
+    #     print("context*******************", context)
+    #     # print('hour_sortie --------------', pending_presence.hour_sortie)
+    #     return self 
+
+    def get_pending_presence(self):
+        return PresenceCoach.objects.filter(coach=self, hour_sortie__isnull=True)
+        
+
+
 
     def get_view_url(self):
         return reverse("client:CoachDetail", kwargs={"pk": self.pk})
@@ -637,19 +807,34 @@ class Personnel(models.Model):
     date_added      = models.DateTimeField(auto_now_add=True, verbose_name='Date de recrutement')
     created         = models.DateTimeField(verbose_name='Date de Création',  auto_now_add=True)
     updated         = models.DateTimeField(verbose_name='Date de dernière mise à jour',  auto_now=True)
+    created         = models.DateTimeField(verbose_name='Date de Création',  auto_now_add=True)
+    updated         = models.DateTimeField(verbose_name='Date de dernière mise à jour',  auto_now=True)
 
+    history         = HistoricalRecords()
     history         = HistoricalRecords()
     state           = models.CharField(choices=STATE_CHOICES , max_length=3, verbose_name='Etat', default='A')
     note            = models.TextField(blank=True, null=True)
     social_security = models.CharField(max_length=150)
 
 
+
     def __str__(self):
         return self.first_name
     
 
+    
+    
+
     def get_view_url(self):
         return reverse("client:personnel_detail", kwargs={"pk": self.pk})
+    
+    def get_edit_url(self):
+        return reverse('client:personnel_update', kwargs={'pk': str(self.id)})
+
+    def get_delete_url(self):
+        return reverse('client:personnel_delete', kwargs={'pk': str(self.id)})
+
+
     
     def get_edit_url(self):
         return reverse('client:personnel_update', kwargs={'pk': str(self.id)})

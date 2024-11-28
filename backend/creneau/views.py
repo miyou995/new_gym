@@ -53,7 +53,7 @@ class CreateCreneau(PermissionRequiredMixin,CreateView):
         if form.is_valid():
             form.save()
             message = _("Creneau a été créé avec succès")
-            messages.success(request, str(message), extra_tags="toastr")
+            messages.success(request, str(message))
             return HttpResponse(status=204, headers={
                 'HX-Trigger': json.dumps({
                     "closeModal": "kt_modal",
@@ -78,7 +78,7 @@ class UpdateCreneau(PermissionRequiredMixin,UpdateView):
     def form_valid(self, form):
         paiement =form.save()
         print('IS FORM VALID', paiement.id)
-        messages.success(self.request, "Creneau Mis a jour avec Succés",extra_tags="toastr")
+        messages.success(self.request, "Creneau Mis a jour avec Succés")
         return HttpResponse(status=204,
             headers={
                 'HX-Trigger': json.dumps({
@@ -89,7 +89,7 @@ class UpdateCreneau(PermissionRequiredMixin,UpdateView):
             }) 
 
     def form_invalid(self, form):
-        messages.success(self.request, form.errors ,extra_tags="toastr")
+        messages.success(self.request, form.errors )
         return self.render_to_response(self.get_context_data(form=form))   
 
 class CreneauDeleteView(PermissionRequiredMixin,DeleteView):
@@ -102,7 +102,7 @@ class CreneauDeleteView(PermissionRequiredMixin,DeleteView):
         success_url = self.get_success_url()
         self.object.delete()
         print('GOOOOO')
-        messages.success(self.request, "Creneau Supprimer avec Succés",extra_tags="toastr")
+        messages.success(self.request, "Creneau Supprimer avec Succés")
         return HttpResponseRedirect(success_url)
     
 
