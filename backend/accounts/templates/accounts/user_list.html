@@ -19,7 +19,6 @@
                         data-bs-target="#kt_modal"
                         data-bs-toggle="tooltip" 
                         data-bs-placement="right"
-                        title="{% trans 'aJQSQPODKSP Correction' %}"
                         hx-get="{% url 'accounts:user_create_view' %}" 
                         hx-target="#kt_modal_content" 
                         hx-swap="innerHTML"
@@ -31,26 +30,11 @@
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
-            <div class="table-responsive">
-              <table class="table table-striped">
-                <thead>
-                    <tr class="table-header">
-                        <th>N</th>
-                        <th>Nom</th>
-                        {% comment %} <th>Depot</th> {% endcomment %}
-                        <th>Role</th>
-                        <th>Manager</th>
-                        <th>Status équipe</th>
-                        <th>Actif</th>
-                        <th>Supprimer</th>
-                    </tr>
-                </thead>
-                <tbody id="clientOrders">
-                {% for user in users %}
-                    {% include 'accounts/snippets/user_list_block.html' %}
-                {% endfor %}
-                </tbody>
-              </table>
+            <div class="table-responsive"
+                  hx-get="{% url 'accounts:userlist' %}"
+                  hx-trigger="refresh_table from:body"
+                  hx-swap="innerHTML">
+                {% include "accounts/snippets/user_list_block.html" %}
             </div>
           </div>
         </div>

@@ -133,17 +133,28 @@ class AbonnementClientHTMxTable(tables.Table):
 
 class PaiementHTMxTable(tables.Table):
     
-    recu = tables.TemplateColumn(
-            '''{% include 'buttons/action.html' with object=record modal_edit="true" %}''',
-            verbose_name='Actions',
-            orderable=False )
+    # recu = tables.TemplateColumn(
+    #         '''{% include 'buttons/action.html' with object=record modal_edit="true" %}''',
+    #         verbose_name='Actions',
+    #         orderable=False )
+    impression= tables.TemplateColumn(
+                                '''
+                                        <a class="btn btn-primary btn-sm" 
+                                        href="{% url 'transactions:impression_resu_paiement' paiement_id=record.pk  %}" 
+                                        target="_blank"
+                                        
+                                        >Imprimer </a>
+                                '''
+                                )
 
     class Meta:
         fields  = (
+                'id',
                 'amount',
                 'date_creation', 
                 'abonnement_client',
-                'recu',
+                # 'recu',
+                'impression'
          
         )
         model = Paiement

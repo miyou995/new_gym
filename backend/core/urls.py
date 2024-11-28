@@ -5,7 +5,7 @@ from .views import (IndexView,PlanningTable,SalleTable ,ActivityTable,MaladieTab
                     ,SalleDeleteView,ActiviteCreateView,ActiviteUpdateView,ActiviteDeleteView,MaladieCreateView,
                    MaladieUpdateView,MaladieDeleteView,PorteCreateView,PorteUpdateView,
                    PorteDeleteView,TypeAbonnementCreateView,TypeAbonnementUpdateView,TypeAbonnementDeleteView,
-                  )
+                  open_salle,close_salle)
 
 
 
@@ -57,7 +57,10 @@ urlpatterns = [
     path('configuration/TypeAbonnementUpdateView/<str:pk>',TypeAbonnementUpdateView.as_view(),name="TypeAbonnementUpdateView"),
     path("configuration/TypeAbonnementDeleteView/<int:pk>", TypeAbonnementDeleteView.as_view(), name="TypeAbonnementDeleteView"),
 
+# open close salle----------------------------------------------------------------------------------------------------
 
+    path('open_salle/', open_salle, name='open_salle'),
+    path('close_salle/', close_salle, name='close_salle'),
     
 
    

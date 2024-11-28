@@ -171,7 +171,14 @@ def update_temps_rest(request, pk):
         else:
             message = _("Error occures when updating product.")
             messages.error(request, str(message))
-        return JsonResponse({"success": True})
+        return HttpResponse(status=204,
+                headers={
+                    'HX-Trigger': json.dumps({
+                        "closeModal": "kt_modal",
+                        "refresh_abcs": None
+                            
+                    })
+                }) 
 
 
 
@@ -189,7 +196,14 @@ def update_paiement_rest(request, pk):
         else:
             message = _("Error occures when updating product.")
             messages.error(request, str(message))
-        return JsonResponse({"success": True})
+        return HttpResponse(status=204,
+                headers={
+                    'HX-Trigger': json.dumps({
+                        "closeModal": "kt_modal",
+                        "refresh_abcs": None
+                            
+                    })
+                }) 
 
 
 def renew_abonnement_client(request,pk):
@@ -216,7 +230,7 @@ def block_deblock_abonnement_client(request,pk):
             headers={
                 "HX-Trigger":json.dumps({
                     "closeModal":"kt_modal",
-                    "refresh_table":None
+                    "refresh_abcs":None
                 })
             })
         message = _("l'abonnement est bloqué.")
@@ -230,7 +244,7 @@ def block_deblock_abonnement_client(request,pk):
             headers={
                 "HX-Trigger":json.dumps({
                     "closeModal":"kt_modal",
-                    "refresh_table":None
+                    "refresh_abcs":None
                 })
             })
 

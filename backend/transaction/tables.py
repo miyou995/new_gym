@@ -5,29 +5,30 @@ from django.urls import reverse
 class PiaementHTMxTable(tables.Table):
     client = tables.Column(accessor="abonnement_client__client", verbose_name="Client", orderable=True ,linkify= lambda record: record.get_url(pk=record.abonnement_client.client.pk))
     nom = tables.Column(accessor="abonnement_client__client__last_name", verbose_name="nom", orderable=True ,linkify= lambda record: record.get_url(pk=record.abonnement_client.client.pk))
-    action = tables.TemplateColumn(
-            '''{% include 'buttons/action.html' with object=record modal_edit="true" %}''',
-            verbose_name='Actions',
-            orderable=False )
-#     impression= tables.TemplateColumn(
-#                                 '''
-#                                         <a class="btn btn-primary btn-sm" 
-#                                         href="{% url 'inventory:print_barcode' pk=record.pk  %}" 
-#                                         target="_blank"
+#     action = tables.TemplateColumn(
+#             '''{% include 'buttons/action.html' with object=record modal_edit="true" %}''',
+#             verbose_name='Actions',
+#             orderable=False )
+    impression= tables.TemplateColumn(
+                                '''
+                                        <a class="btn btn-primary btn-sm" 
+                                        href="{% url 'transactions:impression_resu_paiement' paiement_id=record.pk  %}" 
+                                        target="_blank"
                                         
-#                                         >Imprimer </a>
-#                                 '''
-#                                 )
+                                        >Imprimer </a>
+                                '''
+                                )
     class Meta:
         fields  = (
+                'id',
                 'client',
                 'nom',
                 'abonnement_client',
                 'amount', 
                 'notes',
                 'date_creation',
+                # 'action',
                 'impression'
-                'action',
         )
         model = Paiement
         template_name = "tables/bootstrap_htmx.html"

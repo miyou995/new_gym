@@ -1,5 +1,5 @@
 import json
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import (CreateView, DeleteView,UpdateView)
@@ -33,7 +33,10 @@ def abc_creneau_view(request):
         return HttpResponse("<option>------</option>")
 
 
-
+def render_calendar(request):
+    print("render calander*********************")
+    template_name="snippets/calender_partial.html"
+    return render(request,template_name)
 
 
 class CreateCreneau(PermissionRequiredMixin,CreateView):
@@ -54,12 +57,13 @@ class CreateCreneau(PermissionRequiredMixin,CreateView):
             form.save()
             message = _("Creneau a été créé avec succès")
             messages.success(request, str(message))
-            return HttpResponse(status=204, headers={
-                'HX-Trigger': json.dumps({
-                    "closeModal": "kt_modal",
-                    "refresh_table": None
-                })
-            })
+            # return HttpResponse(status=204, headers={
+            #     'HX-Trigger': json.dumps({
+            #         "closeModal": "kt_modal",
+            #         "refresh_table": None
+            #     })
+            # })
+            return HttpResponseRedirect(self.request.META.get('HTTP_REFERER'))
         else :
             print('is not valide', form.errors.as_data())
             context = {'form': form}
@@ -79,14 +83,7 @@ class UpdateCreneau(PermissionRequiredMixin,UpdateView):
         paiement =form.save()
         print('IS FORM VALID', paiement.id)
         messages.success(self.request, "Creneau Mis a jour avec Succés")
-        return HttpResponse(status=204,
-            headers={
-                'HX-Trigger': json.dumps({
-                    "closeModal": "kt_modal",
-                    "refresh_table": None,
-                    
-                })
-            }) 
+        return HttpResponseRedirect(self.request.META.get('HTTP_REFERER'))
 
     def form_invalid(self, form):
         messages.success(self.request, form.errors )

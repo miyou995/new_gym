@@ -501,7 +501,7 @@ def presence_coach(request, pk):
         messages.success(request, "Entrée /Sorté Coach Enregistrée")
     else :
         messages.error(request, "Coach ")
-    return HttpResponse(status=204)
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 # ----------------------------------------Personnel detail --------------------------------------------------

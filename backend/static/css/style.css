@@ -76,12 +76,12 @@ tr.htmx-swapping td {
 .table thead th {
     /* background-color: #a7c6e7; */
     color: rgb(0, 0, 0);
-    text-align: center; 
+   
     vertical-align: middle; 
 }
 
 .table tbody td {
-    text-align: center; /* Center text in body cells */
+    /* Center text in body cells */
     vertical-align: middle; /* Center text vertically */
 }
 
