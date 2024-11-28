@@ -1,7 +1,7 @@
 
 from django.urls import path
 from .views import (ClientCreateView,ClientView,CoachsView,CoachCreateView,
-                    PersonnelsView,PersonnelCreateView,AbonnementClientDetail,
+                    PersonnelsView,PersonnelCreateView,ClientDetailView,
                     ClientUpdateView,ClientDeleteView,CoachUpdateView,CoachDeleteView,
                     PersonnelUpdateView,PersonnelDeleteView,PaiementClientDetail,
                     VirementsCoachDetail,CoachDetail,PresenceCoachDetail,presence_coach,
@@ -31,8 +31,10 @@ urlpatterns = [
     
     
 
-    path('client/client_detail/<str:pk>',AbonnementClientDetail.as_view(),name='client_detail'),
-    path('client/paiement_client_detail/<str:pk>',PaiementClientDetail.as_view(),name='paiement_client_detail'),
+
+    path('client/client_detail/<str:pk>',ClientDetailView.as_view(),name='client_detail'),
+    path('client/PaiementClientDetail/<str:pk>',PaiementClientDetail.as_view(),name='PaiementClientDetail'),
+
     path('client/presence_client_detail/<str:pk>',PresenceClientDetail.as_view(),name='presence_client_detail'),
 
 

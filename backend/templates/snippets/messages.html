@@ -1,162 +1,82 @@
 {% load i18n %}
 
- <script type="text/javascript">
-  window.addEventListener("DOMContentLoaded", (e) => {
-    {% if messages %}
-      {% for message in messages %}
-        {% if 'toastr' in message.tags %}
-          {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
-            toastr.error('{{ message }}')
-          {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
-            toastr.warning('{{ message }}')
-          {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
-            toastr.info('{{ message }}')
-          {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
-            toastr.success('{{ message }}')
-          {% else %}
-            toastr.error('{% translate "Contact support. Unknown error" %} {{ message }}')
-          {% endif %}
-        {% endif %}
-      {% endfor %}
-    {% endif %}
-  });
-</script>
+
+{% if messages %}
+{% for message in messages %}
+	<div class="toast-container position-fixed top-0 end-0 p-3">
+		<div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+			<div class="toast-header">
+				{% comment %} <i class="ki-duotone ki-abstract-39 fs-2 text-primary me-3">
+					<span class="path1"></span>
+					<span class="path2"></span>
+				</i> {% endcomment %}
+				<strong class="me-auto">{{message.tags}}</strong>
+				{% comment %} <small>{{message.tags}}</small> {% endcomment %}
+				<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+			</div>
+			<div class="toast-body">
+				{{message}}
+			</div>
+		</div>
+	</div>
+{% endfor %}
+{% endif %}
 
 
+{% comment %} <div data-toast-container class="toast-container position-fixed top-0 end-0 p-3">
+	<div data-toast-template class="toast text-success bg-success" role="alert" aria-live="assertive" aria-atomic="true">
+		<div class="toast-header bg-success">
+			<i class="ki-duotone ki-abstract-39 fs-2 text-primary me-3">
+				<span class="path1"></span>
+				<span class="path2"></span>
+			</i> 
+			<strong data-toast-tags class="me-auto"></strong>
+			<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+		</div>
+		<div data-toast-body class="toast-body">
+		
+		</div>
+	</div>
+</div> {% endcomment %}
 
-<div id="toast-container">
-  <div data-toast-container class="toast-container position-fixed top-0 end-0 p-3">
-    <!-- Toasts will be dynamically injected here -->
-  </div>
+
+{% comment %} <div data-toast-template id="toast-container">
+<div data-toast-container class="toast-container position-fixed top-0 end-0 p-3">
+	<!-- Toasts will be dynamically injected here -->
+	<div data-toast-body class="toast-body">
+		
+		</div>
 </div>
+</div> {% endcomment %}
 
-<script>
-  document.body.addEventListener('htmx:afterRequest', (event) => {
-      const trigger = event.detail.xhr.getResponseHeader('HX-Trigger');
-      if (trigger) {
-          const data = JSON.parse(trigger);
-          
-          if (data.messages) {
-              const container = document.querySelector('[data-toast-container]');
-              container.innerHTML = ''; // Clear any existing messages
-              
-              data.messages.forEach(msg => {
-                  if (msg.tags.includes('toastr')) {
-                      // Handle Toastr messages
-                      if (msg.tags.includes('error')) {
-                          toastr.error(msg.message);
-                      } else if (msg.tags.includes('warning')) {
-                          toastr.warning(msg.message);
-                      } else if (msg.tags.includes('info')) {
-                          toastr.info(msg.message);
-                      } else if (msg.tags.includes('success')) {
-                          toastr.success(msg.message);
-                      }
-                  } else {
-                      // Handle Bootstrap toast messages
-                      const toastTemplate = document.querySelector('[data-toast-template]');
-                      const toastClone = toastTemplate.cloneNode(true);
-                      toastClone.querySelector('[data-toast-body]').textContent = msg.message;
-                      
-                      // Set additional classes or styles as needed based on message tags
-                      if (msg.tags.includes('error')) {
-                          toastClone.classList.add('bg-danger');
-                      } else if (msg.tags.includes('warning')) {
-                          toastClone.classList.add('bg-warning');
-                      } else if (msg.tags.includes('info')) {
-                          toastClone.classList.add('bg-info');
-                      } else if (msg.tags.includes('success')) {
-                          toastClone.classList.add('bg-success');
-                      }
-                      
-                      container.appendChild(toastClone);
-                      setTimeout(function(){
-                        console.log("HEEEY eventsId here HTMX REQUEST");
-                        const bsToast = new bootstrap.Toast(toastClone );  // Initialize the toast
-                        bsToast.show();  // Show the toast
-                    },600)
-                  }
-              });
-          }
-      }
-  });
-</script> 
+{% comment %} 
+<div data-toast-container class="toast-container position-fixed top-0 end-0 p-3">
+	<div data-toast-template>
+		<div 
+			data-toast-tags
+			class="toast show align-items-center  border-0" 
+		>
+			<div class="d-flex" data-toast-container>
+				<div data-toast-body class="toast-body">
+					Hello, world! This is a toast message.
+				</div>
+				<button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+			</div>
+		</div> 
+	</div> 
+</div> {% endcomment %}
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	{% comment %} <script>
-    
-      document.addEventListener('htmx:afterRequest', (event) => {
-        if (event.detail.xhr.status === 204) {
-          // Extract the message from the HX-Trigger header
-          const triggers = event.detail.xhr.getResponseHeader('HX-Trigger');
-          if (triggers) {
-            const parsedTriggers = JSON.parse(triggers);
-            const toastrMessage = parsedTriggers.showToastr;  // Get the message from the trigger
-    
-            // Store the message in localStorage
-            localStorage.setItem('toastrMessage', toastrMessage);
-            localStorage.setItem('toastrMessageType', 'success');  // Assuming a success type message
-    
-            // Reload the page to display the message
-            window.location.reload();
-          }
-        }
-      });
-    
-     
-      window.addEventListener('DOMContentLoaded', (e) => {
-        const message = localStorage.getItem('toastrMessage');
-        const messageType = localStorage.getItem('toastrMessageType');
-    
-        if (message) {
-          // Display the Toastr message based on the type
-          setTimeout(function() {
-            if (messageType === 'success') {
-              toastr.success(message);
-            } else if (messageType === 'error') {
-              toastr.error(message);
-            } else if (messageType === 'warning') {
-              toastr.warning(message);
-            } else if (messageType === 'info') {
-              toastr.info(message);
-            }
-          }, 600);  // Delay by 600 milliseconds
-    
-          // Clear the message from localStorage
-          localStorage.removeItem('toastrMessage');
-          localStorage.removeItem('toastrMessageType');
-        }
-      });
-    </script> {% endcomment %}
-    
-	  
-
-
-
-
-
-
-
-
-
-
+<div data-toast-container class="toast-container position-fixed top-0 end-0 p-3">
+	<div data-toast-template class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+		<div data-toast-header class="toast-header ">
+			<i class="ki-solid ki-abstract-9 fs-2x"></i>
+			<strong data-toast-tags class="me-auto"></strong>
+			<small>{{message.tags}}</small>
+			<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+		</div>
+		<div data-toast-body class="toast-body">
+		</div>
+	</div>
+</div>

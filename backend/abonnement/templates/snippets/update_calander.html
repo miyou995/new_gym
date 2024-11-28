@@ -7,7 +7,7 @@
     <div class="card-header py-0">
         <ul class="nav nav-tabs nav-line-tabs fs-6">
             <li class="nav-item">
-                <a class="nav-link active" data-bs-toggle="tab" href="#kt_tab_pane_1">Modification</a>
+                <a class="nav-link active" data-bs-toggle="tab" href="#kt_tab_pane_1">Modification OUIIIIII</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="tab" href="#kt_tab_pane_2">Reste seances / bloqué</a>
@@ -36,13 +36,14 @@
                                 <label class="fs-6 fw-semibold mb-1">
                                     <span class="card-label fw-bold text-grey-800">Plannings</span>
                                 </label>
-                                {{ filter.form.planning|add_class:"form-control" |attr:"disabled:disabled" }}
+                                {{ filter.form.planning|add_class:"form-control"|attr:"disabled:disabled" }}
                             </div>
                             <div class="form-group mb-0">
                                 <label class="fs-6 fw-semibold mb-1">
                                     <span class="card-label fw-bold text-grey-800">Type d'abonnement</span>
                                 </label>
-                                {{ filter.form.abonnement|add_class:"form-control" |attr:"id:abonnement-select" |attr:"disabled:disabled" }}
+                                {% render_field filter.form.type_abonnement|add_class:"form-control"|attr:"id:abonnement-select"|attr:"disabled:disabled" %}
+                                {% comment %} {{ filter.form.type_abonnement|add_class:"form-control"|attr:"id:abonnement-select" |attr:"disabled:disabled" }} {% endcomment %}
                                 
                             </div>
                         </form>
@@ -51,16 +52,16 @@
                                 <label class="fs-6 fw-semibold mb-1">
                                     <span class="card-label fw-bold text-grey-800">Début Date</span>
                                 </label>
-                                <input type="date" name="debut_date" class="form-control" id="debut_date" />
-                           </div>
+                                {% render_field form.start_date|attr:"required"|add_class:"form-control" %}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div id="calendarWrapper" class="card-body p-0">
                 <div class="container-fluid">
-                    <div id="eventsId" data-events='{{events}}' ></div>
-                    <div id="selected_eventsID" data-events='{{seleced_events}}' ></div>
+                    <div id="eventsId" data-events='{{events}}' data-selected-events='{{seleced_events}}' ></div>
+                    <div id="selected_eventsID"  ></div>
                     <div class="row">
                         <div class="col-md-12">
                             <div id="calendar" style="width: 100%;"></div>
@@ -79,12 +80,11 @@
                     id="add-abonnement-btn"
                     type="button"
                     class="btn btn-primary"
-                    hx-post="{% url 'abonnement:update_abonnement_client' pk=abc.pk type_abonnement=abc.type_abonnement.pk  %}" 
-                    {% comment %} hx-post="{% if filter.form.abonnement.value %}{% url 'abonnement:update_abonnement_client' pk=abc.pk type_abonnement=filter.form.abonnement.value %}{% else %}# {% endif %}" {% endcomment %}
+                    hx-post="{% url 'abonnement:update_abonnement_client' pk=abc.pk %}" 
                     hx-trigger="click"
-                    hx-vals="{}"  
+                    hx-include="[name='start_date']"
                     >
-                    {% trans "Confirmer" %}
+                    {% trans "Confirmer Update" %}
                 </button>
             </div>
         </div>
@@ -138,7 +138,7 @@
                 type="button"
                 class="btn btn-primary align-self-end"
                 hx-trigger="click"
-                hx-post="{% url 'abonnement:renew_abonnemetn_client' pk=abc.pk %}"
+                hx-post="{% url 'abonnement:renew_abonnement_client' pk=abc.pk %}"
                 hx-vals="{renouvle: document.getElementById('renouvle').value}"
                 hx-include="#renouvle">
                 {% trans "Renouveler l'abonnement" %}

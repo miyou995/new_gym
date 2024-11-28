@@ -89,7 +89,15 @@
     "react-to-print": "^2.14.12",
     "react-toastify": "^6.2.0",
     "react-weekly-schedule": "0.0.0-development",
+<<<<<<< HEAD
     "recharts": "^2.12.7",
+=======
+<<<<<<< HEAD
+    "recharts": "^2.12.7",
+=======
+    "recharts": "^1.8.5",
+>>>>>>> 11d81fe146d182f958a5abd5e284d6c683c52b1d
+>>>>>>> taki
     "slick-carousel": "^1.8.1",
     "sweetalert": "^2.1.2",
     "sweetalert2": "^10.15.5",

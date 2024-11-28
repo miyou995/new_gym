@@ -14,8 +14,8 @@ class ClientFilter(django_filters.FilterSet):
         fields = ['search']
 
     def universal_search(self, queryset, name, value):
-        print('Filter value:', value)
-        print('Initial queryset:', queryset)
+        # print('Filter value:', value)
+        # print('Initial queryset:', queryset)
 
         # Check if the search value is numeric (possibly an ID)
         if value.replace(".", "", 1).isdigit():
@@ -24,7 +24,7 @@ class ClientFilter(django_filters.FilterSet):
             # Check if the search value matches any location names
             queryset = queryset.filter(Q(last_name__icontains=value)  | Q(first_name__icontains=value)  | Q(id__icontains=value))
 
-        print('Filtered queryset:', queryset)
+        # print('Filtered queryset:', queryset)
         return queryset.distinct()
    
 
@@ -37,8 +37,8 @@ class CoachFilter(django_filters.FilterSet):
         fields = ['search']
 
     def universal_search(self, queryset, name, value):
-        print('Filter value:', value)
-        print('Initial queryset:', queryset)
+        # print('Filter value:', value)
+        # print('Initial queryset:', queryset)
 
         # Check if the search value is numeric (possibly an ID)
         if value.replace(".", "", 1).isdigit():
@@ -47,7 +47,7 @@ class CoachFilter(django_filters.FilterSet):
             # Check if the search value matches any location names
             queryset = queryset.filter(Q(last_name__icontains=value)  | Q(first_name__icontains=value)  | Q(id__icontains=value))
 
-        print('Filtered queryset:', queryset)
+        # print('Filtered queryset:', queryset)
         return queryset.distinct()
 
 class PersonnelFilter(django_filters.FilterSet):
@@ -59,8 +59,8 @@ class PersonnelFilter(django_filters.FilterSet):
         fields = ['search']
 
     def universal_search(self, queryset, name, value):
-        print('Filter value:', value)
-        print('Initial queryset:', queryset)
+        # print('Filter value:', value)
+        # print('Initial queryset:', queryset)
 
         # Check if the search value is numeric (possibly an ID)
         if value.replace(".", "", 1).isdigit():
@@ -69,7 +69,7 @@ class PersonnelFilter(django_filters.FilterSet):
             # Check if the search value matches any location names
             queryset = queryset.filter(Q(last_name__icontains=value)  | Q(first_name__icontains=value)  | Q(id__icontains=value))
 
-        print('Filtered queryset:', queryset)
+        # print('Filtered queryset:', queryset)
         return queryset.distinct()
     
 

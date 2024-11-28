@@ -226,7 +226,7 @@ class paiement(PermissionRequiredMixin,CreateView):
             print("is valide")
             paiement = form.save()
             message = _("un paiement a été créé avec succès")
-            messages.success(request, str(message), extra_tags="toastr")
+            messages.success(request, str(message))
             return HttpResponse(status=204, headers={
                 'HX-Trigger': json.dumps({
                     "closeModal": "kt_modal",
@@ -259,7 +259,7 @@ class PaiementUpdateView(PermissionRequiredMixin,UpdateView):
     def form_valid(self, form):
         paiement =form.save()
         print('IS FORM VALID', paiement.id)
-        messages.success(self.request, "paiement Mis a jour avec Succés",extra_tags="toastr")
+        messages.success(self.request, "paiement Mis a jour avec Succés")
         return HttpResponse(status=204,
             headers={
                 'HX-Trigger': json.dumps({
@@ -270,7 +270,7 @@ class PaiementUpdateView(PermissionRequiredMixin,UpdateView):
             }) 
     
     def form_invalid(self, form):
-        messages.success(self.request, form.errors ,extra_tags="toastr")
+        messages.success(self.request, form.errors )
         return self.render_to_response(self.get_context_data(form=form))   
 
 class PaiementDeleteView(PermissionRequiredMixin,DeleteView):
@@ -288,7 +288,7 @@ class PaiementDeleteView(PermissionRequiredMixin,DeleteView):
     def form_valid(self, form):
         success_url = self.get_success_url()
         self.object.delete()
-        messages.success(self.request, "Paiement Supprimer avec Succés",extra_tags="toastr")
+        messages.success(self.request, "Paiement Supprimer avec Succés")
         return HttpResponseRedirect(success_url)
  
 
@@ -319,7 +319,7 @@ class Remuneration_Personnel(PermissionRequiredMixin,CreateView):
             print("is valide")
             form.save()
             message = _("Remuniration Personnel a été créé avec succès")
-            messages.success(request, str(message), extra_tags="toastr")
+            messages.success(request, str(message))
             return HttpResponse(status=204, headers={
                 'HX-Trigger': json.dumps({
                     "closeModal": "kt_modal",
@@ -349,7 +349,7 @@ class RemuPersonnelUpdateView(PermissionRequiredMixin,UpdateView):
     def form_valid(self,form):
         remuneration=form.save()
         print("is from valid",remuneration.id)
-        messages.success(self.request,"remuniration Personnel Mis a jour avec Succés",extra_tags="toastr")
+        messages.success(self.request,"remuniration Personnel Mis a jour avec Succés")
         return HttpResponse(status=204,
             headers={
                 "HX-Trigger":json.dumps({
@@ -358,7 +358,7 @@ class RemuPersonnelUpdateView(PermissionRequiredMixin,UpdateView):
                 })
             })
     def form_invalid(self, form):
-        messages.success(self.request, form.errors ,extra_tags="toastr")
+        messages.success(self.request, form.errors )
         return self.render_to_response(self.get_context_data(form=form))   
 
 class RemuPersonnelDeleteView(PermissionRequiredMixin,DeleteView):
@@ -375,7 +375,7 @@ class RemuPersonnelDeleteView(PermissionRequiredMixin,DeleteView):
     def form_valid(self,form):
         success_url = self.get_success_url()
         self.object.delete()
-        messages.success(self.request, "Remuniration Personnel Supprimer avec Succés",extra_tags="toastr")
+        messages.success(self.request, "Remuniration Personnel Supprimer avec Succés")
         return HttpResponseRedirect(success_url)
 
 #remuneration Coach ------------------------------------------------------------------------------------------
@@ -405,7 +405,7 @@ class Remuneration_Coach(PermissionRequiredMixin,CreateView):
             print("is valide")
             remuneration = form.save()
             message = _("Remuniration Coach a été créé avec succès")
-            messages.success(request, str(message), extra_tags="toastr")
+            messages.success(request, str(message))
             return HttpResponse(status=204, headers={
                 'HX-Trigger': json.dumps({
                     "closeModal": "kt_modal",
@@ -434,7 +434,7 @@ class Remuneration_CoachUpdateView(PermissionRequiredMixin,UpdateView):
     def form_valid(self, form):
         remuCoach=form.save()
         print('is from valid',remuCoach.id)
-        messages.success(self.request,"Remuneration Coach Mis a jour avec Succés ",extra_tags="toastr")
+        messages.success(self.request,"Remuneration Coach Mis a jour avec Succés ")
         return HttpResponse(status=204,
             headers={
                 "HX-Trigger":json.dumps({
@@ -444,7 +444,7 @@ class Remuneration_CoachUpdateView(PermissionRequiredMixin,UpdateView):
                 })
             })
     def form_invalid(self, form):
-        messages.success(self.request, form.errors ,extra_tags="toastr")
+        messages.success(self.request, form.errors )
         return self.render_to_response(self.get_context_data(form=form))   
     
 
@@ -457,7 +457,7 @@ class RemCoachDeleteView(PermissionRequiredMixin,DeleteView):
     def form_valid(self,form):
         success_url = self.get_success_url()
         self.object.delete()
-        messages.success(self.request, "Remuniration Coach Supprimer avec Succés",extra_tags="toastr")
+        messages.success(self.request, "Remuniration Coach Supprimer avec Succés")
         return HttpResponseRedirect(success_url)
 
 # Auter Transaction------------------------------------------------------------------------------------------
@@ -475,7 +475,7 @@ def Autre_Transaction(request):
             print("is valide")
             remuniration=form.save()
             message=_("Autre transaction created successfully")
-            messages.success(request,str(message),extra_tags="toastr")
+            messages.success(request,str(message))
             return HttpResponse(status=204,
                 headers={
                     'HX-Trigger' :json.dumps({
@@ -507,7 +507,7 @@ class Autre_TransactionUpdateView(PermissionRequiredMixin,UpdateView):
         return super().get(request,*args, **kwargs)
     def form_valid(self,form):
         form.save()
-        messages.success(self.request,"Autre transactions Mis A Jour avec Succés",extra_tags="toastr")
+        messages.success(self.request,"Autre transactions Mis A Jour avec Succés")
         return HttpResponse(status=204,
                 headers={
                     'HX-Trigger':json.dumps({
@@ -517,7 +517,7 @@ class Autre_TransactionUpdateView(PermissionRequiredMixin,UpdateView):
                     })
                 })
     def form_invalid(self,form):
-        messages.success(self.request,form.errors ,extra_tags="toastr")
+        messages.success(self.request,form.errors )
         return self.render_to_response(self.get_context_data(form=form))
 
 
@@ -530,7 +530,7 @@ class AutreTransactionDelete(PermissionRequiredMixin,DeleteView):
     def form_valid(self,form):
         success_url = self.get_success_url()
         self.object.delete()
-        messages.success(self.request, "Autre transaction Supprimer avec Succés",extra_tags="toastr")
+        messages.success(self.request, "Autre transaction Supprimer avec Succés")
         return HttpResponseRedirect(success_url)
 
     
