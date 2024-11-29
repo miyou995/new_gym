@@ -26,16 +26,64 @@ from itertools import chain
 from django.db.models import Count
 from django.contrib.auth.decorators import  permission_required
 from django_htmx.http import HttpResponseClientRedirect
-
+import logging
+from django.urls import reverse
+from django.shortcuts import redirect
+from django.urls import reverse_lazy
+from django.conf import settings
+from salle_activite.utils import revoke_all_tasks
+from celery import group
+from salle_activite.tasks import ( 
+	start_linsten_test_device_1, 
+	start_linsten_test_device_2, 
+	start_linsten_2,
+	start_linsten_3, 
+	start_linsten_4, 
+	start_linsten_5, 
+	start_linsten_6, 
+	start_linsten_7,
+	start_linsten_8, 
+	start_linsten_9, 
+	start_face_door_right, 
+	start_face_door_left, 
+)
+logger = logging.getLogger(__name__)
 
 def open_salle(request):
+    """
+        Open All The Doors
+    """
     print("open salle *-*-*--*-*-*-*-*-*")
     success_url = reverse_lazy("core:planning_table")
-
+    logger.info("Open All The Doors inited...")
+    revoke_all_tasks()
+    if settings.DEBUG:
+        group(
+            start_linsten_test_device_1.delay(),
+            start_linsten_test_device_2.delay(),
+        )
+    else:
+        group(
+            start_linsten_2.delay(),
+            # start_linsten_3.delay(),
+            # start_linsten_4.delay(),
+            # start_linsten_5.delay(),
+            # start_linsten_6.delay(),
+            # start_linsten_7.delay(),
+            # start_linsten_8.delay(),
+            # start_linsten_9.delay(),
+            start_face_door_right.delay(),
+            start_face_door_left.delay()
+        )
+    messages.success(request, "Gym est ouverte avec succès.")
+    logger.info("La salle de gym est ouverte avec succès.")
     return redirect(success_url)
 
 def close_salle(request):
     success_url = reverse_lazy("core:planning_table")
+    revoke_all_tasks()
+    messages.success(request, "Gym est fermée avec succès.")
+    logger.info("La salle de gym est fermée avec succès.")
     print("close salle *-*-*--*-*-*-*-*-*")
     return HttpResponseRedirect(success_url)
 

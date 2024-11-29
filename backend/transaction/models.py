@@ -184,25 +184,28 @@ post_save.connect(salaire_coach_signal, sender=RemunerationProf)
 
 def fin_assurance_signal(sender, instance, created, **kwargs):
     if created:
-        id_client = instance.client.id
-        client = Client.objects.get(id=id_client)
-        this_year = datetime.now().year
-        this_month = datetime.now().month
-        this_day = datetime.now().day
+        try:
+            id_client = instance.client.id
+            client = Client.objects.get(id=id_client)
+            this_year = datetime.now().year
+            this_month = datetime.now().month
+            this_day = datetime.now().day
 
-        if this_month == 1:
-            fin_year = this_year
-            fin_month = 12
-            fin_day = calendar.monthrange(fin_year, fin_month)[1]
-            
-        else: 
-            fin_year = this_year +1
-            fin_month = this_month -1
-            fin_day = calendar.monthrange(fin_year, fin_month)[1]
-            
-        date_fin = datetime(fin_year, fin_month, fin_day)
-        client.fin_assurance = date_fin
-    
-    client.save()
+            if this_month == 1:
+                fin_year = this_year
+                fin_month = 12
+                fin_day = calendar.monthrange(fin_year, fin_month)[1]
+                
+            else: 
+                fin_year = this_year +1
+                fin_month = this_month -1
+                fin_day = calendar.monthrange(fin_year, fin_month)[1]
+                
+            date_fin = datetime(fin_year, fin_month, fin_day)
+            client.fin_assurance = date_fin
+            client.save()
+        except:
+            print('waht is this', instance.id)    
+            print('waht is this', instance.__class__)    
 
 post_save.connect(fin_assurance_signal, sender=AssuranceTransaction)

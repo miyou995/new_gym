@@ -74,7 +74,7 @@ def manage_door(ip, port, username, password): # PROD
                 logger.warning('Could not stop device ERROR ON  Ip--------->{}'.format(device.ip))
                 # logger.warning('Could not stop device ERROR ON  Ip--------->{}'.format(ip))
             break
-
+ 
 @shared_task(bind=True)
 def start_linsten_test_device_1(self):
     manage_door(ip='192.168.0.145', port=37777, username='admin', password='123456')
@@ -90,7 +90,6 @@ def start_linsten_test_device_2(self):
 
 @shared_task(bind=True)
 def start_linsten_2(self):
-
     manage_door(ip='192.168.1.230', port=37777, username='admin', password='123456')
     app.control.revoke(self.request.id, terminate=True)
         
