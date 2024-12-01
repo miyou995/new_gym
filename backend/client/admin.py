@@ -24,6 +24,8 @@ from import_export.fields import Field
 
 
 from .models import  Client,Maladie,Personnel,Coach
+from django.urls import path
+from django.shortcuts import render, get_object_or_404
 
 admin.site.register(Maladie)
 admin.site.register(Personnel)
@@ -42,7 +44,11 @@ class clientAdmin(admin.ModelAdmin):
         "birth_date",
         
        )
-    
+    search_fields = ("last_name", "first_name", "email")
+    list_filter = ("civility", "birth_date")
+    ordering = ("last_name", "first_name")
+    readonly_fields = ("date_added",)
+    list_display_links = ("carte", "last_name", "first_name")
 
 
   

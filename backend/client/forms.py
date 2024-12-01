@@ -5,6 +5,13 @@ import re
 
 
 class ClientModelForm(forms.ModelForm):
+    carte = forms.IntegerField(
+        required=True,
+        error_messages={
+            'required': 'Veuillez renseigner ce champ.',
+            'invalid': 'Veuillez entrer un numéro de carte valide.',
+        }
+    )
     maladies = forms.ModelMultipleChoiceField(
         queryset=Maladie.objects.all(),
         required=False,
@@ -53,6 +60,7 @@ class ClientModelForm(forms.ModelForm):
 
     def clean(self):
         cleaned_data = super().clean()
+        card=cleaned_data.get('carte')
         phone=cleaned_data.get('phone')
         last_name=cleaned_data.get('last_name')
 
@@ -61,12 +69,14 @@ class ClientModelForm(forms.ModelForm):
      
         if not phone :
             self.add_error('phone',_("Veuillez renseigner ce champ "))
-   
+        
         if phone:
+            trim_phone = phone.replace(" ", "")
             phone_pattern = re.compile(r'^(0)(5|6|7)[0-9]{8}$')
-            if not phone_pattern.match(phone):
-                self.add_error('phone',_("Veuillez entrer un numéro de téléphone valide "))  
+            if not phone_pattern.match(trim_phone):
+                self.add_error('phone', _("Veuillez entrer un numéro de téléphone valide "))  
         return cleaned_data
+    
     
 class CoachModelForm(forms.ModelForm):
     
