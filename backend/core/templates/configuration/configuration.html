@@ -116,6 +116,111 @@
                     </div>
                 </div>
                 
+<<<<<<< HEAD
+                <!-- Row 2: Activités and Maladies -->
+                <div class="row g-4 mb-4">
+                    <div class="col-sm-6">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-header bg-lightblue text-dark align-items-center py-3 "  >
+                                <h3 class="card-title">Activités</h3>
+                                <div class="card-toolbar d-flex justify-content-end">
+                                    {% if perms.salle_activite.add_activity %}
+                                    <a href="#" class="btn btn-sm  btn-primary btn-radius color-container"
+                                       data-bs-toggle="modal"
+                                       data-bs-target="#kt_modal"
+                                       hx-get="{% url 'core:ActiviteCreateView' %}"
+                                       hx-target="#kt_modal_content"
+                                       hx-swap="innerHTML">
+                                        {% trans 'Ajouter' %}
+                                    </a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            {% comment %} {% if perms.salle_activite.view_activity %} {% endcomment %}
+                            <div class="card-body p-3">
+                                <div id="ActivityTable" class="table-responsive" hx-get="{% url 'core:ActivityTable' %}"
+                                hx-trigger="refresh_table from:body,revealed" hx-swap="innerHTML">
+                                </div>
+                            </div>
+                            {% comment %} {% endif %} {% endcomment %}
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-header bg-lightblue text-dark align-items-center py-3 "  >
+                                <h3 class="card-title">Portes</h3>
+                                <div class="card-toolbar d-flex justify-content-end">
+                                    {% if perms.salle_activite.add_door %}
+                                        <a href="#" class="btn btn-sm  btn-primary btn-radius color-container"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#kt_modal"
+                                        hx-get="{% url 'core:PorteCreateView' %}"
+                                        hx-target="#kt_modal_content"
+                                        hx-swap="innerHTML">
+                                            {% trans 'Ajouter' %}
+                                        </a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="card-body p-3">
+                                <div id="PortesTable" class="table-responsive" hx-get="{% url 'core:PortesTable' %}"
+                                hx-trigger="refresh_table from:body,revealed" hx-swap="innerHTML">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+                
+                <!-- Row 3: Portes and Type D'abonnement -->
+                <div class="row g-4 mb-4">
+                    <div class="col-sm-4">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-header bg-lightblue text-dark align-items-center py-3 "  >
+                                <h3 class="card-title">Maladies</h3>
+                                <div class="card-toolbar d-flex justify-content-end">
+                                    <a href="#" class="btn btn-sm  btn-primary btn-radius color-container"
+                                       data-bs-toggle="modal"
+                                       data-bs-target="#kt_modal"
+                                       hx-get="{% url 'core:MaladieCreateView' %}"
+                                       hx-target="#kt_modal_content"
+                                       hx-swap="innerHTML">
+                                        {% trans 'Ajouter' %}
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="card-body p-3">
+                                <div id="MaladieTable" class="table-responsive" hx-get="{% url 'core:MaladieTable' %}"
+                                hx-trigger="refresh_table from:body,revealed" hx-swap="innerHTML">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="card h-100 shadow-sm">
+                                <div class="card-header bg-lightblue text-dark align-items-center py-3 "  >
+                                <h3 class="card-title">Type D'abonnement</h3>
+                                <div class="card-toolbar d-flex justify-content-end">
+                                    {% if perms.abonnement.add_abonnement %}
+                                        <a href="#" class="btn btn-sm  btn-primary btn-radius color-container"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#kt_modal"
+                                        hx-get="{% url 'core:TypeAbonnementCreateView' %}"
+                                        hx-target="#kt_modal_content"
+                                        hx-swap="innerHTML">
+                                            {% trans 'Ajouter' %}
+                                        </a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                           
+                            <div class="card-body p-3">
+                                <div id="AbonnementTable" class="table-responsive" hx-get="{% url 'core:AbonnementTable' %}"
+                                    hx-trigger="refresh_table from:body,revealed" hx-swap="innerHTML">
+                                </div>
+                            </div>
+                           
+=======
                 <div class="col-sm-6">
                     <div class="card h-100 shadow-sm">
                         <div class="card-header bg-lightblue text-dark align-items-center py-3 "  >
@@ -135,6 +240,7 @@
                             <div id="MaladieTable" class="table-responsive" hx-get="{% url 'core:MaladieTable' %}"
                             hx-trigger="refresh_table from:body,revealed" hx-swap="innerHTML">
                             </div>
+>>>>>>> 8570a09363aa5c99feb0ce83bcbd8f8078a6c226
                         </div>
                     </div>
                 </div>

@@ -11,7 +11,7 @@ from django.urls import reverse
 
 
 class PlannigHTMxTable(tables.Table):
-#     name = tables.Column(accessor="name", verbose_name="Nom", orderable=True ,linkify= lambda record: record.get_edit_url())
+    #  name = tables.Column(accessor="name", verbose_name="Nom", orderable=True ,linkify= lambda record: record.get_edit_url())
       name = tables.TemplateColumn(
         template_code='''
         {% if perms.planning.change_planning %}
@@ -28,10 +28,12 @@ class PlannigHTMxTable(tables.Table):
         {% else %}
             {{ record.name }}
         {% endif %}
-        ''')
+        ''',
+        verbose_name="Nom")
       class Meta:
         fields  = (
                 'name',
+                "is_default"
                
         )
         model = Planning
@@ -54,10 +56,12 @@ class SalleHTMxTable(tables.Table):
         {% else %}
             {{ record.name }}
         {% endif %}
-        ''')
+        ''',
+        verbose_name="Nom")
     class Meta:
         fields  = (
                 'name',
+               "is_default"
         )
         model = Salle
         template_name = "tables/bootstrap_htmx.html"
@@ -79,7 +83,8 @@ class ActivityHTMxTable(tables.Table):
         {% else %}
             {{ record.name }}
         {% endif %}
-        ''')
+        ''',
+        verbose_name="Nom")
     class Meta:
         fields  = (
                 'name',   
@@ -101,7 +106,8 @@ class MaladieHTMxTable(tables.Table):
                 hx-swap="innerHTML">
                 {{ record.name }}
             </a>
-        ''')
+        ''',
+        verbose_name="Nom")
     class Meta:
         fields  = (
                 'name',
@@ -156,7 +162,8 @@ class AbonnementHTMxTable(tables.Table):
             {% else %}
                 {{ record.name }}
             {% endif %}
-        '''
+        ''',
+        verbose_name="Nom"
     )
 
     type_of = tables.Column(accessor="type_of", verbose_name="Type", orderable=True)
