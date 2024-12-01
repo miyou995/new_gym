@@ -239,7 +239,7 @@ LOGGING ={
 
 AUTH_USER_MODEL = 'accounts.User'
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fr-fr'
 
 TIME_ZONE = 'Africa/Algiers'
 # TIME_ZONE = 'UTC'

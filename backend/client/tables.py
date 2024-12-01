@@ -120,7 +120,6 @@ class AbonnementClientHTMxTable(tables.Table):
         fields  = (
                 'type_abonnement',
                 'presence_quantity',
-                'creneaux',
                 'reste',
                 'start_date',
                 'end_date',
