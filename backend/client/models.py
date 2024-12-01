@@ -156,7 +156,8 @@ class Client(models.Model):
     # def __init__(self, *args, **kwargs):
     #     super(Client, self).__init__(*args, **kwargs)
     #     # self._old_picture = self.picture
-
+    class Meta:
+        ordering = ("-created",)
 
     def __str__(self):
         return str(self.id)
@@ -622,6 +623,8 @@ class Coach(models.Model):
     objects = models.Manager()
     custom_manager = PresenceManager()
 
+    class Meta:
+        ordering = ("-created",)
     
 
     
@@ -793,10 +796,11 @@ class Personnel(models.Model):
     social_security = models.CharField(max_length=150)
 
 
+    class Meta:
+        ordering = ("-created",)
 
     def __str__(self):
         return self.first_name
-    
 
     
     

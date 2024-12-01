@@ -30,7 +30,7 @@ class ClientHTMxTable(tables.Table):
         model = Client
         template_name = "tables/bootstrap_htmx.html"
         attrs = {
-            "get_url": lambda: reverse("client:client_name"),
+            "url": lambda: reverse("client:client_name"),
             "htmx_container": "#TableClient",
         }
 
@@ -57,7 +57,7 @@ class CoachHTMxTable(tables.Table):
         model = Coach
         template_name = "tables/bootstrap_htmx.html"
         attrs = {
-            "get_url": lambda: reverse("client:coach_name"),
+            "url": lambda: reverse("client:coach_name"),
             "htmx_container": "#TableCoach",
         }
 
@@ -82,7 +82,7 @@ class PersonnelHTMxTable(tables.Table):
         model = Personnel
         template_name = "tables/bootstrap_htmx.html"
         attrs = {
-            "get_url": lambda: reverse("client:personnels_name"),
+            "url": lambda: reverse("client:personnels_name"),
             "htmx_container": "#TablePersonnel",
         }
 

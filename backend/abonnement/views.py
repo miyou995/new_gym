@@ -8,7 +8,7 @@ import json
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django_filters.views import FilterView
 from .models import Creneau
-from .filters import CalenderFilter
+from .filters import CalenderFilter, CalenderFilterupdate
 from django_filters.views import FilterView
 from django.urls import reverse, reverse_lazy
 from client.models import Client
@@ -57,7 +57,7 @@ class CalendarAbonnementClient(PermissionRequiredMixin,CalendarAbonnementClientM
 
 class RetreiveAbonnementClient(PermissionRequiredMixin,CalendarAbonnementClientMixin):
     permission_required = 'abonnement.change_abonnementclient'
-    filterset_class = CalenderFilter
+    filterset_class = CalenderFilterupdate
     model = Creneau
     
     def get_context_data(self, **kwargs):
@@ -81,7 +81,6 @@ class RetreiveAbonnementClient(PermissionRequiredMixin,CalendarAbonnementClientM
     def get_template_names(self):
         template_name = "snippets/update_calander.html"
         return template_name
-    
     
 
 @require_POST

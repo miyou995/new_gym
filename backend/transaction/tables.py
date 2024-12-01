@@ -33,7 +33,7 @@ class PiaementHTMxTable(tables.Table):
         model = Paiement
         template_name = "tables/bootstrap_htmx.html"
         attrs = {
-            "get_url": lambda: reverse("transactions:transaction_name"),
+            "url": lambda: reverse("transactions:transaction_name"),
             "htmx_container": "#table1",
         }
 
@@ -55,7 +55,7 @@ class RemunerationProfHTMxTable(tables.Table):
         model = RemunerationProf
         template_name = "tables/bootstrap_htmx.html"
         attrs = {
-            "get_url": lambda: reverse("transactions:RemunerationProfTable_name"),
+            "url": lambda: reverse("transactions:RemunerationProfTable_name"),
             "htmx_container": "#table3",
         }
 
@@ -77,7 +77,7 @@ class RemunerationPersonnelHTMxTable(tables.Table):
         model = Remuneration
         template_name = "tables/bootstrap_htmx.html"
         attrs = {
-            "get_url": lambda: reverse("transactions:RemunerationPersonnelTable_name"),
+            "url": lambda: reverse("transactions:RemunerationPersonnelTable_name"),
             "htmx_container": "#table2",
         }
 
@@ -99,6 +99,6 @@ class AutreTransactionTableHTMxTable(tables.Table):
         model = Autre
         template_name = "tables/bootstrap_htmx.html"
         attrs = {
-            "get_url": lambda: reverse("transactions:autre_transaction_table"),
+            "url": lambda: reverse("transactions:autre_transaction_table"),
             "htmx_container": "#table4",
         }

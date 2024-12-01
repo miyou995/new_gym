@@ -204,6 +204,12 @@ class AbonnementTable(GenericTableView):
     model = Abonnement
     table_class =AbonnementHTMxTable
 
+    # def get_table_kwargs(self):
+    #     return {
+    #         'pk' : self.kwargs.get('pk')
+    #     }
+
+
 # planning--------------------------------------------------------------------------------------
 @permission_required('planning.add_planning',raise_exception=True)
 def PlanningCreateView(request):

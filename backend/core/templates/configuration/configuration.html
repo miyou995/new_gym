@@ -2,6 +2,7 @@
 {% load static %}
 {% load i18n %}
 {% block content %}
+{% load render_table from django_tables2 %}
     <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
         <div class="card card-flush">
             <div class="card-header align-items-center py-0 gap-2 gap-md-5">
@@ -195,7 +196,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Row 3: Portes and Type D'abonnement -->
         </div>
     </div>
 {% endblock content %}

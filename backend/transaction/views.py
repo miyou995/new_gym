@@ -75,6 +75,11 @@ class TransactionView(PermissionRequiredMixin,SingleTableMixin, FilterView):
         else:
             template_name = "transaction.html" 
         return template_name 
+    
+    # def get_table_kwargs(self):
+    #     return {
+    #         'creneau_pk' : self.kwargs.get('pk')
+    #     }
 
 
 class RemunerationProfTable(PermissionRequiredMixin,SingleTableMixin, FilterView):

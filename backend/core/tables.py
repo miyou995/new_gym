@@ -179,6 +179,13 @@ class AbonnementHTMxTable(tables.Table):
             'seances_quantity',
             'salles',
         )
+        # attrs = {
+        #     "url": lambda: reverse("core:AbonnementTable"),
+        #     "htmx_container": "#AbonnementTable",
+        # }
+        # def url(self):
+        #     return reverse("core:AbonnementTable" )
+           
 
 
 
