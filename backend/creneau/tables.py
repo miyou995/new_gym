@@ -12,14 +12,7 @@ class AbonnementClientHTMxTable(tables.Table):
     def __init__(self, *args, **kwargs):
         self.creneau_pk = kwargs.pop('creneau_pk', None)  # Extract the creneau_pk
         super().__init__(*args, **kwargs)
-        # Store the queryset passed to the table
-        print('self.creneau_pk>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', self.creneau_pk)
-        self.attrs = {
-            # "get_url": self.get_htmx_table_url(self.creneau_pk),
-            "url": lambda: reverse("creneau:abonnements_par_creneau", kwargs={"pk": self.creneau_pk}),
-
-            # "htmx_container": "#AbonnementParCreneau",
-        }
+        
     class Meta:
         fields  = (
                 'client_id',

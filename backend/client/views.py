@@ -8,6 +8,8 @@ from .forms import ClientModelForm,CoachModelForm, PersonnelModelForm
 from django.contrib import messages
 from django.http import HttpResponse,HttpResponseRedirect
 import json
+from django_htmx.http import HttpResponseClientRedirect
+
 from django.utils import timezone
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.urls import reverse_lazy
@@ -103,13 +105,7 @@ class ClientUpdateView(PermissionRequiredMixin,UpdateView):
         client=form.save()
         print("is from valid",client.id)
         messages.success(self.request,"Client Mis a jour avec Succés")
-        return HttpResponse(status=204,
-            headers={
-                "HX-Trigger":json.dumps({
-                    "closeModal":"kt_modal",
-                    "refresh_table":None
-                })
-            })
+        return HttpResponseClientRedirect(self.request.META.get('HTTP_REFERER', '/'))
     def form_invalid(self, form):
         messages.success(self.request, form.errors )
         return self.render_to_response(self.get_context_data(form=form))   
@@ -212,13 +208,14 @@ class CoachUpdateView(PermissionRequiredMixin,UpdateView):
         coach=form.save()
         print("is from valid",coach.id)
         messages.success(self.request,"Coach Mis a jour avec Succés")
-        return HttpResponse(status=204,
-            headers={
-                "HX-Trigger":json.dumps({
-                    "closeModal":"kt_modal",
-                    "refresh_table":None
-                })
-            })
+        return HttpResponseClientRedirect(self.request.META.get('HTTP_REFERER', '/'))
+        # return HttpResponse(status=204,
+        #     headers={
+        #         "HX-Trigger":json.dumps({
+        #             "closeModal":"kt_modal",
+        #             "refresh_table":None
+        #         })
+        #     })
     def form_invalid(self, form):
         messages.success(self.request, form.errors )
         return self.render_to_response(self.get_context_data(form=form)) 
@@ -312,13 +309,14 @@ class PersonnelUpdateView(PermissionRequiredMixin,UpdateView):
         personnel=form.save()
         print("is from valid",personnel.id)
         messages.success(self.request,"Personnel Mis a jour avec Succés")
-        return HttpResponse(status=204,
-            headers={
-                "HX-Trigger":json.dumps({
-                    "closeModal":"kt_modal",
-                    "refresh_table":None
-                })
-            })
+        return HttpResponseClientRedirect(self.request.META.get('HTTP_REFERER', '/'))
+        # return HttpResponse(status=204,
+        #     headers={
+        #         "HX-Trigger":json.dumps({
+        #             "closeModal":"kt_modal",
+        #             "refresh_table":None
+        #         })
+        #     })
     def form_invalid(self, form):
         messages.success(self.request, form.errors )
         return self.render_to_response(self.get_context_data(form=form)) 
@@ -395,7 +393,7 @@ class PaiementClientDetail(SingleTableMixin, FilterView):
 
 class PresenceClientDetail(SingleTableMixin, FilterView):
         table_class =   PresenceClientHTMxTable
-        paginate_by = 15
+        paginate_by = 5
         model = Presence
         
         def get_queryset(self):

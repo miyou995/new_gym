@@ -32,6 +32,21 @@ class PresencesView(PermissionRequiredMixin,SingleTableMixin, FilterView):
         context["salles"]=Salle.objects.all()
         context["activites"]=Activity.objects.all()
         return context
+    
+    def get_queryset(self):
+        queryset = (
+            Presence.objects
+            .select_related(
+                'abc',  # Fetch related abc object
+                'abc__client',  # Fetch related client object through abc
+                'creneau',  # Fetch related creneau object
+                'creneau__activity',  # Fetch related activity object through creneau
+            )
+            .order_by('-created')
+            )
+        return queryset
+    
+    
     def get_template_names(self):
         
         if self.request.htmx:
@@ -124,17 +139,17 @@ class PresenceManuelleUpdateClient(PermissionRequiredMixin,UpdateView):
     permission_required = "presence.change_presence"
     model = Presence 
     template_name = "snippets/_presence_Manuelle_form.html"
-    fields = [
-                'abc',
-                'creneau',
-                'hour_entree',
-                'hour_sortie',
-                'date',
-                'note',
-    ]
+
+    form_class = PresenceManuelleModelForm
+    def get_object(self, queryset=None):
+        """
+        Override get_object to use select_related for the abc foreign key.
+        """
+        queryset = self.model.objects.select_related('abc', 'abc__type_abonnement')
+        return super().get_object(queryset=queryset)
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
-        print('yeah form instance', self.object)
+        print('yeah form instance------------------------------', self.object)
         return super().get(request, *args, **kwargs)
     def form_valid(self, form):
         presence =form.save()

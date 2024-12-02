@@ -338,7 +338,7 @@ class Client(models.Model):
             if not abon_list:
                 # raise serializers.ValidationError("l'adherant n'est pas inscrit aujourd'hui")
                 print("*******l'adherant n'est pas inscrit aujourd'hui**********")
-                return "over"
+                return "not_today"
             
             abonnement = abon_list.filter(type_abonnement__type_of="SL").first()
             # If no non-free session is found, get the first session regardless of its type

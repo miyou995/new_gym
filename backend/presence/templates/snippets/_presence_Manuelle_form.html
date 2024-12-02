@@ -13,9 +13,16 @@
 			hx-target="#kt_modal_content"
 			novalidate 
 		>
-		<div class="mb-13 text-center">
-			<h1 class="mb-3">{% trans "Creation De Présence Manuellement" %}</h1>
-		</div>
+			{% if form.instance.id %}
+				<div class="mb-13 text-center">
+					<h1 class="mb-3">{% trans "Modification Présence Manuellement" %}</h1>
+				</div>
+			{% else %}
+				<div class="mb-13 text-center">
+					<h1 class="mb-3">{% trans "Creation De Présence Manuellement" %}</h1>
+				</div>
+			{% endif %}
+
 		
 		{% with WIDGET_ERROR_CLASS='is-invalid' %}         
 			{% for field in form %}

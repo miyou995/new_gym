@@ -5,7 +5,7 @@ from salle_activite.models import Salle ,Activity,Door
 from transaction.models import Autre, Paiement, Remuneration, RemunerationProf, Transaction
 from client.models import Maladie
 from abonnement.models import Abonnement
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 
 
 
@@ -179,14 +179,15 @@ class AbonnementHTMxTable(tables.Table):
             'seances_quantity',
             'salles',
         )
-        # attrs = {
-        #     "url": lambda: reverse("core:AbonnementTable"),
-        #     "htmx_container": "#AbonnementTable",
-        # }
-        # def url(self):
-        #     return reverse("core:AbonnementTable" )
-           
 
+        
+    @property
+    def url(self):
+        return reverse("core:AbonnementTable")
+
+    @property
+    def custom_target(self):
+        return "#abonnementTable"
 
 
 class TransactionOfTheDayTable(tables.Table):

@@ -23,9 +23,11 @@
 						class="btn btn-outline btn-outline-secondary form-control form-control-solid w-200px me-2 ps-14" 
 						placeholder="Présence...."
 						hx-swap="afterend"
+						hx-target="body" 
 						hx-get='{% url "presence:presence_client" %}' 
 						hx-trigger="keyup changed delay:600ms"
-						hx-refresh="true" 
+						hx-refresh="true"
+						id="barcode-input" 
 						autofocus
 					/>
 				</div>

@@ -179,6 +179,12 @@ class PresenceClientHTMxTable(tables.Table):
         model = Presence
         template_name = "tables/bootstrap_htmx.html"
 
+        @property
+        def url(self):
+            return reverse("client:PresenceTable")
+        @property
+        def custom_target(self):
+            return "#PresenceTable"
 
 
 

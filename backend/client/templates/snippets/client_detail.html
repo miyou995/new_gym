@@ -170,14 +170,15 @@
 													</div>
 													<div class="card-scroll h-500px card-body pt-0">
 														<div class="nav-link active text-gray-800 fs-5 fw-bold"
+															id="PresenceTable"
 															hx-get="{% url 'client:presence_client_detail' client.pk %}"
-															hx-trigger="revealed"
+															hx-trigger="refresh_table from:body,revealed"
 															hx-swap="innerHTML"
-															hx-target="#PresenceTable"
-															data-bs-toggle="tab"
+															{% comment %} hx-target="#PresenceTable" {% endcomment %}
+															{% comment %} data-bs-toggle="tab" {% endcomment %}
 														>
-															<div class="card-body pt-0 table-responsive" id="PresenceTable">
-															</div>
+															{% comment %} <div class="card-body pt-0 table-responsive" id="PresenceTable">
+															</div> {% endcomment %}
 														</div>
 													</div>
 												</div>

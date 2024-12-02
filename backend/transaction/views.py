@@ -23,7 +23,6 @@ from django.contrib.auth.decorators import  permission_required
 from datetime import datetime, timedelta
 from django.db.models import Sum
 from django.shortcuts import render
-from django.contrib.admin.views.decorators import staff_member_required
 from django.shortcuts import get_object_or_404, redirect, render
 from django.template.loader import render_to_string
 
@@ -32,7 +31,7 @@ from django.template.loader import render_to_string
 
     
 
-@staff_member_required
+
 def impression_resu_paiement(request, paiement_id):
     paiement = get_object_or_404(Paiement, id=paiement_id)
     response = HttpResponse(content_type="application/pdf")

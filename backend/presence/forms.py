@@ -34,7 +34,7 @@ class PresenceManuelleModelForm(forms.ModelForm):
         if client_pk :
             try :
                 initial['client']=Client.objects.get(pk=client_pk)
-                # initial['abonnement_client']=AbonnementClient.objects.filter(client=client_pk)
+
             except Client.DoesNotExist:
                 pass
         kwargs['initial']=initial
@@ -65,7 +65,9 @@ class PresenceManuelleModelForm(forms.ModelForm):
             client = self.data.get('client')
             self.fields['abc'].queryset = AbonnementClient.objects.filter(client=client)
         elif self.instance.pk:
-            self.fields['abc'].queryset = self.instance.client.abonnement_client
+            del self.fields['client']
+            self.fields['abc'].queryset = AbonnementClient.objects.filter(pk=self.instance.abc.pk)
+       
 
         
         self.fields["creneau"].queryset = AbonnementClient.objects.none()
@@ -76,14 +78,14 @@ class PresenceManuelleModelForm(forms.ModelForm):
             print("self.fields['creneau'].queryse)------------\n \n \n ",self.fields['creneau'].queryset)
 
         elif self.instance.pk:
-            self.fields['creneau'].queryset = self.instance.client.abonnements
+            self.fields['creneau'].queryset = self.instance.abc.creneaux.all()
 
-      
-        self.fields['client'].error_messages = {
-            'required': 'veuillez choisir.',
-            'invalid': 'Custom error message for field1 is invalid.',
+        
+        # self.fields['client'].error_messages = {
+        #     'required': 'veuillez choisir.',
+        #     'invalid': 'Custom error message for field1 is invalid.',
           
-        }
+        # }
         self.fields['abc'].error_messages = {
             'required': 'veuillez choisir.',
             'invalid': 'Custom error message for field2 is invalid.',
