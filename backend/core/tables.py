@@ -5,15 +5,15 @@ from salle_activite.models import Salle ,Activity,Door
 from transaction.models import Autre, Paiement, Remuneration, RemunerationProf, Transaction
 from client.models import Maladie
 from abonnement.models import Abonnement
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 
 
 
 
 class PlannigHTMxTable(tables.Table):
     #  name = tables.Column(accessor="name", verbose_name="Nom", orderable=True ,linkify= lambda record: record.get_edit_url())
-      name = tables.TemplateColumn(
-        template_code='''
+    name = tables.TemplateColumn(
+    template_code='''
         {% if perms.planning.change_planning %}
             <a 
                 href="#" 
@@ -30,7 +30,7 @@ class PlannigHTMxTable(tables.Table):
         {% endif %}
         ''',
         verbose_name="Nom")
-      class Meta:
+    class Meta:
         fields  = (
                 'name',
                 "is_default"
@@ -38,6 +38,14 @@ class PlannigHTMxTable(tables.Table):
         )
         model = Planning
         template_name = "tables/bootstrap_htmx.html"
+
+    @property
+    def url(self):
+        return reverse("core:planning_table")
+
+    @property
+    def custom_target(self):
+        return "#PlanningTable"
   
 class SalleHTMxTable(tables.Table):
     name = tables.TemplateColumn(
@@ -66,6 +74,14 @@ class SalleHTMxTable(tables.Table):
         model = Salle
         template_name = "tables/bootstrap_htmx.html"
 
+    @property
+    def url(self):
+        return reverse("core:SalleTable")
+
+    @property
+    def custom_target(self):
+        return "#SalleTable"
+
 class ActivityHTMxTable(tables.Table):
     name = tables.TemplateColumn(
         template_code='''
@@ -92,6 +108,14 @@ class ActivityHTMxTable(tables.Table):
         )
         model = Activity
         template_name = "tables/bootstrap_htmx.html"
+    
+    @property
+    def url(self):
+        return reverse("core:ActivityTable")
+
+    @property
+    def custom_target(self):
+        return "#ActivityTable"
 
 class MaladieHTMxTable(tables.Table):
     name = tables.TemplateColumn(
@@ -114,6 +138,14 @@ class MaladieHTMxTable(tables.Table):
         )
         model = Maladie
         template_name = "tables/bootstrap_htmx.html"
+
+    @property
+    def url(self):
+        return reverse("core:MaladieTable")
+
+    @property
+    def custom_target(self):
+        return "#MaladieTable"
 
 class PortesHTMxTable(tables.Table):
     ip_adress = tables.TemplateColumn(
@@ -143,6 +175,14 @@ class PortesHTMxTable(tables.Table):
         )
         model = Door
         template_name = "tables/bootstrap_htmx.html"
+
+    @property
+    def url(self):
+        return reverse("core:PortesTable")
+
+    @property
+    def custom_target(self):
+        return "#PortesTable"
   
 
 class AbonnementHTMxTable(tables.Table):
@@ -169,7 +209,8 @@ class AbonnementHTMxTable(tables.Table):
     type_of = tables.Column(accessor="type_of", verbose_name="Type", orderable=True)
     seances_quantity = tables.Column(accessor="seances_quantity", verbose_name="Nombre de séance", orderable=True)
     salles = tables.ManyToManyColumn(accessor="salles", verbose_name="Salles", orderable=True)
-
+    price = tables.Column( verbose_name="Prix", orderable=True)
+    
     class Meta:
         model = Abonnement
         template_name = "tables/bootstrap_htmx.html"
@@ -177,9 +218,18 @@ class AbonnementHTMxTable(tables.Table):
             'name',   
             'type_of',
             'seances_quantity',
+            'price',
             'salles',
         )
 
+        
+    @property
+    def url(self):
+        return reverse("core:AbonnementTable")
+
+    @property
+    def custom_target(self):
+        return "#abonnementTable"
 
 
 class TransactionOfTheDayTable(tables.Table):

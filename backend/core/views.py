@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render
 from django.views.generic.base import TemplateView
 from django_filters.views import FilterView
+from core.filters import AbonnementFilter
 from presence.models import Presence
 from transaction.models import Autre, Paiement, Remuneration, RemunerationProf
 from django_tables2 import SingleTableMixin
@@ -17,6 +18,8 @@ from .forms import PlanningModelForm,SalleModelForm,MaladieModelForm,ActiviteMod
 from django.contrib import messages
 from django.http import HttpResponse
 import json
+from django_tables2 import RequestConfig
+
 from django.utils.translation import gettext_lazy as _
 from django.db.models import Sum
 from datetime import date
@@ -90,7 +93,8 @@ def close_salle(request):
 
 
 
-class IndexView(SingleTableMixin, ListView):
+class IndexView(PermissionRequiredMixin,SingleTableMixin, ListView):
+    permission_required ="transaction.can_view_statistique"
     table_class = TransactionOfTheDayTable
     print('=========== we are here')
 
@@ -160,12 +164,13 @@ class IndexView(SingleTableMixin, ListView):
         
     
 class GenericTableView(SingleTableMixin, FilterView):
-    paginate_by = 15
+    paginate_by = 8
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         # Add any additional context if needed
         return context
+    
     
     def get_template_names(self):
         if self.request.htmx:
@@ -203,6 +208,11 @@ class AbonnementTable(GenericTableView):
     # permission_required = "abonnement.view_abonnement"
     model = Abonnement
     table_class =AbonnementHTMxTable
+    filterset_class = AbonnementFilter
+    
+
+
+
 
 # planning--------------------------------------------------------------------------------------
 @permission_required('planning.add_planning',raise_exception=True)

@@ -8,6 +8,8 @@ from .forms import ClientModelForm,CoachModelForm, PersonnelModelForm
 from django.contrib import messages
 from django.http import HttpResponse,HttpResponseRedirect
 import json
+from django_htmx.http import HttpResponseClientRedirect
+
 from django.utils import timezone
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.urls import reverse_lazy
@@ -103,13 +105,7 @@ class ClientUpdateView(PermissionRequiredMixin,UpdateView):
         client=form.save()
         print("is from valid",client.id)
         messages.success(self.request,"Client Mis a jour avec Succés")
-        return HttpResponse(status=204,
-            headers={
-                "HX-Trigger":json.dumps({
-                    "closeModal":"kt_modal",
-                    "refresh_table":None
-                })
-            })
+        return HttpResponseClientRedirect(self.request.META.get('HTTP_REFERER', '/'))
     def form_invalid(self, form):
         messages.success(self.request, form.errors )
         return self.render_to_response(self.get_context_data(form=form))   
@@ -212,13 +208,14 @@ class CoachUpdateView(PermissionRequiredMixin,UpdateView):
         coach=form.save()
         print("is from valid",coach.id)
         messages.success(self.request,"Coach Mis a jour avec Succés")
-        return HttpResponse(status=204,
-            headers={
-                "HX-Trigger":json.dumps({
-                    "closeModal":"kt_modal",
-                    "refresh_table":None
-                })
-            })
+        return HttpResponseClientRedirect(self.request.META.get('HTTP_REFERER', '/'))
+        # return HttpResponse(status=204,
+        #     headers={
+        #         "HX-Trigger":json.dumps({
+        #             "closeModal":"kt_modal",
+        #             "refresh_table":None
+        #         })
+        #     })
     def form_invalid(self, form):
         messages.success(self.request, form.errors )
         return self.render_to_response(self.get_context_data(form=form)) 
@@ -312,13 +309,14 @@ class PersonnelUpdateView(PermissionRequiredMixin,UpdateView):
         personnel=form.save()
         print("is from valid",personnel.id)
         messages.success(self.request,"Personnel Mis a jour avec Succés")
-        return HttpResponse(status=204,
-            headers={
-                "HX-Trigger":json.dumps({
-                    "closeModal":"kt_modal",
-                    "refresh_table":None
-                })
-            })
+        return HttpResponseClientRedirect(self.request.META.get('HTTP_REFERER', '/'))
+        # return HttpResponse(status=204,
+        #     headers={
+        #         "HX-Trigger":json.dumps({
+        #             "closeModal":"kt_modal",
+        #             "refresh_table":None
+        #         })
+        #     })
     def form_invalid(self, form):
         messages.success(self.request, form.errors )
         return self.render_to_response(self.get_context_data(form=form)) 
@@ -345,7 +343,7 @@ class PersonnelDeleteView(PermissionRequiredMixin,DeleteView):
 # ----------------------------------------------client detail-----------------------------------------
 class ClientDetailView(SingleTableMixin, FilterView):
     table_class =   AbonnementClientHTMxTable
-    paginate_by = 15
+    paginate_by = 5
     model = AbonnementClient
 
     def get_queryset(self):
@@ -372,10 +370,15 @@ class ClientDetailView(SingleTableMixin, FilterView):
             template_name = "snippets/client_detail.html"
         return template_name
     
+    def get_table_kwargs(self):
+            return {
+                'abonnement_client_pk' : self.kwargs.get('pk')
+            }
+    
 
 class PaiementClientDetail(SingleTableMixin, FilterView):
         table_class =   PaiementHTMxTable
-        paginate_by = 15
+        paginate_by = 5
         model = Paiement
         
         def get_queryset(self):
@@ -384,6 +387,7 @@ class PaiementClientDetail(SingleTableMixin, FilterView):
             print("abonnement_client_pk  -------------", abonnement_client_pk)
             if abonnement_client_pk:
                 queryset = queryset.filter(abonnement_client__client=abonnement_client_pk)
+                print("queryset---------------",queryset)
                 return queryset
         
         def get_template_names(self):
@@ -392,10 +396,15 @@ class PaiementClientDetail(SingleTableMixin, FilterView):
             else:
                 template_name = "snippets/client_detail.html"
             return template_name
+        
+        def get_table_kwargs(self):
+            return {
+                'abonnement_client_pk' : self.kwargs.get('pk')
+            }
 
 class PresenceClientDetail(SingleTableMixin, FilterView):
         table_class =   PresenceClientHTMxTable
-        paginate_by = 15
+        paginate_by = 8
         model = Presence
         
         def get_queryset(self):
@@ -412,6 +421,11 @@ class PresenceClientDetail(SingleTableMixin, FilterView):
             else:
                 template_name = "snippets/client_detail.html"
             return template_name
+        
+        def get_table_kwargs(self):
+            return {
+                'abonnement_client_pk' : self.kwargs.get('pk')
+            }
 
 
 
@@ -419,7 +433,7 @@ class PresenceClientDetail(SingleTableMixin, FilterView):
 # ----------------------------------------coach detail --------------------------------------------------
 class CoachDetail(SingleTableMixin, FilterView):
     table_class =   CoachDetailHTMxTable
-    paginate_by = 15
+    paginate_by = 4
     model = Creneau
 
     def get_context_data(self, **kwargs):
@@ -444,9 +458,14 @@ class CoachDetail(SingleTableMixin, FilterView):
             template_name = "snippets/coach_detail.html"
         return template_name
     
+    def get_table_kwargs(self):
+            return {
+                'coach_pk' : self.kwargs.get('pk')
+            }
+    
 class VirementsCoachDetail(SingleTableMixin, FilterView):
     table_class =   VirementsHTMxTable
-    paginate_by = 15
+    paginate_by = 4
     model = RemunerationProf
     
     def get_queryset(self):
@@ -464,10 +483,15 @@ class VirementsCoachDetail(SingleTableMixin, FilterView):
         else:
             template_name = "snippets/coach_detail.html"
         return template_name
+    
+    def get_table_kwargs(self):
+            return {
+                'coach_pk' : self.kwargs.get('pk')
+            }
 
 class PresenceCoachDetail(SingleTableMixin, FilterView):
     table_class =   PresenceCoachHTMxTable
-    paginate_by = 15
+    paginate_by = 4
     model = PresenceCoach
     
     def get_queryset(self):
@@ -485,6 +509,11 @@ class PresenceCoachDetail(SingleTableMixin, FilterView):
         else:
             template_name = "snippets/coach_detail.html"
         return template_name
+    
+    def get_table_kwargs(self):
+            return {
+                'coach_pk' : self.kwargs.get('pk')
+            }
     
 
 def presence_coach(request, pk):
@@ -509,7 +538,7 @@ def presence_coach(request, pk):
 
 class PersonnelDetail(SingleTableMixin, FilterView):
     table_class =   RemunerationPersonnelHTMxTable
-    paginate_by = 15
+    paginate_by = 8
     model = Remuneration
 
     def get_context_data(self, **kwargs):
@@ -533,6 +562,11 @@ class PersonnelDetail(SingleTableMixin, FilterView):
         else:
             template_name = "snippets/personnel_detail.html"
         return template_name
+    
+    # def get_table_kwargs(self):
+    #         return {
+    #             'personnel_pk' : self.kwargs.get('pk')
+    #         }
 
 
 

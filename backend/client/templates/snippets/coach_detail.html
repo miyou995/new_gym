@@ -76,7 +76,7 @@
 										</div>
 									</div>
 								</div>
-										<div class="flex-lg-row-fluid ms-lg-15">
+										<div class="flex-lg-row-fluid ms-lg-10">
 											<div class="card-header align-items-center py-5 gap-2 gap-md-1">
 												<div class="card-title">
 		
@@ -122,7 +122,7 @@
 															{% endif %}
 														</div>
 													</div>
-													<div class="card-scroll h-250px card-body pt-0">
+													<div class="card-scroll h-300px card-body pt-0">
 														<div class="nav-link active text-gray-800 fs-5 fw-bold"
 															hx-get="{% url 'client:PresenceCoachDetail' coach.pk %}"
 															hx-trigger="revealed"
@@ -146,24 +146,25 @@
 															</div>
 															<div id="kt_ecommerce_report_sales_export" class="d-none"></div>
 														</div>
-													
-														<div class="card-toolbar flex-row-fluid justify-content-end gap-5">
-															<button
-															type="button"
-															class="btn btn-primary btn-sm btn-radius color-container"
-															data-bs-toggle="modal"
-															data-bs-target="#kt_modal"
-															hx-get="{% url 'transactions:coach_Remuneration_Coach' coach.pk %}"
-															hx-target="#kt_modal_content"
-															hx-trigger="click"
-															data-bs-toggle="tooltip" 
-															hx-swap="innerHTML"
-														>
-														<i class="ki-exit-up fs-2">Ajouter Virement</i>
-														</button>
+														{% if perms.transaction.add_remunerationprof %}
+															<div class="card-toolbar flex-row-fluid justify-content-end gap-5">
+																<button
+																type="button"
+																class="btn btn-primary btn-sm btn-radius color-container"
+																data-bs-toggle="modal"
+																data-bs-target="#kt_modal"
+																hx-get="{% url 'transactions:coach_Remuneration_Coach' coach.pk %}"
+																hx-target="#kt_modal_content"
+																hx-trigger="click"
+																data-bs-toggle="tooltip" 
+																hx-swap="innerHTML"
+																>
+																<i class="ki-exit-up fs-2">Ajouter Virement</i>
+															</button>
 														</div>
+													{% endif %}
 													</div>
-													<div class="card-scroll h-250px card-body pt-0">
+													<div class="card-scroll h-300px card-body pt-0">
 														<div class="nav-link active text-gray-800 fs-5 fw-bold"
 															hx-get="{% url 'client:virements_coach_detail' coach.pk %}"
 															hx-trigger="refresh_table from:body,revealed"
@@ -191,7 +192,7 @@
 													
 														</div>
 													</div>
-													<div class="card-scroll h-250px card-body pt-0">
+													<div class="card-scroll h-300px card-body pt-0">
 														<div class="nav-link active text-gray-800 fs-5 fw-bold"
 															hx-get="{% url 'client:CoachDetail' coach.pk %}"
 															hx-trigger="revealed"

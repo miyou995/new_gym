@@ -11,9 +11,10 @@ from django.urls import reverse, reverse_lazy
 from .filters import CalenderFilterCreneau
 from django_filters.views import FilterView
 from abonnement.models import AbonnementClient
-from django_tables2 import SingleTableMixin
+from django_tables2 import SingleTableMixin # type: ignore
 from .tables import AbonnementClientHTMxTable
 from django.db.models import Max
+from django_tables2.config import RequestConfig
 from django.contrib.auth.mixins import PermissionRequiredMixin
 
 
@@ -167,10 +168,14 @@ class AbonnementsParCreneau(SingleTableMixin,FilterView):
         print("queryset....................>>", queryset)
         return queryset
    
-    
     def get_template_names(self):
         if self.request.htmx:
             template_name = "tables/product_table_partial.html"
         else:
             template_name = "snippets/_creneau_form.html" 
         return template_name
+    
+    def get_table_kwargs(self):
+        return {
+            'creneau_pk' : self.kwargs.get('pk')
+        }

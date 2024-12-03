@@ -156,7 +156,8 @@ class Client(models.Model):
     # def __init__(self, *args, **kwargs):
     #     super(Client, self).__init__(*args, **kwargs)
     #     # self._old_picture = self.picture
-
+    class Meta:
+        ordering = ("-created",)
 
     def __str__(self):
         return str(self.id)
@@ -337,7 +338,7 @@ class Client(models.Model):
             if not abon_list:
                 # raise serializers.ValidationError("l'adherant n'est pas inscrit aujourd'hui")
                 print("*******l'adherant n'est pas inscrit aujourd'hui**********")
-                return "over"
+                return "not_today"
             
             abonnement = abon_list.filter(type_abonnement__type_of="SL").first()
             # If no non-free session is found, get the first session regardless of its type
@@ -622,6 +623,8 @@ class Coach(models.Model):
     objects = models.Manager()
     custom_manager = PresenceManager()
 
+    class Meta:
+        ordering = ("-created",)
     
 
     
@@ -793,10 +796,11 @@ class Personnel(models.Model):
     social_security = models.CharField(max_length=150)
 
 
+    class Meta:
+        ordering = ("-created",)
 
     def __str__(self):
         return self.first_name
-    
 
     
     

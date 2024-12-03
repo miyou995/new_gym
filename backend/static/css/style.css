@@ -63,27 +63,6 @@
 
 
 
-tr.htmx-swapping td {
-    opacity: 0;
-    transition: opacity 1s ease-out;
-   
-  }
-
-  .table-container {
-    margin: 20px 0;
-}
-
-.table thead th {
-    /* background-color: #a7c6e7; */
-    color: rgb(0, 0, 0);
-   
-    vertical-align: middle; 
-}
-
-.table tbody td {
-    /* Center text in body cells */
-    vertical-align: middle; /* Center text vertically */
-}
 
 .menu-link:hover {
     color: #5d78ff; /* Your brand color */
@@ -145,6 +124,26 @@ tr.htmx-swapping td {
     font-size: 1.8rem;
     font-weight: bold;
 }
+
+
+.table td {
+    text-align: center;
+       
+ }
+
+ 
+.table tr {
+    text-align: center;   
+ }
+ .text-center {
+    text-align: center;
+}
+
+
+.page-item {
+    cursor:pointer;
+}
+
 
 
 

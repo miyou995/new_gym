@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import datetime, timedelta, date
+
 from salle_activite.models import Activity, Salle 
 from creneau.models import Creneau
 # Signals imports
@@ -486,4 +487,27 @@ def abonnement_client_signal(sender,instance, created,**kwargs):
         reste = instance.type_abonnement.price
         instance.reste =reste
         instance.save()
+        print("signalllllllllllll from client-------------------",reste)
 post_save.connect(abonnement_client_signal, sender=AbonnementClient)
+
+
+# def abonnement_client_signal(sender,instance, created,**kwargs):
+#     from transaction.models import Paiement
+
+#     if created:
+#         id_paiement = Paiement.objects.filter(abonnement_client__pk=instance.pk)
+#         print("id_paiement----------------",id_paiement)
+#         if id_paiement :
+#                 instance.presence_quantity=instance.presence_quantity
+#                 instance.reste = instance.reste
+#                 instance.save()
+#                 print("signalll payeeeeeeeeeeeeee-------------------")
+#         else :
+#             seances_qty = instance.type_abonnement.seances_quantity
+#             instance.presence_quantity = seances_qty
+#             print("signalllll-------------------",seances_qty)
+#             reste = instance.type_abonnement.price
+#             instance.reste =reste
+#             instance.save()
+#             print("signalllllllllllll from client-------------------",reste)
+# post_save.connect(abonnement_client_signal, sender=AbonnementClient)
