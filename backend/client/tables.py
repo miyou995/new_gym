@@ -90,6 +90,8 @@ class PersonnelHTMxTable(tables.Table):
 class AbonnementClientHTMxTable(tables.Table):
 #     Séances = tables.Column(accessor="type_abonnement__seances_quantity", verbose_name="Séances", orderable=True )
     presence_quantity=tables.Column( verbose_name="seances / minutes", orderable=True )
+    start_date =tables.Column( verbose_name="Début date", orderable=True )
+    end_date =tables.Column( verbose_name="Fin date", orderable=True )
     type_abonnement = tables.TemplateColumn(
         template_code='''
             {% if perms.abonnement.change_abonnementclient %}
@@ -116,6 +118,10 @@ class AbonnementClientHTMxTable(tables.Table):
                 {% endif %}
     '''
     )
+    def __init__(self, *args, **kwargs):
+        self.abonnement_client_pk = kwargs.pop('abonnement_client_pk', None)  # Extract the creneau_pk
+        super().__init__(*args, **kwargs)
+
     class Meta:
         fields  = (
                 'type_abonnement',
@@ -130,12 +136,24 @@ class AbonnementClientHTMxTable(tables.Table):
             'class': lambda record: 'table-danger' if record.blocking_date else ''
         }
 
+    @property
+    def url(self):
+        if self.abonnement_client_pk is not None:
+            return reverse("client:client_detail", kwargs={"pk": self.abonnement_client_pk})
+        return None
+    @property
+    def custom_target(self):
+        return "#AbonnementClientTable"
+
 class PaiementHTMxTable(tables.Table):
     
     # recu = tables.TemplateColumn(
     #         '''{% include 'buttons/action.html' with object=record modal_edit="true" %}''',
     #         verbose_name='Actions',
     #         orderable=False )
+    amount =tables.Column( verbose_name="Versement", orderable=True )
+    id =tables.Column( verbose_name="Reçu N°:", orderable=True )
+
     impression= tables.TemplateColumn(
                                 '''
                                         <a class="btn btn-primary btn-sm" 
@@ -145,6 +163,10 @@ class PaiementHTMxTable(tables.Table):
                                         >Imprimer </a>
                                 '''
                                 )
+    
+    def __init__(self, *args, **kwargs):
+        self.abonnement_client_pk = kwargs.pop('abonnement_client_pk', None)  # Extract the creneau_pk
+        super().__init__(*args, **kwargs)
 
     class Meta:
         fields  = (
@@ -158,6 +180,15 @@ class PaiementHTMxTable(tables.Table):
         )
         model = Paiement
         template_name = "tables/bootstrap_htmx.html"
+    
+    @property
+    def url(self):
+        if self.abonnement_client_pk is not None:
+            return reverse("client:paiement_client_detail", kwargs={"pk": self.abonnement_client_pk})
+        return None
+    @property
+    def custom_target(self):
+        return "#PaiementsTable"
 
 class PresenceClientHTMxTable(tables.Table):
     
@@ -166,6 +197,9 @@ class PresenceClientHTMxTable(tables.Table):
             '''{% include 'buttons/action.html' with object=record modal_edit="true" %}''',
             verbose_name='Actions',
             orderable=False )
+    def __init__(self, *args, **kwargs):
+        self.abonnement_client_pk = kwargs.pop('abonnement_client_pk', None)  # Extract the creneau_pk
+        super().__init__(*args, **kwargs)
 
     class Meta:
         fields  = (
@@ -179,12 +213,14 @@ class PresenceClientHTMxTable(tables.Table):
         model = Presence
         template_name = "tables/bootstrap_htmx.html"
 
-        @property
-        def url(self):
-            return reverse("client:PresenceTable")
-        @property
-        def custom_target(self):
-            return "#PresenceTable"
+    @property
+    def url(self):
+        if self.abonnement_client_pk is not None:
+            return reverse("client:presence_client_detail", kwargs={"pk": self.abonnement_client_pk})
+        return None
+    @property
+    def custom_target(self):
+        return "#PresenceTable"
 
 
 
@@ -194,6 +230,9 @@ class CoachDetailHTMxTable(tables.Table):
 #     Séances = tables.Column(accessor="type_abonnement__seances_quantity", verbose_name="Séances", orderable=True )
 #     prix    =tables.Column(accessor="type_abonnement__price", verbose_name="Prix", orderable=True )
 
+    def __init__(self, *args, **kwargs):
+        self.coach_pk = kwargs.pop('coach_pk', None)  # Extract the creneau_pk
+        super().__init__(*args, **kwargs)
 
     class Meta:
         fields  = (
@@ -206,10 +245,22 @@ class CoachDetailHTMxTable(tables.Table):
         model = Creneau
         template_name = "tables/bootstrap_htmx.html"
 
+    @property
+    def url(self):
+        if self.coach_pk is not None:
+            return reverse("client:CoachDetail", kwargs={"pk": self.coach_pk})
+        return None
+    @property
+    def custom_target(self):
+        return "#CreneauxTable"
+
+
 class VirementsHTMxTable(tables.Table):
 #     Séances = tables.Column(accessor="type_abonnement__seances_quantity", verbose_name="Séances", orderable=True )
 #     prix    =tables.Column(accessor="type_abonnement__price", verbose_name="Prix", orderable=True )
-
+    def __init__(self, *args, **kwargs):
+        self.coach_pk = kwargs.pop('coach_pk', None)  
+        super().__init__(*args, **kwargs)
 
     class Meta:
         fields  = (
@@ -219,8 +270,21 @@ class VirementsHTMxTable(tables.Table):
         model = RemunerationProf
         template_name = "tables/bootstrap_htmx.html"
 
+    @property
+    def url(self):
+        if self.coach_pk is not None:
+            return reverse("client:virements_coach_detail", kwargs={"pk": self.coach_pk})
+        return None
+    @property
+    def custom_target(self):
+        return "#VirementsTable"
+
 class PresenceCoachHTMxTable(tables.Table):
 
+    def __init__(self, *args, **kwargs):
+        self.coach_pk = kwargs.pop('coach_pk', None)  
+        super().__init__(*args, **kwargs)
+        
     class Meta:
         fields  = (
                'hour_entree',
@@ -228,5 +292,15 @@ class PresenceCoachHTMxTable(tables.Table):
                'date' 
                 
         )
+    
         model = PresenceCoach
         template_name = "tables/bootstrap_htmx.html"
+
+    @property
+    def url(self):
+        if self.coach_pk is not None:
+            return reverse("client:PresenceCoachDetail", kwargs={"pk": self.coach_pk})
+        return None
+    @property
+    def custom_target(self):
+        return "#PresenceTable"

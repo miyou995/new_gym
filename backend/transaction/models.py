@@ -1,5 +1,5 @@
 from django.db import models
-from abonnement.models import Abonnement, AbonnementClient
+from abonnement.models import  AbonnementClient
 from client.models import Personnel, Coach, Client
 from assurance.models import Assurance
 from datetime import date, datetime
@@ -155,6 +155,7 @@ def paiement_signal(sender, instance, **kwargs):
         abc.reste = 0
     client.save()
     abc.save()
+    
 
 def paiement_delete_signal(sender, instance, **kwargs):
     id_client = instance.abonnement_client.client.id

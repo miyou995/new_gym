@@ -59,7 +59,7 @@ class TransactionView(PermissionRequiredMixin,SingleTableMixin, FilterView):
     permission_required ="transaction.view_transaction"
     table_class = PiaementHTMxTable
     filterset_class = ProductFilter
-    paginate_by = 15
+    paginate_by = 9
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -85,7 +85,7 @@ class RemunerationProfTable(PermissionRequiredMixin,SingleTableMixin, FilterView
     permission_required ="transaction.view_remunerationprof"
     table_class = RemunerationProfHTMxTable
     filterset_class = CoachFilter
-    paginate_by = 15
+    paginate_by = 9
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["target_url"]   = reverse('transactions:RemunerationProfTable_name')
@@ -104,7 +104,7 @@ class RemunerationPersonnelTable(PermissionRequiredMixin,SingleTableMixin, Filte
     permission_required ="transaction.view_remuneration"
     table_class = RemunerationPersonnelHTMxTable
     filterset_class = PersonnelFilter
-    paginate_by = 15
+    paginate_by = 9
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["target_url"]   = reverse('transactions:RemunerationPersonnelTable_name')
@@ -122,7 +122,7 @@ class AutreTransactionTable(PermissionRequiredMixin,SingleTableMixin,FilterView)
     permission_required = "transaction.view_autre"
     table_class=AutreTransactionTableHTMxTable
     filterset_class=AutreTransactionFilter
-    paginate_by=15
+    paginate_by= 9
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["target_url"]   = reverse('transactions:autre_transaction_table')
