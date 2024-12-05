@@ -1,5 +1,5 @@
 import json
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import (CreateView, DeleteView,UpdateView)
@@ -11,9 +11,10 @@ from django.urls import reverse, reverse_lazy
 from .filters import CalenderFilterCreneau
 from django_filters.views import FilterView
 from abonnement.models import AbonnementClient
-from django_tables2 import SingleTableMixin
+from django_tables2 import SingleTableMixin # type: ignore
 from .tables import AbonnementClientHTMxTable
 from django.db.models import Max
+from django_tables2.config import RequestConfig
 from django.contrib.auth.mixins import PermissionRequiredMixin
 
 
@@ -33,7 +34,10 @@ def abc_creneau_view(request):
         return HttpResponse("<option>------</option>")
 
 
-
+def render_calendar(request):
+    print("render calander*********************")
+    template_name="snippets/calender_partial.html"
+    return render(request,template_name)
 
 
 class CreateCreneau(PermissionRequiredMixin,CreateView):
@@ -54,12 +58,18 @@ class CreateCreneau(PermissionRequiredMixin,CreateView):
             form.save()
             message = _("Creneau a été créé avec succès")
             messages.success(request, str(message))
+            # return HttpResponse(status=204, headers={
+            #     'HX-Trigger': json.dumps({
+            #         "closeModal": "kt_modal",
+            #         "refresh_table": None
+            #     })
+            # })
             return HttpResponse(status=204, headers={
                 'HX-Trigger': json.dumps({
                     "closeModal": "kt_modal",
-                    "refresh_table": None
+                    "refresh_calendar": None
                 })
-            })
+            })        
         else :
             print('is not valide', form.errors.as_data())
             context = {'form': form}
@@ -75,18 +85,19 @@ class UpdateCreneau(PermissionRequiredMixin,UpdateView):
         self.object = self.get_object()
         print('yeah form instance', self.object)
         return super().get(request, *args, **kwargs)
+    
+    
     def form_valid(self, form):
         paiement =form.save()
         print('IS FORM VALID', paiement.id)
         messages.success(self.request, "Creneau Mis a jour avec Succés")
-        return HttpResponse(status=204,
-            headers={
-                'HX-Trigger': json.dumps({
-                    "closeModal": "kt_modal",
-                    "refresh_table": None,
-                    
-                })
-            }) 
+        # return HttpResponseRedirect(self.request.META.get('HTTP_REFERER'))
+        return HttpResponse(status=204, headers={
+            'HX-Trigger': json.dumps({
+                "closeModal": "kt_modal",
+                "refresh_calendar": None
+            })
+        })
 
     def form_invalid(self, form):
         messages.success(self.request, form.errors )
@@ -170,10 +181,14 @@ class AbonnementsParCreneau(SingleTableMixin,FilterView):
         print("queryset....................>>", queryset)
         return queryset
    
-    
     def get_template_names(self):
         if self.request.htmx:
             template_name = "tables/product_table_partial.html"
         else:
             template_name = "snippets/_creneau_form.html" 
         return template_name
+    
+    def get_table_kwargs(self):
+        return {
+            'creneau_pk' : self.kwargs.get('pk')
+        }

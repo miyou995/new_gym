@@ -1,32 +1,26 @@
 import logging
-import logging
-
 
 from django.shortcuts import render, get_object_or_404
 from django.conf import settings
-from django.conf import settings
-from rest_framework import generics
-from .models import Salle, Activity, Door
-from .serializers import SalleSerialiser, ActivitySerialiser, DoorSerializer
-from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser, DjangoModelPermissions
+from django.contrib import messages
+from django.db.models import Count
+from django.http import HttpResponse
+from django.views import View
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+from rest_framework import generics, status
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser, DjangoModelPermissions
 from rest_framework.response import Response
-from rest_framework import status
-from django.db.models import Count
-from django.contrib import messages
-
 from rest_framework.decorators import api_view
-from rest_framework.viewsets import ViewSet, ModelViewSet
-
+from rest_framework.viewsets import ModelViewSet
 from rest_framework.views import APIView
 
-from rest_framework.views import APIView
+from celery import group
+
+from .models import Salle, Activity, Door
+from .serializers import SalleSerialiser, ActivitySerialiser, DoorSerializer
 from .device import AccessControl
 from .utils import revoke_all_tasks
-from celery import group
-from django.views import View
-from django.http import HttpResponse
-from django.contrib.auth.mixins import LoginRequiredMixin
 from .tasks import ( 
 	start_linsten_test_device_1, 
 	start_linsten_test_device_2, 
@@ -54,11 +48,7 @@ class BaseModelPerm(DjangoModelPermissions):
 		perms = self.get_required_permissions(request.method, view.queryset.model)
 		perms.extend(self.get_custom_perms(request.method, view))
 		return ( request.user and request.user.has_perms(perms) )
-from .utils import revoke_all_tasks
-from celery import group
-from django.views import View
-from django.http import HttpResponse
-from django.contrib.auth.mixins import LoginRequiredMixin
+
 from .tasks import ( 
 	start_linsten_test_device_1, 
 	start_linsten_test_device_2, 
@@ -393,8 +383,8 @@ class OpenTheDoorView(LoginRequiredMixin, View):
 		print('result>>>>', result)
 		if result:
 			device.open_door()
-			# device.logout()
-			# device.sdk.Cleanup()
+			device.logout()
+			device.sdk.Cleanup()
 			messages.success(request, f'Porte "{door.salle}" ouverte avec succès')
 			return HttpResponse(status=204)
 		else:

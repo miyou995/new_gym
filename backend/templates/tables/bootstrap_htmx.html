@@ -2,22 +2,22 @@
 {% extends "django_tables2/bootstrap4-responsive.html" %}
 {% load django_tables2 %}
 {% load i18n %}
-
 {% block table.thead %}
   {% if table.show_header %}
       <thead {{ table.attrs.thead.as_html }}>
-        <tr class="text-middle text-gray-800 fw-bold fs-7 text-uppercase gs-0">
+        <tr class="text-middle text-gray-800 fw-bold fs-6 text-uppercase gs-0">
             {% for column in table.columns %}
-                <th class="mw-250px"
+                <th class="mw-250px {% if forloop.last %}text-end{% endif %} text-center"
                     {{ column.attrs.th.as_html }}
                     {% if column.orderable %}
-                        hx-get="{{table.attrs.get_url}}{% querystring table.prefixed_order_by_field=column.order_by_alias.next %}"
+                        hx-get="{{table.url}}{% querystring table.prefixed_order_by_field=column.order_by_alias.next %}"
                         hx-trigger="click"
-                        hx-target="{% if table.attrs.htmx_container %}{{table.attrs.htmx_container}}{% else %}div.table-container{% endif %}"
-                        hx-swap="{% if table.attrs.htmx_container %}innerHTML{% else %}outerHTML{% endif %}"
+                        hx-target="{% if table.custom_target %} {{custom_target}} {% else %} div.table-container {% endif %}"
+                        hx-swap="innerHTML"
                         hx-indicator=".progress"
-                        style="cursor: pointer;"
-                    {% endif %}>
+                        style="cursor: pointer; "
+                    {% endif %}
+                    >
                     {{ column.header }}
                 </th>
             {% endfor %}
@@ -25,88 +25,44 @@
       </thead>
   {% endif %}
 {% endblock table.thead %}
-
-{% block table.tbody %}
-    <tbody {{ table.attrs.tbody.as_html }} class="table-striped border-bottom border-gray-300 compact-rows">
-        {% for row in table.paginated_rows %}
-            {% block table.tbody.row %}
-            <tr {{ row.attrs.as_html }} class="border-bottom">
-                {% for column, cell in row.items %}
-                    <td {{ column.attrs.td.as_html }} class="align-middle">
-                        {% if column.localize == None %}
-                            {{ cell }}
-                        {% else %}
-                            {% if column.localize %}{{ cell|localize }}{% else %}{{ cell|unlocalize }}{% endif %}
-                        {% endif %}
-                    </td>
-                {% endfor %}
-            </tr>
-            {% endblock table.tbody.row %}
-        {% empty %}
-            {% if table.empty_text %}
-            <tr>
-                <td colspan="{{ table.columns|length }}" class="text-center">
-                    {{ table.empty_text }}
-                </td>
-            </tr>
-            {% endif %}
-        {% endfor %}
-    </tbody>
-{% endblock table.tbody %}
-
 {# Pagination block overrides #}
 {% block pagination.previous %}
     <li class="previous page-item">
-        <div 
-            hx-get="{{table.attrs.get_url}}{% querystring table.prefixed_order_by_field=column.order_by_alias.next %}"
-            hx-trigger="click"
-            hx-target="{% if table.attrs.htmx_container %}{{table.attrs.htmx_container}}{% else %}div.table-container{% endif %}"
-            hx-swap="{% if table.attrs.htmx_container %}innerHTML{% else %}outerHTML{% endif %}"
-            hx-indicator=".progress"
-            style="cursor: pointer;"
-            class="page-link">
+        <div hx-get="{{table.url}}{% querystring table.prefixed_page_field=table.page.previous_page_number %}"
+             hx-trigger="click"
+             hx-target="{% if table.custom_target %}{{table.custom_target}}{% else %}div.table-container{% endif %}"
+             hx-swap="innerHTML"
+             hx-indicator=".progress"
+             class="page-link">
              <i class="previous"></i>
         </div>
     </li>
 {% endblock pagination.previous %}
-
 {% block pagination.range %}
     {% for p in table.page|table_page_range:table.paginator %}
         <li class="page-item{% if table.page.number == p %} active{% endif %}">
-            <div class="page-link"
+            <div class="page-link" 
                  {% if p != '...' %}hx-get="{{table.url}}{% querystring table.prefixed_page_field=p %}"{% endif %}
-                 hx-get="{{table.attrs.get_url}}{% querystring table.prefixed_order_by_field=column.order_by_alias.next %}"
                  hx-trigger="click"
-                 hx-target="{% if table.attrs.htmx_container %}{{table.attrs.htmx_container}}{% else %}div.table-container{% endif %}"
-                 hx-swap="{% if table.attrs.htmx_container %}innerHTML{% else %}outerHTML{% endif %}"
-                 style="cursor: pointer;"
+            
+                 hx-target="{% if table.custom_target %}{{table.custom_target}}{% else %}div.table-container{% endif %}"
+                 hx-swap="innerHTML"
                  hx-indicator=".progress">
                 {{ p }}
             </div>
         </li>
     {% endfor %}
 {% endblock pagination.range %}
-
 {% block pagination.next %}
     <li class="next page-item">
-        <div 
-            hx-get="{{table.attrs.get_url}}{% querystring table.prefixed_order_by_field=column.order_by_alias.next %}"
-            hx-trigger="click"
-            hx-target="{% if table.attrs.htmx_container %}{{table.attrs.htmx_container}}{% else %}div.table-container{% endif %}"
-            hx-swap="{% if table.attrs.htmx_container %}innerHTML{% else %}outerHTML{% endif %}"
-            hx-indicator=".progress"
-            style="cursor: pointer;"
-            class="page-link">
-            <i class="next"></i>
+        <div hx-get="{{table.url}}{% querystring table.prefixed_page_field=table.page.next_page_number %}"
+             hx-trigger="click"
+             hx-target="{% if table.custom_target %}{{table.custom_target}}{% else %}div.table-container{% endif %}"
+             
+             hx-swap="innerHTML"
+             hx-indicator=".progress"
+             class="page-link">
+            <i class="next"></i></a>
         </div>
     </li>
-
-
-
-<style>
-    .compact-rows td {
-        padding-top: 4px;
-        padding-bottom: 4px;
-    }
-</style>
 {% endblock pagination.next %}

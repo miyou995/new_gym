@@ -1,107 +1,234 @@
-<div class="d-flex align-items-stretch w-100" id="kt_app_header_menu_wrapper">
-  <!--begin::Menu holder-->
-  <div class="app-header-menu app-header-mobile-drawer align-items-stretch w-20"
-       data-kt-drawer="true"
-       data-kt-drawer-name="app-header-menu"
-       data-kt-drawer-activate="{default: true, lg: false}"
-       data-kt-drawer-overlay="true"
-       data-kt-drawer-width="{default:'200px', '300px': '250px'}"
-       data-kt-drawer-direction="start"
-       data-kt-drawer-toggle="#kt_app_header_menu_toggle"
-       data-kt-swapper="true"
-       data-kt-swapper-mode="prepend"
-       data-kt-swapper-parent="{default: '#kt_app_body', lg: '#kt_app_header_menu_wrapper'}">
-    
-    <!--begin::Menu-->
-    <div class="menu menu-rounded menu-column menu-lg-row menu-active-bg menu-title-gray-600 menu-state-dark menu-arrow-gray-400 fw-semibold fs-6 align-items-stretch my-5 my-lg-0 px-2 px-lg-0 w-100"
-         id="kt_app_header_menu"
-         data-kt-menu="true">
-      <nav class="navbar navbar-expand-lg navbar-light w-100">
-        
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav">
-            <li class="nav-item mx-3">
-              <a href="{% url 'core:index' %}" class="nav-link">
-                <span class="nav-title">Tableau de bord</span>
-              </a>
-            </li>
-            {% if perms.transaction.view_transaction %}
-              <li class="nav-item mx-3">
-                <a href="{% url 'transactions:transaction_name' %}" class="nav-link">
-                  <span class="nav-title">Transactions</span>
-                </a>
-              </li>
-            {% endif %}
-            {% if perms.client.view_client %}
-              <li class="nav-item mx-3">
-                  <a href="{% url 'client:client_name' %}" class="nav-link">
-                    <span class="nav-title">Clients</span>
-                  </a>
-              </li>
-            {% endif %}
-            {% if perms.client.view_coach %}
-              <li class="nav-item mx-3">
-                <a href="{% url 'client:coach_name' %}" class="nav-link">
-                  <span class="nav-title">Coachs</span>
-                </a>
-              </li>
-            {% endif %}
-            {% if perms.client.view_personnel %}
-              <li class="nav-item mx-3">
-                <a href="{% url 'client:personnels_name' %}" class="nav-link">
-                  <span class="nav-title">Personnels</span>
-                </a>
-              </li>
-            {% endif %}     
-            {% if perms.presence.view_presence %}
-                <li class="nav-item mx-3">
-                  <a href="{% url 'presence:presences_name' %}" class="nav-link">
-                  <span class="nav-title">Présences</span>
-                </a>
-              </li>
-            {% endif %}
-            {% if perms.transaction.can_view_statistique %}
-                <li class="nav-item mx-3">
-                    <a href="{% url 'transactions:chiffre_affaire_name' %}" class="nav-link">
-                    <span class="nav-title">Chiffre D'affaire</span>
-                  </a>
-                </li>
-            {% endif %}
-            {% if perms.creneau.view_creneau %}
-                <li class="nav-item mx-3">
-                    <a href="{% url 'creneau:creneaux_name' %}" class="nav-link">
-                      <span class="nav-title">Créneaux</span>
-                    </a>
-                </li>
-            {% endif %}
-            
-             {% if perms.abonnement.view_abonnement %}
-              <li class="nav-item mx-3">
-                <a href="{% url 'core:planning_table' %}" class="nav-link">
-                  <span class="nav-title">Configuration</span>
-                  </a>
-                </li>
-            {% endif %}
-            {% if perms.accounts.view_user or perms.auth.view_group %}
-              <li class="nav-item dropdown mx-3">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                           Users
-                  </a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      {% if perms.accounts.view_user %}
-                        <li><a class="dropdown-item" href="{% url 'accounts:userlist' %}">Users</a></li>
-                      {% endif %}
-                      {% if perms.auth.view_group %}
-                        <li><a class="dropdown-item" href="{% url 'accounts:grouplist' %}">Role</a></li>
-                      {% endif %}
-                  </ul>
-              </li>
-            {% endif %}
-          </ul>
-        </div>
-      </nav>
-    </div>
-    <!--end::Menu-->
-  </div>
-  <!--end::Menu holder-->
+{% load static %}
+<div id="kt_header" class="header align-items-stretch">
+	<div class="container-fluid d-flex align-items-stretch justify-content-between">
+		<div class="d-flex align-items-center d-lg-none ms-n1 me-2" title="Show aside menu">
+			<div class="btn btn-icon btn-active-color-primary w-30px h-30px w-md-40px h-md-40px" id="kt_aside_mobile_toggle">
+				<i class="ki-outline ki-abstract-14 fs-1"></i>
+			</div>
+		</div>
+		<div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
+			<a href="index.html" class="d-lg-none">
+				<img alt="Logo" src="{% static 'images/logo.png' %}" class="h-30px" />
+			</a>
+		</div>
+		<div class="d-flex align-items-stretch flex-shrink-0">
+			{% if perms.presence.add_presence %}
+				<div class="d-flex align-items-center position-relative my-1">
+					<span class="svg-icon svg-icon-1 position-absolute ms-4">
+						<i class="ki-outline ki-timer fs-2x"></i>
+					</span>
+					<input 
+						type="text" 
+						name="search" 
+						class="btn btn-outline btn-outline-secondary form-control form-control-solid w-200px me-2 ps-14" 
+						placeholder="Présence...."
+						hx-swap="afterend"
+						hx-target="body" 
+						hx-get='{% url "presence:presence_client" %}' 
+						hx-trigger="keyup changed delay:600ms"
+						hx-refresh="true"
+						id="barcode-input" 
+						autofocus
+					/>
+				</div>
+			{% endif %}
+		</div>
+		<div class="d-flex align-items-stretch justify-content-between flex-lg-grow-1">
+			<div class="d-flex align-items-stretch" id="kt_header_nav">
+				<div class="header-menu align-items-stretch" 
+					data-kt-drawer="true" 
+					data-kt-drawer-name="header-menu" 
+					data-kt-drawer-activate="{default: true, lg: false}" 
+					data-kt-drawer-overlay="true" 
+					data-kt-drawer-width="{default:'200px', '300px': '250px'}" 
+					data-kt-drawer-direction="end" 
+					data-kt-drawer-toggle="#kt_header_menu_mobile_toggle" 
+					data-kt-swapper="true" 
+					data-kt-swapper-mode="prepend" 
+					data-kt-swapper-parent="{default: '#kt_body', lg: '#kt_header_nav'}">
+					<div class="menu menu-rounded menu-column menu-lg-row menu-active-bg menu-state-primary menu-title-gray-700 menu-arrow-gray-500 fw-semibold my-5 my-lg-0 px-2 px-lg-0 align-items-stretch" id="#kt_header_menu" data-kt-menu="true">
+						{% if perms.transaction.view_transaction %}
+							<div class="menu-item here show me-0 me-lg-2">
+								<span class="menu-link py-3">
+									<a href="{% url 'transactions:transaction_name' %}" class="menu-item me-0 me-lg-2">
+										<span class="menu-title">Paiements</span>
+									</a>
+								</span>
+							</div>
+						{% endif %}
+						{% if perms.client.view_client %}
+							<div class="menu-item here show me-0 me-lg-2">
+								<span class="menu-link py-3">
+									<a href="{% url 'client:client_name' %}" class="menu-item me-0 me-lg-2">
+										<span class="menu-title">Clients</span>
+									</a>
+								</span>
+							</div>
+						{% endif %}
+						{% if perms.client.view_coach %}
+							<div class="menu-item here show me-0 me-lg-2">
+								<span class="menu-link py-3">
+									<a href="{% url 'client:coach_name' %}" class="menu-item me-0 me-lg-2">
+										<span class="menu-title">Coachs</span>
+									</a>
+								</span>
+							</div>
+						{% endif %}
+						{% if perms.client.view_personnel %}
+							<div class="menu-item here show me-0 me-lg-2">
+								<span class="menu-link py-3">
+									<a href="{% url 'client:personnels_name' %}" class="menu-item me-0 me-lg-2">
+										<span class="menu-title">Personnels</span>
+									</a>
+								</span>
+							</div>
+						{% endif %}
+						{% if perms.presence.view_presence %}
+							<div class="menu-item here show me-0 me-lg-2">
+								<span class="menu-link py-3">
+									<a href="{% url 'presence:presences_name' %}" class="menu-item me-0 me-lg-2">
+										<span class="menu-title">Présences</span>
+									</a>
+								</span>
+							</div>
+						{% endif %}
+						{% if perms.transaction.can_view_statistique %}
+							<div class="menu-item here show me-0 me-lg-2">
+								<span class="menu-link py-3">
+									<a href="{% url 'transactions:chiffre_affaire_name' %}" class="menu-item me-0 me-lg-2">
+										<span class="menu-title">Chiffre D'affaire</span>
+									</a>
+								</span>
+							</div>
+						{% endif %}
+						{% if perms.creneau.view_creneau %}
+							<div class="menu-item here show me-0 me-lg-2">
+								<span class="menu-link py-3">
+									<a href="{% url 'creneau:creneaux_name' %}" class="menu-item me-0 me-lg-2">
+										<span class="menu-title">Créneaux</span>
+									</a>
+								</span>
+							</div>
+						{% endif %}
+						{% if perms.abonnement.view_abonnement %}
+							<div class="menu-item here show me-0 me-lg-2">
+								<span class="menu-link py-3">
+									<a href="{% url 'core:planning_table' %}" class="menu-item me-0 me-lg-2">
+										<span class="menu-title">Configuration</span>
+									</a>
+								</span>
+							</div>
+						{% endif %}
+						{% if perms.accounts.view_user or perms.auth.view_group %}
+							<div class="menu-item here show me-0 me-lg-2">
+								<span class="menu-link py-3">
+									<a class="menu-item me-0 me-lg-2 dropdown-toggle py-1" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="align-items: baseline; display: flex; padding: 0.15rem 0;">
+										<span class="menu-title">Users</span>
+									</a>
+									<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+										{% if perms.accounts.view_user %}
+											<li><a class="dropdown-item" href="{% url 'accounts:userlist' %}">Users</a></li>
+										{% endif %}
+										{% if perms.auth.view_group %}
+											<li><a class="dropdown-item" href="{% url 'accounts:grouplist' %}">Role</a></li>
+										{% endif %}
+									</ul>
+								</span>
+							</div>
+						{% endif %}
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+		<div class="d-flex align-items-stretch flex-shrink-0">
+			<div class="d-flex align-items-center ms-1 ms-lg-3" id="kt_header_user_menu_toggle">
+				<div class="cursor-pointer symbol symbol-35px" 
+					data-kt-menu-trigger="{default: 'click', lg: 'hover'}" 
+					data-kt-menu-attach="parent" 
+					data-kt-menu-placement="bottom-end">
+					<i class="ki-outline ki-profile-circle fs-3x"></i>
+				</div>
+				<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-color fw-semibold py-4 fs-6 w-275px" data-kt-menu="true">
+					<div class="menu-item px-3">
+						<div class="menu-content d-flex align-items-center px-3">
+							<div class="symbol symbol-50px me-5">
+								{% if user.picture %}
+									<img src="{{user.picture}}" alt="image" />
+								{% else %}
+									<span class="symbol-label fs-2x fw-semibold text-primary bg-light-primary">{{ user.get_username|slice:1 }}</span>
+								{% endif %}												
+							</div>
+							<div class="d-flex flex-column">
+								<div class="fw-bold d-flex align-items-center fs-5">{{user.get_username}}
+									<span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">{{user.role}}</span>
+								</div>
+								<a href="#" class="fw-semibold text-muted text-hover-primary fs-7">{{user.warehouse}}</a>
+							</div>
+						</div>
+					</div>
+					<div class="separator my-2"></div>
+					<div class="menu-item px-5"
+						data-kt-menu-trigger="{default: 'click', lg: 'hover'}" 
+						data-kt-menu-placement="left-start" 
+						data-kt-menu-offset="-15px, 0">
+						<a href="#" class="menu-link px-5">
+							<span class="menu-icon">
+								<i class="ki-outline ki-night-day theme-light-show fs-2"></i>
+								<i class="ki-outline ki-moon theme-dark-show fs-2"></i>
+							</span>
+							<span class="menu-title">Theme</span>
+						</a>
+						<div class="menu-item px-5">
+							<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-title-gray-700 menu-icon-gray-500 menu-active-bg menu-state-color fw-semibold py-4 fs-base w-150px" data-kt-menu="true" data-kt-element="theme-mode-menu">
+								<div class="menu-item px-3 my-0">
+									<a href="#" class="menu-link px-3 py-2" data-kt-element="mode" data-kt-value="light">
+										<span class="menu-icon" data-kt-element="icon">
+											<i class="ki-outline ki-night-day fs-2"></i>
+										</span>
+										<span class="menu-title">Light</span>
+									</a>
+								</div>
+								<div class="menu-item px-3 my-0">
+									<a href="#" class="menu-link px-3 py-2" data-kt-element="mode" data-kt-value="dark">
+										<span class="menu-icon" data-kt-element="icon">
+											<i class="ki-outline ki-moon fs-2"></i>
+										</span>
+										<span class="menu-title">Dark</span>
+									</a>
+								</div>
+								<div class="menu-item px-3 my-0">
+									<a href="#" class="menu-link px-3 py-2" data-kt-element="mode" data-kt-value="system">
+										<span class="menu-icon" data-kt-element="icon">
+											<i class="ki-outline ki-screen fs-2"></i>
+										</span>
+										<span class="menu-title">System</span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="separator my-2"></div>
+					<div class="menu-item px-5">
+						<a href="{% url 'accounts:userdetail' user.pk %}" class="menu-link px-5">
+							<span class="menu-icon">
+								<i class="ki-outline ki-user fs-2"></i>
+							</span>
+							<span class="menu-title">Profile</span>
+						</a>
+					</div>
+					<div class="separator my-2"></div>
+					<div class="menu-item px-5">
+						<a href="{% url 'accounts:logout' %}" class="menu-link px-5">
+							<span class="menu-icon">
+								<i class="ki-outline ki-exit-right fs-2"></i>
+							</span>
+							<span class="menu-title">Sign Out</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

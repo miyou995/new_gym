@@ -13,6 +13,17 @@ class CalenderFilterCreneau(django_filters.FilterSet):
         model = Creneau
         fields = ['planning','activity__salle']
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Set the default value for the planning filter
+        if 'planning' in self.filters:
+            try:
+                default_planning = Planning.objects.get(is_default=True)
+                self.form.initial['planning'] = default_planning
+                if not self.data:  # Apply filtering only if no user input
+                    self.queryset = self.queryset.filter(planning=default_planning)
+            except Planning.DoesNotExist:
+                pass
   
 
 

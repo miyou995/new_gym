@@ -141,109 +141,60 @@
     </style>
 </head>
 
-<body>
-    <header>
-        <div id="logo" class="media" data-src="logo.png" src="./logo.png"></div>
-
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: white; color: black;">
+    <header style="text-align: center; margin-bottom: 20px; border-bottom: 1px solid black; padding: 10px 0;">
+        <img src="{% static 'images/logos/atlas_black.png' %}" alt="Atlas Logo" style="height: 60px;width: 100px; margin-bottom: 5px;">
+        {% comment %} <h2 style="margin: 0; font-size: 1.5em;">Atlas Centre sportif</h2> {% endcomment %}
     </header>
-    <p>{{business.name}}</p>
-    <p>{{business.adress}}</p>
 
-    <p>Téléphone : {{business.phone}}</p>
-    <table class="bill-details">
-        <tbody>
-            <tr>
-                <td>Nom : <span>{{order.client.name}} {{order.client.prenom}}</span></td>
-            </tr>
-            <tr>
-                <td>Date #: <span>{{order.updated}}</span></td>
-            </tr>
-            <tr>
-                <th class="center-align" colspan="2"><span class="receipt">Reçu De Paiement</span></th>
-            </tr>
-        </tbody>
-    </table>
-    
-    <table class="items">
-        {% comment %} <thead>
-            <tr>
-                <th class="heading name">Item</th>
-                <th class="heading qty">Qty</th>
-                <th class="heading rate">Rate</th>
-                <th class="heading amount">Amount</th>
-            </tr>
-        </thead> {% endcomment %}
-        {% if order.lentilles.all %}
-            <tr><th colspan="4" class="heading name" style="text-align:center">Lentilles</th></tr>
-        {% endif %}
-        <tbody >
-            {% comment %} <tr>
-                <td>Chocolate milkshake frappe</td>
-                <td>1</td>
-                <td class="price">200.00</td>
-                <td class="price">200.00</td>
-            </tr>
-            <tr>
-                <td>Non-Veg Focaccoa S/W</td>
-                <td>2</td>
-                <td class="price">300.00</td>
-                <td class="price">600.00</td>
-            </tr>
-            <tr>
-                <td>Classic mojito</td>
-                <td>1</td>
-                <td class="price">800.00</td>
-                <td class="price">800.00</td>
-            </tr>
-            <tr>
-                <td>Non-Veg Ciabatta S/W</td>
-                <td>1</td>
-                <td class="price">500.00</td>
-                <td class="price">500.00</td>
-            </tr> {% endcomment %}
-
-
-
-
-            <tr>
-                <td colspan="3" class="sum-up line">Prix</td>
-                <td class="line price" style="padding-right:5px">{{order.total}} DA</td>
-            </tr>
-            <tr>
-                <td colspan="3" class="sum-up">Versement</td>
-                <td class="price">{{order.versement}} DA</td>
-            </tr>
-            {% comment %} <tr>
-              <td colspan="3" class="sum-up">Reste a payer</td>
-              <td class="price">10.00</td>
-          </tr> {% endcomment %}
-            <tr>
-                <th colspan="3" class="total text">Reste a payer</th>
-                <th class="total price">{{order.get_reste}} DA</th>
-            </tr>
-        </tbody>
-    </table>
-    <section>
-        <p style="text-align:right">
-          أي طلبية تتجاوز مدتها 3 اشهر من يوم وضعها تعتبر ملغاة.
-        </p>
-        <p style="text-align:left">
-          Toute commande dépassant le délai de 03 mois est considéré comme nul.
-        </p>
-        {% if order.get_not_paid %}
-          <span class="pending">Non payée</span>
-        {% endif %}
-        {% if order.ordonnance_return %}
-          <h4>Ordonnance Rendue</h4>
-        {% endif %}
-        <p style="text-align:center">
-            Merci pour votre visite!
-        </p>
-    </section>
-    <footer style="text-align:center">
-        <h2>N°: {% if order.id %} {{order.id}} {% else %}{{order.id}} {% endif %}</h2>
+    <footer style="text-align: center; margin-top: 20px; padding-top: 10px;">
+        <h2 style="margin: 0; font-size: 2em;">Reçu N°: {{paiement.id}}</h2>
     </footer>
+    <main style="padding: 20px; max-width: 800px; margin: auto;">
+        <section style="margin-bottom: 20px;">
+            <p style="margin-bottom: 5px;">
+                <strong>Nom:</strong> {{paiement.abonnement_client.client.last_name}} {{paiement.abonnement_client.client.first_name}}
+            </p>
+            {% if paiement.abonnement_client.client.carte %}
+                <p><strong>Carte:</strong> {{paiement.abonnement_client.client.carte}}</p>
+            {% endif %}
+            <p><strong>ID:</strong> {{paiement.abonnement_client.client}}</p>
+            <p><strong>Téléphone:</strong> {{paiement.abonnement_client.client.phone}}</p>
+            <p><strong>Début:</strong> {{paiement.abonnement_client.start_date}}</p>
+            <p><strong>Fin:</strong> {{paiement.abonnement_client.end_date}}</p>
+            <p><strong>Date de paiement:</strong> {{paiement.date_creation}}</p>
+        </section>
+
+        <section>
+            <h2 style="text-align: center; margin: 10px 0; font-size: 1.2em; text-decoration: underline;">
+                {{paiement.abonnement_client.type_abonnement}}
+            </h2>
+            <table style="width: 100%; border-collapse: collapse; margin-top: 10px; border: 1px solid black;">
+                <tbody>
+                    <tr style="font-weight: bold; border-bottom: 1px solid black;">
+                        <td style="padding: 10px; text-align: left;">Prix</td>
+                        <td style="padding: 10px; text-align: right;">{{paiement.get_abc_price}} DA</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid black;">
+                        <td style="padding: 10px; text-align: left;">Versement</td>
+                        <td style="padding: 10px; text-align: right;">{{paiement.amount}} DA</td>
+                    </tr>
+                    <tr style="font-weight: bold;">
+                        <td style="padding: 10px; text-align: left;">Reste à payer</td>
+                        <td style="padding: 10px; text-align: right;">{{paiement.get_abc_reste}} DA</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section style="text-align: center; margin-top: 20px;">
+            <p style="font-size: 1em; font-weight: bold;">Merci pour votre visite!</p>
+        </section>
+    </main>
+
+   
 </body>
+
 
 </html>
 

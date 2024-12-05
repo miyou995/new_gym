@@ -10,14 +10,25 @@ ALLOWED_HOSTS = ['*'] # a modifier apres l'integration du nom de domaine
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': "octogym_db",
-#         'USER': "octopus",
-#         'PASSWORD': "miyou0209",
-#         'HOST': "localhost",
-#         'PORT': "5432",
+#         'NAME': 'gym_bd',
+#         'USER': 'postgres',
+#         'PASSWORD': 'postgres',
+#         'HOST': 'localhost',  
+#         'PORT': '5432', 
 #     }
 # }
 
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': "octogym_db",
+        'USER': "postgres",
+        'PASSWORD': "postgres",
+        'HOST': "localhost",
+        'PORT': "5432",
+    }
+}
 
 
 STOP_HOUR   = 4
@@ -36,6 +47,8 @@ CELERY_BEAT_SCHEDULE = {
         'schedule': crontab(hour=START_HOUR, minute=START_MINUTE),
     },
 }
+
+
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql_psycopg2',

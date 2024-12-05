@@ -9,7 +9,7 @@
           <div class="d-flex align-items-center mb-4">
             <div class="symbol symbol-square symbol-100px mr-4">
               {% if client.picture %}
-                <img src="{{ client.picture.url }}" alt="Client Picture" class="img-fluid rounded" />
+                <img src="{{ client.picture.url }}" alt="Photo Client" class="img-fluid rounded" />
               {% else %}
                 <span class="symbol-label fs-4x fw-semibold text-primary bg-light-primary">
                   {{ client.first_name|slice:1 }}{{ client.last_name|slice:1 }}

@@ -8,7 +8,7 @@ import json
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django_filters.views import FilterView
 from .models import Creneau
-from .filters import CalenderFilter
+from .filters import CalenderFilter, CalenderFilterupdate
 from django_filters.views import FilterView
 from django.urls import reverse, reverse_lazy
 from client.models import Client
@@ -57,10 +57,11 @@ class CalendarAbonnementClient(PermissionRequiredMixin,CalendarAbonnementClientM
 
 class RetreiveAbonnementClient(PermissionRequiredMixin,CalendarAbonnementClientMixin):
     permission_required = 'abonnement.change_abonnementclient'
-    filterset_class = CalenderFilter
+    filterset_class = CalenderFilterupdate
     model = Creneau
     
     def get_context_data(self, **kwargs):
+        print('ABONNEMENT CLIENT RETREIVED==========================W')
         context = super().get_context_data(**kwargs)
         abc = get_object_or_404(AbonnementClient, pk=self.kwargs['pk'])
         context["abc"]= abc
@@ -75,13 +76,17 @@ class RetreiveAbonnementClient(PermissionRequiredMixin,CalendarAbonnementClientM
         return kwargs
     
     def get_queryset(self) :
+        selected_planning = None
         abc = get_object_or_404(AbonnementClient, pk=self.kwargs['pk'])
-        return Creneau.objects.filter(activity__salle__abonnements__id=abc.type_abonnement.id)
+        creneau_pilote = abc.creneaux.select_related('planning').order_by('planning__id').distinct('planning__id').first()
+        ab_creneaux= Creneau.objects.filter(activity__salle__abonnements__id=abc.type_abonnement.id) 
+        if creneau_pilote:
+            selected_planning = creneau_pilote.planning
+        return ab_creneaux.filter(planning=selected_planning)
     
     def get_template_names(self):
         template_name = "snippets/update_calander.html"
         return template_name
-    
     
 
 @require_POST
@@ -171,7 +176,14 @@ def update_temps_rest(request, pk):
         else:
             message = _("Error occures when updating product.")
             messages.error(request, str(message))
-        return JsonResponse({"success": True})
+        return HttpResponse(status=204,
+                headers={
+                    'HX-Trigger': json.dumps({
+                        "closeModal": "kt_modal",
+                        "refresh_abcs": None
+                            
+                    })
+                }) 
 
 
 
@@ -189,7 +201,14 @@ def update_paiement_rest(request, pk):
         else:
             message = _("Error occures when updating product.")
             messages.error(request, str(message))
-        return JsonResponse({"success": True})
+        return HttpResponse(status=204,
+                headers={
+                    'HX-Trigger': json.dumps({
+                        "closeModal": "kt_modal",
+                        "refresh_abcs": None
+                            
+                    })
+                }) 
 
 
 def renew_abonnement_client(request,pk):
@@ -216,7 +235,7 @@ def block_deblock_abonnement_client(request,pk):
             headers={
                 "HX-Trigger":json.dumps({
                     "closeModal":"kt_modal",
-                    "refresh_table":None
+                    "refresh_abcs":None
                 })
             })
         message = _("l'abonnement est bloqué.")
@@ -230,7 +249,7 @@ def block_deblock_abonnement_client(request,pk):
             headers={
                 "HX-Trigger":json.dumps({
                     "closeModal":"kt_modal",
-                    "refresh_table":None
+                    "refresh_abcs":None
                 })
             })
 

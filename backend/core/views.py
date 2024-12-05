@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.views.generic.base import TemplateView
 from django_filters.views import FilterView
+from core.filters import AbonnementFilter
 from presence.models import Presence
 from transaction.models import Autre, Paiement, Remuneration, RemunerationProf
 from django_tables2 import SingleTableMixin
@@ -17,6 +18,8 @@ from .forms import PlanningModelForm,SalleModelForm,MaladieModelForm,ActiviteMod
 from django.contrib import messages
 from django.http import HttpResponse
 import json
+from django_tables2 import RequestConfig
+
 from django.utils.translation import gettext_lazy as _
 from django.db.models import Sum
 from datetime import date
@@ -25,10 +28,73 @@ from django.views.generic import ListView
 from itertools import chain
 from django.db.models import Count
 from django.contrib.auth.decorators import  permission_required
+from django_htmx.http import HttpResponseClientRedirect
+import logging
+from django.urls import reverse
+from django.shortcuts import redirect
+from django.urls import reverse_lazy
+from django.conf import settings
+from salle_activite.utils import revoke_all_tasks
+from celery import group
+from salle_activite.tasks import ( 
+	start_linsten_test_device_1, 
+	start_linsten_test_device_2, 
+	start_linsten_2,
+	start_linsten_3, 
+	start_linsten_4, 
+	start_linsten_5, 
+	start_linsten_6, 
+	start_linsten_7,
+	start_linsten_8, 
+	start_linsten_9, 
+	start_face_door_right, 
+	start_face_door_left, 
+)
+logger = logging.getLogger(__name__)
+
+def open_salle(request):
+    """
+        Open All The Doors
+    """
+    print("open salle *-*-*--*-*-*-*-*-*")
+    success_url = reverse_lazy("core:planning_table")
+    logger.info("Open All The Doors inited...")
+    revoke_all_tasks()
+    if settings.DEBUG:
+        group(
+            start_linsten_test_device_1.delay(),
+            start_linsten_test_device_2.delay(),
+        )
+    else:
+        group(
+            start_linsten_2.delay(),
+            # start_linsten_3.delay(),
+            # start_linsten_4.delay(),
+            # start_linsten_5.delay(),
+            # start_linsten_6.delay(),
+            # start_linsten_7.delay(),
+            # start_linsten_8.delay(),
+            # start_linsten_9.delay(),
+            start_face_door_right.delay(),
+            start_face_door_left.delay()
+        )
+    messages.success(request, "Gym est ouverte avec succès.")
+    logger.info("La salle de gym est ouverte avec succès.")
+    return redirect(success_url)
+
+def close_salle(request):
+    success_url = reverse_lazy("core:planning_table")
+    revoke_all_tasks()
+    messages.success(request, "Gym est fermée avec succès.")
+    logger.info("La salle de gym est fermée avec succès.")
+    print("close salle *-*-*--*-*-*-*-*-*")
+    return HttpResponseRedirect(success_url)
 
 
 
-class IndexView(SingleTableMixin, ListView):
+
+class IndexView(PermissionRequiredMixin,SingleTableMixin, ListView):
+    permission_required ="transaction.can_view_statistique"
     table_class = TransactionOfTheDayTable
     print('=========== we are here')
 
@@ -98,12 +164,13 @@ class IndexView(SingleTableMixin, ListView):
         
     
 class GenericTableView(SingleTableMixin, FilterView):
-    paginate_by = 15
+    paginate_by = 8
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         # Add any additional context if needed
         return context
+    
     
     def get_template_names(self):
         if self.request.htmx:
@@ -141,6 +208,11 @@ class AbonnementTable(GenericTableView):
     # permission_required = "abonnement.view_abonnement"
     model = Abonnement
     table_class =AbonnementHTMxTable
+    filterset_class = AbonnementFilter
+    
+
+
+
 
 # planning--------------------------------------------------------------------------------------
 @permission_required('planning.add_planning',raise_exception=True)
@@ -236,7 +308,7 @@ def SalleCreateView(request):
         else:
             print("is not valide", form.errors.as_data())
             context["form"]=SalleModelForm(data=request.POST or None )
-            return render(request, template_name="configuration\snippets\_ajout_Salle_form.html", context=context)
+            return render(request, template_name="configuration/snippets/_ajout_Salle_form.html", context=context)
     context["form"] = form
     return render(request, template_name=template_name, context=context)
 
@@ -306,7 +378,7 @@ def ActiviteCreateView(request):
         else:
             print("is not valide", form.errors.as_data())
             context["form"]=ActiviteModelForm(data=request.POST or None )
-            return render(request, template_name="configuration\snippets\_ajout_activites_form.html", context=context)
+            return render(request, template_name="configuration/snippets/_ajout_activites_form.html", context=context)
     context["form"] = form
     return render(request, template_name=template_name, context=context)
 
@@ -372,7 +444,7 @@ def MaladieCreateView(request):
         else:
             print("is not valide", form.errors.as_data())
             context["form"]=MaladieModelForm(data=request.POST or None )
-            return render(request, template_name="configuration\snippets\_ajout_maladies_form.html", context=context)
+            return render(request, template_name="configuration/snippets/_ajout_maladies_form.html", context=context)
     context["form"] = form
     return render(request, template_name=template_name, context=context)
 
@@ -439,7 +511,7 @@ def PorteCreateView(request):
         else:
             print("is not valide", form.errors.as_data())
             context["form"]=DoorModelForm(data=request.POST or None )
-            return render(request, template_name="configuration\snippets\_ajout_ ports_form.html", context=context)
+            return render(request, template_name="configuration/snippets/_ajout_ ports_form.html", context=context)
     context["form"] = form
     return render(request, template_name=template_name, context=context)
 
@@ -510,7 +582,7 @@ def TypeAbonnementCreateView(request):
         else:
             print("is not valide", form.errors.as_data())
             context["form"]=AbonnementModelForm(data=request.POST or None )
-            return render(request, template_name="configuration\snippets\_type_abonne_form.html", context=context)
+            return render(request, template_name="configuration/snippets/_type_abonne_form.html", context=context)
     context["form"] = form
     return render(request, template_name=template_name, context=context)
 

@@ -134,7 +134,6 @@ class Client(models.Model):
     blood       = models.CharField(choices=BLOOD_CHOICES , max_length=3, verbose_name='Groupe sanguin')
     date_added  = models.DateField(auto_now_add=True)
     created     = models.DateTimeField(verbose_name='Date de Création',  auto_now_add=True)
-    created     = models.DateTimeField(verbose_name='Date de Création',  auto_now_add=True)
     profession  = models.CharField(max_length=50, blank=True, null=True)
     updated     = models.DateTimeField(verbose_name='Date de dernière mise à jour',  auto_now=True)
     note        = models.TextField(blank=True, null=True)
@@ -154,12 +153,11 @@ class Client(models.Model):
     abonnement_manager = AbonnementManager()
     history = HistoricalRecords()
 
-    def __init__(self, *args, **kwargs):
-        super(Client, self).__init__(*args, **kwargs)
-        # self._old_picture = self.picture
-    def __init__(self, *args, **kwargs):
-        super(Client, self).__init__(*args, **kwargs)
-        # self._old_picture = self.picture
+    # def __init__(self, *args, **kwargs):
+    #     super(Client, self).__init__(*args, **kwargs)
+    #     # self._old_picture = self.picture
+    class Meta:
+        ordering = ("-created",)
 
     def __str__(self):
         return str(self.id)
@@ -261,32 +259,11 @@ class Client(models.Model):
             try :
                 # print('clientsd==> ', timezone.now())
                 last_id = Client.objects.latest('created').id
-                print('yesssss last id = ', last_id)
                 number = int(last_id[1::])+1
-                print('the number', number)     
                 result  = str(number).zfill(4)
-                print('the result', result)     
                 the_id = f'C{result}'   
-                print('the id', the_id)   
-                print('the id', the_id)   
                 self.id = the_id
-                # if self.picture:  
-                #     self.generate_thumbnail(self.picture, self.picture.name)
-                #     register_user.delay(self.last_name, the_id, self.picture.name)
-                #     print('yess changed picturename', self.picture.name)
-                #     print('yess changed picturename', self.picture.name)
-                #     print('yess changed picture url', self.picture.url)
-                #     print('yess changed picturename', self.picture.name)
-            except Exception as e:
-                print('THE EXCEPTION ON save client', e)
-                logger.warning('THE EXCEPTION ON save client-{}'.format(str(e)))
-                # if self.picture:  
-                #     self.generate_thumbnail(self.picture, self.picture.name)
-                #     register_user.delay(self.last_name, the_id, self.picture.name)
-                #     print('yess changed picturename', self.picture.name)
-                #     print('yess changed picturename', self.picture.name)
-                #     print('yess changed picture url', self.picture.url)
-                #     print('yess changed picturename', self.picture.name)
+              
             except Exception as e:
                 print('THE EXCEPTION ON save client', e)
                 logger.warning('THE EXCEPTION ON save client-{}'.format(str(e)))
@@ -311,13 +288,13 @@ class Client(models.Model):
         return str(self.last_name)+ " " +str(self.first_name)
 
     def get_view_url(self):
-        return reverse("client:client_detail",kwargs={'pk': str(self.id)})
+        return reverse("client:client_detail",kwargs={'pk': str(self.pk)})
     
     def get_edit_url(self):
-        return reverse('client:client_update', kwargs={'pk': str(self.id)})
+        return reverse('client:client_update', kwargs={'pk': str(self.pk)})
 
     def get_delete_url(self):
-        return reverse('client:client_delete', kwargs={'pk': str(self.id)})
+        return reverse('client:client_delete', kwargs={'pk': str(self.pk)})
 
 
     def remove_duplicate(self):
@@ -361,7 +338,7 @@ class Client(models.Model):
             if not abon_list:
                 # raise serializers.ValidationError("l'adherant n'est pas inscrit aujourd'hui")
                 print("*******l'adherant n'est pas inscrit aujourd'hui**********")
-                return "over"
+                return "not_today"
             
             abonnement = abon_list.filter(type_abonnement__type_of="SL").first()
             # If no non-free session is found, get the first session regardless of its type
@@ -646,6 +623,8 @@ class Coach(models.Model):
     objects = models.Manager()
     custom_manager = PresenceManager()
 
+    class Meta:
+        ordering = ("-created",)
     
 
     
@@ -817,10 +796,11 @@ class Personnel(models.Model):
     social_security = models.CharField(max_length=150)
 
 
+    class Meta:
+        ordering = ("-created",)
 
     def __str__(self):
         return self.first_name
-    
 
     
     

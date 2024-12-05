@@ -63,14 +63,13 @@ class UserCreateView(PermissionRequiredMixin, FormView):
         new_user = form.save()
         messages.success(self.request, _("Account Created successfully"))
         print('new_user>>>>>> ID', new_user.pk)
-        return HttpResponse(
-            status=204,
-            headers={
-                'HX-Trigger': json.dumps({
-                    "closeModal": "kt_modal",
-                })
-            }
-        )
+        return HttpResponse(status=204,
+                headers={
+                    'HX-Trigger': json.dumps({
+                        "closeModal": "kt_modal",
+                        "refresh_table": None
+                    })
+                }) 
     def form_invalid(self, form):
         messages.error(self.request, form.errors )
         return self.render_to_response(self.get_context_data(form=form)) 
@@ -96,6 +95,7 @@ class UserUpdateView(PermissionRequiredMixin, View):
                 headers={
                     'HX-Trigger': json.dumps({
                         "closeModal": "kt_modal",
+                        "refresh_table" : None
                     })
                 })   
         
@@ -148,7 +148,14 @@ class UserListView(PermissionRequiredMixin, ListView):
     template_name = 'accounts/user_list.html' 
     success_url = reverse_lazy('accounts:userlist')
     context_object_name= "users"
+    
+    def get_template_names(self) -> list[str]:
+        if self.request.htmx:
+            return "accounts/snippets/user_list_block.html"
+        else :
+            return 'accounts/user_list.html' 
 
+    
     def get_context_data(self, **kwargs):
         context = super(UserListView, self).get_context_data(**kwargs)
         context["permissions"] = Permission.objects.all()
@@ -159,7 +166,7 @@ class UserListView(PermissionRequiredMixin, ListView):
 @permission_required('accounts.change_user', raise_exception=True)
 def change_password(request, pk):
     context= {}
-    template_name="accounts\snippets\change_password.html"
+    template_name="accounts/snippets/change_password.html"
     user = get_object_or_404(User, pk=pk)
     if request.method == 'POST':
         user_form = ChangePasswordForm(request.POST ,instance=user)
@@ -178,7 +185,7 @@ def change_password(request, pk):
         else:
             messages.error(request, _('Formulaire invalide'))
             context["form"]=ChangePasswordForm(data=request.POST or None )
-            return render(request, template_name="accounts\snippets\change_password.html", context=context)
+            return render(request, template_name="accounts/snippets/change_password.html", context=context)
     else:
         user_form = ChangePasswordForm()  
     context = {'form': user_form, 'user': user}
