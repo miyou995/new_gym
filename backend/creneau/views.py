@@ -64,7 +64,12 @@ class CreateCreneau(PermissionRequiredMixin,CreateView):
             #         "refresh_table": None
             #     })
             # })
-            return HttpResponseRedirect(self.request.META.get('HTTP_REFERER'))
+            return HttpResponse(status=204, headers={
+                'HX-Trigger': json.dumps({
+                    "closeModal": "kt_modal",
+                    "refresh_calendar": None
+                })
+            })        
         else :
             print('is not valide', form.errors.as_data())
             context = {'form': form}
@@ -80,11 +85,19 @@ class UpdateCreneau(PermissionRequiredMixin,UpdateView):
         self.object = self.get_object()
         print('yeah form instance', self.object)
         return super().get(request, *args, **kwargs)
+    
+    
     def form_valid(self, form):
         paiement =form.save()
         print('IS FORM VALID', paiement.id)
         messages.success(self.request, "Creneau Mis a jour avec Succés")
-        return HttpResponseRedirect(self.request.META.get('HTTP_REFERER'))
+        # return HttpResponseRedirect(self.request.META.get('HTTP_REFERER'))
+        return HttpResponse(status=204, headers={
+            'HX-Trigger': json.dumps({
+                "closeModal": "kt_modal",
+                "refresh_calendar": None
+            })
+        })
 
     def form_invalid(self, form):
         messages.success(self.request, form.errors )
