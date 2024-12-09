@@ -19,14 +19,24 @@ ALLOWED_HOSTS = ['*'] # a modifier apres l'integration du nom de domaine
 # }
 
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': "octogym_db",
+#         'USER': "postgres",
+#         'PASSWORD': "postgres",
+#         'HOST': "localhost",
+#         'PORT': "5432",
+#     }
+# }
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': "octogym_db",
+        'NAME': "gym_bd",
         'USER': "postgres",
         'PASSWORD': "postgres",
         'HOST': "localhost",
-        'PORT': "5432",
+        'PORT': "5433",
     }
 }
 

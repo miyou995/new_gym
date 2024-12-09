@@ -119,18 +119,18 @@
 								</span>
 							</div>
 						{% endif %}
-						{% if perms.accounts.view_user or perms.auth.view_group %}
+						{% if perms.authentication.view_user or perms.auth.view_group %}
 							<div class="menu-item here show me-0 me-lg-2">
 								<span class="menu-link py-3">
 									<a class="menu-item me-0 me-lg-2 dropdown-toggle py-1" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="align-items: baseline; display: flex; padding: 0.15rem 0;">
 										<span class="menu-title">Users</span>
 									</a>
 									<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-										{% if perms.accounts.view_user %}
-											<li><a class="dropdown-item" href="{% url 'accounts:userlist' %}">Users</a></li>
+										{% if perms.authentication.view_user %}
+											<li><a class="dropdown-item" href="{% url 'authentication:userlist' %}">Users</a></li>
 										{% endif %}
 										{% if perms.auth.view_group %}
-											<li><a class="dropdown-item" href="{% url 'accounts:grouplist' %}">Role</a></li>
+											<li><a class="dropdown-item" href="{% url 'authentication:grouplist' %}">Role</a></li>
 										{% endif %}
 									</ul>
 								</span>
@@ -211,7 +211,7 @@
 					</div>
 					<div class="separator my-2"></div>
 					<div class="menu-item px-5">
-						<a href="{% url 'accounts:userdetail' user.pk %}" class="menu-link px-5">
+						<a href="{% url 'authentication:userdetail' user.pk %}" class="menu-link px-5">
 							<span class="menu-icon">
 								<i class="ki-outline ki-user fs-2"></i>
 							</span>
@@ -220,7 +220,7 @@
 					</div>
 					<div class="separator my-2"></div>
 					<div class="menu-item px-5">
-						<a href="{% url 'accounts:logout' %}" class="menu-link px-5">
+						<a href="{% url 'authentication:logout' %}" class="menu-link px-5">
 							<span class="menu-icon">
 								<i class="ki-outline ki-exit-right fs-2"></i>
 							</span>

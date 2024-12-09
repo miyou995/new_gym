@@ -31,7 +31,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
-    'accounts',
+    # 'accounts',
+    "authentication",
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -137,10 +138,10 @@ MIDDLEWARE = [
 ]
 LOGIN_URL = '/login'
 
-LOGIN_EXEMPT_URLS = ['accounts:password_reset',
-                     'accounts:password_reset_done',
-                     'accounts:password_reset_complete',
-                     'accounts:password_reset_confirm']
+LOGIN_EXEMPT_URLS = ['authentication:password_reset',
+                     'authentication:password_reset_done',
+                     'authentication:password_reset_complete',
+                     'authentication:password_reset_confirm']
 
 # CORS_ALLOWED_ORIGINS = [
 #     "http://localhost:3000"
@@ -237,7 +238,7 @@ LOGGING ={
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-AUTH_USER_MODEL = 'accounts.User'
+AUTH_USER_MODEL = 'authentication.User'
 
 LANGUAGE_CODE = 'fr-fr'
 
