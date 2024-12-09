@@ -1,0 +1,45 @@
+<tr>
+    <td>
+         {{role.id}}
+    </td>
+    <td>
+        {% if perms.auth.change_group %} 
+        <a
+            href="#"
+            data-bs-toggle="modal" 
+            data-bs-target="#kt_modal"
+            data-bs-toggle="tooltip" 
+            data-bs-placement="right"
+            hx-get="{% url 'authentication:edit_role' role.pk %}"
+            hx-target="#kt_modal_content"
+            hx-swap="innerHTML"
+        >{{role.name}}</a> 
+        {% endif %}
+        
+    </td>
+
+    <td>
+       
+        
+        {% if perms.auth.delete_group %} 
+        <a 
+            href="#"
+            data-bs-toggle="modal" 
+            data-bs-target="#kt_modal"
+            data-bs-toggle="tooltip" 
+            data-bs-placement="right"
+            hx-get="{% url 'authentication:delete_group' role.pk %}"
+            hx-target="#kt_modal_content"
+            hx-swap="innerHTML"
+        >
+        <i class="ki-duotone ki-trash-square" style="font-size: 2em;" >
+            <span class="path1"></span>
+            <span class="path2"></span>
+            <span class="path3"></span>
+            <span class="path4"></span>
+        </i>
+    </a>
+    {% endif %}
+      
+    </td>
+</tr>
