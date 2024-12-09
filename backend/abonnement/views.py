@@ -61,6 +61,7 @@ class RetreiveAbonnementClient(PermissionRequiredMixin,CalendarAbonnementClientM
     model = Creneau
     
     def get_context_data(self, **kwargs):
+        print('ABONNEMENT CLIENT RETREIVED==========================W')
         context = super().get_context_data(**kwargs)
         abc = get_object_or_404(AbonnementClient, pk=self.kwargs['pk'])
         context["abc"]= abc
@@ -75,8 +76,13 @@ class RetreiveAbonnementClient(PermissionRequiredMixin,CalendarAbonnementClientM
         return kwargs
     
     def get_queryset(self) :
+        selected_planning = None
         abc = get_object_or_404(AbonnementClient, pk=self.kwargs['pk'])
-        return Creneau.objects.filter(activity__salle__abonnements__id=abc.type_abonnement.id)
+        creneau_pilote = abc.creneaux.select_related('planning').order_by('planning__id').distinct('planning__id').first()
+        ab_creneaux= Creneau.objects.filter(activity__salle__abonnements__id=abc.type_abonnement.id) 
+        if creneau_pilote:
+            selected_planning = creneau_pilote.planning
+        return ab_creneaux.filter(planning=selected_planning)
     
     def get_template_names(self):
         template_name = "snippets/update_calander.html"

@@ -36,11 +36,12 @@
 
     htmx.on('htmx:afterSettle', (e) => {
         console.log("htmx:afterSettle");
-            console.log("HEEEY eventsId here HTMX REQUEST");
+        console.log("HEEEY eventsId here HTMX REQUEST");
         initCalendar({{ events|safe }});
-    
     });
 
-
+ 
+    
+    
     
 </script>

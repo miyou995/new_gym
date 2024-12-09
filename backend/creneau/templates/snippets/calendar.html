@@ -55,7 +55,12 @@
                        {% endif %}
                 </div>
                 </div>
-                <div id="calendarWrapper" class="card card-flush">
+                <div id="calendarWrapper" class="card card-flush"
+                    hx-get="{{request.path}}"  
+                    hx-target="#calendarWrapper" 
+                    hx-swap="innerHTML" 
+                    hx-trigger="refresh_calendar from:body"
+                >
                     {% include "snippets/calender_partial.html" %}               
                 </div>
             </div>
