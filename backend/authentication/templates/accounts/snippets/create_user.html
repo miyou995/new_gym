@@ -8,8 +8,8 @@
           id="sg_create_store_form"  
           class="form"  
           {% if form.instance.id %}
-          hx-post="{% url 'accounts:edituser' form.instance.id %}" 
-          {% else %} hx-post="{% url 'accounts:user_create_view' %}"
+          hx-post="{% url 'authentication:edituser' form.instance.id %}" 
+          {% else %} hx-post="{% url 'authentication:user_create_view' %}"
           {% endif %}
           hx-target="#kt_modal_content"
           novalidate 
@@ -48,14 +48,14 @@
                   <span class="form-check-label fw-semibold text-muted">{% trans "Default" %}</span>
                 </label>
               </div>
-            {% elif field.name == "is_admin" %}
+            {% elif field.name == "is_staff" %}
               <div class="d-flex flex-stack mb-8">
                 <div class="me-5">
                   <label class="fs-6 fw-semibold">{% trans "Statut Super-Utilisateur" %}</label>
                   <div class="fs-7 fw-semibold text-muted">{% trans "Précise que l’utilisateur possède toutes les permissions sans les assigner explicitement." %}</div>
                 </div>
                 <label class="form-check form-switch form-check-custom form-check-solid">
-                  {% render_field form.is_admin class='form-check-input' %}
+                  {% render_field form.is_staff class='form-check-input' %}
                   <span class="form-check-label fw-semibold text-muted">{% trans "Default" %}</span>
                 </label>
               </div>

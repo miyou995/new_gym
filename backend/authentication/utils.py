@@ -32,11 +32,13 @@ def get_permissions():
 
     permissions_dict = {}
     for permission in permissions:
-        model_name = permission.content_type.model_class().__name__
-        if model_name not in excluded_model_names:
-            if model_name not in permissions_dict:
-                permissions_dict[model_name] = []
-            permissions_dict[model_name].append(permission)
+        model_class = permission.content_type.model_class()
+        if model_class:
+            model_name = model_class.__name__
+            if model_name not in excluded_model_names:
+                if model_name not in permissions_dict:
+                    permissions_dict[model_name] = []
+                permissions_dict[model_name].append(permission)
         
 
     return permissions_dict

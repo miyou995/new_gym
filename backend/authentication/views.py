@@ -40,7 +40,7 @@ class CustomLoginView(LoginView):
             messages.error(self.request, _("Email ou mot de passe incorrect."))
             return "/"
         redirect_url = redirect('/')
-        return reverse('accounts:userdetail', kwargs={'pk': user.pk})
+        return reverse('authentication:userdetail', kwargs={'pk': user.pk})
     
     def form_invalid(self, form):
         """If the form is invalid, render the invalid form."""
@@ -55,7 +55,7 @@ def logout_view(request):
 # -----------------------------------USER VIEWS----------------------------------------------------
 
 class UserCreateView(PermissionRequiredMixin, FormView):
-    permission_required = 'accounts.add_user'
+    permission_required = 'authentication.add_user'
     template_name = "accounts/snippets/create_user.html"
     form_class = UserCreationForm
 
@@ -76,7 +76,7 @@ class UserCreateView(PermissionRequiredMixin, FormView):
 
 
 class UserUpdateView(PermissionRequiredMixin, View):
-    permission_required = 'accounts.change_user'
+    permission_required = 'authentication.change_user'
     template_name = "accounts/snippets/create_user.html"
 
     def get(self, request, *args, **kwargs):
@@ -106,10 +106,10 @@ class UserUpdateView(PermissionRequiredMixin, View):
 
 
 class UserDeleteView(PermissionRequiredMixin,DeleteView):
-    permission_required='account:delete_user'
+    permission_required='authentication.delete_user'
     model = User
     template_name = "buttons/delete.html"
-    success_url = reverse_lazy("accounts:userlist")
+    success_url = reverse_lazy("authentication:userlist")
 
     def form_valid(self, form):
         success_url = self.get_success_url()
@@ -144,9 +144,9 @@ class UserDetailView(DetailView):
 
 class UserListView(PermissionRequiredMixin, ListView):
     model = User
-    permission_required = 'accounts.view_user'
+    permission_required = 'authentication.view_user'
     template_name = 'accounts/user_list.html' 
-    success_url = reverse_lazy('accounts:userlist')
+    success_url = reverse_lazy('authentication:userlist')
     context_object_name= "users"
     
     def get_template_names(self) -> list[str]:
@@ -163,7 +163,7 @@ class UserListView(PermissionRequiredMixin, ListView):
         return context 
         
 
-@permission_required('accounts.change_user', raise_exception=True)
+@permission_required('authentication.change_user', raise_exception=True)
 def change_password(request, pk):
     context= {}
     template_name="accounts/snippets/change_password.html"
@@ -178,7 +178,7 @@ def change_password(request, pk):
                 user.set_password(password)
                 user.save()
                 messages.success(request, _('Mot de passe modifié avec succès'))
-                redirect_url = reverse("accounts:userlist")
+                redirect_url = reverse("authentication:userlist")
                 return HttpResponseClientRedirect(redirect_url)
             else:
                 messages.error(request, _('Formulaire invalide'))
@@ -237,7 +237,7 @@ class GroupListView(PermissionRequiredMixin, ListView):
     permission_required = 'auth.view_group'
     model = Group
     template_name = 'accounts/group_list.html' 
-    success_url = reverse_lazy('accounts:grouplist')
+    success_url = reverse_lazy('authentication:grouplist')
     context_object_name= "roles"
 
     def get_context_data(self, **kwargs):
@@ -258,7 +258,7 @@ class GroupDetailView(DetailView):
         context["staff"] = User.objects.filter(groups__id=group.id)
         context["page_title"]= _("Role details")
         context["parent_page"]= _('Users')
-        context["parent_url"]= reverse('accounts:user_management')
+        context["parent_url"]= reverse('authentication:user_management')
         return context
 
 
@@ -268,11 +268,11 @@ class GroupDeleteView(PermissionRequiredMixin,DeleteView):
     permission_required='auth.delete_group'
     model = Group
     template_name = "buttons/delete.html"
-    success_url = reverse_lazy("accounts:grouplist")
+    success_url = reverse_lazy("authentication:grouplist")
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["delete_url"] = reverse('accounts:delete_group', kwargs={'pk': str(self.object.id)}) 
+        context["delete_url"] = reverse('authentication:delete_group', kwargs={'pk': str(self.object.id)}) 
         return context
     
 
@@ -285,7 +285,7 @@ class GroupDeleteView(PermissionRequiredMixin,DeleteView):
 class SignupView(FormView):
     template_name = "accounts/signup.html"
     form_class = UserCreationForm
-    success_url = reverse_lazy('accounts:signup_success')
+    success_url = reverse_lazy('authentication:signup_success')
     def form_valid(self, form):
         response = super().form_valid(form)
         form.save()

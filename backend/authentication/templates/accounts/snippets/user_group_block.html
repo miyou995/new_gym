@@ -10,7 +10,7 @@
             data-bs-target="#kt_modal"
             data-bs-toggle="tooltip" 
             data-bs-placement="right"
-            hx-get="{% url 'accounts:edit_role' role.pk %}"
+            hx-get="{% url 'authentication:edit_role' role.pk %}"
             hx-target="#kt_modal_content"
             hx-swap="innerHTML"
         >{{role.name}}</a> 
@@ -28,7 +28,7 @@
             data-bs-target="#kt_modal"
             data-bs-toggle="tooltip" 
             data-bs-placement="right"
-            hx-get="{% url 'accounts:delete_group' role.pk %}"
+            hx-get="{% url 'authentication:delete_group' role.pk %}"
             hx-target="#kt_modal_content"
             hx-swap="innerHTML"
         >

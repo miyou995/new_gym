@@ -9,9 +9,9 @@
         class="form"    
         
         {% if form.instance.id %}
-        hx-post= "{% url 'accounts:edit_role' form.instance.id %}"
+        hx-post= "{% url 'authentication:edit_role' form.instance.id %}"
         {% else %}
-        hx-post= "{% url 'accounts:create_role' %}"
+        hx-post= "{% url 'authentication:create_role' %}"
         {% endif %}       
         hx-target="#kt_modal_content"
         novalidate

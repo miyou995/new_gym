@@ -17,7 +17,7 @@ User = get_user_model()
 class UserCreationForm(DjangoUserCreationForm):
     class Meta(DjangoUserCreationForm.Meta):
         model = User
-        fields = ("email",'first_name', "last_name","groups", "is_staff", "is_active","picture","password1")
+        fields = ("email",'first_name', "last_name","groups", "is_staff", "is_active","password1")
         field_classes = {"email": UsernameField}
         
   
@@ -25,7 +25,7 @@ class UserCreationForm(DjangoUserCreationForm):
 class UserEditionForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ("email", 'first_name', "last_name",  "picture","is_active","is_staff",'is_admin',"groups")
+        fields = ("email", 'first_name', "last_name","is_active","is_staff","groups")
 
 
 class ChangePasswordForm(forms.ModelForm):

@@ -20,7 +20,7 @@
            {{user.id}}
       </td>
       <td>
-          <a href="{% url 'accounts:userdetail' user.pk %}">{{user.email}}</a> 
+          <a href="{% url 'authentication:userdetail' user.pk %}">{{user.email}}</a> 
           
       </td>
       {% comment %} <td class="py-1"><a href="{{user.warehouse.get_absolute_url}}">{{user.warehouse | default_if_none:"-"}}</a>
@@ -46,7 +46,7 @@
       </td>
       <td>
           
-          {% if perms.accounts.delete_user %}
+          {% if perms.authentication.delete_user %}
               
           
           <a 
@@ -55,7 +55,7 @@
               data-bs-target="#kt_modal"
               data-bs-toggle="tooltip" 
               data-bs-placement="right" 
-              hx-get="{% url 'accounts:user_delete_view' user.pk %}"
+              hx-get="{% url 'authentication:user_delete_view' user.pk %}"
               hx-target="#kt_modal_content"
               hx-swap="innerHTML"
           >
