@@ -482,6 +482,8 @@ post_save.connect(creneau_created_signal, sender=Creneau)
 def abonnement_client_signal(sender,instance, created,**kwargs):
     if created:
         seances_qty = instance.type_abonnement.seances_quantity
+        if instance.type_abonnement.time_volume():
+            seances_qty=seances_qty * 60
         instance.presence_quantity = seances_qty
         print("signalllllllllllll-------------------",seances_qty)
         reste = instance.type_abonnement.price

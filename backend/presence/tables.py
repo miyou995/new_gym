@@ -31,7 +31,8 @@ class PresencesHTMxTable(tables.Table):
         ''',
           verbose_name="Nom",
         orderable=True)
-
+    def render_reste_abc(self, value, record):
+        return record.abc.get_quantity_str() if record.abc.get_quantity_str() else value
     class Meta:
         fields  = (
                 'id',
