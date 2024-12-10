@@ -62,21 +62,21 @@ class ClientModelForm(forms.ModelForm):
     def clean(self):
         cleaned_data = super().clean()
         card=cleaned_data.get('carte')
-        phone=cleaned_data.get('phone')
+        # phone=cleaned_data.get('phone')
         last_name=cleaned_data.get('last_name')
 
         if not last_name :
             self.add_error('last_name',_("Veuillez renseigner ce champ "))
      
-        if not phone :
-            self.add_error('phone',_("Veuillez renseigner ce champ "))
+        # if not phone :
+        #     self.add_error('phone',_("Veuillez renseigner ce champ "))
         
-        if phone:
-            trim_phone = phone.replace(" ", "")
-            phone_pattern = re.compile(r'^(0)(5|6|7)[0-9]{8}$')
-            if not phone_pattern.match(trim_phone):
-                self.add_error('phone', _("Veuillez entrer un numéro de téléphone valide "))  
-        return cleaned_data
+        # if phone:
+        #     trim_phone = phone.replace(" ", "")
+        #     phone_pattern = re.compile(r'^(0)(5|6|7)[0-9]{8}$')
+        #     if not phone_pattern.match(trim_phone):
+        #         self.add_error('phone', _("Veuillez entrer un numéro de téléphone valide "))  
+        # return cleaned_data
     
     
 class CoachModelForm(forms.ModelForm):
@@ -128,18 +128,18 @@ class CoachModelForm(forms.ModelForm):
             'invalid': 'Custom error message for field2 is invalid.',
         }
 
-    def clean(self):
-        cleaned_data = super().clean()
-        phone=cleaned_data.get('phone')
+    # def clean(self):
+    #     cleaned_data = super().clean()
+    #     phone=cleaned_data.get('phone')
    
       
-        if not phone :
-            self.add_error('phone',_("Veuillez renseigner ce champ "))
-        if phone:
-            phone_pattern = re.compile(r'^(0)(5|6|7)[0-9]{8}$')
-            if not phone_pattern.match(phone):
-                self.add_error('phone',_("Veuillez entrer un numéro de téléphone valide "))  
-        return cleaned_data
+    #     if not phone :
+    #         self.add_error('phone',_("Veuillez renseigner ce champ "))
+    #     if phone:
+    #         phone_pattern = re.compile(r'^(0)(5|6|7)[0-9]{8}$')
+    #         if not phone_pattern.match(phone):
+    #             self.add_error('phone',_("Veuillez entrer un numéro de téléphone valide "))  
+    #     return cleaned_data
    
 
 

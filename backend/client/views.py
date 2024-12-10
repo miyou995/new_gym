@@ -411,7 +411,7 @@ class PresenceClientDetail(SingleTableMixin, FilterView):
         model = Presence
         
         def get_queryset(self):
-            queryset = Presence.objects.order_by("-created")
+            queryset = Presence.objects.order_by("-created").select_related('abc', 'abc__client', 'creneau', 'creneau__activity')
             abonnement_client_pk = self.kwargs.get('pk')
             print("abonnement_client_pk from presence -------------", abonnement_client_pk)
             if abonnement_client_pk:

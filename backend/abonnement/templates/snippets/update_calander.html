@@ -181,7 +181,7 @@
                     <label class="fs-6 fw-semibold mb-1">
                         <span class="card-label fw-bold text-grey-800">Bloqué à partir du</span>
                     </label>
-                    <input type="date" name="block_date" class="form-control" id="block_date"/>
+                    <input type="date" name="block_date" value='{% now "Y-m-d" %}' class="form-control" id="block_date"/>
                 </div>
                 <button
                     type="button"
