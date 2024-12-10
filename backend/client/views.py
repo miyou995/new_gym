@@ -357,6 +357,9 @@ class ClientDetailView(SingleTableMixin, FilterView):
     def get_context_data(self, **kwargs):
         context = super(ClientDetailView, self).get_context_data(**kwargs)
         context["client"] = Client.objects.get(pk=self.kwargs['pk'])
+        # client=Client.objects.filter(pk=self.kwargs['pk'])
+        # print('ageeee ------****************---------->>>>>',client.age())
+
         print('context abc ------****************---------->>>>>')
 
         # context["abc"] = self.kwargs['pk']
@@ -408,7 +411,7 @@ class PresenceClientDetail(SingleTableMixin, FilterView):
         model = Presence
         
         def get_queryset(self):
-            queryset = Presence.objects.order_by("-created")
+            queryset = Presence.objects.order_by("-created").select_related('abc', 'abc__client', 'creneau', 'creneau__activity')
             abonnement_client_pk = self.kwargs.get('pk')
             print("abonnement_client_pk from presence -------------", abonnement_client_pk)
             if abonnement_client_pk:

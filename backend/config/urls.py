@@ -62,7 +62,6 @@ urlpatterns = [
     path('', include("abonnement.urls")),
     # path('', include("NetSDK.urls")), 
     path('', include("assurance.urls")),
-    # path('', include("accounts.urls")),
     path('', include("authentication.urls")),
 
 

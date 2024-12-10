@@ -165,6 +165,15 @@ class Client(models.Model):
     def get_picture_url(self):
         if self.picture and hasattr(self.picture, 'url'):
             return self.picture.url
+    @property
+    def age(self):
+        today = date.today()
+        if self.birth_date:
+            return today.year - self.birth_date.year - (
+                (today.month, today.day) < (self.birth_date.month, self.birth_date.day)
+            )
+        
+        return None
 
     # def generate_thumbnail(self, picture, picture_name):
     #     THUMBNAIL_SIZE = (250, 360)
@@ -315,12 +324,10 @@ class Client(models.Model):
         client = self
         presence_sortie= self.init_output()
         if presence_sortie:
-            print('YESS SORTIEEE')
             return 'sortie'
         # client.has_permission()
         creneaux = Creneau.range.get_creneaux_of_day().filter(abonnements__client=client).distinct()
         # print('Les creneaux of client=====>',Creneau.objects.filter(abonnements__client=client))
-        print('creneaux du Today client=====>', creneaux)
         logger.warning('LOGLes creneaux du Today client=====-{}'.format(str(creneaux)))
         if len(creneaux) :
             dur_ref_time_format = abs(datetime.strptime(str(creneaux[0].hour_start), FTM) - datetime.strptime(current_time, FTM))
@@ -344,9 +351,6 @@ class Client(models.Model):
             # If no non-free session is found, get the first session regardless of its type
             if not abonnement:
                 abonnement = abon_list.first()
-            print('ABONNEMENT<<<<<<<<<<>>>>>>>>>>>>>>>>',abonnement.get_type())
-            print('ABONNEMENT is valid<<<<<<<<<<>>>>>>>>>>>>>>>>',abonnement.is_valid())
-            print('ABONNEMENT presence qnt<<<<<<<<<<>>>>>>>>>>>>>>>>',abonnement.presence_quantity)
 
             if abonnement.is_valid() and abonnement.is_time_volume():
                 print('IM HEEERE LOG ABONNEMENT==== TIME VOLUUUPME', abonnement.is_time_volume())
@@ -386,8 +390,21 @@ class Client(models.Model):
                 
             logger.warning('LA PRESENCE de{}'.format(str(self.id)))
             presence_time = presence.hour_entree
-            ecart = abs(datetime.strptime(current_time, FTM) - datetime.strptime(str(presence_time), FTM))
-            time_diff_seconds = timedelta.total_seconds(ecart)
+            # ecart = abs(datetime.strptime(current_time, FTM) - datetime.strptime(str(presence_time), FTM))
+            # time_diff_seconds = timedelta.total_seconds(ecart)
+            
+                   # Parse times
+            current_time_dt = datetime.strptime(current_time, FTM)
+            presence_time_dt = datetime.strptime(str(presence_time), FTM)
+
+            # Handle wraparound at midnight
+            if current_time_dt < presence_time_dt:
+                current_time_dt += timedelta(days=1)
+
+            ecart = current_time_dt - presence_time_dt
+            time_diff_seconds = ecart.total_seconds() #TODO to be tested
+            
+            
             if int(time_diff_seconds) <= 2:
                 logger.warning('SORTIE COULD NOT BE done  ================> ')
                 return False
@@ -410,8 +427,6 @@ class Client(models.Model):
         logger.warning('Client requested Door Auth ===> {}'.format(str(self.id)))
         client = self
         creneaux = Creneau.objects.filter(abonnements__client=client,day=date).distinct()
-       
-        print('creneaux du Today client=====>', creneaux)
         logger.warning('LOGLes creneaux du Today client=====-{}'.format(str(creneaux)))
         if len(creneaux) :
             abonnement = creneaux

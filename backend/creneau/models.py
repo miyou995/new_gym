@@ -186,16 +186,16 @@ class Creneau(models.Model):
 
 
 
-class Event(models.Model):
-    title = models.CharField(max_length=200)
-    start_time = models.DateTimeField()
-    end_time = models.DateTimeField()
+# class Event(models.Model):
+#     title = models.CharField(max_length=200)
+#     start_time = models.DateTimeField()
+#     end_time = models.DateTimeField()
    
 
-    def __str__(self):
-        return self.title
-    def get_delete_url(self):
-        return reverse('creneau:creneau_delete_view', kwargs={'pk': str(self.id)})
+#     def __str__(self):
+#         return self.title
+#     def get_delete_url(self):
+#         return reverse('creneau:creneau_delete_view', kwargs={'pk': str(self.id)})
 
 
 

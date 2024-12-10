@@ -25,9 +25,9 @@ from django.db.models import Sum
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404, redirect, render
 from django.template.loader import render_to_string
-
-
-
+from django.templatetags.static import static
+from django.conf import settings
+from pathlib import Path
 
     
 
@@ -44,12 +44,11 @@ def impression_resu_paiement(request, paiement_id):
     }
     html = render_to_string("snippets/order_pdf.html", context)
     # stylesheets=[weasyprint.CSS(str(configs.STATIC_ROOT) + 'css/pdf.css' )]
-    weasyprint.HTML(string=html, base_url=request.build_absolute_uri()).write_pdf(
-        response
-    )
+    # weasyprint.HTML(string=html, base_url=request.build_absolute_uri()).write_pdf(
+    #     response, stylesheets=stylesheets
+    # )
+    weasyprint.HTML(string=html, base_url=request.build_absolute_uri()).write_pdf(response)
     return response
-    
-
 
 
 
