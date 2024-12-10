@@ -2,7 +2,7 @@ from django import forms
 from .models import Client,Coach,Personnel,Maladie
 from django.utils.translation import gettext_lazy as _
 import re
-
+from datetime import date
 
 class ClientModelForm(forms.ModelForm):
     carte = forms.IntegerField(
@@ -56,6 +56,7 @@ class ClientModelForm(forms.ModelForm):
             'required': 'veuillez choisir.',
             'invalid': 'Custom error message for field2 is invalid.',
         }
+
 
 
     def clean(self):

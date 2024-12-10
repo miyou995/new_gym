@@ -32,7 +32,7 @@ ALLOWED_HOSTS = ['*'] # a modifier apres l'integration du nom de domaine
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': "gym_bd",
+        'NAME': "atlas_bd",
         'USER': "postgres",
         'PASSWORD': "postgres",
         'HOST': "localhost",

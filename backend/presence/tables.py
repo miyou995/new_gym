@@ -6,10 +6,11 @@ from django.urls import reverse
 class PresencesHTMxTable(tables.Table):
     # tables.Column(accessor="client__id",verbose_name="carte",orderable=True , linkify=lambda record: record.client.get_view_url() if record.client else None)
     id= tables.Column(accessor="abc.client.id",verbose_name="Nom", orderable=True, linkify=lambda record:record.abc.client.get_view_url() if record.abc.client else None)
-    Creneau_activity = tables.Column(accessor="creneau.activity", verbose_name="Activité", orderable=True )
+    abc = tables.Column(accessor="abc__type_abonnement", verbose_name="type d'abonnement", orderable=True )
     Creneau_date = tables.Column(accessor="creneau.day", verbose_name="Jour", orderable=True )
-    abc= tables.Column(accessor="abc__reste",verbose_name="Dettes", orderable=True)
-    # abc= tables.Column(accessor="abc_reste",verbose_name="Dettes", orderable=True)
+    reste_abc = tables.Column(accessor="abc__presence_quantity",verbose_name="Reste", orderable=True)
+    prenom = tables.Column(accessor="abc__client__first_name",verbose_name="prénom", orderable=True)
+
 
     nom = tables.TemplateColumn(
         template_code='''
@@ -35,13 +36,13 @@ class PresencesHTMxTable(tables.Table):
         fields  = (
                 'id',
                 'nom',
-                'Creneau_activity',
-                'date', 
+                'prenom',
+                'abc',
                 'Creneau_date',
+                'date', 
                 'hour_entree',
                 'hour_sortie',
-                'notes',
-                'abc',
+                'reste_abc',
                 
         )
         model = Presence
