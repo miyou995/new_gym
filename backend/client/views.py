@@ -357,6 +357,9 @@ class ClientDetailView(SingleTableMixin, FilterView):
     def get_context_data(self, **kwargs):
         context = super(ClientDetailView, self).get_context_data(**kwargs)
         context["client"] = Client.objects.get(pk=self.kwargs['pk'])
+        # client=Client.objects.filter(pk=self.kwargs['pk'])
+        # print('ageeee ------****************---------->>>>>',client.age())
+
         print('context abc ------****************---------->>>>>')
 
         # context["abc"] = self.kwargs['pk']

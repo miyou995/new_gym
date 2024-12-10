@@ -16,6 +16,7 @@ from django.views.generic import (CreateView, DeleteView,DetailView,
 from django.shortcuts import render
 from salle_activite.models import Salle,Activity,Door
 import json
+from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from .filters import PresenceFilter
 from django.contrib.auth.mixins import PermissionRequiredMixin
@@ -62,10 +63,7 @@ def presence_client(request):
     print("from client present//////////////////")
     client_id=Client.objects.filter(Q(id=code) | Q(carte=code))
     print("client_id---------------",client_id)
-    # abc_list=AbonnementClient.objects.filter(client__carte=code)
-    # for abc in abc_list:
-    #     print('abc--------------------',abc)
-    #     print("creneau------------",abc.creneaux)
+
     if client_id :
         print("client_id----------------")
         client_id=get_object_or_404(Client, Q(id=code) | Q(carte=code))
@@ -77,18 +75,36 @@ def presence_client(request):
             return render(request,"snippets/presence_popup.html",context)
         elif auto_presence == 'entre':
             print("enter ------------------------------------")
-            return render(request,"snippets/presence_popup.html",context)
+            # return render(request,"snippets/presence_popup.html",context)
+            rendered_template = render_to_string("snippets/presence_popup.html", context)
+
+            return HttpResponse(
+                    content=rendered_template,
+                    status=200,  # Use 200 if you want to return content
+                    headers={
+                        'HX-Trigger': json.dumps({
+                            "refresh_table": None
+                        })
+                    }
+                )
+            
         elif auto_presence == 'fin_abonnement':
             print("fin d'abonnemnt---------------------")
             return render(request,"snippets/presence_popup.html",context)
         elif auto_presence == 'sortie':
             print("la sortie---------------------")
-            return render(request,"snippets/presence_popup.html",context)
+            # return render(request,"snippets/presence_popup.html",context)
+            message="le client est sortie"
+            messages.success(request, str(message))
     else :
         print(" else----------client_id----------------")
         message = _("client n'exist pas .")
         messages.warning(request, str(message))   
-    return HttpResponse(status=204) 
+    return HttpResponse(status=204, headers={
+                'HX-Trigger': json.dumps({
+                    "refresh_table": None
+                })
+            })
 
 
 class PresenceManuelleClient(PermissionRequiredMixin,CreateView):
