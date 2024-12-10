@@ -89,7 +89,7 @@ class PersonnelHTMxTable(tables.Table):
 # client details ------------------------------------------------------------------------------------------
 class AbonnementClientHTMxTable(tables.Table):
 #     Séances = tables.Column(accessor="type_abonnement__seances_quantity", verbose_name="Séances", orderable=True )
-    presence_quantity=tables.Column( verbose_name="seances / minutes", orderable=True )
+    presence_quantity=tables.Column( verbose_name="Reste", orderable=True )
     start_date =tables.Column( verbose_name="Début date", orderable=True )
     end_date =tables.Column( verbose_name="Fin date", orderable=True )
     type_abonnement = tables.TemplateColumn(
@@ -122,6 +122,8 @@ class AbonnementClientHTMxTable(tables.Table):
         self.abonnement_client_pk = kwargs.pop('abonnement_client_pk', None)  # Extract the creneau_pk
         super().__init__(*args, **kwargs)
 
+    def render_presence_quantity(self, value, record):
+        return record.get_quantity_str() if record.get_quantity_str() else value
     class Meta:
         fields  = (
                 'type_abonnement',

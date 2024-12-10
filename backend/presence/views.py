@@ -61,10 +61,10 @@ def presence_client(request):
     context= {}
     code=request.GET.get('search','')
     print("from client present//////////////////")
-    client_id=Client.objects.filter(Q(id=code) | Q(carte=code))
-    print("client_id---------------",client_id)
+    client=Client.objects.filter(Q(id=code) | Q(carte=code)).first()
+    print("client_id---------------",client)
 
-    if client_id :
+    if client :
         print("client_id----------------")
         client_id=get_object_or_404(Client, Q(id=code) | Q(carte=code))
         auto_presence=client_id.auto_presence()
@@ -94,7 +94,7 @@ def presence_client(request):
         elif auto_presence == 'sortie':
             print("la sortie---------------------")
             # return render(request,"snippets/presence_popup.html",context)
-            message="le client est sortie"
+            message = f"{client.last_name} {client.first_name} est sortie"
             messages.success(request, str(message))
     else :
         print(" else----------client_id----------------")
