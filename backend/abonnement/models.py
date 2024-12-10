@@ -97,7 +97,7 @@ class Abonnement(models.Model):
     type_of          = models.CharField(choices= TYPE_ABONNEMENT, max_length=2, default='VH',verbose_name="type d'abonnement")
     price            = models.DecimalField(max_digits=15, decimal_places=0, verbose_name="prix")
     length           = models.CharField(choices= DURE_ABONNEMENT,verbose_name="Durée",max_length=8)# number of days
-    seances_quantity = models.IntegerField(blank=True, null=True,verbose_name="Nombre de séances/heureux")
+    seances_quantity = models.IntegerField(blank=True, null=True,verbose_name="Nombre de séances/Heures")
     salles           = models.ManyToManyField(Salle, related_name='abonnements')
     actif            = models.BooleanField(default=True)
     # objects        = AbonnementManager()
@@ -135,7 +135,7 @@ class AbonnementClient(models.Model):
     archiver            = models.BooleanField(default=False)
     created_date_time   = models.DateTimeField(auto_now_add=True)
     updated_date_time   = models.DateTimeField(auto_now=True)
-    history             = HistoricalRecords()
+    # history             = HistoricalRecords()
     objects         = models.Manager()
     subscription    = SubscriptionManager()
     
@@ -181,7 +181,6 @@ class AbonnementClient(models.Model):
 
     def unlock(self):
         today = date.today()
-
         if self.blocking_date:
             locked_days = self.end_date - self.blocking_date
             print('locked_days', locked_days)
@@ -482,7 +481,7 @@ post_save.connect(creneau_created_signal, sender=Creneau)
 def abonnement_client_signal(sender,instance, created,**kwargs):
     if created:
         seances_qty = instance.type_abonnement.seances_quantity
-        instance.presence_quantity = seances_qty
+        instance.presence_quantity = (seances_qty) * 60
         print("signalllllllllllll-------------------",seances_qty)
         reste = instance.type_abonnement.price
         instance.reste =reste

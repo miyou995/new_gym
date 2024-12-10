@@ -204,8 +204,7 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
-LOGGING ={
+LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'formatters': {
@@ -229,12 +228,35 @@ LOGGING ={
         }
     },
     'loggers': {
+        'fontTools': {
+            'level': 'ERROR',  # Suppress INFO and DEBUG logs
+            'handlers': ['console', 'file'],
+            'propagate': False,
+        },
+        'PIL.PngImagePlugin': {
+            'level': 'ERROR',  # Suppress DEBUG logs from Pillow
+            'handlers': ['console', 'file'],
+            'propagate': False,
+        },
+        'weasyprint': {
+            'level': 'WARNING',  # Suppress unnecessary warnings
+            'handlers': ['console', 'file'],
+            'propagate': False,
+        },
+        'django': {
+            'level': 'INFO',
+            'handlers': ['console'],
+            'propagate': True,
+        },
         '': {
             'level': 'DEBUG',
             'handlers': ['console', 'file']
         }
-    }
+    },
 }
+
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 

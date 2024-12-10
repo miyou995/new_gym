@@ -44,7 +44,7 @@ class Presence(models.Model):
     updated = models.DateTimeField(verbose_name="Date de dernière mise à jour", auto_now=True)
     objects = models.Manager()
     presence_manager = PresenceManager()
-    history = HistoricalRecords(user_model=settings.AUTH_USER_MODEL)
+    # history = HistoricalRecords(user_model=settings.AUTH_USER_MODEL)
 
     class Meta:
         ordering  = ['-created']
