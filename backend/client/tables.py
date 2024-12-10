@@ -30,6 +30,7 @@ class ClientHTMxTable(tables.Table):
         model = Client
         template_name = "tables/bootstrap_htmx.html"
         attrs = {
+            "class": "table table-striped",
             "url": lambda: reverse("client:client_name"),
             "htmx_container": "#TableClient",
         }
@@ -45,7 +46,6 @@ class CoachHTMxTable(tables.Table):
 
     class Meta:
         fields  = (
-            
                 'last_name',
                 'first_name', 
                 'phone',
@@ -55,11 +55,12 @@ class CoachHTMxTable(tables.Table):
                 'action',
         )
         model = Coach
-        template_name = "tables/bootstrap_htmx.html"
         attrs = {
+            "class": "table table-striped",
             "url": lambda: reverse("client:coach_name"),
             "htmx_container": "#TableCoach",
         }
+        template_name = "tables/bootstrap_htmx.html"
 
 
 class PersonnelHTMxTable(tables.Table):

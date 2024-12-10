@@ -286,7 +286,12 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = TIME_ZONE
 
-
+DJANGO_TABLES2_TABLE_ATTRS = {
+    'class': 'table table-striped',
+    'thead': {
+        'class': 'table-light',
+    },
+}
 
 
 

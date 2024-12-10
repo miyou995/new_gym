@@ -55,7 +55,7 @@
                 <div class="card-header py-4 " >
                     <h3 class="card-title mb-0">Transactions du jour</h3>
                 </div>
-                <div class="card-body table-responsive h-250px ">
+                <div class="card-body table-responsive h-350px ">
                     {% render_table table %}
                 </div>
                 {% if perms.transaction.view_transaction %}
@@ -74,7 +74,7 @@
                 <div class="card-header py-4 " >
                     <h3 class="card-title mb-0">Présences par salle</h3>
                 </div>
-                <div class="card-body table-responsive h-250px">
+                <div class="card-body table-responsive h-350px">
                     <table class="table table-striped table-bordered">
                         <thead>
                             <tr>
@@ -96,7 +96,7 @@
                 {% if perms.presence.view_presence %}
                 <div class="menu-item px-3">
                     <div class="menu-content px-3 py-3">
-                        <a class="bi bi-caret-right-fill btn btn-primary btn-sm px-4 " href="{% url 'presence:presences_name' %}"> Présences</a>
+                        <a class="bi bi-caret-right-fill btn btn-primary btn-sm px-4" href="{% url 'presence:presences_name' %}"> Présences</a>
                     </div>
                 </div>
                 {% endif %}
@@ -109,7 +109,7 @@
                 <div class="card-header py-4 " >
                     <h3 class="card-title mb-0">Actuellement en salle</h3>
                 </div>
-                <div class="card-body table-responsive h-250px ">
+                <div class="card-body table-responsive h-350px ">
                     <table class="table table-striped table-bordered">
                         <thead>
                             <tr>
