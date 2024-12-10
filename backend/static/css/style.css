@@ -15,7 +15,9 @@
  
   }
  */
-
+:root {
+    --bs-table-bg-type : #c9c9c9bf ;
+}
 
  .custom-text {
     text-align: center;
