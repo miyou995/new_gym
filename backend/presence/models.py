@@ -74,6 +74,17 @@ class Presence(models.Model):
         self.hour_sortie = now_time
         return ecart
     
+    def calculate_duration_minutes(self):
+        if self.hour_sortie:
+            # Combine date with time to calculate timedelta
+            entree = datetime.combine(self.date or datetime.now().date(), self.hour_entree)
+            sortie = datetime.combine(self.date or datetime.now().date(), self.hour_sortie)
+
+            # Calculate duration
+            duration = sortie - entree
+            return duration.total_seconds() // 60  # Convert seconds to minutes
+        return None
+    
     def get_edit_url(self):
         return reverse('presence:PresenceManuelleUpdateClient', kwargs={'pk': str(self.id)})
     
