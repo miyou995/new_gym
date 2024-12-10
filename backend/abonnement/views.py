@@ -2,7 +2,7 @@ from django.db.models.query import QuerySet
 from django.utils.translation import gettext as _
 from django.shortcuts import redirect, render
 from abonnement.mixins import CalendarAbonnementClientMixin
-from abonnement.forms import AbonnementClientAddForm, AbonnementClientEditForm, AbonnementClientRestPaiementForm, AbonnementClientRestTempForm
+from abonnement.forms import AbonnementClientAddForm, AbonnementClientEditForm, AbonnementClientUpdateRest
 from .models import Abonnement, AbonnementClient
 import json
 from django.contrib.auth.mixins import PermissionRequiredMixin
@@ -162,40 +162,20 @@ class AbonnemtClientDeleteView(PermissionRequiredMixin,DeleteView):
 
 
 
-@require_POST
-def update_temps_rest(request, pk):
-    if request.method == "POST":
-        print(list(request.POST.items()))
-        product = get_object_or_404(AbonnementClient, pk=pk)
-        form = AbonnementClientRestTempForm(request.POST, instance=product)
-        if form.is_valid() :
-            if form.is_valid():
-                form.save()
-            message = _("Reste temps updated successfully.")
-            messages.success(request, str(message))
-        else:
-            message = _("Error occures when updating product.")
-            messages.error(request, str(message))
-        return HttpResponse(status=204,
-                headers={
-                    'HX-Trigger': json.dumps({
-                        "closeModal": "kt_modal",
-                        "refresh_abcs": None
-                            
-                    })
-                }) 
+
 
 
 
 @require_POST
-def update_paiement_rest(request, pk):
+def update_date_paiement_rest(request, pk):
     if request.method == "POST":
         print(list(request.POST.items()))
         product = get_object_or_404(AbonnementClient, pk=pk)
-        form = AbonnementClientRestPaiementForm(request.POST, instance=product)
+        form = AbonnementClientUpdateRest(request.POST, instance=product)
         if form.is_valid() :
-            if form.is_valid():
-                form.save()
+
+            print("Form is valid. Data:", form.cleaned_data)
+            form.save()
             message = _("Reste  updated successfully.")
             messages.success(request, str(message))
         else:
@@ -209,6 +189,8 @@ def update_paiement_rest(request, pk):
                             
                     })
                 }) 
+    
+
 
 
 def renew_abonnement_client(request,pk):

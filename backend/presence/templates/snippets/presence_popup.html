@@ -3,7 +3,15 @@
 <div class="modal fade" id="productNotFoundModal" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
-      
+      <div class="modal-header">
+        <!-- Close button aligned to the right -->
+        <div class="btn btn-sm btn-icon btn-active-color-primary ms-auto" data-bs-dismiss="modal">
+          <i class="ki-duotone ki-cross fs-2x">
+            <span class="path1"></span>
+            <span class="path2"></span>
+          </i>
+        </div>
+      </div>
       <div class="modal-body">
         <div class="alert alert-primary" role="alert">
           <div class="d-flex align-items-center mb-4">
@@ -62,11 +70,10 @@
     $('#productNotFoundModal').modal('show');
     // Add event listener for modal close
     $('#productNotFoundModal').on('hidden.bs.modal', function () {
-      location.reload();
     });
 
     $('#cancelButton').on('click', function() {
-      location.reload();
+      $('#productNotFoundModal').modal('hide');
     });
   });
 </script>

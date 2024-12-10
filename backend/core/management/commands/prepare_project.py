@@ -1,29 +1,29 @@
 from django.core.management.base import BaseCommand
 from django.utils import timezone
+from abonnement.models import AbonnementClient
 from presence.models import Presence
 from datetime import date
 from datetime import timedelta
+from django.db.models import Q
 
 class Command(BaseCommand):
-    help = 'Set hour_sortie to 4:00 AM for presences where hour_sortie is null when the time is 5:00 AM'
+    help = 'yesterday and today abc'
 
     def handle(self, *args, **kwargs):
-        now = timezone.now()
-        # today = timezone.now().date()
-        # yesterday = today - timedelta(days=1)
+        today = timezone.now().date()
+        yesterday = today - timedelta(days=1)
         today=date.today()
-        if now.hour == 4 :
-            # Set hour_sortie to exactly 4:00 AM for any Presence where hour_sortie is null
-            four_am = now.replace(hour=4, minute=0, second=0, microsecond=0)
 
-            presences_to_update=Presence.objects.filter(date=today,hour_sortie__isnull=True)
-            for presence in presences_to_update:
-                presence.hour_sortie = four_am.time()  # Set hour_sortie to 4:00 AM
-                presence.save()
+        abc_queryset = AbonnementClient.objects.filter(Q(start_date=today) | Q(start_date=yesterday))
 
-            self.stdout.write(self.style.SUCCESS('Successfully updated hour_sortie to 4:00 AM for presences where hour_sortie was null.'))
-        else:
-            self.stdout.write(self.style.WARNING('This command should only be run at 5:00 AM.'))
+        for abc in abc_queryset:
+            if abc.type_abonnement.time_volume():
+                print("abc_today--------------------", abc)
+                presences = Presence.objects.filter(abc=abc)        
+                print("presence------------------------", presences)
+            else : 
+                print("not time_volume ")
+        
 
 
 

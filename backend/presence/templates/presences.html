@@ -25,6 +25,7 @@
                                                     hx-swap="afterend"
                                                     hx-refresh="true" 
                                                     id="barcode-input"
+						                            hx-on::after-request="document.getElementById('barcode-input').value = '';"
                                                     autofocus  />
                                 </form>
                                             <button

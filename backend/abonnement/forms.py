@@ -10,10 +10,14 @@ from creneau.models import Creneau
 logger = logging.getLogger(__name__)
 
 
-class AbonnementClientRestTempForm(forms.ModelForm):
+class AbonnementClientUpdateRest(forms.ModelForm):
+    # end_date = forms.DateField(
+    #     widget=forms.DateInput(attrs={'type': 'date'}),
+    # )
+
     class Meta:
         model = AbonnementClient
-        fields = ( "presence_quantity",)
+        fields = ( "presence_quantity","reste","end_date")
 
 class AbonnementClientRestPaiementForm(forms.ModelForm):
     class Meta:

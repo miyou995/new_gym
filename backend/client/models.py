@@ -165,6 +165,15 @@ class Client(models.Model):
     def get_picture_url(self):
         if self.picture and hasattr(self.picture, 'url'):
             return self.picture.url
+    @property
+    def age(self):
+        today = date.today()
+        if self.birth_date:
+            return today.year - self.birth_date.year - (
+                (today.month, today.day) < (self.birth_date.month, self.birth_date.day)
+            )
+        
+        return None
 
     # def generate_thumbnail(self, picture, picture_name):
     #     THUMBNAIL_SIZE = (250, 360)
