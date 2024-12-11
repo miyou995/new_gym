@@ -14,7 +14,8 @@ htmx.on("closeModal", (event) => {
 	modal.hide()
 	} 
 })
-	
+
+
 
 
 
@@ -187,7 +188,4 @@ $("#kt_daterangepicker_4").daterangepicker({
         "mois dernier": [moment().subtract(1, "month").startOf("month"), moment().subtract(1, "month").endOf("month")]
     }
 }, cb);
-
-
-
 

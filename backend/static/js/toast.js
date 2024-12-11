@@ -37,4 +37,3 @@ htmx.on("messages", (event) => {
     event.detail.value.forEach(createToast)
 })
 
-

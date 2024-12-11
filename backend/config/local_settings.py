@@ -29,6 +29,7 @@ ALLOWED_HOSTS = ['*'] # a modifier apres l'integration du nom de domaine
 #         'PORT': "5432",
 #     }
 # }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
