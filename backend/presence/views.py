@@ -82,6 +82,7 @@ class PresenceSSEView(View):
                 yield "data: "
             time.sleep(1)  # Adjust polling frequency as needed
 
+
     def get(self, request, *args, **kwargs):
         response = StreamingHttpResponse(self.event_stream())
         response["Content-Type"] = "text/event-stream"
