@@ -32,8 +32,7 @@ function createToast(message) {
 
 
 htmx.on("messages", (event) => {
-    // console.log("MEssage receivedscsqcsq", event);
-    // console.log(message.tags)
+    console.log("MEssage TOAST----------------->", event);
     event.detail.value.forEach(createToast)
 })
 

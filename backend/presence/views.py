@@ -24,69 +24,68 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.decorators import  permission_required
 from django_tables2 import SingleTableMixin, RequestConfig
 
-
-# class PresencesView(PermissionRequiredMixin,SingleTableMixin, FilterView):
-#     permission_required = "presence.view_presence"
-#     table_class = PresencesHTMxTable
-#     filterset_class=PresenceFilter
-#     paginate_by = 15
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context["salles"]=Salle.objects.all()
-#         context["activites"]=Activity.objects.all()
-#         return context
-    
-#     def get_queryset(self):
-#         queryset = (
-#             Presence.objects
-#             .select_related(
-#                 'abc',  # Fetch related abc object
-#                 'abc__client',  # Fetch related client object through abc
-#                 'creneau',  # Fetch related creneau object
-#                 'creneau__activity',  # Fetch related activity object through creneau
-#             )
-#             .order_by('-created')
-#             )
-#         return queryset
-    
-    
-#     def get_template_names(self):
-        
-#         if self.request.htmx:
-#             template_name = "tables/product_table_partial.html"
-#         else:
-#             template_name = "presences.html" 
-#         return template_name 
-
-
 from django.views import View
 import time
 from django.utils.timezone import now
 from django.http import StreamingHttpResponse
 from django.template.loader import render_to_string
-#    three_seconds_ago = datetime.now() - timedelta(seconds=3)
-        
-#         Presence.objects.filter(updated__gte=three_seconds_ago)
+
+
+# class PresenceSSEView(View):
+#     @staticmethod
+#     def event_stream(request):
+#         while True:
+#             three_seconds_ago = datetime.now() - timedelta(seconds=3)
+#             presences = Presence.objects.filter(updated__gte=three_seconds_ago) \
+#                 .select_related('abc', 'abc__client', 'creneau', 'creneau__activity') \
+#                 .order_by('-updated')
+#             if presences.exists():
+#                 yield f"data: update_presence\n\n"
+#             else:
+#                 yield "data: "
+#             time.sleep(2)  # Adjust polling frequency as needed
+
+#     def get(self, request, *args, **kwargs):
+#         response = StreamingHttpResponse(self.event_stream(request))
+#         response["Content-Type"] = "text/event-stream"
+#         return response
+
+from django.utils.html import escape
 
 class PresenceSSEView(View):
     @staticmethod
-    def event_stream():
+    def event_stream(request):
         while True:
             three_seconds_ago = datetime.now() - timedelta(seconds=3)
             presences = Presence.objects.filter(updated__gte=three_seconds_ago) \
                 .select_related('abc', 'abc__client', 'creneau', 'creneau__activity') \
                 .order_by('-updated')
+
             if presences.exists():
-                yield f"data: update_presence\n\n"
+                presence = presences.first()
+                client = presence.abc.client
+                action = "sortie" if presence.hour_sortie else "entrée"
+                message = f"{escape(client.last_name)} {escape(client.first_name)} est {action}"
+                
+                payload = {
+                    "message": message,
+                    "tags": "success"  # Example: success, danger, info, etc.
+                }
+                yield f"data: {json.dumps(payload)}\n\n"
             else:
-                yield "data: "
-            time.sleep(1)  # Adjust polling frequency as needed
+                payload = {
+                    "keep-alive": True,
+                }
+                yield f"data: {json.dumps(payload)}\n\n"
 
-
+            time.sleep(3)  # Adjust polling frequency as needed
+            
     def get(self, request, *args, **kwargs):
-        response = StreamingHttpResponse(self.event_stream())
+        print("Starting SSE stream...")
+        response = StreamingHttpResponse(self.event_stream(request))
         response["Content-Type"] = "text/event-stream"
         return response
+
 
 class PresencesView(PermissionRequiredMixin, SingleTableMixin, FilterView):
     permission_required = "presence.view_presence"
@@ -176,7 +175,7 @@ def presence_client(request):
         messages.warning(request, str(message))   
     return HttpResponse(status=204, headers={
                 'HX-Trigger': json.dumps({
-                    "refresh_table": None
+                    "refresh_presences": None
                 })
             })
 
@@ -214,7 +213,7 @@ class PresenceManuelleClient(PermissionRequiredMixin,CreateView):
             return HttpResponse(status=204, headers={
                 'HX-Trigger': json.dumps({
                     "closeModal": "kt_modal",
-                    "refresh_table": None
+                    "refresh_presences": None
                 })
             })
         else:
@@ -272,7 +271,7 @@ class PresenceManuelleUpdateClient(PermissionRequiredMixin,UpdateView):
             headers={
                 'HX-Trigger': json.dumps({
                     "closeModal": "kt_modal",
-                    "refresh_table": None,
+                    "refresh_presences": None,
                     # "selected_client": f"{presence.id}",
                 })
             }

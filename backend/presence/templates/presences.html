@@ -13,13 +13,7 @@
                             <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
                                 <span class="card-label fw-bold fs-4 text-grey-800">Présence Automatique</span>
                                 <i class=" ki-magnifier fs-3 position-absolute ms-4"></i>
-                                <div
-                                    hx-ext="sse"
-                                    sse-connect="{% url 'presence:presences_sse' %}"
-                                    hx-swap="none"
-                                    sse-swap="none">
-                                    
-                                </div>
+
                                 <form  >
                                     <input
                                     hx-get='{% url "presence:presence_client" %}' 
@@ -97,7 +91,7 @@
                                {% endwith %}
 							</div>
                             {% comment %} 
-                                hx-trigger="refresh_table from:body" 
+                                hx-trigger="refresh_presences from:body" 
                                 hx-get="{% url 'presence:presences_name' %}" 
                                 hx-swap="innerHTML" 
                                 hx-target="this" 
@@ -110,6 +104,13 @@
                                 hx-target="this"  
                                 >
                                 {% render_table table %}
+                            </div>
+                            <div
+                                id="sse-container"
+                                hx-ext="sse"
+                                sse-connect="{% url 'presence:presences_sse' %}"
+                                hx-swap="none"
+                                sse-swap="none">
                             </div>
 						</div>
 					</div>
