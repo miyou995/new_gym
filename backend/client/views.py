@@ -390,7 +390,7 @@ class PaiementClientDetail(SingleTableMixin, FilterView):
             print("abonnement_client_pk  -------------", abonnement_client_pk)
             if abonnement_client_pk:
                 queryset = queryset.filter(abonnement_client__client=abonnement_client_pk)
-                print("queryset---------------",queryset)
+                # print("queryset---------------",queryset)
                 return queryset
         
         def get_template_names(self):
