@@ -141,7 +141,8 @@ class AbonnementClient(models.Model):
     
     def __str__(self):
         status = "✅ payé" if self.reste == 0 else f"💰 {self.reste} DA"
-        return f"📅 {self.type_abonnement} | {status}"
+        
+        return f"📅 {self.type_abonnement} | {status} | {self.start_date}"
     
 
 

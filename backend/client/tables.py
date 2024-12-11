@@ -8,8 +8,10 @@ from presence.models import PresenceCoach,Presence
 
 
 class ClientHTMxTable(tables.Table):
+    carte = tables.Column(accessor="carte", verbose_name="carte", orderable=True ,linkify= lambda record: record.get_view_url())
     id = tables.Column(accessor="id", verbose_name="ID", orderable=True ,linkify= lambda record: record.get_view_url())
     last_name = tables.Column(accessor="last_name", verbose_name="Nom", orderable=True ,linkify= lambda record: record.get_view_url())
+    first_name = tables.Column(accessor="first_name", orderable=True ,linkify= lambda record: record.get_view_url())
     action = tables.TemplateColumn(
             '''{% include 'buttons/action.html' with object=record modal_edit="true" %}''',
             verbose_name='Actions',
@@ -154,9 +156,12 @@ class PaiementHTMxTable(tables.Table):
     #         '''{% include 'buttons/action.html' with object=record modal_edit="true" %}''',
     #         verbose_name='Actions',
     #         orderable=False )
+    
+    id =tables.Column( verbose_name="N°:", orderable=True )
     amount =tables.Column( verbose_name="Versement", orderable=True )
-    id =tables.Column( verbose_name="Reçu N°:", orderable=True )
-
+    date_creation =tables.Column( verbose_name="date", orderable=True )
+    abonnement_client =tables.Column( verbose_name="abonnement", orderable=True )
+    
     impression= tables.TemplateColumn(
                                 '''
                                         <a class="btn btn-primary btn-sm" 
