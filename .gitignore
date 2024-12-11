@@ -4,7 +4,11 @@
 *.pot
 *.pyc
 __pycache__
-
+backend/config/local_settings.py
+backend/assets
+backend/assets/*
+*.json
+backend/*.json
 media
 backups/*
 # Backup files # 
