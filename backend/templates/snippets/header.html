@@ -25,7 +25,7 @@
 						hx-swap="afterend"
 						hx-target="body" 
 						hx-get='{% url "presence:presence_client" %}'
-						hx-trigger="keyup delay:900ms, changed delay:700ms from:input[value.length >= 4]"
+						hx-trigger="keyup[target.value.length > 4] delay:900ms, changed[target.value.length > 4] delay:700ms "
 						hx-refresh="true"
 						id="barcode-input"
 						hx-on::after-request="document.getElementById('barcode-input').value = '';"
