@@ -32,27 +32,36 @@
               <div class="fs-5 fw-semibold text-muted">ID: {{ client.id }}</div>
             </div>
           </div>
-          {% if auto_presence == 'entre' %}
+          {% comment %} {% if auto_presence == 'entre' %}
             <div class="text-center mt-4">
               <h2 class="text-success">le client est entré</h2>
               <img alt="Cross Icon" src="{% static 'images/logos/correct.png' %}" width="120" height="120" class="img-fluid" />
             </div>
-          {% endif %}
-          {% if auto_presence == 'not_today' %}
+          {% endif %} {% endcomment %}
+          {% if auto_presence.status == 'not_today' %}
             <div class="text-center mt-4">
-              <h2 class="text-danger">Le client n'a pas un abonnement aujourd'hui</h2>
+              
+              <h2 class="text-danger">Abonnement termine / Fin date </h2>
+              <h2 class="text-danger">{{auto_presence.abc.end_date}}</h2>
+
               <img alt="Cross Icon" src="{% static 'images/logos/cross.png' %}" width="120" height="120" class="img-fluid" />
             </div>
           {% endif %}
-          {% if auto_presence == 'sortie' %}
+          {% comment %} {% if auto_presence == 'sortie' %}
             <div class="text-center mt-4">
               <h2 class="text-success">Le client est sortie</h2>
               <img alt="Cross Icon" src="{% static 'images/logos/ex.png' %}" width="120" height="120" class="img-fluid" />
             </div>
-          {% endif %}
-          {% if auto_presence == 'fin_abonnement' %}
+          {% endif %} {% endcomment %}
+          {% if auto_presence.status == 'fin_abonnement' %}
             <div class="text-center mt-4">
+              {% if auto_presence.type_abc == "VH" %}
+                 <h2 class="fs-3 text-dark text-hover-primary fw-bold mb-1 d-block">Reste : {{auto_presence.presence_quantity}} min</h2>
+              {% else %}
+              <h2 class="text-dark text-hover-primary fw-bold mb-1 d-block">Reste {{auto_presence.presence_quantity}} Seance</h2>
+              {% endif %}
               <h2 class="text-danger"> Abonnement termine</h2>
+              
               <img alt="Cross Icon" src="{% static 'images/logos/cross.png' %}" width="120" height="120" class="img-fluid" />
             </div>
           {% endif %}

@@ -60,7 +60,9 @@ class Presence(models.Model):
         today = date.today()
         now_time = datetime.now().time()
         if sortie:
+            print("sortie hourrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",sortie)
             d_end = datetime.combine(today, sortie)
+            
         else:
             d_end = datetime.combine(today, now_time)
         if self.abc.is_time_volume():

@@ -324,7 +324,9 @@ class Client(models.Model):
         client = self
         presence_sortie= self.init_output()
         if presence_sortie:
-            return 'sortie'
+            return {
+                    "status": "sortie"
+                    }
         # client.has_permission()
         creneaux = Creneau.range.get_creneaux_of_day().filter(abonnements__client=client).distinct()
         # print('Les creneaux of client=====>',Creneau.objects.filter(abonnements__client=client))
@@ -344,9 +346,13 @@ class Client(models.Model):
             abon_list = AbonnementClient.objects.filter(client = client, end_date__gte=date.today(), archiver = False ).order_by('-presence_quantity')
             if not abon_list:
                 # raise serializers.ValidationError("l'adherant n'est pas inscrit aujourd'hui")
+                abc=AbonnementClient.objects.filter(client = client,archiver = False )
+                print("abccccccccccccccccccccccccccc",abc)
                 print("*******l'adherant n'est pas inscrit aujourd'hui**********")
-                return "not_today"
-            
+                return {
+                        abc : abc,
+                        "status":  "not_today"
+                       }
             abonnement = abon_list.filter(type_abonnement__type_of="SL").first()
             # If no non-free session is found, get the first session regardless of its type
             if not abonnement:
@@ -355,18 +361,26 @@ class Client(models.Model):
             if abonnement.is_valid() and abonnement.is_time_volume():
                 print('IM HEEERE LOG ABONNEMENT==== TIME VOLUUUPME', abonnement.is_time_volume())
                 Presence.objects.create(abc= abonnement, creneau= cren_ref,  hour_entree=current_time )
-                return 'entre'
+                return {
+                        "status": "entree"
+                       }
             elif abonnement.is_valid() and abonnement.presence_quantity > 0:
                 Presence.objects.create(abc= abonnement, creneau= cren_ref,  hour_entree=current_time )
                 if abonnement.is_fixed_sessions() or abonnement.is_free_sessions():
                     abonnement.presence_quantity -= 1
                 abonnement.save()
-                return 'entre'
+                return {
+                        "status": "entree"
+                       }
             else:
                 logger.warning('LOG abonnement.presence_quantity=====> {}'.format(str(abonnement.presence_quantity)))
                 # logger.warning('LOG ABONNEMENT=====-{}'.format(str(abonnement)))
                 logger.warning('LOG ABONNEMENT TYPE=====-{}'.format(str(abonnement.type_abonnement.type_of)))
-                return "fin_abonnement"
+                return {
+                        "presence_quantity": abonnement.presence_quantity,
+                        "type_abc" :abonnement.type_abonnement.type_of,
+                        "status": "fin_abonnement"
+                       }
         else:
             print("*******l'adherant n'est pas inscrit aujourd'hui pas de abc **********")
 

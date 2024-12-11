@@ -39,6 +39,9 @@
 							<span {%  if field.field.required %}class="required"{% endif %}>{{field.label}}</span>
 						</label>
 						{% render_field field class='form-control' %}
+						{% if field.name == 'hour_sortie' %}
+							<button type="button" class="btn btn-sm btn-danger mt-2" onclick="clearHourSortie()">Clear Hour Sortie</button>
+						{% endif %}
 						{% if field.errors %}
 							<span class="form-check-label fw-semibold text-danger">{{field.errors}}</span>
 						{% else %}
@@ -54,13 +57,25 @@
 			{% if form.instance.id %}  
 				{% include 'popups/delete_model.html' with object=form.instance %}
 			{% endif %}
+			{% if form.instance.id %}  
+				<a 
+					class="btn btn-success"
+					href="{% url 'client:client_detail' client.pk %}"
+					>{% trans 'Profile Client' %} 
+				</a>
+			{% endif %}
 			
 		</div>
 	</form>
 </div>
 
 
-
 <script>
-	
+    // JavaScript function to clear the hour_sortie field
+    function clearHourSortie() {
+        const hourSortieInput = document.querySelector('input[name="hour_sortie"]');
+        if (hourSortieInput) {
+            hourSortieInput.value = ''; // Clear the value
+        }
+    }
 </script>

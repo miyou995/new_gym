@@ -154,30 +154,19 @@ def presence_client(request):
         auto_presence=client_id.auto_presence()
         context["client"]=client_id
         context["auto_presence"]=auto_presence
-        if auto_presence == 'not_today':
+        if auto_presence["status"] == 'not_today':
             print("-------------------working from presence--------------------")
             return render(request,"snippets/presence_popup.html",context)
-        elif auto_presence == 'entre':
+        elif auto_presence["status"] == 'entree':
             print("enter ------------------------------------")
-            # return render(request,"snippets/presence_popup.html",context)
-            rendered_template = render_to_string("snippets/presence_popup.html", context)
-
-            return HttpResponse(
-                    content=rendered_template,
-                    status=200,  # Use 200 if you want to return content
-                    headers={
-                        'HX-Trigger': json.dumps({
-                            "refresh_table": None
-                        })
-                    }
-                )
+            message = f"{client.last_name} {client.first_name} a entré"
+            messages.success(request, str(message))
             
-        elif auto_presence == 'fin_abonnement':
+        elif auto_presence["status"] == 'fin_abonnement':
             print("fin d'abonnemnt---------------------")
             return render(request,"snippets/presence_popup.html",context)
-        elif auto_presence == 'sortie':
+        elif auto_presence["status"] == 'sortie':
             print("la sortie---------------------")
-            # return render(request,"snippets/presence_popup.html",context)
             message = f"{client.last_name} {client.first_name} est sortie"
             messages.success(request, str(message))
     else :
@@ -247,26 +236,47 @@ class PresenceManuelleUpdateClient(PermissionRequiredMixin,UpdateView):
         """
         queryset = self.model.objects.select_related('abc', 'abc__type_abonnement')
         return super().get_object(queryset=queryset)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["client"] = self.object.abc.client
+        # print("+++++++++++++++",context)
+        return context
+    
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
         print('yeah form instance------------------------------', self.object)
+        print("heur_sortie********************",self.object.hour_sortie)
+        print("hour_entree********************",self.object.hour_entree)
         return super().get(request, *args, **kwargs)
+    
     def form_valid(self, form):
-        presence =form.save()
+        original_object = self.get_object()
+        print("heur_sortie from form ********************", form.cleaned_data['hour_sortie'])
+        print("Original heur_sortie from database ********************", original_object.hour_sortie)
+        ecrat1 = original_object.get_time_consumed(original_object.hour_sortie)
+        print("ecrat from original object *-*-*-*-*-*-*-*-*-*-*",ecrat1)
+        original_object.abc.presence_quantity += ecrat1
+        original_object.abc.save()
+
+        presence = form.save()
+        print("presence.hour_sortie *-*-*-*-*-*-*-*--",presence.hour_sortie)
         ecart = presence.get_time_consumed(presence.hour_sortie)
+        print("ecart from presence*-*-*-*-*-*-*-*",ecart)
         presence.abc.presence_quantity -= ecart
-        presence.abc.save() 
-        print('IS FORM VALID', presence.id)
+        presence.abc.save()
+
         messages.success(self.request, "Presence Mis a jour avec Succés")
-        return HttpResponse(status=204,
+        return HttpResponse(
+            status=204,
             headers={
                 'HX-Trigger': json.dumps({
                     "closeModal": "kt_modal",
                     "refresh_table": None,
-                    "selected_client": f"{presence.id}",
+                    # "selected_client": f"{presence.id}",
                 })
-            }) 
-    
+            }
+        )
+
     def form_invalid(self, form):
         messages.success(self.request, form.errors )
         return self.render_to_response(self.get_context_data(form=form)) 

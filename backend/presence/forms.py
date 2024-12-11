@@ -21,13 +21,16 @@ class PresenceManuelleModelForm(forms.ModelForm):
                  )
         widgets = {
            
-            'date': forms.DateInput(attrs={'type': 'date'}),
+           'date': forms.DateInput(attrs={'type': 'date'}, format='%Y-%m-%d'),
             'hour_entree': forms.TimeInput(attrs={'type': 'time'}),
             'hour_sortie': forms.TimeInput(attrs={'type': 'time'})
         }
       
     def __init__(self, ticket=None, *args, **kwargs):   
+        # initial_hour_sortie = kwargs.pop('initial_hour_sortie', None)
         super().__init__(*args, **kwargs)
+        # if initial_hour_sortie:
+        #     self.fields['hour_sortie'].initial = initial_hour_sortie
 
         initial= kwargs.get('initial',{})
         client_pk=initial.get('client_pk')
@@ -73,9 +76,9 @@ class PresenceManuelleModelForm(forms.ModelForm):
         self.fields["creneau"].queryset = AbonnementClient.objects.none()
         if 'abc' in self.data:
             abc = self.data.get('abc')
-            print("abc = self.data.get('abc')------------",abc)
+            # print("abc = self.data.get('abc')------------",abc)
             self.fields['creneau'].queryset = Creneau.objects.filter(abonnements__id= abc)
-            print("self.fields['creneau'].queryse)------------\n \n \n ",self.fields['creneau'].queryset)
+            # print("self.fields['creneau'].queryse)------------\n \n \n ",self.fields['creneau'].queryset)
 
         elif self.instance.pk:
             self.fields['creneau'].queryset = self.instance.abc.creneaux.all()
