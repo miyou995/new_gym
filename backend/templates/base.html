@@ -24,14 +24,17 @@
 		<link href="{% static 'plugins/global/plugins.bundle.css' %}" rel="stylesheet" type="text/css"/>
 		<link href="{% static 'css/style.bundle.css' %}" rel="stylesheet" type="text/css" />
 		<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" />
-		<script src="{% static 'js/htmx.min.js' %}"></script>
+		{% comment %} <script src="{% static 'js/htmx.min.js' %}"></script> {% endcomment %}
+		<script src="https://unpkg.com/htmx.org@2.0.3"></script>
+
+		{% comment %} <script src="{% static 'js/sse.js' %}"></script> {% endcomment %}
 		<script src="https://unpkg.com/htmx-ext-sse@2.2.2/sse.js"></script>
 
 
 		{% comment %} <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script> {% endcomment %}
 	</head>
 
-	<body id="kt_body" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed">
+	<body id="kt_body" hx-ext="sse"  hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed">
 		<script>var defaultThemeMode = "light"; var themeMode; if ( document.documentElement ) { if ( document.documentElement.hasAttribute("data-bs-theme-mode")) { themeMode = document.documentElement.getAttribute("data-bs-theme-mode"); } else { if ( localStorage.getItem("data-bs-theme") !== null ) { themeMode = localStorage.getItem("data-bs-theme"); } else { themeMode = defaultThemeMode; } } if (themeMode === "system") { themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; } document.documentElement.setAttribute("data-bs-theme", themeMode); }</script>
 		<div class="d-flex flex-column flex-root">
 			<div class="page d-flex flex-row flex-column-fluid">
@@ -108,14 +111,35 @@
 			</div> 
 		</div>  
 		{% include 'snippets/modal.html' %}
+
 		<script>
-			setTimeout(function(){
+			window.addEventListener("DOMContentLoaded", (e) => {
+				console.log('HAHAHAHHAHA')
+				const source = new EventSource("{% url 'presence:presences_sse' %}");
+				source.onmessage = function(event) {
+					{% comment %} console.log("Event received:", event);{% endcomment %}
+					console.log("----------Event event.data:", event.data); 
+						if (event.data == "update_presence"){
+							console.log("Event received: update_presence");
+							htmx.trigger(document.body, "refresh_presences");
+						}
+						// Optionally, handle updates manually if needed
+					};
+					source.onerror = function(error) {
+						console.error("EventSource error:--------------------", error);
+					};
+				})
+
+				setTimeout(function(){
 				if($('#msg').length >0){
 					$('#msg').remove();
 				}
 			},4000)
 			var hostUrl = "";
+		
 		</script>
+
+		
 		<script src="{% static 'plugins/global/plugins.bundle.js' %}"></script>
 		<script src="{% static 'js/scripts.bundle.js' %}"></script>
 		{% comment %} <script src="{% static 'plugins/custom/fullcalendar/fullcalendar.bundle.js' %}"></script> {% endcomment %}
@@ -144,5 +168,6 @@
 		<script src="{% static 'js/custom_calendar.js' %}"></script>
 		<script src="{% static 'js/script.js' %}"></script>
 		<script src="{% static 'js/toast.js' %}"></script>
+
 	</body>
 </html>

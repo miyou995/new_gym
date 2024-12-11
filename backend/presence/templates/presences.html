@@ -13,6 +13,13 @@
                             <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
                                 <span class="card-label fw-bold fs-4 text-grey-800">Présence Automatique</span>
                                 <i class=" ki-magnifier fs-3 position-absolute ms-4"></i>
+                                <div
+                                    hx-ext="sse"
+                                    sse-connect="{% url 'presence:presences_sse' %}"
+                                    hx-swap="none"
+                                    sse-swap="none">
+                                    
+                                </div>
                                 <form  >
                                     <input
                                     hx-get='{% url "presence:presence_client" %}' 
@@ -28,18 +35,18 @@
                                     hx-on::after-request="document.getElementById('barcode-input').value = '';"
                                     autofocus  />
                                 </form>
-                                    <button
-                                        type="button"
-                                        class="btn btn-info"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#kt_modal"
-                                        hx-get="{% url 'presence:PresenceManuelleClient' %}"
-                                        hx-target="#kt_modal_content"
-                                        hx-trigger="click"
-                                        hx-swap="innerHTML"
-                                    >
-                                        <i class="ki-exit-up fs-2">Présence Manuellement</i>
-                                    </button>
+                                <button
+                                    type="button"
+                                    class="btn btn-info"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#kt_modal"
+                                    hx-get="{% url 'presence:PresenceManuelleClient' %}"
+                                    hx-target="#kt_modal_content"
+                                    hx-trigger="click"
+                                    hx-swap="innerHTML"
+                                >
+                                    <i class="ki-exit-up fs-2">Présence Manuellement</i>
+                                </button>
                             </div>
                         {% endif %}
                     </div>
@@ -56,7 +63,6 @@
                                     hx-trigger="change, changed,keyup delay:900ms"
                                     hx-push-url='true'
                                 >
-
                                 <div class="card-title">
                                     <div class="row">
                                         {% for field in filter.form %}
@@ -90,26 +96,25 @@
 							   </form>
                                {% endwith %}
 							</div>
-                                <div class="card-body pt-0 table-responsive" id="TablePresence"
-                                {% comment %} 
-                                    hx-trigger="refresh_table from:body" 
-                                    hx-get="{% url 'presence:presences_name' %}" 
-                                    hx-swipe="innerHTML" 
-                                    hx-target="this" 
-                                {% endcomment %}
-                                hx-ext="sse"
-                                sse-connect="{% url 'presence:presences_name' %}"
-                                hx-swap="innerHTML"
-                                
+                            {% comment %} 
+                                hx-trigger="refresh_table from:body" 
+                                hx-get="{% url 'presence:presences_name' %}" 
+                                hx-swap="innerHTML" 
+                                hx-target="this" 
+                            {% endcomment %}
+                            <div class="card-body pt-0 table-responsive" 
+                                id="TablePresence"
+                                hx-trigger="refresh_presences from:body" 
+                                hx-get="{% url 'presence:presences_name' %}" 
+                                hx-swap="innerHTML" 
+                                hx-target="this"  
                                 >
-                                    {% render_table table %}
-                                </div>
+                                {% render_table table %}
+                            </div>
 						</div>
 					</div>
 				</div>
             </div>
-            
-       
     </div>
 
 </div>
