@@ -1,0 +1,8 @@
+{% for item in presence %}
+    <div class="presence-item">
+        <p><strong>Presence ID:</strong> {{ item.id }}</p>
+        <p><strong>Name:</strong> {{ item.abc.client.name }}</p>
+        <p><strong>Activity:</strong> {{ item.creneau.activity.name }}</p>
+        <p><strong>Updated:</strong> {{ item.updated }}</p>
+    </div>
+{% endfor %}
