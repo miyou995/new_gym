@@ -2,7 +2,7 @@ from django.views.generic.base import TemplateView
 from django_tables2 import SingleTableMixin
 from django_filters.views import FilterView 
 from django.shortcuts import get_object_or_404
-from django.http import HttpResponse,HttpResponseRedirect
+from django.http import HttpResponse,HttpResponseRedirect, StreamingHttpResponse
 from .models import Presence
 from .tables import PresencesHTMxTable
 from django.db.models import Q
@@ -23,30 +23,94 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.decorators import  permission_required
 
 
-class PresencesView(PermissionRequiredMixin,SingleTableMixin, FilterView):
+# class PresencesView(PermissionRequiredMixin,SingleTableMixin, FilterView):
+#     permission_required = "presence.view_presence"
+#     table_class = PresencesHTMxTable
+#     filterset_class=PresenceFilter
+#     paginate_by = 15
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context["salles"]=Salle.objects.all()
+#         context["activites"]=Activity.objects.all()
+#         return context
+    
+#     def get_queryset(self):
+#         queryset = (
+#             Presence.objects
+#             .select_related(
+#                 'abc',  # Fetch related abc object
+#                 'abc__client',  # Fetch related client object through abc
+#                 'creneau',  # Fetch related creneau object
+#                 'creneau__activity',  # Fetch related activity object through creneau
+#             )
+#             .order_by('-created')
+#             )
+#         return queryset
+    
+    
+#     def get_template_names(self):
+        
+#         if self.request.htmx:
+#             template_name = "tables/product_table_partial.html"
+#         else:
+#             template_name = "presences.html" 
+#         return template_name 
+    
+
+import time
+from django.utils.timezone import now
+from django.http import StreamingHttpResponse
+from django.template.loader import render_to_string
+
+class PresencesView(PermissionRequiredMixin, SingleTableMixin, FilterView):
     permission_required = "presence.view_presence"
     table_class = PresencesHTMxTable
-    filterset_class=PresenceFilter
+    filterset_class = PresenceFilter
     paginate_by = 15
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["salles"]=Salle.objects.all()
-        context["activites"]=Activity.objects.all()
+        context["salles"] = Salle.objects.all()
+        context["activites"] = Activity.objects.all()
         return context
-    
+
+    def render_presence_list(self):
+        presences = (
+            Presence.objects
+            .select_related('abc', 'abc__client', 'creneau', 'creneau__activity')
+            .order_by('-updated')
+        )
+        return render_to_string("components/presence_list.html", {"presences": presences})
+
+    @staticmethod
+    def event_stream(render_method):
+        last_update = now()
+        while True:
+            updated_presences = Presence.objects.filter(updated__gte=last_update)
+            if updated_presences.exists():
+                last_update = now()
+                html = render_method()
+                yield f"data: {html}\n\n"
+            else:
+                yield "data: \n\n"
+            time.sleep(2)  # Adjust polling frequency as needed
+
+    def get(self, request, *args, **kwargs):
+        if request.headers.get('HX-Request'):  # Check if it's an HTMX request
+            response = StreamingHttpResponse(self.event_stream(self.render_presence_list))
+            response["Content-Type"] = "text/event-stream"
+            return response
+        else:
+            # For regular non-HTMX requests, return the normal response
+            return super().get(request, *args, **kwargs)
+
     def get_queryset(self):
         queryset = (
             Presence.objects
-            .select_related(
-                'abc',  # Fetch related abc object
-                'abc__client',  # Fetch related client object through abc
-                'creneau',  # Fetch related creneau object
-                'creneau__activity',  # Fetch related activity object through creneau
-            )
+            .select_related('abc', 'abc__client', 'creneau', 'creneau__activity')
             .order_by('-created')
-            )
+        )
         return queryset
-    
     
     def get_template_names(self):
         
@@ -55,7 +119,7 @@ class PresencesView(PermissionRequiredMixin,SingleTableMixin, FilterView):
         else:
             template_name = "presences.html" 
         return template_name 
-    
+
 @permission_required("presence.add_presence" , raise_exception=True)
 def presence_client(request):
     context= {}
