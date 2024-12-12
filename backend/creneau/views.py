@@ -16,7 +16,7 @@ from .tables import AbonnementClientHTMxTable
 from django.db.models import Max
 from django_tables2.config import RequestConfig
 from django.contrib.auth.mixins import PermissionRequiredMixin
-
+from datetime import datetime, timedelta, date
 
 def abc_creneau_view(request):
     template_name = "snippets/abc_creneau.html"
@@ -58,12 +58,6 @@ class CreateCreneau(PermissionRequiredMixin,CreateView):
             form.save()
             message = _("Creneau a été créé avec succès")
             messages.success(request, str(message))
-            # return HttpResponse(status=204, headers={
-            #     'HX-Trigger': json.dumps({
-            #         "closeModal": "kt_modal",
-            #         "refresh_table": None
-            #     })
-            # })
             return HttpResponse(status=204, headers={
                 'HX-Trigger': json.dumps({
                     "closeModal": "kt_modal",
@@ -176,7 +170,7 @@ class AbonnementsParCreneau(SingleTableMixin,FilterView):
             .annotate(latest_created_date_time=Max('created_date_time'))
         # Filter original queryset with the annotated max created_date_time
         queryset = AbonnementClient.objects.select_related('client', 'type_abonnement') \
-            .filter(creneaux__pk=creneau_pk, created_date_time__in=[item['latest_created_date_time'] for item in latest_abonnements]) \
+            .filter(creneaux__pk=creneau_pk,end_date__gte=date.today(), created_date_time__in=[item['latest_created_date_time'] for item in latest_abonnements]) \
             .order_by('-created_date_time')
         print("queryset....................>>", queryset)
         return queryset
