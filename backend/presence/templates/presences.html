@@ -15,32 +15,32 @@
                                 <i class=" ki-magnifier fs-3 position-absolute ms-4"></i>
 
                                 <form  >
-                                    <input
-                                    hx-get='{% url "presence:presence_client" %}' 
-                                    hx-trigger="keyup changed delay:900ms"
-                                    type="text"
-                                    name="search"
-                                    class='form-control fw-bold pe-5' 
-                                    placeholder='Scanner Carte ou ID...... '
-                                    {% comment %} hx-target="#correctionsId" {% endcomment %}
-                                    hx-swap="afterend"
-                                    hx-refresh="true" 
-                                    id="barcode-input"
-                                    hx-on::after-request="document.getElementById('barcode-input').value = '';"
-                                    autofocus  />
+                                                    <input
+                                                    hx-get='{% url "presence:presence_client" %}' 
+                                                    hx-trigger="keyup changed delay:900ms"
+                                                    type="text"
+                                                    name="search"
+                                                    class='form-control fw-bold pe-5' 
+                                                    placeholder='Scanner Carte ou ID...... '
+                                                    {% comment %} hx-target="#correctionsId" {% endcomment %}
+                                                    hx-swap="afterend"
+                                                    hx-refresh="true" 
+                                                    id="barcode-input"
+						                            hx-on::after-request="document.getElementById('barcode-input').value = '';"
+                                                    autofocus  />
                                 </form>
-                                <button
-                                    type="button"
-                                    class="btn btn-info"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#kt_modal"
-                                    hx-get="{% url 'presence:PresenceManuelleClient' %}"
-                                    hx-target="#kt_modal_content"
-                                    hx-trigger="click"
-                                    hx-swap="innerHTML"
-                                >
-                                    <i class="ki-exit-up fs-2">Présence Manuellement</i>
-                                </button>
+                                            <button
+                                                type="button"
+                                                class="btn btn-info"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#kt_modal"
+                                                hx-get="{% url 'presence:PresenceManuelleClient' %}"
+                                                hx-target="#kt_modal_content"
+                                                hx-trigger="click"
+                                                hx-swap="innerHTML"
+                                            >
+                                                <i class="ki-exit-up fs-2">Présence Manuellement</i>
+                                            </button>
                             </div>
                         {% endif %}
                     </div>
@@ -57,6 +57,7 @@
                                     hx-trigger="change, changed,keyup delay:900ms"
                                     hx-push-url='true'
                                 >
+
                                 <div class="card-title">
                                     <div class="row">
                                         {% for field in filter.form %}
@@ -90,19 +91,14 @@
 							   </form>
                                {% endwith %}
 							</div>
+
                             {% comment %} 
                                 hx-trigger="refresh_presences from:body" 
                                 hx-get="{% url 'presence:presences_name' %}" 
-                                hx-swap="innerHTML" 
-                                hx-target="this" 
-                            {% endcomment %}
-                            <div class="card-body pt-0 table-responsive" 
-                                id="TablePresence"
-                                hx-trigger="refresh_presences from:body" 
-                                hx-get="{% url 'presence:presences_name' %}" 
-                                hx-swap="innerHTML" 
-                                hx-target="this"  
+                                hx-swipe="innerHTML" 
+                                hx-target="this"
                                 >
+
                                 {% render_table table %}
                             </div>
                             <div
@@ -112,10 +108,13 @@
                                 hx-swap="none"
                                 sse-swap="none">
                             </div>
+
 						</div>
 					</div>
 				</div>
             </div>
+            
+       
     </div>
 
 </div>
