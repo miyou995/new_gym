@@ -2,6 +2,8 @@ from decimal import Decimal
 from django.db.models import Q
 import django_filters
 import django_filters.widgets
+
+from abonnement.models import AbonnementClient
 from .models import Client,Coach,Personnel
 # from abonnement.models import AbonnementClient
 
@@ -75,3 +77,12 @@ class PersonnelFilter(django_filters.FilterSet):
 
 
 
+
+
+class ArchiveAbonnementFilter(django_filters.FilterSet):
+    start_date = django_filters.DateFilter(field_name="created_date_time", lookup_expr='gte', label="Date Début")
+    end_date = django_filters.DateFilter(field_name="created_date_time", lookup_expr='lte', label="Date Fin")
+    
+    class Meta:
+        model = AbonnementClient
+        fields = ['start_date', 'end_date']

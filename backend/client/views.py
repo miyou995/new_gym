@@ -20,7 +20,7 @@ from django.urls import reverse
 from django_tables2 import SingleTableMixin
 from django_filters.views import FilterView
 from .models import Client,Coach,Personnel
-from .filters import ClientFilter,CoachFilter,PersonnelFilter
+from .filters import ArchiveAbonnementFilter, ClientFilter,CoachFilter,PersonnelFilter
 from .tables import (ClientHTMxTable,CoachHTMxTable,PersonnelHTMxTable,AbonnementClientHTMxTable,PaiementHTMxTable,
                      CoachDetailHTMxTable,VirementsHTMxTable,PresenceCoachHTMxTable,
                      PresenceClientHTMxTable)
@@ -41,6 +41,10 @@ class ClientView(PermissionRequiredMixin,SingleTableMixin, FilterView):
         context = super().get_context_data(**kwargs)
         print('from client viewwwwwwwwwwwwwwwwwwwwwwwwwwwwww')
         return context
+    # def get_queryset(self):
+    #     queryset= Client.objects.select_related("maladies").order_by("-created")
+
+        return queryset
     
     def get_template_names(self):
         if self.request.htmx:
@@ -347,12 +351,15 @@ class ClientDetailView(SingleTableMixin, FilterView):
     model = AbonnementClient
 
     def get_queryset(self):
-         queryset = AbonnementClient.objects.select_related('client', "type_abonnement").order_by("-created_date_time")
-         abonnement_client_pk = self.kwargs.get('pk')
-         print("abonnement_client_pk from abc -------------", abonnement_client_pk)
-         if abonnement_client_pk:
+        queryset = AbonnementClient.objects.select_related('client', "type_abonnement").order_by("-created_date_time")
+        abonnement_client_pk = self.kwargs.get('pk')
+        print("abonnement_client_pk from abc -------------", abonnement_client_pk)
+        if abonnement_client_pk:
             queryset = queryset.filter(client_id=abonnement_client_pk)
-         return queryset
+        if queryset.count() < 4:
+                return queryset
+           
+        return queryset[:4]
     
     def get_context_data(self, **kwargs):
         context = super(ClientDetailView, self).get_context_data(**kwargs)
@@ -391,7 +398,11 @@ class PaiementClientDetail(SingleTableMixin, FilterView):
             if abonnement_client_pk:
                 queryset = queryset.filter(abonnement_client__client=abonnement_client_pk)
                 # print("queryset---------------",queryset)
+            if queryset.count() < 4:
                 return queryset
+           
+            return queryset[:4]
+    
         
         def get_template_names(self):
             if self.request.htmx:
@@ -407,7 +418,7 @@ class PaiementClientDetail(SingleTableMixin, FilterView):
 
 class PresenceClientDetail(SingleTableMixin, FilterView):
         table_class =   PresenceClientHTMxTable
-        paginate_by = 8
+        paginate_by = 7
         model = Presence
         
         def get_queryset(self):
@@ -416,8 +427,11 @@ class PresenceClientDetail(SingleTableMixin, FilterView):
             print("abonnement_client_pk from presence -------------", abonnement_client_pk)
             if abonnement_client_pk:
                 queryset = queryset.filter(abc__client=abonnement_client_pk)
+            if queryset.count() < 7:
                 return queryset
         
+            return queryset[:7]
+    
         def get_template_names(self):
             if self.request.htmx:
                 template_name = "tables/product_table_partial.html"
@@ -572,10 +586,93 @@ class PersonnelDetail(SingleTableMixin, FilterView):
     #         }
 
 
+# -------------------------------------------archive-------------------------------------------------
 
+
+class ClientArchiveAbonnement(SingleTableMixin, FilterView):
+    table_class =   AbonnementClientHTMxTable
+    filterset_class = ArchiveAbonnementFilter
+    paginate_by = 5
+    model = AbonnementClient
+
+    def get_queryset(self):
+         queryset = AbonnementClient.objects.select_related('client', "type_abonnement").order_by("-created_date_time")
+         abonnement_client_pk = self.kwargs.get('pk')
+         print("abonnement_client_pk from abc -------------", abonnement_client_pk)
+         if abonnement_client_pk:
+            queryset = queryset.filter(client_id=abonnement_client_pk)
+         return queryset
+    
+    def get_context_data(self, **kwargs):
+        context = super(ClientArchiveAbonnement, self).get_context_data(**kwargs)
+        context["client"] = Client.objects.get(pk=self.kwargs['pk'])
+        return context
+    
+    def get_template_names(self):
+        if self.request.htmx:
+            template_name = "snippets/archiveAbonnementClient.html"
+        else:
+            template_name = "tables/product_table_partial.html"
+        return template_name
+    
+    def get_table_kwargs(self):
+            return {
+                'abonnement_client_pk' : self.kwargs.get('pk')
+            }
     
 
+class ClientArchivPaiement(SingleTableMixin, FilterView):
+    table_class =   PaiementHTMxTable
+    # filterset_class = ArchiveAbonnementFilter
+    paginate_by = 5
+    model = Paiement
     
+    def get_queryset(self):
+        queryset = Paiement.objects.order_by("-date_creation")
+        abonnement_client_pk = self.kwargs.get('pk')
+        print("abonnement_client_pk  -------------", abonnement_client_pk)
+        if abonnement_client_pk:
+            queryset = queryset.filter(abonnement_client__client=abonnement_client_pk)
+            # print("queryset---------------",queryset)
+            return queryset
+    
+    def get_template_names(self):
+        if self.request.htmx:
+            template_name = "snippets/archiveAbonnementClient.html"
+        else:
+            template_name = "snippets/archiveAbonnementClient.html"
+        return template_name
+    
+    def get_table_kwargs(self):
+        return {
+            'abonnement_client_pk' : self.kwargs.get('pk')
+        }
 
-
+class ClientArchivPresence(SingleTableMixin, FilterView):
+        table_class =   PresenceClientHTMxTable
+        paginate_by = 5
+        model = Presence
+        
+        def get_queryset(self):
+            queryset = Presence.objects.order_by("-created").select_related('abc', 'abc__client', 'creneau', 'creneau__activity')
+            abonnement_client_pk = self.kwargs.get('pk')
+            print("abonnement_client_pk from presence -------------", abonnement_client_pk)
+            if abonnement_client_pk:
+                queryset = queryset.filter(abc__client=abonnement_client_pk)
+                return queryset
+        
+        def get_template_names(self):
+            if self.request.htmx:
+                template_name = "snippets/archiveAbonnementClient.html"
+            else:
+                template_name = "snippets/archiveAbonnementClient.html"
+            return template_name
+        
+        def get_table_kwargs(self):
+            # table_kwargs = super().get_table_kwargs()
+            # table_kwargs['exclude'] = ['Action']
+            # return table_kwargs
+            return {
+                'abonnement_client_pk' : self.kwargs.get('pk')
+            }
 

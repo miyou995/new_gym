@@ -81,7 +81,15 @@
 													<div class="card-header align-items-center py-5 gap-2 gap-md-5">
 														<div class="card-title">
 															<div class="d-flex align-items-center position-relative my-1">
-																<h3 class="card-title">Abonnements</h3>
+																<a href="#" 
+																	data-bs-toggle="modal" 
+																	data-bs-target="#kt_modal"
+																	data-bs-toggle="tooltip" 
+																	data-bs-placement="right" 
+																	hx-get="{% url 'client:client_archive_abonnement' client.pk %}"
+																	hx-target="#kt_modal_content" 
+																	hx-swap="innerHTML"
+															    > {% trans 'Abonnements' %} </a>
 															</div>
 															<div id="kt_ecommerce_report_sales_export" class="d-none"></div>
 														</div>
@@ -121,7 +129,17 @@
 													<div class="card-header align-items-center py-5 gap-2 gap-md-5">
 														<div class="card-title">
 															<div class="d-flex align-items-center position-relative my-1">
-																<h3 class="card-title">Paiements</h3>
+																<div class="d-flex align-items-center position-relative my-1">
+																	<a href="#" 
+																		data-bs-toggle="modal" 
+																		data-bs-target="#kt_modal"
+																		data-bs-toggle="tooltip" 
+																		data-bs-placement="right" 
+																		hx-get="{% url 'client:client_archive_paiement' client.pk %}"
+																		hx-target="#kt_modal_content" 
+																		hx-swap="innerHTML"
+																	> {% trans 'Paiements' %} </a>
+																</div>
 															</div>
 															<div id="kt_ecommerce_report_sales_export" class="d-none"></div>
 														</div>
@@ -161,7 +179,15 @@
 													<div class="card-header align-items-center py-5 gap-2 gap-md-5">
 														<div class="card-title">
 															<div class="d-flex align-items-center position-relative my-1">
-																<h3 class="card-title">Seances / Presences</h3>
+																<a href="#" 
+																		data-bs-toggle="modal" 
+																		data-bs-target="#kt_modal"
+																		data-bs-toggle="tooltip" 
+																		data-bs-placement="right" 
+																		hx-get="{% url 'client:client_archive_presence' client.pk %}"
+																		hx-target="#kt_modal_content" 
+																		hx-swap="innerHTML"
+																	> {% trans 'Seances / Presences' %} </a>
 															</div>
 															<div id="kt_ecommerce_report_sales_export" class="d-none"></div>
 														</div>

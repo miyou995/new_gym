@@ -4,3 +4,34 @@
 {% comment %} {% include "snippets/bar_search.html" with target_url=target_url target=target render_filter=render_filter %} {% endcomment %}
 {% render_table table %} 
 
+
+{% comment %} {% load render_table from django_tables2 %}
+<form  
+    hx-get="{{request.path}}"  
+    hx-target="#ArchiveTableAbc" 
+    hx-swap="innerHTML" 
+    hx-trigger="change, changed,keyup delay:900ms"
+    hx-push-url='true'
+    >
+    <div class="card-title">
+        <div class="row">
+            <div class="col-md-auto ms-4">
+                <label class="form-label card-label fw-bold fs-4 text-grey-800 mb-0">Date Début</label>
+                <input type="date" name="date_min" class="form-control" />
+            </div>
+            <div class="col-md-auto ms-4">
+                <label class="form-label card-label fw-bold fs-4 text-grey-800 mb-0">Date Fin</label>
+                <input type="date" name="date_max" class="form-control" />
+            </div>
+        </div>
+    </div>
+</form>
+<div class="card-body pt-0 table-responsive" 
+                            id="ArchiveTableAbc"
+                            hx-trigger="refresh_presences from:body" 
+                            hx-get="{% url 'client:client_archive_abonnement' client.pk %}"
+                            hx-target="#kt_modal_content" 
+                            hx-swap="innerHTML"
+                            >
+                            {% render_table table %}
+                        </div> {% endcomment %}
