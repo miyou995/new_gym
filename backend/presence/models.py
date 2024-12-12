@@ -60,7 +60,7 @@ class Presence(models.Model):
         today = date.today()
         now_time = datetime.now().time()
         if sortie:
-            print("sortie hourrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",sortie)
+            print("sortie hour from model +++++++",sortie)
             d_end = datetime.combine(today, sortie)
             
         else:
