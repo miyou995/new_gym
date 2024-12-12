@@ -1,0 +1,35 @@
+{% load static %}
+{% load i18n %}
+{% load render_table from django_tables2 %}
+<div class="card card-flush">
+    <form  
+        hx-get="{{request.path}}"  
+        hx-target="#Table" 
+        hx-swap="innerHTML" 
+        hx-trigger="change, changed,keyup delay:900ms"
+        hx-push-url='true'
+        >
+        <div class="card-title">
+            <div class="row">
+                <div class="col-md-auto ms-4">
+                    <label class="form-label card-label fw-bold fs-4 text-grey-800 mb-0">Date Début</label>
+                    <input type="date" name="start_date" class="form-control" value="{{ request.GET.start_date }}">
+                </div>
+                <div class="col-md-auto ms-4">
+                    <label class="form-label card-label fw-bold fs-4 text-grey-800 mb-0">Date Fin</label>
+                    <input type="date" name="end_date" class="form-control" value="{{ request.GET.end_date }}">
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="card-body pt-0 table-responsive" 
+        id="Table"
+        
+        {% comment %}   hx-trigger="refresh_presences from:body" 
+        hx-get="{% url 'client:client_archive_abonnement' client.pk %}"
+        hx-swap="innerHTML" 
+        hx-target="this"   {% endcomment %}
+    >
+        {% render_table table %}
+    </div>
+</div>
