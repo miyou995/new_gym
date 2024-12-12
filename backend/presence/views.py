@@ -246,26 +246,57 @@ class PresenceManuelleUpdateClient(PermissionRequiredMixin,UpdateView):
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
         print('yeah form instance------------------------------', self.object)
-        print("heur_sortie********************",self.object.hour_sortie)
-        print("hour_entree********************",self.object.hour_entree)
+        # print("hour_entree********************",self.object.hour_entree)
+        # print("heur_sortie********************",self.object.hour_sortie)
         return super().get(request, *args, **kwargs)
     
     def form_valid(self, form):
         original_object = self.get_object()
-        print("heur_sortie from form ********************", form.cleaned_data['hour_sortie'])
-        print("Original heur_sortie from database ********************", original_object.hour_sortie)
+        # CASE if no sorie hour on form
+        if not original_object.hour_sortie :
+            presence = form.save()
+            print("presence.hour_sortie from form*============",presence.hour_sortie)
+            ecart = presence.get_time_consumed(presence.hour_sortie)
+            original_object.abc.presence_quantity -= ecart
+            original_object.abc.save()
+            print("ecart from presence==========",ecart)
+            print("rest 2===============",presence.abc.presence_quantity)
+            return HttpResponse(
+            status=204,
+            headers={
+                'HX-Trigger': json.dumps({
+                    "closeModal": "kt_modal",
+                    "refresh_table": None,
+                        })
+                    }
+                )
+        # case normal edit 
+        print("Original heur_sortie from database =========", original_object.hour_sortie)
         ecrat1 = original_object.get_time_consumed(original_object.hour_sortie)
-        print("ecrat from original object *-*-*-*-*-*-*-*-*-*-*",ecrat1)
+        print("rest avant ===============",original_object.abc.presence_quantity)
+        print("ecrat from object ====================",ecrat1)
         original_object.abc.presence_quantity += ecrat1
         original_object.abc.save()
-
+        print("rest===============",original_object.abc.presence_quantity)
         presence = form.save()
-        print("presence.hour_sortie *-*-*-*-*-*-*-*--",presence.hour_sortie)
-        ecart = presence.get_time_consumed(presence.hour_sortie)
-        print("ecart from presence*-*-*-*-*-*-*-*",ecart)
-        presence.abc.presence_quantity -= ecart
-        presence.abc.save()
+        # case clean hour sortie
+        if not presence.hour_sortie :
+            return HttpResponse(
+            status=204,
+            headers={
+                'HX-Trigger': json.dumps({
+                    "closeModal": "kt_modal",
+                    "refresh_table": None,
+                        })
+                    }
+                )
 
+        print("presence.hour_sortie from form*============",presence.hour_sortie)
+        ecart = presence.get_time_consumed(presence.hour_sortie)
+        original_object.abc.presence_quantity -= ecart
+        original_object.abc.save()
+        print("ecart from presence==========",ecart)
+        print("rest 2===============",presence.abc.presence_quantity)
         messages.success(self.request, "Presence Mis a jour avec Succés")
         return HttpResponse(
             status=204,
