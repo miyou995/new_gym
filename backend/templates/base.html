@@ -112,32 +112,7 @@
 		</div>  
 		{% include 'snippets/modal.html' %}
 
-		<script>
-			window.addEventListener("DOMContentLoaded", (e) => {
-				console.log('HAHAHAHHAHA')
-				const source = new EventSource("{% url 'presence:presences_sse' %}");
-				source.onmessage = function(event) {
-					{% comment %} console.log("Event received:", event);{% endcomment %}
-					console.log("----------Event event.data:", event.data); 
-						if (event.data == "update_presence"){
-							console.log("Event received: update_presence");
-							htmx.trigger(document.body, "refresh_presences");
-						}
-						// Optionally, handle updates manually if needed
-					};
-					source.onerror = function(error) {
-						console.error("EventSource error:--------------------", error);
-					};
-				})
 
-				setTimeout(function(){
-				if($('#msg').length >0){
-					$('#msg').remove();
-				}
-			},4000)
-			var hostUrl = "";
-		
-		</script>
 
 		
 		<script src="{% static 'plugins/global/plugins.bundle.js' %}"></script>
@@ -168,6 +143,45 @@
 		<script src="{% static 'js/custom_calendar.js' %}"></script>
 		<script src="{% static 'js/script.js' %}"></script>
 		<script src="{% static 'js/toast.js' %}"></script>
+		<script>
+			window.addEventListener("DOMContentLoaded", (e) => {
+				if (document.getElementById("sse-container")) {
+					try {
+						const source = new EventSource("{% url 'presence:presences_sse' %}");
 
+						source.onmessage = function (event) {
+							if (event.data === "keep-alive") {
+								console.log("Keep-alive message received.");
+								return; // Ignore keep-alive messages
+							}
+					
+							const data = JSON.parse(event.data);
+							if (data.message) {
+								console.log("Received message:", data.message);
+								htmx.trigger(document.body, "refresh_presences");
+								createToast({
+									message: data.message,
+									tags: data.tags
+								});
+							}
+						};
+						source.onerror = function(error) {
+						};
+					} catch (error) {
+						console.error("Error parsing SSE data:", error);
+					}
+
+				} else {
+					console.log("SSE not initialized for this page.");
+				}
+			});
+
+				{% comment %} setTimeout(function(){
+					if($('#msg').length > 0){
+						$('#msg').remove();
+					}
+				}, 4000); {% endcomment %}
+			var hostUrl = "";
+		</script> 
 	</body>
 </html>

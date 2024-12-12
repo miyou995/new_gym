@@ -14,7 +14,7 @@
                         hx-trigger="click"
                         hx-target="{% if table.custom_target %} {{custom_target}} {% else %} div.table-container {% endif %}"
                         hx-swap="innerHTML"
-                        hx-indicator=".progress"
+                        {% comment %} hx-indicator=".progress" {% endcomment %}
                         style="cursor: pointer; "
                     {% endif %}
                     >
@@ -32,7 +32,7 @@
              hx-trigger="click"
              hx-target="{% if table.custom_target %}{{table.custom_target}}{% else %}div.table-container{% endif %}"
              hx-swap="innerHTML"
-             hx-indicator=".progress"
+             {% comment %} hx-indicator=".progress" {% endcomment %}
              class="page-link">
              <i class="previous"></i>
         </div>
@@ -47,7 +47,7 @@
             
                  hx-target="{% if table.custom_target %}{{table.custom_target}}{% else %}div.table-container{% endif %}"
                  hx-swap="innerHTML"
-                 hx-indicator=".progress">
+                 {% comment %} hx-indicator=".progress"> {% endcomment %}
                 {{ p }}
             </div>
         </li>
@@ -60,7 +60,7 @@
              hx-target="{% if table.custom_target %}{{table.custom_target}}{% else %}div.table-container{% endif %}"
              
              hx-swap="innerHTML"
-             hx-indicator=".progress"
+             {% comment %} hx-indicator=".progress" {% endcomment %}
              class="page-link">
             <i class="next"></i></a>
         </div>
