@@ -104,6 +104,7 @@ celerybeat-schedule.*
 
 backend/db.sqlite3
 db.sqlite3
+backend/config/local_settings.py
 config/local_settings.py
 *.json
 backend/*.json
