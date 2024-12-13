@@ -77,8 +77,8 @@ class CalenderFilterupdate(django_filters.FilterSet):
         if 'abc_id' in self.data:
             print('abc_id=========================', self.data.get('abc_id'))
             abc_id = int(self.data.get('abc_id'))
-            abonnement_client=get_object_or_404(AbonnementClient, pk=abc_id)
-            abonnement = Abonnement.objects.get(id=abonnement_client.type_abonnement.id)
+            abonnement_client=get_object_or_404(AbonnementClient.objects.prefetch_related('creneaux'), pk=abc_id)
+            abonnement = abonnement_client.type_abonnement
             self.data = self.data.copy()  # Make self.data mutable
             self.data['type_abonnement'] = abonnement.id
             
