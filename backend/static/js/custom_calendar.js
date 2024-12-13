@@ -26,7 +26,6 @@ function initHTMXCalendar(eventsData, checkAll = false) {
                     console.log('Switch toggled!');
                 }
             }
-
           },
   
         slotMinTime: '06:00:00',
@@ -42,7 +41,6 @@ function initHTMXCalendar(eventsData, checkAll = false) {
             if (selectedEventsDiv) {
                 var selectedEventsData = selectedEventsDiv.dataset.selectedEvents ? JSON.parse(selectedEventsDiv.dataset.selectedEvents) : [];
                 selectedEvents = selectedEventsData.length > 0 ? selectedEventsData : [];
-                console.log("Mounting eventsData----------", eventsData);
             }
             var preSelectedEvent = selectedEvents.find(event => event.creneaux__pk === info.event.extendedProps.pk_event);
             if (preSelectedEvent) {
@@ -105,7 +103,6 @@ function initHTMXCalendar(eventsData, checkAll = false) {
             }
         });
     }
-
     // If `checkAll` is true, apply the initial state
     if (checkAll) {
         selectAllEvents();

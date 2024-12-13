@@ -16,19 +16,22 @@
 		<meta property="og:title" content="Octopus Consulting - Application de gestion de gym" />
 		<meta property="og:url" content="https://octopus-consulting.com" />
 		<meta property="og:site_name" content="Octopus Consulting" />
+		<meta name="htmx-config" content='{"refreshOnHistoryMiss":"true"}' />
+		
 		<link rel="canonical" href="https://octopus-consulting.com" />
-		<link rel="shortcut icon" href="media/logos/favicon.ico" />
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700"/>
+		<link rel="shortcut icon" href="{% static 'images/logo.png' %}" />
+		{% comment %} <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700"/> {% endcomment %}
+		<link href="{% static 'fonts/inter.css' %}" rel="stylesheet" type="text/css"/>
+
 		<link href="{% static 'plugins/custom/fullcalendar/fullcalendar.bundle.css' %}" rel="stylesheet" type="text/css"/>
 		<link href="{% static 'plugins/custom/datatables/datatables.bundle.css' %}" rel="stylesheet" type="text/css"/>
 		<link href="{% static 'plugins/global/plugins.bundle.css' %}" rel="stylesheet" type="text/css"/>
 		<link href="{% static 'css/style.bundle.css' %}" rel="stylesheet" type="text/css" />
 		<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" />
-		{% comment %} <script src="{% static 'js/htmx.min.js' %}"></script> {% endcomment %}
-		<script src="https://unpkg.com/htmx.org@2.0.3"></script>
-
-		{% comment %} <script src="{% static 'js/sse.js' %}"></script> {% endcomment %}
-		<script src="https://unpkg.com/htmx-ext-sse@2.2.2/sse.js"></script>
+		
+		<script src="{% static 'js/htmx.min.js' %}"></script>
+		
+		<script src="{% static 'js/sse.js' %}"></script>
 
 
 		{% comment %} <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script> {% endcomment %}
@@ -118,21 +121,10 @@
 		<script src="{% static 'plugins/global/plugins.bundle.js' %}"></script>
 		<script src="{% static 'js/scripts.bundle.js' %}"></script>
 		{% comment %} <script src="{% static 'plugins/custom/fullcalendar/fullcalendar.bundle.js' %}"></script> {% endcomment %}
-		<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
-		<script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
-		<script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
-		<script src="https://cdn.amcharts.com/lib/5/radar.js"></script>
-		<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
-		<script src="https://cdn.amcharts.com/lib/5/map.js"></script>
-		<script src="https://cdn.amcharts.com/lib/5/geodata/worldLow.js"></script>
-		<script src="https://cdn.amcharts.com/lib/5/geodata/continentsLow.js"></script>
-		<script src="https://cdn.amcharts.com/lib/5/geodata/usaLow.js"></script>
-		<script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZonesLow.js"></script>
-		<script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZoneAreasLow.js"></script>
+
+
 		<script src="{% static 'plugins/custom/datatables/datatables.bundle.js' %}"></script>
-		{% comment %} <script src='https://cdn.jsdelivr.net/npm/rrule@2.6.4/dist/es5/rrule.min.js'></script> {% endcomment %}
-		{% comment %} <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script> {% endcomment %}
-		{% comment %} <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/rrule@6.1.15/index.global.min.js'></script> {% endcomment %}
+
 		<script src="{% static 'js/fullcalendar.global.min.js' %}"></script>
 		<script src="{% static 'js/widgets.bundle.js' %}"></script>
 		<script src="{% static 'js/custom/widgets.js' %}"></script>
