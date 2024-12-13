@@ -92,7 +92,10 @@ class PresencesView(PermissionRequiredMixin, SingleTableMixin, FilterView):
     table_class = PresencesHTMxTable
     filterset_class = PresenceFilter
     paginate_by = 15
-
+    
+    def get_table_data(self):
+        return Presence.objects.select_related('abc', 'abc__client', 'abc__type_abonnement', 'creneau__activity').order_by('-created')
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["salles"] = Salle.objects.all()
