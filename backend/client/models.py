@@ -107,11 +107,8 @@ class Maladie(models.Model):
         return self.name
     
     def get_delete_url(self):
-        return reverse('core:MaladieDeleteView', kwargs={'pk': str(self.id)})
-    
-    
-    def get_delete_url(self):
-        return reverse('core:MaladieDeleteView', kwargs={'pk': str(self.id)})
+        return reverse('core:maladie_delete_view', kwargs={'pk': str(self.id)})
+
     
     class Meta:
         verbose_name = 'Maladie'
@@ -666,7 +663,7 @@ class Coach(models.Model):
         return self.heures_done * self.pay_per_hour
 
     def get_view_url(self):
-        return reverse("client:CoachDetail", kwargs={"pk": self.pk})
+        return reverse("client:coach_detail", kwargs={"pk": self.pk})
     
     def get_edit_url(self):
         return reverse('client:coach_update', kwargs={'pk': str(self.id)})
@@ -731,14 +728,14 @@ class Coach(models.Model):
 
 
 
-    def get_view_url(self):
-        return reverse("client:CoachDetail", kwargs={"pk": self.pk})
+    # def get_view_url(self):
+    #     return reverse("client:coach_detail", kwargs={"pk": self.pk})
     
-    def get_edit_url(self):
-        return reverse('client:coach_update', kwargs={'pk': str(self.id)})
+    # def get_edit_url(self):
+    #     return reverse('client:coach_update', kwargs={'pk': str(self.id)})
 
-    def get_delete_url(self):
-        return reverse('client:coach_delete', kwargs={'pk': str(self.id)})
+    # def get_delete_url(self):
+    #     return reverse('client:coach_delete', kwargs={'pk': str(self.id)})
 
 
     def enter_sotrie_coach(self):

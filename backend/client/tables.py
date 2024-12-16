@@ -256,7 +256,7 @@ class CoachDetailHTMxTable(tables.Table):
     @property
     def url(self):
         if self.coach_pk is not None:
-            return reverse("client:CoachDetail", kwargs={"pk": self.coach_pk})
+            return reverse("client:coach_detail", kwargs={"pk": self.coach_pk})
         return None
     @property
     def custom_target(self):
@@ -307,7 +307,7 @@ class PresenceCoachHTMxTable(tables.Table):
     @property
     def url(self):
         if self.coach_pk is not None:
-            return reverse("client:PresenceCoachDetail", kwargs={"pk": self.coach_pk})
+            return reverse("client:presence_coach_detail", kwargs={"pk": self.coach_pk})
         return None
     @property
     def custom_target(self):

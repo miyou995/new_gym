@@ -88,10 +88,10 @@ class Presence(models.Model):
         return None
     
     def get_edit_url(self):
-        return reverse('presence:PresenceManuelleUpdateClient', kwargs={'pk': str(self.id)})
+        return reverse('presence:presence_manuelle_update_client', kwargs={'pk': str(self.id)})
     
     def get_delete_url(self):
-        return reverse('presence:Presence_manuelle_deleteclient', kwargs={'pk': str(self.id)})
+        return reverse('presence:Presence_manuelle_delete_client', kwargs={'pk': str(self.id)})
 
 
 

@@ -128,24 +128,15 @@
 }
 
 
-.table td {
-    text-align: center;
-       
- }
-
- 
-.table tr {
-    text-align: center;   
- }
- .text-center {
-    text-align: center;
-}
 
 
 .page-item {
     cursor:pointer;
+    color: #000000;
 }
-
+.page-link {
+    color: #000000;
+}
 
 
 

@@ -7,8 +7,8 @@
         id="sg_create_store_form" 
         class="form"  
         {% if form.instance.id %}
-        hx-post="{% url 'core:PorteUpdateView' form.instance.id %}" 
-        {% else %} hx-post="{% url 'core:PorteCreateView' %}"
+        hx-post="{% url 'core:porte_update_view' form.instance.id %}" 
+        {% else %} hx-post="{% url 'core:porte_create_view' %}"
         {% endif %}
         hx-target="#kt_modal_content"
         novalidate 

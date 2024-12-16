@@ -39,6 +39,7 @@
 					</div>
 				{% endif %}
 			{% endfor %} 
+			<input type="hidden" name="client_pk" value="{{ form.initial.client_pk }}">
 		{% endwith %}       
 		<div class="text-center">   
 			<button type="reset" id="sg_create_store_form" class="btn btn-light me-3"   data-bs-dismiss="modal">{% trans "Annulé" %}</button>

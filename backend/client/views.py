@@ -50,7 +50,7 @@ class ClientView(PermissionRequiredMixin,SingleTableMixin, FilterView):
         if self.request.htmx:
             template_name = "tables/product_table_partial.html"
         else:
-            template_name = "client.html" 
+            template_name = "client.html"
         return template_name 
 
 @permission_required('client.add_client', raise_exception=True)
@@ -347,7 +347,7 @@ class PersonnelDeleteView(PermissionRequiredMixin,DeleteView):
 # ----------------------------------------------client detail-----------------------------------------
 class ClientDetailView(SingleTableMixin, FilterView):
     table_class =   AbonnementClientHTMxTable
-    paginate_by = 5
+    paginate_by = 4
     model = AbonnementClient
 
     def get_queryset(self):
@@ -388,7 +388,7 @@ class ClientDetailView(SingleTableMixin, FilterView):
 
 class PaiementClientDetail(SingleTableMixin, FilterView):
         table_class =   PaiementHTMxTable
-        paginate_by = 5
+        paginate_by = 3
         model = Paiement
         
         def get_queryset(self):
@@ -398,12 +398,8 @@ class PaiementClientDetail(SingleTableMixin, FilterView):
             if abonnement_client_pk:
                 queryset = queryset.filter(abonnement_client__client=abonnement_client_pk)
                 # print("queryset---------------",queryset)
-            if queryset.count() < 4:
                 return queryset
-           
-            return queryset[:4]
     
-        
         def get_template_names(self):
             if self.request.htmx:
                 template_name = "tables/product_table_partial.html"
@@ -427,11 +423,8 @@ class PresenceClientDetail(SingleTableMixin, FilterView):
             print("abonnement_client_pk from presence -------------", abonnement_client_pk)
             if abonnement_client_pk:
                 queryset = queryset.filter(abc__client=abonnement_client_pk)
-            if queryset.count() < 7:
                 return queryset
         
-            return queryset[:7]
-    
         def get_template_names(self):
             if self.request.htmx:
                 template_name = "tables/product_table_partial.html"
@@ -592,7 +585,7 @@ class PersonnelDetail(SingleTableMixin, FilterView):
 class ClientArchiveAbonnement(SingleTableMixin, FilterView):
     table_class =   AbonnementClientHTMxTable
     filterset_class = ArchiveAbonnementFilter
-    paginate_by = 5
+    paginate_by = 15
     model = AbonnementClient
 
     def get_queryset(self):
@@ -610,7 +603,7 @@ class ClientArchiveAbonnement(SingleTableMixin, FilterView):
     
     def get_template_names(self):
         if self.request.htmx:
-            template_name = "snippets/archiveAbonnementClient.html"
+            template_name = "snippets/archive_abonnement_client.html"
         else:
             template_name = "tables/product_table_partial.html"
         return template_name
@@ -624,7 +617,7 @@ class ClientArchiveAbonnement(SingleTableMixin, FilterView):
 class ClientArchivPaiement(SingleTableMixin, FilterView):
     table_class =   PaiementHTMxTable
     # filterset_class = ArchiveAbonnementFilter
-    paginate_by = 5
+    paginate_by = 15
     model = Paiement
     
     def get_queryset(self):
@@ -638,9 +631,9 @@ class ClientArchivPaiement(SingleTableMixin, FilterView):
     
     def get_template_names(self):
         if self.request.htmx:
-            template_name = "snippets/archiveAbonnementClient.html"
+            template_name = "snippets/archive_abonnement_client.html"
         else:
-            template_name = "snippets/archiveAbonnementClient.html"
+            template_name = "snippets/archive_abonnement_client.html"
         return template_name
     
     def get_table_kwargs(self):
@@ -650,7 +643,7 @@ class ClientArchivPaiement(SingleTableMixin, FilterView):
 
 class ClientArchivPresence(SingleTableMixin, FilterView):
         table_class =   PresenceClientHTMxTable
-        paginate_by = 5
+        paginate_by = 15
         model = Presence
         
         def get_queryset(self):
@@ -663,9 +656,9 @@ class ClientArchivPresence(SingleTableMixin, FilterView):
         
         def get_template_names(self):
             if self.request.htmx:
-                template_name = "snippets/archiveAbonnementClient.html"
+                template_name = "snippets/archive_abonnement_client.html"
             else:
-                template_name = "snippets/archiveAbonnementClient.html"
+                template_name = "snippets/archive_abonnement_client.html"
             return template_name
         
         def get_table_kwargs(self):

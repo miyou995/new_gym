@@ -1,10 +1,10 @@
 
 from django.urls import path
 from .views import (IndexView,PlanningTable,SalleTable ,ActivityTable,MaladieTable,PortesTable,AbonnementTable,
-                    PlanningCreateView,PlanningUpdateView,PlanningDeleteView,SalleCreateView,SalleUpdateView
-                    ,SalleDeleteView,ActiviteCreateView,ActiviteUpdateView,ActiviteDeleteView,MaladieCreateView,
-                   MaladieUpdateView,MaladieDeleteView,PorteCreateView,PorteUpdateView,
-                   PorteDeleteView,TypeAbonnementCreateView,TypeAbonnementUpdateView,TypeAbonnementDeleteView,
+                    planning_create_view,PlanningUpdateView,PlanningDeleteView,salle_create_view,SalleUpdateView
+                    ,SalleDeleteView,activite_create_view,ActiviteUpdateView,ActiviteDeleteView,maladie_create_view,
+                   MaladieUpdateView,MaladieDeleteView,porte_create_view,PorteUpdateView,
+                   PorteDeleteView,type_abonnement_create_view,TypeAbonnementUpdateView,TypeAbonnementDeleteView,
                   open_salle,close_salle)
 
 
@@ -19,43 +19,43 @@ urlpatterns = [
 
     # path('configuration/',ConfigurationView.as_view(), name='configuration_name'),
     path('configuration/', PlanningTable.as_view(), name='planning_table'),
-    path('configuration/SalleTable',SalleTable.as_view(), name='SalleTable'),
-    path('configuration/ActivityTable',ActivityTable.as_view(), name='ActivityTable'),
-    path('configuration/MaladieTable',MaladieTable.as_view(), name='MaladieTable'),
-    path('configuration/PortesTable', PortesTable.as_view(), name='PortesTable'),
-    path('configuration/AbonnementTable', AbonnementTable.as_view(), name='AbonnementTable'),
+    path('configuration/salle_table',SalleTable.as_view(), name='salle_table'),
+    path('configuration/activity_table',ActivityTable.as_view(), name='activity_table'),
+    path('configuration/maladie_table',MaladieTable.as_view(), name='maladie_table'),
+    path('configuration/portes_table', PortesTable.as_view(), name='portes_table'),
+    path('configuration/abonnemen_table', AbonnementTable.as_view(), name='abonnemen_table'),
 
     
     
 # planning--------------------------------------------------------------------------------------
-    path('configuration/PlanningCreateView', PlanningCreateView, name='PlanningCreateView'),
-    path('configuration/PlanningCreateView/<str:pk>',PlanningUpdateView.as_view(),name="PlanningUpdateView"),
-    path("configuration/PlanningDeleteView/<int:pk>", PlanningDeleteView.as_view(), name="PlanningDeleteView"),
+    path('configuration/planning_create_view', planning_create_view, name='planning_create_view'),
+    path('configuration/planning_update_view/<str:pk>',PlanningUpdateView.as_view(),name="planning_update_view"),
+    path("configuration/planning_delete_view/<int:pk>", PlanningDeleteView.as_view(), name="planning_delete_view"),
 
 # salle----------------------------------------------------------------------------------------------
-    path('configuration/SalleCreateView', SalleCreateView, name='SalleCreateView'),
-    path('configuration/SalleUpdateView/<str:pk>',SalleUpdateView.as_view(),name="SalleUpdateView"),
-    path("configuration/SalleDeleteView/<int:pk>",SalleDeleteView.as_view(), name="SalleDeleteView"),
+    path('configuration/salle_create_view', salle_create_view, name='salle_create_view'),
+    path('configuration/salle_update_view/<str:pk>',SalleUpdateView.as_view(),name="salle_update_view"),
+    path("configuration/salle_delete_view/<int:pk>",SalleDeleteView.as_view(), name="salle_delete_view"),
     
 # Activites------------------------------------------------------------------------------------------
-    path('configuration/ActiviteCreateView', ActiviteCreateView, name='ActiviteCreateView'),
-    path('configuration/ActiviteUpdateView/<str:pk>',ActiviteUpdateView.as_view(),name="ActiviteUpdateView"),
-    path("configuration/ActiviteDeleteView/<int:pk>", ActiviteDeleteView.as_view(), name="ActiviteDeleteView"),
+    path('configuration/activite_create_view', activite_create_view, name='activite_create_view'),
+    path('configuration/activite_update_view/<str:pk>',ActiviteUpdateView.as_view(),name="activite_update_view"),
+    path("configuration/activite_delete_view/<int:pk>", ActiviteDeleteView.as_view(), name="activite_delete_view"),
 
 # Maladie--------------------------------------------------------------------------------------------
-    path('configuration/MaladieCreateView', MaladieCreateView, name='MaladieCreateView'),
-    path('configuration/MaladieUpdateView/<str:pk>',MaladieUpdateView.as_view(),name="MaladieUpdateView"),
-    path("configuration/MaladieDeleteView/<int:pk>", MaladieDeleteView.as_view(), name="MaladieDeleteView"),
+    path('configuration/maladie_create_view', maladie_create_view, name='maladie_create_view'),
+    path('configuration/maladie_update_view/<str:pk>',MaladieUpdateView.as_view(),name="maladie_update_view"),
+    path("configuration/maladie_delete_view/<int:pk>", MaladieDeleteView.as_view(), name="maladie_delete_view"),
 
 #Portes--------------------------------------------------------------------------------------------------
-    path('configuration/PorteCreateView', PorteCreateView, name='PorteCreateView'),
-    path('configuration/PorteUpdateView/<str:pk>',PorteUpdateView.as_view(),name="PorteUpdateView"),
-    path("configuration/PorteDeleteView/<int:pk>", PorteDeleteView.as_view(), name="PorteDeleteView"),
+    path('configuration/porte_create_view', porte_create_view, name='porte_create_view'),
+    path('configuration/porte_update_view/<str:pk>',PorteUpdateView.as_view(),name="porte_update_view"),
+    path("configuration/porte_delete_view/<int:pk>", PorteDeleteView.as_view(), name="porte_delete_view"),
 
 # Abonnement-------------------------------------------------------------------------------------------------
-    path('configuration/TypeAbonnementCreateView', TypeAbonnementCreateView, name='TypeAbonnementCreateView'),
-    path('configuration/TypeAbonnementUpdateView/<str:pk>',TypeAbonnementUpdateView.as_view(),name="TypeAbonnementUpdateView"),
-    path("configuration/TypeAbonnementDeleteView/<int:pk>", TypeAbonnementDeleteView.as_view(), name="TypeAbonnementDeleteView"),
+    path('configuration/type_abonnement_create_view', type_abonnement_create_view, name='type_abonnement_create_view'),
+    path('configuration/type_abonnement_update_view/<str:pk>',TypeAbonnementUpdateView.as_view(),name="type_abonnement_update_view"),
+    path("configuration/type_abonnement_delete_view/<int:pk>", TypeAbonnementDeleteView.as_view(), name="type_abonnement_delete_view"),
 
 # open close salle----------------------------------------------------------------------------------------------------
 

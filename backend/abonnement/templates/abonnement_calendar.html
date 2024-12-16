@@ -72,7 +72,9 @@
                         {% endif %}"                          
                     hx-trigger="click"
                     hx-include='[name="start_date"], [name="type_abonnement"], [name="event_pk"]'
-                >
+                    onclick="this.setAttribute('disabled', 'true');"
+                    hx-on::after-request="this.removeAttribute('disabled');"
+                    >
                 <i class="ki-exit-up fs-2">Confirmer </i>
                 </button>
             </div>

@@ -34,19 +34,19 @@ urlpatterns = [
 
 
     path('client/client_detail/<str:pk>',ClientDetailView.as_view(),name='client_detail'),
-    path('client/PaiementClientDetail/<str:pk>',PaiementClientDetail.as_view(),name='paiement_client_detail'),
+    path('client/paiement_client_detail/<str:pk>',PaiementClientDetail.as_view(),name='paiement_client_detail'),
 
     path('client/presence_client_detail/<str:pk>',PresenceClientDetail.as_view(),name='presence_client_detail'),
 
 
 
-    path('client/CoachDetail/<str:pk>',CoachDetail.as_view(),name='CoachDetail'),
+    path('client/coach_detail/<str:pk>',CoachDetail.as_view(),name='coach_detail'),
     path('client/virements_coach_detail/<str:pk>',VirementsCoachDetail.as_view(),name='virements_coach_detail'),
-    path('client/PresenceCoachDetail/<str:pk>',PresenceCoachDetail.as_view(),name='PresenceCoachDetail'),
+    path('client/presence_coach_detail/<str:pk>',PresenceCoachDetail.as_view(),name='presence_coach_detail'),
     path('client/presence_coach/<str:pk>',presence_coach,name='presence_coach'),
 
 
-    path('personnels/PersonnelDetail/<str:pk>', PersonnelDetail.as_view(), name='personnel_detail'),
+    path('personnels/personnel_detail/<str:pk>', PersonnelDetail.as_view(), name='personnel_detail'),
 
     #archive---------------
     

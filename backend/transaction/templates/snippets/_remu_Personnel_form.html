@@ -7,8 +7,8 @@
             id="sg_create_store_form" 
             class="form" 
             {% if form.instance.id %}
-            hx-post="{% url 'transactions:Remuneration_Personnel_update' form.instance.id %}" 
-            {% else %} hx-post="{% url 'transactions:Remuneration_Personnel_name' %}"
+            hx-post="{% url 'transactions:remuneration_personnel_update' form.instance.id %}" 
+            {% else %} hx-post="{% url 'transactions:remuneration_personnel_name' %}"
             {% endif %}
             hx-target="#kt_modal_content"
             novalidateb
