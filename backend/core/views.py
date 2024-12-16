@@ -216,7 +216,7 @@ class AbonnementTable(GenericTableView):
 
 # planning--------------------------------------------------------------------------------------
 @permission_required('planning.add_planning',raise_exception=True)
-def PlanningCreateView(request):
+def planning_create_view(request):
     context = {}
     template_name = "configuration/snippets/_ajout_planning_form.html"
     form = PlanningModelForm(data=request.POST or None) 
@@ -284,7 +284,7 @@ class PlanningDeleteView(DeleteView):
         return HttpResponseRedirect(success_url)
 # salle----------------------------------------------------------------------------------------------
 @permission_required('salle_activite.add_salle',raise_exception=True)
-def SalleCreateView(request):
+def salle_create_view(request):
     context = {}
     template_name = "configuration/snippets/_ajout_salle_form.html"
     form = SalleModelForm(data=request.POST or None) 
@@ -354,7 +354,7 @@ class SalleDeleteView(DeleteView):
     
 # Activites------------------------------------------------------------------------------------------
 @permission_required('salle_activite.add_activity',raise_exception=True)
-def ActiviteCreateView(request):
+def activite_create_view(request):
     context = {}
     template_name = "configuration/snippets/_ajout_activites_form.html"
     form = ActiviteModelForm(data=request.POST or None) 
@@ -420,7 +420,7 @@ class ActiviteDeleteView(DeleteView):
     
 # Maladie--------------------------------------------------------------------------------------------
 
-def MaladieCreateView(request):
+def maladie_create_view(request):
     context = {}
     template_name = "configuration/snippets/_ajout_Maladies_form.html"
     form = MaladieModelForm(data=request.POST or None) 
@@ -488,7 +488,7 @@ class MaladieDeleteView(DeleteView):
     
 #Portes--------------------------------------------------------------------------------------------------
 @permission_required('salle_activite.add_door',raise_exception=True)
-def PorteCreateView(request):
+def porte_create_view(request):
     context = {}
     template_name = "configuration/snippets/_ajout_ports_form.html"
     form = DoorModelForm(data=request.POST or None) 
@@ -558,7 +558,7 @@ class PorteDeleteView(DeleteView):
     
 # Abonnement-------------------------------------------------------------------------------------------------
 @permission_required('abonnement.add_abonnement',raise_exception=True)
-def TypeAbonnementCreateView(request):
+def type_abonnement_create_view(request):
     context = {}
     template_name = "configuration/snippets/_type_abonne_form.html"
     form = AbonnementModelForm(data=request.POST or None) 

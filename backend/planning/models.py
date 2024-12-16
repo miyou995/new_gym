@@ -28,10 +28,10 @@ class Planning(models.Model):
         return self.name
 
     def get_edit_url(self):
-        return reverse('core:PlanningUpdateView', kwargs={'pk': str(self.id)})
+        return reverse('core:planning_update_view', kwargs={'pk': str(self.id)})
     
     def get_delete_url(self):
-        return reverse('core:PlanningDeleteView', kwargs={'pk': str(self.id)})
+        return reverse('core:planning_delete_view', kwargs={'pk': str(self.id)})
 
 
     def save(self, *args, **kwargs):

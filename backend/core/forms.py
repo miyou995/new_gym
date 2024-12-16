@@ -151,6 +151,7 @@ class AbonnementModelForm(forms.ModelForm):
             'length',
             'seances_quantity',
             'salles',
+            'actif'
              )
       
 

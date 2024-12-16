@@ -16,7 +16,7 @@
                             <form  >
                                 <input
                                     hx-get='{% url "presence:presence_client" %}' 
-                                    hx-trigger="keyup changed delay:900ms"
+                                    hx-trigger="keyup[target.value.length > 4] delay:900ms, changed[target.value.length > 4] delay:500ms "
                                     type="text"
                                     name="search"
                                     class='form-control fw-bold pe-5' 
@@ -33,7 +33,7 @@
                                 class="btn btn-info"
                                 data-bs-toggle="modal"
                                 data-bs-target="#kt_modal"
-                                hx-get="{% url 'presence:PresenceManuelleClient' %}"
+                                hx-get="{% url 'presence:presence_manuelle_client' %}"
                                 hx-target="#kt_modal_content"
                                 hx-trigger="click"
                                 hx-swap="innerHTML"
@@ -97,13 +97,13 @@
                             >
                             {% render_table table %}
                         </div>
-                        <div
+                        {% comment %} <div
                             id="sse-container"
                             hx-ext="sse"
                             sse-connect="{% url 'presence:presences_sse' %}"
                             hx-swap="none"
                             sse-swap="none">
-                        </div>
+                        </div> {% endcomment %}
                     </div>
                 </div>
             </div>

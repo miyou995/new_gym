@@ -7,7 +7,7 @@
       <thead {{ table.attrs.thead.as_html }}>
         <tr class="text-middle text-gray-800 fw-bold fs-6 text-uppercase gs-0">
             {% for column in table.columns %}
-                <th class="mw-250px {% if forloop.last %}text-end{% endif %} text-center"
+                <th 
                     {{ column.attrs.th.as_html }}
                     {% if column.orderable %}
                         hx-get="{{table.url}}{% querystring table.prefixed_order_by_field=column.order_by_alias.next %}"
@@ -46,8 +46,8 @@
                  hx-trigger="click"
             
                  hx-target="{% if table.custom_target %}{{table.custom_target}}{% else %}div.table-container{% endif %}"
-                 hx-swap="innerHTML"
-                 {% comment %} hx-indicator=".progress"> {% endcomment %}
+                 hx-swap="innerHTML">
+                 {% comment %} hx-indicator=".progress" {% endcomment %}
                 {{ p }}
             </div>
         </li>

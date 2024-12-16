@@ -64,12 +64,12 @@ class RemunerationProfHTMxTable(tables.Table):
                 model = RemunerationProf
                 template_name = "tables/bootstrap_htmx.html"
                 attrs = {
-                "url": lambda: reverse("transactions:RemunerationProfTable_name"),
+                "url": lambda: reverse("transactions:remuneration_prof_table_name"),
                 "htmx_container": "#table3",
                 }
         @property
         def url(self):
-                return reverse("transactions:RemunerationProfTable_name")
+                return reverse("transactions:remuneration_prof_table_name")
 
         @property
         def custom_target(self):
@@ -97,12 +97,12 @@ class RemunerationPersonnelHTMxTable(tables.Table):
                 model = Remuneration
                 template_name = "tables/bootstrap_htmx.html"
                 attrs = {
-                "url": lambda: reverse("transactions:RemunerationPersonnelTable_name"),
+                "url": lambda: reverse("transactions:remuneration_personnel_table_name"),
                 "htmx_container": "#table2",
                 }
         @property
         def url(self):
-                return reverse("transactions:RemunerationPersonnelTable_name")
+                return reverse("transactions:remuneration_personnel_table_name")
 
         @property
         def custom_target(self):

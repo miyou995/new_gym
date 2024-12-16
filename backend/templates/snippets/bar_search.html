@@ -21,8 +21,8 @@
                            {% render_field render_filter.form.search class="form-control form-control-solid w-250px ps-14" placeholder="Rechercher " %}
                     </div>
                     {% url 'transactions:transaction_name' as my_url1%}
-                    {% url 'transactions:RemunerationProfTable_name' as my_url2%}
-                    {% url 'transactions:RemunerationPersonnelTable_name' as my_url3%}
+                    {% url 'transactions:remuneration_prof_table_name' as my_url2%}
+                    {% url 'transactions:remuneration_personnel_table_name' as my_url3%}
                     {% url 'transactions:autre_transaction_table' as my_url4%}
 
                {% if request.path == my_url1 or request.path == my_url2 or request.path == my_url3 or request.path == my_url4  %}

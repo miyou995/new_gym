@@ -42,7 +42,7 @@
                                     class="btn btn-sm  btn-primary btn-radius color-container"
                                     data-bs-toggle="modal"
                                     data-bs-target="#kt_modal"
-                                    hx-get="{% url 'core:PlanningCreateView' %}"
+                                    hx-get="{% url 'core:planning_create_view' %}"
                                     hx-target="#kt_modal_content"
                                     hx-swap="innerHTML">
                                         {% trans 'Ajouter' %}
@@ -70,7 +70,7 @@
                                 <a href="#" class="btn btn-sm  btn-primary btn-radius color-container"
                                     data-bs-toggle="modal"
                                     data-bs-target="#kt_modal"
-                                    hx-get="{% url 'core:SalleCreateView' %}"
+                                    hx-get="{% url 'core:salle_create_view' %}"
                                     hx-target="#kt_modal_content"
                                     hx-swap="innerHTML">
                                     {% trans 'Ajouter' %}
@@ -80,7 +80,7 @@
                         </div>
                         {% comment %} {% if perms.salle_activite.view_salle %} {% endcomment %}
                         <div class="card-body p-3">
-                            <div id="SalleTable" class="table-responsive" hx-get="{% url 'core:SalleTable' %}"
+                            <div id="SalleTable" class="table-responsive" hx-get="{% url 'core:salle_table' %}"
                             hx-trigger="refresh_table from:body,revealed" hx-swap="innerHTML">
                             </div>
                         </div>
@@ -100,7 +100,7 @@
                                     <a href="#" class="btn btn-sm  btn-primary btn-radius color-container"
                                        data-bs-toggle="modal"
                                        data-bs-target="#kt_modal"
-                                       hx-get="{% url 'core:ActiviteCreateView' %}"
+                                       hx-get="{% url 'core:activite_create_view' %}"
                                        hx-target="#kt_modal_content"
                                        hx-swap="innerHTML">
                                         {% trans 'Ajouter' %}
@@ -110,7 +110,7 @@
                             </div>
                             {% comment %} {% if perms.salle_activite.view_activity %} {% endcomment %}
                             <div class="card-body p-3">
-                                <div id="ActivityTable" class="table-responsive" hx-get="{% url 'core:ActivityTable' %}"
+                                <div id="ActivityTable" class="table-responsive" hx-get="{% url 'core:activity_table' %}"
                                 hx-trigger="refresh_table from:body,revealed" hx-swap="innerHTML">
                                 </div>
                             </div>
@@ -126,7 +126,7 @@
                                         <a href="#" class="btn btn-sm  btn-primary btn-radius color-container"
                                         data-bs-toggle="modal"
                                         data-bs-target="#kt_modal"
-                                        hx-get="{% url 'core:PorteCreateView' %}"
+                                        hx-get="{% url 'core:porte_create_view' %}"
                                         hx-target="#kt_modal_content"
                                         hx-swap="innerHTML">
                                             {% trans 'Ajouter' %}
@@ -135,7 +135,7 @@
                                 </div>
                             </div>
                             <div class="card-body p-3">
-                                <div id="PortesTable" class="table-responsive" hx-get="{% url 'core:PortesTable' %}"
+                                <div id="PortesTable" class="table-responsive" hx-get="{% url 'core:portes_table' %}"
                                 hx-trigger="refresh_table from:body,revealed" hx-swap="innerHTML">
                                 </div>
                             </div>
@@ -144,7 +144,6 @@
                    
                 </div>
                 
-                <!-- Row 3: Portes and Type D'abonnement -->
                 <div class="row g-4 mb-4">
                     <div class="col-sm-4">
                         <div class="card h-100 shadow-sm">
@@ -154,7 +153,7 @@
                                     <a href="#" class="btn btn-sm  btn-primary btn-radius color-container"
                                        data-bs-toggle="modal"
                                        data-bs-target="#kt_modal"
-                                       hx-get="{% url 'core:MaladieCreateView' %}"
+                                       hx-get="{% url 'core:maladie_create_view' %}"
                                        hx-target="#kt_modal_content"
                                        hx-swap="innerHTML">
                                         {% trans 'Ajouter' %}
@@ -162,7 +161,7 @@
                                 </div>
                             </div>
                             <div class="card-body p-3">
-                                <div id="MaladieTable" class="table-responsive" hx-get="{% url 'core:MaladieTable' %}"
+                                <div id="MaladieTable" class="table-responsive" hx-get="{% url 'core:maladie_table' %}"
                                 hx-trigger="refresh_table from:body,revealed" hx-swap="innerHTML">
                                 </div>
                             </div>
@@ -177,7 +176,7 @@
                                         <a href="#" class="btn btn-sm  btn-primary btn-radius color-container"
                                         data-bs-toggle="modal"
                                         data-bs-target="#kt_modal"
-                                        hx-get="{% url 'core:TypeAbonnementCreateView' %}"
+                                        hx-get="{% url 'core:type_abonnement_create_view' %}"
                                         hx-target="#kt_modal_content"
                                         hx-swap="innerHTML">
                                             {% trans 'Ajouter' %}
@@ -189,7 +188,7 @@
                             </div> {% endcomment %}
                             <div class="card-body p-3">
                                 <form  
-                                    hx-get="{% url 'core:AbonnementTable' %}"  
+                                    hx-get="{% url 'core:abonnemen_table' %}"  
                                     hx-target="#abonnementTable" 
                                     hx-swap="innerHTML" 
                                     hx-trigger="keyup delay:900ms"
@@ -211,7 +210,7 @@
                                 <div 
                                     id="abonnementTable" 
                                     class="table-responsive"
-                                    hx-get="{% url 'core:AbonnementTable' %}"
+                                    hx-get="{% url 'core:abonnemen_table' %}"
                                     hx-trigger="refresh_table from:body,revealed"
                                     hx-swap="innerHTML">
                                 </div>

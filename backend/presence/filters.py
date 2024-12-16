@@ -31,8 +31,8 @@ class PresenceFilter(django_filters.FilterSet):
         self.form.fields['creneau__activity__salle'].label = 'Salle'
 
     def universal_search(self, queryset, name, value):
-        print('Filter value:', value)
-        print('Initial queryset:', queryset)
+        # print('Filter value:', value)
+        # print('Initial queryset:', queryset)
 
         # Check if the search value is numeric (possibly an ID)
         if value.replace(".", "", 1).isdigit():

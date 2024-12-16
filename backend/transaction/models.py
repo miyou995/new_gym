@@ -32,7 +32,7 @@ class Paiement(Transaction):
     def __str__(self):
         return str(self.amount)
     class Meta:
-        ordering = ['-last_modified']
+        ordering = ['-date_creation']
 
     def get_abonnement_name(self):
         try:
@@ -66,7 +66,7 @@ class Paiement(Transaction):
         return reverse('transactions:paiement_update', kwargs={'pk': str(self.id)})
 
     def get_delete_url(self):
-        return reverse('transactions:PaiementDeleteView_name', kwargs={'pk': str(self.id)})
+        return reverse('transactions:paiement_delete_view_name', kwargs={'pk': str(self.id)})
 
     @classmethod
     def get_total_by_subscription_type(cls):
@@ -116,9 +116,9 @@ class Remuneration(Transaction):
     def get_url(self,pk):
         return reverse('client:personnel_detail', kwargs={'pk':pk})
     def get_edit_url(self):
-        return reverse('transactions:Remuneration_Personnel_update', kwargs={'pk': str(self.id)})
+        return reverse('transactions:remuneration_personnel_update', kwargs={'pk': str(self.id)})
     def get_delete_url(self):
-        return reverse('transactions:RemuPersonnelDeleteView_name', kwargs={'pk': str(self.id)})
+        return reverse('transactions:remu_personnel_delete_view_name', kwargs={'pk': str(self.id)})
     
         
 class RemunerationProf(Transaction):
@@ -130,11 +130,11 @@ class RemunerationProf(Transaction):
         ordering = ['-date_creation']
 
     def get_url(self,pk):
-        return reverse('client:CoachDetail', kwargs={'pk':pk})
+        return reverse('client:coach_detail', kwargs={'pk':pk})
     def get_edit_url(self):
-        return reverse('transactions:Remuneration_Coach_update', kwargs={'pk': str(self.id)})
+        return reverse('transactions:remuneration_coach_update', kwargs={'pk': str(self.id)})
     def get_delete_url(self):
-        return reverse('transactions:RemCoachDeleteView_name', kwargs={'pk': str(self.id)})
+        return reverse('transactions:rem_coach_delete_view_name', kwargs={'pk': str(self.id)})
 
 
 

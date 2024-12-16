@@ -93,8 +93,8 @@ class PresencesView(PermissionRequiredMixin, SingleTableMixin, FilterView):
     filterset_class = PresenceFilter
     paginate_by = 15
     
-    def get_table_data(self):
-        return Presence.objects.select_related('abc', 'abc__client', 'abc__type_abonnement', 'creneau__activity').order_by('-created')
+    # def get_table_data(self):
+    #     return Presence.objects.select_related('abc', 'abc__client', 'abc__type_abonnement', 'creneau__activity').order_by('-created')
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -234,11 +234,9 @@ class PresenceManuelleUpdateClient(PermissionRequiredMixin,UpdateView):
 
     form_class = PresenceManuelleModelForm
     def get_object(self, queryset=None):
-        """
-        Override get_object to use select_related for the abc foreign key.
-        """
         queryset = self.model.objects.select_related('abc', 'abc__type_abonnement')
         return super().get_object(queryset=queryset)
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["client"] = self.object.abc.client

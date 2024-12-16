@@ -136,7 +136,7 @@ class AbonnementClientAddForm(forms.ModelForm):
         self.client_pk = kwargs.pop('client_pk', None)
         super().__init__(*args, **kwargs)
         if not self.fields['type_abonnement'].queryset.exists():
-            self.fields['type_abonnement'].queryset = Abonnement.objects.all()
+            self.fields['type_abonnement'].queryset = Abonnement.objects.filter(actif=True)
 
     def save(self, commit=True):
         abonnement_client = super().save(commit=False)
