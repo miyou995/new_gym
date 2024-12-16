@@ -10,9 +10,9 @@ urlpatterns = [
        
        path('creneaux/', CalenderView.as_view(), name='creneaux_name'),
 
-       path('creneaux/CreateCreneau',CreateCreneau.as_view(), name='create_creneau'),
-       path("creneaux/UpdateCreneau/<int:pk>", UpdateCreneau.as_view(), name="update_creneau"),
-       path("creneaux/CreneauDeleteView/<int:pk>", CreneauDeleteView.as_view(), name="creneau_delete_view"),
+       path('creneaux/create_creneau',CreateCreneau.as_view(), name='create_creneau'),
+       path("creneaux/update_creneau/<int:pk>", UpdateCreneau.as_view(), name="update_creneau"),
+       path("creneaux/creneau_delete_view/<int:pk>", CreneauDeleteView.as_view(), name="creneau_delete_view"),
        path("creneaux/abonnements_par_creneau/<int:pk>", AbonnementsParCreneau.as_view(), name="abonnements_par_creneau"),
 
        path('render_calendar/', render_calendar, name='render_calendar'),

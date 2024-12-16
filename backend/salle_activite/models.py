@@ -24,7 +24,7 @@ class Salle(models.Model):
         return self.name
     
     def get_delete_url(self):
-        return reverse('core:SalleDeleteView', kwargs={'pk': str(self.id)})
+        return reverse('core:salle_delete_view', kwargs={'pk': str(self.id)})
         
     @property
     def get_door(self):
@@ -47,7 +47,7 @@ class Door(models.Model):
         return self.ip_adress
     
     def get_delete_url(self):
-        return reverse('core:PorteDeleteView', kwargs={'pk': str(self.id)})
+        return reverse('core:porte_delete_view', kwargs={'pk': str(self.id)})
     
     @property
     def salle_name(self):
@@ -62,7 +62,7 @@ class Activity(models.Model):
         return self.name
     
     def get_delete_url(self):
-        return reverse('core:ActiviteDeleteView', kwargs={'pk': str(self.id)})
+        return reverse('core:activite_delete_view', kwargs={'pk': str(self.id)})
 
 
 

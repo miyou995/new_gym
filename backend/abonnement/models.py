@@ -119,7 +119,7 @@ class Abonnement(models.Model):
         return self.type_of == "SL"
     
     def get_delete_url(self):
-        return reverse('core:TypeAbonnementDeleteView', kwargs={'pk': str(self.id)})
+        return reverse('core:type_abonnement_delete_view', kwargs={'pk': str(self.id)})
 
 
         

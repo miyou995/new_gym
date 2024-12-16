@@ -87,7 +87,7 @@ class RemunerationProfTable(PermissionRequiredMixin,SingleTableMixin, FilterView
     paginate_by = 9
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["target_url"]   = reverse('transactions:RemunerationProfTable_name')
+        context["target_url"]   = reverse('transactions:remuneration_prof_table_name')
         context["target"]       = "#table3"
         context["render_filter"]=CoachFilter(self.request.GET)
         return context
@@ -106,7 +106,7 @@ class RemunerationPersonnelTable(PermissionRequiredMixin,SingleTableMixin, Filte
     paginate_by = 9
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["target_url"]   = reverse('transactions:RemunerationPersonnelTable_name')
+        context["target_url"]   = reverse('transactions:remuneration_personnel_table_name')
         context["target"]       = "#table2"
         context["render_filter"]=PersonnelFilter(self.request.GET)
         return context
@@ -244,7 +244,7 @@ class paiement(PermissionRequiredMixin,CreateView):
         if client_pk:
             kwargs['initial'] = {'client_pk': client_pk}
         return kwargs
-
+    
     def get(self, request, *args, **kwargs):
         form = self.form_class(**self.get_form_kwargs())
         context = {"form": form}
@@ -398,7 +398,7 @@ class RemuPersonnelDeleteView(PermissionRequiredMixin,DeleteView):
     permission_required="transaction.delete_remuneration"
     model =Remuneration
     template_name="snippets/delete_modal.html"
-    success_url=reverse_lazy("transactions:RemunerationPersonnelTable_name")
+    success_url=reverse_lazy("transactions:remuneration_personnel_table_name")
  
     def get_context_data(self,**kwargs):
         context=super().get_context_data(**kwargs)
@@ -485,7 +485,7 @@ class RemCoachDeleteView(PermissionRequiredMixin,DeleteView):
     permission_required="transaction.delete_remunerationprof"
     model =RemunerationProf
     template_name="snippets/delete_modal.html"
-    success_url=reverse_lazy("transactions:RemunerationProfTable_name")
+    success_url=reverse_lazy("transactions:remuneration_prof_table_name")
 
     def form_valid(self,form):
         success_url = self.get_success_url()

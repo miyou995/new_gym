@@ -19,7 +19,7 @@ class PresencesHTMxTable(tables.Table):
                 class="text-gray-800 text-hover-primary fs-5 fw-bold" 
                 data-bs-toggle="modal" 
                 data-bs-target="#kt_modal" 
-                hx-get="{% url 'presence:PresenceManuelleUpdateClient' record.id %}" 
+                hx-get="{% url 'presence:presence_manuelle_update_client' record.id %}" 
                 hx-target="#kt_modal_content" 
                 hx-swap="innerHTML">
                 {{  record.abc.client.id }}
@@ -39,7 +39,7 @@ class PresencesHTMxTable(tables.Table):
                 class="text-gray-800 text-hover-primary fs-5 fw-bold" 
                 data-bs-toggle="modal" 
                 data-bs-target="#kt_modal" 
-                hx-get="{% url 'presence:PresenceManuelleUpdateClient' record.id %}" 
+                hx-get="{% url 'presence:presence_manuelle_update_client' record.id %}" 
                 hx-target="#kt_modal_content" 
                 hx-swap="innerHTML">
                 {{  record.abc.client.last_name }}

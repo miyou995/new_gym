@@ -28,10 +28,15 @@ class PaiementModelForm(forms.ModelForm):
 
         initial= kwargs.get('initial',{})
         client_pk=initial.get('client_pk')
-        if client_pk :
-            try :
-                initial['client']=Client.objects.get(pk=client_pk)
-                # initial['abonnement_client']=AbonnementClient.objects.filter(client=client_pk)
+        if client_pk:
+            try:
+                client = Client.objects.get(pk=client_pk)
+                initial['client'] = client
+                abonnements = AbonnementClient.objects.filter(client=client)
+                
+                if abonnements.exists():
+                    # Set the initial value for abonnement_client
+                    initial['abonnement_client'] = abonnements.first()
             except Client.DoesNotExist:
                 pass
         kwargs['initial']=initial
@@ -53,14 +58,22 @@ class PaiementModelForm(forms.ModelForm):
         elif self.instance.pk:
             self.fields['abonnement_client'].queryset = self.instance.client.abonnement_client
 
-        self.fields['client'].error_messages = {
-            'required': 'veuillez choisir.',
-            'invalid': 'Custom error message for field1 is invalid.',
-        }
-        self.fields['abonnement_client'].error_messages = {
-            'required': 'veuillez choisir.',
-            'invalid': 'Custom error message for field2 is invalid.',
-        }
+        if client_pk:
+            # Remove the client field and set the queryset for abonnement_client
+            del self.fields['client']
+            abonnements = AbonnementClient.objects.filter(client__pk=client_pk)
+            self.fields['abonnement_client'].queryset = abonnements
+            # Automatically select the first abonnement_client
+            if abonnements.exists():
+                self.initial['abonnement_client'] = abonnements.last()
+        # self.fields['client'].error_messages = {
+        #     'required': 'veuillez choisir.',
+        #     'invalid': 'Custom error message for field1 is invalid.',
+        # }
+        # self.fields['abonnement_client'].error_messages = {
+        #     'required': 'veuillez choisir.',
+        #     'invalid': 'Custom error message for field2 is invalid.',
+        # }
 
 
 
@@ -137,7 +150,7 @@ class Remunération_CoachModelForm(forms.ModelForm):
                 pass
         kwargs['initial'] = initial  # Update kwargs with the modified initial
         super(Remunération_CoachModelForm, self).__init__(*args, **kwargs)
-
+        
         self.fields["coach"].widget.attrs.update()
         self.fields['coach'].error_messages = {
             'required': 'veuillez choisir.',

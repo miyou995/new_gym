@@ -7,8 +7,8 @@
 			id="sg_create_store_form" 
 			class="form"  
 			{% if form.instance.id %}
-			hx-post="{% url 'presence:PresenceManuelleUpdateClient' form.instance.id %}" 
-			{% else %} hx-post="{% url 'presence:PresenceManuelleClient' %}"
+			hx-post="{% url 'presence:presence_manuelle_update_client' form.instance.id %}" 
+			{% else %} hx-post="{% url 'presence:presence_manuelle_client' %}"
 			{% endif %}
 			hx-target="#kt_modal_content"
 			novalidate 

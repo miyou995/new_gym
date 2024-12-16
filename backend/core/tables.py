@@ -20,7 +20,7 @@ class PlannigHTMxTable(tables.Table):
                 class="text-gray-800 text-hover-primary fs-5 fw-bold" 
                 data-bs-toggle="modal" 
                 data-bs-target="#kt_modal" 
-                hx-get="{% url 'core:PlanningUpdateView' record.id %}" 
+                hx-get="{% url 'core:planning_update_view' record.id %}" 
                 hx-target="#kt_modal_content" 
                 hx-swap="innerHTML">
                 {{ record.name }}
@@ -56,7 +56,7 @@ class SalleHTMxTable(tables.Table):
                 class="text-gray-800 text-hover-primary fs-5 fw-bold" 
                 data-bs-toggle="modal" 
                 data-bs-target="#kt_modal" 
-                hx-get="{% url 'core:SalleUpdateView' record.id %}" 
+                hx-get="{% url 'core:salle_update_view' record.id %}" 
                 hx-target="#kt_modal_content" 
                 hx-swap="innerHTML">
                 {{ record.name }}
@@ -76,7 +76,7 @@ class SalleHTMxTable(tables.Table):
 
     @property
     def url(self):
-        return reverse("core:SalleTable")
+        return reverse("core:salle_table")
 
     @property
     def custom_target(self):
@@ -91,7 +91,7 @@ class ActivityHTMxTable(tables.Table):
                 class="text-gray-800 text-hover-primary fs-5 fw-bold" 
                 data-bs-toggle="modal" 
                 data-bs-target="#kt_modal" 
-                hx-get="{% url 'core:ActiviteUpdateView' record.id %}" 
+                hx-get="{% url 'core:activite_update_view' record.id %}" 
                 hx-target="#kt_modal_content" 
                 hx-swap="innerHTML">
                 {{ record.name }}
@@ -111,7 +111,7 @@ class ActivityHTMxTable(tables.Table):
     
     @property
     def url(self):
-        return reverse("core:ActivityTable")
+        return reverse("core:activity_table")
 
     @property
     def custom_target(self):
@@ -125,7 +125,7 @@ class MaladieHTMxTable(tables.Table):
                 class="text-gray-800 text-hover-primary fs-5 fw-bold" 
                 data-bs-toggle="modal" 
                 data-bs-target="#kt_modal" 
-                hx-get="{% url 'core:MaladieUpdateView' record.id %}" 
+                hx-get="{% url 'core:maladie_update_view' record.id %}" 
                 hx-target="#kt_modal_content" 
                 hx-swap="innerHTML">
                 {{ record.name }}
@@ -141,7 +141,7 @@ class MaladieHTMxTable(tables.Table):
 
     @property
     def url(self):
-        return reverse("core:MaladieTable")
+        return reverse("core:maladie_table")
 
     @property
     def custom_target(self):
@@ -156,7 +156,7 @@ class PortesHTMxTable(tables.Table):
                 class="text-gray-800 text-hover-primary fs-5 fw-bold" 
                 data-bs-toggle="modal" 
                 data-bs-target="#kt_modal" 
-                hx-get="{% url 'core:PorteUpdateView' record.id %}" 
+                hx-get="{% url 'core:porte_update_view' record.id %}" 
                 hx-target="#kt_modal_content" 
                 hx-swap="innerHTML">
                 {{ record.ip_adress }}
@@ -178,7 +178,7 @@ class PortesHTMxTable(tables.Table):
 
     @property
     def url(self):
-        return reverse("core:PortesTable")
+        return reverse("core:portes_table")
 
     @property
     def custom_target(self):
@@ -194,7 +194,7 @@ class AbonnementHTMxTable(tables.Table):
                     class="text-gray-800 text-hover-primary fs-5 fw-bold" 
                     data-bs-toggle="modal" 
                     data-bs-target="#kt_modal" 
-                    hx-get="{% url 'core:TypeAbonnementUpdateView' record.id %}" 
+                    hx-get="{% url 'core:type_abonnement_update_view' record.id %}" 
                     hx-target="#kt_modal_content" 
                     hx-swap="innerHTML">
                     {{ record.name }}
@@ -225,7 +225,7 @@ class AbonnementHTMxTable(tables.Table):
         
     @property
     def url(self):
-        return reverse("core:AbonnementTable")
+        return reverse("core:abonnemen_table")
 
     @property
     def custom_target(self):

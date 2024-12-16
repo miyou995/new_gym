@@ -10,7 +10,7 @@ from salle_activite.models import Salle
 
 class CalenderFilter(django_filters.FilterSet):
     planning = django_filters.ModelChoiceFilter(queryset=Planning.objects.all(), label="Planning")
-    type_abonnement  = django_filters.ModelChoiceFilter(queryset=Abonnement.objects.all(),
+    type_abonnement  = django_filters.ModelChoiceFilter(queryset=Abonnement.objects.filter(actif=True),
                                                     label="Abonnement", 
                                                     method='filter_by_abonnement_salles',
                                                     required=False)
@@ -61,7 +61,7 @@ class CalenderFilter(django_filters.FilterSet):
 
 class CalenderFilterupdate(django_filters.FilterSet):
     planning = django_filters.ModelChoiceFilter(queryset=Planning.objects.all(), label="Planning")
-    type_abonnement  = django_filters.ModelChoiceFilter(queryset=Abonnement.objects.all(),
+    type_abonnement  = django_filters.ModelChoiceFilter(queryset=Abonnement.objects.filter(actif=True),
                                                     label="Abonnement", 
                                                     method='filter_by_abonnement_salles',
                                                     required=False)

@@ -89,23 +89,23 @@ class PresenceManuelleModelForm(forms.ModelForm):
         #     'invalid': 'Custom error message for field1 is invalid.',
           
         # }
-        self.fields['abc'].error_messages = {
-            'required': 'veuillez choisir.',
-            'invalid': 'Custom error message for field2 is invalid.',
-        }
-        self.fields['hour_entree'].error_messages = {
-            'required': 'veuillez choisir.',
-            'invalid': 'Custom error message for field1 is invalid.',
+        # self.fields['abc'].error_messages = {
+        #     'required': 'veuillez choisir.',
+        #     'invalid': 'Custom error message for field2 is invalid.',
+        # }
+        # self.fields['hour_entree'].error_messages = {
+        #     'required': 'veuillez choisir.',
+        #     'invalid': 'Custom error message for field1 is invalid.',
           
-        }
-        self.fields['hour_sortie'].error_messages = {
-            'required': 'veuillez choisir.',
-            'invalid': 'Custom error message for field2 is invalid.',
-        }
-        self.fields['creneau'].error_messages = {
-            'required': 'veuillez choisir.',
-            'invalid': 'Custom error message for field1 is invalid.',
+        # }
+        # self.fields['hour_sortie'].error_messages = {
+        #     'required': 'veuillez choisir.',
+        #     'invalid': 'Custom error message for field2 is invalid.',
+        # }
+        # self.fields['creneau'].error_messages = {
+        #     'required': 'veuillez choisir.',
+        #     'invalid': 'Custom error message for field1 is invalid.',
           
-        }
+        # }
 
 

@@ -8,7 +8,7 @@
 			class="form"  
 			{% if form.instance.id %}
 			hx-post="{% url 'transactions:autre_transaction_update' form.instance.id %}" 
-			{% else %} hx-post="{% url 'transactions:Autre_Transaction_name' %}"
+			{% else %} hx-post="{% url 'transactions:autre_transaction_name' %}"
 			{% endif %}
 			hx-target="#kt_modal_content"
 			novalidate 
