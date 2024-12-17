@@ -18,7 +18,7 @@ class Transaction(models.Model):
     def __str__(self):
         return str(self.amount)
     class Meta:
-        ordering = ['-last_modified']
+        
         permissions = [
             ('can_view_history', 'Can View history'),
             ('can_view_statistique', 'Can View Statistique'),
@@ -32,7 +32,7 @@ class Paiement(Transaction):
     def __str__(self):
         return str(self.amount)
     class Meta:
-        ordering = ['-date_creation']
+        ordering = ['-id']
 
     def get_abonnement_name(self):
         try:
