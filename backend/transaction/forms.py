@@ -7,51 +7,52 @@ from abonnement.models import AbonnementClient
 
 
 class PaiementModelForm(forms.ModelForm):
-    client = forms.ModelChoiceField(queryset=Client.objects.all())
     amount = forms.IntegerField(required=False, label="Montant")
+    # Define the client field here without setting it up in the class body
+    client = forms.ModelChoiceField(queryset=Client.objects.all(), required=False)
+
     class Meta:
-        model  = Paiement
-        fields= ('client',
-                'abonnement_client',
-                'amount', 
-                'notes',
-                 )
+        model = Paiement
+        fields = ('client', 'abonnement_client', 'amount', 'notes')
+
     def clean_amount(self):
         amount = self.cleaned_data.get('amount')
-        if not amount :
+        if not amount:
             raise forms.ValidationError(_('Veuillez renseigner ce champ'))
         if amount < 0:
             raise forms.ValidationError(_('Montant doit être supérieur à zéro'))
         return amount
-    def __init__(self, ticket=None, *args, **kwargs):   
+
+    def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        initial= kwargs.get('initial',{})
-        client_pk=initial.get('client_pk')
+        initial = kwargs.get('initial', {})
+        client_pk = initial.get('client_pk')
+
         if client_pk:
             try:
                 client = Client.objects.get(pk=client_pk)
                 initial['client'] = client
-                abonnements = AbonnementClient.objects.filter(client=client)
-                
-                if abonnements.exists():
-                    # Set the initial value for abonnement_client
-                    initial['abonnement_client'] = abonnements.first()
+                self.fields['client'].queryset = Client.objects.filter(pk=client_pk)
+                self.fields['client'].widget = forms.HiddenInput()
+
             except Client.DoesNotExist:
                 pass
-        kwargs['initial']=initial
         
-        super(PaiementModelForm,self).__init__(*args,**kwargs)
-        
-        self.fields["abonnement_client"].widget.attrs.update({'id' : 'abcSelectId' })
+        kwargs['initial'] = initial
+        super(PaiementModelForm, self).__init__(*args, **kwargs)
+
+        # Set up the "abonnement_client" field as you did before
+        self.fields["abonnement_client"].widget.attrs.update({'id': 'abcSelectId'})
         self.fields["client"].widget.attrs.update({
             "hx-get": reverse('abonnement:abc_htmx_view'),
-            "hx-target":"#abcSelectId",
-            "hx-swap" : "innerHTML",
+            "hx-target": "#abcSelectId",
+            "hx-swap": "innerHTML",
             "hx-trigger": "change,load",
-            "hx-include":"[name='client']",
-            })
+            "hx-include": "[name='client']",
+        })
         self.fields["abonnement_client"].queryset = AbonnementClient.objects.none()
+
         if 'client' in self.data:
             client = self.data.get('client')
             self.fields['abonnement_client'].queryset = AbonnementClient.objects.filter(client=client)
@@ -59,21 +60,17 @@ class PaiementModelForm(forms.ModelForm):
             self.fields['abonnement_client'].queryset = self.instance.client.abonnement_client
 
         if client_pk:
-            # Remove the client field and set the queryset for abonnement_client
-            del self.fields['client']
             abonnements = AbonnementClient.objects.filter(client__pk=client_pk)
             self.fields['abonnement_client'].queryset = abonnements
-            # Automatically select the first abonnement_client
+            self.fields['client'].widget = forms.HiddenInput()
             if abonnements.exists():
                 self.initial['abonnement_client'] = abonnements.last()
-        # self.fields['client'].error_messages = {
-        #     'required': 'veuillez choisir.',
-        #     'invalid': 'Custom error message for field1 is invalid.',
-        # }
-        # self.fields['abonnement_client'].error_messages = {
-        #     'required': 'veuillez choisir.',
-        #     'invalid': 'Custom error message for field2 is invalid.',
-        # }
+
+        # Ensure no error modification on 'client' field since it's hidden
+        self.fields['client'].error_messages = {
+            'required': 'veuillez choisir.',
+            'invalid': 'Custom error message for field1 is invalid.',
+        }
 
 
 
