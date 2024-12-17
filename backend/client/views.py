@@ -392,7 +392,7 @@ class PaiementClientDetail(SingleTableMixin, FilterView):
         model = Paiement
         
         def get_queryset(self):
-            queryset = Paiement.objects.order_by("-date_creation")
+            queryset = Paiement.objects.order_by("-id")
             abonnement_client_pk = self.kwargs.get('pk')
             print("abonnement_client_pk  -------------", abonnement_client_pk)
             if abonnement_client_pk:
