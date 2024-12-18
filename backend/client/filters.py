@@ -26,7 +26,7 @@ class ClientFilter(django_filters.FilterSet):
             # Check if the search value matches any location names
             queryset = queryset.filter(Q(last_name__icontains=value)  | Q(first_name__icontains=value)  | Q(id__icontains=value))
 
-        # print('Filtered queryset:', queryset)
+        print('Filtered queryset:', queryset.count())
         return queryset.distinct()
    
 

@@ -5,7 +5,7 @@ import re
 from datetime import date
 
 class ClientModelForm(forms.ModelForm):
-    carte = forms.IntegerField(
+    carte = forms.CharField(
         required=True,
         error_messages={
             'required': 'Veuillez renseigner ce champ.',
@@ -62,6 +62,7 @@ class ClientModelForm(forms.ModelForm):
     def clean(self):
         cleaned_data = super().clean()
         card=cleaned_data.get('carte')
+        
         # phone=cleaned_data.get('phone')
         last_name=cleaned_data.get('last_name')
 

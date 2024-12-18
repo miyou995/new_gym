@@ -26,13 +26,13 @@ class SubscriptionQuerySet(models.QuerySet):
     
     def active_subscription(self):
         today = date.today()
-        return self.filter(end_date__gte=today, archiver=False)
+        return self.filter(end_date__gte=today)
 
     def valid_presences(self, limite_presence=0):
-        return self.exclude(type_abonnement__type_of = "VH").filter(seances_quantity__gte=limite_presence, archiver=False)
+        return self.exclude(type_abonnement__type_of = "VH").filter(seances_quantity__gte=limite_presence)
     
     def valid_time(self, hlimit=30):
-        return self.filter(Q(type_abonnement__type_of = "VH") & Q(seances_quantity__gte=hlimit) & Q(archiver=False))  
+        return self.filter(Q(type_abonnement__type_of = "VH") & Q(seances_quantity__gte=hlimit))  
 
 class SubscriptionManager(models.Manager):
     def get_queryset(self):
@@ -164,13 +164,13 @@ class AbonnementClient(models.Model):
     def is_free_sessions(self):
         return self.type_abonnement.type_of == "SL"
 
-    def put_archiver(self):
-        self.archiver = True 
-        self.actif = False 
-        self.creneaux.set([]) 
-        self.save()
-        print("ABCCCCC DELETEEDDDD")
-        return self
+    # def put_archiver(self):
+    #     self.archiver = True 
+    #     self.actif = False 
+    #     self.creneaux.set([]) 
+    #     self.save()
+    #     print("ABCCCCC DELETEEDDDD")
+    #     return self
 
     def lock(self,block_date):
         if parse_date(block_date) <= self.end_date:
@@ -184,13 +184,9 @@ class AbonnementClient(models.Model):
         today = date.today()
         if self.blocking_date:
             locked_days = self.end_date - self.blocking_date
-            print('locked_days', locked_days)
-            print('OLD_end_date', self.end_date)
             self.end_date = today + locked_days
-            print('new_end_date', self.end_date)
             self.blocking_date = None
             self.save()
-            print('UNLOCKING DONE')
 
     def toggle_lock(self):
         if self.is_abc_locked():
@@ -200,8 +196,6 @@ class AbonnementClient(models.Model):
 
 
     def is_abc_locked(self):
-        print('self.blocking_date ?>>>>>', self.blocking_date)
-        print('self.blocking_date BOOL?>>>>>', True if self.blocking_date else False)
         
         return True if self.blocking_date else False
     
@@ -341,6 +335,7 @@ class AbonnementClient(models.Model):
             limit = 0
         return limit
 
+    
     def get_quantity_str(self):
         if self.is_time_volume():
             minutes = self.presence_quantity
@@ -350,7 +345,7 @@ class AbonnementClient(models.Model):
             # print('en time_string', time_string)
             return time_string
         else:
-            return self.presence_quantity
+            return str(self.presence_quantity) + str(" Seances")
         
 
         

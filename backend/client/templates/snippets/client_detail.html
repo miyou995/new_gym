@@ -111,7 +111,7 @@
 															{% endif %}
 														</div>
 													</div>
-													<div id="abonnementsClient" class="card-scroll h-300px pt-0">
+													<div id="abonnementsClient" class="card-scroll h-350px pt-0">
 														<div class="nav-link active text-gray-800 fs-5 fw-bold"
 															hx-get="{% url 'client:client_detail' client.pk %}"
 															hx-trigger="refresh_abcs from:body, revealed"
@@ -161,7 +161,7 @@
 															{% endif %}
 														</div>
 													</div>
-													<div class="card-scroll h-300px pt-0">
+													<div class="card-scroll h-350px pt-0">
 														<div class="nav-link active text-gray-800 fs-7 fw-bold"
 															hx-get="{% url 'client:paiement_client_detail' client.pk %}"
 															hx-trigger="refresh_table from:body, revealed"

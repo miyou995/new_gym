@@ -388,7 +388,7 @@ class ClientDetailView(SingleTableMixin, FilterView):
 
 class PaiementClientDetail(SingleTableMixin, FilterView):
         table_class =   PaiementHTMxTable
-        paginate_by = 3
+        paginate_by = 4
         model = Paiement
         
         def get_queryset(self):
