@@ -92,7 +92,7 @@ class PersonnelHTMxTable(tables.Table):
 # client details ------------------------------------------------------------------------------------------
 class AbonnementClientHTMxTable(tables.Table):
 #     Séances = tables.Column(accessor="type_abonnement__seances_quantity", verbose_name="Séances", orderable=True )
-    presence_quantity=tables.Column( verbose_name="Reste", orderable=True )
+    presence_quantity=tables.Column( verbose_name="Reste (S/T)", orderable=True )
     start_date =tables.Column( verbose_name="Début date", orderable=True )
     end_date =tables.Column( verbose_name="Fin date", orderable=True )
     type_abonnement = tables.TemplateColumn(
@@ -113,6 +113,7 @@ class AbonnementClientHTMxTable(tables.Table):
             {% endif %}
         ''')
     reste = tables.TemplateColumn(
+        verbose_name="Reste (DA)",
         template_code='''
                 {% if record.reste == 0 %}
                 <span style="color: green;">payé</span>
@@ -158,7 +159,7 @@ class PaiementHTMxTable(tables.Table):
     #         orderable=False )
     
     id =tables.Column( verbose_name="N°:", orderable=True )
-    amount =tables.Column( verbose_name="Versement", orderable=True )
+    amount =tables.Column( verbose_name="Versement(DA)", orderable=True )
     date_creation =tables.Column( verbose_name="date", orderable=True )
     abonnement_client =tables.Column( verbose_name="abonnement", orderable=True )
     

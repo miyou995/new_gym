@@ -16,7 +16,7 @@ class AbonnementFilter(django_filters.FilterSet):
     
     def universal_search(self, queryset, name, value):
         print('Filter value:', value)
-        print('Initial queryset:', queryset)
+        print('Initial queryset:', queryset.count())
 
         # Check if the search value is numeric (possibly an ID)
         if value.replace(".", "", 1).isdigit():

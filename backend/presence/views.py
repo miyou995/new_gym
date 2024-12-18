@@ -91,10 +91,14 @@ class PresencesView(PermissionRequiredMixin, SingleTableMixin, FilterView):
     permission_required = "presence.view_presence"
     table_class = PresencesHTMxTable
     filterset_class = PresenceFilter
-    paginate_by = 15
+    paginate_by = 12
+    
+    def get_queryset(self):
+        # return super().get_queryset()
+        return Presence.objects.none()
+        # return Presence.objects.select_related('abc', 'abc__client', 'abc__type_abonnement', 'creneau__activity').order_by('-created')
     
     # def get_table_data(self):
-    #     return Presence.objects.select_related('abc', 'abc__client', 'abc__type_abonnement', 'creneau__activity').order_by('-created')
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -156,6 +160,7 @@ def presence_client(request):
         client_id=get_object_or_404(Client, Q(id=code) | Q(carte=code))
         auto_presence=client_id.auto_presence()
         context["client"]=client_id
+        context["abc"]=auto_presence["abc"]
         context["auto_presence"]=auto_presence
         if auto_presence["status"] == 'not_today':
             print("-------------------working from presence--------------------")

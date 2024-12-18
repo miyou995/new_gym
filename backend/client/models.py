@@ -312,18 +312,24 @@ class Client(models.Model):
 
     def auto_presence(self, door_ip=None):
         logger.warning('Client requested Door Auth ===> {}'.format(str(self.id)))
-
+        response = {
+            "status": None,
+            "abc": None
+        }
         FTM = '%H:%M:%S'
-        erreur = {"level": "error", "message": "Ce client n'a pas accés maintenant"}
-        sortie = {"level": "success", "message": f"la sortie de {self.id} a été éffectué Avec Succée"}
-        entree = {"level": "success", "message": f"Accés autoriser pour {self.id}"}
+        # erreur = {"level": "error", "message": "Ce client n'a pas accés maintenant"}
+        # sortie = {"level": "success", "message": f"la sortie de {self.id} a été éffectué Avec Succée"}
+        # entree = {"level": "success", "message": f"Accés autoriser pour {self.id}"}
         current_time = datetime.now().strftime("%H:%M:%S")
         client = self
-        presence_sortie= self.init_output()
-        if presence_sortie:
-            return {
-                    "status": "sortie"
-                    }
+        status_sortie= self.init_output()
+        if status_sortie == True:
+            response["status"] = "sortie"
+            return response
+        elif status_sortie == "skip":
+            return response
+        	
+        print('You should proceeed to entree')
         # client.has_permission()
         creneaux = Creneau.range.get_creneaux_of_day().filter(abonnements__client=client).distinct()
         # print('Les creneaux of client=====>',Creneau.objects.filter(abonnements__client=client))
@@ -340,71 +346,62 @@ class Client(models.Model):
                 if dur_ref > duree_seconde:
                     dur_ref = duree_seconde
                     cren_ref = cr
-            abon_list = AbonnementClient.objects.filter(client = client, end_date__gte=date.today(), archiver = False ).order_by('-presence_quantity')
+            abon_list = AbonnementClient.objects.filter(client = client, end_date__gte=date.today()).order_by('-presence_quantity')
             if not abon_list:
                 # raise serializers.ValidationError("l'adherant n'est pas inscrit aujourd'hui")
-                abc=AbonnementClient.objects.filter(client = client,archiver = False )
-                print("abccccccccccccccccccccccccccc",abc)
-                print("*******l'adherant n'est pas inscrit aujourd'hui**********")
-                return {
-                        abc : abc,
-                        "status":  "not_today"
-                       }
-            abonnement = abon_list.filter(type_abonnement__type_of="SL").first()
+                print("*******l'adherant n'est pas inscrit aujourd'hui ou n'a pas d'abonnement**********")
+                response["status"] = "not_today"
+                return response
+            abonnement = abon_list.filter(type_abonnement__type_of="SL").first() 
             # If no non-free session is found, get the first session regardless of its type
             if not abonnement:
-                abonnement = abon_list.first()
+                abonnement = abon_list.first() if abon_list.first().is_valid() else abon_list.last()
 
             if abonnement.is_valid() and abonnement.is_time_volume():
                 print('IM HEEERE LOG ABONNEMENT==== TIME VOLUUUPME', abonnement.is_time_volume())
                 Presence.objects.create(abc= abonnement, creneau= cren_ref,  hour_entree=current_time )
-                return {
-                        "status": "entree"
-                       }
+                response["status"] = "entree"
+                response["abc"] = abonnement
+                return response
             elif abonnement.is_valid() and abonnement.presence_quantity > 0:
                 Presence.objects.create(abc= abonnement, creneau= cren_ref,  hour_entree=current_time )
                 if abonnement.is_fixed_sessions() or abonnement.is_free_sessions():
                     abonnement.presence_quantity -= 1
                 abonnement.save()
-                return {
-                        "status": "entree"
-                       }
+                response["abc"] = abonnement
+                response["status"] = "entree"
+                return response
             else:
-                logger.warning('LOG abonnement.presence_quantity=====> {}'.format(str(abonnement.presence_quantity)))
+                # logger.warning('LOG abonnement.presence_quantity=====> {}'.format(str(abonnement.presence_quantity)))
                 # logger.warning('LOG ABONNEMENT=====-{}'.format(str(abonnement)))
-                logger.warning('LOG ABONNEMENT TYPE=====-{}'.format(str(abonnement.type_abonnement.type_of)))
-                return {
-                        "presence_quantity": abonnement.presence_quantity,
-                        "type_abc" :abonnement.type_abonnement.type_of,
-                        "status": "fin_abonnement"
-                       }
+                # logger.warning('LOG ABONNEMENT TYPE=====-{}'.format(str(abonnement.type_abonnement.type_of)))
+                response["abc"] = abonnement
+                response["status"] = "fin_abonnement"
+                return response
         else:
             print("*******l'adherant n'est pas inscrit aujourd'hui pas de abc **********")
-
-            return "not_today"
+            response["status"] = "not_today"
+            return response
             # messages.error(self.request, "l'adherant n'est pas inscrit aujourd'hui")
             # # raise serializers.ValidationError("l'adherant n'est pas inscrit aujourd'hui")
             # return self
     
-        
-        
-    def init_output(self,  exit_hour=None):
+    def init_output(self, exit_hour=None):
         presences = Presence.objects.select_for_update().filter(abc__client=self, hour_sortie__isnull=True)
         with transaction.atomic():
             presence = presences.first()
+            if not presence:
+                """ ecart + de 10 seconde"""
+                print("No presence found or presence time difference is more than 10 seconds")
+                return False
             current_time = datetime.now().strftime("%H:%M:%S")
             if exit_hour:
                 current_time = exit_hour
-            if not presence:
-                """ ecart + de 10 seconde"""
-                return False
-                
+
             logger.warning('LA PRESENCE de{}'.format(str(self.id)))
             presence_time = presence.hour_entree
-            # ecart = abs(datetime.strptime(current_time, FTM) - datetime.strptime(str(presence_time), FTM))
-            # time_diff_seconds = timedelta.total_seconds(ecart)
-            
-                   # Parse times
+
+            # Parse times
             current_time_dt = datetime.strptime(current_time, FTM)
             presence_time_dt = datetime.strptime(str(presence_time), FTM)
 
@@ -413,24 +410,18 @@ class Client(models.Model):
                 current_time_dt += timedelta(days=1)
 
             ecart = current_time_dt - presence_time_dt
-            time_diff_seconds = ecart.total_seconds() #TODO to be tested
-            
-            
-            if int(time_diff_seconds) <= 2:
-                logger.warning('SORTIE COULD NOT BE done  ================> ')
-                return False
+            time_diff_seconds = ecart.total_seconds()
+
+            if int(time_diff_seconds) <= 10:
+                return "skip"
             else:
                 presence.hour_sortie = current_time
-                logger.warning('SORTIE AUTORISEE ================> {}'.format(str(presence.hour_sortie)))
                 presence.save()
                 abc = presence.abc
                 if abc.is_time_volume():
-                    ecart = presence.get_time_consumed() 
-                    print('ecart presence>>>>', ecart)
-                    abc.presence_quantity -= ecart 
+                    ecart = presence.get_time_consumed()
+                    abc.presence_quantity -= ecart
                     abc.save()
-                print('la sorite--------------- ', presence.hour_sortie)
-                logger.warning('la sorite--------------- {}'.format(str(presence.hour_sortie)))
                 return True
 
 

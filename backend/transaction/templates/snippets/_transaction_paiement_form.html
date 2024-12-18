@@ -6,9 +6,12 @@
 	<form 
 			id="sg_create_store_form" 
 			class="form"  
-			{% if form.instance.id %}
-			hx-post="{% url 'transactions:paiement_update' form.instance.id %}" 
-			{% else %} hx-post="{% url 'transactions:paiement_name' %}"
+			{% comment %} {% if form.instance.id %}
+				hx-post="{% url 'transactions:paiement_update' form.instance.id %}"  {% endcomment %}
+			{% if client_pk %}
+				hx-post="{% url 'transactions:client_paiement_name' client_pk %}"
+			{% else %} 
+				hx-post="{% url 'transactions:paiement_name' %}"
 			{% endif %}
 			hx-target="#kt_modal_content"
 			novalidate 
@@ -17,7 +20,7 @@
 			<h1 class="mb-3">{% trans "Paiement" %}</h1>
 		</div>
 		{% with WIDGET_ERROR_CLASS='is-invalid' %}         
-			{% for field in form %}
+			{% for field in form.visible_fields %}
 				{% if field|widget_type|slugify == "select" %}
 					<div class="{{column_classes}} mb-4 d-flex flex-column mb-8 fv-row">
 						<label class="align-items-center fw-semibold mb-2">

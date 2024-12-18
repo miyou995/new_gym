@@ -30,7 +30,8 @@
     <li class="previous page-item">
         <div hx-get="{{table.url}}{% querystring table.prefixed_page_field=table.page.previous_page_number %}"
              hx-trigger="click"
-             hx-target="{% if table.custom_target %}{{table.custom_target}}{% else %}div.table-container{% endif %}"
+             {% comment %} hx-target="{% if table.custom_target %}{{table.custom_target}}{% else %}div.table-container{% endif %}" {% endcomment %}
+             hx-target="closest div.table-container"
              hx-swap="innerHTML"
              {% comment %} hx-indicator=".progress" {% endcomment %}
              class="page-link">
@@ -45,7 +46,8 @@
                  {% if p != '...' %}hx-get="{{table.url}}{% querystring table.prefixed_page_field=p %}"{% endif %}
                  hx-trigger="click"
             
-                 hx-target="{% if table.custom_target %}{{table.custom_target}}{% else %}div.table-container{% endif %}"
+                 {% comment %} hx-target="{% if table.custom_target %}{{table.custom_target}}{% else %}div.table-container{% endif %}" {% endcomment %}
+                 hx-target="closest div.table-container"
                  hx-swap="innerHTML">
                  {% comment %} hx-indicator=".progress" {% endcomment %}
                 {{ p }}
@@ -57,8 +59,7 @@
     <li class="next page-item">
         <div hx-get="{{table.url}}{% querystring table.prefixed_page_field=table.page.next_page_number %}"
              hx-trigger="click"
-             hx-target="{% if table.custom_target %}{{table.custom_target}}{% else %}div.table-container{% endif %}"
-             
+             hx-target="closest div.table-container"             
              hx-swap="innerHTML"
              {% comment %} hx-indicator=".progress" {% endcomment %}
              class="page-link">

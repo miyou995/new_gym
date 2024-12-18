@@ -8,7 +8,6 @@ var isAbonnementManuallyChanged = false;
 
 
 function initHTMXCalendar(eventsData, checkAll = false) {
-    console.log("init >>>>>>>>>>> initHTMXCalendar------<")
     selectedEvents = [];
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -35,7 +34,6 @@ function initHTMXCalendar(eventsData, checkAll = false) {
         eventDidMount: function(info) {
             var selectedEventsDiv = document.getElementById('eventsId');
             info.el.setAttribute('data-event-id', info.event.extendedProps.pk_event);
-            console.log("info.el---------------->", info.event.extendedProps.pk_event);
             
             // console.log("selectedEventsDiv.dataset.selected>>>>>", selectedEventsDiv.dataset.selectedEvents);
             if (selectedEventsDiv) {

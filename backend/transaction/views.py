@@ -57,14 +57,25 @@ def impression_resu_paiement(request, paiement_id):
 class TransactionView(PermissionRequiredMixin,SingleTableMixin, FilterView):
     permission_required ="transaction.view_transaction"
     table_class = PiaementHTMxTable
+    # table_data = Paiement.objects.all()
     filterset_class = ProductFilter
-    paginate_by = 9
+    paginate_by = 15
 
+    # self
+    def get_queryset(self):
+        # This now calls FilterView (which inherits from ListView), ensuring get_queryset() is available
+        queryset = Paiement.objects.select_related(
+            'abonnement_client', 
+            'abonnement_client__type_abonnement', 
+            'abonnement_client__client'
+        )
+        return queryset
+         
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["target_url"]   = reverse('transactions:transaction_name')
         context["target"]       = "#table1"
-        context["render_filter"]=ProductFilter(self.request.GET)
+        # context["render_filter"]= ProductFilter(self.request.GET)
         return context
 
     def get_template_names(self):
@@ -232,48 +243,128 @@ def chiffre_par_Activity(request):
 
 
 
-# paiement transactions------------------------------------------------------------------------------------------
-class paiement(PermissionRequiredMixin,CreateView):
+# # paiement transactions------------------------------------------------------------------------------------------
+# class paiement(PermissionRequiredMixin,CreateView):
+#     permission_required = "transaction.add_paiement"
+#     template_name = "snippets/_transaction_paiement_form.html"
+#     form_class =PaiementModelForm
+
+#     def get_form_kwargs(self):
+#         kwargs = super().get_form_kwargs()
+#         client_pk = self.kwargs.get('pk')
+#         if client_pk:
+#             kwargs['initial'] = {'client_pk': client_pk}
+#         return kwargs
+    
+#     def get_context_data(self, **kwargs):
+#         context =super().get_context_data(**kwargs)
+#         client_pk = self.kwargs.get('pk')
+#         if client_pk:
+#             context['client_pk'] = client_pk
+#         return context
+    
+#     def get(self, request, *args, **kwargs):
+#         form = self.form_class(**self.get_form_kwargs())
+#         context = {"form": form}
+#         return render(request, self.template_name, context)
+
+#     def post(self, request, *args, **kwargs):
+#         form = self.form_class(data=request.POST)
+#         posted_data = "\n.".join(f'{key} {value}' for key, value in request.POST.items())
+#         print('POSTED DATA =========\n', posted_data, '\n==========')
+        
+#         if form.is_valid():
+#             print("is valide")
+#             paiement = form.save()
+#             message = _("un paiement a été créé avec succès")
+#             messages.success(request, str(message))
+#             return HttpResponse(status=204, headers={
+#                 'HX-Trigger': json.dumps({
+#                     "closeModal": "kt_modal",
+#                     "refresh_table": None
+#                 })
+#             })
+#         else:
+#             print('is not valide', form.errors.as_data())
+#             client = request.POST.get('client')
+#             abcs= AbonnementClient.objects.filter(client=client)
+#             context = {'form': form}
+#             return render(request, self.template_name, context)
+
+
+# # paiement transactions------------------------------------------------------------------------------------------
+# class PaiementCreateView(PermissionRequiredMixin, CreateView):
+#     permission_required = "transaction.add_paiement"
+#     template_name = "snippets/_transaction_paiement_form.html"
+#     form_class = PaiementModelForm
+
+#     def get_form(self, form_class=None):
+#         form = super().get_form(form_class)
+#         client_pk = self.kwargs.get('pk')
+#         if client_pk:
+#             # Filter abonnement_client queryset by client_pk
+#             form.fields['abonnement_client'].queryset = AbonnementClient.objects.filter(client_id=client_pk)
+#             # If only one abonnement_client exists, set it as initial
+#             if form.fields['abonnement_client'].queryset.count() == 1:
+#                 form.initial['abonnement_client'] = form.fields['abonnement_client'].queryset.first()
+#         return form
+    
+#     def get_context_data(self, **kwargs):
+#         context =super().get_context_data(**kwargs)
+#         client_pk = self.kwargs.get('pk')
+#         if client_pk:
+#             context['client_pk'] = client_pk
+#         return context
+#     def form_valid(self, form):
+#         paiement = form.save()
+#         message = _("un paiement a été créé avec succès")
+#         messages.success(self.request, str(message))
+#         return HttpResponse(status=204, headers={
+#             'HX-Trigger': json.dumps({
+#                 "closeModal": "kt_modal",
+#                 "refresh_table": None
+#             })
+#         })
+
+#     def form_invalid(self, form):
+#         messages.error(self.request, form.errors)
+#         return self.render_to_response(self.get_context_data(form=form))
+
+
+class PaiementCreateView(PermissionRequiredMixin, CreateView):
     permission_required = "transaction.add_paiement"
     template_name = "snippets/_transaction_paiement_form.html"
-    form_class =PaiementModelForm
+    form_class = PaiementModelForm
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
         client_pk = self.kwargs.get('pk')
         if client_pk:
+            # Pass the client_pk in initial so the form can handle it
             kwargs['initial'] = {'client_pk': client_pk}
         return kwargs
-    
-    def get(self, request, *args, **kwargs):
-        form = self.form_class(**self.get_form_kwargs())
-        context = {"form": form}
-        return render(request, self.template_name, context)
 
-    def post(self, request, *args, **kwargs):
-        form = self.form_class(data=request.POST)
-        posted_data = "\n.".join(f'{key} {value}' for key, value in request.POST.items())
-        print('POSTED DATA =========\n', posted_data, '\n==========')
-        
-        if form.is_valid():
-            print("is valide")
-            paiement = form.save()
-            message = _("un paiement a été créé avec succès")
-            messages.success(request, str(message))
-            return HttpResponse(status=204, headers={
-                'HX-Trigger': json.dumps({
-                    "closeModal": "kt_modal",
-                    "refresh_table": None
-                })
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Optionally expose client_pk in the template context
+        context['client_pk'] = self.kwargs.get('pk')
+        return context
+
+    def form_valid(self, form):
+        form.save()
+        message = _("un paiement a été créé avec succès")
+        messages.success(self.request, str(message))
+        return HttpResponse(status=204, headers={
+            'HX-Trigger': json.dumps({
+                "closeModal": "kt_modal",
+                "refresh_table": None
             })
-        else:
-            print('is not valide', form.errors.as_data())
-            client = request.POST.get('client')
-            abcs= AbonnementClient.objects.filter(client=client)
-            context = {'form': form}
-            return render(request, self.template_name, context)
+        })
 
- 
+    def form_invalid(self, form):
+        messages.error(self.request, form.errors)
+        return self.render_to_response(self.get_context_data(form=form))
+
           
 class PaiementUpdateView(PermissionRequiredMixin,UpdateView):
     permission_required="transaction.change_paiement"
@@ -328,9 +419,8 @@ class PaiementDeleteView(PermissionRequiredMixin,DeleteView):
 #remuneration personnel ------------------------------------------------------------------------------------------
 class Remuneration_Personnel(PermissionRequiredMixin,CreateView):
     permission_required = "transaction.add_remuneration"
-    template_name="snippets/_remu_personnel_form.html"
+    template_name="snippets/_remu_Personnel_form.html"
     form_class=Remuneration_PersonnelModelForm
-
     def get_form_kwargs(self) :
         kwargs = super().get_form_kwargs()
         personnel_pk = self.kwargs.get('pk')

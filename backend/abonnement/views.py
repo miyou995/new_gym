@@ -152,7 +152,7 @@ class AbonnemtClientDeleteView(PermissionRequiredMixin,DeleteView):
         paiment = Paiement.objects.filter(abonnement_client=self.object)
         if paiment :
             print("you can not delete this abc")
-            messages.error(self.request, "Supprimer le paiement de cet abonnement pour avoir supprimer l'abonnement ")
+            messages.error(self.request, "Impossible de supprimer cet abonnement car il est lié à des paiements")
             return HttpResponseRedirect(success_url)
         else :
             self.object.delete()

@@ -40,9 +40,8 @@
           {% endif %} {% endcomment %}
           {% if auto_presence.status == 'not_today' %}
             <div class="text-center mt-4">
-              
-              <h2 class="text-danger">Abonnement termine / Fin date </h2>
-              <h2 class="text-danger">{{auto_presence.abc.end_date}}</h2>
+              <h2 class="text-danger">Aucun abonnement Valide</h2>
+              {% comment %} <h2 class="text-danger">{{auto_presence.abc.end_date}}</h2> {% endcomment %}
 
               <img alt="Cross Icon" src="{% static 'images/logos/cross.png' %}" width="120" height="120" class="img-fluid" />
             </div>
@@ -55,12 +54,10 @@
           {% endif %} {% endcomment %}
           {% if auto_presence.status == 'fin_abonnement' %}
             <div class="text-center mt-4">
-              {% if auto_presence.type_abc == "VH" %}
-                 <h2 class="fs-3 text-dark text-hover-primary fw-bold mb-1 d-block">Reste : {{auto_presence.presence_quantity}} min</h2>
-              {% else %}
-              <h2 class="text-dark text-hover-primary fw-bold mb-1 d-block">Reste {{auto_presence.presence_quantity}} Seance</h2>
-              {% endif %}
-              <h2 class="text-danger"> Abonnement termine</h2>
+              <h2 class="fs-3 text-dark text-hover-primary fw-bold mb-1 d-block">début : {{abc.start_date}}</h2>
+              <h2 class="fs-3 text-dark text-hover-primary fw-bold mb-1 d-block">Fin : {{abc.end_date}}</h2>
+              <h2 class="fs-3 text-dark text-hover-primary fw-bold mb-1 d-block">Reste : {{abc.get_quantity_str}} min</h2>
+              <h2 class="text-danger">{% if abc.is_abc_locked %} Abonnement Bloqué {% else %} Abonnement terminé {% endif %}</h2>
               
               <img alt="Cross Icon" src="{% static 'images/logos/cross.png' %}" width="120" height="120" class="img-fluid" />
             </div>
