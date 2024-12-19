@@ -50,74 +50,58 @@
 					<div class="menu menu-rounded menu-column menu-lg-row menu-active-bg menu-state-primary menu-title-gray-700 menu-arrow-gray-500 fw-semibold my-5 my-lg-0 px-2 px-lg-0 align-items-stretch" id="#kt_header_menu" data-kt-menu="true">
 						{% if perms.transaction.view_transaction %}
 							<div class="menu-item here show me-0 me-lg-2">
-								<span class="menu-link py-3">
-									<a href="{% url 'transactions:transaction_name' %}" class="menu-item me-0 me-lg-2">
-										<span class="menu-title">Paiements</span>
-									</a>
-								</span>
+								<a href="{% url 'transactions:transaction_name' %}" class="menu-link menu-item me-0 me-lg-2 py-3">
+									<span class="menu-title">Paiements</span>
+								</a>
 							</div>
 						{% endif %}
 						{% if perms.client.view_client %}
 							<div class="menu-item here show me-0 me-lg-2">
-								<span class="menu-link py-3">
-									<a href="{% url 'client:client_name' %}" class="menu-item me-0 me-lg-2">
-										<span class="menu-title">Clients</span>
-									</a>
-								</span>
+								<a href="{% url 'client:client_name' %}" class="menu-link menu-item me-0 me-lg-2 py-3">
+									<span class="menu-title">Clients</span>
+								</a>
 							</div>
 						{% endif %}
 						{% if perms.client.view_coach %}
 							<div class="menu-item here show me-0 me-lg-2">
-								<span class="menu-link py-3">
-									<a href="{% url 'client:coach_name' %}" class="menu-item me-0 me-lg-2">
-										<span class="menu-title">Coachs</span>
-									</a>
-								</span>
+								<a href="{% url 'client:coach_name' %}" class="menu-link menu-item me-0 me-lg-2 py-3">
+									<span class="menu-title">Coachs</span>
+								</a>
 							</div>
 						{% endif %}
 						{% if perms.client.view_personnel %}
 							<div class="menu-item here show me-0 me-lg-2">
-								<span class="menu-link py-3">
-									<a href="{% url 'client:personnels_name' %}" class="menu-item me-0 me-lg-2">
-										<span class="menu-title">Personnels</span>
-									</a>
-								</span>
+								<a href="{% url 'client:personnels_name' %}" class="menu-link menu-item me-0 me-lg-2 py-3">
+									<span class="menu-title">Personnels</span>
+								</a>
 							</div>
 						{% endif %}
 						{% if perms.presence.view_presence %}
 							<div class="menu-item here show me-0 me-lg-2">
-								<span class="menu-link py-3">
-									<a href="{% url 'presence:presences_name' %}" class="menu-item me-0 me-lg-2">
-										<span class="menu-title">Présences</span>
-									</a>
-								</span>
+								<a href="{% url 'presence:presences_name' %}" class="menu-link menu-item me-0 me-lg-2 py-3">
+									<span class="menu-title">Présences</span>
+								</a>
 							</div>
 						{% endif %}
 						{% if perms.transaction.can_view_statistique %}
 							<div class="menu-item here show me-0 me-lg-2">
-								<span class="menu-link py-3">
-									<a href="{% url 'transactions:chiffre_affaire_name' %}" class="menu-item me-0 me-lg-2">
-										<span class="menu-title">Chiffre D'affaire</span>
-									</a>
-								</span>
+								<a href="{% url 'transactions:chiffre_affaire_name' %}" class="menu-link menu-item me-0 me-lg-2 py-3">
+									<span class="menu-title">Statistiques</span>
+								</a>
 							</div>
 						{% endif %}
 						{% if perms.creneau.view_creneau %}
 							<div class="menu-item here show me-0 me-lg-2">
-								<span class="menu-link py-3">
-									<a href="{% url 'creneau:creneaux_name' %}" class="menu-item me-0 me-lg-2">
-										<span class="menu-title">Créneaux</span>
-									</a>
-								</span>
+								<a href="{% url 'creneau:creneaux_name' %}" class="menu-link menu-item me-0 me-lg-2 py-3">
+									<span class="menu-title">Créneaux</span>
+								</a>
 							</div>
 						{% endif %}
 						{% if perms.abonnement.view_abonnement %}
 							<div class="menu-item here show me-0 me-lg-2">
-								<span class="menu-link py-3">
-									<a href="{% url 'core:planning_table' %}" class="menu-item me-0 me-lg-2">
-										<span class="menu-title">Configuration</span>
-									</a>
-								</span>
+								<a href="{% url 'core:planning_table' %}" class="menu-link menu-item me-0 me-lg-2 py-3">
+									<span class="menu-title">Configuration</span>
+								</a>
 							</div>
 						{% endif %}
 						{% if perms.authentication.view_user or perms.auth.view_group %}

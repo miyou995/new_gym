@@ -274,20 +274,35 @@ class Client(models.Model):
                 print('THE EXCEPTION ON save client', e)
                 logger.warning('THE EXCEPTION ON save client-{}'.format(str(e)))
                 self.id = "C0001"
-
-
-        if self.carte:
-            # old_carte = self.carte
-            # print('old_carte', old_carte) 
+                
+        # if isinstance(self.carte, int):
+        #     # If carte is already an integer, you can proceed directly
+        #     self.hex_card = format(self.carte, '08X')
+        #     print('New hex converterhex_card:', self.hex_card)
+        # else:
+        #     # If it's not an int, just skip or handle differently
+        #     print("self.carte is not an integer, skipping...")
+        try:
             int_carte = int(self.carte)
-            str_carte = str(int_carte)
-            print('carte', str_carte) 
-            new_int_carte =  int(str_carte)
-            hex_card = hex(new_int_carte)
-            deleted_x = hex_card.replace('0x', '')
-            self.hex_card = deleted_x.upper().zfill(8)
-            print('deleted_x', deleted_x) 
-            print(' hex_card', self.hex_card) 
+            print('New hex converterhex_card:', self.int_carte)
+            self.hex_card = format(int_carte, '08X')
+            print("Conversion successful! The integer is:", self.hex_card)
+        except ValueError:
+            print("Conversion failed. The value is not a valid integer.")
+            pass
+
+        # if self.carte:
+        #     # old_carte = self.carte
+        #     # print('old_carte', old_carte) 
+        #     int_carte = int(self.carte)
+        #     str_carte = str(int_carte)
+        #     print('carte', str_carte) 
+        #     new_int_carte =  int(str_carte)
+        #     hex_card = hex(new_int_carte)
+        #     deleted_x = hex_card.replace('0x', '')
+        #     self.hex_card = deleted_x.upper().zfill(8)
+        #     print('deleted_x', deleted_x) 
+        #     print(' hex_card', self.hex_card) 
         return super().save(*args, **kwargs)
     
     def full_name(self):

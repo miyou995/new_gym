@@ -15,7 +15,7 @@
 									{% if client.picture  %}
 										<img src="{{ client.picture.url }}" alt="image" />
 									{% else %}
-										<span class="symbol-label fs-4x fw-semibold text-primary bg-light-primary">{{ client.first_name|slice:1 }}{{ client.last_name|slice:1 }}</span>
+										<span class="symbol-label fs-4x fw-semibold text-primary bg-light-primary">{{ client.first_name|slice:1|default_if_none:"" }}{{ client.last_name|slice:1|default_if_none:"" }}</span>
 									{% endif %}
 									</div>
 										<a href="#" class="fs-3 text-gray-800 text-hover-primary fw-bold mb-1">{{client.last_name}}  {{client.first_name}}</a>
@@ -50,10 +50,10 @@
 													<div class="py-5 fs-6">
 												
 														<div class="fw-bold mt-5">Téléphone</div>
-														<div class="text-gray-600">{{client.phone}}</div>
+														<div class="text-gray-600">{{client.phone|default_if_none:"-"}}</div>
 											
 														<div class="fw-bold mt-5">Email</div>
-														<div class="text-gray-600">{{client.email}}</div>
+														<div class="text-gray-600">{{client.email|default_if_none:"-"}}</div>
 														
 												
 														<div class="fw-bold mt-5">Groupe sanguin</div>
@@ -63,10 +63,12 @@
 														<div class="text-gray-600">{{client.civility}}</div>
 												
 														<div class="fw-bold mt-5">Date de naissance</div>
-														<div class="text-gray-600">{{client.age}} ans</div>
+														<div class="text-gray-600">{{client.age|default_if_none:"-"}} ans</div>
 														
 														<div class="fw-bold mt-5">Adresse</div>
-														<div class="text-gray-600">{{client.adress}}</div>
+														<div class="text-gray-600">{{client.adress|default_if_none:"-"}}</div>
+														<div class="fw-bold mt-5">Note</div>
+														<div class="text-gray-600">{{client.note|default:"-"}}</div>
 													</div>
 												</div>
 											</div>
