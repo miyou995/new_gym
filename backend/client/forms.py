@@ -43,14 +43,14 @@ class ClientModelForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields["last_name"].widget.attrs.update()
 
+        # self.fields['first_name'].error_messages = {
+        #     'required': 'Veuillez renseigner ce champ.',
+        #     'invalid': 'Custom error message for field2 is invalid.',
+        # }
         self.fields['last_name'].error_messages = {
             'required': 'Veuillez renseigner ce champ.',
             'invalid': 'Custom error message for field1 is invalid.',
             # Add more custom error messages for different errors if needed
-        }
-        self.fields['first_name'].error_messages = {
-            'required': 'Veuillez renseigner ce champ.',
-            'invalid': 'Custom error message for field2 is invalid.',
         }
         self.fields['blood'].error_messages = {
             'required': 'veuillez choisir.',
@@ -59,15 +59,15 @@ class ClientModelForm(forms.ModelForm):
 
 
 
-    def clean(self):
-        cleaned_data = super().clean()
-        card=cleaned_data.get('carte')
+    # def clean(self):
+    #     cleaned_data = super().clean()
+    #     card=cleaned_data.get('carte')
         
-        # phone=cleaned_data.get('phone')
-        last_name=cleaned_data.get('last_name')
+    #     # phone=cleaned_data.get('phone')
+    #     last_name=cleaned_data.get('last_name')
 
-        if not last_name :
-            self.add_error('last_name',_("Veuillez renseigner ce champ "))
+    #     if not last_name :
+    #         self.add_error('last_name',_("Veuillez renseigner ce champ "))
      
         # if not phone :
         #     self.add_error('phone',_("Veuillez renseigner ce champ "))

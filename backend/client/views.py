@@ -39,7 +39,6 @@ class ClientView(PermissionRequiredMixin,SingleTableMixin, FilterView):
     paginate_by = 15
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        print('from client viewwwwwwwwwwwwwwwwwwwwwwwwwwwwww')
         return context
     # def get_queryset(self):
     #     queryset= Client.objects.select_related("maladies").order_by("-created")
@@ -61,10 +60,10 @@ def ClientCreateView(request):
     if request.method == "POST":
         form = ClientModelForm(data=request.POST , files=request.FILES) 
         posted_data= "\n".join(f'{key} {value}' for key, value in request.POST.items())
-        print('POSTED DATA=========\n', posted_data, '\n========')
+        # print('POSTED DATA=========\n', posted_data, '\n========')
         if form.is_valid():
             print("is valide")
-            client = form.save()
+            form.save()
             message = _("cilent a été créé avec succès.")
             messages.success(request, str(message))
             return HttpResponse(status=204,
@@ -72,7 +71,6 @@ def ClientCreateView(request):
                     'HX-Trigger': json.dumps({
                         "closeModal": "kt_modal",
                         "refresh_table": None
-                         
                     })
                 }) 
         else:
