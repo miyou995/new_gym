@@ -221,7 +221,7 @@ LOGGING = {
             'formatter': 'console'
         },
         'file': {
-            'level': 'DEBUG',
+            'level': 'WARNING',
             'class': 'logging.FileHandler',
             'formatter': 'file',
             'filename': BASE_DIR / "debug.log"
