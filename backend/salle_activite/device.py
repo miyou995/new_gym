@@ -9,7 +9,8 @@ from NetSDK.SDK_Callback import fDisConnect, fHaveReConnect, fAnalyzerDataCallBa
 from NetSDK.SDK_Enum import *
 from NetSDK.SDK_Struct import *
 from client.models import Client
-
+import logging
+logger = logging.getLogger(__name__)
 global my_demo
 
 file = "log.log"
@@ -229,6 +230,30 @@ class AccessControl:
         else:
             print("open door success. " + self.sdk.GetLastErrorMessage())
         return False
+
+        
+    def access_operate(self):
+        stuInParam = NET_CTRL_ACCESS_OPEN()
+        stuInParam.dwSize = sizeof(NET_CTRL_ACCESS_OPEN)
+        stuInParam.nChannelID = 0 # channel
+        stuInParam.emOpenDoorType = EM_OPEN_DOOR_TYPE.EM_OPEN_DOOR_TYPE_REMOTE
+        stuInParam.emOpenDoorDirection = EM_OPEN_DOOR_DIRECTION.EM_OPEN_DOOR_DIRECTION_FROM_ENTER
+        result = self.sdk.ControlDeviceEx(self.loginID, CtrlType.ACCESS_OPEN, stuInParam, c_char(), 5000)
+        if result:
+            print("Open the door succeed.")
+            stuInParam = NET_CTRL_ACCESS_CLOSE()
+            stuInParam.dwSize = sizeof(NET_CTRL_ACCESS_CLOSE)
+            stuInParam.nChannelID = 0
+            # result = self.sdk.ControlDeviceEx(self.loginID, CtrlType.ACCESS_CLOSE, stuInParam, c_char(), 5000)
+            # if result:
+            #     print("Close the door succeed.")
+            # else:
+            #     print("Close the door fail. " + self.sdk.GetLastErrorMessage())
+            #     return False
+        else:
+            print("Open the door fail. " + self.sdk.GetLastErrorMessage())
+            return False
+        return True
     
     # Added from old sdk
     

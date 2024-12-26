@@ -284,9 +284,7 @@ class Client(models.Model):
         #     print("self.carte is not an integer, skipping...")
         try:
             int_carte = int(self.carte)
-            print('New hex converterhex_card:', self.int_carte)
             self.hex_card = format(int_carte, '08X')
-            print("Conversion successful! The integer is:", self.hex_card)
         except ValueError:
             print("Conversion failed. The value is not a valid integer.")
             pass

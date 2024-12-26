@@ -316,6 +316,7 @@ class FaceControl:
             stuInParam = NET_CTRL_ACCESS_CLOSE()
             stuInParam.dwSize = sizeof(NET_CTRL_ACCESS_CLOSE)
             stuInParam.nChannelID = 0
+            
             # result = self.sdk.ControlDeviceEx(self.loginID, CtrlType.ACCESS_CLOSE, stuInParam, c_char(), 5000)
             # if result:
             #     print("Close the door succeed.")
