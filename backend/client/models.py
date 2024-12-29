@@ -14,13 +14,17 @@ from .tasks import register_user
 from django.utils.translation import gettext as _
 from presence.models import PresenceCoach
 
+from io import BytesIO
+from PIL import Image
 
+from django.core.files.base import ContentFile
+import threading
 
-
+lock = threading.Lock()
 import logging
 logger = logging.getLogger(__name__)
-
 FTM = '%H:%M:%S'
+
 
 # Create your models here.
 class AbonnementManager(models.Manager):
@@ -118,9 +122,9 @@ class Client(models.Model):
     abonnement_manager = AbonnementManager()
     history = HistoricalRecords()
 
-    # def __init__(self, *args, **kwargs):
-    #     super(Client, self).__init__(*args, **kwargs)
-    #     # self._old_picture = self.picture
+    def __init__(self, *args, **kwargs):
+        super(Client, self).__init__(*args, **kwargs)
+        self._old_picture = self.picture
     class Meta:
         ordering = ("-created",)
 
@@ -140,18 +144,18 @@ class Client(models.Model):
         
         return None
 
-    # def generate_thumbnail(self, picture, picture_name):
-    #     THUMBNAIL_SIZE = (250, 360)
-    #     image = Image.open(picture)
-    #     image = image.convert("RGB")
-    #     image.thumbnail(THUMBNAIL_SIZE, Image.ANTIALIAS)
-    #     temp_thumb = BytesIO()
-    #     image.save(temp_thumb, "JPEG")
-    #     temp_thumb.seek(0)
-    #     # set save=False, otherwise it will run in an infinite loop
-    #     self.picture.save(self.picture.name,ContentFile(temp_thumb.read()),save=False)
-    #     print('DONE')
-    #     temp_thumb.close()
+    def generate_thumbnail(self, picture, picture_name):
+        THUMBNAIL_SIZE = (250, 360)
+        image = Image.open(picture)
+        image = image.convert("RGB")
+        image.thumbnail(THUMBNAIL_SIZE, Image.Resampling.LANCZOS)
+        temp_thumb = BytesIO()
+        image.save(temp_thumb, "JPEG")
+        temp_thumb.seek(0)
+        # set save=False, otherwise it will run in an infinite loop
+        self.picture.save(self.picture.name,ContentFile(temp_thumb.read()),save=False)
+        print('DONE')
+        temp_thumb.close()
 
     # def generate_thumbnail(self, picture, picture_name):
     #     from django.core.files import File

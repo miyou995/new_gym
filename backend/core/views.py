@@ -116,15 +116,13 @@ class IndexView(PermissionRequiredMixin,SingleTableMixin, ListView):
         # ------------------------presences par salle-----------------------# 
         today=date.today()
         queryset = Presence.objects.filter(date=today).values('creneau__activity__salle__name').annotate(presence_count=Count('id')).order_by()
-        print("queryset salle >------------------", queryset)
 
         # If you want to get the total number of presences across all salles
         total_presences = queryset.aggregate(total=Count('id'))['total']
-        print("Total number of presences:", total_presences)
 
         # Print each salle's name and presence count
-        for salle_presence in queryset:
-            print(f"Salle: {salle_presence['creneau__activity__salle__name']}, Number of presences: {salle_presence['presence_count']}")
+        # for salle_presence in queryset:
+        #     print(f"Salle: {salle_presence['creneau__activity__salle__name']}, Number of presences: {salle_presence['presence_count']}")
         context['salle_presences'] = queryset
         context['total_presences'] = total_presences
 
