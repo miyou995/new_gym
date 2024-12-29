@@ -9,7 +9,8 @@ from FaceNetSDK.SDK_Callback import *
 from FaceNetSDK.SDK_Enum import *
 from FaceNetSDK.SDK_Struct import *
 from client.models import Client
-
+import logging
+logger = logging.getLogger(__name__)
 global my_demo
 
 file = "c:/log.log"
@@ -333,6 +334,8 @@ class FaceControl:
         result = self.sdk.ControlDeviceEx(self.loginID, CtrlType.ACCESS_OPEN, stuInParam, c_char(), 5000)
         if result:
             print("Open the door succeed.")
+            logger.warning('Open the door succeed.')
+            
             stuInParam = NET_CTRL_ACCESS_CLOSE()
             stuInParam.dwSize = sizeof(NET_CTRL_ACCESS_CLOSE)
             stuInParam.nChannelID = 0
@@ -344,6 +347,8 @@ class FaceControl:
             #     return False
         else:
             print("Open the door fail. " + self.sdk.GetLastErrorMessage())
+            logger.warning('THE EXCEPTION ON save client-{}'.format(str(self.sdk.GetLastErrorMessage())))
+            
             return False
         return True
 
