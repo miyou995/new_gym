@@ -2,14 +2,11 @@
 from django.db import models
 from django.urls import reverse
 from creneau.models import Creneau
-from django.template.defaultfilters import slugify
 from django.db import models
-from django.db.models import Sum
 from simple_history.models import HistoricalRecords
-from django.db.models.signals import post_save, pre_save
 from abonnement.models import AbonnementClient
 from presence.models import Presence
-from salle_activite.models import Salle, Door
+from salle_activite.models import Door
 from datetime import datetime, timedelta, date
 from django.db import transaction
 from django.utils import timezone
@@ -18,32 +15,11 @@ from django.utils.translation import gettext as _
 from presence.models import PresenceCoach
 
 
-from io import BytesIO
-from PIL import Image
-from django.core.files.base import ContentFile
-import threading
 
-lock = threading.Lock()
+
 import logging
 logger = logging.getLogger(__name__)
-FTM = '%H:%M:%S'
-from salle_activite.models import Salle, Door
-from datetime import datetime, timedelta, date
-from django.db import transaction
-from django.utils import timezone
-from .tasks import register_user
-from django.utils.translation import gettext as _
-from presence.models import PresenceCoach
 
-
-from io import BytesIO
-from PIL import Image
-from django.core.files.base import ContentFile
-import threading
-
-lock = threading.Lock()
-import logging
-logger = logging.getLogger(__name__)
 FTM = '%H:%M:%S'
 
 # Create your models here.
@@ -65,14 +41,6 @@ class PresenceManager(models.Manager):
             presence = False
             return presence
 
-        coach = Coach.objects.get(id=coach_id)
-        try :
-            presence = coach.presencesCoach.filter(is_in_salle=True).last().id
-            # print(presence, ' JJJJJJJJJJJJJJJJJJJJJJ')
-            return presence
-        except:
-            presence = False
-            return presence
 
 
 CIVILITY_CHOICES = (
@@ -243,24 +211,24 @@ class Client(models.Model):
     # C0
     
     def save(self, *args, **kwargs):
-        # if self._old_picture != self.picture:
-        #     self.generate_thumbnail(self.picture, self.picture.name)
-        #     print('yess changed picturename', self.picture.name)
-        #     print('yess changed picture url', self.picture.url)
-        #     logger.warning('yess changed picture url-{}'.format(str(self.picture.url)))
-        #     register_user.delay(self.last_name, self.id, self.picture.name)
-        # else:
-        #     logger.warning('picture not changed photo url-{}'.format(str(self.id)))
-        #     print('picture not changed')
-        # if self._old_picture != self.picture:
-        #     self.generate_thumbnail(self.picture, self.picture.name)
-        #     print('yess changed picturename', self.picture.name)
-        #     print('yess changed picture url', self.picture.url)
-        #     logger.warning('yess changed picture url-{}'.format(str(self.picture.url)))
-        #     register_user.delay(self.last_name, self.id, self.picture.name)
-        # else:
-        #     logger.warning('picture not changed photo url-{}'.format(str(self.id)))
-        #     print('picture not changed')
+        if self._old_picture != self.picture:
+            self.generate_thumbnail(self.picture, self.picture.name)
+            print('yess changed picturename', self.picture.name)
+            print('yess changed picture url', self.picture.url)
+            logger.warning('yess changed picture url-{}'.format(str(self.picture.url)))
+            register_user.delay(self.last_name, self.id, self.picture.name)
+        else:
+            logger.warning('picture not changed photo url-{}'.format(str(self.id)))
+            print('picture not changed')
+        if self._old_picture != self.picture:
+            self.generate_thumbnail(self.picture, self.picture.name)
+            print('yess changed picturename', self.picture.name)
+            print('yess changed picture url', self.picture.url)
+            logger.warning('yess changed picture url-{}'.format(str(self.picture.url)))
+            register_user.delay(self.last_name, self.id, self.picture.name)
+        else:
+            logger.warning('picture not changed photo url-{}'.format(str(self.id)))
+            print('picture not changed')
         if not self.id:
             try :
                 # print('clientsd==> ', timezone.now())
