@@ -9,17 +9,20 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 import os 
+import logging
 from pathlib import Path
-from django.contrib.messages import constants as messages
 from datetime import timedelta
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+from django.contrib.messages import constants as messages
+logging.getLogger('PIL.PngImagePlugin').setLevel(logging.CRITICAL)
+logging.getLogger('fontTools.ttLib').setLevel(logging.CRITICAL)
+logging.getLogger('fontTools.subset').setLevel(logging.CRITICAL)
 
+
+BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
-# SECURITY WARNING: keep the secret key used in production secret!
+
 SECRET_KEY = 'django-insecure-m@qx+wsk0=4r0)_7=#b*#6)tn6_n#@hv=*tt#!_2rotvo*4byl'
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 LOGIN_REQUIRED = True
 ALLOWED_HOSTS = ["*"]
@@ -227,32 +230,9 @@ LOGGING = {
             'filename': BASE_DIR / "debug.log"
         }
     },
-    'loggers': {
-        'fontTools': {
-            'level': 'ERROR',  # Suppress INFO and DEBUG logs
-            'handlers': ['console', 'file'],
-            'propagate': False,
-        },
-        'PIL.PngImagePlugin': {
-            'level': 'ERROR',  # Suppress DEBUG logs from Pillow
-            'handlers': ['console', 'file'],
-            'propagate': False,
-        },
-        'weasyprint': {
-            'level': 'WARNING',  # Suppress unnecessary warnings
-            'handlers': ['console', 'file'],
-            'propagate': False,
-        },
-        'django': {
-            'level': 'INFO',
-            'handlers': ['console'],
-            'propagate': True,
-        },
-        '': {
-            'level': 'DEBUG',
-            'handlers': ['console', 'file']
-        }
-    },
+    "root": {"level": "WARNING", "handlers": ["file"]},
+    "django": {"level": "WARNING", "handlers": ["file"]},
+
 }
 
 

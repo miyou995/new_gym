@@ -4,10 +4,10 @@ import os
 import time
 from ctypes import *
 
-from NetSDK.NetSDK import NetClient
-from NetSDK.SDK_Callback import *
-from NetSDK.SDK_Enum import *
-from NetSDK.SDK_Struct import *
+from FaceNetSDK.NetSDK import NetClient
+from FaceNetSDK.SDK_Callback import *
+from FaceNetSDK.SDK_Enum import *
+from FaceNetSDK.SDK_Struct import *
 from pathlib import Path
 
 global my_demo

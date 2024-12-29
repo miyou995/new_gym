@@ -356,7 +356,6 @@ class ClientDetailView(SingleTableMixin, FilterView):
             queryset = queryset.filter(client_id=abonnement_client_pk)
         if queryset.count() < 4:
                 return queryset
-           
         return queryset[:4]
     
     def get_context_data(self, **kwargs):

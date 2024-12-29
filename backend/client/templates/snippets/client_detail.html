@@ -116,7 +116,7 @@
 													<div id="abonnementsClient" class="card-scroll h-350px pt-0">
 														<div class="nav-link active text-gray-800 fs-5 fw-bold"
 															hx-get="{% url 'client:client_detail' client.pk %}"
-															hx-trigger="refresh_abcs from:body, revealed"
+															hx-trigger="refresh_abcs from:body, load"
 															hx-swap="innerHTML"
 															hx-target="#AbonnementClientTable">
 															<div class="card-body pt-0 table-responsive" id="AbonnementClientTable">
@@ -166,7 +166,7 @@
 													<div class="card-scroll h-350px pt-0">
 														<div class="nav-link active text-gray-800 fs-7 fw-bold"
 															hx-get="{% url 'client:paiement_client_detail' client.pk %}"
-															hx-trigger="refresh_table from:body, revealed"
+															hx-trigger="refresh_table from:body, load"
 															hx-swap="innerHTML"
 															hx-target="#PaiementsTable">
 															<div class="card-body pt-0 table-responsive" id="PaiementsTable">
@@ -200,7 +200,7 @@
 														<div class="nav-link active text-gray-800 fs-5 fw-bold"
 															id="PresenceTable"
 															hx-get="{% url 'client:presence_client_detail' client.pk %}"
-															hx-trigger="refresh_table from:body, revealed"
+															hx-trigger="refresh_table from:body, load once"
 															hx-swap="innerHTML">
 															<div class="card-body pt-0 table-responsive" id="PresenceTable">
 																<!-- Dynamic Content -->
