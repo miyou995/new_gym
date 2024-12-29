@@ -31,6 +31,7 @@ class ClientHTMxTable(tables.Table):
         )
         model = Client
         template_name = "tables/bootstrap_htmx.html"
+
         attrs = {
             "class": "table table-striped",
             "url": lambda: reverse("client:client_name"),

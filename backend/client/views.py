@@ -14,7 +14,6 @@ from django.utils import timezone
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.urls import reverse_lazy
 from transaction.models import Paiement, Remuneration,RemunerationProf
-from datetime import datetime
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
 from django_tables2 import SingleTableMixin
@@ -27,21 +26,27 @@ from .tables import (ClientHTMxTable,CoachHTMxTable,PersonnelHTMxTable,Abonnemen
 from abonnement.models import AbonnementClient
 from creneau.models import Creneau
 from django.contrib.auth.decorators import  permission_required
+from django_tables2.export import ExportMixin
+from datetime import date
 
 
 
 
 #-------------------------------------------------client------------------------------------------------------------
-class ClientView(PermissionRequiredMixin,SingleTableMixin, FilterView):
+class ClientView(PermissionRequiredMixin,ExportMixin, SingleTableMixin, FilterView):
     permission_required = "client.view_client"
     table_class = ClientHTMxTable
     filterset_class = ClientFilter
+    export_name = f"Clients - {date.today()}"
     paginate_by = 15
+    exclude_columns = ('carte', 'notes', 'action',)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
-    # def get_queryset(self):
-    #     queryset= Client.objects.select_related("maladies").order_by("-created")
+    
+    def get_queryset(self):
+        queryset= Client.objects.prefetch_related("maladies",'abonnement_client').order_by("-created")
 
         return queryset
     

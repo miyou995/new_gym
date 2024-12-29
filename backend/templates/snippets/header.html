@@ -28,7 +28,7 @@
 						hx-trigger="keyup[target.value.length > 4], changed[target.value.length > 4]"
 						hx-refresh="true"
 						id="barcode-input"
-						hx-on::after-request="document.getElementById('barcode-input').value = '';"
+						hx-on::before-request="document.getElementById('barcode-input').value = '';"
 						autofocus
 					/>
 				</div>
