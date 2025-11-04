@@ -82,6 +82,7 @@ class RangeManager(models.Manager):
                 except:
                     start_hour_2 = i.hour_start.replace(hour=0, minute=i.hour_start.minute + 20 - 60)
             creneaux_shifted.append((start_hour_1, start_hour_2))
+            
         for h in creneaux_shifted:
             if now >= h[0] and now <= h[1]:
                 res2 = creneaux_shifted.index(h)

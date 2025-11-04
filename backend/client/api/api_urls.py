@@ -5,6 +5,7 @@ from .views import (ClientAPIView, ClientListAPIView, ClientDestroyAPIView, Clie
 
 app_name = 'client'
 
+
 urlpatterns = [
     # Clients paths
     # path('', TemplateView.as_view(template_name="index.html")),
@@ -32,7 +33,6 @@ urlpatterns = [
     path('coachs/create', CoachCreateAPIView.as_view(),  name="coach-create"),
     path('coachs/delete/<int:pk>/', CoachDestroyAPIView.as_view(), name="coach-delete"),
 
-
     path('maladies/', MaladieViewSet.as_view({'get':'list'}), name="maladie-create-list"),
     path('maladie/create/', MaladieCreateAPIView.as_view(), name="maladie-create"),
     path('maladie/<int:pk>', MaladieDetailViewAPI.as_view(), name="maladie-detail"),
@@ -40,19 +40,4 @@ urlpatterns = [
     path('get_coach_authorization/', get_coach_authorization, name="get_coach_authorization"),
     path('get_personnel_authorization/', get_personnel_authorization, name="get_personnel_authorization"),
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 ]
-
-

@@ -150,35 +150,27 @@ class PresencesView(PermissionRequiredMixin, SingleTableMixin, FilterView):
 @permission_required("presence.add_presence" , raise_exception=True)
 def presence_client(request):
     context= {}
-    code=request.GET.get('search','')
-    print("from client present//////////////////")
+    code=request.GET.get('search','').strip()
     client=Client.objects.filter(Q(id=code) | Q(carte=code)).first()
-    print("client_id---------------",client)
 
     if client :
-        print("client_id----------------")
         client_id=get_object_or_404(Client, Q(id=code) | Q(carte=code))
         auto_presence=client_id.auto_presence()
         context["client"]=client_id
         context["abc"]=auto_presence["abc"]
         context["auto_presence"]=auto_presence
         if auto_presence["status"] == 'not_today':
-            print("-------------------working from presence--------------------")
             return render(request,"snippets/presence_popup.html",context)
         elif auto_presence["status"] == 'entree':
-            print("enter ------------------------------------")
             message = f"{client.last_name} {client.first_name} a entré"
             messages.success(request, str(message))
             
         elif auto_presence["status"] == 'fin_abonnement':
-            print("fin d'abonnemnt---------------------")
             return render(request,"snippets/presence_popup.html",context)
         elif auto_presence["status"] == 'sortie':
-            print("la sortie---------------------")
             message = f"{client.last_name} {client.first_name} est sortie"
             messages.success(request, str(message))
     else :
-        print(" else----------client_id----------------")
         message = _("client n'exist pas .")
         messages.warning(request, str(message))   
     return HttpResponse(status=204, headers={

@@ -1,6 +1,7 @@
 from django.db import models
 from datetime import datetime, timedelta, date
 
+from planning.models import Planning
 from salle_activite.models import Activity, Salle 
 from creneau.models import Creneau
 # Signals imports
@@ -368,10 +369,10 @@ class AbonnementClient(models.Model):
         ))
         
         for event in selected_events_data:
-            print('creneaux__hour_start>>>>>', type(event.get('creneaux__hour_start')))
-            event['creneaux__hour_start'] = event['creneaux__hour_start'].isoformat()  # Convert datetime to ISO format
-            event['creneaux__hour_finish'] = event['creneaux__hour_finish'].isoformat()  # Convert datetime to ISO format
-            event['start_date'] = event['start_date'].isoformat()
+            if event['creneaux__hour_start'] is not None:
+                event['creneaux__hour_start'] = event['creneaux__hour_start'].isoformat()  # Convert datetime to ISO format
+                event['creneaux__hour_finish'] = event['creneaux__hour_finish'].isoformat()  # Convert datetime to ISO format
+                event['start_date'] = event['start_date'].isoformat()
 
         # print("selected_events_data--------------------",selected_events_data)
         return json.dumps(selected_events_data)
@@ -411,22 +412,48 @@ class AbonnementClient(models.Model):
         # methode creer normaleemnt rest view / la method ne marche pas !!
         
 
-def creneau_created_signal(sender, instance, created,**kwargs):
-    if created:
-        # get abc that have free access VH, AL, SL - 
-        # .select_related('type_abonnement__salles__actvities')
-        activity = instance.activity
-        planning =instance.planning
-        # planning =instance.planning
+# def creneau_created_signal(sender, instance, created,**kwargs):
+#     if created:
+#         # get abc that have free access VH, AL, SL - 
+#         # .select_related('type_abonnement__salles__actvities')
+#         activity = instance.activity
+#         try:
+#             planning = instance.planning
+#         except Planning.DoesNotExist:
+#             planning = Planning.objects.first()
+#         # planning =instance.planning
 
-        abonnements = AbonnementClient.subscription.active_subscription().filter(Q(type_abonnement__type_of="VH") | Q(type_abonnement__type_of="AL")).filter(type_abonnement__salles__actvities = activity, creneaux__planning = planning ).prefetch_related('creneaux', 'creneaux__planning').distinct()
-        print('Abonnements Client a updater', abonnements.values('client__id'))
-        for abonnement in abonnements:
-            abonnement.creneaux.add(instance)
-            abonnement.save()
-        # instance.save()
-post_save.connect(creneau_created_signal, sender=Creneau)
+#         abonnements = AbonnementClient.subscription.active_subscription().filter(Q(type_abonnement__type_of="VH") | Q(type_abonnement__type_of="AL")).filter(type_abonnement__salles__actvities = activity, creneaux__planning = planning ).prefetch_related('creneaux', 'creneaux__planning').distinct()
+#         print('Abonnements Client a updater', abonnements.values('client__id'))
+#         for abonnement in abonnements:
+#             abonnement.creneaux.add(instance)
+#             abonnement.save()
+#         # instance.save()
+# post_save.connect(creneau_created_signal, sender=Creneau)
 
+from django.dispatch import receiver
+
+@receiver(post_save, sender=Creneau)
+def creneau_created_signal(sender, instance, created, **kwargs):
+    if not created:
+        return
+
+    activity = instance.activity
+    planning = instance.planning  # FK field, safe to get directly
+
+    abonnements = (
+        AbonnementClient.subscription.active_subscription()
+        .filter(
+            Q(type_abonnement__type_of__in=["VH", "AL"]),
+            type_abonnement__salles__actvities=activity,
+            creneaux__planning=planning
+        )
+        .distinct()
+        .only("id")  # tiny optimization: fetch only PKs
+    )
+
+    # Bulk assign this creneau to all abonnements (M2M bulk insert)
+    instance.abonnements.add(*abonnements)
 
 
 # def dette_signal(sender, instance, **kwargs):

@@ -164,7 +164,6 @@ class AbonnementsParCreneau(SingleTableMixin,FilterView):
 
     def get_queryset(self):
         creneau_pk = self.kwargs.get('pk')
-        print("creneau_pk-------------", creneau_pk)
         # Annotate with the max created_date_time for each client
         latest_abonnements = AbonnementClient.objects.filter(creneaux__pk=creneau_pk).values('client') \
             .annotate(latest_created_date_time=Max('created_date_time'))
@@ -172,7 +171,6 @@ class AbonnementsParCreneau(SingleTableMixin,FilterView):
         queryset = AbonnementClient.objects.select_related('client', 'type_abonnement') \
             .filter(creneaux__pk=creneau_pk,end_date__gte=date.today(), created_date_time__in=[item['latest_created_date_time'] for item in latest_abonnements]) \
             .order_by('-created_date_time')
-        print("queryset....................>>", queryset)
         return queryset
    
     def get_template_names(self):

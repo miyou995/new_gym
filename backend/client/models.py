@@ -91,7 +91,6 @@ class Client(models.Model):
     carte       = models.CharField(max_length=100, unique=True, blank=True, null=True)
     hex_card    = models.CharField(max_length=100, unique=True, blank=True, null=True)
     last_name   = models.CharField(max_length=50, verbose_name='Nom',blank=True, null=True)
-    last_name   = models.CharField(max_length=50, verbose_name='Nom',blank=True, null=True)
     first_name  = models.CharField(max_length=50, verbose_name='Prénom')
     civility    = models.CharField(choices=CIVILITY_CHOICES , max_length=3, default='MME', verbose_name='Civilité', blank=True, null=True)
     adress      = models.CharField(max_length=200, verbose_name='Adresse', blank=True, null=True)
@@ -120,7 +119,7 @@ class Client(models.Model):
     fin_assurance       = models.DateField(max_length=50, null=True, blank=True)
     objects     = models.Manager()
     abonnement_manager = AbonnementManager()
-    history = HistoricalRecords()
+    # history = HistoricalRecords()
 
     def __init__(self, *args, **kwargs):
         super(Client, self).__init__(*args, **kwargs)
@@ -348,6 +347,7 @@ class Client(models.Model):
                 response["status"] = "entree"
                 response["abc"] = abonnement
                 return response
+            
             elif abonnement.is_valid() and abonnement.presence_quantity > 0:
                 Presence.objects.create(abc= abonnement, creneau= cren_ref,  hour_entree=current_time )
                 if abonnement.is_fixed_sessions() or abonnement.is_free_sessions():
@@ -356,6 +356,7 @@ class Client(models.Model):
                 response["abc"] = abonnement
                 response["status"] = "entree"
                 return response
+            
             else:
                 # logger.warning('LOG abonnement.presence_quantity=====> {}'.format(str(abonnement.presence_quantity)))
                 # logger.warning('LOG ABONNEMENT=====-{}'.format(str(abonnement)))
