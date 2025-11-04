@@ -6,7 +6,6 @@ from salle_activite.models import Activity, Salle
 from creneau.models import Creneau
 # Signals imports
 from django.db.models.signals import post_save, pre_save
-from simple_history.models import HistoricalRecords
 from django.db.models import Q
 from django.urls import reverse
 from django.db.models.signals import post_save
@@ -136,7 +135,6 @@ class AbonnementClient(models.Model):
     archiver            = models.BooleanField(default=False)
     created_date_time   = models.DateTimeField(auto_now_add=True)
     updated_date_time   = models.DateTimeField(auto_now=True)
-    # history             = HistoricalRecords()
     objects         = models.Manager()
     subscription    = SubscriptionManager()
     

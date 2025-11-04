@@ -3,7 +3,6 @@ from django.db import models
 from django.urls import reverse
 from creneau.models import Creneau
 from django.db import models
-from simple_history.models import HistoricalRecords
 from abonnement.models import AbonnementClient
 from presence.models import Presence
 from salle_activite.models import Door
@@ -119,7 +118,6 @@ class Client(models.Model):
     fin_assurance       = models.DateField(max_length=50, null=True, blank=True)
     objects     = models.Manager()
     abonnement_manager = AbonnementManager()
-    # history = HistoricalRecords()
 
     def __init__(self, *args, **kwargs):
         super(Client, self).__init__(*args, **kwargs)
@@ -610,7 +608,6 @@ class Coach(models.Model):
     note            = models.TextField(blank=True, null=True)
     salaire         = models.DecimalField(max_digits=10, decimal_places=0, blank=True, null=True,default=0)
     color           = models.CharField( max_length=50, default='#333333',blank=True, null=True) 
-    history = HistoricalRecords()
     # s           = models.DecimalField(max_digits=10, decimal_places=2, null=True)
     # creneau         = models.ForeignKey(Creneau, verbose_name="créneau" , on_delete=models.CASCADE)
 
@@ -789,11 +786,7 @@ class Personnel(models.Model):
     date_added      = models.DateTimeField(auto_now_add=True, verbose_name='Date de recrutement')
     created         = models.DateTimeField(verbose_name='Date de Création',  auto_now_add=True)
     updated         = models.DateTimeField(verbose_name='Date de dernière mise à jour',  auto_now=True)
-    created         = models.DateTimeField(verbose_name='Date de Création',  auto_now_add=True)
-    updated         = models.DateTimeField(verbose_name='Date de dernière mise à jour',  auto_now=True)
 
-    history         = HistoricalRecords()
-    history         = HistoricalRecords()
     state           = models.CharField(choices=STATE_CHOICES , max_length=3, verbose_name='Etat', default='A')
     note            = models.TextField(blank=True, null=True)
     social_security = models.CharField(max_length=150)

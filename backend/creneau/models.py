@@ -5,7 +5,6 @@ from planning.models import Planning
 # from client.models import Coach
 from salle_activite.models import Activity
 # Create your models here.
-from simple_history.models import HistoricalRecords
 from datetime import datetime, time, timedelta
 
 
@@ -150,20 +149,6 @@ class Creneau(models.Model):
     updated     = models.DateTimeField(verbose_name='Date de dernière mise à jour', auto_now=True)
     objects     = models.Manager()
     range       = RangeManager()
-    history     = HistoricalRecords()
-    hour_start  = models.TimeField()
-    hour_finish = models.TimeField()
-    day         = models.CharField(choices=DAYS_CHOICES , max_length=2, default='DI', verbose_name='Jour')
-    name        = models.CharField(verbose_name="nom du creneau", max_length=100,blank=True, null=True)
-    planning    = models.ForeignKey(Planning, on_delete=models.CASCADE)
-    color       = models.CharField( max_length=50, blank=True, null=True) 
-    activity    = models.ForeignKey(Activity, verbose_name="activities", related_name="creneaux", on_delete=models.CASCADE)
-    coach       = models.ForeignKey('client.Coach' , on_delete=models.CASCADE, related_name='creneaux', blank=True, null=True)
-    created     = models.DateTimeField(verbose_name='Date de Création', auto_now_add=True)
-    updated     = models.DateTimeField(verbose_name='Date de dernière mise à jour', auto_now=True)
-    objects     = models.Manager()
-    range       = RangeManager()
-    history     = HistoricalRecords()
 
     class Meta:
         ordering = ['hour_start']

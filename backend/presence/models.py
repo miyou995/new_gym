@@ -8,7 +8,6 @@ from datetime import timedelta, datetime, timezone, date
 from decimal import Decimal
 from django.utils import timezone
 from abonnement.models import AbonnementClient
-from simple_history.models import HistoricalRecords
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.urls import reverse
@@ -44,7 +43,6 @@ class Presence(models.Model):
     updated = models.DateTimeField(verbose_name="Date de dernière mise à jour", auto_now=True)
     objects = models.Manager()
     presence_manager = PresenceManager()
-    # history = HistoricalRecords(user_model=settings.AUTH_USER_MODEL)
 
     class Meta:
         ordering  = ['-created']
@@ -113,7 +111,6 @@ class PresenceCoach(models.Model):
     hour_entree = models.TimeField(auto_now_add=False,null=True, blank=True)
     hour_sortie = models.TimeField(auto_now_add=False, null=True, blank=True)
     is_in_salle = models.BooleanField(default=False) #TODO remove this
-    history = HistoricalRecords()
 
 
 

@@ -40,8 +40,8 @@ class Command(BaseCommand):
         # Example: Restart Celery (if used)
         self.run_command('sudo systemctl restart celery')
         self.stdout.write('Restarted Celery worker (celery) ')
-        self.run_command('sudo systemctl restart celery_beat')
-        self.stdout.write('Restarted Celery beat worker (celery_beat) ')
+        # self.run_command('sudo systemctl restart celery_beat')
+        # self.stdout.write('Restarted Celery beat worker (celery_beat) ')
 
         # Example: Restart Nginx (if used)
         self.run_command('sudo systemctl restart nginx')
