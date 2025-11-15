@@ -156,6 +156,7 @@ def presence_client(request):
     if client :
         client_id=get_object_or_404(Client, Q(id=code) | Q(carte=code))
         auto_presence=client_id.auto_presence()
+        print('auto_presence>>>>>>>>>>>>>>>>>>>>>',auto_presence)
         context["client"]=client_id
         context["abc"]=auto_presence["abc"]
         context["auto_presence"]=auto_presence

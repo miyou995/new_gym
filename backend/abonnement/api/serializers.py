@@ -232,7 +232,7 @@ class AbonnementClientDetailSerializer(serializers.ModelSerializer):
     # is_locked = serializers.CharField(source="is_locked", read_only=True)
     class Meta:
         model = AbonnementClient
-        fields =('id', 'start_date','end_date', 'type_abonnement' , 'type_abonnement_name','presence_quantity', 'creneaux',  'reste', 'price', 'left_minutes', 'is_time_volume', 'is_free_access', 'is_fixed_sessions', 'is_free_sessions', 'is_valid', 'blocking_date','is_abc_locked')
+        fields =('id', 'start_date','end_date', 'type_abonnement' , 'type_abonnement_name','presence_quantity', 'creneaux',  'reste', 'price', 'left_minutes', 'is_time_volume', 'is_free_access', 'is_fixed_sessions', 'is_free_sessions', 'is_valid','is_abc_locked')
 
     def get_type_abonnement_name(self, obj):
         return obj.type_abonnement.name

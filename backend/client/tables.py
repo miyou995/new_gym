@@ -129,6 +129,7 @@ class AbonnementClientHTMxTable(tables.Table):
 
     def render_presence_quantity(self, value, record):
         return record.get_quantity_str() if record.get_quantity_str() else value
+    
     class Meta:
         fields  = (
                 'type_abonnement',
@@ -140,7 +141,7 @@ class AbonnementClientHTMxTable(tables.Table):
         model = AbonnementClient
         template_name = "tables/bootstrap_htmx.html"
         row_attrs = {
-            'class': lambda record: 'table-danger' if record.blocking_date else ''
+            'class': lambda record: 'table-danger' if record.is_locked else ''
         }
 
     @property

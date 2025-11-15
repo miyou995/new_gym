@@ -1,12 +1,12 @@
+# Create your models here.
+from datetime import datetime
+
 from django.db import models
 from django.urls import reverse
-from django.urls import reverse
 from planning.models import Planning
+
 # from client.models import Coach
 from salle_activite.models import Activity
-# Create your models here.
-from datetime import datetime, time, timedelta
-
 
 DAYS_CHOICES = (
     ('SA', 'Samedi'),
@@ -141,7 +141,7 @@ class Creneau(models.Model):
     hour_finish = models.TimeField()
     day         = models.CharField(choices=DAYS_CHOICES , max_length=2, default='DI', verbose_name='Jour')
     name        = models.CharField(verbose_name="nom du creneau", max_length=100,blank=True, null=True)
-    planning    = models.ForeignKey(Planning, on_delete=models.CASCADE)
+    planning    = models.ForeignKey(Planning, on_delete=models.PROTECT)
     color       = models.CharField( max_length=50, blank=True, null=True) 
     activity    = models.ForeignKey(Activity, verbose_name="activities", related_name="creneaux", on_delete=models.CASCADE)
     coach       = models.ForeignKey('client.Coach' , on_delete=models.CASCADE, related_name='creneaux', blank=True, null=True)

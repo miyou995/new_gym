@@ -8,173 +8,176 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
-import os 
 import logging
-from pathlib import Path
+import os
 from datetime import timedelta
+from pathlib import Path
+
+from celery.schedules import crontab
 from django.contrib.messages import constants as messages
-logging.getLogger('PIL.PngImagePlugin').setLevel(logging.CRITICAL)
-logging.getLogger('fontTools.ttLib').setLevel(logging.CRITICAL)
-logging.getLogger('fontTools.subset').setLevel(logging.CRITICAL)
+
+logging.getLogger("PIL.PngImagePlugin").setLevel(logging.CRITICAL)
+logging.getLogger("fontTools.ttLib").setLevel(logging.CRITICAL)
+logging.getLogger("fontTools.subset").setLevel(logging.CRITICAL)
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
-SECRET_KEY = 'django-insecure-m@qx+wsk0=4r0)_7=#b*#6)tn6_n#@hv=*tt#!_2rotvo*4byl'
+SECRET_KEY = "django-insecure-m@qx+wsk0=4r0)_7=#b*#6)tn6_n#@hv=*tt#!_2rotvo*4byl"
 DEBUG = True
 LOGIN_REQUIRED = True
 ALLOWED_HOSTS = ["*"]
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
+    "django.contrib.admin",
+    "django.contrib.auth",
     # 'accounts',
     "authentication",
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'client',
-    'assurance',
-    'abonnement',
-    'materiel',
-    'salle_activite',
-    'creneau',
-    'presence',
-    'salle_sport',
-    'planning',
-    'transaction',
-    'mptt',
-    'django_crontab',
-    
-    
-    #third party app
-    'rest_framework',
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "client",
+    "assurance",
+    "abonnement",
+    "materiel",
+    "salle_activite",
+    "creneau",
+    "presence",
+    "salle_sport",
+    "planning",
+    "transaction",
+    "mptt",
+    "django_crontab",
+    # third party app
+    "rest_framework",
     # 'rest_framework.authtoken',
-    'debug_toolbar',
-    'corsheaders',
+    "debug_toolbar",
+    "corsheaders",
     # 'drf_multiple_model',
-    'import_export',
+    "import_export",
     # 'djoser',
-    'django_filters',  
-    'simple_history',
+    "django_filters",
+    "simple_history",
     # 'schema_graph',#SCHEMA
-    'rest_framework_simplejwt',
-    'rest_framework_simplejwt.token_blacklist',
+    "rest_framework_simplejwt",
+    "rest_framework_simplejwt.token_blacklist",
     # 'rest_framework.authtoken',
     # 'rest_auth',
-    # 'allauth', 
-    # 'allauth.account', 
-    # 'allauth.socialaccount', 
-    # 'rest_auth.registration', 
+    # 'allauth',
+    # 'allauth.account',
+    # 'allauth.socialaccount',
+    # 'rest_auth.registration',
+    'django_celery_beat',
+    'dbbackup',
+    
     "core",
     "NetSDK",
     "django_tables2",
     "widget_tweaks",
     "crispy_forms",
     "django_htmx",
-    'django_extensions',
-    
+    "django_extensions",
 ]
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-         "rest_framework.authentication.SessionAuthentication",
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
     ],
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.AllowAny",
         # 'rest_framework.permissions.IsAuthenticated',
     ],
-    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
-    'TIME_FORMAT':  '%H:%M',
-    'DATETIME_FORMAT': '%d %m %Y %H:%M', 
+    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
+    "TIME_FORMAT": "%H:%M",
+    "DATETIME_FORMAT": "%d %m %Y %H:%M",
     # "DATE_INPUT_FORMATS": ["%d-%m-%Y"],
     # 'PAGE_SIZE': 20,
 }
 
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=90),
-    'ROTATE_REFRESH_TOKENS': True,
-    'BLACKLIST_AFTER_ROTATION': False,
-    'UPDATE_LAST_LOGIN': False,
-    'ALGORITHM': 'HS256',
-    'SIGNING_KEY': SECRET_KEY,
-    'VERIFYING_KEY': None,
-    'AUTH_HEADER_TYPES': ('JWT',),
-    'AUTH_HEADER_NAME': 'HTTP_AUTHORIZATION',
-    'USER_ID_FIELD': 'id',
-    'USER_ID_CLAIM': 'user_id',
-    'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
-    'TOKEN_TYPE_CLAIM': 'token_type',
-
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=90),
+    "ROTATE_REFRESH_TOKENS": True,
+    "BLACKLIST_AFTER_ROTATION": False,
+    "UPDATE_LAST_LOGIN": False,
+    "ALGORITHM": "HS256",
+    "SIGNING_KEY": SECRET_KEY,
+    "VERIFYING_KEY": None,
+    "AUTH_HEADER_TYPES": ("JWT",),
+    "AUTH_HEADER_NAME": "HTTP_AUTHORIZATION",
+    "USER_ID_FIELD": "id",
+    "USER_ID_CLAIM": "user_id",
+    "AUTH_TOKEN_CLASSES": ("rest_framework_simplejwt.tokens.AccessToken",),
+    "TOKEN_TYPE_CLAIM": "token_type",
     # 'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
     # 'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     # 'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',# third party
-    'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware', #DJango debug toolbar
-    'django.middleware.common.CommonMiddleware',
+    "corsheaders.middleware.CorsMiddleware",  # third party
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware",  # DJango debug toolbar
+    "django.middleware.common.CommonMiddleware",
     "django_htmx.middleware.HtmxMiddleware",
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'simple_history.middleware.HistoryRequestMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "config.middleware.LoginRequiredMiddleware", 
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "simple_history.middleware.HistoryRequestMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "config.middleware.LoginRequiredMiddleware",
     "config.middleware.HtmxMessageMiddleware",
-
 ]
-LOGIN_URL = '/login'
+LOGIN_URL = "/login"
 
-LOGIN_EXEMPT_URLS = ['authentication:password_reset',
-                     'authentication:password_reset_done',
-                     'authentication:password_reset_complete',
-                     'authentication:password_reset_confirm']
+LOGIN_EXEMPT_URLS = [
+    "authentication:password_reset",
+    "authentication:password_reset_done",
+    "authentication:password_reset_complete",
+    "authentication:password_reset_confirm",
+]
 
 # CORS_ALLOWED_ORIGINS = [
 #     "http://localhost:3000"
 # ]
 
 CORS_ORIGIN_ALLOW_ALL = True
-ROOT_URLCONF = 'config.urls'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+ROOT_URLCONF = "config.urls"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
+DBBACKUP_STORAGE_OPTIONS = {'location': BASE_DIR / "backups"}
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
         # 'DIRS': [BASE_DIR / 'build'],
-          "DIRS": [
-            BASE_DIR / "templates", 
-            # BASE_DIR / 'build', 
-           
-    ],
-        'APP_DIRS': True,
-        'OPTIONS': { 
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+        "DIRS": [
+            BASE_DIR / "templates",
+            # BASE_DIR / 'build',
+        ],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
             ],
         },
     },
 ]
 
-WSGI_APPLICATION = 'config.wsgi.application'
+WSGI_APPLICATION = "config.wsgi.application"
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
@@ -182,9 +185,9 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
 
@@ -194,56 +197,47 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
 LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'console': {
-            'format': '%(name)-12s %(levelname)-8s %(message)s'
-        },
-        'file': {
-            'format': '%(asctime)s %(name)-12s %(levelname)-8s %(message)s'
-        }
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "console": {"format": "%(name)-12s %(levelname)-8s %(message)s"},
+        "file": {"format": "%(asctime)s %(name)-12s %(levelname)-8s %(message)s"},
     },
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-            'formatter': 'console'
+    "handlers": {
+        "console": {"class": "logging.StreamHandler", "formatter": "console"},
+        "file": {
+            "level": "WARNING",
+            "class": "logging.FileHandler",
+            "formatter": "file",
+            "filename": BASE_DIR / "debug.log",
         },
-        'file': {
-            'level': 'WARNING',
-            'class': 'logging.FileHandler',
-            'formatter': 'file',
-            'filename': BASE_DIR / "debug.log"
-        }
     },
     "root": {"level": "WARNING", "handlers": ["file"]},
     "django": {"level": "WARNING", "handlers": ["file"]},
-
 }
-
 
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-AUTH_USER_MODEL = 'authentication.User'
+AUTH_USER_MODEL = "authentication.User"
 
-LANGUAGE_CODE = 'fr-fr'
+LANGUAGE_CODE = "fr-fr"
 
-TIME_ZONE = 'Africa/Algiers'
+TIME_ZONE = "Africa/Algiers"
 # TIME_ZONE = 'UTC'
 
 USE_I18N = True
@@ -255,44 +249,53 @@ USE_TZ = False
 LOCALE_PATHS = [BASE_DIR / "locale"]
 
 # real port : 6379
-CELERY_BROKER_URL = 'redis://localhost:6379'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_BROKER_URL = "redis://localhost:6379"
+CELERY_RESULT_BACKEND = "redis://localhost:6379"
 # CELERY_RESULT_BACKEND = 'django-db'
-CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_ACCEPT_CONTENT = ["application/json"]
 CELERY_TASK_TRACK_STARTED = True
 # CELERY_TASK_TIME_LIMIT = 30 * 60
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = "json"
+CELERY_RESULT_SERIALIZER = "json"
 CELERY_TIMEZONE = TIME_ZONE
 
 DJANGO_TABLES2_TABLE_ATTRS = {
-    'class': 'table table-striped',
-    'thead': {
-        'class': 'table-light',
+    "class": "table table-striped",
+    "thead": {
+        "class": "table-light",
     },
 }
 
 
-
 CRONJOBS = [
-    ('20 12 * * *', 'presence.tasks.presence_cron_job'),
+    ("20 12 * * *", "presence.tasks.presence_cron_job"),
     # Add more cron jobs as needed
 ]
 
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 
-
+CELERY_BEAT_SCHEDULE = {
+    "auto_unlock_abc_daily": {
+        "task": "apps.abonnement.tasks.auto_unlock_expired_locked_abc",
+        "schedule": crontab(hour=5, minute=1),
+    },
+    'backup': {
+        'task': 'core.tasks.dbbackup',
+        'schedule': crontab(hour=5, minute=10),  # -1 from  us
+    },
+}
 
 
 # if DEBUG == True:
-#     CELERY_BEAT_SCHEDULE = {  
-#         'stop_restart_tasks_daily' : {   
-#             'task': 'salle_activite.tasks.stop_and_restart_tasks', 
+#     CELERY_BEAT_SCHEDULE = {
+#         'stop_restart_tasks_daily' : {
+#             'task': 'salle_activite.tasks.stop_and_restart_tasks',
 #             'schedule': timedelta(seconds=10),
 
 #         },
 #     }
 # else:
-#     CELERY_BEAT_SCHEDULE = {  
+#     CELERY_BEAT_SCHEDULE = {
 #         'stop_restart_tasks_daily': {
 #             'task': 'salle_activite.tasks.stop_and_restart_tasks',
 #             'schedule': crontab(hour=3, minute=0),
@@ -307,52 +310,39 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/' 
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_URL = "/media/"
 ###
 
 SITE_ID = 1
 
 
 MESSAGE_TAGS = {
-    messages.DEBUG: 'info',
-    messages.INFO: 'info',
-    messages.SUCCESS: 'success',
-    messages.WARNING: 'warning',
-    messages.ERROR: 'danger',
+    messages.DEBUG: "info",
+    messages.INFO: "info",
+    messages.SUCCESS: "success",
+    messages.WARNING: "warning",
+    messages.ERROR: "danger",
 }
 
 
-
-LOGGING ={
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'console': {
-            'format': '%(name)-12s %(levelname)-8s %(message)s'
-        },
-        'file': {
-            'format': '%(asctime)s %(name)-12s %(levelname)-8s %(message)s'
-        }
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "console": {"format": "%(name)-12s %(levelname)-8s %(message)s"},
+        "file": {"format": "%(asctime)s %(name)-12s %(levelname)-8s %(message)s"},
     },
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-            'formatter': 'console'
+    "handlers": {
+        "console": {"class": "logging.StreamHandler", "formatter": "console"},
+        "file": {
+            "level": "DEBUG",
+            "class": "logging.FileHandler",
+            "formatter": "file",
+            "filename": BASE_DIR / "debug.log",
         },
-        'file': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'formatter': 'file',
-            'filename': BASE_DIR / "debug.log"
-        }
     },
-    'loggers': {
-        '': {
-            'level': 'DEBUG',
-            'handlers': ['console', 'file']
-        }
-    }
+    "loggers": {"": {"level": "DEBUG", "handlers": ["console", "file"]}},
 }
 
 
@@ -361,7 +351,7 @@ INTERNAL_IPS = [
     "127.0.0.1",
     # ...
 ]
-  
+
 # USE_THOUSAND_SEPARATOR = True
 
 try:
