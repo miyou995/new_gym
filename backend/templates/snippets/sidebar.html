@@ -38,6 +38,16 @@
 					</a>
 				</div>
 			{% endif %}
+			{% if perms.abonnement.view_abonnementclient %}
+				<div class="menu-item here show py-2">
+					<a href="{% url 'abonnement:abonnement_client' %}" class="menu-link menu-center">
+						<span class="menu-icon me-0">
+							<i class="ki-outline ki-people fs-2x"></i>
+						</span>
+						<span class="menu-title">Abonnements</span>
+					</a>
+				</div>
+			{% endif %}
 			{% if perms.client.view_coach %}
 				<div class="menu-item here show py-2">
 					<a href="{% url 'client:coach_name' %}" class="menu-link menu-center">

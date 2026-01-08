@@ -172,7 +172,7 @@
                         <label class="fs-6 fw-semibold mb-1">
                             <span class="card-label fw-bold text-grey-800">Jours</span>
                         </label>
-                        <select class="form-select" data-control="select2" data-placeholder="jours de blocage" name="block_days" id="block_days" {% if abc.is_locked %} disabled {% endif %}>
+                        <select class="form-select" data-control="select2" data-placeholder="jours de blocage" name="block_days" id="block_days" {% if abc.is_locked %} disabled {% else %} required {% endif %} >
                             <option></option>
                             <option value="7" {% if abc.lock_duration_days == 7 %}selected{% endif %}>7 jours</option>
                             <option value="10" {% if abc.lock_duration_days == 10 %}selected{% endif %}>10 jours</option>

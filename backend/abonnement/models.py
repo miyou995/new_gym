@@ -2,15 +2,13 @@ import json
 from datetime import date, datetime, timedelta
 
 from creneau.models import Creneau
+from django.core.serializers.json import DjangoJSONEncoder
 from django.db import models
 from django.db.models import Q
-from django.core.serializers.json import DjangoJSONEncoder
 
 # Signals imports
 from django.db.models.signals import post_save
 from django.urls import reverse
-from django.utils.dateparse import parse_date
-from django.utils.translation import gettext as _
 from salle_activite.models import Activity, Salle
 
 
@@ -74,23 +72,6 @@ class SubscriptionManager(models.Manager):
         return self.get_queryset().valid_time()
 
 
-# class ManagerValidity(models.Manager):
-#     def is_valid(self, abc_id):
-#         abonnement = AbonnementClient.objects.get(id = abc_id)
-#         abc_end_date = abonnement.end_date
-#         today = date.today()
-#         print('end date =', abc_end_date)
-#         print('today = ', today)
-#         if today < abc_end_date:
-#             return True
-#         else:
-#             return False
-# return True
-
-# class AbonnementManager(models.Manager):
-#     def get_queryset():
-#         return Abonnement.objects.filter(actif= True)
-# return True
 TYPE_ABONNEMENT = (
     ("VH", "Volume Horaire"),
     ("AL", "Accés Libre"),
@@ -128,7 +109,6 @@ class Abonnement(models.Model):
     salles = models.ManyToManyField(Salle, related_name="abonnements")
     actif = models.BooleanField(default=True)
 
-    # objects        = AbonnementManager()
     def __str__(self):
         return self.name
 
@@ -149,7 +129,6 @@ class Abonnement(models.Model):
 
     def get_delete_url(self):
         return reverse("core:type_abonnement_delete_view", kwargs={"pk": str(self.id)})
-
 
 
 class AbonnementClient(models.Model):
@@ -173,12 +152,12 @@ class AbonnementClient(models.Model):
     updated_date_time = models.DateTimeField(auto_now=True)
     # blocking_date = models.DateField(null=True, blank=True)
     # already_blocked = models.BooleanField(verbose_name=_("Déjà bloqué"), default=False)
-        # Lock system
+    # Lock system
     is_locked = models.BooleanField(default=False)
     has_been_locked_once = models.BooleanField(default=False)
     lock_start_date = models.DateField(null=True, blank=True)
     lock_duration_days = models.PositiveIntegerField(null=True, blank=True)  # 10/15/30
-    
+
     objects = models.Manager()
     subscription = SubscriptionManager()
 
@@ -232,7 +211,7 @@ class AbonnementClient(models.Model):
 
         self.save()
         return True
-    
+
     def unlock(self):
         if not self.is_locked:
             return False
@@ -247,7 +226,7 @@ class AbonnementClient(models.Model):
 
         self.save()
         return True
-    
+
     def should_auto_unlock(self):
         if not self.is_locked or not self.lock_start_date:
             return False
@@ -440,6 +419,7 @@ class BlockAbonnementClient(models.Model):
     block_date = models.DateField()
     created_date_time = models.DateTimeField(auto_now_add=True)
     updated_date_time = models.DateTimeField(auto_now=True)
+
 
 from django.dispatch import receiver
 

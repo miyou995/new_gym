@@ -1,15 +1,15 @@
 # coding=utf-8
-import sys
-import os
-import time
 from ctypes import *
+
+from client.models import Client
 from NetSDK.NetSDK import NetClient
 from NetSDK.SDK_Callback import *
 from NetSDK.SDK_Enum import *
 from NetSDK.SDK_Struct import *
-from client.models import Client
 
 file = "c:/log.log"
+
+
 @CB_FUNCTYPE(c_int, c_char_p, c_uint, C_LDWORD)
 def SDKLogCallBack(szLogBuffer, nLogSize, dwUser):
     # try:
@@ -22,7 +22,6 @@ def SDKLogCallBack(szLogBuffer, nLogSize, dwUser):
 
 class AccessControl:
     def __init__(self):
-
         self.loginID = C_LLONG()
         self.playID = C_LLONG()
         self.freePort = c_int()
@@ -33,22 +32,22 @@ class AccessControl:
         self.sdk = NetClient()
         self.sdk.InitEx(self.m_DisConnectCallBack)
         self.sdk.SetAutoReconnect(self.m_ReConnectCallBack)
-                        
-        self.ip = ''
+
+        self.ip = ""
         self.port = 0
-        self.username = ''
-        self.password = ''
+        self.username = ""
+        self.password = ""
         self.operatetype = 0
         self.findHandle = 0
         self.recordNo = 0
         self.alarmEvent = 0
         self.lAnalyzerHandle = C_LLONG()
-       
+
     def get_login_info(self, ip, port, username, password):
-        self.ip         = ip
-        self.port       = port
-        self.username   = username
-        self.password   = password
+        self.ip = ip
+        self.port = port
+        self.username = username
+        self.password = password
 
     def login(self):
         if not self.loginID:
@@ -64,16 +63,18 @@ class AccessControl:
             stuOutParam = NET_OUT_LOGIN_WITH_HIGHLEVEL_SECURITY()
             stuOutParam.dwSize = sizeof(NET_OUT_LOGIN_WITH_HIGHLEVEL_SECURITY)
 
-            self.loginID, device_info, error_msg = self.sdk.LoginWithHighLevelSecurity(stuInParam, stuOutParam)
+            self.loginID, device_info, error_msg = self.sdk.LoginWithHighLevelSecurity(
+                stuInParam, stuOutParam
+            )
             if self.loginID != 0:
-                print('login succeed ip=>', self.ip)
-                print('login succeed self.loginID=>', self.loginID)
-                print('login succeed self.playID=>', self.playID)
+                print("login succeed ip=>", self.ip)
+                print("login succeed self.loginID=>", self.loginID)
+                print("login succeed self.playID=>", self.playID)
                 # print("Login succeed. Channel num:" + str(device_info.nChanNum))
                 return True
             else:
-                print('login failed ip=>', self.ip)
-                print('login failed self.loginID=>', self.loginID)
+                print("login failed ip=>", self.ip)
+                print("login failed self.loginID=>", self.loginID)
                 # print("Login failed. " + error_msg)
                 return False
 
@@ -98,14 +99,24 @@ class AccessControl:
     def ReConnectCallBack(self, lLoginID, pchDVRIP, nDVRPort, dwUser):
         print("Device-OnLine")
 
-    def AnalyzerDataCallBack(self, lAnalyzerHandle, dwAlarmType, pAlarmInfo, pBuffer, dwBufSize, dwUser, nSequence, reserved):
+    def AnalyzerDataCallBack(
+        self,
+        lAnalyzerHandle,
+        dwAlarmType,
+        pAlarmInfo,
+        pBuffer,
+        dwBufSize,
+        dwUser,
+        nSequence,
+        reserved,
+    ):
         if self.lAnalyzerHandle == lAnalyzerHandle:
             print("AnalyzerDataCallBack!! lAnalyzerHandle:%s" % lAnalyzerHandle)
             if dwAlarmType == EM_EVENT_IVS_TYPE.ACCESS_CTL:
                 print("ACCESS_CTL callback, dwBufSize:%d " % dwBufSize)
                 # data handle
                 pic_buf = cast(pBuffer, POINTER(c_ubyte * dwBufSize)).contents
-                with open('./picture.jpg', 'wb+') as f:
+                with open("./picture.jpg", "wb+") as f:
                     f.write(pic_buf)
 
     def get_authorization(self, card_n, door_ip):
@@ -113,54 +124,63 @@ class AccessControl:
         # print("dictioooo",dictio)
         # if card_n:
         card = card_n.decode("utf-8")
-        print(' la carte est ', card)
-        print(' la card_n est ', str(int(card, 16)).zfill(8))
-        print(' la door_ip  ', door_ip)
-        #0099F9AB
+        print(" la carte est ", card)
+        print(" la card_n est ", str(int(card, 16)).zfill(8))
+        print(" la door_ip  ", door_ip)
+        # 0099F9AB
         # 10126599
         try:
-            client=  Client.objects.get(hex_card=card)
-            print(' le client est ', client)
+            client = Client.objects.get(hex_card=card)
+            print(" le client est ", client)
             if client:
-                print('le client la la permission dentree ')
+                print("le client la la permission dentree ")
                 return client.get_access_permission(door_ip)
-            else: 
-                print('rani fel else')
+            else:
+                print("rani fel else")
                 return False
         except Client.DoesNotExist:
             return False
         #     print('client doesnt exist or doesnt have permission to get in')
         # print(' la has_perm has_perm>>>>> ', has_perm)
 
-    def messCallBackEx1(self, lCommand, lLoginID, pBuf, dwBufLen, pchDVRIP, nDVRPort, bAlarmAckFlag, nEventID, dwUser):
+    def messCallBackEx1(
+        self,
+        lCommand,
+        lLoginID,
+        pBuf,
+        dwBufLen,
+        pchDVRIP,
+        nDVRPort,
+        bAlarmAckFlag,
+        nEventID,
+        dwUser,
+    ):
         # print('rani SELF lLoginID' , self.loginID)
         # print('rani lLoginID' , lLoginID)
-        if (lLoginID != self.loginID):
-            print('le code et la clé sont different')
+        if lLoginID != self.loginID:
+            print("le code et la clé sont different")
             return
             # return
-        if (lCommand == SDK_ALARM_TYPE.ALARM_ACCESS_CTL_EVENT):
+        if lCommand == SDK_ALARM_TYPE.ALARM_ACCESS_CTL_EVENT:
             print("ALARM_ACCESS_CTL_EVENT")  # 门禁事件; Access control event
             alarm_info = cast(pBuf, POINTER(NET_A_ALARM_ACCESS_CTL_EVENT_INFO)).contents
             card_n = alarm_info.szCardNo
-            if card_n != b'00000000':
+            if card_n != b"00000000":
                 door = self.ip
-                client = self.get_authorization(card_n,door)
-                if client : 
+                client = self.get_authorization(card_n, door)
+                if client:
                     self.open_door()
                     # client.init_presence()
                     # self.logout()
                     # self.login()
                     # self.alarm_listen()
-                print('get_authorization => ', client)
-        return 
-    
-
+                print("get_authorization => ", client)
+        return
 
     def reboot_device(self):
         if self.loginID:
             result = self.sdk.RebootDev(self.loginID)
-            print('Devide Rebooted')
+            print("Devide Rebooted")
             return result
 
     # def deactivate_alarm(self):
@@ -181,15 +201,17 @@ class AccessControl:
                 print("StartListenEx operate succeed.")
                 self.alarmEvent = 1
             else:
-                print("事件监听操作失败(StartListenEx operate fail). " + self.sdk.GetLastErrorMessage())
+                print(
+                    "事件监听操作失败(StartListenEx operate fail). "
+                    + self.sdk.GetLastErrorMessage()
+                )
                 return False
         else:
             print("StartListenEx operate already successful.")
         return True
-    
-    
+
     def config_door(self):
-        from ctypes import byref, sizeof, c_int
+        from ctypes import byref, c_int, sizeof
 
         # Initialize the configuration structure
         cfgParam = NET_CFG_LED_STATUS_INFO()
@@ -206,7 +228,14 @@ class AccessControl:
         emCfgOpType = EM_CFG_OPERATE_TYPE.OPERATE_SET_LED_STATUS
 
         # Call the configuration function
-        ret = self.sdk.CLIENT_SetDevConfig(self.loginID, emCfgOpType, cfgParam.nChannelID, buffer, buffer_size, c_int(3000))
+        ret = self.sdk.CLIENT_SetDevConfig(
+            self.loginID,
+            emCfgOpType,
+            cfgParam.nChannelID,
+            buffer,
+            buffer_size,
+            c_int(3000),
+        )
 
         if ret:
             print("Successfully changed the light color.")
@@ -214,16 +243,18 @@ class AccessControl:
             err = self.sdk.CLIENT_GetLastError()
             print(f"Failed to change the light color. Error code: {err}")
 
-    
-
     def access_operate(self):
         stuInParam = NET_CTRL_ACCESS_OPEN()
         stuInParam.dwSize = sizeof(NET_CTRL_ACCESS_OPEN)
-        stuInParam.nChannelID = 0 # channel
+        stuInParam.nChannelID = 0  # channel
         stuInParam.emOpenDoorType = EM_OPEN_DOOR_TYPE.EM_OPEN_DOOR_TYPE_REMOTE
-        stuInParam.emOpenDoorDirection = EM_OPEN_DOOR_DIRECTION.EM_OPEN_DOOR_DIRECTION_FROM_ENTER
-        print(' access_operate')
-        result = self.sdk.ControlDeviceEx(self.loginID, CtrlType.ACCESS_OPEN, stuInParam, c_char(), 5000)
+        stuInParam.emOpenDoorDirection = (
+            EM_OPEN_DOOR_DIRECTION.EM_OPEN_DOOR_DIRECTION_FROM_ENTER
+        )
+        print(" access_operate")
+        result = self.sdk.ControlDeviceEx(
+            self.loginID, CtrlType.ACCESS_OPEN, stuInParam, c_char(), 5000
+        )
         # result = self.sdk.ControlDeviceEx(self.loginID, CtrlType.ACCESS_OPEN, stuInParam, c_char(), 5000)
         # if result:
         #     print("Open the door succeed.")
@@ -241,21 +272,29 @@ class AccessControl:
         #     print("Open the door fail. " + self.sdk.GetLastErrorMessage())
         #     return False
         return True
-    
-    def config_door(self, ):
-        print("Config door called -----------------------<")  # 门禁事件; Access control event
+
+    def config_door(
+        self,
+    ):
+        print(
+            "Config door called -----------------------<"
+        )  # 门禁事件; Access control event
         # alarm_info = cast(pBuf, POINTER(NET_A_ALARM_ACCESS_CTL_EVENT_INFO)).contents
 
     def open_door(self):
-        print(' open_door')
+        print(" open_door")
         stuInParam = NET_CTRL_ACCESS_OPEN()
         stuInParam.dwSize = sizeof(NET_CTRL_ACCESS_OPEN)
-        stuInParam.nChannelID = 0 # channel
+        stuInParam.nChannelID = 0  # channel
         stuInParam.emOpenDoorType = EM_OPEN_DOOR_TYPE.EM_OPEN_DOOR_TYPE_REMOTE
-        stuInParam.emOpenDoorDirection = EM_OPEN_DOOR_DIRECTION.EM_OPEN_DOOR_DIRECTION_FROM_ENTER
-        result = self.sdk.ControlDeviceEx(self.loginID, CtrlType.ACCESS_OPEN, stuInParam, c_char(), 5000)
+        stuInParam.emOpenDoorDirection = (
+            EM_OPEN_DOOR_DIRECTION.EM_OPEN_DOOR_DIRECTION_FROM_ENTER
+        )
+        result = self.sdk.ControlDeviceEx(
+            self.loginID, CtrlType.ACCESS_OPEN, stuInParam, c_char(), 5000
+        )
 
-                # result = self.sdk.ControlDeviceEx(self.loginID, CtrlType.ACCESS_OPEN, stuInParam, c_char(), 5000)
+        # result = self.sdk.ControlDeviceEx(self.loginID, CtrlType.ACCESS_OPEN, stuInParam, c_char(), 5000)
         # if result:
         #     print("Open the door succeed.")
         #     stuInParam = NET_CTRL_ACCESS_CLOSE()
@@ -271,4 +310,3 @@ class AccessControl:
         # else:
         #     print("Open the door fail. " + self.sdk.GetLastErrorMessage())
         return True
-        

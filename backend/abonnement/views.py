@@ -1,4 +1,5 @@
 import json
+from datetime import date
 
 from client.models import Client
 from django.contrib import messages
@@ -9,6 +10,8 @@ from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
 from django.views.decorators.http import require_POST
 from django.views.generic import DeleteView
+from django_filters.views import FilterView
+from django_tables2 import SingleTableMixin
 from transaction.models import Paiement
 
 from abonnement.forms import (
@@ -18,8 +21,40 @@ from abonnement.forms import (
 )
 from abonnement.mixins import CalendarAbonnementClientMixin
 
-from .filters import CalenderFilterupdate
+from .filters import AbonnementClientFilter, CalenderFilterupdate
 from .models import AbonnementClient, Creneau
+from .tables import AbonnementClientHTMxTable
+
+
+class AbonnementsClient(PermissionRequiredMixin, SingleTableMixin, FilterView):
+    permission_required = "client.view_client"
+    table_class = AbonnementClientHTMxTable
+    filterset_class = AbonnementClientFilter
+    export_name = f"Clients - {date.today()}"
+    paginate_by = 15
+    exclude_columns = (
+        "carte",
+        "notes",
+        "action",
+    )
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+    def get_queryset(self):
+        queryset = AbonnementClient.objects.select_related(
+            "type_abonnement", "client"
+        ).order_by("-created_date_time")
+
+        return queryset
+
+    def get_template_names(self):
+        if self.request.htmx:
+            template_name = "tables/product_table_partial.html"
+        else:
+            template_name = "abonnements_clients.html"
+        return template_name
 
 
 def abc_htmx_view(request):
@@ -194,7 +229,6 @@ def renew_abonnement_client(request, pk):
     if renouvle_date:
         abonnement_client.renew_abc(renouvle_date)
     return HttpResponse(status=204)
-
 
 
 def block_deblock_abonnement_client(request, pk):
