@@ -362,6 +362,7 @@ class Client(models.Model):
             # return self
 
     def init_output(self, exit_hour=None):
+        print("=========== init_output called ===========")
         presences = Presence.objects.select_for_update().filter(
             abc__client=self, hour_sortie__isnull=True
         )
@@ -376,31 +377,39 @@ class Client(models.Model):
             current_time = datetime.now().strftime("%H:%M:%S")
             if exit_hour:
                 current_time = exit_hour
+            print(f"current_time: {current_time}")
 
             logger.warning("LA PRESENCE de{}".format(str(self.id)))
             presence_time = presence.hour_entree
+            print(f"presence_time: {presence_time}")
 
             # Parse times
             current_time_dt = datetime.strptime(current_time, FTM)
             presence_time_dt = datetime.strptime(str(presence_time), FTM)
+            print(f"current_time_dt: {current_time_dt}, presence_time_dt: {presence_time_dt}")
 
             # Handle wraparound at midnight
             if current_time_dt < presence_time_dt:
                 current_time_dt += timedelta(days=1)
+                print(f"Wraparound applied, new current_time_dt: {current_time_dt}")
 
             ecart = current_time_dt - presence_time_dt
             time_diff_seconds = ecart.total_seconds()
+            print(f"time_diff_seconds: {time_diff_seconds}")
 
             if int(time_diff_seconds) <= 10:
+                print("Skipping due to time diff <= 10 seconds")
                 return "skip"
             else:
                 presence.hour_sortie = current_time
                 presence.save()
                 abc = presence.abc
                 if abc.is_time_volume():
-                    ecart = presence.get_time_consumed()
-                    abc.presence_quantity -= ecart
+                    ecart_minutes = presence.get_time_consumed()
+                    print(f"Deducting {ecart_minutes} minutes from presence_quantity")
+                    abc.presence_quantity -= ecart_minutes
                     abc.save()
+                print("Exit recorded successfully")
                 return True
 
     def manuelle_presence(self, date, heur_sortie, door_ip=None):

@@ -60,7 +60,9 @@ class AbonnementsClient(PermissionRequiredMixin, SingleTableMixin, FilterView):
 def abc_htmx_view(request):
     client_id = request.GET.get("client")
     template_name = "abc_hx.html"
-    abcs = AbonnementClient.objects.filter(client__id=client_id)
+    today = date.today()
+
+    abcs = AbonnementClient.objects.filter(client__id=client_id, end_date__gte=today)
     response = render(request, template_name, {"abcs": abcs})
     response.headers = {"HX-Trigger": json.dumps({"referesh_creneaux": None})}
     return response

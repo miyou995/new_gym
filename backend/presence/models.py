@@ -1,5 +1,5 @@
 # Create your models here.
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 
 from abonnement.models import AbonnementClient
 
@@ -71,38 +71,85 @@ class Presence(models.Model):
         return super().save(*args, **kwargs)
 
     def get_time_consumed(self, sortie=None):
+        print("=========== get_time_consumed called ===========")
         today = date.today()
-        now_time = datetime.now().time()
+        # use the given presence date or default to today
+        base_date = self.date if self.date else today
+        print(f"base_date: {base_date}")
+
         if sortie:
             print("sortie hour from model +++++++", sortie)
-            d_end = datetime.combine(today, sortie)
-
+            if isinstance(sortie, str):
+                try:
+                    sortie = datetime.strptime(sortie, FTM).time()
+                except ValueError:
+                    sortie = datetime.now().time()
+            d_end = datetime.combine(base_date, sortie)
+            self.hour_sortie = sortie
         else:
-            d_end = datetime.combine(today, now_time)
+            # use self.hour_sortie if it is set
+            if self.hour_sortie:
+                exit_hour = self.hour_sortie
+                if isinstance(exit_hour, str):
+                    try:
+                        exit_hour = datetime.strptime(exit_hour, FTM).time()
+                    except ValueError:
+                        exit_hour = datetime.now().time()
+            else:
+                exit_hour = datetime.now().time()
+
+            d_end = datetime.combine(base_date, exit_hour)
+            self.hour_sortie = exit_hour
+        print(f"d_end: {d_end}")
+
         if self.abc.is_time_volume():
-            d_start = datetime.combine(today, self.hour_entree)
+            entry_hour = self.hour_entree
+            if isinstance(entry_hour, str):
+                try:
+                    entry_hour = datetime.strptime(entry_hour, FTM).time()
+                except ValueError:
+                    # fallback to now if we can't parse it
+                    entry_hour = datetime.now().time()
+
+            d_start = datetime.combine(base_date, entry_hour)
+            print(f"d_start: {d_start}")
+
+            # Handle wraparound if duration crosses midnight
+            if d_end < d_start:
+                d_end += timedelta(days=1)
+                print(f"Wraparound applied, new d_end: {d_end}")
+
             diff = d_end - d_start
             diff_secondes = diff.total_seconds()
             minutes = diff_secondes / 60
             ecart = int(minutes)
+            print(f"Time consumed: {ecart} minutes")
         else:
             ecart = 1
-        self.hour_sortie = now_time
+            print("Not time volume, ecart = 1")
+
         return ecart
 
     def calculate_duration_minutes(self):
+        print("=========== calculate_duration_minutes called ===========")
         if self.hour_sortie:
             # Combine date with time to calculate timedelta
-            entree = datetime.combine(
-                self.date or datetime.now().date(), self.hour_entree
-            )
-            sortie = datetime.combine(
-                self.date or datetime.now().date(), self.hour_sortie
-            )
+            base_date = self.date if self.date else datetime.now().date()
+            entree = datetime.combine(base_date, self.hour_entree)
+            sortie = datetime.combine(base_date, self.hour_sortie)
+            print(f"entree: {entree}, sortie: {sortie}")
+
+            # Handle wraparound if duration crosses midnight
+            if sortie < entree:
+                sortie += timedelta(days=1)
+                print(f"Wraparound applied, new sortie: {sortie}")
 
             # Calculate duration
             duration = sortie - entree
-            return duration.total_seconds() // 60  # Convert seconds to minutes
+            minutes = duration.total_seconds() // 60
+            print(f"Duration: {minutes} minutes")
+            return minutes  # Convert seconds to minutes
+        print("No hour_sortie, returning None")
         return None
 
     def get_edit_url(self):

@@ -73,9 +73,8 @@ INSTALLED_APPS = [
     # 'allauth.account',
     # 'allauth.socialaccount',
     # 'rest_auth.registration',
-    'django_celery_beat',
-    'dbbackup',
-    
+    "django_celery_beat",
+    "dbbackup",
     "core",
     "NetSDK",
     "django_tables2",
@@ -154,8 +153,8 @@ LOGIN_EXEMPT_URLS = [
 CORS_ORIGIN_ALLOW_ALL = True
 ROOT_URLCONF = "config.urls"
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
-DBBACKUP_STORAGE_OPTIONS = {'location': BASE_DIR / "backups"}
+DBBACKUP_STORAGE = "django.core.files.storage.FileSystemStorage"
+DBBACKUP_STORAGE_OPTIONS = {"location": BASE_DIR / "backups"}
 
 TEMPLATES = [
     {
@@ -272,16 +271,16 @@ CRONJOBS = [
     # Add more cron jobs as needed
 ]
 
-CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
 
 CELERY_BEAT_SCHEDULE = {
     "auto_unlock_abc_daily": {
         "task": "apps.abonnement.tasks.auto_unlock_expired_locked_abc",
         "schedule": crontab(hour=5, minute=1),
     },
-    'backup': {
-        'task': 'core.tasks.dbbackup',
-        'schedule': crontab(hour=5, minute=10),  # -1 from  us
+    "backup": {
+        "task": "core.tasks.dbbackup",
+        "schedule": crontab(hour=5, minute=10),  # -1 from  us
     },
 }
 
@@ -351,6 +350,10 @@ INTERNAL_IPS = [
     "127.0.0.1",
     # ...
 ]
+
+DEBUG_TOOLBAR_CONFIG = {
+    "IS_RUNNING_TESTS": False,
+}
 
 # USE_THOUSAND_SEPARATOR = True
 
