@@ -466,7 +466,9 @@ class Client(models.Model):
             return "not_today"
 
     def init_output_sortie_manuelle(self, heur_sortie, exit_hour=None):
-        presences = Presence.objects.select_for_update().filter(abc__client=self)
+        presences = Presence.objects.select_for_update().filter(
+            abc__client=self, hour_sortie__isnull=True
+        )
         with transaction.atomic():
             presence = presences.first()
             if exit_hour:
@@ -474,31 +476,41 @@ class Client(models.Model):
             if not presence:
                 """ ecart + de 10 seconde"""
                 return False
+
             logger.warning("LA PRESENCE de{}".format(str(self.id)))
             presence_time = presence.hour_entree
-            ecart = abs(
-                datetime.strptime(heur_sortie, FTM)
-                - datetime.strptime(str(presence_time), FTM)
-            )
-            time_diff_seconds = timedelta.total_seconds(ecart)
+
+            # Normalize sortie time
+            if isinstance(heur_sortie, str):
+                sortie_time = datetime.strptime(heur_sortie, FTM).time()
+            else:
+                sortie_time = heur_sortie
+
+            # Compute duration without abs(), with midnight wraparound
+            sortie_dt = datetime.combine(presence.date or date.today(), sortie_time)
+            entree_dt = datetime.combine(presence.date or date.today(), presence_time)
+            if sortie_dt < entree_dt:
+                sortie_dt += timedelta(days=1)
+
+            time_diff_seconds = (sortie_dt - entree_dt).total_seconds()
             if int(time_diff_seconds) <= 2:
                 logger.warning("SORTIE COULD NOT BE done  ================> ")
                 return False
-            else:
-                # presence.hour_sortie = heur_sortie
-                # logger.warning('SORTIE AUTORISEE ================> {}'.format(str(presence.hour_sortie)))
-                # presence.save()
-                abc = presence.abc
-                if abc.is_time_volume():
-                    ecart = presence.get_time_consumed()
-                    print("ecart presence>>>>", ecart)
-                    abc.presence_quantity -= ecart
-                    abc.save()
-                print("la sorite--------------- ", presence.hour_sortie)
-                logger.warning(
-                    "la sorite--------------- {}".format(str(presence.hour_sortie))
-                )
-                return True
+
+            # FIX: persist manual sortie before consumption calculation
+            presence.hour_sortie = sortie_time
+            presence.save(update_fields=["hour_sortie", "updated"])
+
+            abc = presence.abc
+            if abc.is_time_volume():
+                ecart = presence.get_time_consumed(sortie=sortie_time)
+                print("ecart presence>>>>", ecart)
+                abc.presence_quantity -= ecart
+                abc.save(update_fields=["presence_quantity"])
+
+            print("la sorite--------------- ", presence.hour_sortie)
+            logger.warning("la sorite--------------- {}".format(str(presence.hour_sortie)))
+            return True
 
     def get_access_permission(self, door_ip=None):
         logger.warning("Client requested Door Auth ===> {}".format(str(self.id)))

@@ -73,7 +73,6 @@ class Presence(models.Model):
     def get_time_consumed(self, sortie=None):
         print("=========== get_time_consumed called ===========")
         today = date.today()
-        # use the given presence date or default to today
         base_date = self.date if self.date else today
         print(f"base_date: {base_date}")
 
@@ -87,7 +86,6 @@ class Presence(models.Model):
             d_end = datetime.combine(base_date, sortie)
             self.hour_sortie = sortie
         else:
-            # use self.hour_sortie if it is set
             if self.hour_sortie:
                 exit_hour = self.hour_sortie
                 if isinstance(exit_hour, str):
@@ -108,13 +106,11 @@ class Presence(models.Model):
                 try:
                     entry_hour = datetime.strptime(entry_hour, FTM).time()
                 except ValueError:
-                    # fallback to now if we can't parse it
                     entry_hour = datetime.now().time()
 
             d_start = datetime.combine(base_date, entry_hour)
             print(f"d_start: {d_start}")
 
-            # Handle wraparound if duration crosses midnight
             if d_end < d_start:
                 d_end += timedelta(days=1)
                 print(f"Wraparound applied, new d_end: {d_end}")
@@ -122,7 +118,7 @@ class Presence(models.Model):
             diff = d_end - d_start
             diff_secondes = diff.total_seconds()
             minutes = diff_secondes / 60
-            ecart = int(minutes)
+            ecart = max(int(minutes), 0)  # defensive: never return negative minutes
             print(f"Time consumed: {ecart} minutes")
         else:
             ecart = 1

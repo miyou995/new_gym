@@ -9,10 +9,11 @@ class AbonnementClientHTMxTable(tables.Table):
         accessor="client__id", linkify=lambda record: record.client.get_absolute_url()
     )
     created_date_time = tables.DateTimeColumn(
-        format="d/m/Y", verbose_name="Date d'ajout"
+        format="d/m/Y", verbose_name="Date de début"
     )
     is_locked = tables.BooleanColumn(verbose_name="Bloqué")
-
+    presence_quantity=tables.Column( verbose_name="Reste (S/T)", orderable=True )
+    reste = tables.Column(verbose_name="Reste (DA)", orderable=False)
     class Meta:
         model = AbonnementClient
         template_name = "tables/bootstrap_htmx.html"
@@ -22,9 +23,10 @@ class AbonnementClientHTMxTable(tables.Table):
             "client__first_name",
             "client__phone",
             "type_abonnement",
+            "created_date_time",
+            'presence_quantity',
             "reste",
             "is_locked",
-            "created_date_time",
         )
         attrs = {
             "class": "table table-striped table-hover align-middle",
@@ -32,3 +34,9 @@ class AbonnementClientHTMxTable(tables.Table):
             "htmx_container": "#TableClient",
         }
         row_attrs = {"class": lambda record: "table-danger" if record.is_locked else ""}
+
+
+
+    def render_presence_quantity(self, value, record):
+        return record.get_quantity_str() if record.get_quantity_str() else value
+    
